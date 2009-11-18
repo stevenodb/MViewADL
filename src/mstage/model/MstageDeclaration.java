@@ -8,6 +8,7 @@ import org.rejuse.association.SingleAssociation;
 import chameleon.core.MetamodelException;
 import chameleon.core.declaration.Declaration;
 import chameleon.core.declaration.Signature;
+import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.element.Element;
 import chameleon.core.lookup.LookupException;
 import chameleon.core.namespace.NamespaceElementImpl;
@@ -15,7 +16,7 @@ import chameleon.core.scope.Scope;
 import chameleon.core.scope.UniversalScope;
 import chameleon.util.Util;
 
-public abstract class MstageDeclaration<E extends MstageDeclaration<E,P,S>, P extends Element<E,P>, S extends Signature> extends NamespaceElementImpl<E,P> implements Declaration<E,P,S,E> {
+public abstract class MstageDeclaration<E extends MstageDeclaration<E,P>, P extends Element<E,P>> extends NamespaceElementImpl<E,P> implements Declaration<E,P,SimpleNameSignature,E> {
 
 	public E actualDeclaration() throws LookupException {
 		return (E) this;
@@ -25,15 +26,15 @@ public abstract class MstageDeclaration<E extends MstageDeclaration<E,P,S>, P ex
 		return new UniversalScope();
 	}
 
-	public Declaration<?, ?, ?, E> selectionDeclaration() throws LookupException {
+	public Declaration<?, ?, SimpleNameSignature, E> selectionDeclaration() throws LookupException {
 		return this;
 	}
 
-	public S signature() {
+	public SimpleNameSignature signature() {
 		return _signature.getOtherEnd();
 	}
 	
-	private SingleAssociation<MstageDeclaration<E,P,S>, S> _signature = new SingleAssociation<MstageDeclaration<E,P,S>, S>(this); 
+	private SingleAssociation<MstageDeclaration<E,P>, SimpleNameSignature> _signature = new SingleAssociation<MstageDeclaration<E,P>, SimpleNameSignature>(this); 
 
 	public List<Element> children() {
 		List<Element> result = new ArrayList<Element>();
@@ -41,7 +42,7 @@ public abstract class MstageDeclaration<E extends MstageDeclaration<E,P,S>, P ex
 		return result;
 	}
 	
-	public void setSignature(S signature) {
+	public void setSignature(SimpleNameSignature signature) {
 		if(signature != null) {
 			_signature.connectTo(signature.parentLink());
 		} else {
