@@ -7,7 +7,7 @@ import chameleon.core.element.Element;
 import chameleon.core.reference.SimpleReference;
 
 
-public abstract class Module<E extends Module<E>> extends MstageDeclaration<E, Element> {
+public abstract class Module<E extends Module<E>> extends MStageDeclaration<E, Element> {
 
 	// provided interfaces
 	private OrderedMultiAssociation<Module, SimpleReference<Interface>> _providedInterfaces = 

@@ -4,7 +4,7 @@ import chameleon.core.element.Element;
 import chameleon.core.namespace.NamespaceElementImpl;
 import chameleon.core.validation.VerificationResult;
 
-public class Service extends MstageDeclaration<Service, Element> {
+public class Service extends MStageDeclaration<Service, Element> {
 
 	@Override
 	public Service clone() {

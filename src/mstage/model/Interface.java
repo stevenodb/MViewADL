@@ -7,7 +7,7 @@ import org.rejuse.association.OrderedMultiAssociation;
 import chameleon.core.element.Element;
 import chameleon.core.validation.VerificationResult;
 
-public class Interface extends MstageDeclaration<Interface, Element> {
+public class Interface extends MStageDeclaration<Interface, Element> {
 	
 	
 	private OrderedMultiAssociation<Interface, Service> _services = 

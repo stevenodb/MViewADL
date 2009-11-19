@@ -16,7 +16,7 @@ import chameleon.core.scope.Scope;
 import chameleon.core.scope.UniversalScope;
 import chameleon.util.Util;
 
-public abstract class MstageDeclaration<E extends MstageDeclaration<E,P>, P extends Element> 
+public abstract class MStageDeclaration<E extends MStageDeclaration<E,P>, P extends Element> 
 	extends NamespaceElementImpl<E,P> 
 	implements Declaration<E,P,SimpleNameSignature,E> {
 
@@ -36,7 +36,7 @@ public abstract class MstageDeclaration<E extends MstageDeclaration<E,P>, P exte
 		return _signature.getOtherEnd();
 	}
 	
-	private SingleAssociation<MstageDeclaration<E,P>, SimpleNameSignature> _signature = new SingleAssociation<MstageDeclaration<E,P>, SimpleNameSignature>(this); 
+	private SingleAssociation<MStageDeclaration<E,P>, SimpleNameSignature> _signature = new SingleAssociation<MStageDeclaration<E,P>, SimpleNameSignature>(this); 
 
 	public List<Element> children() {
 		List<Element> result = new ArrayList<Element>();
