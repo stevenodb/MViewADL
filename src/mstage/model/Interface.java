@@ -4,17 +4,24 @@ import java.util.List;
 
 import org.rejuse.association.OrderedMultiAssociation;
 
-import chameleon.core.element.ChameleonProgrammerException;
 import chameleon.core.element.Element;
-import chameleon.core.namespace.NamespaceElementImpl;
-import chameleon.core.type.Type;
-import chameleon.core.type.inheritance.InheritanceRelation;
 import chameleon.core.validation.VerificationResult;
 
 public class Interface extends MstageDeclaration<Interface, Element> {
 	
-	private OrderedMultiAssociation<Interface, Service> _services = new OrderedMultiAssociation<Interface, Service>(this);
+	
+	private OrderedMultiAssociation<Interface, Service> _services = 
+		new OrderedMultiAssociation<Interface, Service>(this);
+	
+	private OrderedMultiAssociation<Interface, Property> _properties = 
+		new OrderedMultiAssociation<Interface, Property>(this);
 
+	
+	
+	/* 
+	 * _services accessors 
+	 */
+	
 	public void removeService(Service relation) {
 		_services.remove(relation.parentLink());
 	}
@@ -27,6 +34,27 @@ public class Interface extends MstageDeclaration<Interface, Element> {
 		_services.add(relation.parentLink());
 	}
 
+	
+	
+	/*
+	 * _properties accessors
+	 */
+	
+	public void removeService(Property relation) {
+		_properties.remove(relation.parentLink());
+	}
+
+	public List<Property> properties() {
+		return _properties.getOtherEnds();
+	}
+	
+	public void addService(Property relation) {
+		_properties.add(relation.parentLink());
+	}
+	
+	
+	
+	
 	@Override
 	public Interface clone() {
 		// TODO Auto-generated method stub
