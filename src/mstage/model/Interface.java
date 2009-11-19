@@ -9,12 +9,13 @@ import chameleon.core.element.Element;
 import chameleon.core.namespace.NamespaceElementImpl;
 import chameleon.core.type.Type;
 import chameleon.core.type.inheritance.InheritanceRelation;
+import chameleon.core.validation.VerificationResult;
 
-public class Interface extends NamespaceElementImpl<Interface, Element> {
+public class Interface extends MstageDeclaration<Interface, Element> {
 	
 	private OrderedMultiAssociation<Interface, Service> _services = new OrderedMultiAssociation<Interface, Service>(this);
 
-	public void removeInheritanceRelation(InheritanceRelation relation) {
+	public void removeService(Service relation) {
 		_services.remove(relation.parentLink());
 	}
 
@@ -26,6 +27,16 @@ public class Interface extends NamespaceElementImpl<Interface, Element> {
 		_services.add(relation.parentLink());
 	}
 
+	@Override
+	public Interface clone() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
+	@Override
+	public VerificationResult verifySelf() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

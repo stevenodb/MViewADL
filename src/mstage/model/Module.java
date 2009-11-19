@@ -4,19 +4,18 @@ import java.util.List;
 import org.rejuse.association.OrderedMultiAssociation;
 
 import chameleon.core.element.Element;
-import chameleon.core.namespace.NamespaceElementImpl;
 import chameleon.core.reference.SimpleReference;
-import chameleon.core.type.inheritance.InheritanceRelation;
 
 
-public abstract class Module<E extends Module<E>> extends NamespaceElementImpl<E, Element> {
+public abstract class Module<E extends Module<E>> extends MstageDeclaration<E, Element> {
 
-	// provided interface
+	// provided interfaces
 	private OrderedMultiAssociation<Module, SimpleReference<Interface>> _providedInterfaces = 
-		new OrderedMultiAssociation<Module, Service>(this);
+		new OrderedMultiAssociation<Module, SimpleReference<Interface>>(this); // FIXME:this ok?
 
+	// required interfaces
 	private OrderedMultiAssociation<Module, SimpleReference<Interface>> _requiredInterfaces = 
-		new OrderedMultiAssociation<Module, Service>(this);
+		new OrderedMultiAssociation<Module, SimpleReference<Interface>>(this); // FIXME:this ok?
 
 	
 	public void removeProvidedInterface(SimpleReference<Interface> relation) {

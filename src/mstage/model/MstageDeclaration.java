@@ -16,7 +16,7 @@ import chameleon.core.scope.Scope;
 import chameleon.core.scope.UniversalScope;
 import chameleon.util.Util;
 
-public abstract class MstageDeclaration<E extends MstageDeclaration<E,P>, P extends Element<E,P>> extends NamespaceElementImpl<E,P> implements Declaration<E,P,SimpleNameSignature,E> {
+public abstract class MstageDeclaration<E extends MstageDeclaration<E,P>, P extends Element> extends NamespaceElementImpl<E,P> implements Declaration<E,P,SimpleNameSignature,E> {
 
 	public E actualDeclaration() throws LookupException {
 		return (E) this;
