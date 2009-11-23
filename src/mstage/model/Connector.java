@@ -29,13 +29,11 @@ public class Connector extends Module<Connector> {
 	@Override
 	public Connector clone() {
 		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override
 	public VerificationResult verifySelf() {
 		// TODO Auto-generated method stub
-		return null;
 	}
 
 }

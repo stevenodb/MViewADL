@@ -8,13 +8,11 @@ public class Property extends MStageDeclaration<Property, Element> {
 	@Override
 	public Property clone() {
 		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override
 	public VerificationResult verifySelf() {
 		// TODO Auto-generated method stub
-		return null;
 	}
 	
 }

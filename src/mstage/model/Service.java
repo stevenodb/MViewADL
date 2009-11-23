@@ -9,13 +9,11 @@ public class Service extends MStageDeclaration<Service, Element> {
 	@Override
 	public Service clone() {
 		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override
 	public VerificationResult verifySelf() {
 		// TODO Auto-generated method stub
-		return null;
 	}
 
 }

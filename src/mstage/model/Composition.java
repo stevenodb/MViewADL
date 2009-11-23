@@ -1,7 +1,5 @@
 package mstage.model;
 
-import chameleon.core.element.Element;
-
-public abstract class Composition<E extends Composition> extends MStageDeclaration<Composition, Connector> {
+public abstract class Composition extends MStageDeclaration<Composition, Connector> {
 
 }

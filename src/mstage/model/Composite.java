@@ -1,7 +1,7 @@
 /**
- * author:     Steven Op de beeck <steven /at/ opdebeeck /./ org>
- * filename:   Component.java
- * created:    Nov 20, 2009, 11:23:49 AM
+ * author:   Steven Op de beeck <steven /at/ opdebeeck /./ org>
+ * filename: Composite.java
+ * created:  Nov 20, 2009, 11:42:55 AM
  * license:
  * The code contained in this file is free software: you can redistribute 
  * it and/or modify it under the terms of the GNU General Public License
@@ -25,23 +25,23 @@ import chameleon.core.validation.VerificationResult;
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public class Component<E extends Component<E>> extends Module<E> {
+public class Composite extends Component<Composite> {
 
 	/* (non-Javadoc)
-	 * @see chameleon.core.element.ElementImpl#clone()
+	 * @see mstage.model.Component#clone()
 	 */
 	@Override
-	public E clone() {
+	public Composite clone() {
 		// TODO Auto-generated method stub
-		// creeer component en cast naar E
 	}
 
 	/* (non-Javadoc)
-	 * @see chameleon.core.element.ElementImpl#verifySelf()
+	 * @see mstage.model.Component#verifySelf()
 	 */
 	@Override
 	public VerificationResult verifySelf() {
 		// TODO Auto-generated method stub
 	}
+	
 
 }

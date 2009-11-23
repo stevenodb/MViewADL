@@ -6,16 +6,15 @@ import org.rejuse.association.OrderedMultiAssociation;
 import chameleon.core.element.Element;
 import chameleon.core.reference.SimpleReference;
 
-
 public abstract class Module<E extends Module<E>> extends MStageDeclaration<E, Element> {
 
 	// provided interfaces
 	private OrderedMultiAssociation<Module, SimpleReference<Interface>> _providedInterfaces = 
-		new OrderedMultiAssociation<Module, SimpleReference<Interface>>(this); // FIXME:this ok?
+		new OrderedMultiAssociation<Module, SimpleReference<Interface>>(this);
 
 	// required interfaces
 	private OrderedMultiAssociation<Module, SimpleReference<Interface>> _requiredInterfaces = 
-		new OrderedMultiAssociation<Module, SimpleReference<Interface>>(this); // FIXME:this ok?
+		new OrderedMultiAssociation<Module, SimpleReference<Interface>>(this);
 
 	
 	public void removeProvidedInterface(SimpleReference<Interface> relation) {
@@ -42,7 +41,4 @@ public abstract class Module<E extends Module<E>> extends MStageDeclaration<E, E
 	public void addRequiredInterface(SimpleReference<Interface> relation) {
 		_requiredInterfaces.add(relation.parentLink());
 	}
-
-	
-	
 }
