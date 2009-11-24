@@ -1,7 +1,7 @@
 /**
  * author:   Steven Op de beeck <steven /at/ opdebeeck /./ org>
- * filename: Composite.java
- * created:  Nov 20, 2009, 11:42:55 AM
+ * filename: AOComposition.java
+ * created:  Nov 24, 2009, 5:52:14 PM
  * license:
  * The code contained in this file is free software: you can redistribute 
  * it and/or modify it under the terms of the GNU General Public License
@@ -19,67 +19,33 @@
  */
 package mstage.model;
 
-import java.util.List;
-
 import org.rejuse.association.OrderedMultiAssociation;
 
-import chameleon.core.element.Element;
 import chameleon.core.reference.SimpleReference;
 import chameleon.core.validation.VerificationResult;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
- * @param <E>
  *
  */
-public class Composite extends Component<Composite> {
+public class AOComposition extends Composition {
 	
-	
-	/**
-	 * Association to composite's submodules 
-	 */
-	private OrderedMultiAssociation<Composite, SimpleReference<Module<?>>> _submodules =
-		new OrderedMultiAssociation<Composite, SimpleReference<Module<?>>>(this);
-
-	
-	/**
-	 * @return a list of SimpleReferences to submodules
-	 */
-	public List<SimpleReference<Module<?>>> _submodules() {
-		return _submodules.getOtherEnds();
-	}
-
-	/**
-	 * @param relation	SimpleReference to a Module
-	 */
-	public void addSubmodules(SimpleReference<Module<?>> relation) {
-		_submodules.add(relation.parentLink());
-	}
-	
-	
-	/**
-	 * @param relation	SimpleReference to a Module
-	 */
-	public void removeSubmodules(SimpleReference<Module<?>> relation) {
-		_submodules.remove(relation.parentLink());
-	}
-	
+	OrderedMultiAssociation<Advice, SimpleReference<Service>> _advices;
 
 	/* (non-Javadoc)
-	 * @see mstage.model.Component#clone()
+	 * @see chameleon.core.element.ElementImpl#clone()
 	 */
 	@Override
-	public Composite clone() {
+	public Composition clone() {
 		// TODO Auto-generated method stub
 	}
 
 	/* (non-Javadoc)
-	 * @see mstage.model.Component#verifySelf()
+	 * @see chameleon.core.element.ElementImpl#verifySelf()
 	 */
 	@Override
 	public VerificationResult verifySelf() {
 		// TODO Auto-generated method stub
 	}
-	
 
 }
