@@ -1,6 +1,7 @@
 /**
- * author:     Steven Op de beeck <steven /at/ opdebeeck /./ org>
- * filename:   Composition.java
+ * author:   Steven Op de beeck <steven /at/ opdebeeck /./ org>
+ * filename: Pointcut.java
+ * created:  Nov 26, 2009, 3:09:22 PM
  * license:
  * The code contained in this file is free software: you can redistribute 
  * it and/or modify it under the terms of the GNU General Public License
@@ -18,6 +19,10 @@
  */
 package mstage.model;
 
-public abstract class Composition extends MStageDeclaration<Composition, Connector> {
+/**
+ * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
+ *
+ */
+public class Pointcut extends MStageDeclaration<E, P> {
 
 }

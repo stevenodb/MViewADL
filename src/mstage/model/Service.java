@@ -17,12 +17,80 @@
  */
 package mstage.model;
 
+import java.util.List;
+
+import org.rejuse.association.OrderedMultiAssociation;
+import org.rejuse.association.SingleAssociation;
+
 import chameleon.core.element.Element;
+import chameleon.core.method.MethodHeader;
 import chameleon.core.namespace.NamespaceElementImpl;
+import chameleon.core.reference.SimpleReference;
 import chameleon.core.validation.VerificationResult;
+import chameleon.support.member.simplename.SimpleNameMethodSignature;
 
+@SuppressWarnings("unchecked")
 public class Service extends MStageDeclaration<Service, Element> {
+	
 
+	
+	// SingleAssociation<Service, MethodHeader<?, Service, SimpleNameMethodSignature>> _header =
+	/*
+	 * The service header.
+	 */
+	private SingleAssociation<Service, MethodHeader> _header =
+		new SingleAssociation<Service, MethodHeader>(this);
+	
+	/**
+	 * @return the service's header
+	 */
+	public MethodHeader header() {
+		return _header.getOtherEnd();
+	}
+	
+	/**
+	 * @param header	the header to set
+	 */
+	public void setHeader(MethodHeader header) {
+		if (header != null) {
+			_header.connectTo(header.parentLink());
+		}
+	}
+
+
+	
+	/*
+	 * The service's attached properties
+	 */
+	private OrderedMultiAssociation<Service, SimpleReference<Property>> _attachedProperties =
+		new OrderedMultiAssociation<Service, SimpleReference<Property>>(this);
+	
+	/**
+	 * @return	the attached properties
+	 */
+	public List<SimpleReference<Property>> _aggregatedServices() {
+		return _attachedProperties.getOtherEnds();
+	}
+	
+	/**
+	 * @param relation	the property to attach
+	 */
+	public void addServices(SimpleReference<Property> relation) {
+		_attachedProperties.add(relation.parentLink());
+	}
+	
+	/**
+	 * @param relation the service to remove from the aggregation
+	 */
+	public void removeServices(SimpleReference<Property> relation) {
+		_attachedProperties.remove(relation.parentLink());
+	}
+
+	
+	
+	
+	
+	
 	@Override
 	public Service clone() {
 		// TODO Auto-generated method stub

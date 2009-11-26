@@ -19,7 +19,10 @@
  */
 package mstage.model;
 
+import org.rejuse.association.SingleAssociation;
+
 import chameleon.core.element.Element;
+import chameleon.core.reference.SimpleReference;
 import chameleon.core.validation.VerificationResult;
 
 /**
@@ -28,6 +31,25 @@ import chameleon.core.validation.VerificationResult;
  */
 public class Advice extends MStageDeclaration<Advice, Element> {
 
+	private SingleAssociation<Advice, SimpleReference<Service>> _service =
+		new SingleAssociation<Advice, SimpleReference<Service>>(this);
+	
+	
+	/**
+	 * @return	the reference to the service
+	 */
+	public SimpleReference<Service> _service() {
+		return _service.getOtherEnd();
+	}
+	
+	/**
+	 * @param reference	the reference to set
+	 */
+	public void setService(SimpleReference<Service> relation) {
+		_service.connectTo(relation.parentLink());
+	}
+
+	
 	/* (non-Javadoc)
 	 * @see chameleon.core.element.ElementImpl#clone()
 	 */

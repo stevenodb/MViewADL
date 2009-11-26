@@ -21,6 +21,7 @@ package mstage.model;
 
 import org.rejuse.association.OrderedMultiAssociation;
 
+import chameleon.core.element.Element;
 import chameleon.core.reference.SimpleReference;
 import chameleon.core.validation.VerificationResult;
 
@@ -28,7 +29,7 @@ import chameleon.core.validation.VerificationResult;
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public class AOComposition extends Composition {
+public class AOComposition extends MStageDeclaration<AOComposition, Element> {
 	
 	OrderedMultiAssociation<Advice, SimpleReference<Service>> _advices;
 
@@ -36,7 +37,7 @@ public class AOComposition extends Composition {
 	 * @see chameleon.core.element.ElementImpl#clone()
 	 */
 	@Override
-	public Composition clone() {
+	public AOComposition clone() {
 		// TODO Auto-generated method stub
 	}
 
