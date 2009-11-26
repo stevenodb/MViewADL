@@ -15,7 +15,7 @@
  * along with Digital Publishing Demonstrator.  
  * If not, see <http://www.gnu.org/licenses/>.
  */
-package mstage.model;
+package mstage.model.module;
 
 import java.util.List;
 

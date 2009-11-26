@@ -1,5 +1,7 @@
 /**
- * author:     Steven Op de beeck <steven /at/ opdebeeck /./ org>
+ * author:   Steven Op de beeck <steven /at/ opdebeeck /./ org>
+ * filename: AOComposition.java
+ * created:  Nov 24, 2009, 5:52:14 PM
  * license:
  * The code contained in this file is free software: you can redistribute 
  * it and/or modify it under the terms of the GNU General Public License
@@ -15,21 +17,39 @@
  * along with Digital Publishing Demonstrator.  
  * If not, see <http://www.gnu.org/licenses/>.
  */
-package mstage.model;
+package mstage.model.composition;
+
+import mstage.model.module.Service;
+import mstage.model.namespace.MStageDeclaration;
+
+import org.rejuse.association.OrderedMultiAssociation;
 
 import chameleon.core.element.Element;
+import chameleon.core.reference.SimpleReference;
 import chameleon.core.validation.VerificationResult;
 
-public class Property extends MStageDeclaration<Property, Element> {
-		
+/**
+ * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
+ *
+ */
+public class AOComposition extends MStageDeclaration<AOComposition, Element> {
+	
+	OrderedMultiAssociation<Advice, SimpleReference<Service>> _advices;
+
+	/* (non-Javadoc)
+	 * @see chameleon.core.element.ElementImpl#clone()
+	 */
 	@Override
-	public Property clone() {
+	public AOComposition clone() {
 		// TODO Auto-generated method stub
 	}
 
+	/* (non-Javadoc)
+	 * @see chameleon.core.element.ElementImpl#verifySelf()
+	 */
 	@Override
 	public VerificationResult verifySelf() {
 		// TODO Auto-generated method stub
 	}
-	
+
 }

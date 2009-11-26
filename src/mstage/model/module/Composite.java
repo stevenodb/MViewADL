@@ -1,7 +1,7 @@
 /**
  * author:   Steven Op de beeck <steven /at/ opdebeeck /./ org>
- * filename: Advice.java
- * created:  Nov 24, 2009, 6:27:38 PM
+ * filename: Composite.java
+ * created:  Nov 20, 2009, 11:42:55 AM
  * license:
  * The code contained in this file is free software: you can redistribute 
  * it and/or modify it under the terms of the GNU General Public License
@@ -17,9 +17,11 @@
  * along with Digital Publishing Demonstrator.  
  * If not, see <http://www.gnu.org/licenses/>.
  */
-package mstage.model;
+package mstage.model.module;
 
-import org.rejuse.association.SingleAssociation;
+import java.util.List;
+
+import org.rejuse.association.OrderedMultiAssociation;
 
 import chameleon.core.element.Element;
 import chameleon.core.reference.SimpleReference;
@@ -27,43 +29,57 @@ import chameleon.core.validation.VerificationResult;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
+ * @param <E>
  *
  */
-public class Advice extends MStageDeclaration<Advice, Element> {
-
-	private SingleAssociation<Advice, SimpleReference<Service>> _service =
-		new SingleAssociation<Advice, SimpleReference<Service>>(this);
+public class Composite extends Component<Composite> {
 	
 	
 	/**
-	 * @return	the reference to the service
+	 * Association to composite's submodules 
 	 */
-	public SimpleReference<Service> _service() {
-		return _service.getOtherEnd();
-	}
-	
-	/**
-	 * @param reference	the reference to set
-	 */
-	public void setService(SimpleReference<Service> relation) {
-		_service.connectTo(relation.parentLink());
-	}
+	private OrderedMultiAssociation<Composite, SimpleReference<Module<?>>> _submodules =
+		new OrderedMultiAssociation<Composite, SimpleReference<Module<?>>>(this);
 
 	
+	/**
+	 * @return a list of SimpleReferences to submodules
+	 */
+	public List<SimpleReference<Module<?>>> _submodules() {
+		return _submodules.getOtherEnds();
+	}
+
+	/**
+	 * @param relation	SimpleReference to a Module
+	 */
+	public void addSubmodules(SimpleReference<Module<?>> relation) {
+		_submodules.add(relation.parentLink());
+	}
+	
+	
+	/**
+	 * @param relation	SimpleReference to a Module
+	 */
+	public void removeSubmodules(SimpleReference<Module<?>> relation) {
+		_submodules.remove(relation.parentLink());
+	}
+	
+
 	/* (non-Javadoc)
-	 * @see chameleon.core.element.ElementImpl#clone()
+	 * @see mstage.model.Component#clone()
 	 */
 	@Override
-	public E clone() {
+	public Composite clone() {
 		// TODO Auto-generated method stub
 	}
 
 	/* (non-Javadoc)
-	 * @see chameleon.core.element.ElementImpl#verifySelf()
+	 * @see mstage.model.Component#verifySelf()
 	 */
 	@Override
 	public VerificationResult verifySelf() {
 		// TODO Auto-generated method stub
 	}
+	
 
 }

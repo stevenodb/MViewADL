@@ -1,7 +1,7 @@
 /**
  * author:   Steven Op de beeck <steven /at/ opdebeeck /./ org>
- * filename: Composite.java
- * created:  Nov 20, 2009, 11:42:55 AM
+ * filename: Advice.java
+ * created:  Nov 24, 2009, 6:27:38 PM
  * license:
  * The code contained in this file is free software: you can redistribute 
  * it and/or modify it under the terms of the GNU General Public License
@@ -17,11 +17,12 @@
  * along with Digital Publishing Demonstrator.  
  * If not, see <http://www.gnu.org/licenses/>.
  */
-package mstage.model;
+package mstage.model.composition;
 
-import java.util.List;
+import mstage.model.module.Service;
+import mstage.model.namespace.MStageDeclaration;
 
-import org.rejuse.association.OrderedMultiAssociation;
+import org.rejuse.association.SingleAssociation;
 
 import chameleon.core.element.Element;
 import chameleon.core.reference.SimpleReference;
@@ -29,57 +30,43 @@ import chameleon.core.validation.VerificationResult;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
- * @param <E>
  *
  */
-public class Composite extends Component<Composite> {
-	
-	
-	/**
-	 * Association to composite's submodules 
-	 */
-	private OrderedMultiAssociation<Composite, SimpleReference<Module<?>>> _submodules =
-		new OrderedMultiAssociation<Composite, SimpleReference<Module<?>>>(this);
+public class Advice extends MStageDeclaration<Advice, Element> {
 
+	private SingleAssociation<Advice, SimpleReference<Service>> _service =
+		new SingleAssociation<Advice, SimpleReference<Service>>(this);
+	
 	
 	/**
-	 * @return a list of SimpleReferences to submodules
+	 * @return	the reference to the service
 	 */
-	public List<SimpleReference<Module<?>>> _submodules() {
-		return _submodules.getOtherEnds();
-	}
-
-	/**
-	 * @param relation	SimpleReference to a Module
-	 */
-	public void addSubmodules(SimpleReference<Module<?>> relation) {
-		_submodules.add(relation.parentLink());
+	public SimpleReference<Service> _service() {
+		return _service.getOtherEnd();
 	}
 	
-	
 	/**
-	 * @param relation	SimpleReference to a Module
+	 * @param reference	the reference to set
 	 */
-	public void removeSubmodules(SimpleReference<Module<?>> relation) {
-		_submodules.remove(relation.parentLink());
+	public void setService(SimpleReference<Service> relation) {
+		_service.connectTo(relation.parentLink());
 	}
-	
 
+	
 	/* (non-Javadoc)
-	 * @see mstage.model.Component#clone()
+	 * @see chameleon.core.element.ElementImpl#clone()
 	 */
 	@Override
-	public Composite clone() {
+	public E clone() {
 		// TODO Auto-generated method stub
 	}
 
 	/* (non-Javadoc)
-	 * @see mstage.model.Component#verifySelf()
+	 * @see chameleon.core.element.ElementImpl#verifySelf()
 	 */
 	@Override
 	public VerificationResult verifySelf() {
 		// TODO Auto-generated method stub
 	}
-	
 
 }
