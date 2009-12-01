@@ -27,7 +27,7 @@ import mstage.model.namespace.MStageDeclaration;
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public abstract class InterfaceElement<E extends InterfaceElement<E,P>,P extends Element> 
+public abstract class JoinPointElement<E extends JoinPointElement<E,P>,P extends Element> 
 					extends MStageDeclaration<E,P> {
 
 }

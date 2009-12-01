@@ -20,7 +20,7 @@ package mstage.model.module;
 import chameleon.core.element.Element;
 import chameleon.core.validation.VerificationResult;
 
-public class Property extends InterfaceElement<Property, Element> {
+public class Property extends JoinPointElement<Property, Element> {
 		
 	@Override
 	public Property clone() {

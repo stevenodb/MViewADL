@@ -27,7 +27,7 @@ import chameleon.core.method.MethodHeader;
 import chameleon.core.reference.SimpleReference;
 import chameleon.core.validation.VerificationResult;
 
-public class Service extends InterfaceElement<Service, Element> {
+public class Service extends JoinPointElement<Service, Element> {
 	
 	/*
 	 * Association to the Service 
