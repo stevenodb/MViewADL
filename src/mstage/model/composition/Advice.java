@@ -57,7 +57,7 @@ public class Advice extends MStageDeclaration<Advice, Element> {
 	 * @see chameleon.core.element.ElementImpl#clone()
 	 */
 	@Override
-	public E clone() {
+	public Advice clone() {
 		// TODO Auto-generated method stub
 	}
 

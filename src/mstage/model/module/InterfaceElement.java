@@ -1,5 +1,7 @@
 /**
- * author:     Steven Op de beeck <steven /at/ opdebeeck /./ org>
+ * author:   Steven Op de beeck <steven /at/ opdebeeck /./ org>
+ * filename: InterfaceElement.java
+ * created:  Dec 1, 2009, 1:45:30 PM
  * license:
  * The code contained in this file is free software: you can redistribute 
  * it and/or modify it under the terms of the GNU General Public License
@@ -17,20 +19,15 @@
  */
 package mstage.model.module;
 
-import mstage.model.namespace.MStageDeclaration;
-import chameleon.core.element.Element;
-import chameleon.core.validation.VerificationResult;
 
-public class Property extends MStageDeclaration<Property, Element> implements InterfaceElement {
-		
-	@Override
-	public Property clone() {
-		// TODO Auto-generated method stub
-	}
+/**
+ * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
+ * @param <E>
+ * @param <P>
+ * @param <S>
+ * @param <D>
+ *
+ */
+public interface InterfaceElement {
 
-	@Override
-	public VerificationResult verifySelf() {
-		// TODO Auto-generated method stub
-	}
-	
 }

@@ -1,5 +1,7 @@
 /**
- * author:     Steven Op de beeck <steven /at/ opdebeeck /./ org>
+ * author:   Steven Op de beeck <steven /at/ opdebeeck /./ org>
+ * filename: PropertyJoinPoint.java
+ * created:  Nov 27, 2009, 6:06:45 PM
  * license:
  * The code contained in this file is free software: you can redistribute 
  * it and/or modify it under the terms of the GNU General Public License
@@ -15,48 +17,41 @@
  * along with Digital Publishing Demonstrator.  
  * If not, see <http://www.gnu.org/licenses/>.
  */
-package mstage.model.module;
+package mstage.model.composition;
 
 import java.util.List;
-
-import mstage.model.namespace.MStageDeclaration;
-
-import org.rejuse.association.OrderedMultiAssociation;
 
 import chameleon.core.element.Element;
 import chameleon.core.validation.VerificationResult;
 
-public class Interface extends MStageDeclaration<Interface, Element> {
-	
-	
-	/* 
-	 * Association to Services 
+/**
+ * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
+ *
+ */
+public class PropertyJoinPoint extends SingleJoinPoint<PropertyJoinPoint> {
+
+	/* (non-Javadoc)
+	 * @see chameleon.core.element.ElementImpl#clone()
 	 */
-	private OrderedMultiAssociation<Interface, Service> _services = 
-		new OrderedMultiAssociation<Interface, Service>(this);
-	
-	public void removeService(Service relation) {
-		_services.remove(relation.parentLink());
-	}
-
-	public List<Service> services() {
-		return _services.getOtherEnds();
-	}
-	
-	public void addService(Service relation) {
-		_services.add(relation.parentLink());
-	}
-
-	
-	
 	@Override
-	public Interface clone() {
+	public PropertyJoinPoint clone() {
 		// TODO Auto-generated method stub
 	}
 
+	/* (non-Javadoc)
+	 * @see chameleon.core.element.ElementImpl#verifySelf()
+	 */
 	@Override
 	public VerificationResult verifySelf() {
 		// TODO Auto-generated method stub
 	}
+
+	/* (non-Javadoc)
+	 * @see chameleon.core.element.Element#children()
+	 */
+	public List<? extends Element> children() {
+		// TODO Auto-generated method stub
+	}
+
 
 }

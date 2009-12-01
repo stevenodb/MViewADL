@@ -23,7 +23,6 @@ import java.util.List;
 
 import org.rejuse.association.OrderedMultiAssociation;
 
-import chameleon.core.element.Element;
 import chameleon.core.reference.SimpleReference;
 import chameleon.core.validation.VerificationResult;
 
@@ -35,7 +34,7 @@ import chameleon.core.validation.VerificationResult;
 public class Composite extends Component<Composite> {
 	
 	
-	/**
+	/*
 	 * Association to composite's submodules 
 	 */
 	private OrderedMultiAssociation<Composite, SimpleReference<Module<?>>> _submodules =
@@ -43,14 +42,14 @@ public class Composite extends Component<Composite> {
 
 	
 	/**
-	 * @return a list of SimpleReferences to submodules
+	 * @return a list of references to submodules
 	 */
 	public List<SimpleReference<Module<?>>> _submodules() {
 		return _submodules.getOtherEnds();
 	}
 
 	/**
-	 * @param relation	SimpleReference to a Module
+	 * @param relation	reference to the Module to add
 	 */
 	public void addSubmodules(SimpleReference<Module<?>> relation) {
 		_submodules.add(relation.parentLink());
@@ -58,7 +57,7 @@ public class Composite extends Component<Composite> {
 	
 	
 	/**
-	 * @param relation	SimpleReference to a Module
+	 * @param relation	reference to the Module to remove
 	 */
 	public void removeSubmodules(SimpleReference<Module<?>> relation) {
 		_submodules.remove(relation.parentLink());

@@ -19,27 +19,31 @@ package mstage.model.module;
 
 import java.util.List;
 
+import mstage.model.composition.AOComposition;
+
 import org.rejuse.association.OrderedMultiAssociation;
+
+import sun.awt.im.CompositionArea;
 
 import chameleon.core.reference.SimpleReference;
 import chameleon.core.validation.VerificationResult;
 
 public class Connector extends Module<Connector> {
 	
-	private OrderedMultiAssociation<Connector, SimpleReference<Composition>> _compositions = 
-		new OrderedMultiAssociation<Connector, SimpleReference<Composition>>(this); 
+	private OrderedMultiAssociation<Connector, SimpleReference<AOComposition>> _compositions = 
+		new OrderedMultiAssociation<Connector, SimpleReference<AOComposition>>(this); 
 	// FIXME:this ok?
  
 	
-	public void removeComposition(SimpleReference<Composition> relation) {
+	public void removeComposition(SimpleReference<AOComposition> relation) {
 		_compositions.remove(relation.parentLink());
 	}
 
-	public List<SimpleReference<Composition>> compositions() {
+	public List<SimpleReference<AOComposition>> compositions() {
 		return _compositions.getOtherEnds();
 	}
 	
-	public void addComposition(SimpleReference<Composition> relation) {
+	public void addComposition(SimpleReference<AOComposition> relation) {
 		_compositions.add(relation.parentLink());
 	}
 

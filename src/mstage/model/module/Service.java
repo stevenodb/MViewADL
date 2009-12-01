@@ -31,14 +31,12 @@ import chameleon.core.reference.SimpleReference;
 import chameleon.core.validation.VerificationResult;
 import chameleon.support.member.simplename.SimpleNameMethodSignature;
 
-@SuppressWarnings("unchecked")
-public class Service extends MStageDeclaration<Service, Element> {
+public class Service extends MStageDeclaration<Service, Element> implements InterfaceElement {
 	
 
 	
-	// SingleAssociation<Service, MethodHeader<?, Service, SimpleNameMethodSignature>> _header =
 	/*
-	 * The service header.
+	 * Association to the Service 
 	 */
 	private SingleAssociation<Service, MethodHeader> _header =
 		new SingleAssociation<Service, MethodHeader>(this);
@@ -46,7 +44,7 @@ public class Service extends MStageDeclaration<Service, Element> {
 	/**
 	 * @return the service's header
 	 */
-	public MethodHeader header() {
+	public MethodHeader<?,?,?> header() {
 		return _header.getOtherEnd();
 	}
 	

@@ -1,7 +1,7 @@
 /**
  * author:   Steven Op de beeck <steven /at/ opdebeeck /./ org>
- * filename: AOComposition.java
- * created:  Nov 24, 2009, 5:52:14 PM
+ * filename: PatternJoinPoint.java
+ * created:  Nov 27, 2009, 6:05:14 PM
  * license:
  * The code contained in this file is free software: you can redistribute 
  * it and/or modify it under the terms of the GNU General Public License
@@ -19,13 +19,11 @@
  */
 package mstage.model.composition;
 
-import mstage.model.module.Service;
-import mstage.model.namespace.MStageDeclaration;
+import java.util.List;
 
 import org.rejuse.association.OrderedMultiAssociation;
-import org.rejuse.association.SingleAssociation;
 
-import sun.java2d.pipe.SpanShapeRenderer.Simple;
+import mstage.model.module.Service;
 
 import chameleon.core.element.Element;
 import chameleon.core.reference.SimpleReference;
@@ -35,54 +33,59 @@ import chameleon.core.validation.VerificationResult;
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public class AOComposition extends MStageDeclaration<AOComposition, Element> {
+public class PatternJoinPoint extends JoinPoint<PatternJoinPoint> {
 	
-	/*
-	 * Advice
-	 */
-	private SingleAssociation<AOComposition, Advice> _advice;
-	
-	/**
-	 * @return
-	 */
-	public Advice _advice() {
-		return _advice.getOtherEnd();
-	}
-	
-	/**
-	 * @param relation
-	 */
-	public void setAdvice(Advice relation) {
-		_advice.connectTo(relation.parentLink());
-	}
-
-	
-	/*
-	 * Pointcut
-	 */
-	private SingleAssociation<AOComposition, Pointcut> _pointcut;
+	private String _pattern;
 
 	/**
-	 * @return
+	 * @return the pattern
 	 */
-	public Pointcut _pointcut() {
-		return _pointcut.getOtherEnd();
+	public String pattern() {
+		return _pattern;
+	}
+
+	/**
+	 * @param pattern the pattern to set
+	 */
+	public void setPattern(String pattern) {
+		_pattern = pattern;
+	}
+	
+	
+	
+	private OrderedMultiAssociation<PatternJoinPoint, SimpleReference<Service>> _services =
+		new OrderedMultiAssociation<PatternJoinPoint, SimpleReference<Service>>(this);
+	
+	/**
+	 * @return	a List of references to Services
+	 */
+	public List<SimpleReference<Service>> services() {
+		return _services.getOtherEnds();
 	}
 	
 	/**
-	 * @param relation
+	 * @param relation	reference to the Service to add
 	 */
-	public void setPointcut(SimpleReference<Pointcut> relation) {
-		_pointcut.connectTo(relation.parentLink());
+	public void addService(SimpleReference<Service> relation) {
+		_services.add(relation.parentLink());
 	}
-
+	
+	/**
+	 * @param relation	reference to the Service to remove
+	 */
+	public void removeService(SimpleReference<Service> relation) {
+		_services.remove(relation.parentLink());
+	}
+	
+	
+	
 	
 
 	/* (non-Javadoc)
 	 * @see chameleon.core.element.ElementImpl#clone()
 	 */
 	@Override
-	public AOComposition clone() {
+	public PatternJoinPoint clone() {
 		// TODO Auto-generated method stub
 	}
 
@@ -93,5 +96,13 @@ public class AOComposition extends MStageDeclaration<AOComposition, Element> {
 	public VerificationResult verifySelf() {
 		// TODO Auto-generated method stub
 	}
+
+	/* (non-Javadoc)
+	 * @see chameleon.core.element.Element#children()
+	 */
+	public List<? extends Element> children() {
+		// TODO Auto-generated method stub
+	}
+
 
 }

@@ -1,7 +1,7 @@
 /**
  * author:   Steven Op de beeck <steven /at/ opdebeeck /./ org>
- * filename: Pointcut.java
- * created:  Nov 26, 2009, 3:09:22 PM
+ * filename: SingleJoinPoint.java
+ * created:  Dec 1, 2009, 1:38:25 PM
  * license:
  * The code contained in this file is free software: you can redistribute 
  * it and/or modify it under the terms of the GNU General Public License
@@ -19,41 +19,36 @@
  */
 package mstage.model.composition;
 
-import org.rejuse.association.OrderedMultiAssociation;
-
-import mstage.model.module.Property;
+import mstage.model.module.InterfaceElement;
 import mstage.model.module.Service;
-import mstage.model.namespace.MStageDeclaration;
-import chameleon.core.element.Element;
+
+import org.rejuse.association.SingleAssociation;
+
 import chameleon.core.reference.SimpleReference;
-import chameleon.core.validation.VerificationResult;
 
 /**
- * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
- *
+ * @author  Steven Op de beeck <steven /at/ opdebeeck /./ org>
  */
-public class Pointcut extends MStageDeclaration<Pointcut, Element> {
+public abstract class SingleJoinPoint<E extends SingleJoinPoint<E,JP>,JP extends InterfaceElement> extends JoinPoint<SingleJoinPoint<E,JP>> {
 
-	
-	private OrderedMultiAssociation<Pointcut,SimpleReference<JoinPoint<?>>> _joinpoints;
-	
-	
-	
-	/* (non-Javadoc)
-	 * @see chameleon.core.element.ElementImpl#clone()
+	/*
+	 * 
 	 */
-	@Override
-	public Pointcut clone() {
-		// TODO Auto-generated method stub
+	private SingleAssociation<NamedJoinPoint, SimpleReference<JP>> _joinPoint;
+
+
+	/**
+	 * @return the joinPoint
+	 */
+	public SingleAssociation<NamedJoinPoint, SimpleReference<JP>> getJoinPoint() {
+		return _joinPoint;
 	}
 
-	/* (non-Javadoc)
-	 * @see chameleon.core.element.ElementImpl#verifySelf()
+	/**
+	 * @param joinPoint the joinPoint to set
 	 */
-	@Override
-	public VerificationResult verifySelf() {
-		// TODO Auto-generated method stub
+	public void setJoinPoint(
+			SingleAssociation<NamedJoinPoint, SimpleReference<JP>> joinPoint) {
+		_joinPoint = joinPoint;
 	}
-	
-
 }
