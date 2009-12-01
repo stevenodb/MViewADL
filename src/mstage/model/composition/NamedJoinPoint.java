@@ -21,6 +21,8 @@ package mstage.model.composition;
 
 import java.util.List;
 
+import mstage.model.module.Service;
+
 import chameleon.core.element.Element;
 import chameleon.core.validation.VerificationResult;
 
@@ -28,7 +30,7 @@ import chameleon.core.validation.VerificationResult;
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public class NamedJoinPoint extends SingleJoinPoint<NamedJoinPoint> {
+public class NamedJoinPoint extends SingleJoinPoint<NamedJoinPoint,Service> {
 	
 	
 	/* (non-Javadoc)

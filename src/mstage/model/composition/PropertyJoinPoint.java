@@ -21,6 +21,8 @@ package mstage.model.composition;
 
 import java.util.List;
 
+import mstage.model.module.Property;
+
 import chameleon.core.element.Element;
 import chameleon.core.validation.VerificationResult;
 
@@ -28,7 +30,7 @@ import chameleon.core.validation.VerificationResult;
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public class PropertyJoinPoint extends SingleJoinPoint<PropertyJoinPoint> {
+public class PropertyJoinPoint extends SingleJoinPoint<PropertyJoinPoint,Property> {
 
 	/* (non-Javadoc)
 	 * @see chameleon.core.element.ElementImpl#clone()
