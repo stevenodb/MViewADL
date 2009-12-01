@@ -72,7 +72,7 @@ public class AOComposition extends MStageDeclaration<AOComposition, Element> {
 	/**
 	 * @param relation
 	 */
-	public void setPointcut(SimpleReference<Pointcut> relation) {
+	public void setPointcut(Pointcut relation) {
 		_pointcut.connectTo(relation.parentLink());
 	}
 

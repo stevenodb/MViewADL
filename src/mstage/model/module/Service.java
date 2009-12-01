@@ -19,21 +19,15 @@ package mstage.model.module;
 
 import java.util.List;
 
-import mstage.model.namespace.MStageDeclaration;
-
 import org.rejuse.association.OrderedMultiAssociation;
 import org.rejuse.association.SingleAssociation;
 
 import chameleon.core.element.Element;
 import chameleon.core.method.MethodHeader;
-import chameleon.core.namespace.NamespaceElementImpl;
 import chameleon.core.reference.SimpleReference;
 import chameleon.core.validation.VerificationResult;
-import chameleon.support.member.simplename.SimpleNameMethodSignature;
 
-public class Service extends MStageDeclaration<Service, Element> implements InterfaceElement {
-	
-
+public class Service extends InterfaceElement<Service, Element> {
 	
 	/*
 	 * Association to the Service 

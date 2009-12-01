@@ -19,15 +19,15 @@
  */
 package mstage.model.module;
 
+import chameleon.core.element.Element;
+import mstage.model.namespace.MStageDeclaration;
+
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
- * @param <E>
- * @param <P>
- * @param <S>
- * @param <D>
  *
  */
-public interface InterfaceElement {
+public abstract class InterfaceElement<E extends InterfaceElement<E,P>,P extends Element> 
+					extends MStageDeclaration<E,P> {
 
 }

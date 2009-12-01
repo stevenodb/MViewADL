@@ -29,7 +29,8 @@ import chameleon.core.reference.SimpleReference;
 /**
  * @author  Steven Op de beeck <steven /at/ opdebeeck /./ org>
  */
-public abstract class SingleJoinPoint<E extends SingleJoinPoint<E,JP>,JP extends InterfaceElement> extends JoinPoint<SingleJoinPoint<E,JP>> {
+public abstract class SingleJoinPoint<E extends SingleJoinPoint<E,JP>,JP extends InterfaceElement> 
+					extends JoinPoint<SingleJoinPoint<E,JP>> {
 
 	/*
 	 * 

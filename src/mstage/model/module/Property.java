@@ -17,11 +17,10 @@
  */
 package mstage.model.module;
 
-import mstage.model.namespace.MStageDeclaration;
 import chameleon.core.element.Element;
 import chameleon.core.validation.VerificationResult;
 
-public class Property extends MStageDeclaration<Property, Element> implements InterfaceElement {
+public class Property extends InterfaceElement<Property, Element> {
 		
 	@Override
 	public Property clone() {
