@@ -34,8 +34,4 @@ import chameleon.core.reference.SimpleReference;
  *
  */
 public abstract class JoinPoint<E extends JoinPoint<E>> extends NamespaceElementImpl<E, Element> {
-
-	
-	
-	
 }

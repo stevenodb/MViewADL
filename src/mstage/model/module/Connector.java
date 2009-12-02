@@ -30,20 +30,20 @@ import chameleon.core.validation.VerificationResult;
 
 public class Connector extends Module<Connector> {
 	
-	private OrderedMultiAssociation<Connector, SimpleReference<AOComposition>> _compositions = 
-		new OrderedMultiAssociation<Connector, SimpleReference<AOComposition>>(this); 
+	private OrderedMultiAssociation<Connector, AOComposition> _compositions = 
+		new OrderedMultiAssociation<Connector, AOComposition>(this); 
 	// FIXME:this ok?
  
 	
-	public void removeComposition(SimpleReference<AOComposition> relation) {
+	public void removeComposition(AOComposition relation) {
 		_compositions.remove(relation.parentLink());
 	}
 
-	public List<SimpleReference<AOComposition>> compositions() {
+	public List<AOComposition> compositions() {
 		return _compositions.getOtherEnds();
 	}
 	
-	public void addComposition(SimpleReference<AOComposition> relation) {
+	public void addComposition(AOComposition relation) {
 		_compositions.add(relation.parentLink());
 	}
 

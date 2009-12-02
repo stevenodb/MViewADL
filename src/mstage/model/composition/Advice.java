@@ -19,12 +19,15 @@
  */
 package mstage.model.composition;
 
+import java.util.List;
+
 import mstage.model.module.Service;
 import mstage.model.namespace.MStageDeclaration;
 
 import org.rejuse.association.SingleAssociation;
 
 import chameleon.core.element.Element;
+import chameleon.core.namespace.NamespaceElementImpl;
 import chameleon.core.reference.SimpleReference;
 import chameleon.core.validation.VerificationResult;
 
@@ -32,7 +35,7 @@ import chameleon.core.validation.VerificationResult;
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public class Advice extends MStageDeclaration<Advice, Element> {
+public class Advice extends NamespaceElementImpl<Advice, Element> { //MStageDeclaration<Advice, Element> {
 
 	private SingleAssociation<Advice, SimpleReference<Service>> _service =
 		new SingleAssociation<Advice, SimpleReference<Service>>(this);
@@ -66,6 +69,13 @@ public class Advice extends MStageDeclaration<Advice, Element> {
 	 */
 	@Override
 	public VerificationResult verifySelf() {
+		// TODO Auto-generated method stub
+	}
+
+	/* (non-Javadoc)
+	 * @see chameleon.core.element.Element#children()
+	 */
+	public List<? extends Element> children() {
 		// TODO Auto-generated method stub
 	}
 

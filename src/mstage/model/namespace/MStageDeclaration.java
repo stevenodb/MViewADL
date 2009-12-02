@@ -34,6 +34,12 @@ import chameleon.core.scope.Scope;
 import chameleon.core.scope.UniversalScope;
 import chameleon.util.Util;
 
+/**
+ * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
+ *
+ * @param <E>	Element
+ * @param <P>	Parent Element
+ */
 public abstract class MStageDeclaration<E extends MStageDeclaration<E,P>, P extends Element> 
 	extends NamespaceElementImpl<E,P> implements Declaration<E,P,SimpleNameSignature,E> {
 

@@ -38,7 +38,7 @@ public class Service extends JoinPointElement<Service, Element> {
 	/**
 	 * @return the service's header
 	 */
-	public MethodHeader<?,?,?> header() {
+	public MethodHeader header() {
 		return _header.getOtherEnd();
 	}
 	

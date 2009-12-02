@@ -19,7 +19,7 @@
  */
 package mstage.model.composition;
 
-import mstage.model.module.InterfaceElement;
+import mstage.model.module.JoinPointElement;
 import mstage.model.module.Service;
 
 import org.rejuse.association.SingleAssociation;
@@ -29,27 +29,25 @@ import chameleon.core.reference.SimpleReference;
 /**
  * @author  Steven Op de beeck <steven /at/ opdebeeck /./ org>
  */
-public abstract class SingleJoinPoint<E extends SingleJoinPoint<E,JP>,JP extends InterfaceElement> 
+public abstract class SingleJoinPoint<E extends SingleJoinPoint<E,JP>,JP extends JoinPointElement> 
 					extends JoinPoint<SingleJoinPoint<E,JP>> {
 
 	/*
-	 * 
+	 * Accessors for joinPoint  
 	 */
 	private SingleAssociation<NamedJoinPoint, SimpleReference<JP>> _joinPoint;
-
 
 	/**
 	 * @return the joinPoint
 	 */
-	public SingleAssociation<NamedJoinPoint, SimpleReference<JP>> getJoinPoint() {
-		return _joinPoint;
+	public SimpleReference<JP> getJoinPoint() {
+		return _joinPoint.getOtherEnd();
 	}
 
 	/**
 	 * @param joinPoint the joinPoint to set
 	 */
 	public void setJoinPoint(
-			SingleAssociation<NamedJoinPoint, SimpleReference<JP>> joinPoint) {
-		_joinPoint = joinPoint;
+			SimpleReference<JP> relation) {_joinPoint.connectTo(relation.parentLink());
 	}
 }

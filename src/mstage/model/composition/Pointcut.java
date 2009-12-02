@@ -19,6 +19,8 @@
  */
 package mstage.model.composition;
 
+import java.util.List;
+
 import org.rejuse.association.OrderedMultiAssociation;
 
 import mstage.model.module.Property;
@@ -30,13 +32,35 @@ import chameleon.core.validation.VerificationResult;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
+ * @param <E>
  *
  */
 public class Pointcut extends MStageDeclaration<Pointcut, Element> {
 
 	
-	private OrderedMultiAssociation<Pointcut,SimpleReference<JoinPoint<?>>> _joinpoints;
+	private OrderedMultiAssociation<Pointcut,JoinPoint> _joinpoints =
+		new OrderedMultiAssociation<Pointcut, JoinPoint>(this);
 	
+	/**
+	 * @return
+	 */
+	public List<JoinPoint> joinPoint() {
+		return _joinpoints.getOtherEnds();
+	}
+	
+	/**
+	 * @param joinPoint
+	 */
+	public void addJoinPoint(JoinPoint joinPoint) {
+		_joinpoints.add(joinPoint.parentLink());
+	}
+	
+	/**
+	 * @param joinPoint
+	 */
+	public void removeJoinPoint(JoinPoint joinPoint) {
+		_joinpoints.remove(joinPoint.parentLink());
+	}
 	
 	
 	/* (non-Javadoc)
