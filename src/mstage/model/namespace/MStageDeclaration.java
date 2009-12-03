@@ -25,7 +25,6 @@ import org.rejuse.association.SingleAssociation;
 
 import chameleon.core.MetamodelException;
 import chameleon.core.declaration.Declaration;
-import chameleon.core.declaration.Signature;
 import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.element.Element;
 import chameleon.core.lookup.LookupException;
@@ -61,6 +60,9 @@ public abstract class MStageDeclaration<E extends MStageDeclaration<E,P>, P exte
 	
 	private SingleAssociation<MStageDeclaration<E,P>, SimpleNameSignature> _signature = new SingleAssociation<MStageDeclaration<E,P>, SimpleNameSignature>(this); 
 
+	/*
+	 * override in children
+	 */
 	public List<Element> children() {
 		List<Element> result = new ArrayList<Element>();
 		Util.addNonNull(signature(), result);

@@ -32,7 +32,7 @@ import chameleon.core.reference.SimpleReference;
  * @param <From>
  * @param <To>
  */
-public abstract class HostMap<From extends Declaration<?,?,?,?>,To extends Declaration<?, ?, ?, ?>,M extends HostMap<From,To,M>> 
+public abstract class HostMap<From extends Declaration<?,?,?,?>,To extends Declaration<?, ?, ?, ? extends To>,M extends HostMap<From,To,M>> 
 			extends NamespaceElementImpl<M, Element> {
 
 	
