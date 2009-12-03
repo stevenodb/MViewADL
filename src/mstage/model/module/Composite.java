@@ -30,13 +30,14 @@ import chameleon.core.element.Element;
 import chameleon.core.reference.SimpleReference;
 import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.VerificationResult;
+import chameleon.util.Util;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  * @param <E>
  *
  */
-public class Composite extends Component<Composite> {
+public class Composite<E extends Composite<E>> extends Component<E> {
 	
 	
 	/**
@@ -49,8 +50,7 @@ public class Composite extends Component<Composite> {
 	/**
 	 * @param submodules
 	 */
-	protected Composite(
-			SimpleNameSignature signature) {
+	protected Composite(SimpleNameSignature signature) {
 		
 		super(signature);	
 	}
@@ -58,8 +58,8 @@ public class Composite extends Component<Composite> {
 	/*
 	 * Association to composite's submodules 
 	 */
-	private OrderedMultiAssociation<Composite, SimpleReference<Module<?>>> _submodules =
-		new OrderedMultiAssociation<Composite, SimpleReference<Module<?>>>(this);
+	private OrderedMultiAssociation<Composite<E>, SimpleReference<Module<?>>> _submodules =
+		new OrderedMultiAssociation<Composite<E>, SimpleReference<Module<?>>>(this);
 
 	
 	/**
@@ -85,13 +85,22 @@ public class Composite extends Component<Composite> {
 	}
 	
 
+
 	/* (non-Javadoc)
-	 * @see mstage.model.Component#clone()
+	 * @see mstage.model.module.Component#cloneThis()
 	 */
 	@Override
-	public Composite clone() {
-		Composite clone = super.clone();
+	protected E cloneThis() {
+		return (E) new Composite();
+	}
 
+	/* (non-Javadoc)
+	 * @see mstage.model.module.Module#clone()
+	 */
+	@Override
+	public E clone() {
+		final E clone = super.clone();
+		
 		for (SimpleReference<Module<?>> simpleReference : this.submodules()) {
 			clone.addSubmodules(simpleReference.clone());
 		}
@@ -118,7 +127,11 @@ public class Composite extends Component<Composite> {
 	 */
 	@Override
 	public List<Element> children() {
-		// TODO Auto-generated method stub
+		List<Element> result = super.children();
+		
+		result.addAll(submodules());
+
+		return result;
 	}
 
 }

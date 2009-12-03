@@ -28,6 +28,7 @@ import chameleon.core.reference.SimpleReference;
 import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.Valid;
 import chameleon.core.validation.VerificationResult;
+import chameleon.util.Util;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
@@ -45,45 +46,12 @@ public abstract class Module<E extends Module<E>> extends MStageDeclaration<E, E
 		setSignature(signature);
 	}
 	
-//	/**
-//	 * @param providedInterfaces
-//	 * @param requiredInterfaces
-//	 */
-//	protected Module(
-//			SimpleNameSignature signature,
-//			List<SimpleReference<Interface>> providedInterfaces,
-//			List<SimpleReference<Interface>> requiredInterfaces) {
-//		
-//		super();
-//		
-//		setSignature(signature);
-//		
-//		for (SimpleReference<Interface> simpleReference : requiredInterfaces) {
-//			addRequiredInterface(simpleReference);
-//		}
-//		
-//		for (SimpleReference<Interface> simpleReference : providedInterfaces) {
-//			addProvidedInterface(simpleReference);
-//		}
-//
-//	}
 
-	// provided interfaces
+	/*
+	 * Provided Interfaces association
+	 */
 	private OrderedMultiAssociation<Module<E>, SimpleReference<Interface>> _providedInterfaces = 
 		new OrderedMultiAssociation<Module<E>, SimpleReference<Interface>>(this);
-
-	// required interfaces
-	private OrderedMultiAssociation<Module<E>, SimpleReference<Interface>> _requiredInterfaces = 
-		new OrderedMultiAssociation<Module<E>, SimpleReference<Interface>>(this);
-
-	
-	
-	/**
-	 * @param relation
-	 */
-	public void removeProvidedInterface(SimpleReference<Interface> relation) {
-		_providedInterfaces.remove(relation.parentLink());
-	}
 
 	/**
 	 * @return
@@ -98,15 +66,22 @@ public abstract class Module<E extends Module<E>> extends MStageDeclaration<E, E
 	public void addProvidedInterface(SimpleReference<Interface> relation) {
 		_providedInterfaces.add(relation.parentLink());
 	}
-
 	
 	/**
 	 * @param relation
 	 */
-	public void removeRequiredInterface(SimpleReference<Interface> relation) {
-		_requiredInterfaces.remove(relation.parentLink());
+	public void removeProvidedInterface(SimpleReference<Interface> relation) {
+		_providedInterfaces.remove(relation.parentLink());
 	}
 
+	
+	
+	/*
+	 * Required Interfaces association
+	 */
+	private OrderedMultiAssociation<Module<E>, SimpleReference<Interface>> _requiredInterfaces = 
+		new OrderedMultiAssociation<Module<E>, SimpleReference<Interface>>(this);
+	
 	/**
 	 * @return
 	 */
@@ -120,7 +95,19 @@ public abstract class Module<E extends Module<E>> extends MStageDeclaration<E, E
 	public void addRequiredInterface(SimpleReference<Interface> relation) {
 		_requiredInterfaces.add(relation.parentLink());
 	}
+	
+	/**
+	 * @param relation
+	 */
+	public void removeRequiredInterface(SimpleReference<Interface> relation) {
+		_requiredInterfaces.remove(relation.parentLink());
+	}
 
+		
+	/**
+	 * @return	A clone with the correct sub-Type
+	 */
+	protected abstract E cloneThis();
 
 	
 	/* (non-Javadoc)
@@ -128,9 +115,9 @@ public abstract class Module<E extends Module<E>> extends MStageDeclaration<E, E
 	 */
 	@Override
 	public E clone() {
+		final E clone = cloneThis();
 		
-		Component clone = new Component(signature());		
-
+		clone.setSignature(signature().clone());		
 		
 		for (SimpleReference<Interface> simpleReference : this.providedInterfaces()) {
 			clone.addProvidedInterface(simpleReference.clone());
@@ -139,7 +126,7 @@ public abstract class Module<E extends Module<E>> extends MStageDeclaration<E, E
 			clone.addRequiredInterface(simpleReference.clone());
 		}
 		
-		return (Component) clone;
+		return clone;
 	}
 
 
@@ -157,5 +144,17 @@ public abstract class Module<E extends Module<E>> extends MStageDeclaration<E, E
 		return result;
 	}
 
-
+	/* (non-Javadoc)
+	 * @see mstage.model.namespace.MStageDeclaration#children()
+	 */
+	@Override
+	public List<Element> children() {
+		List<Element> result = super.children();
+		
+		Util.addNonNull(signature(), result);
+		result.addAll(providedInterfaces());
+		result.addAll(requiredInterfaces());
+		
+		return result;
+	}
 }

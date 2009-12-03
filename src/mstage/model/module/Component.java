@@ -34,6 +34,9 @@ import chameleon.core.validation.VerificationResult;
  */
 public class Component<E extends Component<E>> extends Module<E> {
 
+	/**
+	 * default
+	 */
 	public Component() {
 	}
 	
@@ -45,45 +48,41 @@ public class Component<E extends Component<E>> extends Module<E> {
 	}
 	
 	
-//	/**
-//	 * @param providedInterfaces
-//	 * @param requiredInterfaces
+
+	/* (non-Javadoc)
+	 * @see mstage.model.module.Module#cloneThis()
+	 */
+	@Override
+	protected E cloneThis() {
+		return (E) new Component();
+	}
+
+//	/* (non-Javadoc)
+//	 * @see mstage.model.module.Module#clone()
 //	 */
-//	protected Component(
-//			SimpleNameSignature signature,
-//			List<SimpleReference<Interface>> providedInterfaces,
-//			List<SimpleReference<Interface>> requiredInterfaces) {
-//		
-//		super(signature, providedInterfaces, requiredInterfaces);
+//	@Override
+//	public E clone() {
+//		// TODO Auto-generated method stub
 //	}
 
-
-
 	
-	/* (non-Javadoc)
-	 * @see mstage.model.module.Module#clone()
-	 */
-	@Override
-	public E clone() {
-		return super.clone();
-	}
+//	/* (non-Javadoc)
+//	 * @see chameleon.core.element.ElementImpl#verifySelf()
+//	 */
+//	@Override
+//	public VerificationResult verifySelf() {
+//		VerificationResult result = super.verifySelf();
+//					
+//		return result;
+//	}
 
-	/* (non-Javadoc)
-	 * @see chameleon.core.element.ElementImpl#verifySelf()
-	 */
-	@Override
-	public VerificationResult verifySelf() {
-		VerificationResult result = super.verifySelf();
-					
-		return result;
-	}
-
-	/* (non-Javadoc)
-	 * @see mstage.model.namespace.MStageDeclaration#children()
-	 */
-	@Override
-	public List<Element> children() {
-		return new ArrayList<Element>();
-	}
+//	/* (non-Javadoc)
+//	 * @see mstage.model.namespace.MStageDeclaration#children()
+//	 */
+//	@Override
+//	public List<Element> children() {
+//		List<Element> result = super.children();
+//		return result;
+//	}
 	
 }
