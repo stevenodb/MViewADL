@@ -65,7 +65,7 @@ public class Connector<E extends Connector<E>> extends Module<E> {
 	 */
 	@Override
 	public E clone() {
-		final E clone = (E) new Connector();
+		final E clone = super.clone();
 		
 		for (AOComposition composition : compositions()) {
 			clone.addComposition(composition);
