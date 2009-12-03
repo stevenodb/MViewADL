@@ -22,14 +22,51 @@ import mstage.model.namespace.MStageDeclaration;
 
 import org.rejuse.association.OrderedMultiAssociation;
 
+import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.element.Element;
 import chameleon.core.reference.SimpleReference;
+import chameleon.core.validation.BasicProblem;
+import chameleon.core.validation.Valid;
+import chameleon.core.validation.VerificationResult;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
 public abstract class Module<E extends Module<E>> extends MStageDeclaration<E, Element> {
+
+	protected Module() {
+	}
+
+	/**
+	 * @param signature
+	 */
+	protected Module(SimpleNameSignature signature) {
+		setSignature(signature);
+	}
+	
+//	/**
+//	 * @param providedInterfaces
+//	 * @param requiredInterfaces
+//	 */
+//	protected Module(
+//			SimpleNameSignature signature,
+//			List<SimpleReference<Interface>> providedInterfaces,
+//			List<SimpleReference<Interface>> requiredInterfaces) {
+//		
+//		super();
+//		
+//		setSignature(signature);
+//		
+//		for (SimpleReference<Interface> simpleReference : requiredInterfaces) {
+//			addRequiredInterface(simpleReference);
+//		}
+//		
+//		for (SimpleReference<Interface> simpleReference : providedInterfaces) {
+//			addProvidedInterface(simpleReference);
+//		}
+//
+//	}
 
 	// provided interfaces
 	private OrderedMultiAssociation<Module<E>, SimpleReference<Interface>> _providedInterfaces = 
@@ -41,28 +78,84 @@ public abstract class Module<E extends Module<E>> extends MStageDeclaration<E, E
 
 	
 	
+	/**
+	 * @param relation
+	 */
 	public void removeProvidedInterface(SimpleReference<Interface> relation) {
 		_providedInterfaces.remove(relation.parentLink());
 	}
 
+	/**
+	 * @return
+	 */
 	public List<SimpleReference<Interface>> providedInterfaces() {
 		return _providedInterfaces.getOtherEnds();
 	}
 	
+	/**
+	 * @param relation
+	 */
 	public void addProvidedInterface(SimpleReference<Interface> relation) {
 		_providedInterfaces.add(relation.parentLink());
 	}
 
 	
+	/**
+	 * @param relation
+	 */
 	public void removeRequiredInterface(SimpleReference<Interface> relation) {
 		_requiredInterfaces.remove(relation.parentLink());
 	}
 
+	/**
+	 * @return
+	 */
 	public List<SimpleReference<Interface>> requiredInterfaces() {
 		return _requiredInterfaces.getOtherEnds();
 	}
 	
+	/**
+	 * @param relation
+	 */
 	public void addRequiredInterface(SimpleReference<Interface> relation) {
 		_requiredInterfaces.add(relation.parentLink());
 	}
+
+
+	
+	/* (non-Javadoc)
+	 * @see chameleon.core.element.ElementImpl#clone()
+	 */
+	@Override
+	public E clone() {
+		
+		Component clone = new Component(signature());		
+
+		
+		for (SimpleReference<Interface> simpleReference : this.providedInterfaces()) {
+			clone.addProvidedInterface(simpleReference.clone());
+		}
+		for (SimpleReference<Interface> simpleReference : this.requiredInterfaces()) {
+			clone.addRequiredInterface(simpleReference.clone());
+		}
+		
+		return (Component) clone;
+	}
+
+
+	/* (non-Javadoc)
+	 * @see chameleon.core.element.ElementImpl#verifySelf()
+	 */
+	@Override
+	public VerificationResult verifySelf() {
+		VerificationResult result = Valid.create();
+		
+		if (signature() == null) {
+			result = result.and(new BasicProblem(this, "No valid signature"));
+		}
+		
+		return result;
+	}
+
+
 }

@@ -23,7 +23,12 @@ import java.util.List;
 
 import org.rejuse.association.OrderedMultiAssociation;
 
+import com.sun.xml.internal.rngom.parse.host.Base;
+
+import chameleon.core.declaration.SimpleNameSignature;
+import chameleon.core.element.Element;
 import chameleon.core.reference.SimpleReference;
+import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.VerificationResult;
 
 /**
@@ -34,6 +39,22 @@ import chameleon.core.validation.VerificationResult;
 public class Composite extends Component<Composite> {
 	
 	
+	/**
+	 * Default constructor
+	 */
+	public Composite() {
+		//what are you staring at?
+	}
+	
+	/**
+	 * @param submodules
+	 */
+	protected Composite(
+			SimpleNameSignature signature) {
+		
+		super(signature);	
+	}
+
 	/*
 	 * Association to composite's submodules 
 	 */
@@ -44,7 +65,7 @@ public class Composite extends Component<Composite> {
 	/**
 	 * @return a list of references to submodules
 	 */
-	public List<SimpleReference<Module<?>>> _submodules() {
+	public List<SimpleReference<Module<?>>> submodules() {
 		return _submodules.getOtherEnds();
 	}
 
@@ -69,7 +90,13 @@ public class Composite extends Component<Composite> {
 	 */
 	@Override
 	public Composite clone() {
-		// TODO Auto-generated method stub
+		Composite clone = super.clone();
+
+		for (SimpleReference<Module<?>> simpleReference : this.submodules()) {
+			clone.addSubmodules(simpleReference.clone());
+		}
+		
+		return clone;
 	}
 
 	/* (non-Javadoc)
@@ -77,8 +104,21 @@ public class Composite extends Component<Composite> {
 	 */
 	@Override
 	public VerificationResult verifySelf() {
-		// TODO Auto-generated method stub
+		VerificationResult result = super.verifySelf();
+		
+		if (submodules().size() == 0) {
+			result = result.and(new BasicProblem(this, "No submodules in Composite"));
+		}
+		
+		return result;
 	}
 	
+	/* (non-Javadoc)
+	 * @see mstage.model.namespace.MStageDeclaration#children()
+	 */
+	@Override
+	public List<Element> children() {
+		// TODO Auto-generated method stub
+	}
 
 }

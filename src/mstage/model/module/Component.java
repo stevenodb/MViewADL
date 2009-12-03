@@ -19,6 +19,13 @@
  */
 package mstage.model.module;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import chameleon.core.declaration.SimpleNameSignature;
+import chameleon.core.element.Element;
+import chameleon.core.reference.SimpleReference;
+import chameleon.core.validation.Valid;
 import chameleon.core.validation.VerificationResult;
 
 /**
@@ -27,13 +34,38 @@ import chameleon.core.validation.VerificationResult;
  */
 public class Component<E extends Component<E>> extends Module<E> {
 
+	public Component() {
+	}
+	
+	/**
+	 * @param signature
+	 */
+	protected Component(SimpleNameSignature signature) {
+		super(signature);
+	}
+	
+	
+//	/**
+//	 * @param providedInterfaces
+//	 * @param requiredInterfaces
+//	 */
+//	protected Component(
+//			SimpleNameSignature signature,
+//			List<SimpleReference<Interface>> providedInterfaces,
+//			List<SimpleReference<Interface>> requiredInterfaces) {
+//		
+//		super(signature, providedInterfaces, requiredInterfaces);
+//	}
+
+
+
+	
 	/* (non-Javadoc)
-	 * @see chameleon.core.element.ElementImpl#clone()
+	 * @see mstage.model.module.Module#clone()
 	 */
 	@Override
 	public E clone() {
-		// TODO Auto-generated method stub
-		// creeer component en cast naar E
+		return super.clone();
 	}
 
 	/* (non-Javadoc)
@@ -41,7 +73,17 @@ public class Component<E extends Component<E>> extends Module<E> {
 	 */
 	@Override
 	public VerificationResult verifySelf() {
-		// TODO Auto-generated method stub
+		VerificationResult result = super.verifySelf();
+					
+		return result;
 	}
 
+	/* (non-Javadoc)
+	 * @see mstage.model.namespace.MStageDeclaration#children()
+	 */
+	@Override
+	public List<Element> children() {
+		return new ArrayList<Element>();
+	}
+	
 }
