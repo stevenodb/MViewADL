@@ -84,19 +84,35 @@ public class Service extends JoinPointElement<Service, Element> {
 	}
 
 	
+
+//	/* (non-Javadoc)
+//	 * @see mstage.model.namespace.MStageDeclaration#cloneThis()
+//	 */
+//	@Override
+//	protected Service cloneThis() throws InstantiationException, IllegalAccessException {
+//		return this.getClass().newInstance();
+//	}	
 	
+	
+	/* (non-Javadoc)
+	 * @see mstage.model.namespace.MStageDeclaration#cloneThis()
+	 */
+	@Override
+	protected Service cloneThis() {
+		return new Service();
+	}
 	
 	/* (non-Javadoc)
 	 * @see chameleon.core.element.ElementImpl#clone()
 	 */
 	@Override
 	public Service clone() {
-		final Service clone = new Service();
+		final Service clone = super.clone();
 		
-		clone.setHeader(this.header());
+		clone.setHeader(this.header().clone());
 		
 		for (SimpleReference<Property> property : attachedProperties()) {
-			clone.addServices(property);
+			clone.addServices(property.clone());
 		}
 		
 		return clone;
@@ -114,7 +130,7 @@ public class Service extends JoinPointElement<Service, Element> {
 		}
 		
 		if ( ! (this.attachedProperties() != null) ) {
-			result = result.and(new BasicProblem(this, "attachedProperties is null"));
+			result = result.and(new BasicProblem(this, "AttachedProperties is null"));
 		}
 		
 		return result;
@@ -125,7 +141,7 @@ public class Service extends JoinPointElement<Service, Element> {
 	 */
 	@Override
 	public List<Element> children() {
-		List<Element> result = super.children();
+		final List<Element> result = super.children();
 		
 		Util.addNonNull(this.header(), result);
 		result.addAll(attachedProperties());

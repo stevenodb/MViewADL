@@ -104,26 +104,25 @@ public abstract class Module<E extends Module<E>> extends MStageDeclaration<E, E
 	}
 
 		
-	/**
-	 * @return	A clone with the correct sub-Type
-	 */
-	protected abstract E cloneThis();
-
-	
 	/* (non-Javadoc)
 	 * @see chameleon.core.element.ElementImpl#clone()
 	 */
 	@Override
 	public E clone() {
-		final E clone = cloneThis();
+		final E clone = super.clone();
 		
-		clone.setSignature(signature().clone());		
+		//moved to MStageDeclaration
+		//clone.setSignature(signature().clone());		
 		
 		for (SimpleReference<Interface> simpleReference : this.providedInterfaces()) {
-			clone.addProvidedInterface(simpleReference.clone());
+			SimpleReference<Interface> localClone = simpleReference.clone();
+			
+			clone.addProvidedInterface(localClone);
 		}
 		for (SimpleReference<Interface> simpleReference : this.requiredInterfaces()) {
-			clone.addRequiredInterface(simpleReference.clone());
+			SimpleReference<Interface> localClone = simpleReference.clone();
+			
+			clone.addRequiredInterface(localClone);
 		}
 		
 		return clone;
@@ -135,7 +134,7 @@ public abstract class Module<E extends Module<E>> extends MStageDeclaration<E, E
 	 */
 	@Override
 	public VerificationResult verifySelf() {
-		VerificationResult result = Valid.create();
+		VerificationResult result = super.verifySelf();
 		
 		if ( ! (signature() != null) ) {
 			result = result.and(new BasicProblem(this, "No valid signature"));
@@ -157,7 +156,7 @@ public abstract class Module<E extends Module<E>> extends MStageDeclaration<E, E
 	 */
 	@Override
 	public List<Element> children() {
-		List<Element> result = super.children();
+		final List<Element> result = super.children();
 		
 		Util.addNonNull(signature(), result);
 		result.addAll(providedInterfaces());

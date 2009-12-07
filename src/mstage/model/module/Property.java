@@ -18,18 +18,16 @@
 package mstage.model.module;
 
 import chameleon.core.element.Element;
-import chameleon.core.validation.VerificationResult;
 
 public class Property extends JoinPointElement<Property, Element> {
 		
-	@Override
-	public Property clone() {
-		// TODO Auto-generated method stub
-	}
 
+	/* (non-Javadoc)
+	 * @see mstage.model.namespace.MStageDeclaration#cloneThis()
+	 */
 	@Override
-	public VerificationResult verifySelf() {
-		// TODO Auto-generated method stub
+	protected Property cloneThis() {
+		return new Property();
 	}
 	
 }

@@ -102,7 +102,9 @@ public class Composite<E extends Composite<E>> extends Component<E> {
 		final E clone = super.clone();
 		
 		for (SimpleReference<Module<?>> simpleReference : this.submodules()) {
-			clone.addSubmodules(simpleReference.clone());
+			SimpleReference<Module<?>> localClone = simpleReference.clone();
+
+			clone.addSubmodules(localClone);
 		}
 		
 		return clone;
@@ -127,7 +129,7 @@ public class Composite<E extends Composite<E>> extends Component<E> {
 	 */
 	@Override
 	public List<Element> children() {
-		List<Element> result = super.children();
+		final List<Element> result = super.children();
 		
 		result.addAll(submodules());
 
