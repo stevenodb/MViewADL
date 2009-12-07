@@ -25,14 +25,17 @@ import org.rejuse.association.SingleAssociation;
 import chameleon.core.element.Element;
 import chameleon.core.method.MethodHeader;
 import chameleon.core.reference.SimpleReference;
+import chameleon.core.validation.BasicProblem;
+import chameleon.core.validation.Valid;
 import chameleon.core.validation.VerificationResult;
+import chameleon.util.Util;
 
 public class Service extends JoinPointElement<Service, Element> {
 	
 	/*
 	 * Association to the Service 
 	 */
-	private SingleAssociation<Service, MethodHeader> _header =
+	private final SingleAssociation<Service, MethodHeader> _header =
 		new SingleAssociation<Service, MethodHeader>(this);
 	
 	/**
@@ -56,13 +59,13 @@ public class Service extends JoinPointElement<Service, Element> {
 	/*
 	 * The service's attached properties
 	 */
-	private OrderedMultiAssociation<Service, SimpleReference<Property>> _attachedProperties =
+	private final OrderedMultiAssociation<Service, SimpleReference<Property>> _attachedProperties =
 		new OrderedMultiAssociation<Service, SimpleReference<Property>>(this);
 	
 	/**
 	 * @return	the attached properties
 	 */
-	public List<SimpleReference<Property>> _aggregatedServices() {
+	public List<SimpleReference<Property>> attachedProperties() {
 		return _attachedProperties.getOtherEnds();
 	}
 	
@@ -83,16 +86,51 @@ public class Service extends JoinPointElement<Service, Element> {
 	
 	
 	
-	
-	
+	/* (non-Javadoc)
+	 * @see chameleon.core.element.ElementImpl#clone()
+	 */
 	@Override
 	public Service clone() {
-		// TODO Auto-generated method stub
+		final Service clone = new Service();
+		
+		clone.setHeader(this.header());
+		
+		for (SimpleReference<Property> property : attachedProperties()) {
+			clone.addServices(property);
+		}
+		
+		return clone;
 	}
 
+	/* (non-Javadoc)
+	 * @see chameleon.core.element.ElementImpl#verifySelf()
+	 */
 	@Override
 	public VerificationResult verifySelf() {
-		// TODO Auto-generated method stub
+		VerificationResult result = Valid.create();
+		
+		if ( ! (this.header() != null) ) {
+			result = result.and(new BasicProblem(this, "Missing header"));
+		}
+		
+		if ( ! (this.attachedProperties() != null) ) {
+			result = result.and(new BasicProblem(this, "attachedProperties is null"));
+		}
+		
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see mstage.model.namespace.MStageDeclaration#children()
+	 */
+	@Override
+	public List<Element> children() {
+		List<Element> result = super.children();
+		
+		Util.addNonNull(this.header(), result);
+		result.addAll(attachedProperties());
+		
+		return result;
 	}
 
 }
