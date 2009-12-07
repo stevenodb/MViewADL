@@ -24,6 +24,7 @@ import mstage.model.namespace.MStageDeclaration;
 import org.rejuse.association.OrderedMultiAssociation;
 
 import chameleon.core.element.Element;
+import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.VerificationResult;
 
 public class Interface extends MStageDeclaration<Interface, Element> {
@@ -35,28 +36,68 @@ public class Interface extends MStageDeclaration<Interface, Element> {
 	private OrderedMultiAssociation<Interface, Service> _services = 
 		new OrderedMultiAssociation<Interface, Service>(this);
 	
-	public void removeService(Service relation) {
-		_services.remove(relation.parentLink());
+	public void removeService(Service service) {
+		_services.remove(service.parentLink());
 	}
 
 	public List<Service> services() {
 		return _services.getOtherEnds();
 	}
 	
-	public void addService(Service relation) {
-		_services.add(relation.parentLink());
+	public void addService(Service service) {
+		_services.add(service.parentLink());
 	}
 
 	
-	
+	/* (non-Javadoc)
+	 * @see mstage.model.namespace.MStageDeclaration#cloneThis()
+	 */
+	@Override
+	protected Interface cloneThis() {
+		return new Interface();
+	}
+
+	/* (non-Javadoc)
+	 * @see mstage.model.namespace.MStageDeclaration#clone()
+	 */
 	@Override
 	public Interface clone() {
-		// TODO Auto-generated method stub
+		final Interface clone = super.clone();
+			
+		for (Service service : services()) {
+			Service localClone = service.clone();
+			
+			clone.addService(localClone);
+		}
+		
+		return clone;
 	}
 
+	/* (non-Javadoc)
+	 * @see mstage.model.namespace.MStageDeclaration#verifySelf()
+	 */
 	@Override
 	public VerificationResult verifySelf() {
-		// TODO Auto-generated method stub
+		VerificationResult result = super.verifySelf();
+		
+		if ( ! (services() != null) ) {
+			result = result.and(new BasicProblem(this, "Services is null"));
+		}
+		
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see mstage.model.namespace.MStageDeclaration#children()
+	 */
+	@Override
+	public List<Element> children() {
+		final List<Element> result = super.children();
+		
+		result.addAll(services());
+		
+		return result;
+		
 	}
 
 }
