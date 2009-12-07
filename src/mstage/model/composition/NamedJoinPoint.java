@@ -32,6 +32,13 @@ import chameleon.core.validation.VerificationResult;
  */
 public class NamedJoinPoint extends SingleJoinPoint<NamedJoinPoint,Service> {
 	
+	/* (non-Javadoc)
+	 * @see mstage.model.composition.JoinPoint#cloneThis()
+	 */
+	@Override
+	protected E cloneThis() {
+		// TODO Auto-generated method stub
+	}
 	
 	/* (non-Javadoc)
 	 * @see chameleon.core.element.ElementImpl#clone()
@@ -55,7 +62,5 @@ public class NamedJoinPoint extends SingleJoinPoint<NamedJoinPoint,Service> {
 	public List<? extends Element> children() {
 		// TODO Auto-generated method stub
 	}
-
-
 
 }

@@ -19,6 +19,8 @@
  */
 package mstage.model.composition;
 
+import java.util.List;
+
 import mstage.model.module.Service;
 import mstage.model.namespace.MStageDeclaration;
 
@@ -29,7 +31,9 @@ import sun.java2d.pipe.SpanShapeRenderer.Simple;
 
 import chameleon.core.element.Element;
 import chameleon.core.reference.SimpleReference;
+import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.VerificationResult;
+import chameleon.util.Util;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
@@ -45,7 +49,7 @@ public class AOComposition extends MStageDeclaration<AOComposition, Element> {
 	/**
 	 * @return
 	 */
-	public Advice _advice() {
+	public Advice advice() {
 		return _advice.getOtherEnd();
 	}
 	
@@ -65,7 +69,7 @@ public class AOComposition extends MStageDeclaration<AOComposition, Element> {
 	/**
 	 * @return
 	 */
-	public Pointcut _pointcut() {
+	public Pointcut pointcut() {
 		return _pointcut.getOtherEnd();
 	}
 	
@@ -76,22 +80,61 @@ public class AOComposition extends MStageDeclaration<AOComposition, Element> {
 		_pointcut.connectTo(relation.parentLink());
 	}
 
-	
-
 	/* (non-Javadoc)
-	 * @see chameleon.core.element.ElementImpl#clone()
+	 * @see mstage.model.namespace.MStageDeclaration#cloneThis()
 	 */
 	@Override
-	public AOComposition clone() {
-		// TODO Auto-generated method stub
+	protected AOComposition cloneThis() {
+		return new AOComposition();
 	}
 
 	/* (non-Javadoc)
-	 * @see chameleon.core.element.ElementImpl#verifySelf()
+	 * @see mstage.model.namespace.MStageDeclaration#clone()
+	 */
+	@Override
+	public AOComposition clone() {
+		final AOComposition clone = super.clone();
+		
+		clone.setAdvice(
+				this.advice().clone()
+		);
+		
+		clone.setPointcut(
+				this.pointcut()
+		);
+		
+		return clone;
+	}
+
+	/* (non-Javadoc)
+	 * @see mstage.model.namespace.MStageDeclaration#children()
+	 */
+	@Override
+	public List<Element> children() {
+		List<Element> result = super.children();
+		
+		Util.addNonNull(this.advice(), result);
+		Util.addNonNull(this.pointcut(), result);
+		
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see mstage.model.namespace.MStageDeclaration#verifySelf()
 	 */
 	@Override
 	public VerificationResult verifySelf() {
-		// TODO Auto-generated method stub
+		VerificationResult result = super.verifySelf();
+		
+		if ( ! (this.advice() != null) ) {
+			result = result.and(new BasicProblem(this, "Advice is null"));
+		}
+		
+		if ( ! (this.pointcut() != null) ) {
+			result = result.and(new BasicProblem(this, "Pointcut is null"));
+		}
+		
+		return result;
 	}
 
 }

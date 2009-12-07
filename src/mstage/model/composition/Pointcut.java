@@ -21,13 +21,12 @@ package mstage.model.composition;
 
 import java.util.List;
 
+import mstage.model.namespace.MStageDeclaration;
+
 import org.rejuse.association.OrderedMultiAssociation;
 
-import mstage.model.module.Property;
-import mstage.model.module.Service;
-import mstage.model.namespace.MStageDeclaration;
 import chameleon.core.element.Element;
-import chameleon.core.reference.SimpleReference;
+import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.VerificationResult;
 
 /**
@@ -38,37 +37,52 @@ import chameleon.core.validation.VerificationResult;
 public class Pointcut extends MStageDeclaration<Pointcut, Element> {
 
 	
-	private OrderedMultiAssociation<Pointcut,JoinPoint> _joinpoints =
-		new OrderedMultiAssociation<Pointcut, JoinPoint>(this);
+	private OrderedMultiAssociation<Pointcut,JoinPoint<?>> _joinpoints =
+		new OrderedMultiAssociation<Pointcut, JoinPoint<?>>(this);
 	
 	/**
 	 * @return
 	 */
-	public List<JoinPoint> joinPoint() {
+	public List<JoinPoint<?>> joinPoints() {
 		return _joinpoints.getOtherEnds();
 	}
 	
 	/**
 	 * @param joinPoint
 	 */
-	public void addJoinPoint(JoinPoint joinPoint) {
+	public void addJoinPoint(JoinPoint<?> joinPoint) {
 		_joinpoints.add(joinPoint.parentLink());
 	}
 	
 	/**
 	 * @param joinPoint
 	 */
-	public void removeJoinPoint(JoinPoint joinPoint) {
+	public void removeJoinPoint(JoinPoint<?> joinPoint) {
 		_joinpoints.remove(joinPoint.parentLink());
 	}
 	
+	/* (non-Javadoc)
+	 * @see mstage.model.namespace.MStageDeclaration#cloneThis()
+	 */
+	@Override
+	protected Pointcut cloneThis() {
+		return new Pointcut();
+	}
 	
 	/* (non-Javadoc)
 	 * @see chameleon.core.element.ElementImpl#clone()
 	 */
 	@Override
 	public Pointcut clone() {
-		// TODO Auto-generated method stub
+		final Pointcut clone = super.clone();
+		
+		for (JoinPoint<?> joinpoint : this.joinPoints()) {
+			JoinPoint<?> localClone = joinpoint.clone();
+			
+			clone.addJoinPoint(localClone);
+		}
+		
+		return clone;
 	}
 
 	/* (non-Javadoc)
@@ -76,8 +90,25 @@ public class Pointcut extends MStageDeclaration<Pointcut, Element> {
 	 */
 	@Override
 	public VerificationResult verifySelf() {
-		// TODO Auto-generated method stub
+		VerificationResult result = super.verifySelf();
+		
+		if (! (joinPoints().size() >= 1)) {
+			result = result.and(new BasicProblem(this, "Does not aggregate any JoinPoint"));
+		}
+		
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see mstage.model.namespace.MStageDeclaration#children()
+	 */
+	@Override
+	public List<Element> children() {
+		List<Element> result = super.children();
+
+		result.addAll(this.joinPoints());
+		
+		return result;
 	}
 	
-
 }

@@ -19,6 +19,7 @@
  */
 package mstage.model.composition;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.rejuse.association.OrderedMultiAssociation;
@@ -28,10 +29,42 @@ import mstage.model.namespace.MStageDeclaration;
 import chameleon.core.element.Element;
 import chameleon.core.namespace.NamespaceElementImpl;
 import chameleon.core.reference.SimpleReference;
+import chameleon.core.validation.Valid;
+import chameleon.core.validation.VerificationResult;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
 public abstract class JoinPoint<E extends JoinPoint<E>> extends NamespaceElementImpl<E, Element> {
+
+	/**
+	 * @return An incomplete clone with the correct sub-Type 
+	 */
+	protected abstract E cloneThis();
+	
+	/* (non-Javadoc)
+	 * @see chameleon.core.element.ElementImpl#clone()
+	 */
+	@Override
+	public E clone() {
+		final E clone = this.cloneThis();
+		
+		return clone;
+	}
+
+	/* (non-Javadoc)
+	 * @see chameleon.core.element.ElementImpl#verifySelf()
+	 */
+	@Override
+	public VerificationResult verifySelf() {
+		return Valid.create();
+	}
+
+	/* (non-Javadoc)
+	 * @see chameleon.core.element.Element#children()
+	 */
+	public List<Element> children() {
+		return new ArrayList<Element>();
+	}
 }

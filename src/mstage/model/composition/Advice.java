@@ -19,6 +19,7 @@
  */
 package mstage.model.composition;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import mstage.model.module.Service;
@@ -29,13 +30,14 @@ import org.rejuse.association.SingleAssociation;
 import chameleon.core.element.Element;
 import chameleon.core.namespace.NamespaceElementImpl;
 import chameleon.core.reference.SimpleReference;
+import chameleon.core.validation.Valid;
 import chameleon.core.validation.VerificationResult;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public class Advice extends NamespaceElementImpl<Advice, Element> { //MStageDeclaration<Advice, Element> {
+public class Advice extends NamespaceElementImpl<Advice, Element> {
 
 	private SingleAssociation<Advice, SimpleReference<Service>> _service =
 		new SingleAssociation<Advice, SimpleReference<Service>>(this);
@@ -44,7 +46,7 @@ public class Advice extends NamespaceElementImpl<Advice, Element> { //MStageDecl
 	/**
 	 * @return	the reference to the service
 	 */
-	public SimpleReference<Service> _service() {
+	public SimpleReference<Service> service() {
 		return _service.getOtherEnd();
 	}
 	
@@ -61,7 +63,13 @@ public class Advice extends NamespaceElementImpl<Advice, Element> { //MStageDecl
 	 */
 	@Override
 	public Advice clone() {
-		// TODO Auto-generated method stub
+		final Advice clone = new Advice();
+		
+		clone.setService(
+				this.service().clone()
+		);
+		
+		return clone;
 	}
 
 	/* (non-Javadoc)
@@ -69,14 +77,20 @@ public class Advice extends NamespaceElementImpl<Advice, Element> { //MStageDecl
 	 */
 	@Override
 	public VerificationResult verifySelf() {
-		// TODO Auto-generated method stub
+		VerificationResult result = Valid.create();
+		
+		return result;
 	}
 
 	/* (non-Javadoc)
 	 * @see chameleon.core.element.Element#children()
 	 */
-	public List<? extends Element> children() {
-		// TODO Auto-generated method stub
+	public List<Element> children() {
+		final List<Element> result = new ArrayList<Element>();
+		
+		result.add(this.service());
+		
+		return result;
 	}
 
 }

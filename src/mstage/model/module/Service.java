@@ -109,10 +109,14 @@ public class Service extends JoinPointElement<Service, Element> {
 	public Service clone() {
 		final Service clone = super.clone();
 		
-		clone.setHeader(this.header().clone());
+		clone.setHeader(
+				this.header().clone()
+		);
 		
 		for (SimpleReference<Property> property : attachedProperties()) {
-			clone.addServices(property.clone());
+			SimpleReference<Property> localClone = property.clone();
+			
+			clone.addServices(localClone);
 		}
 		
 		return clone;

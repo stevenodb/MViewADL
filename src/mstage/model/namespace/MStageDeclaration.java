@@ -31,6 +31,9 @@ import chameleon.core.lookup.LookupException;
 import chameleon.core.namespace.NamespaceElementImpl;
 import chameleon.core.scope.Scope;
 import chameleon.core.scope.UniversalScope;
+import chameleon.core.validation.BasicProblem;
+import chameleon.core.validation.Valid;
+import chameleon.core.validation.VerificationResult;
 import chameleon.util.Util;
 
 /**
@@ -54,21 +57,20 @@ public abstract class MStageDeclaration<E extends MStageDeclaration<E,P>, P exte
 		return this;
 	}
 
+	
+	private final SingleAssociation<MStageDeclaration<E,P>, SimpleNameSignature> _signature = 
+		new SingleAssociation<MStageDeclaration<E,P>, SimpleNameSignature>(this); 
+	
+	/* (non-Javadoc)
+	 * @see chameleon.core.declaration.Declaration#signature()
+	 */
 	public SimpleNameSignature signature() {
 		return _signature.getOtherEnd();
 	}
-	
-	private SingleAssociation<MStageDeclaration<E,P>, SimpleNameSignature> _signature = new SingleAssociation<MStageDeclaration<E,P>, SimpleNameSignature>(this); 
 
-	/*
-	 * override in children
+	/**
+	 * @param signature
 	 */
-	public List<Element> children() {
-		List<Element> result = new ArrayList<Element>();
-		Util.addNonNull(signature(), result);
-		return result;
-	}
-	
 	public void setSignature(SimpleNameSignature signature) {
 		if(signature != null) {
 			_signature.connectTo(signature.parentLink());
@@ -76,6 +78,48 @@ public abstract class MStageDeclaration<E extends MStageDeclaration<E,P>, P exte
 			_signature.connectTo(null);
 		}
 	}
+	
+	
+	/**
+	 * @return An incomplete clone with the correct sub-Type 
+	 */
+	protected abstract E cloneThis();
+	
+	/* (non-Javadoc)
+	 * @see chameleon.core.element.ElementImpl#clone()
+	 */
+	@Override
+	public E clone() {
+		final E clone = cloneThis();
+		
+		clone.setSignature(signature().clone());
+		
+		return clone;
+	}
 
+	/* Override in Subtypes
+	 * (non-Javadoc)
+	 * @see chameleon.core.element.Element#children()
+	 */
+	public List<Element> children() {
+		final List<Element> result = new ArrayList<Element>();
+		
+		Util.addNonNull(signature(), result);
+		
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see chameleon.core.element.ElementImpl#verifySelf()
+	 */
+	@Override
+	public VerificationResult verifySelf() {
+		VerificationResult result = Valid.create();
+		
+		if ( ! (signature() != null) ) {
+			result = result.and(new BasicProblem(this, "No valid signature"));
+		}
+		return result;
+	}
 
 }
