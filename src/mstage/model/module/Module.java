@@ -50,7 +50,7 @@ public abstract class Module<E extends Module<E>> extends MStageDeclaration<E, E
 	/*
 	 * Provided Interfaces association
 	 */
-	private OrderedMultiAssociation<Module<E>, SimpleReference<Interface>> _providedInterfaces = 
+	private final OrderedMultiAssociation<Module<E>, SimpleReference<Interface>> _providedInterfaces = 
 		new OrderedMultiAssociation<Module<E>, SimpleReference<Interface>>(this);
 
 	/**
@@ -79,7 +79,7 @@ public abstract class Module<E extends Module<E>> extends MStageDeclaration<E, E
 	/*
 	 * Required Interfaces association
 	 */
-	private OrderedMultiAssociation<Module<E>, SimpleReference<Interface>> _requiredInterfaces = 
+	private final OrderedMultiAssociation<Module<E>, SimpleReference<Interface>> _requiredInterfaces = 
 		new OrderedMultiAssociation<Module<E>, SimpleReference<Interface>>(this);
 	
 	/**
@@ -137,8 +137,16 @@ public abstract class Module<E extends Module<E>> extends MStageDeclaration<E, E
 	public VerificationResult verifySelf() {
 		VerificationResult result = Valid.create();
 		
-		if (signature() == null) {
+		if ( ! (signature() != null) ) {
 			result = result.and(new BasicProblem(this, "No valid signature"));
+		}
+		
+		if ( ! (this.providedInterfaces().size() >= 1) ) {
+			result = result.and(new BasicProblem(this, "Missing provided interface"));
+		}
+		
+		if ( ! (true) ) {
+			
 		}
 		
 		return result;

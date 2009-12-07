@@ -115,7 +115,7 @@ public class Composite<E extends Composite<E>> extends Component<E> {
 	public VerificationResult verifySelf() {
 		VerificationResult result = super.verifySelf();
 		
-		if (submodules().size() == 0) {
+		if ( ! (submodules().size() > 0) ) {
 			result = result.and(new BasicProblem(this, "No submodules in Composite"));
 		}
 		
