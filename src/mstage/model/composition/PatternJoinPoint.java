@@ -27,34 +27,45 @@ import mstage.model.module.Service;
 
 import chameleon.core.element.Element;
 import chameleon.core.reference.SimpleReference;
+import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.VerificationResult;
+import chameleon.util.Util;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public class PatternJoinPoint extends JoinPoint<PatternJoinPoint> {
+public class PatternJoinPoint<E extends PatternJoinPoint<E>> 
+						extends JoinPoint<PatternJoinPoint<E>> {
 	
-	private String _pattern;
+	
+	
+	/*
+	 * The raw pattern
+	 */
+	private String _rawPattern;
 
 	/**
 	 * @return the pattern
 	 */
-	public String pattern() {
-		return _pattern;
+	public String rawPattern() {
+		return _rawPattern;
 	}
 
 	/**
 	 * @param pattern the pattern to set
 	 */
 	public void setPattern(String pattern) {
-		_pattern = pattern;
+		_rawPattern = pattern;
 	}
 	
 	
 	
-	private OrderedMultiAssociation<PatternJoinPoint, SimpleReference<Service>> _services =
-		new OrderedMultiAssociation<PatternJoinPoint, SimpleReference<Service>>(this);
+	/*
+	 * Assessors for service association
+	 */
+	private OrderedMultiAssociation<PatternJoinPoint<?>, SimpleReference<Service>> _services =
+		new OrderedMultiAssociation<PatternJoinPoint<?>, SimpleReference<Service>>(this);
 	
 	/**
 	 * @return	a List of references to Services
@@ -79,14 +90,34 @@ public class PatternJoinPoint extends JoinPoint<PatternJoinPoint> {
 	
 	
 	
-	
+	/* (non-Javadoc)
+	 * @see mstage.model.composition.JoinPoint#cloneThis()
+	 */
+	@Override
+	protected E cloneThis() {
+		return (E) new PatternJoinPoint(); 
+	}
 
 	/* (non-Javadoc)
 	 * @see chameleon.core.element.ElementImpl#clone()
 	 */
 	@Override
-	public PatternJoinPoint clone() {
-		// TODO Auto-generated method stub
+	public E clone() {
+		final E clone = (E) super.clone();
+		
+		// 1
+		clone.setPattern(
+				this.rawPattern() //string is immutable.
+		);
+		
+		// 2
+		for (SimpleReference<Service> ref : this.services()) {
+			SimpleReference<Service> localClone = ref.clone();
+			
+			clone.addService(localClone);
+		}
+		
+		return clone;
 	}
 
 	/* (non-Javadoc)
@@ -94,14 +125,29 @@ public class PatternJoinPoint extends JoinPoint<PatternJoinPoint> {
 	 */
 	@Override
 	public VerificationResult verifySelf() {
-		// TODO Auto-generated method stub
+		VerificationResult result = super.verifySelf();
+		
+		if ( ! (this.rawPattern() != null )  ) {
+			result = result.and(new BasicProblem(this, "Raw pattern is null"));
+		}
+		
+		if ( ! (this.services().size() >= 0) ) {
+			//nothing
+		}
+		
+		return result;
 	}
 
 	/* (non-Javadoc)
 	 * @see chameleon.core.element.Element#children()
 	 */
-	public List<? extends Element> children() {
-		// TODO Auto-generated method stub
+	public List<Element> children() {
+		final List<Element> result = super.children();
+		
+		Util.addNonNull(this.rawPattern(), result);
+		result.addAll(this.services());
+		
+		return result;
 	}
 
 

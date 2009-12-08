@@ -30,19 +30,11 @@ import mstage.model.namespace.MStageDeclaration;
 public class AbstractHost extends MStageDeclaration<AbstractHost, Element> {
 
 	/* (non-Javadoc)
-	 * @see chameleon.core.element.ElementImpl#clone()
+	 * @see mstage.model.namespace.MStageDeclaration#cloneThis()
 	 */
 	@Override
-	public AbstractHost clone() {
-		// TODO Auto-generated method stub
-	}
-
-	/* (non-Javadoc)
-	 * @see chameleon.core.element.ElementImpl#verifySelf()
-	 */
-	@Override
-	public VerificationResult verifySelf() {
-		// TODO Auto-generated method stub
+	protected AbstractHost cloneThis() {
+		return new AbstractHost();
 	}
 
 }

@@ -19,12 +19,19 @@
  */
 package mstage.model.module;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.rejuse.association.SingleAssociation;
 
 import chameleon.core.declaration.Declaration;
 import chameleon.core.element.Element;
 import chameleon.core.namespace.NamespaceElementImpl;
 import chameleon.core.reference.SimpleReference;
+import chameleon.core.validation.BasicProblem;
+import chameleon.core.validation.Valid;
+import chameleon.core.validation.VerificationResult;
+import chameleon.util.Util;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
@@ -39,7 +46,7 @@ public abstract class HostMap<From extends Declaration<?,?,?,?>,To extends Decla
 	/*
 	 * Association to Host
 	 */
-	private SingleAssociation<HostMap<From,To,M>, SimpleReference<From>> _from =
+	private final SingleAssociation<HostMap<From,To,M>, SimpleReference<From>> _from =
 		new SingleAssociation<HostMap<From,To,M>, SimpleReference<From>>(this); 
 	
 	/**
@@ -60,9 +67,12 @@ public abstract class HostMap<From extends Declaration<?,?,?,?>,To extends Decla
 	/*
 	 * Association to Module
 	 */
-	private SingleAssociation<HostMap<From,To,M>, SimpleReference<To>> _to =
+	private final SingleAssociation<HostMap<From,To,M>, SimpleReference<To>> _to =
 		new SingleAssociation<HostMap<From,To,M>, SimpleReference<To>>(this);
 
+	/**
+	 * @param relation
+	 */
 	public void setTo(SimpleReference<To> relation) {
 		_to.connectTo(relation.parentLink());
 	}
@@ -73,5 +83,64 @@ public abstract class HostMap<From extends Declaration<?,?,?,?>,To extends Decla
 	public SimpleReference<To> to() {
 		return _to.getOtherEnd();
 	}
+	
+	
+	
+	
+	/**
+	 * @return An incomplete clone with the correct sub-Type 
+	 */
+	protected abstract M cloneThis();
 
+	/* (non-Javadoc)
+	 * @see chameleon.core.element.ElementImpl#clone()
+	 */
+	@Override
+	public M clone() {
+		final M clone = (M) this.cloneThis();
+		
+		clone.setFrom(
+			this.from().clone()
+		);
+		
+		clone.setTo(
+			this.to().clone()
+		);
+		
+		return clone;
+	}
+
+	/* (non-Javadoc)
+	 * @see chameleon.core.element.ElementImpl#verifySelf()
+	 */
+	@Override
+	public VerificationResult verifySelf() {
+		VerificationResult result = Valid.create();
+		
+		if ( ! (this.from() != null) ) {
+			result = result.and(new BasicProblem(this, "From is null"));
+		}
+
+		if ( ! (this.to() != null) ) {
+			result = result.and(new BasicProblem(this, "To is null"));
+		}
+
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see chameleon.core.element.Element#children()
+	 */
+	public List<Element> children() {
+		final List<Element> result = new ArrayList<Element>();
+		
+		Util.addNonNull(this.from(), result);
+		Util.addNonNull(this.to(), result);
+		
+		return result;
+	}
+
+	
+	
+	
 }

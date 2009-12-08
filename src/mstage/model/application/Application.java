@@ -21,51 +21,123 @@ package mstage.model.application;
 
 import java.util.List;
 
+import mstage.model.module.Module;
+
 import org.rejuse.association.OrderedMultiAssociation;
 
-import com.sun.xml.internal.ws.message.RelatesToHeader;
-
 import chameleon.core.element.Element;
+import chameleon.core.reference.SimpleReference;
+import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.VerificationResult;
-import mstage.model.namespace.MStageDeclaration;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public class Application extends MStageDeclaration<Application, Element> {
+public class Application extends HostMapper<Application, Locate> {
 
-	private OrderedMultiAssociation<Application, Locate> _locates =
-		new OrderedMultiAssociation<Application, Locate>(this);
+	/*
+	 * Modules
+	 */
+	private final OrderedMultiAssociation<Application, SimpleReference<Module<?>>> _modules =
+		new OrderedMultiAssociation<Application, SimpleReference<Module<?>>>(this);
 	
 	/**
 	 * @return
 	 */
-	public List<Locate> locates() {
-		return _locates.getOtherEnds();
+	public List<SimpleReference<Module<?>>> modules() {
+		return _modules.getOtherEnds();
 	}
 	
 	/**
 	 * @param relation
 	 */
+	public void addModule(SimpleReference<Module<?>> relation) {
+		_modules.add(relation.parentLink());
+	}
+	
+	/**
+	 * @param relation
+	 */
+	public void removeModule(SimpleReference<Module<?>> relation) {
+		_modules.remove(relation.parentLink());
+	}
+	
+	
+	/*
+	 * Locates
+	 */
+
+	/**
+	 * @return
+	 */
+	public List<Locate> locates() {
+		return this.hostMaps();
+	}	
+
+	/**
+	 * @param relation
+	 */
 	public void addLocate(Locate relation) {
-		_locates.add(relation.parentLink());
+		this.addHostMap(relation);
+	}
+	
+	/**
+	 * @param relation
+	 */
+	public void removeLocate(Locate relation) {
+		this.removeHostMap(relation);
+	}
+
+	
+	
+	/* (non-Javadoc)
+	 * @see mstage.model.namespace.MStageDeclaration#cloneThis()
+	 */
+	@Override
+	protected Application cloneThis() {
+		return new Application();
 	}
 	
 	/* (non-Javadoc)
-	 * @see chameleon.core.element.ElementImpl#clone()
+	 * @see mstage.model.application.HostMapper#clone()
 	 */
 	@Override
 	public Application clone() {
-		// TODO Auto-generated method stub
+		final Application clone = super.clone();
+		
+		for (SimpleReference<Module<?>> ref : this.modules()) {
+			SimpleReference<Module<?>> localClone = ref.clone();
+			
+			clone.addModule(localClone);
+		}
+		
+		return clone;
 	}
 
 	/* (non-Javadoc)
-	 * @see chameleon.core.element.ElementImpl#verifySelf()
+	 * @see mstage.model.application.HostMapper#children()
+	 */
+	@Override
+	public List<Element> children() {
+		final List<Element> result = super.children();
+		
+		result.addAll(modules());
+		
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see mstage.model.application.HostMapper#verifySelf()
 	 */
 	@Override
 	public VerificationResult verifySelf() {
-		// TODO Auto-generated method stub
+		VerificationResult result = super.verifySelf();
+		
+		if ( !(this.modules() != null) ) {
+			result = result.and(new BasicProblem(this, "Modules is null"));
+		}
+		
+		return result;
 	}
-
 }

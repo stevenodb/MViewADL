@@ -19,10 +19,6 @@
  */
 package mstage.model.deployment;
 
-import java.util.List;
-
-import chameleon.core.element.Element;
-import chameleon.core.validation.VerificationResult;
 import mstage.model.application.AbstractHost;
 import mstage.model.module.HostMap;
 
@@ -33,25 +29,12 @@ import mstage.model.module.HostMap;
 public class Map extends HostMap<Host, AbstractHost, Map> {
 
 	/* (non-Javadoc)
-	 * @see chameleon.core.element.ElementImpl#clone()
+	 * @see mstage.model.module.HostMap#cloneThis()
 	 */
 	@Override
-	public Map clone() {
-		// TODO Auto-generated method stub
+	protected Map cloneThis() {
+		return new Map();
 	}
 
-	/* (non-Javadoc)
-	 * @see chameleon.core.element.ElementImpl#verifySelf()
-	 */
-	@Override
-	public VerificationResult verifySelf() {
-		// TODO Auto-generated method stub
-	}
 
-	/* (non-Javadoc)
-	 * @see chameleon.core.element.Element#children()
-	 */
-	public List<? extends Element> children() {
-		// TODO Auto-generated method stub
-	}
 }

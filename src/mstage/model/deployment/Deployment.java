@@ -21,52 +21,126 @@ package mstage.model.deployment;
 
 import java.util.List;
 
+import mstage.model.application.Application;
+import mstage.model.application.HostMapper;
+import mstage.model.application.Locate;
+import mstage.model.module.Module;
+
 import org.rejuse.association.OrderedMultiAssociation;
 
-import mstage.model.application.Application;
-import mstage.model.application.Locate;
-import mstage.model.namespace.MStageDeclaration;
 import chameleon.core.element.Element;
+import chameleon.core.reference.SimpleReference;
+import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.VerificationResult;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public class Deployment extends MStageDeclaration<Deployment, Element> {
+public class Deployment extends HostMapper<Deployment,Map> {
 	
-	private OrderedMultiAssociation<Deployment, Map> _locates =
-		new OrderedMultiAssociation<Deployment, Map>(this);
+	/*
+	 * Applications
+	 */
+	private final OrderedMultiAssociation<Deployment, SimpleReference<Application>> _applications =
+		new OrderedMultiAssociation<Deployment, SimpleReference<Application>>(this);
 	
 	/**
 	 * @return
 	 */
-	public List<Map> locates() {
-		return _locates.getOtherEnds();
+	public List<SimpleReference<Application>> applications() {
+		return _applications.getOtherEnds();
 	}
 	
 	/**
 	 * @param relation
 	 */
-	public void addLocate(Map relation) {
-		_locates.add(relation.parentLink());
+	public void addApplication(SimpleReference<Application> relation) {
+		_applications.add(relation.parentLink());
 	}
 	
+	/**
+	 * @param relation
+	 */
+	public void removeApplication(SimpleReference<Application> relation) {
+		_applications.remove(relation.parentLink());
+	}
+	
+	/*
+	 * Maps
+	 */
+
+	/**
+	 * @return
+	 */
+	public List<Map> maps() {
+		return this.hostMaps();
+	}	
+
+	/**
+	 * @param relation
+	 */
+	public void addLocate(Map relation) {
+		this.addHostMap(relation);
+	}
+	
+	/**
+	 * @param relation
+	 */
+	public void removeLocate(Map relation) {
+		this.removeHostMap(relation);
+	}
+
+	
+	
+	/* (non-Javadoc)
+	 * @see mstage.model.namespace.MStageDeclaration#cloneThis()
+	 */
+	@Override
+	protected Deployment cloneThis() {
+		return new Deployment();
+	}
 
 	/* (non-Javadoc)
-	 * @see chameleon.core.element.ElementImpl#clone()
+	 * @see mstage.model.application.HostMapper#clone()
 	 */
 	@Override
 	public Deployment clone() {
-		// TODO Auto-generated method stub
+		final Deployment clone = super.clone();
+		
+		for (SimpleReference<Application> ref : this.applications()) {
+			SimpleReference<Application> localClone = ref.clone();
+			
+			clone.addApplication(localClone);
+		}
+		
+		return clone;
 	}
 
 	/* (non-Javadoc)
-	 * @see chameleon.core.element.ElementImpl#verifySelf()
+	 * @see mstage.model.application.HostMapper#children()
+	 */
+	@Override
+	public List<Element> children() {
+		final List<Element> result = super.children();
+		
+		result.addAll(applications());
+		
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see mstage.model.application.HostMapper#verifySelf()
 	 */
 	@Override
 	public VerificationResult verifySelf() {
-		// TODO Auto-generated method stub
+		VerificationResult result = super.verifySelf();
+		
+		if ( !(this.applications() != null) ) {
+			result = result.and(new BasicProblem(this, "Applications is null"));
+		}
+		
+		return result;
 	}
 
 }

@@ -19,12 +19,18 @@
  */
 package mstage.model.composition;
 
+import java.util.List;
+
 import mstage.model.module.JoinPointElement;
 import mstage.model.module.Service;
 
 import org.rejuse.association.SingleAssociation;
 
+import chameleon.core.element.Element;
 import chameleon.core.reference.SimpleReference;
+import chameleon.core.validation.BasicProblem;
+import chameleon.core.validation.VerificationResult;
+import chameleon.util.Util;
 
 /**
  * @author  Steven Op de beeck <steven /at/ opdebeeck /./ org>
@@ -40,7 +46,7 @@ public abstract class SingleJoinPoint<E extends SingleJoinPoint<E,JP>,JP extends
 	/**
 	 * @return the joinPoint
 	 */
-	public SimpleReference<JP> getJoinPoint() {
+	public SimpleReference<JP> joinPoint() {
 		return _joinPoint.getOtherEnd();
 	}
 
@@ -50,4 +56,46 @@ public abstract class SingleJoinPoint<E extends SingleJoinPoint<E,JP>,JP extends
 	public void setJoinPoint(
 			SimpleReference<JP> relation) {_joinPoint.connectTo(relation.parentLink());
 	}
+
+	
+	/* (non-Javadoc)
+	 * @see mstage.model.composition.JoinPoint#clone()
+	 */
+	@Override
+	public E clone() {
+		final E clone =	(E) super.clone();
+	
+		clone.setJoinPoint(
+				this.joinPoint().clone()
+		);
+		
+		return clone;
+	}
+
+	/* (non-Javadoc)
+	 * @see mstage.model.composition.JoinPoint#children()
+	 */
+	@Override
+	public List<Element> children() {
+		final List<Element> result = super.children();
+		
+		Util.addNonNull(this.joinPoint(), result);
+		
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see mstage.model.composition.JoinPoint#verifySelf()
+	 */
+	@Override
+	public VerificationResult verifySelf() {
+		VerificationResult result = super.verifySelf();
+		
+		if ( ! (this.joinPoint() != null)) {
+			result = result.and(new BasicProblem(this, "JoinPoint is null"));
+		}
+		
+		return result;
+	}
+	
 }

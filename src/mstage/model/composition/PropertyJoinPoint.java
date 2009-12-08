@@ -30,30 +30,15 @@ import chameleon.core.validation.VerificationResult;
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public class PropertyJoinPoint extends SingleJoinPoint<PropertyJoinPoint,Property> {
+public class PropertyJoinPoint<E extends PropertyJoinPoint<E>> 
+					extends SingleJoinPoint<PropertyJoinPoint<E>,Property> {
 
 	/* (non-Javadoc)
-	 * @see chameleon.core.element.ElementImpl#clone()
+	 * @see mstage.model.composition.JoinPoint#cloneThis()
 	 */
 	@Override
-	public PropertyJoinPoint clone() {
-		// TODO Auto-generated method stub
+	protected E cloneThis() {
+		return (E) new PropertyJoinPoint();
 	}
-
-	/* (non-Javadoc)
-	 * @see chameleon.core.element.ElementImpl#verifySelf()
-	 */
-	@Override
-	public VerificationResult verifySelf() {
-		// TODO Auto-generated method stub
-	}
-
-	/* (non-Javadoc)
-	 * @see chameleon.core.element.Element#children()
-	 */
-	public List<? extends Element> children() {
-		// TODO Auto-generated method stub
-	}
-
 
 }

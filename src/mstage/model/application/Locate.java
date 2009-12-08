@@ -19,12 +19,8 @@
  */
 package mstage.model.application;
 
-import java.util.List;
-
 import mstage.model.module.HostMap;
 import mstage.model.module.Module;
-import chameleon.core.element.Element;
-import chameleon.core.validation.VerificationResult;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
@@ -33,26 +29,11 @@ import chameleon.core.validation.VerificationResult;
 public class Locate extends HostMap<AbstractHost,Module<?>,Locate> {
 
 	/* (non-Javadoc)
-	 * @see chameleon.core.element.ElementImpl#clone()
+	 * @see mstage.model.module.HostMap#cloneThis()
 	 */
 	@Override
-	public Locate clone() {
-		// TODO Auto-generated method stub
-	}
-
-	/* (non-Javadoc)
-	 * @see chameleon.core.element.ElementImpl#verifySelf()
-	 */
-	@Override
-	public VerificationResult verifySelf() {
-		// TODO Auto-generated method stub
-	}
-
-	/* (non-Javadoc)
-	 * @see chameleon.core.element.Element#children()
-	 */
-	public List<? extends Element> children() {
-		// TODO Auto-generated method stub
+	protected Locate cloneThis() {
+		return new Locate();
 	}
 
 }

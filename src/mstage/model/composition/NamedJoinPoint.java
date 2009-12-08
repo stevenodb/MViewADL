@@ -19,48 +19,21 @@
  */
 package mstage.model.composition;
 
-import java.util.List;
-
 import mstage.model.module.Service;
-
-import chameleon.core.element.Element;
-import chameleon.core.validation.VerificationResult;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public class NamedJoinPoint extends SingleJoinPoint<NamedJoinPoint,Service> {
+public class NamedJoinPoint<E extends NamedJoinPoint<E>> 
+	extends SingleJoinPoint<NamedJoinPoint<E>,Service> {
 	
 	/* (non-Javadoc)
 	 * @see mstage.model.composition.JoinPoint#cloneThis()
 	 */
 	@Override
 	protected E cloneThis() {
-		// TODO Auto-generated method stub
+		return (E) new NamedJoinPoint();
 	}
 	
-	/* (non-Javadoc)
-	 * @see chameleon.core.element.ElementImpl#clone()
-	 */
-	@Override
-	public NamedJoinPoint clone() {
-		// TODO Auto-generated method stub
-	}
-
-	/* (non-Javadoc)
-	 * @see chameleon.core.element.ElementImpl#verifySelf()
-	 */
-	@Override
-	public VerificationResult verifySelf() {
-		// TODO Auto-generated method stub
-	}
-
-	/* (non-Javadoc)
-	 * @see chameleon.core.element.Element#children()
-	 */
-	public List<? extends Element> children() {
-		// TODO Auto-generated method stub
-	}
-
 }
