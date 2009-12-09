@@ -26,7 +26,7 @@ import mstage.model.module.HostMap;
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public class Map extends HostMap<Host, AbstractHost, Map> {
+public class Map extends HostMap<Map,Host, AbstractHost> {
 
 	/* (non-Javadoc)
 	 * @see mstage.model.module.HostMap#cloneThis()

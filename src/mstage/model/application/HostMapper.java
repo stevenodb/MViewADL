@@ -35,10 +35,12 @@ import chameleon.core.validation.VerificationResult;
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  * 
  */
-public abstract class HostMapper<E extends HostMapper<E,M>,M extends HostMap<?,?,M>> 
+public abstract class HostMapper<E extends HostMapper<E,M>,M extends HostMap<M,?,?>> 
 	extends	MStageDeclaration<E,Element> {
 
-	
+	/*
+	 * HostMap association
+	 */
 	private final OrderedMultiAssociation<HostMapper<E,M>, M> _hostMap = 
 		new OrderedMultiAssociation<HostMapper<E,M>, M>(this);
 

@@ -39,15 +39,15 @@ import chameleon.util.Util;
  * @param <From>
  * @param <To>
  */
-public abstract class HostMap<From extends Declaration<?,?,?,?>,To extends Declaration<?, ?, ?, ? extends To>,M extends HostMap<From,To,M>> 
+public abstract class HostMap<M extends HostMap<M,From,To>,From extends Declaration<?,?,?,?>,To extends Declaration<?, ?, ?, ? extends To>> 
 			extends NamespaceElementImpl<M, Element> {
 
 	
 	/*
 	 * Association to Host
 	 */
-	private final SingleAssociation<HostMap<From,To,M>, SimpleReference<From>> _from =
-		new SingleAssociation<HostMap<From,To,M>, SimpleReference<From>>(this); 
+	private final SingleAssociation<HostMap<M,From,To>, SimpleReference<From>> _from =
+		new SingleAssociation<HostMap<M,From,To>, SimpleReference<From>>(this); 
 	
 	/**
 	 * @return
@@ -67,8 +67,8 @@ public abstract class HostMap<From extends Declaration<?,?,?,?>,To extends Decla
 	/*
 	 * Association to Module
 	 */
-	private final SingleAssociation<HostMap<From,To,M>, SimpleReference<To>> _to =
-		new SingleAssociation<HostMap<From,To,M>, SimpleReference<To>>(this);
+	private final SingleAssociation<HostMap<M,From,To>, SimpleReference<To>> _to =
+		new SingleAssociation<HostMap<M,From,To>, SimpleReference<To>>(this);
 
 	/**
 	 * @param relation
@@ -140,7 +140,4 @@ public abstract class HostMap<From extends Declaration<?,?,?,?>,To extends Decla
 		return result;
 	}
 
-	
-	
-	
 }
