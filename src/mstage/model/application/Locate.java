@@ -19,8 +19,8 @@
  */
 package mstage.model.application;
 
-import mstage.model.module.HostMap;
 import mstage.model.module.Module;
+import mstage.reuse.HostMap;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>

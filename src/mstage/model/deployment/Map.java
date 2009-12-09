@@ -20,7 +20,7 @@
 package mstage.model.deployment;
 
 import mstage.model.application.AbstractHost;
-import mstage.model.module.HostMap;
+import mstage.reuse.HostMap;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>

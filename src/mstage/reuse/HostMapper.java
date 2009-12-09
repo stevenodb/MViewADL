@@ -17,11 +17,10 @@
  * along with Digital Publishing Demonstrator.  
  * If not, see <http://www.gnu.org/licenses/>.
  */
-package mstage.model.application;
+package mstage.reuse;
 
 import java.util.List;
 
-import mstage.model.module.HostMap;
 import mstage.model.module.Module;
 import mstage.model.namespace.MStageDeclaration;
 

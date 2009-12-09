@@ -22,8 +22,10 @@ package mstage.model.application;
 import java.util.List;
 
 import mstage.model.module.Module;
+import mstage.reuse.HostMapper;
 
 import org.rejuse.association.OrderedMultiAssociation;
+
 
 import chameleon.core.element.Element;
 import chameleon.core.reference.SimpleReference;
