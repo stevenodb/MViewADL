@@ -21,12 +21,10 @@ package mstage.reuse;
 
 import java.util.List;
 
-import mstage.model.module.Module;
 import mstage.model.namespace.MStageDeclaration;
 
 import org.rejuse.association.OrderedMultiAssociation;
 
-import chameleon.core.declaration.Declaration;
 import chameleon.core.element.Element;
 import chameleon.core.validation.VerificationResult;
 
