@@ -26,7 +26,6 @@ import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.element.Element;
 import chameleon.core.reference.SimpleReference;
 import chameleon.core.validation.BasicProblem;
-import chameleon.core.validation.Valid;
 import chameleon.core.validation.VerificationResult;
 import chameleon.util.Util;
 
@@ -143,11 +142,7 @@ public abstract class Module<E extends Module<E>> extends MStageDeclaration<E, E
 		if ( ! (this.providedInterfaces().size() >= 1) ) {
 			result = result.and(new BasicProblem(this, "Missing provided interface"));
 		}
-		
-		if ( ! (true) ) {
-			
-		}
-		
+				
 		return result;
 	}
 

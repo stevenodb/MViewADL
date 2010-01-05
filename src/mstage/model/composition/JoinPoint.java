@@ -22,13 +22,8 @@ package mstage.model.composition;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.rejuse.association.OrderedMultiAssociation;
-
-import mstage.model.module.Service;
-import mstage.model.namespace.MStageDeclaration;
 import chameleon.core.element.Element;
 import chameleon.core.namespace.NamespaceElementImpl;
-import chameleon.core.reference.SimpleReference;
 import chameleon.core.validation.Valid;
 import chameleon.core.validation.VerificationResult;
 

@@ -22,7 +22,6 @@ package mstage.model.composition;
 import java.util.List;
 
 import mstage.model.module.JoinPointElement;
-import mstage.model.module.Service;
 
 import org.rejuse.association.SingleAssociation;
 

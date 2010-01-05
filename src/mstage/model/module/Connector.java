@@ -23,13 +23,9 @@ import mstage.model.composition.AOComposition;
 
 import org.rejuse.association.OrderedMultiAssociation;
 
-import sun.awt.im.CompositionArea;
-
 import chameleon.core.element.Element;
-import chameleon.core.reference.SimpleReference;
 import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.VerificationResult;
-import chameleon.util.Util;
 
 public class Connector<E extends Connector<E>> extends Module<E> {
 	

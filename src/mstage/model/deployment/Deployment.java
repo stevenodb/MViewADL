@@ -22,12 +22,9 @@ package mstage.model.deployment;
 import java.util.List;
 
 import mstage.model.application.Application;
-import mstage.model.application.Locate;
-import mstage.model.module.Module;
 import mstage.reuse.HostMapper;
 
 import org.rejuse.association.OrderedMultiAssociation;
-
 
 import chameleon.core.element.Element;
 import chameleon.core.reference.SimpleReference;

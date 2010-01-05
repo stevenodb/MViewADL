@@ -21,16 +21,11 @@ package mstage.model.composition;
 
 import java.util.List;
 
-import mstage.model.module.Service;
 import mstage.model.namespace.MStageDeclaration;
 
-import org.rejuse.association.OrderedMultiAssociation;
 import org.rejuse.association.SingleAssociation;
 
-import sun.java2d.pipe.SpanShapeRenderer.Simple;
-
 import chameleon.core.element.Element;
-import chameleon.core.reference.SimpleReference;
 import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.VerificationResult;
 import chameleon.util.Util;

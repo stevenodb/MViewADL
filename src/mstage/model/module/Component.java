@@ -19,14 +19,7 @@
  */
 package mstage.model.module;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import chameleon.core.declaration.SimpleNameSignature;
-import chameleon.core.element.Element;
-import chameleon.core.reference.SimpleReference;
-import chameleon.core.validation.Valid;
-import chameleon.core.validation.VerificationResult;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>

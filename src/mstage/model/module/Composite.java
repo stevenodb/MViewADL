@@ -23,14 +23,11 @@ import java.util.List;
 
 import org.rejuse.association.OrderedMultiAssociation;
 
-import com.sun.xml.internal.rngom.parse.host.Base;
-
 import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.element.Element;
 import chameleon.core.reference.SimpleReference;
 import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.VerificationResult;
-import chameleon.util.Util;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>

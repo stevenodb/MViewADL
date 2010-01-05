@@ -23,7 +23,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import mstage.model.module.Service;
-import mstage.model.namespace.MStageDeclaration;
 
 import org.rejuse.association.SingleAssociation;
 

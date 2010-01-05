@@ -19,9 +19,8 @@
  */
 package mstage.model.deployment;
 
-import chameleon.core.element.Element;
-import chameleon.core.validation.VerificationResult;
 import mstage.model.namespace.MStageDeclaration;
+import chameleon.core.element.Element;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
