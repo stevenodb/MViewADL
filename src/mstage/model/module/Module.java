@@ -35,6 +35,9 @@ import chameleon.util.Util;
  */
 public abstract class Module<E extends Module<E>> extends MStageDeclaration<E, Element> {
 
+	/**
+	 * Default constructor
+	 */
 	protected Module() {
 	}
 

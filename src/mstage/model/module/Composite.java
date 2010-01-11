@@ -48,7 +48,6 @@ public class Composite<E extends Composite<E>> extends Component<E> {
 	 * @param submodules
 	 */
 	protected Composite(SimpleNameSignature signature) {
-		
 		super(signature);	
 	}
 

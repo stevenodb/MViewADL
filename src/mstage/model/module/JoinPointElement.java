@@ -19,8 +19,8 @@
  */
 package mstage.model.module;
 
-import chameleon.core.element.Element;
 import mstage.model.namespace.MStageDeclaration;
+import chameleon.core.element.Element;
 
 
 /**

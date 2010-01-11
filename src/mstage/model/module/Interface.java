@@ -23,13 +23,27 @@ import mstage.model.namespace.MStageDeclaration;
 
 import org.rejuse.association.OrderedMultiAssociation;
 
+import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.element.Element;
 import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.VerificationResult;
 
 public class Interface extends MStageDeclaration<Interface, Element> {
 	
-	
+	/**
+	 * Default constructor 
+	 */
+	protected Interface() {
+		super();
+	}
+
+	/**
+	 * @param signature
+	 */
+	public Interface(SimpleNameSignature signature) {
+		super(signature);
+	}
+
 	/* 
 	 * Association to Services 
 	 */

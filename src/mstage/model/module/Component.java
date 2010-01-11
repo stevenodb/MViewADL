@@ -36,7 +36,7 @@ public class Component<E extends Component<E>> extends Module<E> {
 	/**
 	 * @param signature
 	 */
-	protected Component(SimpleNameSignature signature) {
+	public Component(SimpleNameSignature signature) {
 		super(signature);
 	}
 	

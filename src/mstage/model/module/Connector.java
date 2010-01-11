@@ -23,12 +23,27 @@ import mstage.model.composition.AOComposition;
 
 import org.rejuse.association.OrderedMultiAssociation;
 
+import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.element.Element;
 import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.VerificationResult;
 
 public class Connector<E extends Connector<E>> extends Module<E> {
 	
+	/**
+	 * Default constructor 
+	 */
+	public Connector() {
+		super();
+	}
+
+	/**
+	 * @param signature
+	 */
+	public Connector(SimpleNameSignature signature) {
+		super(signature);
+	}
+
 	/*
 	 * composition association
 	 */
