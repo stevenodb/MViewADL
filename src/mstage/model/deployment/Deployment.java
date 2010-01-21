@@ -35,7 +35,7 @@ import chameleon.core.validation.VerificationResult;
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public class Deployment extends HostMapper<Deployment,Map> {
+public class Deployment extends HostMapper<Deployment,HostMap> {
 	
 	/*
 	 * Applications
@@ -71,21 +71,21 @@ public class Deployment extends HostMapper<Deployment,Map> {
 	/**
 	 * @return
 	 */
-	public List<Map> maps() {
+	public List<HostMap> maps() {
 		return this.hostMaps();
 	}	
 
 	/**
 	 * @param relation
 	 */
-	public void addLocate(Map relation) {
+	public void addLocate(HostMap relation) {
 		this.addHostMap(relation);
 	}
 	
 	/**
 	 * @param relation
 	 */
-	public void removeLocate(Map relation) {
+	public void removeLocate(HostMap relation) {
 		this.removeHostMap(relation);
 	}
 

@@ -20,13 +20,13 @@
 package mstage.model.application;
 
 import mstage.model.module.Module;
-import mstage.reuse.HostMap;
+import mstage.reuse.Mapping;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public class Locate extends HostMap<Locate,AbstractHost,Module<?>> {
+public class Locate extends Mapping<Locate,AbstractHost,Module<?>> {
 
 	/* (non-Javadoc)
 	 * @see mstage.model.module.HostMap#cloneThis()

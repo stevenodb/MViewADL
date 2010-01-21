@@ -20,20 +20,20 @@
 package mstage.model.deployment;
 
 import mstage.model.application.AbstractHost;
-import mstage.reuse.HostMap;
+import mstage.reuse.Mapping;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public class Map extends HostMap<Map,Host, AbstractHost> {
+public class HostMap extends Mapping<HostMap,Host,AbstractHost> {
 
 	/* (non-Javadoc)
 	 * @see mstage.model.module.HostMap#cloneThis()
 	 */
 	@Override
-	protected Map cloneThis() {
-		return new Map();
+	protected HostMap cloneThis() {
+		return new HostMap();
 	}
 
 
