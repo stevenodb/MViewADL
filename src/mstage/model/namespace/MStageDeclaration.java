@@ -23,7 +23,6 @@ import java.util.List;
 
 import org.rejuse.association.SingleAssociation;
 
-import chameleon.core.MetamodelException;
 import chameleon.core.declaration.Declaration;
 import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.element.Element;
@@ -34,6 +33,7 @@ import chameleon.core.scope.UniversalScope;
 import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.Valid;
 import chameleon.core.validation.VerificationResult;
+import chameleon.exception.ModelException;
 import chameleon.util.Util;
 
 /**
@@ -63,7 +63,7 @@ public abstract class MStageDeclaration<E extends MStageDeclaration<E,P>, P exte
 		return (E) this;
 	}
 
-	public Scope scope() throws MetamodelException {
+	public Scope scope() throws ModelException {
 		return new UniversalScope();
 	}
 
