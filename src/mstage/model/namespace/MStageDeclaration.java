@@ -44,6 +44,20 @@ import chameleon.util.Util;
  */
 public abstract class MStageDeclaration<E extends MStageDeclaration<E,P>, P extends Element> 
 	extends NamespaceElementImpl<E,P> implements Declaration<E,P,SimpleNameSignature,E> {
+	
+	/**
+	 * Default constructor
+	 */
+	protected MStageDeclaration() {
+	}
+	
+	/**
+	 * @param signature
+	 */
+	protected MStageDeclaration(SimpleNameSignature signature) {
+		setSignature(signature);
+	}
+
 
 	public E actualDeclaration() throws LookupException {
 		return (E) this;
