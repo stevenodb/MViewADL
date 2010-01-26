@@ -108,20 +108,24 @@ componentOrInterfaceDeclaration returns [Type element]
 //interface
 interfaceDeclaration returns [Interface element]
 	:	'interface' name=Identifier {
-			$element = new Interface(
+			$element = new Interface(new SimpleNameSignature($name.text));
+			setLocation($element,$name,"__NAME");
 		}
 		interfaceBody[$element]
 	;
 
 
 interfaceBody[Interface element]
-	:	(service=interfaceServiceDeclaration ';')*
+	:	(service=interfaceServiceDeclaration';')* {
+			
+		}
 	;
 
 
 interfaceServiceDeclaration returns [Service element]
-	:	interfaceServiceReturnType name=Identifier formalParameters
-	 { $element= ''; }
+	:	rtype=interfaceServiceReturnType name=Identifier pars=formalParameters {
+			$element= new Service();
+		}
 	;
 
 
@@ -162,12 +166,10 @@ componentDeclaration returns [Component element]
 			componentBody[$element]
 	;
     
-
 componentBody[Component element]
 	: '{' componentBodyDeclaration[$element]* '}'
 	;
     
-
 componentBodyDeclaration[Component element]
 	:	'require' rd=componentInterfaceDependencyBody {
 			for(String iface : $rd.interfaces ) {
@@ -179,14 +181,10 @@ componentBodyDeclaration[Component element]
 				$element.addProvidedInterface(new SimpleReference<Interface>(iface, Interface.class));
 			}
 		 }
-/*	|	'implementation' */
 	;
 
-
 componentInterfaceDependencyBody returns [List<String> interfaces]
-	:	'{' 
-			{ $interfaces=new ArrayList<String>(); }
-		( iface=Identifier {$interfaces.add($iface.text);} '\n')*
+	:	'{' { $interfaces=new ArrayList<String>(); } iface=Identifier {$interfaces.add($iface.text);} (',' iface=Identifier {$interfaces.add($iface.text);})*
 		'}'
 	;
 
