@@ -23,8 +23,8 @@ import java.io.InputStream;
 import java.io.StringBufferInputStream;
 
 import mstage.model.language.Mstage;
-import mstage.parser.output.MstageLexer;
-import mstage.parser.output.MstageParser;
+import mstage.parser.MstageLexer;
+import mstage.parser.MstageParser;
 
 import org.antlr.runtime.ANTLRInputStream;
 import org.antlr.runtime.CommonTokenStream;
