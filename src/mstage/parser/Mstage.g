@@ -13,7 +13,7 @@ scope TargetScope {
 }
 
 @parser::header {
-package mstage.parser.output;
+package mstage.parser;
 
 import mstage.model.application.AbstractHost;
 import mstage.model.application.Application;
@@ -57,7 +57,7 @@ import mstage.reuse.HostMapper;
 }
 
 @lexer::header {
-package mstage.parser.output;
+package mstage.parser;
 }
 
 /*@lexer::members {
