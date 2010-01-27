@@ -40,14 +40,14 @@ public class Composite<E extends Composite<E>> extends Component<E> {
 	/**
 	 * Default constructor
 	 */
-	public Composite() {
+	protected Composite() {
 		//what are you staring at?
 	}
 	
 	/**
 	 * @param submodules
 	 */
-	protected Composite(SimpleNameSignature signature) {
+	public Composite(SimpleNameSignature signature) {
 		super(signature);	
 	}
 

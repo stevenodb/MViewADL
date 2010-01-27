@@ -45,6 +45,7 @@ import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.declaration.Signature;
 import chameleon.core.expression.InvocationTarget;
 import chameleon.core.type.TypeReference;
+import chameleon.core.type.Type;
 import chameleon.core.namespace.NamespaceOrTypeReference;
 import chameleon.core.namespacepart.NamespacePart;
 import chameleon.core.reference.SimpleReference;
@@ -123,7 +124,7 @@ interfaceServiceReturnType returns [TypeReference element]
 
 formalParameters returns [List<FormalParameter> element]
 @init{$element = new ArrayList<FormalParameter>();} // create empty one, in case there are no parameters
-    :   '(' (pars=formalParameterDecls {$element=pars.element;})? ')'
+    :   '(' (pars=formalParameterDecls {$element=$pars.element;})? ')'
     ;
 
 formalParameterDecls returns [List<FormalParameter> element]
@@ -142,6 +143,27 @@ formalParameterDecls returns [List<FormalParameter> element]
 
 
 
+// composite
+compositeDeclaration returns [Composite element]
+	:	'composite' name=Identifier {
+				$element = new Composite(new SimpleNameSignature($name.text));
+			}
+	 compositeBody[$element]
+	;
+
+
+compositeBody[Composite element]
+	:	'{' (compositeBodyDeclaration[$element] | componentBodyDeclaration[$element])* '}'
+	;
+
+
+compositeBodyDeclaration[Composite element]
+	:	'contain'
+	;
+
+
+
+
 //component
 componentDeclaration returns [Component element]
 	:   'component' name=Identifier {
@@ -155,19 +177,40 @@ componentBody[Component element]
 	;
     
 componentBodyDeclaration[Component element]
-	:	'require' rd=componentInterfaceDependencyBody {
-			for(String iface : $rd.interfaces ) {
-				$element.addRequiredInterface(new SimpleReference<Interface>(iface, Interface.class));
+	:	'require' rd=componentDependencyBody {
+			for(SimpleReference<Interface> iface : $rd.elements ) {
+				$element.addRequiredInterface(iface);
 			}
 		 }
-	|	'provide' pd=componentInterfaceDependencyBody {
-			for(String iface : $pd.interfaces ) {
-				$element.addProvidedInterface(new SimpleReference<Interface>(iface, Interface.class));
+	|	'provide' pd=componentDependencyBody {
+			for(SimpleReference<Interface> iface : $pd.elements ) {
+				$element.addProvidedInterface(iface);
 			}
 		 }
+/*	|	'implementation' */
 	;
 
-componentInterfaceDependencyBody returns [List<String> interfaces]
+componentDependencyBody returns [List<SimpleReference<Interface>> elements]
+@init{ $elements = new ArrayList<SimpleReference<Interface>>(); }
+	:	'{' (decls=componentDependencyBodyDecls {$elements=$decls.elements; } )? '}'
+	;
+	
+	
+componentDependencyBodyDecls returns [List<SimpleReference<Interface>> elements]
+	:	iface=Identifier (',' decls=componentDependencyBodyDecls {$elements = $decls.elements; })? {
+		
+			if ($elements == null) {
+				$elements = new ArrayList<SimpleReference<Interface>>();
+			}
+			
+			SimpleReference<Interface> reference =
+				new SimpleReference<Interface>($iface.text, Interface.class);
+				
+			$elements.add(0,reference);
+			}
+	;
+
+/*componentInterfaceDependencyBody returns [List<String> interfaces]
 	:	'{' { 
 				$interfaces=new ArrayList<String>(); 
 			} iface=Identifier 
@@ -179,7 +222,7 @@ componentInterfaceDependencyBody returns [List<String> interfaces]
 					})*
 		'}'
 	;
-
+*/
 
 /*
 interfaceDeclaration returns [Interface element]

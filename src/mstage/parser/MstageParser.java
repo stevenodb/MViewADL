@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g 2010-01-27 14:04:01
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g 2010-01-27 17:21:08
 
 package mstage.parser;
 
@@ -32,6 +32,7 @@ import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.declaration.Signature;
 import chameleon.core.expression.InvocationTarget;
 import chameleon.core.type.TypeReference;
+import chameleon.core.type.Type;
 import chameleon.core.namespace.NamespaceOrTypeReference;
 import chameleon.core.namespacepart.NamespacePart;
 import chameleon.core.reference.SimpleReference;
@@ -55,16 +56,18 @@ import org.antlr.runtime.tree.*;
 
 public class MstageParser extends ChameleonParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "Identifier", "HexDigit", "IntegerTypeSuffix", "HexLiteral", "DecimalLiteral", "OctalLiteral", "Exponent", "FloatTypeSuffix", "FloatingPointLiteral", "EscapeSequence", "CharacterLiteral", "StringLiteral", "UnicodeEscape", "OctalEscape", "Letter", "JavaIDDigit", "WS", "COMMENT", "LINE_COMMENT", "'interface'", "';'", "'('", "')'", "','", "'component'", "'{'", "'}'", "'require'", "'provide'", "'void'", "'.'", "'boolean'", "'char'", "'byte'", "'short'", "'int'", "'long'", "'float'", "'double'", "'@'", "'='", "'default'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "Identifier", "HexDigit", "IntegerTypeSuffix", "HexLiteral", "DecimalLiteral", "OctalLiteral", "Exponent", "FloatTypeSuffix", "FloatingPointLiteral", "EscapeSequence", "CharacterLiteral", "StringLiteral", "UnicodeEscape", "OctalEscape", "Letter", "JavaIDDigit", "WS", "COMMENT", "LINE_COMMENT", "'interface'", "';'", "'('", "')'", "','", "'composite'", "'{'", "'}'", "'contain'", "'component'", "'require'", "'provide'", "'void'", "'.'", "'boolean'", "'char'", "'byte'", "'short'", "'int'", "'long'", "'float'", "'double'", "'@'", "'='", "'default'"
     };
     public static final int T__42=42;
     public static final int T__28=28;
     public static final int OctalLiteral=9;
     public static final int T__23=23;
     public static final int HexDigit=5;
+    public static final int T__47=47;
     public static final int T__39=39;
     public static final int Letter=18;
     public static final int T__30=30;
+    public static final int T__46=46;
     public static final int EscapeSequence=13;
     public static final int T__27=27;
     public static final int T__24=24;
@@ -116,7 +119,7 @@ public class MstageParser extends ChameleonParser {
         }
         public MstageParser(TokenStream input, RecognizerSharedState state) {
             super(input, state);
-            this.state.ruleMemo = new HashMap[60+1];
+            this.state.ruleMemo = new HashMap[67+1];
              
              
         }
@@ -141,7 +144,7 @@ public class MstageParser extends ChameleonParser {
     };
 
     // $ANTLR start "compilationUnit"
-    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:82:1: compilationUnit returns [CompilationUnit element] : ( componentDeclaration | interfaceDeclaration );
+    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:83:1: compilationUnit returns [CompilationUnit element] : ( componentDeclaration | interfaceDeclaration );
     public final MstageParser.compilationUnit_return compilationUnit() throws RecognitionException {
         MstageParser.compilationUnit_return retval = new MstageParser.compilationUnit_return();
         retval.start = input.LT(1);
@@ -162,11 +165,11 @@ public class MstageParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 1) ) { return retval; }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:89:2: ( componentDeclaration | interfaceDeclaration )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:90:2: ( componentDeclaration | interfaceDeclaration )
             int alt1=2;
             int LA1_0 = input.LA(1);
 
-            if ( (LA1_0==28) ) {
+            if ( (LA1_0==32) ) {
                 alt1=1;
             }
             else if ( (LA1_0==23) ) {
@@ -181,7 +184,7 @@ public class MstageParser extends ChameleonParser {
             }
             switch (alt1) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:89:4: componentDeclaration
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:90:4: componentDeclaration
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -195,7 +198,7 @@ public class MstageParser extends ChameleonParser {
                     }
                     break;
                 case 2 :
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:90:4: interfaceDeclaration
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:91:4: interfaceDeclaration
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -238,7 +241,7 @@ public class MstageParser extends ChameleonParser {
     };
 
     // $ANTLR start "interfaceDeclaration"
-    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:97:1: interfaceDeclaration returns [Interface element] : 'interface' name= Identifier interfaceBody[$element] ;
+    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:98:1: interfaceDeclaration returns [Interface element] : 'interface' name= Identifier interfaceBody[$element] ;
     public final MstageParser.interfaceDeclaration_return interfaceDeclaration() throws RecognitionException {
         MstageParser.interfaceDeclaration_return retval = new MstageParser.interfaceDeclaration_return();
         retval.start = input.LT(1);
@@ -255,8 +258,8 @@ public class MstageParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 2) ) { return retval; }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:98:2: ( 'interface' name= Identifier interfaceBody[$element] )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:98:4: 'interface' name= Identifier interfaceBody[$element]
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:99:2: ( 'interface' name= Identifier interfaceBody[$element] )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:99:4: 'interface' name= Identifier interfaceBody[$element]
             {
             root_0 = (Object)adaptor.nil();
 
@@ -312,7 +315,7 @@ public class MstageParser extends ChameleonParser {
     };
 
     // $ANTLR start "interfaceBody"
-    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:106:1: interfaceBody[Interface element] : (service= interfaceServiceDeclaration ';' )* ;
+    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:107:1: interfaceBody[Interface element] : (service= interfaceServiceDeclaration ';' )* ;
     public final MstageParser.interfaceBody_return interfaceBody(Interface element) throws RecognitionException {
         MstageParser.interfaceBody_return retval = new MstageParser.interfaceBody_return();
         retval.start = input.LT(1);
@@ -327,25 +330,25 @@ public class MstageParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 3) ) { return retval; }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:107:2: ( (service= interfaceServiceDeclaration ';' )* )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:107:4: (service= interfaceServiceDeclaration ';' )*
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:108:2: ( (service= interfaceServiceDeclaration ';' )* )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:108:4: (service= interfaceServiceDeclaration ';' )*
             {
             root_0 = (Object)adaptor.nil();
 
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:107:4: (service= interfaceServiceDeclaration ';' )*
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:108:4: (service= interfaceServiceDeclaration ';' )*
             loop2:
             do {
                 int alt2=2;
                 int LA2_0 = input.LA(1);
 
-                if ( (LA2_0==Identifier||LA2_0==33||(LA2_0>=35 && LA2_0<=42)) ) {
+                if ( (LA2_0==Identifier||LA2_0==35||(LA2_0>=37 && LA2_0<=44)) ) {
                     alt2=1;
                 }
 
 
                 switch (alt2) {
             	case 1 :
-            	    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:107:5: service= interfaceServiceDeclaration ';'
+            	    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:108:5: service= interfaceServiceDeclaration ';'
             	    {
             	    pushFollow(FOLLOW_interfaceServiceDeclaration_in_interfaceBody137);
             	    service=interfaceServiceDeclaration();
@@ -403,7 +406,7 @@ public class MstageParser extends ChameleonParser {
     };
 
     // $ANTLR start "interfaceServiceDeclaration"
-    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:112:1: interfaceServiceDeclaration returns [Service element] : rtype= interfaceServiceReturnType name= Identifier params= formalParameters ;
+    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:113:1: interfaceServiceDeclaration returns [Service element] : rtype= interfaceServiceReturnType name= Identifier params= formalParameters ;
     public final MstageParser.interfaceServiceDeclaration_return interfaceServiceDeclaration() throws RecognitionException {
         MstageParser.interfaceServiceDeclaration_return retval = new MstageParser.interfaceServiceDeclaration_return();
         retval.start = input.LT(1);
@@ -420,8 +423,8 @@ public class MstageParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 4) ) { return retval; }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:113:2: (rtype= interfaceServiceReturnType name= Identifier params= formalParameters )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:113:4: rtype= interfaceServiceReturnType name= Identifier params= formalParameters
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:114:2: (rtype= interfaceServiceReturnType name= Identifier params= formalParameters )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:114:4: rtype= interfaceServiceReturnType name= Identifier params= formalParameters
             {
             root_0 = (Object)adaptor.nil();
 
@@ -479,7 +482,7 @@ public class MstageParser extends ChameleonParser {
     };
 
     // $ANTLR start "interfaceServiceReturnType"
-    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:119:1: interfaceServiceReturnType returns [TypeReference element] : (vt= voidType | tp= type );
+    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:120:1: interfaceServiceReturnType returns [TypeReference element] : (vt= voidType | tp= type );
     public final MstageParser.interfaceServiceReturnType_return interfaceServiceReturnType() throws RecognitionException {
         MstageParser.interfaceServiceReturnType_return retval = new MstageParser.interfaceServiceReturnType_return();
         retval.start = input.LT(1);
@@ -494,14 +497,14 @@ public class MstageParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 5) ) { return retval; }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:120:2: (vt= voidType | tp= type )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:121:2: (vt= voidType | tp= type )
             int alt3=2;
             int LA3_0 = input.LA(1);
 
-            if ( (LA3_0==33) ) {
+            if ( (LA3_0==35) ) {
                 alt3=1;
             }
-            else if ( (LA3_0==Identifier||(LA3_0>=35 && LA3_0<=42)) ) {
+            else if ( (LA3_0==Identifier||(LA3_0>=37 && LA3_0<=44)) ) {
                 alt3=2;
             }
             else {
@@ -513,7 +516,7 @@ public class MstageParser extends ChameleonParser {
             }
             switch (alt3) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:120:4: vt= voidType
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:121:4: vt= voidType
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -530,7 +533,7 @@ public class MstageParser extends ChameleonParser {
                     }
                     break;
                 case 2 :
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:121:4: tp= type
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:122:4: tp= type
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -576,7 +579,7 @@ public class MstageParser extends ChameleonParser {
     };
 
     // $ANTLR start "formalParameters"
-    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:124:1: formalParameters returns [List<FormalParameter> element] : '(' (pars= formalParameterDecls )? ')' ;
+    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:125:1: formalParameters returns [List<FormalParameter> element] : '(' (pars= formalParameterDecls )? ')' ;
     public final MstageParser.formalParameters_return formalParameters() throws RecognitionException {
         MstageParser.formalParameters_return retval = new MstageParser.formalParameters_return();
         retval.start = input.LT(1);
@@ -594,8 +597,8 @@ public class MstageParser extends ChameleonParser {
         retval.element = new ArrayList<FormalParameter>();
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 6) ) { return retval; }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:126:5: ( '(' (pars= formalParameterDecls )? ')' )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:126:9: '(' (pars= formalParameterDecls )? ')'
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:127:5: ( '(' (pars= formalParameterDecls )? ')' )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:127:9: '(' (pars= formalParameterDecls )? ')'
             {
             root_0 = (Object)adaptor.nil();
 
@@ -604,16 +607,16 @@ public class MstageParser extends ChameleonParser {
             char_literal6_tree = (Object)adaptor.create(char_literal6);
             adaptor.addChild(root_0, char_literal6_tree);
             }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:126:13: (pars= formalParameterDecls )?
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:127:13: (pars= formalParameterDecls )?
             int alt4=2;
             int LA4_0 = input.LA(1);
 
-            if ( (LA4_0==Identifier||(LA4_0>=35 && LA4_0<=42)) ) {
+            if ( (LA4_0==Identifier||(LA4_0>=37 && LA4_0<=44)) ) {
                 alt4=1;
             }
             switch (alt4) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:126:14: pars= formalParameterDecls
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:127:14: pars= formalParameterDecls
                     {
                     pushFollow(FOLLOW_formalParameterDecls_in_formalParameters227);
                     pars=formalParameterDecls();
@@ -622,7 +625,7 @@ public class MstageParser extends ChameleonParser {
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) adaptor.addChild(root_0, pars.getTree());
                     if ( state.backtracking==0 ) {
-                      retval.element =pars.element;
+                      retval.element =(pars!=null?pars.element:null);
                     }
 
                     }
@@ -666,7 +669,7 @@ public class MstageParser extends ChameleonParser {
     };
 
     // $ANTLR start "formalParameterDecls"
-    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:129:1: formalParameterDecls returns [List<FormalParameter> element] : t= type name= Identifier ( ',' decls= formalParameterDecls )? ;
+    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:130:1: formalParameterDecls returns [List<FormalParameter> element] : t= type name= Identifier ( ',' decls= formalParameterDecls )? ;
     public final MstageParser.formalParameterDecls_return formalParameterDecls() throws RecognitionException {
         MstageParser.formalParameterDecls_return retval = new MstageParser.formalParameterDecls_return();
         retval.start = input.LT(1);
@@ -685,8 +688,8 @@ public class MstageParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 7) ) { return retval; }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:130:5: (t= type name= Identifier ( ',' decls= formalParameterDecls )? )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:130:9: t= type name= Identifier ( ',' decls= formalParameterDecls )?
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:131:5: (t= type name= Identifier ( ',' decls= formalParameterDecls )? )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:131:9: t= type name= Identifier ( ',' decls= formalParameterDecls )?
             {
             root_0 = (Object)adaptor.nil();
 
@@ -701,7 +704,7 @@ public class MstageParser extends ChameleonParser {
             name_tree = (Object)adaptor.create(name);
             adaptor.addChild(root_0, name_tree);
             }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:130:32: ( ',' decls= formalParameterDecls )?
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:131:32: ( ',' decls= formalParameterDecls )?
             int alt5=2;
             int LA5_0 = input.LA(1);
 
@@ -710,7 +713,7 @@ public class MstageParser extends ChameleonParser {
             }
             switch (alt5) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:130:33: ',' decls= formalParameterDecls
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:131:33: ',' decls= formalParameterDecls
                     {
                     char_literal8=(Token)match(input,27,FOLLOW_27_in_formalParameterDecls265); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
@@ -768,23 +771,23 @@ public class MstageParser extends ChameleonParser {
     }
     // $ANTLR end "formalParameterDecls"
 
-    public static class componentDeclaration_return extends ParserRuleReturnScope {
-        public Component element;
+    public static class compositeDeclaration_return extends ParserRuleReturnScope {
+        public Composite element;
         Object tree;
         public Object getTree() { return tree; }
     };
 
-    // $ANTLR start "componentDeclaration"
-    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:146:1: componentDeclaration returns [Component element] : 'component' name= Identifier componentBody[$element] ;
-    public final MstageParser.componentDeclaration_return componentDeclaration() throws RecognitionException {
-        MstageParser.componentDeclaration_return retval = new MstageParser.componentDeclaration_return();
+    // $ANTLR start "compositeDeclaration"
+    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:147:1: compositeDeclaration returns [Composite element] : 'composite' name= Identifier compositeBody[$element] ;
+    public final MstageParser.compositeDeclaration_return compositeDeclaration() throws RecognitionException {
+        MstageParser.compositeDeclaration_return retval = new MstageParser.compositeDeclaration_return();
         retval.start = input.LT(1);
-        int componentDeclaration_StartIndex = input.index();
+        int compositeDeclaration_StartIndex = input.index();
         Object root_0 = null;
 
         Token name=null;
         Token string_literal9=null;
-        MstageParser.componentBody_return componentBody10 = null;
+        MstageParser.compositeBody_return compositeBody10 = null;
 
 
         Object name_tree=null;
@@ -792,33 +795,32 @@ public class MstageParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 8) ) { return retval; }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:147:2: ( 'component' name= Identifier componentBody[$element] )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:147:6: 'component' name= Identifier componentBody[$element]
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:148:2: ( 'composite' name= Identifier compositeBody[$element] )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:148:4: 'composite' name= Identifier compositeBody[$element]
             {
             root_0 = (Object)adaptor.nil();
 
-            string_literal9=(Token)match(input,28,FOLLOW_28_in_componentDeclaration301); if (state.failed) return retval;
+            string_literal9=(Token)match(input,28,FOLLOW_28_in_compositeDeclaration299); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             string_literal9_tree = (Object)adaptor.create(string_literal9);
             adaptor.addChild(root_0, string_literal9_tree);
             }
-            name=(Token)match(input,Identifier,FOLLOW_Identifier_in_componentDeclaration305); if (state.failed) return retval;
+            name=(Token)match(input,Identifier,FOLLOW_Identifier_in_compositeDeclaration303); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             name_tree = (Object)adaptor.create(name);
             adaptor.addChild(root_0, name_tree);
             }
             if ( state.backtracking==0 ) {
 
-                  			retval.element = new Component(new SimpleNameSignature((name!=null?name.getText():null))); 
-                  			setLocation(retval.element,name,"__NAME");
+              				retval.element = new Composite(new SimpleNameSignature((name!=null?name.getText():null)));
               			
             }
-            pushFollow(FOLLOW_componentBody_in_componentDeclaration309);
-            componentBody10=componentBody(retval.element);
+            pushFollow(FOLLOW_compositeBody_in_compositeDeclaration309);
+            compositeBody10=compositeBody(retval.element);
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, componentBody10.getTree());
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, compositeBody10.getTree());
 
             }
 
@@ -837,7 +839,244 @@ public class MstageParser extends ChameleonParser {
 
         }
         finally {
-            if ( state.backtracking>0 ) { memoize(input, 8, componentDeclaration_StartIndex); }
+            if ( state.backtracking>0 ) { memoize(input, 8, compositeDeclaration_StartIndex); }
+        }
+        return retval;
+    }
+    // $ANTLR end "compositeDeclaration"
+
+    public static class compositeBody_return extends ParserRuleReturnScope {
+        Object tree;
+        public Object getTree() { return tree; }
+    };
+
+    // $ANTLR start "compositeBody"
+    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:155:1: compositeBody[Composite element] : '{' ( compositeBodyDeclaration[$element] | componentBodyDeclaration[$element] )* '}' ;
+    public final MstageParser.compositeBody_return compositeBody(Composite element) throws RecognitionException {
+        MstageParser.compositeBody_return retval = new MstageParser.compositeBody_return();
+        retval.start = input.LT(1);
+        int compositeBody_StartIndex = input.index();
+        Object root_0 = null;
+
+        Token char_literal11=null;
+        Token char_literal14=null;
+        MstageParser.compositeBodyDeclaration_return compositeBodyDeclaration12 = null;
+
+        MstageParser.componentBodyDeclaration_return componentBodyDeclaration13 = null;
+
+
+        Object char_literal11_tree=null;
+        Object char_literal14_tree=null;
+
+        try {
+            if ( state.backtracking>0 && alreadyParsedRule(input, 9) ) { return retval; }
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:156:2: ( '{' ( compositeBodyDeclaration[$element] | componentBodyDeclaration[$element] )* '}' )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:156:4: '{' ( compositeBodyDeclaration[$element] | componentBodyDeclaration[$element] )* '}'
+            {
+            root_0 = (Object)adaptor.nil();
+
+            char_literal11=(Token)match(input,29,FOLLOW_29_in_compositeBody323); if (state.failed) return retval;
+            if ( state.backtracking==0 ) {
+            char_literal11_tree = (Object)adaptor.create(char_literal11);
+            adaptor.addChild(root_0, char_literal11_tree);
+            }
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:156:8: ( compositeBodyDeclaration[$element] | componentBodyDeclaration[$element] )*
+            loop6:
+            do {
+                int alt6=3;
+                int LA6_0 = input.LA(1);
+
+                if ( (LA6_0==31) ) {
+                    alt6=1;
+                }
+                else if ( ((LA6_0>=33 && LA6_0<=34)) ) {
+                    alt6=2;
+                }
+
+
+                switch (alt6) {
+            	case 1 :
+            	    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:156:9: compositeBodyDeclaration[$element]
+            	    {
+            	    pushFollow(FOLLOW_compositeBodyDeclaration_in_compositeBody326);
+            	    compositeBodyDeclaration12=compositeBodyDeclaration(element);
+
+            	    state._fsp--;
+            	    if (state.failed) return retval;
+            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, compositeBodyDeclaration12.getTree());
+
+            	    }
+            	    break;
+            	case 2 :
+            	    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:156:46: componentBodyDeclaration[$element]
+            	    {
+            	    pushFollow(FOLLOW_componentBodyDeclaration_in_compositeBody331);
+            	    componentBodyDeclaration13=componentBodyDeclaration(element);
+
+            	    state._fsp--;
+            	    if (state.failed) return retval;
+            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, componentBodyDeclaration13.getTree());
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop6;
+                }
+            } while (true);
+
+            char_literal14=(Token)match(input,30,FOLLOW_30_in_compositeBody336); if (state.failed) return retval;
+            if ( state.backtracking==0 ) {
+            char_literal14_tree = (Object)adaptor.create(char_literal14);
+            adaptor.addChild(root_0, char_literal14_tree);
+            }
+
+            }
+
+            retval.stop = input.LT(-1);
+
+            if ( state.backtracking==0 ) {
+
+            retval.tree = (Object)adaptor.rulePostProcessing(root_0);
+            adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
+            }
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+    	retval.tree = (Object)adaptor.errorNode(input, retval.start, input.LT(-1), re);
+
+        }
+        finally {
+            if ( state.backtracking>0 ) { memoize(input, 9, compositeBody_StartIndex); }
+        }
+        return retval;
+    }
+    // $ANTLR end "compositeBody"
+
+    public static class compositeBodyDeclaration_return extends ParserRuleReturnScope {
+        Object tree;
+        public Object getTree() { return tree; }
+    };
+
+    // $ANTLR start "compositeBodyDeclaration"
+    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:160:1: compositeBodyDeclaration[Composite element] : 'contain' ;
+    public final MstageParser.compositeBodyDeclaration_return compositeBodyDeclaration(Composite element) throws RecognitionException {
+        MstageParser.compositeBodyDeclaration_return retval = new MstageParser.compositeBodyDeclaration_return();
+        retval.start = input.LT(1);
+        int compositeBodyDeclaration_StartIndex = input.index();
+        Object root_0 = null;
+
+        Token string_literal15=null;
+
+        Object string_literal15_tree=null;
+
+        try {
+            if ( state.backtracking>0 && alreadyParsedRule(input, 10) ) { return retval; }
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:161:2: ( 'contain' )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:161:4: 'contain'
+            {
+            root_0 = (Object)adaptor.nil();
+
+            string_literal15=(Token)match(input,31,FOLLOW_31_in_compositeBodyDeclaration349); if (state.failed) return retval;
+            if ( state.backtracking==0 ) {
+            string_literal15_tree = (Object)adaptor.create(string_literal15);
+            adaptor.addChild(root_0, string_literal15_tree);
+            }
+
+            }
+
+            retval.stop = input.LT(-1);
+
+            if ( state.backtracking==0 ) {
+
+            retval.tree = (Object)adaptor.rulePostProcessing(root_0);
+            adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
+            }
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+    	retval.tree = (Object)adaptor.errorNode(input, retval.start, input.LT(-1), re);
+
+        }
+        finally {
+            if ( state.backtracking>0 ) { memoize(input, 10, compositeBodyDeclaration_StartIndex); }
+        }
+        return retval;
+    }
+    // $ANTLR end "compositeBodyDeclaration"
+
+    public static class componentDeclaration_return extends ParserRuleReturnScope {
+        public Component element;
+        Object tree;
+        public Object getTree() { return tree; }
+    };
+
+    // $ANTLR start "componentDeclaration"
+    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:168:1: componentDeclaration returns [Component element] : 'component' name= Identifier componentBody[$element] ;
+    public final MstageParser.componentDeclaration_return componentDeclaration() throws RecognitionException {
+        MstageParser.componentDeclaration_return retval = new MstageParser.componentDeclaration_return();
+        retval.start = input.LT(1);
+        int componentDeclaration_StartIndex = input.index();
+        Object root_0 = null;
+
+        Token name=null;
+        Token string_literal16=null;
+        MstageParser.componentBody_return componentBody17 = null;
+
+
+        Object name_tree=null;
+        Object string_literal16_tree=null;
+
+        try {
+            if ( state.backtracking>0 && alreadyParsedRule(input, 11) ) { return retval; }
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:169:2: ( 'component' name= Identifier componentBody[$element] )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:169:6: 'component' name= Identifier componentBody[$element]
+            {
+            root_0 = (Object)adaptor.nil();
+
+            string_literal16=(Token)match(input,32,FOLLOW_32_in_componentDeclaration370); if (state.failed) return retval;
+            if ( state.backtracking==0 ) {
+            string_literal16_tree = (Object)adaptor.create(string_literal16);
+            adaptor.addChild(root_0, string_literal16_tree);
+            }
+            name=(Token)match(input,Identifier,FOLLOW_Identifier_in_componentDeclaration374); if (state.failed) return retval;
+            if ( state.backtracking==0 ) {
+            name_tree = (Object)adaptor.create(name);
+            adaptor.addChild(root_0, name_tree);
+            }
+            if ( state.backtracking==0 ) {
+
+                  			retval.element = new Component(new SimpleNameSignature((name!=null?name.getText():null))); 
+                  			setLocation(retval.element,name,"__NAME");
+              			
+            }
+            pushFollow(FOLLOW_componentBody_in_componentDeclaration378);
+            componentBody17=componentBody(retval.element);
+
+            state._fsp--;
+            if (state.failed) return retval;
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, componentBody17.getTree());
+
+            }
+
+            retval.stop = input.LT(-1);
+
+            if ( state.backtracking==0 ) {
+
+            retval.tree = (Object)adaptor.rulePostProcessing(root_0);
+            adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
+            }
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+    	retval.tree = (Object)adaptor.errorNode(input, retval.start, input.LT(-1), re);
+
+        }
+        finally {
+            if ( state.backtracking>0 ) { memoize(input, 11, componentDeclaration_StartIndex); }
         }
         return retval;
     }
@@ -849,67 +1088,67 @@ public class MstageParser extends ChameleonParser {
     };
 
     // $ANTLR start "componentBody"
-    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:153:1: componentBody[Component element] : '{' ( componentBodyDeclaration[$element] )* '}' ;
+    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:175:1: componentBody[Component element] : '{' ( componentBodyDeclaration[$element] )* '}' ;
     public final MstageParser.componentBody_return componentBody(Component element) throws RecognitionException {
         MstageParser.componentBody_return retval = new MstageParser.componentBody_return();
         retval.start = input.LT(1);
         int componentBody_StartIndex = input.index();
         Object root_0 = null;
 
-        Token char_literal11=null;
-        Token char_literal13=null;
-        MstageParser.componentBodyDeclaration_return componentBodyDeclaration12 = null;
+        Token char_literal18=null;
+        Token char_literal20=null;
+        MstageParser.componentBodyDeclaration_return componentBodyDeclaration19 = null;
 
 
-        Object char_literal11_tree=null;
-        Object char_literal13_tree=null;
+        Object char_literal18_tree=null;
+        Object char_literal20_tree=null;
 
         try {
-            if ( state.backtracking>0 && alreadyParsedRule(input, 9) ) { return retval; }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:154:2: ( '{' ( componentBodyDeclaration[$element] )* '}' )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:154:4: '{' ( componentBodyDeclaration[$element] )* '}'
+            if ( state.backtracking>0 && alreadyParsedRule(input, 12) ) { return retval; }
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:176:2: ( '{' ( componentBodyDeclaration[$element] )* '}' )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:176:4: '{' ( componentBodyDeclaration[$element] )* '}'
             {
             root_0 = (Object)adaptor.nil();
 
-            char_literal11=(Token)match(input,29,FOLLOW_29_in_componentBody326); if (state.failed) return retval;
+            char_literal18=(Token)match(input,29,FOLLOW_29_in_componentBody395); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            char_literal11_tree = (Object)adaptor.create(char_literal11);
-            adaptor.addChild(root_0, char_literal11_tree);
+            char_literal18_tree = (Object)adaptor.create(char_literal18);
+            adaptor.addChild(root_0, char_literal18_tree);
             }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:154:8: ( componentBodyDeclaration[$element] )*
-            loop6:
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:176:8: ( componentBodyDeclaration[$element] )*
+            loop7:
             do {
-                int alt6=2;
-                int LA6_0 = input.LA(1);
+                int alt7=2;
+                int LA7_0 = input.LA(1);
 
-                if ( ((LA6_0>=31 && LA6_0<=32)) ) {
-                    alt6=1;
+                if ( ((LA7_0>=33 && LA7_0<=34)) ) {
+                    alt7=1;
                 }
 
 
-                switch (alt6) {
+                switch (alt7) {
             	case 1 :
             	    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:0:0: componentBodyDeclaration[$element]
             	    {
-            	    pushFollow(FOLLOW_componentBodyDeclaration_in_componentBody328);
-            	    componentBodyDeclaration12=componentBodyDeclaration(element);
+            	    pushFollow(FOLLOW_componentBodyDeclaration_in_componentBody397);
+            	    componentBodyDeclaration19=componentBodyDeclaration(element);
 
             	    state._fsp--;
             	    if (state.failed) return retval;
-            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, componentBodyDeclaration12.getTree());
+            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, componentBodyDeclaration19.getTree());
 
             	    }
             	    break;
 
             	default :
-            	    break loop6;
+            	    break loop7;
                 }
             } while (true);
 
-            char_literal13=(Token)match(input,30,FOLLOW_30_in_componentBody332); if (state.failed) return retval;
+            char_literal20=(Token)match(input,30,FOLLOW_30_in_componentBody401); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            char_literal13_tree = (Object)adaptor.create(char_literal13);
-            adaptor.addChild(root_0, char_literal13_tree);
+            char_literal20_tree = (Object)adaptor.create(char_literal20);
+            adaptor.addChild(root_0, char_literal20_tree);
             }
 
             }
@@ -929,7 +1168,7 @@ public class MstageParser extends ChameleonParser {
 
         }
         finally {
-            if ( state.backtracking>0 ) { memoize(input, 9, componentBody_StartIndex); }
+            if ( state.backtracking>0 ) { memoize(input, 12, componentBody_StartIndex); }
         }
         return retval;
     }
@@ -941,63 +1180,63 @@ public class MstageParser extends ChameleonParser {
     };
 
     // $ANTLR start "componentBodyDeclaration"
-    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:157:1: componentBodyDeclaration[Component element] : ( 'require' rd= componentInterfaceDependencyBody | 'provide' pd= componentInterfaceDependencyBody );
+    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:179:1: componentBodyDeclaration[Component element] : ( 'require' rd= componentDependencyBody | 'provide' pd= componentDependencyBody );
     public final MstageParser.componentBodyDeclaration_return componentBodyDeclaration(Component element) throws RecognitionException {
         MstageParser.componentBodyDeclaration_return retval = new MstageParser.componentBodyDeclaration_return();
         retval.start = input.LT(1);
         int componentBodyDeclaration_StartIndex = input.index();
         Object root_0 = null;
 
-        Token string_literal14=null;
-        Token string_literal15=null;
-        MstageParser.componentInterfaceDependencyBody_return rd = null;
+        Token string_literal21=null;
+        Token string_literal22=null;
+        MstageParser.componentDependencyBody_return rd = null;
 
-        MstageParser.componentInterfaceDependencyBody_return pd = null;
+        MstageParser.componentDependencyBody_return pd = null;
 
 
-        Object string_literal14_tree=null;
-        Object string_literal15_tree=null;
+        Object string_literal21_tree=null;
+        Object string_literal22_tree=null;
 
         try {
-            if ( state.backtracking>0 && alreadyParsedRule(input, 10) ) { return retval; }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:158:2: ( 'require' rd= componentInterfaceDependencyBody | 'provide' pd= componentInterfaceDependencyBody )
-            int alt7=2;
-            int LA7_0 = input.LA(1);
+            if ( state.backtracking>0 && alreadyParsedRule(input, 13) ) { return retval; }
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:180:2: ( 'require' rd= componentDependencyBody | 'provide' pd= componentDependencyBody )
+            int alt8=2;
+            int LA8_0 = input.LA(1);
 
-            if ( (LA7_0==31) ) {
-                alt7=1;
+            if ( (LA8_0==33) ) {
+                alt8=1;
             }
-            else if ( (LA7_0==32) ) {
-                alt7=2;
+            else if ( (LA8_0==34) ) {
+                alt8=2;
             }
             else {
                 if (state.backtracking>0) {state.failed=true; return retval;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 7, 0, input);
+                    new NoViableAltException("", 8, 0, input);
 
                 throw nvae;
             }
-            switch (alt7) {
+            switch (alt8) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:158:4: 'require' rd= componentInterfaceDependencyBody
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:180:4: 'require' rd= componentDependencyBody
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    string_literal14=(Token)match(input,31,FOLLOW_31_in_componentBodyDeclaration348); if (state.failed) return retval;
+                    string_literal21=(Token)match(input,33,FOLLOW_33_in_componentBodyDeclaration417); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    string_literal14_tree = (Object)adaptor.create(string_literal14);
-                    adaptor.addChild(root_0, string_literal14_tree);
+                    string_literal21_tree = (Object)adaptor.create(string_literal21);
+                    adaptor.addChild(root_0, string_literal21_tree);
                     }
-                    pushFollow(FOLLOW_componentInterfaceDependencyBody_in_componentBodyDeclaration352);
-                    rd=componentInterfaceDependencyBody();
+                    pushFollow(FOLLOW_componentDependencyBody_in_componentBodyDeclaration421);
+                    rd=componentDependencyBody();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) adaptor.addChild(root_0, rd.getTree());
                     if ( state.backtracking==0 ) {
 
-                      			for(String iface : (rd!=null?rd.interfaces:null) ) {
-                      				element.addRequiredInterface(new SimpleReference<Interface>(iface, Interface.class));
+                      			for(SimpleReference<Interface> iface : (rd!=null?rd.elements:null) ) {
+                      				element.addRequiredInterface(iface);
                       			}
                       		 
                     }
@@ -1005,25 +1244,25 @@ public class MstageParser extends ChameleonParser {
                     }
                     break;
                 case 2 :
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:163:4: 'provide' pd= componentInterfaceDependencyBody
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:185:4: 'provide' pd= componentDependencyBody
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    string_literal15=(Token)match(input,32,FOLLOW_32_in_componentBodyDeclaration359); if (state.failed) return retval;
+                    string_literal22=(Token)match(input,34,FOLLOW_34_in_componentBodyDeclaration428); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    string_literal15_tree = (Object)adaptor.create(string_literal15);
-                    adaptor.addChild(root_0, string_literal15_tree);
+                    string_literal22_tree = (Object)adaptor.create(string_literal22);
+                    adaptor.addChild(root_0, string_literal22_tree);
                     }
-                    pushFollow(FOLLOW_componentInterfaceDependencyBody_in_componentBodyDeclaration363);
-                    pd=componentInterfaceDependencyBody();
+                    pushFollow(FOLLOW_componentDependencyBody_in_componentBodyDeclaration432);
+                    pd=componentDependencyBody();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) adaptor.addChild(root_0, pd.getTree());
                     if ( state.backtracking==0 ) {
 
-                      			for(String iface : (pd!=null?pd.interfaces:null) ) {
-                      				element.addProvidedInterface(new SimpleReference<Interface>(iface, Interface.class));
+                      			for(SimpleReference<Interface> iface : (pd!=null?pd.elements:null) ) {
+                      				element.addProvidedInterface(iface);
                       			}
                       		 
                     }
@@ -1047,106 +1286,77 @@ public class MstageParser extends ChameleonParser {
 
         }
         finally {
-            if ( state.backtracking>0 ) { memoize(input, 10, componentBodyDeclaration_StartIndex); }
+            if ( state.backtracking>0 ) { memoize(input, 13, componentBodyDeclaration_StartIndex); }
         }
         return retval;
     }
     // $ANTLR end "componentBodyDeclaration"
 
-    public static class componentInterfaceDependencyBody_return extends ParserRuleReturnScope {
-        public List<String> interfaces;
+    public static class componentDependencyBody_return extends ParserRuleReturnScope {
+        public List<SimpleReference<Interface>> elements;
         Object tree;
         public Object getTree() { return tree; }
     };
 
-    // $ANTLR start "componentInterfaceDependencyBody"
-    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:170:1: componentInterfaceDependencyBody returns [List<String> interfaces] : '{' iface= Identifier ( ',' iface= Identifier )* '}' ;
-    public final MstageParser.componentInterfaceDependencyBody_return componentInterfaceDependencyBody() throws RecognitionException {
-        MstageParser.componentInterfaceDependencyBody_return retval = new MstageParser.componentInterfaceDependencyBody_return();
+    // $ANTLR start "componentDependencyBody"
+    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:193:1: componentDependencyBody returns [List<SimpleReference<Interface>> elements] : '{' (decls= componentDependencyBodyDecls )? '}' ;
+    public final MstageParser.componentDependencyBody_return componentDependencyBody() throws RecognitionException {
+        MstageParser.componentDependencyBody_return retval = new MstageParser.componentDependencyBody_return();
         retval.start = input.LT(1);
-        int componentInterfaceDependencyBody_StartIndex = input.index();
+        int componentDependencyBody_StartIndex = input.index();
         Object root_0 = null;
 
-        Token iface=null;
-        Token char_literal16=null;
-        Token char_literal17=null;
-        Token char_literal18=null;
+        Token char_literal23=null;
+        Token char_literal24=null;
+        MstageParser.componentDependencyBodyDecls_return decls = null;
 
-        Object iface_tree=null;
-        Object char_literal16_tree=null;
-        Object char_literal17_tree=null;
-        Object char_literal18_tree=null;
 
+        Object char_literal23_tree=null;
+        Object char_literal24_tree=null;
+
+         retval.elements = new ArrayList<SimpleReference<Interface>>(); 
         try {
-            if ( state.backtracking>0 && alreadyParsedRule(input, 11) ) { return retval; }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:171:2: ( '{' iface= Identifier ( ',' iface= Identifier )* '}' )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:171:4: '{' iface= Identifier ( ',' iface= Identifier )* '}'
+            if ( state.backtracking>0 && alreadyParsedRule(input, 14) ) { return retval; }
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:195:2: ( '{' (decls= componentDependencyBodyDecls )? '}' )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:195:4: '{' (decls= componentDependencyBodyDecls )? '}'
             {
             root_0 = (Object)adaptor.nil();
 
-            char_literal16=(Token)match(input,29,FOLLOW_29_in_componentInterfaceDependencyBody380); if (state.failed) return retval;
+            char_literal23=(Token)match(input,29,FOLLOW_29_in_componentDependencyBody455); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            char_literal16_tree = (Object)adaptor.create(char_literal16);
-            adaptor.addChild(root_0, char_literal16_tree);
+            char_literal23_tree = (Object)adaptor.create(char_literal23);
+            adaptor.addChild(root_0, char_literal23_tree);
             }
-            if ( state.backtracking==0 ) {
-               
-              				retval.interfaces =new ArrayList<String>(); 
-              			
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:195:8: (decls= componentDependencyBodyDecls )?
+            int alt9=2;
+            int LA9_0 = input.LA(1);
+
+            if ( (LA9_0==Identifier) ) {
+                alt9=1;
             }
-            iface=(Token)match(input,Identifier,FOLLOW_Identifier_in_componentInterfaceDependencyBody386); if (state.failed) return retval;
-            if ( state.backtracking==0 ) {
-            iface_tree = (Object)adaptor.create(iface);
-            adaptor.addChild(root_0, iface_tree);
+            switch (alt9) {
+                case 1 :
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:195:9: decls= componentDependencyBodyDecls
+                    {
+                    pushFollow(FOLLOW_componentDependencyBodyDecls_in_componentDependencyBody460);
+                    decls=componentDependencyBodyDecls();
+
+                    state._fsp--;
+                    if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, decls.getTree());
+                    if ( state.backtracking==0 ) {
+                      retval.elements =(decls!=null?decls.elements:null); 
+                    }
+
+                    }
+                    break;
+
             }
+
+            char_literal24=(Token)match(input,30,FOLLOW_30_in_componentDependencyBody467); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-
-              					retval.interfaces.add((iface!=null?iface.getText():null));
-              				
-            }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:176:7: ( ',' iface= Identifier )*
-            loop8:
-            do {
-                int alt8=2;
-                int LA8_0 = input.LA(1);
-
-                if ( (LA8_0==27) ) {
-                    alt8=1;
-                }
-
-
-                switch (alt8) {
-            	case 1 :
-            	    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:176:8: ',' iface= Identifier
-            	    {
-            	    char_literal17=(Token)match(input,27,FOLLOW_27_in_componentInterfaceDependencyBody396); if (state.failed) return retval;
-            	    if ( state.backtracking==0 ) {
-            	    char_literal17_tree = (Object)adaptor.create(char_literal17);
-            	    adaptor.addChild(root_0, char_literal17_tree);
-            	    }
-            	    iface=(Token)match(input,Identifier,FOLLOW_Identifier_in_componentInterfaceDependencyBody400); if (state.failed) return retval;
-            	    if ( state.backtracking==0 ) {
-            	    iface_tree = (Object)adaptor.create(iface);
-            	    adaptor.addChild(root_0, iface_tree);
-            	    }
-            	    if ( state.backtracking==0 ) {
-
-            	      						retval.interfaces.add((iface!=null?iface.getText():null));
-            	      					
-            	    }
-
-            	    }
-            	    break;
-
-            	default :
-            	    break loop8;
-                }
-            } while (true);
-
-            char_literal18=(Token)match(input,30,FOLLOW_30_in_componentInterfaceDependencyBody414); if (state.failed) return retval;
-            if ( state.backtracking==0 ) {
-            char_literal18_tree = (Object)adaptor.create(char_literal18);
-            adaptor.addChild(root_0, char_literal18_tree);
+            char_literal24_tree = (Object)adaptor.create(char_literal24);
+            adaptor.addChild(root_0, char_literal24_tree);
             }
 
             }
@@ -1166,11 +1376,113 @@ public class MstageParser extends ChameleonParser {
 
         }
         finally {
-            if ( state.backtracking>0 ) { memoize(input, 11, componentInterfaceDependencyBody_StartIndex); }
+            if ( state.backtracking>0 ) { memoize(input, 14, componentDependencyBody_StartIndex); }
         }
         return retval;
     }
-    // $ANTLR end "componentInterfaceDependencyBody"
+    // $ANTLR end "componentDependencyBody"
+
+    public static class componentDependencyBodyDecls_return extends ParserRuleReturnScope {
+        public List<SimpleReference<Interface>> elements;
+        Object tree;
+        public Object getTree() { return tree; }
+    };
+
+    // $ANTLR start "componentDependencyBodyDecls"
+    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:199:1: componentDependencyBodyDecls returns [List<SimpleReference<Interface>> elements] : iface= Identifier ( ',' decls= componentDependencyBodyDecls )? ;
+    public final MstageParser.componentDependencyBodyDecls_return componentDependencyBodyDecls() throws RecognitionException {
+        MstageParser.componentDependencyBodyDecls_return retval = new MstageParser.componentDependencyBodyDecls_return();
+        retval.start = input.LT(1);
+        int componentDependencyBodyDecls_StartIndex = input.index();
+        Object root_0 = null;
+
+        Token iface=null;
+        Token char_literal25=null;
+        MstageParser.componentDependencyBodyDecls_return decls = null;
+
+
+        Object iface_tree=null;
+        Object char_literal25_tree=null;
+
+        try {
+            if ( state.backtracking>0 && alreadyParsedRule(input, 15) ) { return retval; }
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:200:2: (iface= Identifier ( ',' decls= componentDependencyBodyDecls )? )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:200:4: iface= Identifier ( ',' decls= componentDependencyBodyDecls )?
+            {
+            root_0 = (Object)adaptor.nil();
+
+            iface=(Token)match(input,Identifier,FOLLOW_Identifier_in_componentDependencyBodyDecls487); if (state.failed) return retval;
+            if ( state.backtracking==0 ) {
+            iface_tree = (Object)adaptor.create(iface);
+            adaptor.addChild(root_0, iface_tree);
+            }
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:200:21: ( ',' decls= componentDependencyBodyDecls )?
+            int alt10=2;
+            int LA10_0 = input.LA(1);
+
+            if ( (LA10_0==27) ) {
+                alt10=1;
+            }
+            switch (alt10) {
+                case 1 :
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:200:22: ',' decls= componentDependencyBodyDecls
+                    {
+                    char_literal25=(Token)match(input,27,FOLLOW_27_in_componentDependencyBodyDecls490); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) {
+                    char_literal25_tree = (Object)adaptor.create(char_literal25);
+                    adaptor.addChild(root_0, char_literal25_tree);
+                    }
+                    pushFollow(FOLLOW_componentDependencyBodyDecls_in_componentDependencyBodyDecls494);
+                    decls=componentDependencyBodyDecls();
+
+                    state._fsp--;
+                    if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, decls.getTree());
+                    if ( state.backtracking==0 ) {
+                      retval.elements = (decls!=null?decls.elements:null); 
+                    }
+
+                    }
+                    break;
+
+            }
+
+            if ( state.backtracking==0 ) {
+
+              		
+              			if (retval.elements == null) {
+              				retval.elements = new ArrayList<SimpleReference<Interface>>();
+              			}
+              			
+              			SimpleReference<Interface> reference =
+              				new SimpleReference<Interface>((iface!=null?iface.getText():null), Interface.class);
+              				
+              			retval.elements.add(0,reference);
+              			
+            }
+
+            }
+
+            retval.stop = input.LT(-1);
+
+            if ( state.backtracking==0 ) {
+
+            retval.tree = (Object)adaptor.rulePostProcessing(root_0);
+            adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
+            }
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+    	retval.tree = (Object)adaptor.errorNode(input, retval.start, input.LT(-1), re);
+
+        }
+        finally {
+            if ( state.backtracking>0 ) { memoize(input, 15, componentDependencyBodyDecls_StartIndex); }
+        }
+        return retval;
+    }
+    // $ANTLR end "componentDependencyBodyDecls"
 
     public static class voidType_return extends ParserRuleReturnScope {
         public TypeReference element;
@@ -1179,28 +1491,28 @@ public class MstageParser extends ChameleonParser {
     };
 
     // $ANTLR start "voidType"
-    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:222:1: voidType returns [TypeReference element] : 'void' ;
+    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:265:1: voidType returns [TypeReference element] : 'void' ;
     public final MstageParser.voidType_return voidType() throws RecognitionException {
         MstageParser.voidType_return retval = new MstageParser.voidType_return();
         retval.start = input.LT(1);
         int voidType_StartIndex = input.index();
         Object root_0 = null;
 
-        Token string_literal19=null;
+        Token string_literal26=null;
 
-        Object string_literal19_tree=null;
+        Object string_literal26_tree=null;
 
         try {
-            if ( state.backtracking>0 && alreadyParsedRule(input, 12) ) { return retval; }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:224:7: ( 'void' )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:224:10: 'void'
+            if ( state.backtracking>0 && alreadyParsedRule(input, 16) ) { return retval; }
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:267:7: ( 'void' )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:267:10: 'void'
             {
             root_0 = (Object)adaptor.nil();
 
-            string_literal19=(Token)match(input,33,FOLLOW_33_in_voidType442); if (state.failed) return retval;
+            string_literal26=(Token)match(input,35,FOLLOW_35_in_voidType530); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            string_literal19_tree = (Object)adaptor.create(string_literal19);
-            adaptor.addChild(root_0, string_literal19_tree);
+            string_literal26_tree = (Object)adaptor.create(string_literal26);
+            adaptor.addChild(root_0, string_literal26_tree);
             }
             if ( state.backtracking==0 ) {
               retval.element =new TypeReference("void");
@@ -1223,7 +1535,7 @@ public class MstageParser extends ChameleonParser {
 
         }
         finally {
-            if ( state.backtracking>0 ) { memoize(input, 12, voidType_StartIndex); }
+            if ( state.backtracking>0 ) { memoize(input, 16, voidType_StartIndex); }
         }
         return retval;
     }
@@ -1236,7 +1548,7 @@ public class MstageParser extends ChameleonParser {
     };
 
     // $ANTLR start "type"
-    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:228:1: type returns [TypeReference element] : (cd= classOrInterfaceType | pt= primitiveType );
+    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:271:1: type returns [TypeReference element] : (cd= classOrInterfaceType | pt= primitiveType );
     public final MstageParser.type_return type() throws RecognitionException {
         MstageParser.type_return retval = new MstageParser.type_return();
         retval.start = input.LT(1);
@@ -1250,31 +1562,31 @@ public class MstageParser extends ChameleonParser {
 
 
         try {
-            if ( state.backtracking>0 && alreadyParsedRule(input, 13) ) { return retval; }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:230:2: (cd= classOrInterfaceType | pt= primitiveType )
-            int alt9=2;
-            int LA9_0 = input.LA(1);
+            if ( state.backtracking>0 && alreadyParsedRule(input, 17) ) { return retval; }
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:273:2: (cd= classOrInterfaceType | pt= primitiveType )
+            int alt11=2;
+            int LA11_0 = input.LA(1);
 
-            if ( (LA9_0==Identifier) ) {
-                alt9=1;
+            if ( (LA11_0==Identifier) ) {
+                alt11=1;
             }
-            else if ( ((LA9_0>=35 && LA9_0<=42)) ) {
-                alt9=2;
+            else if ( ((LA11_0>=37 && LA11_0<=44)) ) {
+                alt11=2;
             }
             else {
                 if (state.backtracking>0) {state.failed=true; return retval;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 9, 0, input);
+                    new NoViableAltException("", 11, 0, input);
 
                 throw nvae;
             }
-            switch (alt9) {
+            switch (alt11) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:230:4: cd= classOrInterfaceType
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:273:4: cd= classOrInterfaceType
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_classOrInterfaceType_in_type469);
+                    pushFollow(FOLLOW_classOrInterfaceType_in_type557);
                     cd=classOrInterfaceType();
 
                     state._fsp--;
@@ -1287,11 +1599,11 @@ public class MstageParser extends ChameleonParser {
                     }
                     break;
                 case 2 :
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:231:4: pt= primitiveType
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:274:4: pt= primitiveType
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_primitiveType_in_type478);
+                    pushFollow(FOLLOW_primitiveType_in_type566);
                     pt=primitiveType();
 
                     state._fsp--;
@@ -1320,7 +1632,7 @@ public class MstageParser extends ChameleonParser {
 
         }
         finally {
-            if ( state.backtracking>0 ) { memoize(input, 13, type_StartIndex); }
+            if ( state.backtracking>0 ) { memoize(input, 17, type_StartIndex); }
         }
         return retval;
     }
@@ -1333,7 +1645,7 @@ public class MstageParser extends ChameleonParser {
     };
 
     // $ANTLR start "classOrInterfaceType"
-    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:235:1: classOrInterfaceType returns [TypeReference element] : name= Identifier ( '.' namex= Identifier )* ;
+    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:278:1: classOrInterfaceType returns [TypeReference element] : name= Identifier ( '.' namex= Identifier )* ;
     public final MstageParser.classOrInterfaceType_return classOrInterfaceType() throws RecognitionException {
         MstageParser.classOrInterfaceType_return retval = new MstageParser.classOrInterfaceType_return();
         retval.start = input.LT(1);
@@ -1342,21 +1654,21 @@ public class MstageParser extends ChameleonParser {
 
         Token name=null;
         Token namex=null;
-        Token char_literal20=null;
+        Token char_literal27=null;
 
         Object name_tree=null;
         Object namex_tree=null;
-        Object char_literal20_tree=null;
+        Object char_literal27_tree=null;
 
         NamespaceOrTypeReference target = null;
         try {
-            if ( state.backtracking>0 && alreadyParsedRule(input, 14) ) { return retval; }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:237:2: (name= Identifier ( '.' namex= Identifier )* )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:237:4: name= Identifier ( '.' namex= Identifier )*
+            if ( state.backtracking>0 && alreadyParsedRule(input, 18) ) { return retval; }
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:280:2: (name= Identifier ( '.' namex= Identifier )* )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:280:4: name= Identifier ( '.' namex= Identifier )*
             {
             root_0 = (Object)adaptor.nil();
 
-            name=(Token)match(input,Identifier,FOLLOW_Identifier_in_classOrInterfaceType503); if (state.failed) return retval;
+            name=(Token)match(input,Identifier,FOLLOW_Identifier_in_classOrInterfaceType591); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             name_tree = (Object)adaptor.create(name);
             adaptor.addChild(root_0, name_tree);
@@ -1367,27 +1679,27 @@ public class MstageParser extends ChameleonParser {
               	           target =  new NamespaceOrTypeReference((name!=null?name.getText():null)); 
               	          
             }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:242:10: ( '.' namex= Identifier )*
-            loop10:
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:285:10: ( '.' namex= Identifier )*
+            loop12:
             do {
-                int alt10=2;
-                int LA10_0 = input.LA(1);
+                int alt12=2;
+                int LA12_0 = input.LA(1);
 
-                if ( (LA10_0==34) ) {
-                    alt10=1;
+                if ( (LA12_0==36) ) {
+                    alt12=1;
                 }
 
 
-                switch (alt10) {
+                switch (alt12) {
             	case 1 :
-            	    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:242:11: '.' namex= Identifier
+            	    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:285:11: '.' namex= Identifier
             	    {
-            	    char_literal20=(Token)match(input,34,FOLLOW_34_in_classOrInterfaceType530); if (state.failed) return retval;
+            	    char_literal27=(Token)match(input,36,FOLLOW_36_in_classOrInterfaceType618); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
-            	    char_literal20_tree = (Object)adaptor.create(char_literal20);
-            	    adaptor.addChild(root_0, char_literal20_tree);
+            	    char_literal27_tree = (Object)adaptor.create(char_literal27);
+            	    adaptor.addChild(root_0, char_literal27_tree);
             	    }
-            	    namex=(Token)match(input,Identifier,FOLLOW_Identifier_in_classOrInterfaceType534); if (state.failed) return retval;
+            	    namex=(Token)match(input,Identifier,FOLLOW_Identifier_in_classOrInterfaceType622); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
             	    namex_tree = (Object)adaptor.create(namex);
             	    adaptor.addChild(root_0, namex_tree);
@@ -1409,7 +1721,7 @@ public class MstageParser extends ChameleonParser {
             	    break;
 
             	default :
-            	    break loop10;
+            	    break loop12;
                 }
             } while (true);
 
@@ -1431,7 +1743,7 @@ public class MstageParser extends ChameleonParser {
 
         }
         finally {
-            if ( state.backtracking>0 ) { memoize(input, 14, classOrInterfaceType_StartIndex); }
+            if ( state.backtracking>0 ) { memoize(input, 18, classOrInterfaceType_StartIndex); }
         }
         return retval;
     }
@@ -1444,94 +1756,94 @@ public class MstageParser extends ChameleonParser {
     };
 
     // $ANTLR start "primitiveType"
-    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:257:1: primitiveType returns [TypeReference element] : ( 'boolean' | 'char' | 'byte' | 'short' | 'int' | 'long' | 'float' | 'double' );
+    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:300:1: primitiveType returns [TypeReference element] : ( 'boolean' | 'char' | 'byte' | 'short' | 'int' | 'long' | 'float' | 'double' );
     public final MstageParser.primitiveType_return primitiveType() throws RecognitionException {
         MstageParser.primitiveType_return retval = new MstageParser.primitiveType_return();
         retval.start = input.LT(1);
         int primitiveType_StartIndex = input.index();
         Object root_0 = null;
 
-        Token string_literal21=null;
-        Token string_literal22=null;
-        Token string_literal23=null;
-        Token string_literal24=null;
-        Token string_literal25=null;
-        Token string_literal26=null;
-        Token string_literal27=null;
         Token string_literal28=null;
+        Token string_literal29=null;
+        Token string_literal30=null;
+        Token string_literal31=null;
+        Token string_literal32=null;
+        Token string_literal33=null;
+        Token string_literal34=null;
+        Token string_literal35=null;
 
-        Object string_literal21_tree=null;
-        Object string_literal22_tree=null;
-        Object string_literal23_tree=null;
-        Object string_literal24_tree=null;
-        Object string_literal25_tree=null;
-        Object string_literal26_tree=null;
-        Object string_literal27_tree=null;
         Object string_literal28_tree=null;
+        Object string_literal29_tree=null;
+        Object string_literal30_tree=null;
+        Object string_literal31_tree=null;
+        Object string_literal32_tree=null;
+        Object string_literal33_tree=null;
+        Object string_literal34_tree=null;
+        Object string_literal35_tree=null;
 
         try {
-            if ( state.backtracking>0 && alreadyParsedRule(input, 15) ) { return retval; }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:258:5: ( 'boolean' | 'char' | 'byte' | 'short' | 'int' | 'long' | 'float' | 'double' )
-            int alt11=8;
+            if ( state.backtracking>0 && alreadyParsedRule(input, 19) ) { return retval; }
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:301:5: ( 'boolean' | 'char' | 'byte' | 'short' | 'int' | 'long' | 'float' | 'double' )
+            int alt13=8;
             switch ( input.LA(1) ) {
-            case 35:
-                {
-                alt11=1;
-                }
-                break;
-            case 36:
-                {
-                alt11=2;
-                }
-                break;
             case 37:
                 {
-                alt11=3;
+                alt13=1;
                 }
                 break;
             case 38:
                 {
-                alt11=4;
+                alt13=2;
                 }
                 break;
             case 39:
                 {
-                alt11=5;
+                alt13=3;
                 }
                 break;
             case 40:
                 {
-                alt11=6;
+                alt13=4;
                 }
                 break;
             case 41:
                 {
-                alt11=7;
+                alt13=5;
                 }
                 break;
             case 42:
                 {
-                alt11=8;
+                alt13=6;
+                }
+                break;
+            case 43:
+                {
+                alt13=7;
+                }
+                break;
+            case 44:
+                {
+                alt13=8;
                 }
                 break;
             default:
                 if (state.backtracking>0) {state.failed=true; return retval;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 11, 0, input);
+                    new NoViableAltException("", 13, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt11) {
+            switch (alt13) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:258:9: 'boolean'
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:301:9: 'boolean'
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    string_literal21=(Token)match(input,35,FOLLOW_35_in_primitiveType583); if (state.failed) return retval;
+                    string_literal28=(Token)match(input,37,FOLLOW_37_in_primitiveType671); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    string_literal21_tree = (Object)adaptor.create(string_literal21);
-                    adaptor.addChild(root_0, string_literal21_tree);
+                    string_literal28_tree = (Object)adaptor.create(string_literal28);
+                    adaptor.addChild(root_0, string_literal28_tree);
                     }
                     if ( state.backtracking==0 ) {
                       retval.element = new TypeReference("boolean");
@@ -1540,14 +1852,14 @@ public class MstageParser extends ChameleonParser {
                     }
                     break;
                 case 2 :
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:259:9: 'char'
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:302:9: 'char'
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    string_literal22=(Token)match(input,36,FOLLOW_36_in_primitiveType595); if (state.failed) return retval;
+                    string_literal29=(Token)match(input,38,FOLLOW_38_in_primitiveType683); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    string_literal22_tree = (Object)adaptor.create(string_literal22);
-                    adaptor.addChild(root_0, string_literal22_tree);
+                    string_literal29_tree = (Object)adaptor.create(string_literal29);
+                    adaptor.addChild(root_0, string_literal29_tree);
                     }
                     if ( state.backtracking==0 ) {
                       retval.element = new TypeReference("char");
@@ -1556,14 +1868,14 @@ public class MstageParser extends ChameleonParser {
                     }
                     break;
                 case 3 :
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:260:9: 'byte'
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:303:9: 'byte'
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    string_literal23=(Token)match(input,37,FOLLOW_37_in_primitiveType607); if (state.failed) return retval;
+                    string_literal30=(Token)match(input,39,FOLLOW_39_in_primitiveType695); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    string_literal23_tree = (Object)adaptor.create(string_literal23);
-                    adaptor.addChild(root_0, string_literal23_tree);
+                    string_literal30_tree = (Object)adaptor.create(string_literal30);
+                    adaptor.addChild(root_0, string_literal30_tree);
                     }
                     if ( state.backtracking==0 ) {
                       retval.element = new TypeReference("byte");
@@ -1572,14 +1884,14 @@ public class MstageParser extends ChameleonParser {
                     }
                     break;
                 case 4 :
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:261:9: 'short'
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:304:9: 'short'
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    string_literal24=(Token)match(input,38,FOLLOW_38_in_primitiveType619); if (state.failed) return retval;
+                    string_literal31=(Token)match(input,40,FOLLOW_40_in_primitiveType707); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    string_literal24_tree = (Object)adaptor.create(string_literal24);
-                    adaptor.addChild(root_0, string_literal24_tree);
+                    string_literal31_tree = (Object)adaptor.create(string_literal31);
+                    adaptor.addChild(root_0, string_literal31_tree);
                     }
                     if ( state.backtracking==0 ) {
                       retval.element = new TypeReference("short");
@@ -1588,14 +1900,14 @@ public class MstageParser extends ChameleonParser {
                     }
                     break;
                 case 5 :
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:262:9: 'int'
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:305:9: 'int'
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    string_literal25=(Token)match(input,39,FOLLOW_39_in_primitiveType631); if (state.failed) return retval;
+                    string_literal32=(Token)match(input,41,FOLLOW_41_in_primitiveType719); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    string_literal25_tree = (Object)adaptor.create(string_literal25);
-                    adaptor.addChild(root_0, string_literal25_tree);
+                    string_literal32_tree = (Object)adaptor.create(string_literal32);
+                    adaptor.addChild(root_0, string_literal32_tree);
                     }
                     if ( state.backtracking==0 ) {
                       retval.element = new TypeReference("int");
@@ -1604,14 +1916,14 @@ public class MstageParser extends ChameleonParser {
                     }
                     break;
                 case 6 :
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:263:9: 'long'
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:306:9: 'long'
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    string_literal26=(Token)match(input,40,FOLLOW_40_in_primitiveType643); if (state.failed) return retval;
+                    string_literal33=(Token)match(input,42,FOLLOW_42_in_primitiveType731); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    string_literal26_tree = (Object)adaptor.create(string_literal26);
-                    adaptor.addChild(root_0, string_literal26_tree);
+                    string_literal33_tree = (Object)adaptor.create(string_literal33);
+                    adaptor.addChild(root_0, string_literal33_tree);
                     }
                     if ( state.backtracking==0 ) {
                       retval.element = new TypeReference("long");
@@ -1620,14 +1932,14 @@ public class MstageParser extends ChameleonParser {
                     }
                     break;
                 case 7 :
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:264:9: 'float'
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:307:9: 'float'
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    string_literal27=(Token)match(input,41,FOLLOW_41_in_primitiveType655); if (state.failed) return retval;
+                    string_literal34=(Token)match(input,43,FOLLOW_43_in_primitiveType743); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    string_literal27_tree = (Object)adaptor.create(string_literal27);
-                    adaptor.addChild(root_0, string_literal27_tree);
+                    string_literal34_tree = (Object)adaptor.create(string_literal34);
+                    adaptor.addChild(root_0, string_literal34_tree);
                     }
                     if ( state.backtracking==0 ) {
                       retval.element = new TypeReference("float");
@@ -1636,14 +1948,14 @@ public class MstageParser extends ChameleonParser {
                     }
                     break;
                 case 8 :
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:265:9: 'double'
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:308:9: 'double'
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    string_literal28=(Token)match(input,42,FOLLOW_42_in_primitiveType667); if (state.failed) return retval;
+                    string_literal35=(Token)match(input,44,FOLLOW_44_in_primitiveType755); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    string_literal28_tree = (Object)adaptor.create(string_literal28);
-                    adaptor.addChild(root_0, string_literal28_tree);
+                    string_literal35_tree = (Object)adaptor.create(string_literal35);
+                    adaptor.addChild(root_0, string_literal35_tree);
                     }
                     if ( state.backtracking==0 ) {
                       retval.element = new TypeReference("double");
@@ -1668,7 +1980,7 @@ public class MstageParser extends ChameleonParser {
 
         }
         finally {
-            if ( state.backtracking>0 ) { memoize(input, 15, primitiveType_StartIndex); }
+            if ( state.backtracking>0 ) { memoize(input, 19, primitiveType_StartIndex); }
         }
         return retval;
     }
@@ -1680,58 +1992,58 @@ public class MstageParser extends ChameleonParser {
     };
 
     // $ANTLR start "annotations"
-    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:271:1: annotations : ( annotation )+ ;
+    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:314:1: annotations : ( annotation )+ ;
     public final MstageParser.annotations_return annotations() throws RecognitionException {
         MstageParser.annotations_return retval = new MstageParser.annotations_return();
         retval.start = input.LT(1);
         int annotations_StartIndex = input.index();
         Object root_0 = null;
 
-        MstageParser.annotation_return annotation29 = null;
+        MstageParser.annotation_return annotation36 = null;
 
 
 
         try {
-            if ( state.backtracking>0 && alreadyParsedRule(input, 16) ) { return retval; }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:272:5: ( ( annotation )+ )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:272:9: ( annotation )+
+            if ( state.backtracking>0 && alreadyParsedRule(input, 20) ) { return retval; }
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:315:5: ( ( annotation )+ )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:315:9: ( annotation )+
             {
             root_0 = (Object)adaptor.nil();
 
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:272:9: ( annotation )+
-            int cnt12=0;
-            loop12:
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:315:9: ( annotation )+
+            int cnt14=0;
+            loop14:
             do {
-                int alt12=2;
-                int LA12_0 = input.LA(1);
+                int alt14=2;
+                int LA14_0 = input.LA(1);
 
-                if ( (LA12_0==43) ) {
-                    alt12=1;
+                if ( (LA14_0==45) ) {
+                    alt14=1;
                 }
 
 
-                switch (alt12) {
+                switch (alt14) {
             	case 1 :
             	    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:0:0: annotation
             	    {
-            	    pushFollow(FOLLOW_annotation_in_annotations691);
-            	    annotation29=annotation();
+            	    pushFollow(FOLLOW_annotation_in_annotations779);
+            	    annotation36=annotation();
 
             	    state._fsp--;
             	    if (state.failed) return retval;
-            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, annotation29.getTree());
+            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, annotation36.getTree());
 
             	    }
             	    break;
 
             	default :
-            	    if ( cnt12 >= 1 ) break loop12;
+            	    if ( cnt14 >= 1 ) break loop14;
             	    if (state.backtracking>0) {state.failed=true; return retval;}
                         EarlyExitException eee =
-                            new EarlyExitException(12, input);
+                            new EarlyExitException(14, input);
                         throw eee;
                 }
-                cnt12++;
+                cnt14++;
             } while (true);
 
 
@@ -1752,7 +2064,7 @@ public class MstageParser extends ChameleonParser {
 
         }
         finally {
-            if ( state.backtracking>0 ) { memoize(input, 16, annotations_StartIndex); }
+            if ( state.backtracking>0 ) { memoize(input, 20, annotations_StartIndex); }
         }
         return retval;
     }
@@ -1764,103 +2076,103 @@ public class MstageParser extends ChameleonParser {
     };
 
     // $ANTLR start "annotation"
-    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:275:1: annotation : '@' annotationName ( '(' ( elementValuePairs | elementValue )? ')' )? ;
+    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:318:1: annotation : '@' annotationName ( '(' ( elementValuePairs | elementValue )? ')' )? ;
     public final MstageParser.annotation_return annotation() throws RecognitionException {
         MstageParser.annotation_return retval = new MstageParser.annotation_return();
         retval.start = input.LT(1);
         int annotation_StartIndex = input.index();
         Object root_0 = null;
 
-        Token char_literal30=null;
-        Token char_literal32=null;
-        Token char_literal35=null;
-        MstageParser.annotationName_return annotationName31 = null;
+        Token char_literal37=null;
+        Token char_literal39=null;
+        Token char_literal42=null;
+        MstageParser.annotationName_return annotationName38 = null;
 
-        MstageParser.elementValuePairs_return elementValuePairs33 = null;
+        MstageParser.elementValuePairs_return elementValuePairs40 = null;
 
-        MstageParser.elementValue_return elementValue34 = null;
+        MstageParser.elementValue_return elementValue41 = null;
 
 
-        Object char_literal30_tree=null;
-        Object char_literal32_tree=null;
-        Object char_literal35_tree=null;
+        Object char_literal37_tree=null;
+        Object char_literal39_tree=null;
+        Object char_literal42_tree=null;
 
         try {
-            if ( state.backtracking>0 && alreadyParsedRule(input, 17) ) { return retval; }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:276:5: ( '@' annotationName ( '(' ( elementValuePairs | elementValue )? ')' )? )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:276:9: '@' annotationName ( '(' ( elementValuePairs | elementValue )? ')' )?
+            if ( state.backtracking>0 && alreadyParsedRule(input, 21) ) { return retval; }
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:319:5: ( '@' annotationName ( '(' ( elementValuePairs | elementValue )? ')' )? )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:319:9: '@' annotationName ( '(' ( elementValuePairs | elementValue )? ')' )?
             {
             root_0 = (Object)adaptor.nil();
 
-            char_literal30=(Token)match(input,43,FOLLOW_43_in_annotation711); if (state.failed) return retval;
+            char_literal37=(Token)match(input,45,FOLLOW_45_in_annotation799); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            char_literal30_tree = (Object)adaptor.create(char_literal30);
-            adaptor.addChild(root_0, char_literal30_tree);
+            char_literal37_tree = (Object)adaptor.create(char_literal37);
+            adaptor.addChild(root_0, char_literal37_tree);
             }
-            pushFollow(FOLLOW_annotationName_in_annotation713);
-            annotationName31=annotationName();
+            pushFollow(FOLLOW_annotationName_in_annotation801);
+            annotationName38=annotationName();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, annotationName31.getTree());
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:276:28: ( '(' ( elementValuePairs | elementValue )? ')' )?
-            int alt14=2;
-            int LA14_0 = input.LA(1);
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, annotationName38.getTree());
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:319:28: ( '(' ( elementValuePairs | elementValue )? ')' )?
+            int alt16=2;
+            int LA16_0 = input.LA(1);
 
-            if ( (LA14_0==25) ) {
-                alt14=1;
+            if ( (LA16_0==25) ) {
+                alt16=1;
             }
-            switch (alt14) {
+            switch (alt16) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:276:30: '(' ( elementValuePairs | elementValue )? ')'
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:319:30: '(' ( elementValuePairs | elementValue )? ')'
                     {
-                    char_literal32=(Token)match(input,25,FOLLOW_25_in_annotation717); if (state.failed) return retval;
+                    char_literal39=(Token)match(input,25,FOLLOW_25_in_annotation805); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal32_tree = (Object)adaptor.create(char_literal32);
-                    adaptor.addChild(root_0, char_literal32_tree);
+                    char_literal39_tree = (Object)adaptor.create(char_literal39);
+                    adaptor.addChild(root_0, char_literal39_tree);
                     }
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:276:34: ( elementValuePairs | elementValue )?
-                    int alt13=3;
-                    int LA13_0 = input.LA(1);
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:319:34: ( elementValuePairs | elementValue )?
+                    int alt15=3;
+                    int LA15_0 = input.LA(1);
 
-                    if ( (LA13_0==Identifier) ) {
-                        alt13=1;
+                    if ( (LA15_0==Identifier) ) {
+                        alt15=1;
                     }
-                    else if ( (LA13_0==29||LA13_0==43) ) {
-                        alt13=2;
+                    else if ( (LA15_0==29||LA15_0==45) ) {
+                        alt15=2;
                     }
-                    switch (alt13) {
+                    switch (alt15) {
                         case 1 :
-                            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:276:36: elementValuePairs
+                            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:319:36: elementValuePairs
                             {
-                            pushFollow(FOLLOW_elementValuePairs_in_annotation721);
-                            elementValuePairs33=elementValuePairs();
+                            pushFollow(FOLLOW_elementValuePairs_in_annotation809);
+                            elementValuePairs40=elementValuePairs();
 
                             state._fsp--;
                             if (state.failed) return retval;
-                            if ( state.backtracking==0 ) adaptor.addChild(root_0, elementValuePairs33.getTree());
+                            if ( state.backtracking==0 ) adaptor.addChild(root_0, elementValuePairs40.getTree());
 
                             }
                             break;
                         case 2 :
-                            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:276:56: elementValue
+                            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:319:56: elementValue
                             {
-                            pushFollow(FOLLOW_elementValue_in_annotation725);
-                            elementValue34=elementValue();
+                            pushFollow(FOLLOW_elementValue_in_annotation813);
+                            elementValue41=elementValue();
 
                             state._fsp--;
                             if (state.failed) return retval;
-                            if ( state.backtracking==0 ) adaptor.addChild(root_0, elementValue34.getTree());
+                            if ( state.backtracking==0 ) adaptor.addChild(root_0, elementValue41.getTree());
 
                             }
                             break;
 
                     }
 
-                    char_literal35=(Token)match(input,26,FOLLOW_26_in_annotation730); if (state.failed) return retval;
+                    char_literal42=(Token)match(input,26,FOLLOW_26_in_annotation818); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal35_tree = (Object)adaptor.create(char_literal35);
-                    adaptor.addChild(root_0, char_literal35_tree);
+                    char_literal42_tree = (Object)adaptor.create(char_literal42);
+                    adaptor.addChild(root_0, char_literal42_tree);
                     }
 
                     }
@@ -1886,7 +2198,7 @@ public class MstageParser extends ChameleonParser {
 
         }
         finally {
-            if ( state.backtracking>0 ) { memoize(input, 17, annotation_StartIndex); }
+            if ( state.backtracking>0 ) { memoize(input, 21, annotation_StartIndex); }
         }
         return retval;
     }
@@ -1898,64 +2210,64 @@ public class MstageParser extends ChameleonParser {
     };
 
     // $ANTLR start "annotationName"
-    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:279:1: annotationName : Identifier ( '.' Identifier )* ;
+    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:322:1: annotationName : Identifier ( '.' Identifier )* ;
     public final MstageParser.annotationName_return annotationName() throws RecognitionException {
         MstageParser.annotationName_return retval = new MstageParser.annotationName_return();
         retval.start = input.LT(1);
         int annotationName_StartIndex = input.index();
         Object root_0 = null;
 
-        Token Identifier36=null;
-        Token char_literal37=null;
-        Token Identifier38=null;
+        Token Identifier43=null;
+        Token char_literal44=null;
+        Token Identifier45=null;
 
-        Object Identifier36_tree=null;
-        Object char_literal37_tree=null;
-        Object Identifier38_tree=null;
+        Object Identifier43_tree=null;
+        Object char_literal44_tree=null;
+        Object Identifier45_tree=null;
 
         try {
-            if ( state.backtracking>0 && alreadyParsedRule(input, 18) ) { return retval; }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:280:5: ( Identifier ( '.' Identifier )* )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:280:7: Identifier ( '.' Identifier )*
+            if ( state.backtracking>0 && alreadyParsedRule(input, 22) ) { return retval; }
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:323:5: ( Identifier ( '.' Identifier )* )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:323:7: Identifier ( '.' Identifier )*
             {
             root_0 = (Object)adaptor.nil();
 
-            Identifier36=(Token)match(input,Identifier,FOLLOW_Identifier_in_annotationName754); if (state.failed) return retval;
+            Identifier43=(Token)match(input,Identifier,FOLLOW_Identifier_in_annotationName842); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            Identifier36_tree = (Object)adaptor.create(Identifier36);
-            adaptor.addChild(root_0, Identifier36_tree);
+            Identifier43_tree = (Object)adaptor.create(Identifier43);
+            adaptor.addChild(root_0, Identifier43_tree);
             }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:280:18: ( '.' Identifier )*
-            loop15:
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:323:18: ( '.' Identifier )*
+            loop17:
             do {
-                int alt15=2;
-                int LA15_0 = input.LA(1);
+                int alt17=2;
+                int LA17_0 = input.LA(1);
 
-                if ( (LA15_0==34) ) {
-                    alt15=1;
+                if ( (LA17_0==36) ) {
+                    alt17=1;
                 }
 
 
-                switch (alt15) {
+                switch (alt17) {
             	case 1 :
-            	    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:280:19: '.' Identifier
+            	    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:323:19: '.' Identifier
             	    {
-            	    char_literal37=(Token)match(input,34,FOLLOW_34_in_annotationName757); if (state.failed) return retval;
+            	    char_literal44=(Token)match(input,36,FOLLOW_36_in_annotationName845); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
-            	    char_literal37_tree = (Object)adaptor.create(char_literal37);
-            	    adaptor.addChild(root_0, char_literal37_tree);
+            	    char_literal44_tree = (Object)adaptor.create(char_literal44);
+            	    adaptor.addChild(root_0, char_literal44_tree);
             	    }
-            	    Identifier38=(Token)match(input,Identifier,FOLLOW_Identifier_in_annotationName759); if (state.failed) return retval;
+            	    Identifier45=(Token)match(input,Identifier,FOLLOW_Identifier_in_annotationName847); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
-            	    Identifier38_tree = (Object)adaptor.create(Identifier38);
-            	    adaptor.addChild(root_0, Identifier38_tree);
+            	    Identifier45_tree = (Object)adaptor.create(Identifier45);
+            	    adaptor.addChild(root_0, Identifier45_tree);
             	    }
 
             	    }
             	    break;
 
             	default :
-            	    break loop15;
+            	    break loop17;
                 }
             } while (true);
 
@@ -1977,7 +2289,7 @@ public class MstageParser extends ChameleonParser {
 
         }
         finally {
-            if ( state.backtracking>0 ) { memoize(input, 18, annotationName_StartIndex); }
+            if ( state.backtracking>0 ) { memoize(input, 22, annotationName_StartIndex); }
         }
         return retval;
     }
@@ -1989,66 +2301,66 @@ public class MstageParser extends ChameleonParser {
     };
 
     // $ANTLR start "elementValuePairs"
-    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:283:1: elementValuePairs : elementValuePair ( ',' elementValuePair )* ;
+    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:326:1: elementValuePairs : elementValuePair ( ',' elementValuePair )* ;
     public final MstageParser.elementValuePairs_return elementValuePairs() throws RecognitionException {
         MstageParser.elementValuePairs_return retval = new MstageParser.elementValuePairs_return();
         retval.start = input.LT(1);
         int elementValuePairs_StartIndex = input.index();
         Object root_0 = null;
 
-        Token char_literal40=null;
-        MstageParser.elementValuePair_return elementValuePair39 = null;
+        Token char_literal47=null;
+        MstageParser.elementValuePair_return elementValuePair46 = null;
 
-        MstageParser.elementValuePair_return elementValuePair41 = null;
+        MstageParser.elementValuePair_return elementValuePair48 = null;
 
 
-        Object char_literal40_tree=null;
+        Object char_literal47_tree=null;
 
         try {
-            if ( state.backtracking>0 && alreadyParsedRule(input, 19) ) { return retval; }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:284:5: ( elementValuePair ( ',' elementValuePair )* )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:284:9: elementValuePair ( ',' elementValuePair )*
+            if ( state.backtracking>0 && alreadyParsedRule(input, 23) ) { return retval; }
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:327:5: ( elementValuePair ( ',' elementValuePair )* )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:327:9: elementValuePair ( ',' elementValuePair )*
             {
             root_0 = (Object)adaptor.nil();
 
-            pushFollow(FOLLOW_elementValuePair_in_elementValuePairs780);
-            elementValuePair39=elementValuePair();
+            pushFollow(FOLLOW_elementValuePair_in_elementValuePairs868);
+            elementValuePair46=elementValuePair();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, elementValuePair39.getTree());
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:284:26: ( ',' elementValuePair )*
-            loop16:
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, elementValuePair46.getTree());
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:327:26: ( ',' elementValuePair )*
+            loop18:
             do {
-                int alt16=2;
-                int LA16_0 = input.LA(1);
+                int alt18=2;
+                int LA18_0 = input.LA(1);
 
-                if ( (LA16_0==27) ) {
-                    alt16=1;
+                if ( (LA18_0==27) ) {
+                    alt18=1;
                 }
 
 
-                switch (alt16) {
+                switch (alt18) {
             	case 1 :
-            	    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:284:27: ',' elementValuePair
+            	    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:327:27: ',' elementValuePair
             	    {
-            	    char_literal40=(Token)match(input,27,FOLLOW_27_in_elementValuePairs783); if (state.failed) return retval;
+            	    char_literal47=(Token)match(input,27,FOLLOW_27_in_elementValuePairs871); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
-            	    char_literal40_tree = (Object)adaptor.create(char_literal40);
-            	    adaptor.addChild(root_0, char_literal40_tree);
+            	    char_literal47_tree = (Object)adaptor.create(char_literal47);
+            	    adaptor.addChild(root_0, char_literal47_tree);
             	    }
-            	    pushFollow(FOLLOW_elementValuePair_in_elementValuePairs785);
-            	    elementValuePair41=elementValuePair();
+            	    pushFollow(FOLLOW_elementValuePair_in_elementValuePairs873);
+            	    elementValuePair48=elementValuePair();
 
             	    state._fsp--;
             	    if (state.failed) return retval;
-            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, elementValuePair41.getTree());
+            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, elementValuePair48.getTree());
 
             	    }
             	    break;
 
             	default :
-            	    break loop16;
+            	    break loop18;
                 }
             } while (true);
 
@@ -2070,7 +2382,7 @@ public class MstageParser extends ChameleonParser {
 
         }
         finally {
-            if ( state.backtracking>0 ) { memoize(input, 19, elementValuePairs_StartIndex); }
+            if ( state.backtracking>0 ) { memoize(input, 23, elementValuePairs_StartIndex); }
         }
         return retval;
     }
@@ -2082,44 +2394,44 @@ public class MstageParser extends ChameleonParser {
     };
 
     // $ANTLR start "elementValuePair"
-    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:287:1: elementValuePair : Identifier '=' elementValue ;
+    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:330:1: elementValuePair : Identifier '=' elementValue ;
     public final MstageParser.elementValuePair_return elementValuePair() throws RecognitionException {
         MstageParser.elementValuePair_return retval = new MstageParser.elementValuePair_return();
         retval.start = input.LT(1);
         int elementValuePair_StartIndex = input.index();
         Object root_0 = null;
 
-        Token Identifier42=null;
-        Token char_literal43=null;
-        MstageParser.elementValue_return elementValue44 = null;
+        Token Identifier49=null;
+        Token char_literal50=null;
+        MstageParser.elementValue_return elementValue51 = null;
 
 
-        Object Identifier42_tree=null;
-        Object char_literal43_tree=null;
+        Object Identifier49_tree=null;
+        Object char_literal50_tree=null;
 
         try {
-            if ( state.backtracking>0 && alreadyParsedRule(input, 20) ) { return retval; }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:288:5: ( Identifier '=' elementValue )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:288:9: Identifier '=' elementValue
+            if ( state.backtracking>0 && alreadyParsedRule(input, 24) ) { return retval; }
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:331:5: ( Identifier '=' elementValue )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:331:9: Identifier '=' elementValue
             {
             root_0 = (Object)adaptor.nil();
 
-            Identifier42=(Token)match(input,Identifier,FOLLOW_Identifier_in_elementValuePair806); if (state.failed) return retval;
+            Identifier49=(Token)match(input,Identifier,FOLLOW_Identifier_in_elementValuePair894); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            Identifier42_tree = (Object)adaptor.create(Identifier42);
-            adaptor.addChild(root_0, Identifier42_tree);
+            Identifier49_tree = (Object)adaptor.create(Identifier49);
+            adaptor.addChild(root_0, Identifier49_tree);
             }
-            char_literal43=(Token)match(input,44,FOLLOW_44_in_elementValuePair808); if (state.failed) return retval;
+            char_literal50=(Token)match(input,46,FOLLOW_46_in_elementValuePair896); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            char_literal43_tree = (Object)adaptor.create(char_literal43);
-            adaptor.addChild(root_0, char_literal43_tree);
+            char_literal50_tree = (Object)adaptor.create(char_literal50);
+            adaptor.addChild(root_0, char_literal50_tree);
             }
-            pushFollow(FOLLOW_elementValue_in_elementValuePair810);
-            elementValue44=elementValue();
+            pushFollow(FOLLOW_elementValue_in_elementValuePair898);
+            elementValue51=elementValue();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, elementValue44.getTree());
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, elementValue51.getTree());
 
             }
 
@@ -2138,7 +2450,7 @@ public class MstageParser extends ChameleonParser {
 
         }
         finally {
-            if ( state.backtracking>0 ) { memoize(input, 20, elementValuePair_StartIndex); }
+            if ( state.backtracking>0 ) { memoize(input, 24, elementValuePair_StartIndex); }
         }
         return retval;
     }
@@ -2150,64 +2462,64 @@ public class MstageParser extends ChameleonParser {
     };
 
     // $ANTLR start "elementValue"
-    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:291:1: elementValue : ( annotation | elementValueArrayInitializer );
+    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:334:1: elementValue : ( annotation | elementValueArrayInitializer );
     public final MstageParser.elementValue_return elementValue() throws RecognitionException {
         MstageParser.elementValue_return retval = new MstageParser.elementValue_return();
         retval.start = input.LT(1);
         int elementValue_StartIndex = input.index();
         Object root_0 = null;
 
-        MstageParser.annotation_return annotation45 = null;
+        MstageParser.annotation_return annotation52 = null;
 
-        MstageParser.elementValueArrayInitializer_return elementValueArrayInitializer46 = null;
+        MstageParser.elementValueArrayInitializer_return elementValueArrayInitializer53 = null;
 
 
 
         try {
-            if ( state.backtracking>0 && alreadyParsedRule(input, 21) ) { return retval; }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:292:5: ( annotation | elementValueArrayInitializer )
-            int alt17=2;
-            int LA17_0 = input.LA(1);
+            if ( state.backtracking>0 && alreadyParsedRule(input, 25) ) { return retval; }
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:335:5: ( annotation | elementValueArrayInitializer )
+            int alt19=2;
+            int LA19_0 = input.LA(1);
 
-            if ( (LA17_0==43) ) {
-                alt17=1;
+            if ( (LA19_0==45) ) {
+                alt19=1;
             }
-            else if ( (LA17_0==29) ) {
-                alt17=2;
+            else if ( (LA19_0==29) ) {
+                alt19=2;
             }
             else {
                 if (state.backtracking>0) {state.failed=true; return retval;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 17, 0, input);
+                    new NoViableAltException("", 19, 0, input);
 
                 throw nvae;
             }
-            switch (alt17) {
+            switch (alt19) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:292:9: annotation
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:335:9: annotation
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_annotation_in_elementValue833);
-                    annotation45=annotation();
+                    pushFollow(FOLLOW_annotation_in_elementValue921);
+                    annotation52=annotation();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, annotation45.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, annotation52.getTree());
 
                     }
                     break;
                 case 2 :
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:293:9: elementValueArrayInitializer
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:336:9: elementValueArrayInitializer
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_elementValueArrayInitializer_in_elementValue843);
-                    elementValueArrayInitializer46=elementValueArrayInitializer();
+                    pushFollow(FOLLOW_elementValueArrayInitializer_in_elementValue931);
+                    elementValueArrayInitializer53=elementValueArrayInitializer();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, elementValueArrayInitializer46.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, elementValueArrayInitializer53.getTree());
 
                     }
                     break;
@@ -2228,7 +2540,7 @@ public class MstageParser extends ChameleonParser {
 
         }
         finally {
-            if ( state.backtracking>0 ) { memoize(input, 21, elementValue_StartIndex); }
+            if ( state.backtracking>0 ) { memoize(input, 25, elementValue_StartIndex); }
         }
         return retval;
     }
@@ -2240,94 +2552,94 @@ public class MstageParser extends ChameleonParser {
     };
 
     // $ANTLR start "elementValueArrayInitializer"
-    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:296:1: elementValueArrayInitializer : '{' ( elementValue ( ',' elementValue )* )? ( ',' )? '}' ;
+    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:339:1: elementValueArrayInitializer : '{' ( elementValue ( ',' elementValue )* )? ( ',' )? '}' ;
     public final MstageParser.elementValueArrayInitializer_return elementValueArrayInitializer() throws RecognitionException {
         MstageParser.elementValueArrayInitializer_return retval = new MstageParser.elementValueArrayInitializer_return();
         retval.start = input.LT(1);
         int elementValueArrayInitializer_StartIndex = input.index();
         Object root_0 = null;
 
-        Token char_literal47=null;
-        Token char_literal49=null;
-        Token char_literal51=null;
-        Token char_literal52=null;
-        MstageParser.elementValue_return elementValue48 = null;
+        Token char_literal54=null;
+        Token char_literal56=null;
+        Token char_literal58=null;
+        Token char_literal59=null;
+        MstageParser.elementValue_return elementValue55 = null;
 
-        MstageParser.elementValue_return elementValue50 = null;
+        MstageParser.elementValue_return elementValue57 = null;
 
 
-        Object char_literal47_tree=null;
-        Object char_literal49_tree=null;
-        Object char_literal51_tree=null;
-        Object char_literal52_tree=null;
+        Object char_literal54_tree=null;
+        Object char_literal56_tree=null;
+        Object char_literal58_tree=null;
+        Object char_literal59_tree=null;
 
         try {
-            if ( state.backtracking>0 && alreadyParsedRule(input, 22) ) { return retval; }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:297:5: ( '{' ( elementValue ( ',' elementValue )* )? ( ',' )? '}' )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:297:9: '{' ( elementValue ( ',' elementValue )* )? ( ',' )? '}'
+            if ( state.backtracking>0 && alreadyParsedRule(input, 26) ) { return retval; }
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:340:5: ( '{' ( elementValue ( ',' elementValue )* )? ( ',' )? '}' )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:340:9: '{' ( elementValue ( ',' elementValue )* )? ( ',' )? '}'
             {
             root_0 = (Object)adaptor.nil();
 
-            char_literal47=(Token)match(input,29,FOLLOW_29_in_elementValueArrayInitializer866); if (state.failed) return retval;
+            char_literal54=(Token)match(input,29,FOLLOW_29_in_elementValueArrayInitializer954); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            char_literal47_tree = (Object)adaptor.create(char_literal47);
-            adaptor.addChild(root_0, char_literal47_tree);
+            char_literal54_tree = (Object)adaptor.create(char_literal54);
+            adaptor.addChild(root_0, char_literal54_tree);
             }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:297:13: ( elementValue ( ',' elementValue )* )?
-            int alt19=2;
-            int LA19_0 = input.LA(1);
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:340:13: ( elementValue ( ',' elementValue )* )?
+            int alt21=2;
+            int LA21_0 = input.LA(1);
 
-            if ( (LA19_0==29||LA19_0==43) ) {
-                alt19=1;
+            if ( (LA21_0==29||LA21_0==45) ) {
+                alt21=1;
             }
-            switch (alt19) {
+            switch (alt21) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:297:14: elementValue ( ',' elementValue )*
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:340:14: elementValue ( ',' elementValue )*
                     {
-                    pushFollow(FOLLOW_elementValue_in_elementValueArrayInitializer869);
-                    elementValue48=elementValue();
+                    pushFollow(FOLLOW_elementValue_in_elementValueArrayInitializer957);
+                    elementValue55=elementValue();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, elementValue48.getTree());
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:297:27: ( ',' elementValue )*
-                    loop18:
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, elementValue55.getTree());
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:340:27: ( ',' elementValue )*
+                    loop20:
                     do {
-                        int alt18=2;
-                        int LA18_0 = input.LA(1);
+                        int alt20=2;
+                        int LA20_0 = input.LA(1);
 
-                        if ( (LA18_0==27) ) {
-                            int LA18_1 = input.LA(2);
+                        if ( (LA20_0==27) ) {
+                            int LA20_1 = input.LA(2);
 
-                            if ( (LA18_1==29||LA18_1==43) ) {
-                                alt18=1;
+                            if ( (LA20_1==29||LA20_1==45) ) {
+                                alt20=1;
                             }
 
 
                         }
 
 
-                        switch (alt18) {
+                        switch (alt20) {
                     	case 1 :
-                    	    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:297:28: ',' elementValue
+                    	    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:340:28: ',' elementValue
                     	    {
-                    	    char_literal49=(Token)match(input,27,FOLLOW_27_in_elementValueArrayInitializer872); if (state.failed) return retval;
+                    	    char_literal56=(Token)match(input,27,FOLLOW_27_in_elementValueArrayInitializer960); if (state.failed) return retval;
                     	    if ( state.backtracking==0 ) {
-                    	    char_literal49_tree = (Object)adaptor.create(char_literal49);
-                    	    adaptor.addChild(root_0, char_literal49_tree);
+                    	    char_literal56_tree = (Object)adaptor.create(char_literal56);
+                    	    adaptor.addChild(root_0, char_literal56_tree);
                     	    }
-                    	    pushFollow(FOLLOW_elementValue_in_elementValueArrayInitializer874);
-                    	    elementValue50=elementValue();
+                    	    pushFollow(FOLLOW_elementValue_in_elementValueArrayInitializer962);
+                    	    elementValue57=elementValue();
 
                     	    state._fsp--;
                     	    if (state.failed) return retval;
-                    	    if ( state.backtracking==0 ) adaptor.addChild(root_0, elementValue50.getTree());
+                    	    if ( state.backtracking==0 ) adaptor.addChild(root_0, elementValue57.getTree());
 
                     	    }
                     	    break;
 
                     	default :
-                    	    break loop18;
+                    	    break loop20;
                         }
                     } while (true);
 
@@ -2337,21 +2649,21 @@ public class MstageParser extends ChameleonParser {
 
             }
 
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:297:49: ( ',' )?
-            int alt20=2;
-            int LA20_0 = input.LA(1);
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:340:49: ( ',' )?
+            int alt22=2;
+            int LA22_0 = input.LA(1);
 
-            if ( (LA20_0==27) ) {
-                alt20=1;
+            if ( (LA22_0==27) ) {
+                alt22=1;
             }
-            switch (alt20) {
+            switch (alt22) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:297:50: ','
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:340:50: ','
                     {
-                    char_literal51=(Token)match(input,27,FOLLOW_27_in_elementValueArrayInitializer881); if (state.failed) return retval;
+                    char_literal58=(Token)match(input,27,FOLLOW_27_in_elementValueArrayInitializer969); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal51_tree = (Object)adaptor.create(char_literal51);
-                    adaptor.addChild(root_0, char_literal51_tree);
+                    char_literal58_tree = (Object)adaptor.create(char_literal58);
+                    adaptor.addChild(root_0, char_literal58_tree);
                     }
 
                     }
@@ -2359,10 +2671,10 @@ public class MstageParser extends ChameleonParser {
 
             }
 
-            char_literal52=(Token)match(input,30,FOLLOW_30_in_elementValueArrayInitializer885); if (state.failed) return retval;
+            char_literal59=(Token)match(input,30,FOLLOW_30_in_elementValueArrayInitializer973); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            char_literal52_tree = (Object)adaptor.create(char_literal52);
-            adaptor.addChild(root_0, char_literal52_tree);
+            char_literal59_tree = (Object)adaptor.create(char_literal59);
+            adaptor.addChild(root_0, char_literal59_tree);
             }
 
             }
@@ -2382,7 +2694,7 @@ public class MstageParser extends ChameleonParser {
 
         }
         finally {
-            if ( state.backtracking>0 ) { memoize(input, 22, elementValueArrayInitializer_StartIndex); }
+            if ( state.backtracking>0 ) { memoize(input, 26, elementValueArrayInitializer_StartIndex); }
         }
         return retval;
     }
@@ -2395,7 +2707,7 @@ public class MstageParser extends ChameleonParser {
     };
 
     // $ANTLR start "annotationTypeDeclaration"
-    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:300:1: annotationTypeDeclaration returns [Type element] : '@' 'interface' name= Identifier annotationTypeBody ;
+    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:343:1: annotationTypeDeclaration returns [Type element] : '@' 'interface' name= Identifier annotationTypeBody ;
     public final MstageParser.annotationTypeDeclaration_return annotationTypeDeclaration() throws RecognitionException {
         MstageParser.annotationTypeDeclaration_return retval = new MstageParser.annotationTypeDeclaration_return();
         retval.start = input.LT(1);
@@ -2403,43 +2715,43 @@ public class MstageParser extends ChameleonParser {
         Object root_0 = null;
 
         Token name=null;
-        Token char_literal53=null;
-        Token string_literal54=null;
-        MstageParser.annotationTypeBody_return annotationTypeBody55 = null;
+        Token char_literal60=null;
+        Token string_literal61=null;
+        MstageParser.annotationTypeBody_return annotationTypeBody62 = null;
 
 
         Object name_tree=null;
-        Object char_literal53_tree=null;
-        Object string_literal54_tree=null;
+        Object char_literal60_tree=null;
+        Object string_literal61_tree=null;
 
         try {
-            if ( state.backtracking>0 && alreadyParsedRule(input, 23) ) { return retval; }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:301:5: ( '@' 'interface' name= Identifier annotationTypeBody )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:301:9: '@' 'interface' name= Identifier annotationTypeBody
+            if ( state.backtracking>0 && alreadyParsedRule(input, 27) ) { return retval; }
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:344:5: ( '@' 'interface' name= Identifier annotationTypeBody )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:344:9: '@' 'interface' name= Identifier annotationTypeBody
             {
             root_0 = (Object)adaptor.nil();
 
-            char_literal53=(Token)match(input,43,FOLLOW_43_in_annotationTypeDeclaration912); if (state.failed) return retval;
+            char_literal60=(Token)match(input,45,FOLLOW_45_in_annotationTypeDeclaration1000); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            char_literal53_tree = (Object)adaptor.create(char_literal53);
-            adaptor.addChild(root_0, char_literal53_tree);
+            char_literal60_tree = (Object)adaptor.create(char_literal60);
+            adaptor.addChild(root_0, char_literal60_tree);
             }
-            string_literal54=(Token)match(input,23,FOLLOW_23_in_annotationTypeDeclaration914); if (state.failed) return retval;
+            string_literal61=(Token)match(input,23,FOLLOW_23_in_annotationTypeDeclaration1002); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            string_literal54_tree = (Object)adaptor.create(string_literal54);
-            adaptor.addChild(root_0, string_literal54_tree);
+            string_literal61_tree = (Object)adaptor.create(string_literal61);
+            adaptor.addChild(root_0, string_literal61_tree);
             }
-            name=(Token)match(input,Identifier,FOLLOW_Identifier_in_annotationTypeDeclaration918); if (state.failed) return retval;
+            name=(Token)match(input,Identifier,FOLLOW_Identifier_in_annotationTypeDeclaration1006); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             name_tree = (Object)adaptor.create(name);
             adaptor.addChild(root_0, name_tree);
             }
-            pushFollow(FOLLOW_annotationTypeBody_in_annotationTypeDeclaration920);
-            annotationTypeBody55=annotationTypeBody();
+            pushFollow(FOLLOW_annotationTypeBody_in_annotationTypeDeclaration1008);
+            annotationTypeBody62=annotationTypeBody();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, annotationTypeBody55.getTree());
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, annotationTypeBody62.getTree());
 
             }
 
@@ -2458,7 +2770,7 @@ public class MstageParser extends ChameleonParser {
 
         }
         finally {
-            if ( state.backtracking>0 ) { memoize(input, 23, annotationTypeDeclaration_StartIndex); }
+            if ( state.backtracking>0 ) { memoize(input, 27, annotationTypeDeclaration_StartIndex); }
         }
         return retval;
     }
@@ -2470,67 +2782,67 @@ public class MstageParser extends ChameleonParser {
     };
 
     // $ANTLR start "annotationTypeBody"
-    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:304:1: annotationTypeBody : '{' ( annotationTypeElementDeclaration )* '}' ;
+    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:347:1: annotationTypeBody : '{' ( annotationTypeElementDeclaration )* '}' ;
     public final MstageParser.annotationTypeBody_return annotationTypeBody() throws RecognitionException {
         MstageParser.annotationTypeBody_return retval = new MstageParser.annotationTypeBody_return();
         retval.start = input.LT(1);
         int annotationTypeBody_StartIndex = input.index();
         Object root_0 = null;
 
-        Token char_literal56=null;
-        Token char_literal58=null;
-        MstageParser.annotationTypeElementDeclaration_return annotationTypeElementDeclaration57 = null;
+        Token char_literal63=null;
+        Token char_literal65=null;
+        MstageParser.annotationTypeElementDeclaration_return annotationTypeElementDeclaration64 = null;
 
 
-        Object char_literal56_tree=null;
-        Object char_literal58_tree=null;
+        Object char_literal63_tree=null;
+        Object char_literal65_tree=null;
 
         try {
-            if ( state.backtracking>0 && alreadyParsedRule(input, 24) ) { return retval; }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:305:5: ( '{' ( annotationTypeElementDeclaration )* '}' )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:305:9: '{' ( annotationTypeElementDeclaration )* '}'
+            if ( state.backtracking>0 && alreadyParsedRule(input, 28) ) { return retval; }
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:348:5: ( '{' ( annotationTypeElementDeclaration )* '}' )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:348:9: '{' ( annotationTypeElementDeclaration )* '}'
             {
             root_0 = (Object)adaptor.nil();
 
-            char_literal56=(Token)match(input,29,FOLLOW_29_in_annotationTypeBody943); if (state.failed) return retval;
+            char_literal63=(Token)match(input,29,FOLLOW_29_in_annotationTypeBody1031); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            char_literal56_tree = (Object)adaptor.create(char_literal56);
-            adaptor.addChild(root_0, char_literal56_tree);
+            char_literal63_tree = (Object)adaptor.create(char_literal63);
+            adaptor.addChild(root_0, char_literal63_tree);
             }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:305:13: ( annotationTypeElementDeclaration )*
-            loop21:
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:348:13: ( annotationTypeElementDeclaration )*
+            loop23:
             do {
-                int alt21=2;
-                int LA21_0 = input.LA(1);
+                int alt23=2;
+                int LA23_0 = input.LA(1);
 
-                if ( (LA21_0==Identifier||(LA21_0>=35 && LA21_0<=43)) ) {
-                    alt21=1;
+                if ( (LA23_0==Identifier||(LA23_0>=37 && LA23_0<=45)) ) {
+                    alt23=1;
                 }
 
 
-                switch (alt21) {
+                switch (alt23) {
             	case 1 :
-            	    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:305:14: annotationTypeElementDeclaration
+            	    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:348:14: annotationTypeElementDeclaration
             	    {
-            	    pushFollow(FOLLOW_annotationTypeElementDeclaration_in_annotationTypeBody946);
-            	    annotationTypeElementDeclaration57=annotationTypeElementDeclaration();
+            	    pushFollow(FOLLOW_annotationTypeElementDeclaration_in_annotationTypeBody1034);
+            	    annotationTypeElementDeclaration64=annotationTypeElementDeclaration();
 
             	    state._fsp--;
             	    if (state.failed) return retval;
-            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, annotationTypeElementDeclaration57.getTree());
+            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, annotationTypeElementDeclaration64.getTree());
 
             	    }
             	    break;
 
             	default :
-            	    break loop21;
+            	    break loop23;
                 }
             } while (true);
 
-            char_literal58=(Token)match(input,30,FOLLOW_30_in_annotationTypeBody950); if (state.failed) return retval;
+            char_literal65=(Token)match(input,30,FOLLOW_30_in_annotationTypeBody1038); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            char_literal58_tree = (Object)adaptor.create(char_literal58);
-            adaptor.addChild(root_0, char_literal58_tree);
+            char_literal65_tree = (Object)adaptor.create(char_literal65);
+            adaptor.addChild(root_0, char_literal65_tree);
             }
 
             }
@@ -2550,7 +2862,7 @@ public class MstageParser extends ChameleonParser {
 
         }
         finally {
-            if ( state.backtracking>0 ) { memoize(input, 24, annotationTypeBody_StartIndex); }
+            if ( state.backtracking>0 ) { memoize(input, 28, annotationTypeBody_StartIndex); }
         }
         return retval;
     }
@@ -2562,30 +2874,30 @@ public class MstageParser extends ChameleonParser {
     };
 
     // $ANTLR start "annotationTypeElementDeclaration"
-    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:308:1: annotationTypeElementDeclaration : annotationTypeElementRest ;
+    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:351:1: annotationTypeElementDeclaration : annotationTypeElementRest ;
     public final MstageParser.annotationTypeElementDeclaration_return annotationTypeElementDeclaration() throws RecognitionException {
         MstageParser.annotationTypeElementDeclaration_return retval = new MstageParser.annotationTypeElementDeclaration_return();
         retval.start = input.LT(1);
         int annotationTypeElementDeclaration_StartIndex = input.index();
         Object root_0 = null;
 
-        MstageParser.annotationTypeElementRest_return annotationTypeElementRest59 = null;
+        MstageParser.annotationTypeElementRest_return annotationTypeElementRest66 = null;
 
 
 
         try {
-            if ( state.backtracking>0 && alreadyParsedRule(input, 25) ) { return retval; }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:309:5: ( annotationTypeElementRest )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:309:23: annotationTypeElementRest
+            if ( state.backtracking>0 && alreadyParsedRule(input, 29) ) { return retval; }
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:352:5: ( annotationTypeElementRest )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:352:23: annotationTypeElementRest
             {
             root_0 = (Object)adaptor.nil();
 
-            pushFollow(FOLLOW_annotationTypeElementRest_in_annotationTypeElementDeclaration975);
-            annotationTypeElementRest59=annotationTypeElementRest();
+            pushFollow(FOLLOW_annotationTypeElementRest_in_annotationTypeElementDeclaration1063);
+            annotationTypeElementRest66=annotationTypeElementRest();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, annotationTypeElementRest59.getTree());
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, annotationTypeElementRest66.getTree());
 
             }
 
@@ -2604,7 +2916,7 @@ public class MstageParser extends ChameleonParser {
 
         }
         finally {
-            if ( state.backtracking>0 ) { memoize(input, 25, annotationTypeElementDeclaration_StartIndex); }
+            if ( state.backtracking>0 ) { memoize(input, 29, annotationTypeElementDeclaration_StartIndex); }
         }
         return retval;
     }
@@ -2616,96 +2928,96 @@ public class MstageParser extends ChameleonParser {
     };
 
     // $ANTLR start "annotationTypeElementRest"
-    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:312:1: annotationTypeElementRest : ( type annotationMethodOrConstantRest ';' | annotationTypeDeclaration ( ';' )? );
+    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:355:1: annotationTypeElementRest : ( type annotationMethodOrConstantRest ';' | annotationTypeDeclaration ( ';' )? );
     public final MstageParser.annotationTypeElementRest_return annotationTypeElementRest() throws RecognitionException {
         MstageParser.annotationTypeElementRest_return retval = new MstageParser.annotationTypeElementRest_return();
         retval.start = input.LT(1);
         int annotationTypeElementRest_StartIndex = input.index();
         Object root_0 = null;
 
-        Token char_literal62=null;
-        Token char_literal64=null;
-        MstageParser.type_return type60 = null;
+        Token char_literal69=null;
+        Token char_literal71=null;
+        MstageParser.type_return type67 = null;
 
-        MstageParser.annotationMethodOrConstantRest_return annotationMethodOrConstantRest61 = null;
+        MstageParser.annotationMethodOrConstantRest_return annotationMethodOrConstantRest68 = null;
 
-        MstageParser.annotationTypeDeclaration_return annotationTypeDeclaration63 = null;
+        MstageParser.annotationTypeDeclaration_return annotationTypeDeclaration70 = null;
 
 
-        Object char_literal62_tree=null;
-        Object char_literal64_tree=null;
+        Object char_literal69_tree=null;
+        Object char_literal71_tree=null;
 
         try {
-            if ( state.backtracking>0 && alreadyParsedRule(input, 26) ) { return retval; }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:313:5: ( type annotationMethodOrConstantRest ';' | annotationTypeDeclaration ( ';' )? )
-            int alt23=2;
-            int LA23_0 = input.LA(1);
+            if ( state.backtracking>0 && alreadyParsedRule(input, 30) ) { return retval; }
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:356:5: ( type annotationMethodOrConstantRest ';' | annotationTypeDeclaration ( ';' )? )
+            int alt25=2;
+            int LA25_0 = input.LA(1);
 
-            if ( (LA23_0==Identifier||(LA23_0>=35 && LA23_0<=42)) ) {
-                alt23=1;
+            if ( (LA25_0==Identifier||(LA25_0>=37 && LA25_0<=44)) ) {
+                alt25=1;
             }
-            else if ( (LA23_0==43) ) {
-                alt23=2;
+            else if ( (LA25_0==45) ) {
+                alt25=2;
             }
             else {
                 if (state.backtracking>0) {state.failed=true; return retval;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 23, 0, input);
+                    new NoViableAltException("", 25, 0, input);
 
                 throw nvae;
             }
-            switch (alt23) {
+            switch (alt25) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:313:9: type annotationMethodOrConstantRest ';'
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:356:9: type annotationMethodOrConstantRest ';'
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_type_in_annotationTypeElementRest998);
-                    type60=type();
+                    pushFollow(FOLLOW_type_in_annotationTypeElementRest1086);
+                    type67=type();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, type60.getTree());
-                    pushFollow(FOLLOW_annotationMethodOrConstantRest_in_annotationTypeElementRest1000);
-                    annotationMethodOrConstantRest61=annotationMethodOrConstantRest();
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, type67.getTree());
+                    pushFollow(FOLLOW_annotationMethodOrConstantRest_in_annotationTypeElementRest1088);
+                    annotationMethodOrConstantRest68=annotationMethodOrConstantRest();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, annotationMethodOrConstantRest61.getTree());
-                    char_literal62=(Token)match(input,24,FOLLOW_24_in_annotationTypeElementRest1002); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, annotationMethodOrConstantRest68.getTree());
+                    char_literal69=(Token)match(input,24,FOLLOW_24_in_annotationTypeElementRest1090); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal62_tree = (Object)adaptor.create(char_literal62);
-                    adaptor.addChild(root_0, char_literal62_tree);
+                    char_literal69_tree = (Object)adaptor.create(char_literal69);
+                    adaptor.addChild(root_0, char_literal69_tree);
                     }
 
                     }
                     break;
                 case 2 :
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:314:9: annotationTypeDeclaration ( ';' )?
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:357:9: annotationTypeDeclaration ( ';' )?
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_annotationTypeDeclaration_in_annotationTypeElementRest1012);
-                    annotationTypeDeclaration63=annotationTypeDeclaration();
+                    pushFollow(FOLLOW_annotationTypeDeclaration_in_annotationTypeElementRest1100);
+                    annotationTypeDeclaration70=annotationTypeDeclaration();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, annotationTypeDeclaration63.getTree());
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:314:35: ( ';' )?
-                    int alt22=2;
-                    int LA22_0 = input.LA(1);
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, annotationTypeDeclaration70.getTree());
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:357:35: ( ';' )?
+                    int alt24=2;
+                    int LA24_0 = input.LA(1);
 
-                    if ( (LA22_0==24) ) {
-                        alt22=1;
+                    if ( (LA24_0==24) ) {
+                        alt24=1;
                     }
-                    switch (alt22) {
+                    switch (alt24) {
                         case 1 :
                             // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:0:0: ';'
                             {
-                            char_literal64=(Token)match(input,24,FOLLOW_24_in_annotationTypeElementRest1014); if (state.failed) return retval;
+                            char_literal71=(Token)match(input,24,FOLLOW_24_in_annotationTypeElementRest1102); if (state.failed) return retval;
                             if ( state.backtracking==0 ) {
-                            char_literal64_tree = (Object)adaptor.create(char_literal64);
-                            adaptor.addChild(root_0, char_literal64_tree);
+                            char_literal71_tree = (Object)adaptor.create(char_literal71);
+                            adaptor.addChild(root_0, char_literal71_tree);
                             }
 
                             }
@@ -2733,7 +3045,7 @@ public class MstageParser extends ChameleonParser {
 
         }
         finally {
-            if ( state.backtracking>0 ) { memoize(input, 26, annotationTypeElementRest_StartIndex); }
+            if ( state.backtracking>0 ) { memoize(input, 30, annotationTypeElementRest_StartIndex); }
         }
         return retval;
     }
@@ -2745,30 +3057,30 @@ public class MstageParser extends ChameleonParser {
     };
 
     // $ANTLR start "annotationMethodOrConstantRest"
-    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:317:1: annotationMethodOrConstantRest : annotationMethodRest ;
+    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:360:1: annotationMethodOrConstantRest : annotationMethodRest ;
     public final MstageParser.annotationMethodOrConstantRest_return annotationMethodOrConstantRest() throws RecognitionException {
         MstageParser.annotationMethodOrConstantRest_return retval = new MstageParser.annotationMethodOrConstantRest_return();
         retval.start = input.LT(1);
         int annotationMethodOrConstantRest_StartIndex = input.index();
         Object root_0 = null;
 
-        MstageParser.annotationMethodRest_return annotationMethodRest65 = null;
+        MstageParser.annotationMethodRest_return annotationMethodRest72 = null;
 
 
 
         try {
-            if ( state.backtracking>0 && alreadyParsedRule(input, 27) ) { return retval; }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:318:5: ( annotationMethodRest )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:318:9: annotationMethodRest
+            if ( state.backtracking>0 && alreadyParsedRule(input, 31) ) { return retval; }
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:361:5: ( annotationMethodRest )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:361:9: annotationMethodRest
             {
             root_0 = (Object)adaptor.nil();
 
-            pushFollow(FOLLOW_annotationMethodRest_in_annotationMethodOrConstantRest1038);
-            annotationMethodRest65=annotationMethodRest();
+            pushFollow(FOLLOW_annotationMethodRest_in_annotationMethodOrConstantRest1126);
+            annotationMethodRest72=annotationMethodRest();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, annotationMethodRest65.getTree());
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, annotationMethodRest72.getTree());
 
             }
 
@@ -2787,7 +3099,7 @@ public class MstageParser extends ChameleonParser {
 
         }
         finally {
-            if ( state.backtracking>0 ) { memoize(input, 27, annotationMethodOrConstantRest_StartIndex); }
+            if ( state.backtracking>0 ) { memoize(input, 31, annotationMethodOrConstantRest_StartIndex); }
         }
         return retval;
     }
@@ -2799,62 +3111,62 @@ public class MstageParser extends ChameleonParser {
     };
 
     // $ANTLR start "annotationMethodRest"
-    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:321:1: annotationMethodRest : Identifier '(' ')' ( defaultValue )? ;
+    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:364:1: annotationMethodRest : Identifier '(' ')' ( defaultValue )? ;
     public final MstageParser.annotationMethodRest_return annotationMethodRest() throws RecognitionException {
         MstageParser.annotationMethodRest_return retval = new MstageParser.annotationMethodRest_return();
         retval.start = input.LT(1);
         int annotationMethodRest_StartIndex = input.index();
         Object root_0 = null;
 
-        Token Identifier66=null;
-        Token char_literal67=null;
-        Token char_literal68=null;
-        MstageParser.defaultValue_return defaultValue69 = null;
+        Token Identifier73=null;
+        Token char_literal74=null;
+        Token char_literal75=null;
+        MstageParser.defaultValue_return defaultValue76 = null;
 
 
-        Object Identifier66_tree=null;
-        Object char_literal67_tree=null;
-        Object char_literal68_tree=null;
+        Object Identifier73_tree=null;
+        Object char_literal74_tree=null;
+        Object char_literal75_tree=null;
 
         try {
-            if ( state.backtracking>0 && alreadyParsedRule(input, 28) ) { return retval; }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:322:5: ( Identifier '(' ')' ( defaultValue )? )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:322:9: Identifier '(' ')' ( defaultValue )?
+            if ( state.backtracking>0 && alreadyParsedRule(input, 32) ) { return retval; }
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:365:5: ( Identifier '(' ')' ( defaultValue )? )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:365:9: Identifier '(' ')' ( defaultValue )?
             {
             root_0 = (Object)adaptor.nil();
 
-            Identifier66=(Token)match(input,Identifier,FOLLOW_Identifier_in_annotationMethodRest1061); if (state.failed) return retval;
+            Identifier73=(Token)match(input,Identifier,FOLLOW_Identifier_in_annotationMethodRest1149); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            Identifier66_tree = (Object)adaptor.create(Identifier66);
-            adaptor.addChild(root_0, Identifier66_tree);
+            Identifier73_tree = (Object)adaptor.create(Identifier73);
+            adaptor.addChild(root_0, Identifier73_tree);
             }
-            char_literal67=(Token)match(input,25,FOLLOW_25_in_annotationMethodRest1063); if (state.failed) return retval;
+            char_literal74=(Token)match(input,25,FOLLOW_25_in_annotationMethodRest1151); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            char_literal67_tree = (Object)adaptor.create(char_literal67);
-            adaptor.addChild(root_0, char_literal67_tree);
+            char_literal74_tree = (Object)adaptor.create(char_literal74);
+            adaptor.addChild(root_0, char_literal74_tree);
             }
-            char_literal68=(Token)match(input,26,FOLLOW_26_in_annotationMethodRest1065); if (state.failed) return retval;
+            char_literal75=(Token)match(input,26,FOLLOW_26_in_annotationMethodRest1153); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            char_literal68_tree = (Object)adaptor.create(char_literal68);
-            adaptor.addChild(root_0, char_literal68_tree);
+            char_literal75_tree = (Object)adaptor.create(char_literal75);
+            adaptor.addChild(root_0, char_literal75_tree);
             }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:322:28: ( defaultValue )?
-            int alt24=2;
-            int LA24_0 = input.LA(1);
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:365:28: ( defaultValue )?
+            int alt26=2;
+            int LA26_0 = input.LA(1);
 
-            if ( (LA24_0==45) ) {
-                alt24=1;
+            if ( (LA26_0==47) ) {
+                alt26=1;
             }
-            switch (alt24) {
+            switch (alt26) {
                 case 1 :
                     // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:0:0: defaultValue
                     {
-                    pushFollow(FOLLOW_defaultValue_in_annotationMethodRest1067);
-                    defaultValue69=defaultValue();
+                    pushFollow(FOLLOW_defaultValue_in_annotationMethodRest1155);
+                    defaultValue76=defaultValue();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, defaultValue69.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, defaultValue76.getTree());
 
                     }
                     break;
@@ -2879,7 +3191,7 @@ public class MstageParser extends ChameleonParser {
 
         }
         finally {
-            if ( state.backtracking>0 ) { memoize(input, 28, annotationMethodRest_StartIndex); }
+            if ( state.backtracking>0 ) { memoize(input, 32, annotationMethodRest_StartIndex); }
         }
         return retval;
     }
@@ -2891,37 +3203,37 @@ public class MstageParser extends ChameleonParser {
     };
 
     // $ANTLR start "defaultValue"
-    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:325:1: defaultValue : 'default' elementValue ;
+    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:368:1: defaultValue : 'default' elementValue ;
     public final MstageParser.defaultValue_return defaultValue() throws RecognitionException {
         MstageParser.defaultValue_return retval = new MstageParser.defaultValue_return();
         retval.start = input.LT(1);
         int defaultValue_StartIndex = input.index();
         Object root_0 = null;
 
-        Token string_literal70=null;
-        MstageParser.elementValue_return elementValue71 = null;
+        Token string_literal77=null;
+        MstageParser.elementValue_return elementValue78 = null;
 
 
-        Object string_literal70_tree=null;
+        Object string_literal77_tree=null;
 
         try {
-            if ( state.backtracking>0 && alreadyParsedRule(input, 29) ) { return retval; }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:326:5: ( 'default' elementValue )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:326:9: 'default' elementValue
+            if ( state.backtracking>0 && alreadyParsedRule(input, 33) ) { return retval; }
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:369:5: ( 'default' elementValue )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:369:9: 'default' elementValue
             {
             root_0 = (Object)adaptor.nil();
 
-            string_literal70=(Token)match(input,45,FOLLOW_45_in_defaultValue1095); if (state.failed) return retval;
+            string_literal77=(Token)match(input,47,FOLLOW_47_in_defaultValue1183); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            string_literal70_tree = (Object)adaptor.create(string_literal70);
-            adaptor.addChild(root_0, string_literal70_tree);
+            string_literal77_tree = (Object)adaptor.create(string_literal77);
+            adaptor.addChild(root_0, string_literal77_tree);
             }
-            pushFollow(FOLLOW_elementValue_in_defaultValue1097);
-            elementValue71=elementValue();
+            pushFollow(FOLLOW_elementValue_in_defaultValue1185);
+            elementValue78=elementValue();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, elementValue71.getTree());
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, elementValue78.getTree());
 
             }
 
@@ -2940,7 +3252,7 @@ public class MstageParser extends ChameleonParser {
 
         }
         finally {
-            if ( state.backtracking>0 ) { memoize(input, 29, defaultValue_StartIndex); }
+            if ( state.backtracking>0 ) { memoize(input, 33, defaultValue_StartIndex); }
         }
         return retval;
     }
@@ -2954,94 +3266,103 @@ public class MstageParser extends ChameleonParser {
     public static final BitSet FOLLOW_componentDeclaration_in_compilationUnit86 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_interfaceDeclaration_in_compilationUnit91 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_23_in_interfaceDeclaration110 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_Identifier_in_interfaceDeclaration114 = new BitSet(new long[]{0x000007FA00000010L});
+    public static final BitSet FOLLOW_Identifier_in_interfaceDeclaration114 = new BitSet(new long[]{0x00001FE800000010L});
     public static final BitSet FOLLOW_interfaceBody_in_interfaceDeclaration120 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_interfaceServiceDeclaration_in_interfaceBody137 = new BitSet(new long[]{0x0000000001000000L});
-    public static final BitSet FOLLOW_24_in_interfaceBody138 = new BitSet(new long[]{0x000007FA00000012L});
+    public static final BitSet FOLLOW_24_in_interfaceBody138 = new BitSet(new long[]{0x00001FE800000012L});
     public static final BitSet FOLLOW_interfaceServiceReturnType_in_interfaceServiceDeclaration159 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_Identifier_in_interfaceServiceDeclaration163 = new BitSet(new long[]{0x0000000002000000L});
     public static final BitSet FOLLOW_formalParameters_in_interfaceServiceDeclaration167 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_voidType_in_interfaceServiceReturnType186 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_type_in_interfaceServiceReturnType195 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_25_in_formalParameters222 = new BitSet(new long[]{0x000007FA04000010L});
+    public static final BitSet FOLLOW_25_in_formalParameters222 = new BitSet(new long[]{0x00001FE804000010L});
     public static final BitSet FOLLOW_formalParameterDecls_in_formalParameters227 = new BitSet(new long[]{0x0000000004000000L});
     public static final BitSet FOLLOW_26_in_formalParameters233 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_type_in_formalParameterDecls258 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_Identifier_in_formalParameterDecls262 = new BitSet(new long[]{0x0000000008000002L});
-    public static final BitSet FOLLOW_27_in_formalParameterDecls265 = new BitSet(new long[]{0x000007FA00000010L});
+    public static final BitSet FOLLOW_27_in_formalParameterDecls265 = new BitSet(new long[]{0x00001FE800000010L});
     public static final BitSet FOLLOW_formalParameterDecls_in_formalParameterDecls269 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_28_in_componentDeclaration301 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_Identifier_in_componentDeclaration305 = new BitSet(new long[]{0x0000000020000000L});
-    public static final BitSet FOLLOW_componentBody_in_componentDeclaration309 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_29_in_componentBody326 = new BitSet(new long[]{0x00000001C0000000L});
-    public static final BitSet FOLLOW_componentBodyDeclaration_in_componentBody328 = new BitSet(new long[]{0x00000001C0000000L});
-    public static final BitSet FOLLOW_30_in_componentBody332 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_31_in_componentBodyDeclaration348 = new BitSet(new long[]{0x0000000020000000L});
-    public static final BitSet FOLLOW_componentInterfaceDependencyBody_in_componentBodyDeclaration352 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_32_in_componentBodyDeclaration359 = new BitSet(new long[]{0x0000000020000000L});
-    public static final BitSet FOLLOW_componentInterfaceDependencyBody_in_componentBodyDeclaration363 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_29_in_componentInterfaceDependencyBody380 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_Identifier_in_componentInterfaceDependencyBody386 = new BitSet(new long[]{0x0000000048000000L});
-    public static final BitSet FOLLOW_27_in_componentInterfaceDependencyBody396 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_Identifier_in_componentInterfaceDependencyBody400 = new BitSet(new long[]{0x0000000048000000L});
-    public static final BitSet FOLLOW_30_in_componentInterfaceDependencyBody414 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_33_in_voidType442 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_classOrInterfaceType_in_type469 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_primitiveType_in_type478 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_Identifier_in_classOrInterfaceType503 = new BitSet(new long[]{0x0000000400000002L});
-    public static final BitSet FOLLOW_34_in_classOrInterfaceType530 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_Identifier_in_classOrInterfaceType534 = new BitSet(new long[]{0x0000000400000002L});
-    public static final BitSet FOLLOW_35_in_primitiveType583 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_36_in_primitiveType595 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_37_in_primitiveType607 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_38_in_primitiveType619 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_39_in_primitiveType631 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_40_in_primitiveType643 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_41_in_primitiveType655 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_42_in_primitiveType667 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_annotation_in_annotations691 = new BitSet(new long[]{0x0000080000000002L});
-    public static final BitSet FOLLOW_43_in_annotation711 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_annotationName_in_annotation713 = new BitSet(new long[]{0x0000000002000002L});
-    public static final BitSet FOLLOW_25_in_annotation717 = new BitSet(new long[]{0x0000080024000010L});
-    public static final BitSet FOLLOW_elementValuePairs_in_annotation721 = new BitSet(new long[]{0x0000000004000000L});
-    public static final BitSet FOLLOW_elementValue_in_annotation725 = new BitSet(new long[]{0x0000000004000000L});
-    public static final BitSet FOLLOW_26_in_annotation730 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_Identifier_in_annotationName754 = new BitSet(new long[]{0x0000000400000002L});
-    public static final BitSet FOLLOW_34_in_annotationName757 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_Identifier_in_annotationName759 = new BitSet(new long[]{0x0000000400000002L});
-    public static final BitSet FOLLOW_elementValuePair_in_elementValuePairs780 = new BitSet(new long[]{0x0000000008000002L});
-    public static final BitSet FOLLOW_27_in_elementValuePairs783 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_elementValuePair_in_elementValuePairs785 = new BitSet(new long[]{0x0000000008000002L});
-    public static final BitSet FOLLOW_Identifier_in_elementValuePair806 = new BitSet(new long[]{0x0000100000000000L});
-    public static final BitSet FOLLOW_44_in_elementValuePair808 = new BitSet(new long[]{0x0000080020000000L});
-    public static final BitSet FOLLOW_elementValue_in_elementValuePair810 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_annotation_in_elementValue833 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_elementValueArrayInitializer_in_elementValue843 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_29_in_elementValueArrayInitializer866 = new BitSet(new long[]{0x0000080068000000L});
-    public static final BitSet FOLLOW_elementValue_in_elementValueArrayInitializer869 = new BitSet(new long[]{0x0000000048000000L});
-    public static final BitSet FOLLOW_27_in_elementValueArrayInitializer872 = new BitSet(new long[]{0x0000080020000000L});
-    public static final BitSet FOLLOW_elementValue_in_elementValueArrayInitializer874 = new BitSet(new long[]{0x0000000048000000L});
-    public static final BitSet FOLLOW_27_in_elementValueArrayInitializer881 = new BitSet(new long[]{0x0000000040000000L});
-    public static final BitSet FOLLOW_30_in_elementValueArrayInitializer885 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_43_in_annotationTypeDeclaration912 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_23_in_annotationTypeDeclaration914 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_Identifier_in_annotationTypeDeclaration918 = new BitSet(new long[]{0x0000000020000000L});
-    public static final BitSet FOLLOW_annotationTypeBody_in_annotationTypeDeclaration920 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_29_in_annotationTypeBody943 = new BitSet(new long[]{0x00000FFA40000010L});
-    public static final BitSet FOLLOW_annotationTypeElementDeclaration_in_annotationTypeBody946 = new BitSet(new long[]{0x00000FFA40000010L});
-    public static final BitSet FOLLOW_30_in_annotationTypeBody950 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_annotationTypeElementRest_in_annotationTypeElementDeclaration975 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_type_in_annotationTypeElementRest998 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_annotationMethodOrConstantRest_in_annotationTypeElementRest1000 = new BitSet(new long[]{0x0000000001000000L});
-    public static final BitSet FOLLOW_24_in_annotationTypeElementRest1002 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_annotationTypeDeclaration_in_annotationTypeElementRest1012 = new BitSet(new long[]{0x0000000001000002L});
-    public static final BitSet FOLLOW_24_in_annotationTypeElementRest1014 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_annotationMethodRest_in_annotationMethodOrConstantRest1038 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_Identifier_in_annotationMethodRest1061 = new BitSet(new long[]{0x0000000002000000L});
-    public static final BitSet FOLLOW_25_in_annotationMethodRest1063 = new BitSet(new long[]{0x0000000004000000L});
-    public static final BitSet FOLLOW_26_in_annotationMethodRest1065 = new BitSet(new long[]{0x0000200000000002L});
-    public static final BitSet FOLLOW_defaultValue_in_annotationMethodRest1067 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_45_in_defaultValue1095 = new BitSet(new long[]{0x0000080020000000L});
-    public static final BitSet FOLLOW_elementValue_in_defaultValue1097 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_28_in_compositeDeclaration299 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_Identifier_in_compositeDeclaration303 = new BitSet(new long[]{0x0000000020000000L});
+    public static final BitSet FOLLOW_compositeBody_in_compositeDeclaration309 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_29_in_compositeBody323 = new BitSet(new long[]{0x00000006C0000000L});
+    public static final BitSet FOLLOW_compositeBodyDeclaration_in_compositeBody326 = new BitSet(new long[]{0x00000006C0000000L});
+    public static final BitSet FOLLOW_componentBodyDeclaration_in_compositeBody331 = new BitSet(new long[]{0x00000006C0000000L});
+    public static final BitSet FOLLOW_30_in_compositeBody336 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_31_in_compositeBodyDeclaration349 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_32_in_componentDeclaration370 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_Identifier_in_componentDeclaration374 = new BitSet(new long[]{0x0000000020000000L});
+    public static final BitSet FOLLOW_componentBody_in_componentDeclaration378 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_29_in_componentBody395 = new BitSet(new long[]{0x00000006C0000000L});
+    public static final BitSet FOLLOW_componentBodyDeclaration_in_componentBody397 = new BitSet(new long[]{0x00000006C0000000L});
+    public static final BitSet FOLLOW_30_in_componentBody401 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_33_in_componentBodyDeclaration417 = new BitSet(new long[]{0x0000000020000000L});
+    public static final BitSet FOLLOW_componentDependencyBody_in_componentBodyDeclaration421 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_34_in_componentBodyDeclaration428 = new BitSet(new long[]{0x0000000020000000L});
+    public static final BitSet FOLLOW_componentDependencyBody_in_componentBodyDeclaration432 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_29_in_componentDependencyBody455 = new BitSet(new long[]{0x0000000040000010L});
+    public static final BitSet FOLLOW_componentDependencyBodyDecls_in_componentDependencyBody460 = new BitSet(new long[]{0x0000000040000000L});
+    public static final BitSet FOLLOW_30_in_componentDependencyBody467 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_Identifier_in_componentDependencyBodyDecls487 = new BitSet(new long[]{0x0000000008000002L});
+    public static final BitSet FOLLOW_27_in_componentDependencyBodyDecls490 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_componentDependencyBodyDecls_in_componentDependencyBodyDecls494 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_35_in_voidType530 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_classOrInterfaceType_in_type557 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_primitiveType_in_type566 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_Identifier_in_classOrInterfaceType591 = new BitSet(new long[]{0x0000001000000002L});
+    public static final BitSet FOLLOW_36_in_classOrInterfaceType618 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_Identifier_in_classOrInterfaceType622 = new BitSet(new long[]{0x0000001000000002L});
+    public static final BitSet FOLLOW_37_in_primitiveType671 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_38_in_primitiveType683 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_39_in_primitiveType695 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_40_in_primitiveType707 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_41_in_primitiveType719 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_42_in_primitiveType731 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_43_in_primitiveType743 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_44_in_primitiveType755 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_annotation_in_annotations779 = new BitSet(new long[]{0x0000200000000002L});
+    public static final BitSet FOLLOW_45_in_annotation799 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_annotationName_in_annotation801 = new BitSet(new long[]{0x0000000002000002L});
+    public static final BitSet FOLLOW_25_in_annotation805 = new BitSet(new long[]{0x0000200024000010L});
+    public static final BitSet FOLLOW_elementValuePairs_in_annotation809 = new BitSet(new long[]{0x0000000004000000L});
+    public static final BitSet FOLLOW_elementValue_in_annotation813 = new BitSet(new long[]{0x0000000004000000L});
+    public static final BitSet FOLLOW_26_in_annotation818 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_Identifier_in_annotationName842 = new BitSet(new long[]{0x0000001000000002L});
+    public static final BitSet FOLLOW_36_in_annotationName845 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_Identifier_in_annotationName847 = new BitSet(new long[]{0x0000001000000002L});
+    public static final BitSet FOLLOW_elementValuePair_in_elementValuePairs868 = new BitSet(new long[]{0x0000000008000002L});
+    public static final BitSet FOLLOW_27_in_elementValuePairs871 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_elementValuePair_in_elementValuePairs873 = new BitSet(new long[]{0x0000000008000002L});
+    public static final BitSet FOLLOW_Identifier_in_elementValuePair894 = new BitSet(new long[]{0x0000400000000000L});
+    public static final BitSet FOLLOW_46_in_elementValuePair896 = new BitSet(new long[]{0x0000200020000000L});
+    public static final BitSet FOLLOW_elementValue_in_elementValuePair898 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_annotation_in_elementValue921 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_elementValueArrayInitializer_in_elementValue931 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_29_in_elementValueArrayInitializer954 = new BitSet(new long[]{0x0000200068000000L});
+    public static final BitSet FOLLOW_elementValue_in_elementValueArrayInitializer957 = new BitSet(new long[]{0x0000000048000000L});
+    public static final BitSet FOLLOW_27_in_elementValueArrayInitializer960 = new BitSet(new long[]{0x0000200020000000L});
+    public static final BitSet FOLLOW_elementValue_in_elementValueArrayInitializer962 = new BitSet(new long[]{0x0000000048000000L});
+    public static final BitSet FOLLOW_27_in_elementValueArrayInitializer969 = new BitSet(new long[]{0x0000000040000000L});
+    public static final BitSet FOLLOW_30_in_elementValueArrayInitializer973 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_45_in_annotationTypeDeclaration1000 = new BitSet(new long[]{0x0000000000800000L});
+    public static final BitSet FOLLOW_23_in_annotationTypeDeclaration1002 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_Identifier_in_annotationTypeDeclaration1006 = new BitSet(new long[]{0x0000000020000000L});
+    public static final BitSet FOLLOW_annotationTypeBody_in_annotationTypeDeclaration1008 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_29_in_annotationTypeBody1031 = new BitSet(new long[]{0x00003FE840000010L});
+    public static final BitSet FOLLOW_annotationTypeElementDeclaration_in_annotationTypeBody1034 = new BitSet(new long[]{0x00003FE840000010L});
+    public static final BitSet FOLLOW_30_in_annotationTypeBody1038 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_annotationTypeElementRest_in_annotationTypeElementDeclaration1063 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_type_in_annotationTypeElementRest1086 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_annotationMethodOrConstantRest_in_annotationTypeElementRest1088 = new BitSet(new long[]{0x0000000001000000L});
+    public static final BitSet FOLLOW_24_in_annotationTypeElementRest1090 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_annotationTypeDeclaration_in_annotationTypeElementRest1100 = new BitSet(new long[]{0x0000000001000002L});
+    public static final BitSet FOLLOW_24_in_annotationTypeElementRest1102 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_annotationMethodRest_in_annotationMethodOrConstantRest1126 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_Identifier_in_annotationMethodRest1149 = new BitSet(new long[]{0x0000000002000000L});
+    public static final BitSet FOLLOW_25_in_annotationMethodRest1151 = new BitSet(new long[]{0x0000000004000000L});
+    public static final BitSet FOLLOW_26_in_annotationMethodRest1153 = new BitSet(new long[]{0x0000800000000002L});
+    public static final BitSet FOLLOW_defaultValue_in_annotationMethodRest1155 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_47_in_defaultValue1183 = new BitSet(new long[]{0x0000200020000000L});
+    public static final BitSet FOLLOW_elementValue_in_defaultValue1185 = new BitSet(new long[]{0x0000000000000002L});
 
 }
