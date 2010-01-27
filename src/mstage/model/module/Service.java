@@ -22,15 +22,105 @@ import java.util.List;
 import org.rejuse.association.OrderedMultiAssociation;
 import org.rejuse.association.SingleAssociation;
 
+import chameleon.core.declaration.Signature;
+import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.element.Element;
 import chameleon.core.method.MethodHeader;
 import chameleon.core.reference.SimpleReference;
+import chameleon.core.type.TypeReference;
 import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.Valid;
 import chameleon.core.validation.VerificationResult;
+import chameleon.core.variable.FormalParameter;
+import chameleon.support.member.simplename.SimpleNameMethodHeader;
 import chameleon.util.Util;
 
 public class Service extends JoinPointElement<Service, Element> {
+	
+	
+	protected Service() {
+	}
+	
+	public Service(Signature signature, TypeReference returnType, 
+			List<FormalParameter> formalParameters, 
+			List<SimpleReference<Property>> properties) {
+		
+		super();
+		
+		
+		//return type
+		setReturnType(returnType);
+		
+		
+		//signature (+formal parameters)
+		MethodHeader header = new SimpleNameMethodHeader(signature.toString());
+		for (FormalParameter formalParameter : formalParameters) {
+			header.addParameter(formalParameter);
+		}
+		setHeader(header);
+		
+		
+		//properties
+		for (SimpleReference<Property> property : properties) {
+			addProperty(property);
+		}
+	}
+	
+
+	/* (non-Javadoc)
+	 * @see mstage.model.namespace.MStageDeclaration#signature()
+	 */
+	@Override
+	public SimpleNameSignature signature() {
+		return new SimpleNameSignature(header().name());
+	}
+
+	/* (non-Javadoc)
+	 * @see chameleon.core.method.MethodHeader#addParameter(chameleon.core.variable.FormalParameter)
+	 */
+	/**
+	 * @param arg
+	 */
+	public void addParameter(FormalParameter arg) {
+		header().addParameter(arg);
+	}
+
+	/* (non-Javadoc)
+	 * @see chameleon.core.method.MethodHeader#formalParameters()
+	 */
+	/**
+	 * @return	a List of FormalParameter objects
+	 */
+	public List<FormalParameter> formalParameters() {
+		return header().formalParameters();
+	}
+
+	
+	
+	/*
+	 * Association to the return type
+	 */
+	private final SingleAssociation<Service, TypeReference> _returnType =
+		new SingleAssociation<Service, TypeReference>(this);
+	
+	
+	/**
+	 * @return	the service's return type
+	 */
+	public TypeReference returnType() {
+		return _returnType.getOtherEnd();
+	}
+	
+	/**
+	 * @param returnType
+	 */
+	public void setReturnType(TypeReference returnType) {
+		if (returnType != null) {
+			_returnType.connectTo(returnType.parentLink());
+		}
+	}
+	
+	
 	
 	/*
 	 * Association to the Service 
@@ -72,14 +162,14 @@ public class Service extends JoinPointElement<Service, Element> {
 	/**
 	 * @param relation	the property to attach
 	 */
-	public void addServices(SimpleReference<Property> relation) {
+	public void addProperty(SimpleReference<Property> relation) {
 		_attachedProperties.add(relation.parentLink());
 	}
 	
 	/**
 	 * @param relation the service to remove from the aggregation
 	 */
-	public void removeServices(SimpleReference<Property> relation) {
+	public void removeProperty(SimpleReference<Property> relation) {
 		_attachedProperties.remove(relation.parentLink());
 	}
 
@@ -113,10 +203,14 @@ public class Service extends JoinPointElement<Service, Element> {
 				this.header().clone()
 		);
 		
+		clone.setReturnType(
+				this.returnType().clone()
+		);
+		
 		for (SimpleReference<Property> property : attachedProperties()) {
 			SimpleReference<Property> localClone = property.clone();
 			
-			clone.addServices(localClone);
+			clone.addProperty(localClone);
 		}
 		
 		return clone;

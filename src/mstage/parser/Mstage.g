@@ -42,6 +42,7 @@ import mstage.model.namespace.MStageDeclaration;
 
 import chameleon.core.compilationunit.CompilationUnit;
 import chameleon.core.declaration.SimpleNameSignature;
+import chameleon.core.declaration.Signature;
 import chameleon.core.expression.InvocationTarget;
 import chameleon.core.type.TypeReference;
 import chameleon.core.namespace.NamespaceOrTypeReference;
@@ -61,8 +62,7 @@ package mstage.parser;
 }
 
 /*@lexer::members {
-  protected boolean enumIsKeyword = true;
-  protected boolean assertIsKeyword = true;
+ 
 }*/
 
 /*
@@ -92,18 +92,6 @@ retval.element.add(npp);
 
 
 
-/*    
-componentOrInterfaceDeclaration returns [Type element]
-@init{Token start = null; 
-      Token end = null;}
-@after{setLocation(retval.element, start, end);}
-    :    (cd=componentDeclaration 
-                {retval.element=cd.element; end=cd.stop; if(mods == null) {start=cd.start;}} 
-          | id=interfaceDeclaration 
-                {retval.element=id.element; end=id.stop; if(mods == null) {start=id.start;}}) 
-    ;
-*/
-
 
 //interface
 interfaceDeclaration returns [Interface element]
@@ -117,39 +105,36 @@ interfaceDeclaration returns [Interface element]
 
 interfaceBody[Interface element]
 	:	(service=interfaceServiceDeclaration';')* {
-			
+			$element.addService($service.element);
 		}
 	;
-
 
 interfaceServiceDeclaration returns [Service element]
-	:	rtype=interfaceServiceReturnType name=Identifier pars=formalParameters {
-			$element= new Service();
+	:	rtype=interfaceServiceReturnType name=Identifier params=formalParameters {
+			Signature signature = new SimpleNameSignature($name.text);
+			$element= new Service(signature,$rtype.element,$params.element,null); //TODO: add properties
 		}
 	;
-
 
 interfaceServiceReturnType returns [TypeReference element]
 	:	vt=voidType { $element=$vt.element; }
 	|	tp=type { $element=$tp.element; }
 	;
 
-
 formalParameters returns [List<FormalParameter> element]
-@init{$element = new ArrayList<FormalParameter>();}
+@init{$element = new ArrayList<FormalParameter>();} // create empty one, in case there are no parameters
     :   '(' (pars=formalParameterDecls {$element=pars.element;})? ')'
     ;
 
-
 formalParameterDecls returns [List<FormalParameter> element]
-    :   t=type id=Identifier (',' decls=formalParameterDecls { $element=decls.element; })? 
+    :   t=type name=Identifier (',' decls=formalParameterDecls { $element=decls.element; })? 
     	{
     		if($element == null) {
          		$element=new ArrayList<FormalParameter>();
          	}
 			
 			FormalParameter param = 
-				new FormalParameter(new SimpleNameSignature($id.text),$t.element);
+				new FormalParameter(new SimpleNameSignature($name.text),$t.element);
 			
 			$element.add(0,param);
          }
@@ -162,8 +147,7 @@ componentDeclaration returns [Component element]
 	:   'component' name=Identifier {
     			$element = new Component(new SimpleNameSignature($name.text)); 
     			setLocation(retval.element,name,"__NAME");
-			} 
-			componentBody[$element]
+			} componentBody[$element]
 	;
     
 componentBody[Component element]
@@ -184,7 +168,15 @@ componentBodyDeclaration[Component element]
 	;
 
 componentInterfaceDependencyBody returns [List<String> interfaces]
-	:	'{' { $interfaces=new ArrayList<String>(); } iface=Identifier {$interfaces.add($iface.text);} (',' iface=Identifier {$interfaces.add($iface.text);})*
+	:	'{' { 
+				$interfaces=new ArrayList<String>(); 
+			} iface=Identifier 
+				{
+					$interfaces.add($iface.text);
+				} (',' iface=Identifier 
+					{
+						$interfaces.add($iface.text);
+					})*
 		'}'
 	;
 
@@ -272,6 +264,68 @@ primitiveType returns [TypeReference element]
     |   'float' {retval.element = new TypeReference("float");}
     |   'double' {retval.element = new TypeReference("double");}
     ;
+
+
+// ANNOTATIONS
+
+annotations
+    :   annotation+
+    ;
+
+annotation
+    :   '@' annotationName ( '(' ( elementValuePairs | elementValue )? ')' )?
+    ;
+    
+annotationName
+    : Identifier ('.' Identifier)*
+    ;
+
+elementValuePairs
+    :   elementValuePair (',' elementValuePair)*
+    ;
+
+elementValuePair
+    :   Identifier '=' elementValue
+    ;
+    
+elementValue
+    :   annotation
+    |   elementValueArrayInitializer
+    ;
+    
+elementValueArrayInitializer
+    :   '{' (elementValue (',' elementValue)*)? (',')? '}'
+    ;
+    
+annotationTypeDeclaration returns [Type element]
+    :   '@' 'interface' name=Identifier annotationTypeBody
+    ;
+    
+annotationTypeBody
+    :   '{' (annotationTypeElementDeclaration)* '}'
+    ;
+    
+annotationTypeElementDeclaration
+    :   /*modifiers*/ annotationTypeElementRest
+    ;
+    
+annotationTypeElementRest
+    :   type annotationMethodOrConstantRest ';'
+    |   annotationTypeDeclaration ';'?
+    ;
+    
+annotationMethodOrConstantRest
+    :   annotationMethodRest
+    ;
+    
+annotationMethodRest
+    :   Identifier '(' ')' defaultValue?
+    ;
+        
+defaultValue
+    :   'default' elementValue
+    ;
+    
 
 
 // LEXER
