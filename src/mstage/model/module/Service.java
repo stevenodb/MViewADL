@@ -38,9 +38,18 @@ import chameleon.util.Util;
 public class Service extends JoinPointElement<Service, Element> {
 	
 	
+	/**
+	 * Default constructor
+	 */
 	protected Service() {
 	}
 	
+	/**
+	 * @param signature
+	 * @param returnType
+	 * @param formalParameters
+	 * @param properties
+	 */
 	public Service(Signature signature, TypeReference returnType, 
 			List<FormalParameter> formalParameters, 
 			List<SimpleReference<Property>> properties) {
@@ -227,6 +236,10 @@ public class Service extends JoinPointElement<Service, Element> {
 			result = result.and(new BasicProblem(this, "Missing header"));
 		}
 		
+		if ( ! (this.returnType() != null) ) {
+			result = result.and(new BasicProblem(this, "ReturnType is null"));
+		}
+
 		if ( ! (this.attachedProperties() != null) ) {
 			result = result.and(new BasicProblem(this, "AttachedProperties is null"));
 		}
