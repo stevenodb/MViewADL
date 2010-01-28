@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g 2010-01-27 17:21:08
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g 2010-01-28 14:11:46
 
 package mstage.parser;
 
@@ -22,6 +22,7 @@ public class MstageLexer extends Lexer {
     public static final int EscapeSequence=13;
     public static final int T__27=27;
     public static final int T__24=24;
+    public static final int T__48=48;
     public static final int T__34=34;
     public static final int FloatingPointLiteral=12;
     public static final int FloatTypeSuffix=11;
@@ -174,10 +175,10 @@ public class MstageLexer extends Lexer {
         try {
             int _type = T__28;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:12:7: ( 'composite' )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:12:9: 'composite'
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:12:7: ( 'connector' )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:12:9: 'connector'
             {
-            match("composite"); 
+            match("connector"); 
 
 
             }
@@ -195,10 +196,11 @@ public class MstageLexer extends Lexer {
         try {
             int _type = T__29;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:13:7: ( '{' )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:13:9: '{'
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:13:7: ( 'composite' )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:13:9: 'composite'
             {
-            match('{'); 
+            match("composite"); 
+
 
             }
 
@@ -215,10 +217,10 @@ public class MstageLexer extends Lexer {
         try {
             int _type = T__30;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:14:7: ( '}' )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:14:9: '}'
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:14:7: ( '{' )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:14:9: '{'
             {
-            match('}'); 
+            match('{'); 
 
             }
 
@@ -235,11 +237,10 @@ public class MstageLexer extends Lexer {
         try {
             int _type = T__31;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:15:7: ( 'contain' )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:15:9: 'contain'
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:15:7: ( '}' )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:15:9: '}'
             {
-            match("contain"); 
-
+            match('}'); 
 
             }
 
@@ -256,10 +257,10 @@ public class MstageLexer extends Lexer {
         try {
             int _type = T__32;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:16:7: ( 'component' )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:16:9: 'component'
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:16:7: ( 'contain' )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:16:9: 'contain'
             {
-            match("component"); 
+            match("contain"); 
 
 
             }
@@ -277,10 +278,10 @@ public class MstageLexer extends Lexer {
         try {
             int _type = T__33;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:17:7: ( 'require' )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:17:9: 'require'
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:17:7: ( 'component' )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:17:9: 'component'
             {
-            match("require"); 
+            match("component"); 
 
 
             }
@@ -298,10 +299,10 @@ public class MstageLexer extends Lexer {
         try {
             int _type = T__34;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:18:7: ( 'provide' )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:18:9: 'provide'
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:18:7: ( 'require' )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:18:9: 'require'
             {
-            match("provide"); 
+            match("require"); 
 
 
             }
@@ -319,10 +320,10 @@ public class MstageLexer extends Lexer {
         try {
             int _type = T__35;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:19:7: ( 'void' )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:19:9: 'void'
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:19:7: ( 'provide' )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:19:9: 'provide'
             {
-            match("void"); 
+            match("provide"); 
 
 
             }
@@ -340,10 +341,11 @@ public class MstageLexer extends Lexer {
         try {
             int _type = T__36;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:20:7: ( '.' )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:20:9: '.'
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:20:7: ( 'void' )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:20:9: 'void'
             {
-            match('.'); 
+            match("void"); 
+
 
             }
 
@@ -360,11 +362,10 @@ public class MstageLexer extends Lexer {
         try {
             int _type = T__37;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:21:7: ( 'boolean' )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:21:9: 'boolean'
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:21:7: ( '.' )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:21:9: '.'
             {
-            match("boolean"); 
-
+            match('.'); 
 
             }
 
@@ -381,10 +382,10 @@ public class MstageLexer extends Lexer {
         try {
             int _type = T__38;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:22:7: ( 'char' )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:22:9: 'char'
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:22:7: ( 'boolean' )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:22:9: 'boolean'
             {
-            match("char"); 
+            match("boolean"); 
 
 
             }
@@ -402,10 +403,10 @@ public class MstageLexer extends Lexer {
         try {
             int _type = T__39;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:23:7: ( 'byte' )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:23:9: 'byte'
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:23:7: ( 'char' )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:23:9: 'char'
             {
-            match("byte"); 
+            match("char"); 
 
 
             }
@@ -423,10 +424,10 @@ public class MstageLexer extends Lexer {
         try {
             int _type = T__40;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:24:7: ( 'short' )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:24:9: 'short'
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:24:7: ( 'byte' )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:24:9: 'byte'
             {
-            match("short"); 
+            match("byte"); 
 
 
             }
@@ -444,10 +445,10 @@ public class MstageLexer extends Lexer {
         try {
             int _type = T__41;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:25:7: ( 'int' )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:25:9: 'int'
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:25:7: ( 'short' )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:25:9: 'short'
             {
-            match("int"); 
+            match("short"); 
 
 
             }
@@ -465,10 +466,10 @@ public class MstageLexer extends Lexer {
         try {
             int _type = T__42;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:26:7: ( 'long' )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:26:9: 'long'
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:26:7: ( 'int' )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:26:9: 'int'
             {
-            match("long"); 
+            match("int"); 
 
 
             }
@@ -486,10 +487,10 @@ public class MstageLexer extends Lexer {
         try {
             int _type = T__43;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:27:7: ( 'float' )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:27:9: 'float'
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:27:7: ( 'long' )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:27:9: 'long'
             {
-            match("float"); 
+            match("long"); 
 
 
             }
@@ -507,10 +508,10 @@ public class MstageLexer extends Lexer {
         try {
             int _type = T__44;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:28:7: ( 'double' )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:28:9: 'double'
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:28:7: ( 'float' )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:28:9: 'float'
             {
-            match("double"); 
+            match("float"); 
 
 
             }
@@ -528,10 +529,11 @@ public class MstageLexer extends Lexer {
         try {
             int _type = T__45;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:29:7: ( '@' )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:29:9: '@'
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:29:7: ( 'double' )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:29:9: 'double'
             {
-            match('@'); 
+            match("double"); 
+
 
             }
 
@@ -548,10 +550,10 @@ public class MstageLexer extends Lexer {
         try {
             int _type = T__46;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:30:7: ( '=' )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:30:9: '='
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:30:7: ( '@' )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:30:9: '@'
             {
-            match('='); 
+            match('@'); 
 
             }
 
@@ -568,8 +570,28 @@ public class MstageLexer extends Lexer {
         try {
             int _type = T__47;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:31:7: ( 'default' )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:31:9: 'default'
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:31:7: ( '=' )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:31:9: '='
+            {
+            match('='); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__47"
+
+    // $ANTLR start "T__48"
+    public final void mT__48() throws RecognitionException {
+        try {
+            int _type = T__48;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:32:7: ( 'default' )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:32:9: 'default'
             {
             match("default"); 
 
@@ -582,15 +604,15 @@ public class MstageLexer extends Lexer {
         finally {
         }
     }
-    // $ANTLR end "T__47"
+    // $ANTLR end "T__48"
 
     // $ANTLR start "HexLiteral"
     public final void mHexLiteral() throws RecognitionException {
         try {
             int _type = HexLiteral;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:376:12: ( '0' ( 'x' | 'X' ) ( HexDigit )+ ( IntegerTypeSuffix )? )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:376:14: '0' ( 'x' | 'X' ) ( HexDigit )+ ( IntegerTypeSuffix )?
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:407:12: ( '0' ( 'x' | 'X' ) ( HexDigit )+ ( IntegerTypeSuffix )? )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:407:14: '0' ( 'x' | 'X' ) ( HexDigit )+ ( IntegerTypeSuffix )?
             {
             match('0'); 
             if ( input.LA(1)=='X'||input.LA(1)=='x' ) {
@@ -602,7 +624,7 @@ public class MstageLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:376:28: ( HexDigit )+
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:407:28: ( HexDigit )+
             int cnt1=0;
             loop1:
             do {
@@ -616,7 +638,7 @@ public class MstageLexer extends Lexer {
 
                 switch (alt1) {
             	case 1 :
-            	    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:376:28: HexDigit
+            	    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:407:28: HexDigit
             	    {
             	    mHexDigit(); 
 
@@ -632,7 +654,7 @@ public class MstageLexer extends Lexer {
                 cnt1++;
             } while (true);
 
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:376:38: ( IntegerTypeSuffix )?
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:407:38: ( IntegerTypeSuffix )?
             int alt2=2;
             int LA2_0 = input.LA(1);
 
@@ -641,7 +663,7 @@ public class MstageLexer extends Lexer {
             }
             switch (alt2) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:376:38: IntegerTypeSuffix
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:407:38: IntegerTypeSuffix
                     {
                     mIntegerTypeSuffix(); 
 
@@ -666,10 +688,10 @@ public class MstageLexer extends Lexer {
         try {
             int _type = DecimalLiteral;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:378:16: ( ( '0' | '1' .. '9' ( '0' .. '9' )* ) ( IntegerTypeSuffix )? )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:378:18: ( '0' | '1' .. '9' ( '0' .. '9' )* ) ( IntegerTypeSuffix )?
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:409:16: ( ( '0' | '1' .. '9' ( '0' .. '9' )* ) ( IntegerTypeSuffix )? )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:409:18: ( '0' | '1' .. '9' ( '0' .. '9' )* ) ( IntegerTypeSuffix )?
             {
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:378:18: ( '0' | '1' .. '9' ( '0' .. '9' )* )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:409:18: ( '0' | '1' .. '9' ( '0' .. '9' )* )
             int alt4=2;
             int LA4_0 = input.LA(1);
 
@@ -687,17 +709,17 @@ public class MstageLexer extends Lexer {
             }
             switch (alt4) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:378:19: '0'
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:409:19: '0'
                     {
                     match('0'); 
 
                     }
                     break;
                 case 2 :
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:378:25: '1' .. '9' ( '0' .. '9' )*
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:409:25: '1' .. '9' ( '0' .. '9' )*
                     {
                     matchRange('1','9'); 
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:378:34: ( '0' .. '9' )*
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:409:34: ( '0' .. '9' )*
                     loop3:
                     do {
                         int alt3=2;
@@ -710,7 +732,7 @@ public class MstageLexer extends Lexer {
 
                         switch (alt3) {
                     	case 1 :
-                    	    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:378:34: '0' .. '9'
+                    	    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:409:34: '0' .. '9'
                     	    {
                     	    matchRange('0','9'); 
 
@@ -728,7 +750,7 @@ public class MstageLexer extends Lexer {
 
             }
 
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:378:45: ( IntegerTypeSuffix )?
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:409:45: ( IntegerTypeSuffix )?
             int alt5=2;
             int LA5_0 = input.LA(1);
 
@@ -737,7 +759,7 @@ public class MstageLexer extends Lexer {
             }
             switch (alt5) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:378:45: IntegerTypeSuffix
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:409:45: IntegerTypeSuffix
                     {
                     mIntegerTypeSuffix(); 
 
@@ -762,11 +784,11 @@ public class MstageLexer extends Lexer {
         try {
             int _type = OctalLiteral;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:380:14: ( '0' ( '0' .. '7' )+ ( IntegerTypeSuffix )? )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:380:16: '0' ( '0' .. '7' )+ ( IntegerTypeSuffix )?
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:411:14: ( '0' ( '0' .. '7' )+ ( IntegerTypeSuffix )? )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:411:16: '0' ( '0' .. '7' )+ ( IntegerTypeSuffix )?
             {
             match('0'); 
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:380:20: ( '0' .. '7' )+
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:411:20: ( '0' .. '7' )+
             int cnt6=0;
             loop6:
             do {
@@ -780,7 +802,7 @@ public class MstageLexer extends Lexer {
 
                 switch (alt6) {
             	case 1 :
-            	    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:380:21: '0' .. '7'
+            	    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:411:21: '0' .. '7'
             	    {
             	    matchRange('0','7'); 
 
@@ -796,7 +818,7 @@ public class MstageLexer extends Lexer {
                 cnt6++;
             } while (true);
 
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:380:32: ( IntegerTypeSuffix )?
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:411:32: ( IntegerTypeSuffix )?
             int alt7=2;
             int LA7_0 = input.LA(1);
 
@@ -805,7 +827,7 @@ public class MstageLexer extends Lexer {
             }
             switch (alt7) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:380:32: IntegerTypeSuffix
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:411:32: IntegerTypeSuffix
                     {
                     mIntegerTypeSuffix(); 
 
@@ -828,8 +850,8 @@ public class MstageLexer extends Lexer {
     // $ANTLR start "HexDigit"
     public final void mHexDigit() throws RecognitionException {
         try {
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:383:10: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:383:12: ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:414:10: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:414:12: ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )
             {
             if ( (input.LA(1)>='0' && input.LA(1)<='9')||(input.LA(1)>='A' && input.LA(1)<='F')||(input.LA(1)>='a' && input.LA(1)<='f') ) {
                 input.consume();
@@ -852,8 +874,8 @@ public class MstageLexer extends Lexer {
     // $ANTLR start "IntegerTypeSuffix"
     public final void mIntegerTypeSuffix() throws RecognitionException {
         try {
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:386:19: ( ( 'l' | 'L' ) )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:386:21: ( 'l' | 'L' )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:417:19: ( ( 'l' | 'L' ) )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:417:21: ( 'l' | 'L' )
             {
             if ( input.LA(1)=='L'||input.LA(1)=='l' ) {
                 input.consume();
@@ -878,14 +900,14 @@ public class MstageLexer extends Lexer {
         try {
             int _type = FloatingPointLiteral;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:389:5: ( ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( Exponent )? ( FloatTypeSuffix )? | '.' ( '0' .. '9' )+ ( Exponent )? ( FloatTypeSuffix )? | ( '0' .. '9' )+ Exponent ( FloatTypeSuffix )? | ( '0' .. '9' )+ FloatTypeSuffix )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:420:5: ( ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( Exponent )? ( FloatTypeSuffix )? | '.' ( '0' .. '9' )+ ( Exponent )? ( FloatTypeSuffix )? | ( '0' .. '9' )+ Exponent ( FloatTypeSuffix )? | ( '0' .. '9' )+ FloatTypeSuffix )
             int alt18=4;
             alt18 = dfa18.predict(input);
             switch (alt18) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:389:9: ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( Exponent )? ( FloatTypeSuffix )?
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:420:9: ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( Exponent )? ( FloatTypeSuffix )?
                     {
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:389:9: ( '0' .. '9' )+
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:420:9: ( '0' .. '9' )+
                     int cnt8=0;
                     loop8:
                     do {
@@ -899,7 +921,7 @@ public class MstageLexer extends Lexer {
 
                         switch (alt8) {
                     	case 1 :
-                    	    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:389:10: '0' .. '9'
+                    	    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:420:10: '0' .. '9'
                     	    {
                     	    matchRange('0','9'); 
 
@@ -916,7 +938,7 @@ public class MstageLexer extends Lexer {
                     } while (true);
 
                     match('.'); 
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:389:25: ( '0' .. '9' )*
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:420:25: ( '0' .. '9' )*
                     loop9:
                     do {
                         int alt9=2;
@@ -929,7 +951,7 @@ public class MstageLexer extends Lexer {
 
                         switch (alt9) {
                     	case 1 :
-                    	    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:389:26: '0' .. '9'
+                    	    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:420:26: '0' .. '9'
                     	    {
                     	    matchRange('0','9'); 
 
@@ -941,7 +963,7 @@ public class MstageLexer extends Lexer {
                         }
                     } while (true);
 
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:389:37: ( Exponent )?
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:420:37: ( Exponent )?
                     int alt10=2;
                     int LA10_0 = input.LA(1);
 
@@ -950,7 +972,7 @@ public class MstageLexer extends Lexer {
                     }
                     switch (alt10) {
                         case 1 :
-                            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:389:37: Exponent
+                            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:420:37: Exponent
                             {
                             mExponent(); 
 
@@ -959,7 +981,7 @@ public class MstageLexer extends Lexer {
 
                     }
 
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:389:47: ( FloatTypeSuffix )?
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:420:47: ( FloatTypeSuffix )?
                     int alt11=2;
                     int LA11_0 = input.LA(1);
 
@@ -968,7 +990,7 @@ public class MstageLexer extends Lexer {
                     }
                     switch (alt11) {
                         case 1 :
-                            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:389:47: FloatTypeSuffix
+                            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:420:47: FloatTypeSuffix
                             {
                             mFloatTypeSuffix(); 
 
@@ -981,10 +1003,10 @@ public class MstageLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:390:9: '.' ( '0' .. '9' )+ ( Exponent )? ( FloatTypeSuffix )?
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:421:9: '.' ( '0' .. '9' )+ ( Exponent )? ( FloatTypeSuffix )?
                     {
                     match('.'); 
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:390:13: ( '0' .. '9' )+
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:421:13: ( '0' .. '9' )+
                     int cnt12=0;
                     loop12:
                     do {
@@ -998,7 +1020,7 @@ public class MstageLexer extends Lexer {
 
                         switch (alt12) {
                     	case 1 :
-                    	    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:390:14: '0' .. '9'
+                    	    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:421:14: '0' .. '9'
                     	    {
                     	    matchRange('0','9'); 
 
@@ -1014,7 +1036,7 @@ public class MstageLexer extends Lexer {
                         cnt12++;
                     } while (true);
 
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:390:25: ( Exponent )?
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:421:25: ( Exponent )?
                     int alt13=2;
                     int LA13_0 = input.LA(1);
 
@@ -1023,7 +1045,7 @@ public class MstageLexer extends Lexer {
                     }
                     switch (alt13) {
                         case 1 :
-                            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:390:25: Exponent
+                            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:421:25: Exponent
                             {
                             mExponent(); 
 
@@ -1032,7 +1054,7 @@ public class MstageLexer extends Lexer {
 
                     }
 
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:390:35: ( FloatTypeSuffix )?
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:421:35: ( FloatTypeSuffix )?
                     int alt14=2;
                     int LA14_0 = input.LA(1);
 
@@ -1041,7 +1063,7 @@ public class MstageLexer extends Lexer {
                     }
                     switch (alt14) {
                         case 1 :
-                            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:390:35: FloatTypeSuffix
+                            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:421:35: FloatTypeSuffix
                             {
                             mFloatTypeSuffix(); 
 
@@ -1054,9 +1076,9 @@ public class MstageLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:391:9: ( '0' .. '9' )+ Exponent ( FloatTypeSuffix )?
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:422:9: ( '0' .. '9' )+ Exponent ( FloatTypeSuffix )?
                     {
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:391:9: ( '0' .. '9' )+
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:422:9: ( '0' .. '9' )+
                     int cnt15=0;
                     loop15:
                     do {
@@ -1070,7 +1092,7 @@ public class MstageLexer extends Lexer {
 
                         switch (alt15) {
                     	case 1 :
-                    	    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:391:10: '0' .. '9'
+                    	    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:422:10: '0' .. '9'
                     	    {
                     	    matchRange('0','9'); 
 
@@ -1087,7 +1109,7 @@ public class MstageLexer extends Lexer {
                     } while (true);
 
                     mExponent(); 
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:391:30: ( FloatTypeSuffix )?
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:422:30: ( FloatTypeSuffix )?
                     int alt16=2;
                     int LA16_0 = input.LA(1);
 
@@ -1096,7 +1118,7 @@ public class MstageLexer extends Lexer {
                     }
                     switch (alt16) {
                         case 1 :
-                            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:391:30: FloatTypeSuffix
+                            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:422:30: FloatTypeSuffix
                             {
                             mFloatTypeSuffix(); 
 
@@ -1109,9 +1131,9 @@ public class MstageLexer extends Lexer {
                     }
                     break;
                 case 4 :
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:392:9: ( '0' .. '9' )+ FloatTypeSuffix
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:423:9: ( '0' .. '9' )+ FloatTypeSuffix
                     {
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:392:9: ( '0' .. '9' )+
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:423:9: ( '0' .. '9' )+
                     int cnt17=0;
                     loop17:
                     do {
@@ -1125,7 +1147,7 @@ public class MstageLexer extends Lexer {
 
                         switch (alt17) {
                     	case 1 :
-                    	    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:392:10: '0' .. '9'
+                    	    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:423:10: '0' .. '9'
                     	    {
                     	    matchRange('0','9'); 
 
@@ -1158,8 +1180,8 @@ public class MstageLexer extends Lexer {
     // $ANTLR start "Exponent"
     public final void mExponent() throws RecognitionException {
         try {
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:396:10: ( ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+ )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:396:12: ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:427:10: ( ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+ )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:427:12: ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+
             {
             if ( input.LA(1)=='E'||input.LA(1)=='e' ) {
                 input.consume();
@@ -1170,7 +1192,7 @@ public class MstageLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:396:22: ( '+' | '-' )?
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:427:22: ( '+' | '-' )?
             int alt19=2;
             int LA19_0 = input.LA(1);
 
@@ -1196,7 +1218,7 @@ public class MstageLexer extends Lexer {
 
             }
 
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:396:33: ( '0' .. '9' )+
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:427:33: ( '0' .. '9' )+
             int cnt20=0;
             loop20:
             do {
@@ -1210,7 +1232,7 @@ public class MstageLexer extends Lexer {
 
                 switch (alt20) {
             	case 1 :
-            	    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:396:34: '0' .. '9'
+            	    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:427:34: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -1238,8 +1260,8 @@ public class MstageLexer extends Lexer {
     // $ANTLR start "FloatTypeSuffix"
     public final void mFloatTypeSuffix() throws RecognitionException {
         try {
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:399:17: ( ( 'f' | 'F' | 'd' | 'D' ) )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:399:19: ( 'f' | 'F' | 'd' | 'D' )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:430:17: ( ( 'f' | 'F' | 'd' | 'D' ) )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:430:19: ( 'f' | 'F' | 'd' | 'D' )
             {
             if ( input.LA(1)=='D'||input.LA(1)=='F'||input.LA(1)=='d'||input.LA(1)=='f' ) {
                 input.consume();
@@ -1264,11 +1286,11 @@ public class MstageLexer extends Lexer {
         try {
             int _type = CharacterLiteral;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:402:5: ( '\\'' ( EscapeSequence | ~ ( '\\'' | '\\\\' ) ) '\\'' )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:402:9: '\\'' ( EscapeSequence | ~ ( '\\'' | '\\\\' ) ) '\\''
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:433:5: ( '\\'' ( EscapeSequence | ~ ( '\\'' | '\\\\' ) ) '\\'' )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:433:9: '\\'' ( EscapeSequence | ~ ( '\\'' | '\\\\' ) ) '\\''
             {
             match('\''); 
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:402:14: ( EscapeSequence | ~ ( '\\'' | '\\\\' ) )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:433:14: ( EscapeSequence | ~ ( '\\'' | '\\\\' ) )
             int alt21=2;
             int LA21_0 = input.LA(1);
 
@@ -1286,14 +1308,14 @@ public class MstageLexer extends Lexer {
             }
             switch (alt21) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:402:16: EscapeSequence
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:433:16: EscapeSequence
                     {
                     mEscapeSequence(); 
 
                     }
                     break;
                 case 2 :
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:402:33: ~ ( '\\'' | '\\\\' )
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:433:33: ~ ( '\\'' | '\\\\' )
                     {
                     if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                         input.consume();
@@ -1327,11 +1349,11 @@ public class MstageLexer extends Lexer {
         try {
             int _type = StringLiteral;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:406:5: ( '\"' ( EscapeSequence | ~ ( '\\\\' | '\"' ) )* '\"' )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:406:8: '\"' ( EscapeSequence | ~ ( '\\\\' | '\"' ) )* '\"'
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:437:5: ( '\"' ( EscapeSequence | ~ ( '\\\\' | '\"' ) )* '\"' )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:437:8: '\"' ( EscapeSequence | ~ ( '\\\\' | '\"' ) )* '\"'
             {
             match('\"'); 
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:406:12: ( EscapeSequence | ~ ( '\\\\' | '\"' ) )*
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:437:12: ( EscapeSequence | ~ ( '\\\\' | '\"' ) )*
             loop22:
             do {
                 int alt22=3;
@@ -1347,14 +1369,14 @@ public class MstageLexer extends Lexer {
 
                 switch (alt22) {
             	case 1 :
-            	    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:406:14: EscapeSequence
+            	    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:437:14: EscapeSequence
             	    {
             	    mEscapeSequence(); 
 
             	    }
             	    break;
             	case 2 :
-            	    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:406:31: ~ ( '\\\\' | '\"' )
+            	    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:437:31: ~ ( '\\\\' | '\"' )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -1389,7 +1411,7 @@ public class MstageLexer extends Lexer {
     // $ANTLR start "EscapeSequence"
     public final void mEscapeSequence() throws RecognitionException {
         try {
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:411:5: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | UnicodeEscape | OctalEscape )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:442:5: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | UnicodeEscape | OctalEscape )
             int alt23=3;
             int LA23_0 = input.LA(1);
 
@@ -1440,7 +1462,7 @@ public class MstageLexer extends Lexer {
             }
             switch (alt23) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:411:9: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:442:9: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
                     {
                     match('\\'); 
                     if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||input.LA(1)=='t' ) {
@@ -1456,14 +1478,14 @@ public class MstageLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:412:9: UnicodeEscape
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:443:9: UnicodeEscape
                     {
                     mUnicodeEscape(); 
 
                     }
                     break;
                 case 3 :
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:413:9: OctalEscape
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:444:9: OctalEscape
                     {
                     mOctalEscape(); 
 
@@ -1480,7 +1502,7 @@ public class MstageLexer extends Lexer {
     // $ANTLR start "OctalEscape"
     public final void mOctalEscape() throws RecognitionException {
         try {
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:418:5: ( '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:449:5: ( '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) )
             int alt24=3;
             int LA24_0 = input.LA(1);
 
@@ -1491,9 +1513,9 @@ public class MstageLexer extends Lexer {
                     int LA24_2 = input.LA(3);
 
                     if ( ((LA24_2>='0' && LA24_2<='7')) ) {
-                        int LA24_5 = input.LA(4);
+                        int LA24_4 = input.LA(4);
 
-                        if ( ((LA24_5>='0' && LA24_5<='7')) ) {
+                        if ( ((LA24_4>='0' && LA24_4<='7')) ) {
                             alt24=1;
                         }
                         else {
@@ -1526,25 +1548,25 @@ public class MstageLexer extends Lexer {
             }
             switch (alt24) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:418:9: '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' )
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:449:9: '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' )
                     {
                     match('\\'); 
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:418:14: ( '0' .. '3' )
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:418:15: '0' .. '3'
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:449:14: ( '0' .. '3' )
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:449:15: '0' .. '3'
                     {
                     matchRange('0','3'); 
 
                     }
 
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:418:25: ( '0' .. '7' )
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:418:26: '0' .. '7'
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:449:25: ( '0' .. '7' )
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:449:26: '0' .. '7'
                     {
                     matchRange('0','7'); 
 
                     }
 
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:418:36: ( '0' .. '7' )
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:418:37: '0' .. '7'
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:449:36: ( '0' .. '7' )
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:449:37: '0' .. '7'
                     {
                     matchRange('0','7'); 
 
@@ -1554,18 +1576,18 @@ public class MstageLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:419:9: '\\\\' ( '0' .. '7' ) ( '0' .. '7' )
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:450:9: '\\\\' ( '0' .. '7' ) ( '0' .. '7' )
                     {
                     match('\\'); 
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:419:14: ( '0' .. '7' )
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:419:15: '0' .. '7'
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:450:14: ( '0' .. '7' )
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:450:15: '0' .. '7'
                     {
                     matchRange('0','7'); 
 
                     }
 
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:419:25: ( '0' .. '7' )
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:419:26: '0' .. '7'
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:450:25: ( '0' .. '7' )
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:450:26: '0' .. '7'
                     {
                     matchRange('0','7'); 
 
@@ -1575,11 +1597,11 @@ public class MstageLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:420:9: '\\\\' ( '0' .. '7' )
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:451:9: '\\\\' ( '0' .. '7' )
                     {
                     match('\\'); 
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:420:14: ( '0' .. '7' )
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:420:15: '0' .. '7'
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:451:14: ( '0' .. '7' )
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:451:15: '0' .. '7'
                     {
                     matchRange('0','7'); 
 
@@ -1599,8 +1621,8 @@ public class MstageLexer extends Lexer {
     // $ANTLR start "UnicodeEscape"
     public final void mUnicodeEscape() throws RecognitionException {
         try {
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:425:5: ( '\\\\' 'u' HexDigit HexDigit HexDigit HexDigit )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:425:9: '\\\\' 'u' HexDigit HexDigit HexDigit HexDigit
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:456:5: ( '\\\\' 'u' HexDigit HexDigit HexDigit HexDigit )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:456:9: '\\\\' 'u' HexDigit HexDigit HexDigit HexDigit
             {
             match('\\'); 
             match('u'); 
@@ -1622,11 +1644,11 @@ public class MstageLexer extends Lexer {
         try {
             int _type = Identifier;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:429:5: ( Letter ( Letter | JavaIDDigit )* )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:429:9: Letter ( Letter | JavaIDDigit )*
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:460:5: ( Letter ( Letter | JavaIDDigit )* )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:460:9: Letter ( Letter | JavaIDDigit )*
             {
             mLetter(); 
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:429:16: ( Letter | JavaIDDigit )*
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:460:16: ( Letter | JavaIDDigit )*
             loop25:
             do {
                 int alt25=2;
@@ -1673,7 +1695,7 @@ public class MstageLexer extends Lexer {
     // $ANTLR start "Letter"
     public final void mLetter() throws RecognitionException {
         try {
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:437:5: ( '\\u0024' | '\\u0041' .. '\\u005a' | '\\u005f' | '\\u0061' .. '\\u007a' | '\\u00c0' .. '\\u00d6' | '\\u00d8' .. '\\u00f6' | '\\u00f8' .. '\\u00ff' | '\\u0100' .. '\\u1fff' | '\\u3040' .. '\\u318f' | '\\u3300' .. '\\u337f' | '\\u3400' .. '\\u3d2d' | '\\u4e00' .. '\\u9fff' | '\\uf900' .. '\\ufaff' )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:468:5: ( '\\u0024' | '\\u0041' .. '\\u005a' | '\\u005f' | '\\u0061' .. '\\u007a' | '\\u00c0' .. '\\u00d6' | '\\u00d8' .. '\\u00f6' | '\\u00f8' .. '\\u00ff' | '\\u0100' .. '\\u1fff' | '\\u3040' .. '\\u318f' | '\\u3300' .. '\\u337f' | '\\u3400' .. '\\u3d2d' | '\\u4e00' .. '\\u9fff' | '\\uf900' .. '\\ufaff' )
             // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:
             {
             if ( input.LA(1)=='$'||(input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z')||(input.LA(1)>='\u00C0' && input.LA(1)<='\u00D6')||(input.LA(1)>='\u00D8' && input.LA(1)<='\u00F6')||(input.LA(1)>='\u00F8' && input.LA(1)<='\u1FFF')||(input.LA(1)>='\u3040' && input.LA(1)<='\u318F')||(input.LA(1)>='\u3300' && input.LA(1)<='\u337F')||(input.LA(1)>='\u3400' && input.LA(1)<='\u3D2D')||(input.LA(1)>='\u4E00' && input.LA(1)<='\u9FFF')||(input.LA(1)>='\uF900' && input.LA(1)<='\uFAFF') ) {
@@ -1697,7 +1719,7 @@ public class MstageLexer extends Lexer {
     // $ANTLR start "JavaIDDigit"
     public final void mJavaIDDigit() throws RecognitionException {
         try {
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:454:5: ( '\\u0030' .. '\\u0039' | '\\u0660' .. '\\u0669' | '\\u06f0' .. '\\u06f9' | '\\u0966' .. '\\u096f' | '\\u09e6' .. '\\u09ef' | '\\u0a66' .. '\\u0a6f' | '\\u0ae6' .. '\\u0aef' | '\\u0b66' .. '\\u0b6f' | '\\u0be7' .. '\\u0bef' | '\\u0c66' .. '\\u0c6f' | '\\u0ce6' .. '\\u0cef' | '\\u0d66' .. '\\u0d6f' | '\\u0e50' .. '\\u0e59' | '\\u0ed0' .. '\\u0ed9' | '\\u1040' .. '\\u1049' )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:485:5: ( '\\u0030' .. '\\u0039' | '\\u0660' .. '\\u0669' | '\\u06f0' .. '\\u06f9' | '\\u0966' .. '\\u096f' | '\\u09e6' .. '\\u09ef' | '\\u0a66' .. '\\u0a6f' | '\\u0ae6' .. '\\u0aef' | '\\u0b66' .. '\\u0b6f' | '\\u0be7' .. '\\u0bef' | '\\u0c66' .. '\\u0c6f' | '\\u0ce6' .. '\\u0cef' | '\\u0d66' .. '\\u0d6f' | '\\u0e50' .. '\\u0e59' | '\\u0ed0' .. '\\u0ed9' | '\\u1040' .. '\\u1049' )
             // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:
             {
             if ( (input.LA(1)>='0' && input.LA(1)<='9')||(input.LA(1)>='\u0660' && input.LA(1)<='\u0669')||(input.LA(1)>='\u06F0' && input.LA(1)<='\u06F9')||(input.LA(1)>='\u0966' && input.LA(1)<='\u096F')||(input.LA(1)>='\u09E6' && input.LA(1)<='\u09EF')||(input.LA(1)>='\u0A66' && input.LA(1)<='\u0A6F')||(input.LA(1)>='\u0AE6' && input.LA(1)<='\u0AEF')||(input.LA(1)>='\u0B66' && input.LA(1)<='\u0B6F')||(input.LA(1)>='\u0BE7' && input.LA(1)<='\u0BEF')||(input.LA(1)>='\u0C66' && input.LA(1)<='\u0C6F')||(input.LA(1)>='\u0CE6' && input.LA(1)<='\u0CEF')||(input.LA(1)>='\u0D66' && input.LA(1)<='\u0D6F')||(input.LA(1)>='\u0E50' && input.LA(1)<='\u0E59')||(input.LA(1)>='\u0ED0' && input.LA(1)<='\u0ED9')||(input.LA(1)>='\u1040' && input.LA(1)<='\u1049') ) {
@@ -1723,8 +1745,8 @@ public class MstageLexer extends Lexer {
         try {
             int _type = WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:471:5: ( ( ' ' | '\\r' | '\\t' | '\\u000C' | '\\n' ) )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:471:8: ( ' ' | '\\r' | '\\t' | '\\u000C' | '\\n' )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:502:5: ( ( ' ' | '\\r' | '\\t' | '\\u000C' | '\\n' ) )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:502:8: ( ' ' | '\\r' | '\\t' | '\\u000C' | '\\n' )
             {
             if ( (input.LA(1)>='\t' && input.LA(1)<='\n')||(input.LA(1)>='\f' && input.LA(1)<='\r')||input.LA(1)==' ' ) {
                 input.consume();
@@ -1752,12 +1774,12 @@ public class MstageLexer extends Lexer {
         try {
             int _type = COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:475:5: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:475:9: '/*' ( options {greedy=false; } : . )* '*/'
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:506:5: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:506:9: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:475:14: ( options {greedy=false; } : . )*
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:506:14: ( options {greedy=false; } : . )*
             loop26:
             do {
                 int alt26=2;
@@ -1782,7 +1804,7 @@ public class MstageLexer extends Lexer {
 
                 switch (alt26) {
             	case 1 :
-            	    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:475:42: .
+            	    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:506:42: .
             	    {
             	    matchAny(); 
 
@@ -1813,12 +1835,12 @@ public class MstageLexer extends Lexer {
         try {
             int _type = LINE_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:479:5: ( '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:479:7: '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n'
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:510:5: ( '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:510:7: '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n'
             {
             match("//"); 
 
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:479:12: (~ ( '\\n' | '\\r' ) )*
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:510:12: (~ ( '\\n' | '\\r' ) )*
             loop27:
             do {
                 int alt27=2;
@@ -1831,7 +1853,7 @@ public class MstageLexer extends Lexer {
 
                 switch (alt27) {
             	case 1 :
-            	    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:479:12: ~ ( '\\n' | '\\r' )
+            	    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:510:12: ~ ( '\\n' | '\\r' )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -1851,7 +1873,7 @@ public class MstageLexer extends Lexer {
                 }
             } while (true);
 
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:479:26: ( '\\r' )?
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:510:26: ( '\\r' )?
             int alt28=2;
             int LA28_0 = input.LA(1);
 
@@ -1860,7 +1882,7 @@ public class MstageLexer extends Lexer {
             }
             switch (alt28) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:479:26: '\\r'
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:510:26: '\\r'
                     {
                     match('\r'); 
 
@@ -1883,8 +1905,8 @@ public class MstageLexer extends Lexer {
     // $ANTLR end "LINE_COMMENT"
 
     public void mTokens() throws RecognitionException {
-        // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:1:8: ( T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | HexLiteral | DecimalLiteral | OctalLiteral | FloatingPointLiteral | CharacterLiteral | StringLiteral | Identifier | WS | COMMENT | LINE_COMMENT )
-        int alt29=35;
+        // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:1:8: ( T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | HexLiteral | DecimalLiteral | OctalLiteral | FloatingPointLiteral | CharacterLiteral | StringLiteral | Identifier | WS | COMMENT | LINE_COMMENT )
+        int alt29=36;
         alt29 = dfa29.predict(input);
         switch (alt29) {
             case 1 :
@@ -2063,70 +2085,77 @@ public class MstageLexer extends Lexer {
                 }
                 break;
             case 26 :
-                // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:1:160: HexLiteral
+                // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:1:160: T__48
+                {
+                mT__48(); 
+
+                }
+                break;
+            case 27 :
+                // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:1:166: HexLiteral
                 {
                 mHexLiteral(); 
 
                 }
                 break;
-            case 27 :
-                // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:1:171: DecimalLiteral
+            case 28 :
+                // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:1:177: DecimalLiteral
                 {
                 mDecimalLiteral(); 
 
                 }
                 break;
-            case 28 :
-                // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:1:186: OctalLiteral
+            case 29 :
+                // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:1:192: OctalLiteral
                 {
                 mOctalLiteral(); 
 
                 }
                 break;
-            case 29 :
-                // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:1:199: FloatingPointLiteral
+            case 30 :
+                // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:1:205: FloatingPointLiteral
                 {
                 mFloatingPointLiteral(); 
 
                 }
                 break;
-            case 30 :
-                // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:1:220: CharacterLiteral
+            case 31 :
+                // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:1:226: CharacterLiteral
                 {
                 mCharacterLiteral(); 
 
                 }
                 break;
-            case 31 :
-                // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:1:237: StringLiteral
+            case 32 :
+                // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:1:243: StringLiteral
                 {
                 mStringLiteral(); 
 
                 }
                 break;
-            case 32 :
-                // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:1:251: Identifier
+            case 33 :
+                // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:1:257: Identifier
                 {
                 mIdentifier(); 
 
                 }
                 break;
-            case 33 :
-                // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:1:262: WS
+            case 34 :
+                // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:1:268: WS
                 {
                 mWS(); 
 
                 }
                 break;
-            case 34 :
-                // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:1:265: COMMENT
+            case 35 :
+                // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:1:271: COMMENT
                 {
                 mCOMMENT(); 
 
                 }
                 break;
-            case 35 :
-                // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:1:273: LINE_COMMENT
+            case 36 :
+                // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:1:279: LINE_COMMENT
                 {
                 mLINE_COMMENT(); 
 
@@ -2149,12 +2178,12 @@ public class MstageLexer extends Lexer {
     static final String DFA18_maxS =
         "\1\71\1\146\4\uffff";
     static final String DFA18_acceptS =
-        "\2\uffff\1\2\1\3\1\4\1\1";
+        "\2\uffff\1\2\1\4\1\3\1\1";
     static final String DFA18_specialS =
         "\6\uffff}>";
     static final String[] DFA18_transitionS = {
             "\1\2\1\uffff\12\1",
-            "\1\5\1\uffff\12\1\12\uffff\1\4\1\3\1\4\35\uffff\1\4\1\3\1\4",
+            "\1\5\1\uffff\12\1\12\uffff\1\3\1\4\1\3\35\uffff\1\3\1\4\1\3",
             "",
             "",
             "",
@@ -2191,49 +2220,52 @@ public class MstageLexer extends Lexer {
             this.transition = DFA18_transition;
         }
         public String getDescription() {
-            return "388:1: FloatingPointLiteral : ( ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( Exponent )? ( FloatTypeSuffix )? | '.' ( '0' .. '9' )+ ( Exponent )? ( FloatTypeSuffix )? | ( '0' .. '9' )+ Exponent ( FloatTypeSuffix )? | ( '0' .. '9' )+ FloatTypeSuffix );";
+            return "419:1: FloatingPointLiteral : ( ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( Exponent )? ( FloatTypeSuffix )? | '.' ( '0' .. '9' )+ ( Exponent )? ( FloatTypeSuffix )? | ( '0' .. '9' )+ Exponent ( FloatTypeSuffix )? | ( '0' .. '9' )+ FloatTypeSuffix );";
         }
     }
     static final String DFA29_eotS =
         "\1\uffff\1\30\4\uffff\1\30\2\uffff\3\30\1\41\5\30\2\uffff\2\54\5"+
         "\uffff\6\30\2\uffff\7\30\1\uffff\1\76\1\uffff\1\54\2\uffff\1\100"+
-        "\15\30\1\uffff\1\30\1\uffff\2\30\1\121\2\30\1\124\1\30\1\126\1\30"+
-        "\1\130\6\30\1\uffff\2\30\1\uffff\1\30\1\uffff\1\143\1\uffff\1\144"+
-        "\11\30\2\uffff\1\156\4\30\1\163\1\164\1\165\1\166\1\uffff\1\167"+
-        "\3\30\5\uffff\1\173\1\174\1\175\3\uffff";
+        "\15\30\1\uffff\1\30\1\uffff\3\30\1\123\2\30\1\126\1\30\1\130\1\30"+
+        "\1\132\7\30\1\uffff\2\30\1\uffff\1\30\1\uffff\1\146\1\uffff\1\147"+
+        "\12\30\2\uffff\1\162\3\30\1\166\2\30\1\171\1\172\1\173\1\uffff\1"+
+        "\174\2\30\1\uffff\2\30\4\uffff\1\u0081\1\u0082\1\u0083\1\u0084\4"+
+        "\uffff";
     static final String DFA29_eofS =
-        "\176\uffff";
+        "\u0085\uffff";
     static final String DFA29_minS =
         "\1\11\1\156\4\uffff\1\150\2\uffff\1\145\1\162\1\157\1\60\1\157\1"+
         "\150\1\157\1\154\1\145\2\uffff\2\56\4\uffff\1\52\1\164\1\155\1\141"+
         "\1\161\1\157\1\151\2\uffff\1\157\1\164\1\157\1\156\1\157\1\165\1"+
-        "\146\1\uffff\1\56\1\uffff\1\56\2\uffff\1\44\1\160\1\164\1\162\1"+
+        "\146\1\uffff\1\56\1\uffff\1\56\2\uffff\1\44\1\156\1\160\1\162\1"+
         "\165\1\166\1\144\1\154\1\145\1\162\1\147\1\141\1\142\1\141\1\uffff"+
-        "\1\162\1\uffff\1\157\1\141\1\44\2\151\1\44\1\145\1\44\1\164\1\44"+
-        "\1\164\1\154\1\165\1\146\1\156\1\151\1\uffff\1\162\1\144\1\uffff"+
-        "\1\141\1\uffff\1\44\1\uffff\1\44\1\145\1\154\1\141\1\151\1\145\1"+
-        "\156\2\145\1\156\2\uffff\1\44\1\164\1\143\1\164\1\156\4\44\1\uffff"+
-        "\1\44\2\145\1\164\5\uffff\3\44\3\uffff";
+        "\1\162\1\uffff\1\145\1\141\1\157\1\44\2\151\1\44\1\145\1\44\1\164"+
+        "\1\44\1\164\1\154\1\165\1\146\1\143\1\151\1\156\1\uffff\1\162\1"+
+        "\144\1\uffff\1\141\1\uffff\1\44\1\uffff\1\44\1\145\1\154\1\141\1"+
+        "\164\1\156\1\151\3\145\1\156\2\uffff\1\44\1\164\1\143\1\157\1\44"+
+        "\1\164\1\156\3\44\1\uffff\1\44\1\145\1\162\1\uffff\1\145\1\164\4"+
+        "\uffff\4\44\4\uffff";
     static final String DFA29_maxS =
         "\1\ufaff\1\156\4\uffff\1\157\2\uffff\1\145\1\162\1\157\1\71\1\171"+
         "\1\150\1\157\1\154\1\157\2\uffff\1\170\1\146\4\uffff\1\57\1\164"+
         "\1\156\1\141\1\161\1\157\1\151\2\uffff\1\157\1\164\1\157\1\156\1"+
-        "\157\1\165\1\146\1\uffff\1\146\1\uffff\1\146\2\uffff\1\ufaff\1\160"+
-        "\1\164\1\162\1\165\1\166\1\144\1\154\1\145\1\162\1\147\1\141\1\142"+
-        "\1\141\1\uffff\1\162\1\uffff\1\157\1\141\1\ufaff\2\151\1\ufaff\1"+
-        "\145\1\ufaff\1\164\1\ufaff\1\164\1\154\1\165\1\146\1\163\1\151\1"+
-        "\uffff\1\162\1\144\1\uffff\1\141\1\uffff\1\ufaff\1\uffff\1\ufaff"+
-        "\1\145\1\154\1\141\1\151\1\145\1\156\2\145\1\156\2\uffff\1\ufaff"+
-        "\1\164\1\143\1\164\1\156\4\ufaff\1\uffff\1\ufaff\2\145\1\164\5\uffff"+
-        "\3\ufaff\3\uffff";
+        "\157\1\165\1\146\1\uffff\1\146\1\uffff\1\146\2\uffff\1\ufaff\1\164"+
+        "\1\160\1\162\1\165\1\166\1\144\1\154\1\145\1\162\1\147\1\141\1\142"+
+        "\1\141\1\uffff\1\162\1\uffff\1\145\1\141\1\157\1\ufaff\2\151\1\ufaff"+
+        "\1\145\1\ufaff\1\164\1\ufaff\1\164\1\154\1\165\1\146\1\143\1\151"+
+        "\1\163\1\uffff\1\162\1\144\1\uffff\1\141\1\uffff\1\ufaff\1\uffff"+
+        "\1\ufaff\1\145\1\154\1\141\1\164\1\156\1\151\3\145\1\156\2\uffff"+
+        "\1\ufaff\1\164\1\143\1\157\1\ufaff\1\164\1\156\3\ufaff\1\uffff\1"+
+        "\ufaff\1\145\1\162\1\uffff\1\145\1\164\4\uffff\4\ufaff\4\uffff";
     static final String DFA29_acceptS =
-        "\2\uffff\1\2\1\3\1\4\1\5\1\uffff\1\7\1\10\11\uffff\1\27\1\30\2\uffff"+
-        "\1\36\1\37\1\40\1\41\7\uffff\1\16\1\35\7\uffff\1\32\1\uffff\1\33"+
-        "\1\uffff\1\42\1\43\16\uffff\1\34\1\uffff\1\23\20\uffff\1\20\2\uffff"+
-        "\1\15\1\uffff\1\21\1\uffff\1\24\12\uffff\1\22\1\25\11\uffff\1\26"+
-        "\4\uffff\1\11\1\13\1\14\1\17\1\31\3\uffff\1\1\1\6\1\12";
+        "\2\uffff\1\2\1\3\1\4\1\5\1\uffff\1\10\1\11\11\uffff\1\30\1\31\2"+
+        "\uffff\1\37\1\40\1\41\1\42\7\uffff\1\17\1\36\7\uffff\1\33\1\uffff"+
+        "\1\34\1\uffff\1\43\1\44\16\uffff\1\35\1\uffff\1\24\22\uffff\1\21"+
+        "\2\uffff\1\16\1\uffff\1\22\1\uffff\1\25\13\uffff\1\23\1\26\12\uffff"+
+        "\1\27\3\uffff\1\12\2\uffff\1\14\1\15\1\20\1\32\4\uffff\1\1\1\6\1"+
+        "\7\1\13";
     static final String DFA29_specialS =
-        "\176\uffff}>";
+        "\u0085\uffff}>";
     static final String[] DFA29_transitionS = {
             "\2\31\1\uffff\2\31\22\uffff\1\31\1\uffff\1\27\1\uffff\1\30\2"+
             "\uffff\1\26\1\3\1\4\2\uffff\1\5\1\uffff\1\14\1\32\1\24\11\25"+
@@ -2271,7 +2303,7 @@ public class MstageLexer extends Lexer {
             "",
             "\1\56\4\uffff\1\57",
             "\1\60",
-            "\1\61\1\62",
+            "\1\62\1\61",
             "\1\63",
             "\1\64",
             "\1\65",
@@ -2295,8 +2327,7 @@ public class MstageLexer extends Lexer {
             "\1\77\25\30\105\uffff\27\30\1\uffff\37\30\1\uffff\u1f08\30\u1040"+
             "\uffff\u0150\30\u0170\uffff\u0080\30\u0080\uffff\u092e\30\u10d2"+
             "\uffff\u5200\30\u5900\uffff\u0200\30",
-            "\1\101",
-            "\1\102",
+            "\1\101\5\uffff\1\102",
             "\1\103",
             "\1\104",
             "\1\105",
@@ -2308,21 +2339,18 @@ public class MstageLexer extends Lexer {
             "\1\113",
             "\1\114",
             "\1\115",
-            "",
             "\1\116",
             "",
             "\1\117",
+            "",
             "\1\120",
-            "\1\30\13\uffff\12\30\7\uffff\32\30\4\uffff\1\30\1\uffff\32"+
-            "\30\105\uffff\27\30\1\uffff\37\30\1\uffff\u1f08\30\u1040\uffff"+
-            "\u0150\30\u0170\uffff\u0080\30\u0080\uffff\u092e\30\u10d2\uffff"+
-            "\u5200\30\u5900\uffff\u0200\30",
+            "\1\121",
             "\1\122",
-            "\1\123",
             "\1\30\13\uffff\12\30\7\uffff\32\30\4\uffff\1\30\1\uffff\32"+
             "\30\105\uffff\27\30\1\uffff\37\30\1\uffff\u1f08\30\u1040\uffff"+
             "\u0150\30\u0170\uffff\u0080\30\u0080\uffff\u092e\30\u10d2\uffff"+
             "\u5200\30\u5900\uffff\u0200\30",
+            "\1\124",
             "\1\125",
             "\1\30\13\uffff\12\30\7\uffff\32\30\4\uffff\1\30\1\uffff\32"+
             "\30\105\uffff\27\30\1\uffff\37\30\1\uffff\u1f08\30\u1040\uffff"+
@@ -2334,70 +2362,79 @@ public class MstageLexer extends Lexer {
             "\u0150\30\u0170\uffff\u0080\30\u0080\uffff\u092e\30\u10d2\uffff"+
             "\u5200\30\u5900\uffff\u0200\30",
             "\1\131",
-            "\1\132",
+            "\1\30\13\uffff\12\30\7\uffff\32\30\4\uffff\1\30\1\uffff\32"+
+            "\30\105\uffff\27\30\1\uffff\37\30\1\uffff\u1f08\30\u1040\uffff"+
+            "\u0150\30\u0170\uffff\u0080\30\u0080\uffff\u092e\30\u10d2\uffff"+
+            "\u5200\30\u5900\uffff\u0200\30",
             "\1\133",
             "\1\134",
-            "\1\136\4\uffff\1\135",
+            "\1\135",
+            "\1\136",
             "\1\137",
-            "",
             "\1\140",
-            "\1\141",
+            "\1\142\4\uffff\1\141",
             "",
-            "\1\142",
+            "\1\143",
+            "\1\144",
             "",
-            "\1\30\13\uffff\12\30\7\uffff\32\30\4\uffff\1\30\1\uffff\32"+
-            "\30\105\uffff\27\30\1\uffff\37\30\1\uffff\u1f08\30\u1040\uffff"+
-            "\u0150\30\u0170\uffff\u0080\30\u0080\uffff\u092e\30\u10d2\uffff"+
-            "\u5200\30\u5900\uffff\u0200\30",
-            "",
-            "\1\30\13\uffff\12\30\7\uffff\32\30\4\uffff\1\30\1\uffff\32"+
-            "\30\105\uffff\27\30\1\uffff\37\30\1\uffff\u1f08\30\u1040\uffff"+
-            "\u0150\30\u0170\uffff\u0080\30\u0080\uffff\u092e\30\u10d2\uffff"+
-            "\u5200\30\u5900\uffff\u0200\30",
             "\1\145",
-            "\1\146",
-            "\1\147",
+            "",
+            "\1\30\13\uffff\12\30\7\uffff\32\30\4\uffff\1\30\1\uffff\32"+
+            "\30\105\uffff\27\30\1\uffff\37\30\1\uffff\u1f08\30\u1040\uffff"+
+            "\u0150\30\u0170\uffff\u0080\30\u0080\uffff\u092e\30\u10d2\uffff"+
+            "\u5200\30\u5900\uffff\u0200\30",
+            "",
+            "\1\30\13\uffff\12\30\7\uffff\32\30\4\uffff\1\30\1\uffff\32"+
+            "\30\105\uffff\27\30\1\uffff\37\30\1\uffff\u1f08\30\u1040\uffff"+
+            "\u0150\30\u0170\uffff\u0080\30\u0080\uffff\u092e\30\u10d2\uffff"+
+            "\u5200\30\u5900\uffff\u0200\30",
             "\1\150",
             "\1\151",
             "\1\152",
             "\1\153",
             "\1\154",
             "\1\155",
-            "",
-            "",
-            "\1\30\13\uffff\12\30\7\uffff\32\30\4\uffff\1\30\1\uffff\32"+
-            "\30\105\uffff\27\30\1\uffff\37\30\1\uffff\u1f08\30\u1040\uffff"+
-            "\u0150\30\u0170\uffff\u0080\30\u0080\uffff\u092e\30\u10d2\uffff"+
-            "\u5200\30\u5900\uffff\u0200\30",
+            "\1\156",
             "\1\157",
             "\1\160",
             "\1\161",
-            "\1\162",
-            "\1\30\13\uffff\12\30\7\uffff\32\30\4\uffff\1\30\1\uffff\32"+
-            "\30\105\uffff\27\30\1\uffff\37\30\1\uffff\u1f08\30\u1040\uffff"+
-            "\u0150\30\u0170\uffff\u0080\30\u0080\uffff\u092e\30\u10d2\uffff"+
-            "\u5200\30\u5900\uffff\u0200\30",
-            "\1\30\13\uffff\12\30\7\uffff\32\30\4\uffff\1\30\1\uffff\32"+
-            "\30\105\uffff\27\30\1\uffff\37\30\1\uffff\u1f08\30\u1040\uffff"+
-            "\u0150\30\u0170\uffff\u0080\30\u0080\uffff\u092e\30\u10d2\uffff"+
-            "\u5200\30\u5900\uffff\u0200\30",
-            "\1\30\13\uffff\12\30\7\uffff\32\30\4\uffff\1\30\1\uffff\32"+
-            "\30\105\uffff\27\30\1\uffff\37\30\1\uffff\u1f08\30\u1040\uffff"+
-            "\u0150\30\u0170\uffff\u0080\30\u0080\uffff\u092e\30\u10d2\uffff"+
-            "\u5200\30\u5900\uffff\u0200\30",
-            "\1\30\13\uffff\12\30\7\uffff\32\30\4\uffff\1\30\1\uffff\32"+
-            "\30\105\uffff\27\30\1\uffff\37\30\1\uffff\u1f08\30\u1040\uffff"+
-            "\u0150\30\u0170\uffff\u0080\30\u0080\uffff\u092e\30\u10d2\uffff"+
-            "\u5200\30\u5900\uffff\u0200\30",
+            "",
             "",
             "\1\30\13\uffff\12\30\7\uffff\32\30\4\uffff\1\30\1\uffff\32"+
             "\30\105\uffff\27\30\1\uffff\37\30\1\uffff\u1f08\30\u1040\uffff"+
             "\u0150\30\u0170\uffff\u0080\30\u0080\uffff\u092e\30\u10d2\uffff"+
             "\u5200\30\u5900\uffff\u0200\30",
+            "\1\163",
+            "\1\164",
+            "\1\165",
+            "\1\30\13\uffff\12\30\7\uffff\32\30\4\uffff\1\30\1\uffff\32"+
+            "\30\105\uffff\27\30\1\uffff\37\30\1\uffff\u1f08\30\u1040\uffff"+
+            "\u0150\30\u0170\uffff\u0080\30\u0080\uffff\u092e\30\u10d2\uffff"+
+            "\u5200\30\u5900\uffff\u0200\30",
+            "\1\167",
             "\1\170",
-            "\1\171",
-            "\1\172",
+            "\1\30\13\uffff\12\30\7\uffff\32\30\4\uffff\1\30\1\uffff\32"+
+            "\30\105\uffff\27\30\1\uffff\37\30\1\uffff\u1f08\30\u1040\uffff"+
+            "\u0150\30\u0170\uffff\u0080\30\u0080\uffff\u092e\30\u10d2\uffff"+
+            "\u5200\30\u5900\uffff\u0200\30",
+            "\1\30\13\uffff\12\30\7\uffff\32\30\4\uffff\1\30\1\uffff\32"+
+            "\30\105\uffff\27\30\1\uffff\37\30\1\uffff\u1f08\30\u1040\uffff"+
+            "\u0150\30\u0170\uffff\u0080\30\u0080\uffff\u092e\30\u10d2\uffff"+
+            "\u5200\30\u5900\uffff\u0200\30",
+            "\1\30\13\uffff\12\30\7\uffff\32\30\4\uffff\1\30\1\uffff\32"+
+            "\30\105\uffff\27\30\1\uffff\37\30\1\uffff\u1f08\30\u1040\uffff"+
+            "\u0150\30\u0170\uffff\u0080\30\u0080\uffff\u092e\30\u10d2\uffff"+
+            "\u5200\30\u5900\uffff\u0200\30",
             "",
+            "\1\30\13\uffff\12\30\7\uffff\32\30\4\uffff\1\30\1\uffff\32"+
+            "\30\105\uffff\27\30\1\uffff\37\30\1\uffff\u1f08\30\u1040\uffff"+
+            "\u0150\30\u0170\uffff\u0080\30\u0080\uffff\u092e\30\u10d2\uffff"+
+            "\u5200\30\u5900\uffff\u0200\30",
+            "\1\175",
+            "\1\176",
+            "",
+            "\1\177",
+            "\1\u0080",
             "",
             "",
             "",
@@ -2414,6 +2451,11 @@ public class MstageLexer extends Lexer {
             "\30\105\uffff\27\30\1\uffff\37\30\1\uffff\u1f08\30\u1040\uffff"+
             "\u0150\30\u0170\uffff\u0080\30\u0080\uffff\u092e\30\u10d2\uffff"+
             "\u5200\30\u5900\uffff\u0200\30",
+            "\1\30\13\uffff\12\30\7\uffff\32\30\4\uffff\1\30\1\uffff\32"+
+            "\30\105\uffff\27\30\1\uffff\37\30\1\uffff\u1f08\30\u1040\uffff"+
+            "\u0150\30\u0170\uffff\u0080\30\u0080\uffff\u092e\30\u10d2\uffff"+
+            "\u5200\30\u5900\uffff\u0200\30",
+            "",
             "",
             "",
             ""
@@ -2449,7 +2491,7 @@ public class MstageLexer extends Lexer {
             this.transition = DFA29_transition;
         }
         public String getDescription() {
-            return "1:1: Tokens : ( T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | HexLiteral | DecimalLiteral | OctalLiteral | FloatingPointLiteral | CharacterLiteral | StringLiteral | Identifier | WS | COMMENT | LINE_COMMENT );";
+            return "1:1: Tokens : ( T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | HexLiteral | DecimalLiteral | OctalLiteral | FloatingPointLiteral | CharacterLiteral | StringLiteral | Identifier | WS | COMMENT | LINE_COMMENT );";
         }
     }
  

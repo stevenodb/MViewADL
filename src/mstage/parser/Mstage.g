@@ -143,6 +143,16 @@ formalParameterDecls returns [List<FormalParameter> element]
 
 
 
+
+// connector
+connectorDeclaration returns [Connector element]
+	:	'connector'
+	;
+
+
+
+
+
 // composite
 compositeDeclaration returns [Composite element]
 	:	'composite' name=Identifier {
@@ -158,10 +168,18 @@ compositeBody[Composite element]
 
 
 compositeBodyDeclaration[Composite element]
-	:	'contain'
+	:	'contain' conts=compositeContainBody {
+			for(String module : $conts.elements) {
+				$element.addSubmodules(new SimpleReference<Module>(module,Module.class));
+			}
+		}
 	;
 
-
+compositeContainBody returns [List<String> elements]
+@init{ $elements = new ArrayList<String>(); }
+	:	'{' (decls=commaSeparatedBodyDecls {$elements=$decls.elements;} )? '}'
+	;
+	
 
 
 //component
@@ -178,24 +196,25 @@ componentBody[Component element]
     
 componentBodyDeclaration[Component element]
 	:	'require' rd=componentDependencyBody {
-			for(SimpleReference<Interface> iface : $rd.elements ) {
-				$element.addRequiredInterface(iface);
+			for(String iface : $rd.elements ) {
+				$element.addRequiredInterface(new SimpleReference<Interface>(iface, Interface.class));
 			}
 		 }
 	|	'provide' pd=componentDependencyBody {
-			for(SimpleReference<Interface> iface : $pd.elements ) {
-				$element.addProvidedInterface(iface);
+			for(String iface : $pd.elements ) {
+				$element.addProvidedInterface(new SimpleReference<Interface>(iface, Interface.class));
 			}
 		 }
 /*	|	'implementation' */
 	;
 
-componentDependencyBody returns [List<SimpleReference<Interface>> elements]
-@init{ $elements = new ArrayList<SimpleReference<Interface>>(); }
-	:	'{' (decls=componentDependencyBodyDecls {$elements=$decls.elements; } )? '}'
+componentDependencyBody returns [List<String> elements]
+@init{ $elements = new ArrayList<String>(); }
+	:	'{' (decls=commaSeparatedBodyDecls {$elements=$decls.elements; } )? '}'
 	;
 	
-	
+
+/*	
 componentDependencyBodyDecls returns [List<SimpleReference<Interface>> elements]
 	:	iface=Identifier (',' decls=componentDependencyBodyDecls {$elements = $decls.elements; })? {
 		
@@ -209,6 +228,7 @@ componentDependencyBodyDecls returns [List<SimpleReference<Interface>> elements]
 			$elements.add(0,reference);
 			}
 	;
+*/
 
 /*componentInterfaceDependencyBody returns [List<String> interfaces]
 	:	'{' { 
@@ -261,6 +281,17 @@ memberDecl returns [TypeElement element]
     ;
 */
 
+
+commaSeparatedBodyDecls returns [List<String> elements]
+	:	id=Identifier (',' decls=commaSeparatedBodyDecls {$elements=$decls.elements;})? {
+			
+			if ($elements == null) {
+				$elements = new ArrayList<String>();
+			}
+			
+			$elements.add(0,$id.text);
+		}
+	;
 
 voidType returns [TypeReference element]
 /*@after{setLocation(retval.element, (CommonToken)retval.start, (CommonToken)retval.stop, "__PRIMITIVE");}*/
