@@ -29,6 +29,7 @@ import org.rejuse.association.SingleAssociation;
 import chameleon.core.element.Element;
 import chameleon.core.namespace.NamespaceElementImpl;
 import chameleon.core.reference.SimpleReference;
+import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.Valid;
 import chameleon.core.validation.VerificationResult;
 
@@ -37,7 +38,27 @@ import chameleon.core.validation.VerificationResult;
  *
  */
 public class Advice extends NamespaceElementImpl<Advice, Element> {
+	
+	// Advice type
+	private AdviceType _type;
+	
+	/**
+	 * @return the type
+	 */
+	public AdviceType type() {
+		return this._type;
+	}
 
+	/**
+	 * @param type the type to set
+	 */
+	public void setType(AdviceType type) {
+		this._type = type;
+	}
+
+	
+	
+	// Service
 	private SingleAssociation<Advice, SimpleReference<Service>> _service =
 		new SingleAssociation<Advice, SimpleReference<Service>>(this);
 	
@@ -64,6 +85,8 @@ public class Advice extends NamespaceElementImpl<Advice, Element> {
 	public Advice clone() {
 		final Advice clone = new Advice();
 		
+		clone.setType(this.type());
+		
 		clone.setService(
 				this.service().clone()
 		);
@@ -77,6 +100,14 @@ public class Advice extends NamespaceElementImpl<Advice, Element> {
 	@Override
 	public VerificationResult verifySelf() {
 		VerificationResult result = Valid.create();
+		
+		if (! (this.type() != null)) {
+			result = result.and(new BasicProblem(this, "Does not have a type set"));
+		}
+		
+		if (! (this.service() != null)) {
+			result = result.and(new BasicProblem(this, "Does not have a service set"));
+		}
 		
 		return result;
 	}

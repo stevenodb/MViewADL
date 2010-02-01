@@ -34,18 +34,18 @@ import chameleon.util.Util;
 /**
  * @author  Steven Op de beeck <steven /at/ opdebeeck /./ org>
  */
-public abstract class SingleJoinPoint<E extends SingleJoinPoint<E,JP>,JP extends JoinPointElement> 
-					extends JoinPoint<SingleJoinPoint<E,JP>> {
+public abstract class SingleJoinPoint<E extends SingleJoinPoint<E,JPE>,JPE extends JoinPointElement> 
+					extends JoinPoint<SingleJoinPoint<E,JPE>> {
 
 	/*
 	 * Accessors for joinPoint  
 	 */
-	private SingleAssociation<NamedJoinPoint, SimpleReference<JP>> _joinPoint;
+	private SingleAssociation<NamedJoinPoint, SimpleReference<JPE>> _joinPoint;
 
 	/**
 	 * @return the joinPoint
 	 */
-	public SimpleReference<JP> joinPoint() {
+	public SimpleReference<JPE> joinPoint() {
 		return _joinPoint.getOtherEnd();
 	}
 
@@ -53,7 +53,7 @@ public abstract class SingleJoinPoint<E extends SingleJoinPoint<E,JP>,JP extends
 	 * @param joinPoint the joinPoint to set
 	 */
 	public void setJoinPoint(
-			SimpleReference<JP> relation) {_joinPoint.connectTo(relation.parentLink());
+			SimpleReference<JPE> relation) {_joinPoint.connectTo(relation.parentLink());
 	}
 
 	

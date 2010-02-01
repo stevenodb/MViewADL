@@ -1,5 +1,5 @@
 /**
- * author:     Marko Van Dooren
+ * author:     Marko van Dooren
  * author:     Steven Op de beeck <steven /at/ opdebeeck /./ org>
  * license:
  * The code contained in this file is free software: you can redistribute 

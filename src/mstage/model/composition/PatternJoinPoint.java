@@ -38,8 +38,23 @@ import chameleon.util.Util;
 public class PatternJoinPoint<E extends PatternJoinPoint<E>> 
 						extends JoinPoint<PatternJoinPoint<E>> {
 	
+	/**
+	 * 
+	 */
+	protected PatternJoinPoint() {
+		super();
+	}
 	
-	
+	/**
+	 * @param rawPattern
+	 */
+	public PatternJoinPoint(String rawPattern) {
+		this();
+		this._rawPattern = rawPattern;
+	}
+
+
+
 	/*
 	 * The raw pattern
 	 */

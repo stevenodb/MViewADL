@@ -19,14 +19,18 @@
  */
 package mstage.model.composition;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import mstage.model.namespace.MStageDeclaration;
 
 import org.rejuse.association.OrderedMultiAssociation;
 
+import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.element.Element;
+import chameleon.core.namespace.NamespaceElementImpl;
 import chameleon.core.validation.BasicProblem;
+import chameleon.core.validation.Valid;
 import chameleon.core.validation.VerificationResult;
 
 /**
@@ -34,9 +38,34 @@ import chameleon.core.validation.VerificationResult;
  * @param <E>
  *
  */
-public class Pointcut extends MStageDeclaration<Pointcut, Element> {
+public class Pointcut extends NamespaceElementImpl<Pointcut, Element> {
+		
+	/**
+	 * Default constructor
+	 */
+	public Pointcut() {
+		super();
+	}
+
+	// KIND
+	private JoinpointKind _kind;
+	
+	/**
+	 * @param kind the kind to set
+	 */
+	public void setKind(JoinpointKind kind) {
+		this._kind = kind;
+	}
+
+	/**
+	 * @return the kind
+	 */
+	public JoinpointKind kind() {
+		return _kind;
+	}
 
 	
+	// Join points
 	private OrderedMultiAssociation<Pointcut,JoinPoint<?>> _joinpoints =
 		new OrderedMultiAssociation<Pointcut, JoinPoint<?>>(this);
 	
@@ -62,19 +91,13 @@ public class Pointcut extends MStageDeclaration<Pointcut, Element> {
 	}
 	
 	/* (non-Javadoc)
-	 * @see mstage.model.namespace.MStageDeclaration#cloneThis()
-	 */
-	@Override
-	protected Pointcut cloneThis() {
-		return new Pointcut();
-	}
-	
-	/* (non-Javadoc)
 	 * @see chameleon.core.element.ElementImpl#clone()
 	 */
 	@Override
 	public Pointcut clone() {
-		final Pointcut clone = super.clone();
+		final Pointcut clone = new Pointcut();
+		
+		clone.setKind(this.kind());
 		
 		for (JoinPoint<?> joinpoint : this.joinPoints()) {
 			JoinPoint<?> localClone = joinpoint.clone();
@@ -90,9 +113,13 @@ public class Pointcut extends MStageDeclaration<Pointcut, Element> {
 	 */
 	@Override
 	public VerificationResult verifySelf() {
-		VerificationResult result = super.verifySelf();
+		VerificationResult result = Valid.create();
 		
-		if (! (joinPoints().size() >= 1)) {
+		if (! (this.kind() != null)) {
+			result = result.and(new BasicProblem(this, "Does not have a kind set"));
+		}
+		
+		if (! (this.joinPoints().size() >= 1)) {
 			result = result.and(new BasicProblem(this, "Does not aggregate any JoinPoint"));
 		}
 		
@@ -100,15 +127,13 @@ public class Pointcut extends MStageDeclaration<Pointcut, Element> {
 	}
 
 	/* (non-Javadoc)
-	 * @see mstage.model.namespace.MStageDeclaration#children()
+	 * @see chameleon.core.element.Element#children()
 	 */
-	@Override
 	public List<Element> children() {
-		List<Element> result = super.children();
+		List<Element> result = new ArrayList<Element>();
 
 		result.addAll(this.joinPoints());
 		
 		return result;
-	}
-	
+	}	
 }

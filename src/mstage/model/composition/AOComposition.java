@@ -25,6 +25,7 @@ import mstage.model.namespace.MStageDeclaration;
 
 import org.rejuse.association.SingleAssociation;
 
+import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.element.Element;
 import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.VerificationResult;
@@ -36,6 +37,21 @@ import chameleon.util.Util;
  */
 public class AOComposition extends MStageDeclaration<AOComposition, Element> {
 	
+	/**
+	 * 
+	 */
+	protected AOComposition() {
+		super();
+	}
+
+	/**
+	 * @param signature
+	 */
+	public AOComposition(SimpleNameSignature signature) {
+		super(signature);
+	}
+
+
 	/*
 	 * Advice
 	 */

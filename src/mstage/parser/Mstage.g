@@ -19,8 +19,10 @@ import mstage.model.application.AbstractHost;
 import mstage.model.application.Application;
 import mstage.model.application.Locate;
 import mstage.model.composition.Advice;
+import mstage.model.composition.AdviceType;
 import mstage.model.composition.AOComposition;
 import mstage.model.composition.JoinPoint;
+import mstage.model.composition.JoinpointKind;
 import mstage.model.composition.NamedJoinPoint;
 import mstage.model.composition.PatternJoinPoint;
 import mstage.model.composition.Pointcut;
@@ -62,30 +64,15 @@ import mstage.reuse.HostMapper;
 package mstage.parser;
 }
 
-/*@lexer::members {
- 
-}*/
 
-/*
-@parser::members {
-
-  public InvocationTarget cloneTarget(InvocationTarget target) {
-    InvocationTarget result = null;
-    if(target != null) {
-        result = target.clone();
-    }
-    return result;
-  }
-}
-*/
 
 // starting point for parsing
 compilationUnit returns [CompilationUnit element] 
 @init{ 
-NamespacePart npp = null;
-retval.element = getCompilationUnit();
-npp = new NamespacePart(language().defaultNamespace());
-retval.element.add(npp);
+	NamespacePart npp = null;
+	$element = getCompilationUnit();
+	npp = new NamespacePart(language().defaultNamespace());
+	$element.add(npp);
 }
 	:	componentDeclaration
 	|	interfaceDeclaration
@@ -94,8 +81,11 @@ retval.element.add(npp);
 
 
 
-//interface
-interfaceDeclaration returns [Interface element]
+/* ***********
+ * INTERFACE
+ *********** */
+ 
+ interfaceDeclaration returns [Interface element]
 	:	'interface' name=Identifier {
 			$element = new Interface(new SimpleNameSignature($name.text));
 			setLocation($element,$name,"__NAME");
@@ -105,19 +95,19 @@ interfaceDeclaration returns [Interface element]
 
 
 interfaceBody[Interface element]
-	:	(service=interfaceServiceDeclaration';')* {
+	:	(service=serviceDeclaration';')* {
 			$element.addService($service.element);
 		}
 	;
 
-interfaceServiceDeclaration returns [Service element]
-	:	rtype=interfaceServiceReturnType name=Identifier params=formalParameters {
+serviceDeclaration returns [Service element]
+	:	rtype=serviceReturnType name=Identifier params=formalParameters {
 			Signature signature = new SimpleNameSignature($name.text);
 			$element= new Service(signature,$rtype.element,$params.element,null); //TODO: add properties
 		}
 	;
 
-interfaceServiceReturnType returns [TypeReference element]
+serviceReturnType returns [TypeReference element]
 	:	vt=voidType { $element=$vt.element; }
 	|	tp=type { $element=$tp.element; }
 	;
@@ -144,16 +134,132 @@ formalParameterDecls returns [List<FormalParameter> element]
 
 
 
-// connector
+
+
+/* ***********
+ * CONNECTOR
+ *********** */
+
 connectorDeclaration returns [Connector element]
-	:	'connector'
+	:	'connector' name=Identifier connectorBody[$element] {
+			$element = new Connector(new SimpleNameSignature($name.text));
+		}
 	;
 
 
+connectorBody[Connector element]
+	:	'{'  connectorBodyDeclaration[$element]*  '}'
+	;
 
 
+connectorBodyDeclaration[Connector component]
+	:	connectorAOCompositionDeclaration
+	|	moduleRequireDependencyDeclaration[$component]
+	;	
+	
 
-// composite
+connectorAOCompositionDeclaration returns [AOComposition element]
+	:	'ao-composition' name=Identifier aoc=connectorAOCompositionBody {
+			$element = new AOComposition(new SimpleNameSignature($name.text));
+			
+			$element.setAdvice($aoc.advice);
+			$element.setPointcut($aoc.pointcut);
+		}
+	;
+
+
+connectorAOCompositionBody returns [Pointcut pointcut, Advice advice]
+	:	'{' pc=pointcutDeclaration adv=adviceDeclaration '}' {
+				$pointcut = $pc.element;
+				$advice = $adv.element;
+			}
+	;
+
+/*
+connectorAOCompositionBodyDeclaration
+	:	
+	;
+*/
+
+pointcutDeclaration returns [Pointcut element]
+	:	'pointcut' pointcutBody[$element] {
+				$element = new Pointcut();
+			}
+	;
+	
+	
+pointcutBody[Pointcut pointcut]
+	:	'{' pointcutBodyDeclaration[$pointcut]* '}'
+	;
+	
+pointcutBodyDeclaration[Pointcut pointcut]
+	:	pointcutKindDeclaration[$pointcut]
+	|	pointcutSignatureDeclaration[$pointcut]
+//	|	pointcutCallerDeclaration[$pointcut] 
+//	|	pointcutCalleeDeclaration[$pointcut]
+	;
+	
+pointcutKindDeclaration[Pointcut pointcut]
+	:	'kind' ':' kind=joinpointKind ';' {
+				$pointcut.setKind($kind.element);
+			}
+	;
+	
+pointcutSignatureDeclaration[Pointcut pointcut]
+	:	'signature' ':' pattern=(.*) ';' {
+				JoinPoint jp = new PatternJoinPoint($pattern.text);
+				$pointcut.addJoinPoint(jp);
+			}
+	;
+	
+/*	
+pointcutServicePattern
+	:	rtype=(serviceReturnType|'*')? ctype=(type'.'|'*')? name=(Identifier|'*') params=(formalParameters|'(..)') {
+			}
+	;
+*/	
+	
+pointcutCallerDeclaration[Pointcut pointcut]
+	:	'caller'
+	;
+	
+pointcutCalleeDeclaration[Pointcut pointcut]
+	:	'callee'
+	;
+	
+	
+adviceDeclaration returns [Advice element]
+	:	'advice' adviceBody[$element] {
+				$element = new Advice();
+			}
+	;
+
+adviceBody[Advice advice]
+	:	'{' adviceBodyDeclaration[$advice]* '}'
+	;
+	
+adviceBodyDeclaration[Advice advice]
+	:	adviceServiceDeclaration[$advice]
+	|	adviceTypeDeclaration[$advice]
+	;
+	
+adviceServiceDeclaration[Advice advice]
+	:	'service' ':' service=(.*) ';' {
+			$advice.setService(new SimpleReference($service.text,Service.class));
+		}
+	;
+	
+adviceTypeDeclaration[Advice advice]
+	:	'type' ':' advtype=adviceType ';' {
+			$advice.setType($advtype.element);
+		}
+	;
+
+/* ***********
+ * COMPOSITE
+ *********** */
+  
+ 
 compositeDeclaration returns [Composite element]
 	:	'composite' name=Identifier {
 				$element = new Composite(new SimpleNameSignature($name.text));
@@ -182,7 +288,14 @@ compositeContainBody returns [List<String> elements]
 	
 
 
-//component
+
+
+
+/* ***********
+ * COMPONENT
+ *********** */
+ 
+ 
 componentDeclaration returns [Component element]
 	:   'component' name=Identifier {
     			$element = new Component(new SimpleNameSignature($name.text)); 
@@ -190,98 +303,54 @@ componentDeclaration returns [Component element]
 			} componentBody[$element]
 	;
     
+    
 componentBody[Component element]
 	: '{' componentBodyDeclaration[$element]* '}'
 	;
+	
     
 componentBodyDeclaration[Component element]
-	:	'require' rd=componentDependencyBody {
+	:	moduleRequireDependencyDeclaration[$element]
+	|	moduleProvideDependencyDeclaration[$element]
+/*	|	'implementation' */
+	;
+
+
+
+
+
+
+/* ***********
+ * MODULE
+ *********** */
+ 
+moduleDependencyBody returns [List<String> elements]
+@init{ $elements = new ArrayList<String>(); }
+	:	'{' (decls=commaSeparatedBodyDecls {$elements=$decls.elements; } )? '}'
+	;
+ 
+ moduleRequireDependencyDeclaration[Module element]
+	:	'require' rd=moduleDependencyBody {
 			for(String iface : $rd.elements ) {
 				$element.addRequiredInterface(new SimpleReference<Interface>(iface, Interface.class));
 			}
 		 }
-	|	'provide' pd=componentDependencyBody {
-			for(String iface : $pd.elements ) {
+	;
+
+
+ moduleProvideDependencyDeclaration[Module element]
+	:	'provide' rd=moduleDependencyBody {
+			for(String iface : $rd.elements ) {
 				$element.addProvidedInterface(new SimpleReference<Interface>(iface, Interface.class));
 			}
 		 }
-/*	|	'implementation' */
 	;
 
-componentDependencyBody returns [List<String> elements]
-@init{ $elements = new ArrayList<String>(); }
-	:	'{' (decls=commaSeparatedBodyDecls {$elements=$decls.elements; } )? '}'
-	;
-	
 
-/*	
-componentDependencyBodyDecls returns [List<SimpleReference<Interface>> elements]
-	:	iface=Identifier (',' decls=componentDependencyBodyDecls {$elements = $decls.elements; })? {
-		
-			if ($elements == null) {
-				$elements = new ArrayList<SimpleReference<Interface>>();
-			}
-			
-			SimpleReference<Interface> reference =
-				new SimpleReference<Interface>($iface.text, Interface.class);
-				
-			$elements.add(0,reference);
-			}
-	;
-*/
-
-/*componentInterfaceDependencyBody returns [List<String> interfaces]
-	:	'{' { 
-				$interfaces=new ArrayList<String>(); 
-			} iface=Identifier 
-				{
-					$interfaces.add($iface.text);
-				} (',' iface=Identifier 
-					{
-						$interfaces.add($iface.text);
-					})*
-		'}'
-	;
-*/
-
-/*
-interfaceDeclaration returns [Interface element]
-    :   ifkw='interface' name=Identifier {
-    			retval.element = new Interface(new SimpleNameSignature($name.text)); 
-                setLocation(retval.element,name,"__NAME");
-			} 
-    ;
-    
-classBody returns [ClassBody element]
-    :   '{' {retval.element = new ClassBody();} (decl=classBodyDeclaration {retval.element.add(decl.element);})* '}'
-    ;
-    
-interfaceBody returns [ClassBody element]
-    :   '{' {retval.element = new ClassBody();} (decl=interfaceBodyDeclaration {retval.element.add(decl.element);})* '}'
-    ;
-
-classBodyDeclaration returns [TypeElement element]
-@init{
-  Token start=null;
-  Token stop=null;
-}
-@after{setLocation(retval.element, (CommonToken)start, (CommonToken)stop);}
-    :   sckw=';' {retval.element = new EmptyTypeElement(); start=sckw; stop=sckw;}
-    |   stkw='static'? bl=block {retval.element = new StaticInitializer(bl.element); start=stkw;stop=bl.stop;}
-    |   mods=modifiers decl=memberDecl {retval.element = decl.element; retval.element.addModifiers(mods.element); start=mods.start; stop=decl.stop;}
-    ;
-    
-memberDecl returns [TypeElement element]
-    :   gen=genericMethodOrConstructorDecl {retval.element = gen.element;}
-    |   mem=memberDeclaration {retval.element = mem.element;}
-    |   vmd=voidMethodDeclaration {retval.element = vmd.element;}
-    |   cs=constructorDeclaration {retval.element = cs.element;}
-    |   id=interfaceDeclaration {retval.element=id.element; addNonTopLevelObjectInheritance(id.element);}
-    |   cd=classDeclaration {retval.element=cd.element; addNonTopLevelObjectInheritance(cd.element);}
-    ;
-*/
-
-
+/* ***********
+ * MISC
+ *********** */
+ 
 commaSeparatedBodyDecls returns [List<String> elements]
 	:	id=Identifier (',' decls=commaSeparatedBodyDecls {$elements=$decls.elements;})? {
 			
@@ -292,7 +361,25 @@ commaSeparatedBodyDecls returns [List<String> elements]
 			$elements.add(0,$id.text);
 		}
 	;
-
+	
+	
+	
+/* ***********
+ * TYPING, etc.
+ *********** */
+ 
+ 
+adviceType returns [AdviceType element]
+	:	'before' {$element = AdviceType.BEFORE;}
+	|	'after' {$element = AdviceType.AFTER;}
+	|	'around' {$element = AdviceType.AROUND;}
+	;
+ 
+joinpointKind returns [JoinpointKind element]
+	:	'execution'	{$element = JoinpointKind.EXECUTION;}
+	|	'call' {$element = JoinpointKind.CALL;}
+	;
+ 
 voidType returns [TypeReference element]
 /*@after{setLocation(retval.element, (CommonToken)retval.start, (CommonToken)retval.stop, "__PRIMITIVE");}*/
      	:	 'void' {$element=new TypeReference("void");}
@@ -509,3 +596,90 @@ COMMENT
 LINE_COMMENT
     : '//' ~('\n'|'\r')* '\r'? '\n' {$channel=HIDDEN;}
     ;
+
+
+
+/*@lexer::members {
+ 
+}*/
+
+/*
+@parser::members {
+
+  public InvocationTarget cloneTarget(InvocationTarget target) {
+    InvocationTarget result = null;
+    if(target != null) {
+        result = target.clone();
+    }
+    return result;
+  }
+}
+*/
+
+
+/*	
+componentDependencyBodyDecls returns [List<SimpleReference<Interface>> elements]
+	:	iface=Identifier (',' decls=componentDependencyBodyDecls {$elements = $decls.elements; })? {
+		
+			if ($elements == null) {
+				$elements = new ArrayList<SimpleReference<Interface>>();
+			}
+			
+			SimpleReference<Interface> reference =
+				new SimpleReference<Interface>($iface.text, Interface.class);
+				
+			$elements.add(0,reference);
+			}
+	;
+*/
+
+/*componentInterfaceDependencyBody returns [List<String> interfaces]
+	:	'{' { 
+				$interfaces=new ArrayList<String>(); 
+			} iface=Identifier 
+				{
+					$interfaces.add($iface.text);
+				} (',' iface=Identifier 
+					{
+						$interfaces.add($iface.text);
+					})*
+		'}'
+	;
+*/
+
+/*
+interfaceDeclaration returns [Interface element]
+    :   ifkw='interface' name=Identifier {
+    			retval.element = new Interface(new SimpleNameSignature($name.text)); 
+                setLocation(retval.element,name,"__NAME");
+			} 
+    ;
+    
+classBody returns [ClassBody element]
+    :   '{' {retval.element = new ClassBody();} (decl=classBodyDeclaration {retval.element.add(decl.element);})* '}'
+    ;
+    
+interfaceBody returns [ClassBody element]
+    :   '{' {retval.element = new ClassBody();} (decl=interfaceBodyDeclaration {retval.element.add(decl.element);})* '}'
+    ;
+
+classBodyDeclaration returns [TypeElement element]
+@init{
+  Token start=null;
+  Token stop=null;
+}
+@after{setLocation(retval.element, (CommonToken)start, (CommonToken)stop);}
+    :   sckw=';' {retval.element = new EmptyTypeElement(); start=sckw; stop=sckw;}
+    |   stkw='static'? bl=block {retval.element = new StaticInitializer(bl.element); start=stkw;stop=bl.stop;}
+    |   mods=modifiers decl=memberDecl {retval.element = decl.element; retval.element.addModifiers(mods.element); start=mods.start; stop=decl.stop;}
+    ;
+    
+memberDecl returns [TypeElement element]
+    :   gen=genericMethodOrConstructorDecl {retval.element = gen.element;}
+    |   mem=memberDeclaration {retval.element = mem.element;}
+    |   vmd=voidMethodDeclaration {retval.element = vmd.element;}
+    |   cs=constructorDeclaration {retval.element = cs.element;}
+    |   id=interfaceDeclaration {retval.element=id.element; addNonTopLevelObjectInheritance(id.element);}
+    |   cd=classDeclaration {retval.element=cd.element; addNonTopLevelObjectInheritance(cd.element);}
+    ;
+*/
