@@ -74,8 +74,8 @@ compilationUnit returns [CompilationUnit element]
 	npp = new NamespacePart(language().defaultNamespace());
 	$element.add(npp);
 }
-	:	componentDeclaration
-	|	interfaceDeclaration
+	:	cd=componentDeclaration {npp.add($cd.element);}
+	|	id=interfaceDeclaration
 	;
 
 

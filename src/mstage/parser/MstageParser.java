@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g 2010-02-01 16:30:40
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g 2010-02-03 13:54:01
 
 package mstage.parser;
 
@@ -162,16 +162,16 @@ public class MstageParser extends ChameleonParser {
     };
 
     // $ANTLR start "compilationUnit"
-    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:70:1: compilationUnit returns [CompilationUnit element] : ( componentDeclaration | interfaceDeclaration );
+    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:70:1: compilationUnit returns [CompilationUnit element] : (cd= componentDeclaration | id= interfaceDeclaration );
     public final MstageParser.compilationUnit_return compilationUnit() throws RecognitionException {
         MstageParser.compilationUnit_return retval = new MstageParser.compilationUnit_return();
         retval.start = input.LT(1);
         int compilationUnit_StartIndex = input.index();
         Object root_0 = null;
 
-        MstageParser.componentDeclaration_return componentDeclaration1 = null;
+        MstageParser.componentDeclaration_return cd = null;
 
-        MstageParser.interfaceDeclaration_return interfaceDeclaration2 = null;
+        MstageParser.interfaceDeclaration_return id = null;
 
 
 
@@ -183,7 +183,7 @@ public class MstageParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 1) ) { return retval; }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:77:2: ( componentDeclaration | interfaceDeclaration )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:77:2: (cd= componentDeclaration | id= interfaceDeclaration )
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -202,30 +202,33 @@ public class MstageParser extends ChameleonParser {
             }
             switch (alt1) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:77:4: componentDeclaration
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:77:4: cd= componentDeclaration
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_componentDeclaration_in_compilationUnit82);
-                    componentDeclaration1=componentDeclaration();
+                    pushFollow(FOLLOW_componentDeclaration_in_compilationUnit84);
+                    cd=componentDeclaration();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, componentDeclaration1.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, cd.getTree());
+                    if ( state.backtracking==0 ) {
+                      npp.add((cd!=null?cd.element:null));
+                    }
 
                     }
                     break;
                 case 2 :
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:78:4: interfaceDeclaration
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:78:4: id= interfaceDeclaration
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_interfaceDeclaration_in_compilationUnit87);
-                    interfaceDeclaration2=interfaceDeclaration();
+                    pushFollow(FOLLOW_interfaceDeclaration_in_compilationUnit93);
+                    id=interfaceDeclaration();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, interfaceDeclaration2.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, id.getTree());
 
                     }
                     break;
@@ -267,12 +270,12 @@ public class MstageParser extends ChameleonParser {
         Object root_0 = null;
 
         Token name=null;
-        Token string_literal3=null;
-        MstageParser.interfaceBody_return interfaceBody4 = null;
+        Token string_literal1=null;
+        MstageParser.interfaceBody_return interfaceBody2 = null;
 
 
         Object name_tree=null;
-        Object string_literal3_tree=null;
+        Object string_literal1_tree=null;
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 2) ) { return retval; }
@@ -281,12 +284,12 @@ public class MstageParser extends ChameleonParser {
             {
             root_0 = (Object)adaptor.nil();
 
-            string_literal3=(Token)match(input,23,FOLLOW_23_in_interfaceDeclaration110); if (state.failed) return retval;
+            string_literal1=(Token)match(input,23,FOLLOW_23_in_interfaceDeclaration116); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            string_literal3_tree = (Object)adaptor.create(string_literal3);
-            adaptor.addChild(root_0, string_literal3_tree);
+            string_literal1_tree = (Object)adaptor.create(string_literal1);
+            adaptor.addChild(root_0, string_literal1_tree);
             }
-            name=(Token)match(input,Identifier,FOLLOW_Identifier_in_interfaceDeclaration114); if (state.failed) return retval;
+            name=(Token)match(input,Identifier,FOLLOW_Identifier_in_interfaceDeclaration120); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             name_tree = (Object)adaptor.create(name);
             adaptor.addChild(root_0, name_tree);
@@ -297,12 +300,12 @@ public class MstageParser extends ChameleonParser {
               			setLocation(retval.element,name,"__NAME");
               		
             }
-            pushFollow(FOLLOW_interfaceBody_in_interfaceDeclaration120);
-            interfaceBody4=interfaceBody(retval.element);
+            pushFollow(FOLLOW_interfaceBody_in_interfaceDeclaration126);
+            interfaceBody2=interfaceBody(retval.element);
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, interfaceBody4.getTree());
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, interfaceBody2.getTree());
 
             }
 
@@ -340,11 +343,11 @@ public class MstageParser extends ChameleonParser {
         int interfaceBody_StartIndex = input.index();
         Object root_0 = null;
 
-        Token char_literal5=null;
+        Token char_literal3=null;
         MstageParser.serviceDeclaration_return service = null;
 
 
-        Object char_literal5_tree=null;
+        Object char_literal3_tree=null;
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 3) ) { return retval; }
@@ -368,16 +371,16 @@ public class MstageParser extends ChameleonParser {
             	case 1 :
             	    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:98:5: service= serviceDeclaration ';'
             	    {
-            	    pushFollow(FOLLOW_serviceDeclaration_in_interfaceBody137);
+            	    pushFollow(FOLLOW_serviceDeclaration_in_interfaceBody143);
             	    service=serviceDeclaration();
 
             	    state._fsp--;
             	    if (state.failed) return retval;
             	    if ( state.backtracking==0 ) adaptor.addChild(root_0, service.getTree());
-            	    char_literal5=(Token)match(input,24,FOLLOW_24_in_interfaceBody138); if (state.failed) return retval;
+            	    char_literal3=(Token)match(input,24,FOLLOW_24_in_interfaceBody144); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
-            	    char_literal5_tree = (Object)adaptor.create(char_literal5);
-            	    adaptor.addChild(root_0, char_literal5_tree);
+            	    char_literal3_tree = (Object)adaptor.create(char_literal3);
+            	    adaptor.addChild(root_0, char_literal3_tree);
             	    }
 
             	    }
@@ -446,18 +449,18 @@ public class MstageParser extends ChameleonParser {
             {
             root_0 = (Object)adaptor.nil();
 
-            pushFollow(FOLLOW_serviceReturnType_in_serviceDeclaration159);
+            pushFollow(FOLLOW_serviceReturnType_in_serviceDeclaration165);
             rtype=serviceReturnType();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, rtype.getTree());
-            name=(Token)match(input,Identifier,FOLLOW_Identifier_in_serviceDeclaration163); if (state.failed) return retval;
+            name=(Token)match(input,Identifier,FOLLOW_Identifier_in_serviceDeclaration169); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             name_tree = (Object)adaptor.create(name);
             adaptor.addChild(root_0, name_tree);
             }
-            pushFollow(FOLLOW_formalParameters_in_serviceDeclaration167);
+            pushFollow(FOLLOW_formalParameters_in_serviceDeclaration173);
             params=formalParameters();
 
             state._fsp--;
@@ -538,7 +541,7 @@ public class MstageParser extends ChameleonParser {
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_voidType_in_serviceReturnType186);
+                    pushFollow(FOLLOW_voidType_in_serviceReturnType192);
                     vt=voidType();
 
                     state._fsp--;
@@ -555,7 +558,7 @@ public class MstageParser extends ChameleonParser {
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_type_in_serviceReturnType195);
+                    pushFollow(FOLLOW_type_in_serviceReturnType201);
                     tp=type();
 
                     state._fsp--;
@@ -604,13 +607,13 @@ public class MstageParser extends ChameleonParser {
         int formalParameters_StartIndex = input.index();
         Object root_0 = null;
 
-        Token char_literal6=null;
-        Token char_literal7=null;
+        Token char_literal4=null;
+        Token char_literal5=null;
         MstageParser.formalParameterDecls_return pars = null;
 
 
-        Object char_literal6_tree=null;
-        Object char_literal7_tree=null;
+        Object char_literal4_tree=null;
+        Object char_literal5_tree=null;
 
         retval.element = new ArrayList<FormalParameter>();
         try {
@@ -620,10 +623,10 @@ public class MstageParser extends ChameleonParser {
             {
             root_0 = (Object)adaptor.nil();
 
-            char_literal6=(Token)match(input,25,FOLLOW_25_in_formalParameters222); if (state.failed) return retval;
+            char_literal4=(Token)match(input,25,FOLLOW_25_in_formalParameters228); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            char_literal6_tree = (Object)adaptor.create(char_literal6);
-            adaptor.addChild(root_0, char_literal6_tree);
+            char_literal4_tree = (Object)adaptor.create(char_literal4);
+            adaptor.addChild(root_0, char_literal4_tree);
             }
             // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:117:13: (pars= formalParameterDecls )?
             int alt4=2;
@@ -636,7 +639,7 @@ public class MstageParser extends ChameleonParser {
                 case 1 :
                     // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:117:14: pars= formalParameterDecls
                     {
-                    pushFollow(FOLLOW_formalParameterDecls_in_formalParameters227);
+                    pushFollow(FOLLOW_formalParameterDecls_in_formalParameters233);
                     pars=formalParameterDecls();
 
                     state._fsp--;
@@ -651,10 +654,10 @@ public class MstageParser extends ChameleonParser {
 
             }
 
-            char_literal7=(Token)match(input,26,FOLLOW_26_in_formalParameters233); if (state.failed) return retval;
+            char_literal5=(Token)match(input,26,FOLLOW_26_in_formalParameters239); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            char_literal7_tree = (Object)adaptor.create(char_literal7);
-            adaptor.addChild(root_0, char_literal7_tree);
+            char_literal5_tree = (Object)adaptor.create(char_literal5);
+            adaptor.addChild(root_0, char_literal5_tree);
             }
 
             }
@@ -695,14 +698,14 @@ public class MstageParser extends ChameleonParser {
         Object root_0 = null;
 
         Token name=null;
-        Token char_literal8=null;
+        Token char_literal6=null;
         MstageParser.type_return t = null;
 
         MstageParser.formalParameterDecls_return decls = null;
 
 
         Object name_tree=null;
-        Object char_literal8_tree=null;
+        Object char_literal6_tree=null;
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 7) ) { return retval; }
@@ -711,13 +714,13 @@ public class MstageParser extends ChameleonParser {
             {
             root_0 = (Object)adaptor.nil();
 
-            pushFollow(FOLLOW_type_in_formalParameterDecls258);
+            pushFollow(FOLLOW_type_in_formalParameterDecls264);
             t=type();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, t.getTree());
-            name=(Token)match(input,Identifier,FOLLOW_Identifier_in_formalParameterDecls262); if (state.failed) return retval;
+            name=(Token)match(input,Identifier,FOLLOW_Identifier_in_formalParameterDecls268); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             name_tree = (Object)adaptor.create(name);
             adaptor.addChild(root_0, name_tree);
@@ -733,12 +736,12 @@ public class MstageParser extends ChameleonParser {
                 case 1 :
                     // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:121:33: ',' decls= formalParameterDecls
                     {
-                    char_literal8=(Token)match(input,27,FOLLOW_27_in_formalParameterDecls265); if (state.failed) return retval;
+                    char_literal6=(Token)match(input,27,FOLLOW_27_in_formalParameterDecls271); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal8_tree = (Object)adaptor.create(char_literal8);
-                    adaptor.addChild(root_0, char_literal8_tree);
+                    char_literal6_tree = (Object)adaptor.create(char_literal6);
+                    adaptor.addChild(root_0, char_literal6_tree);
                     }
-                    pushFollow(FOLLOW_formalParameterDecls_in_formalParameterDecls269);
+                    pushFollow(FOLLOW_formalParameterDecls_in_formalParameterDecls275);
                     decls=formalParameterDecls();
 
                     state._fsp--;
@@ -804,12 +807,12 @@ public class MstageParser extends ChameleonParser {
         Object root_0 = null;
 
         Token name=null;
-        Token string_literal9=null;
-        MstageParser.connectorBody_return connectorBody10 = null;
+        Token string_literal7=null;
+        MstageParser.connectorBody_return connectorBody8 = null;
 
 
         Object name_tree=null;
-        Object string_literal9_tree=null;
+        Object string_literal7_tree=null;
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 8) ) { return retval; }
@@ -818,22 +821,22 @@ public class MstageParser extends ChameleonParser {
             {
             root_0 = (Object)adaptor.nil();
 
-            string_literal9=(Token)match(input,28,FOLLOW_28_in_connectorDeclaration304); if (state.failed) return retval;
+            string_literal7=(Token)match(input,28,FOLLOW_28_in_connectorDeclaration310); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            string_literal9_tree = (Object)adaptor.create(string_literal9);
-            adaptor.addChild(root_0, string_literal9_tree);
+            string_literal7_tree = (Object)adaptor.create(string_literal7);
+            adaptor.addChild(root_0, string_literal7_tree);
             }
-            name=(Token)match(input,Identifier,FOLLOW_Identifier_in_connectorDeclaration308); if (state.failed) return retval;
+            name=(Token)match(input,Identifier,FOLLOW_Identifier_in_connectorDeclaration314); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             name_tree = (Object)adaptor.create(name);
             adaptor.addChild(root_0, name_tree);
             }
-            pushFollow(FOLLOW_connectorBody_in_connectorDeclaration310);
-            connectorBody10=connectorBody(retval.element);
+            pushFollow(FOLLOW_connectorBody_in_connectorDeclaration316);
+            connectorBody8=connectorBody(retval.element);
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, connectorBody10.getTree());
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, connectorBody8.getTree());
             if ( state.backtracking==0 ) {
 
               			retval.element = new Connector(new SimpleNameSignature((name!=null?name.getText():null)));
@@ -876,13 +879,13 @@ public class MstageParser extends ChameleonParser {
         int connectorBody_StartIndex = input.index();
         Object root_0 = null;
 
+        Token char_literal9=null;
         Token char_literal11=null;
-        Token char_literal13=null;
-        MstageParser.connectorBodyDeclaration_return connectorBodyDeclaration12 = null;
+        MstageParser.connectorBodyDeclaration_return connectorBodyDeclaration10 = null;
 
 
+        Object char_literal9_tree=null;
         Object char_literal11_tree=null;
-        Object char_literal13_tree=null;
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 9) ) { return retval; }
@@ -891,10 +894,10 @@ public class MstageParser extends ChameleonParser {
             {
             root_0 = (Object)adaptor.nil();
 
-            char_literal11=(Token)match(input,29,FOLLOW_29_in_connectorBody326); if (state.failed) return retval;
+            char_literal9=(Token)match(input,29,FOLLOW_29_in_connectorBody332); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            char_literal11_tree = (Object)adaptor.create(char_literal11);
-            adaptor.addChild(root_0, char_literal11_tree);
+            char_literal9_tree = (Object)adaptor.create(char_literal9);
+            adaptor.addChild(root_0, char_literal9_tree);
             }
             // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:151:9: ( connectorBodyDeclaration[$element] )*
             loop6:
@@ -911,12 +914,12 @@ public class MstageParser extends ChameleonParser {
             	case 1 :
             	    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:0:0: connectorBodyDeclaration[$element]
             	    {
-            	    pushFollow(FOLLOW_connectorBodyDeclaration_in_connectorBody329);
-            	    connectorBodyDeclaration12=connectorBodyDeclaration(element);
+            	    pushFollow(FOLLOW_connectorBodyDeclaration_in_connectorBody335);
+            	    connectorBodyDeclaration10=connectorBodyDeclaration(element);
 
             	    state._fsp--;
             	    if (state.failed) return retval;
-            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, connectorBodyDeclaration12.getTree());
+            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, connectorBodyDeclaration10.getTree());
 
             	    }
             	    break;
@@ -926,10 +929,10 @@ public class MstageParser extends ChameleonParser {
                 }
             } while (true);
 
-            char_literal13=(Token)match(input,30,FOLLOW_30_in_connectorBody334); if (state.failed) return retval;
+            char_literal11=(Token)match(input,30,FOLLOW_30_in_connectorBody340); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            char_literal13_tree = (Object)adaptor.create(char_literal13);
-            adaptor.addChild(root_0, char_literal13_tree);
+            char_literal11_tree = (Object)adaptor.create(char_literal11);
+            adaptor.addChild(root_0, char_literal11_tree);
             }
 
             }
@@ -968,9 +971,9 @@ public class MstageParser extends ChameleonParser {
         int connectorBodyDeclaration_StartIndex = input.index();
         Object root_0 = null;
 
-        MstageParser.connectorAOCompositionDeclaration_return connectorAOCompositionDeclaration14 = null;
+        MstageParser.connectorAOCompositionDeclaration_return connectorAOCompositionDeclaration12 = null;
 
-        MstageParser.moduleRequireDependencyDeclaration_return moduleRequireDependencyDeclaration15 = null;
+        MstageParser.moduleRequireDependencyDeclaration_return moduleRequireDependencyDeclaration13 = null;
 
 
 
@@ -999,12 +1002,12 @@ public class MstageParser extends ChameleonParser {
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_connectorAOCompositionDeclaration_in_connectorBodyDeclaration347);
-                    connectorAOCompositionDeclaration14=connectorAOCompositionDeclaration();
+                    pushFollow(FOLLOW_connectorAOCompositionDeclaration_in_connectorBodyDeclaration353);
+                    connectorAOCompositionDeclaration12=connectorAOCompositionDeclaration();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, connectorAOCompositionDeclaration14.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, connectorAOCompositionDeclaration12.getTree());
 
                     }
                     break;
@@ -1013,12 +1016,12 @@ public class MstageParser extends ChameleonParser {
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_moduleRequireDependencyDeclaration_in_connectorBodyDeclaration352);
-                    moduleRequireDependencyDeclaration15=moduleRequireDependencyDeclaration(component);
+                    pushFollow(FOLLOW_moduleRequireDependencyDeclaration_in_connectorBodyDeclaration358);
+                    moduleRequireDependencyDeclaration13=moduleRequireDependencyDeclaration(component);
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, moduleRequireDependencyDeclaration15.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, moduleRequireDependencyDeclaration13.getTree());
 
                     }
                     break;
@@ -1060,12 +1063,12 @@ public class MstageParser extends ChameleonParser {
         Object root_0 = null;
 
         Token name=null;
-        Token string_literal16=null;
+        Token string_literal14=null;
         MstageParser.connectorAOCompositionBody_return aoc = null;
 
 
         Object name_tree=null;
-        Object string_literal16_tree=null;
+        Object string_literal14_tree=null;
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 11) ) { return retval; }
@@ -1074,17 +1077,17 @@ public class MstageParser extends ChameleonParser {
             {
             root_0 = (Object)adaptor.nil();
 
-            string_literal16=(Token)match(input,31,FOLLOW_31_in_connectorAOCompositionDeclaration371); if (state.failed) return retval;
+            string_literal14=(Token)match(input,31,FOLLOW_31_in_connectorAOCompositionDeclaration377); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            string_literal16_tree = (Object)adaptor.create(string_literal16);
-            adaptor.addChild(root_0, string_literal16_tree);
+            string_literal14_tree = (Object)adaptor.create(string_literal14);
+            adaptor.addChild(root_0, string_literal14_tree);
             }
-            name=(Token)match(input,Identifier,FOLLOW_Identifier_in_connectorAOCompositionDeclaration375); if (state.failed) return retval;
+            name=(Token)match(input,Identifier,FOLLOW_Identifier_in_connectorAOCompositionDeclaration381); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             name_tree = (Object)adaptor.create(name);
             adaptor.addChild(root_0, name_tree);
             }
-            pushFollow(FOLLOW_connectorAOCompositionBody_in_connectorAOCompositionDeclaration379);
+            pushFollow(FOLLOW_connectorAOCompositionBody_in_connectorAOCompositionDeclaration385);
             aoc=connectorAOCompositionBody();
 
             state._fsp--;
@@ -1137,15 +1140,15 @@ public class MstageParser extends ChameleonParser {
         int connectorAOCompositionBody_StartIndex = input.index();
         Object root_0 = null;
 
-        Token char_literal17=null;
-        Token char_literal18=null;
+        Token char_literal15=null;
+        Token char_literal16=null;
         MstageParser.pointcutDeclaration_return pc = null;
 
         MstageParser.adviceDeclaration_return adv = null;
 
 
-        Object char_literal17_tree=null;
-        Object char_literal18_tree=null;
+        Object char_literal15_tree=null;
+        Object char_literal16_tree=null;
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 12) ) { return retval; }
@@ -1154,27 +1157,27 @@ public class MstageParser extends ChameleonParser {
             {
             root_0 = (Object)adaptor.nil();
 
-            char_literal17=(Token)match(input,29,FOLLOW_29_in_connectorAOCompositionBody397); if (state.failed) return retval;
+            char_literal15=(Token)match(input,29,FOLLOW_29_in_connectorAOCompositionBody403); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            char_literal17_tree = (Object)adaptor.create(char_literal17);
-            adaptor.addChild(root_0, char_literal17_tree);
+            char_literal15_tree = (Object)adaptor.create(char_literal15);
+            adaptor.addChild(root_0, char_literal15_tree);
             }
-            pushFollow(FOLLOW_pointcutDeclaration_in_connectorAOCompositionBody401);
+            pushFollow(FOLLOW_pointcutDeclaration_in_connectorAOCompositionBody407);
             pc=pointcutDeclaration();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, pc.getTree());
-            pushFollow(FOLLOW_adviceDeclaration_in_connectorAOCompositionBody405);
+            pushFollow(FOLLOW_adviceDeclaration_in_connectorAOCompositionBody411);
             adv=adviceDeclaration();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, adv.getTree());
-            char_literal18=(Token)match(input,30,FOLLOW_30_in_connectorAOCompositionBody407); if (state.failed) return retval;
+            char_literal16=(Token)match(input,30,FOLLOW_30_in_connectorAOCompositionBody413); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            char_literal18_tree = (Object)adaptor.create(char_literal18);
-            adaptor.addChild(root_0, char_literal18_tree);
+            char_literal16_tree = (Object)adaptor.create(char_literal16);
+            adaptor.addChild(root_0, char_literal16_tree);
             }
             if ( state.backtracking==0 ) {
 
@@ -1220,11 +1223,11 @@ public class MstageParser extends ChameleonParser {
         int pointcutDeclaration_StartIndex = input.index();
         Object root_0 = null;
 
-        Token string_literal19=null;
-        MstageParser.pointcutBody_return pointcutBody20 = null;
+        Token string_literal17=null;
+        MstageParser.pointcutBody_return pointcutBody18 = null;
 
 
-        Object string_literal19_tree=null;
+        Object string_literal17_tree=null;
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 13) ) { return retval; }
@@ -1233,17 +1236,17 @@ public class MstageParser extends ChameleonParser {
             {
             root_0 = (Object)adaptor.nil();
 
-            string_literal19=(Token)match(input,32,FOLLOW_32_in_pointcutDeclaration427); if (state.failed) return retval;
+            string_literal17=(Token)match(input,32,FOLLOW_32_in_pointcutDeclaration433); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            string_literal19_tree = (Object)adaptor.create(string_literal19);
-            adaptor.addChild(root_0, string_literal19_tree);
+            string_literal17_tree = (Object)adaptor.create(string_literal17);
+            adaptor.addChild(root_0, string_literal17_tree);
             }
-            pushFollow(FOLLOW_pointcutBody_in_pointcutDeclaration429);
-            pointcutBody20=pointcutBody(retval.element);
+            pushFollow(FOLLOW_pointcutBody_in_pointcutDeclaration435);
+            pointcutBody18=pointcutBody(retval.element);
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, pointcutBody20.getTree());
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, pointcutBody18.getTree());
             if ( state.backtracking==0 ) {
 
               				retval.element = new Pointcut();
@@ -1286,13 +1289,13 @@ public class MstageParser extends ChameleonParser {
         int pointcutBody_StartIndex = input.index();
         Object root_0 = null;
 
+        Token char_literal19=null;
         Token char_literal21=null;
-        Token char_literal23=null;
-        MstageParser.pointcutBodyDeclaration_return pointcutBodyDeclaration22 = null;
+        MstageParser.pointcutBodyDeclaration_return pointcutBodyDeclaration20 = null;
 
 
+        Object char_literal19_tree=null;
         Object char_literal21_tree=null;
-        Object char_literal23_tree=null;
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 14) ) { return retval; }
@@ -1301,10 +1304,10 @@ public class MstageParser extends ChameleonParser {
             {
             root_0 = (Object)adaptor.nil();
 
-            char_literal21=(Token)match(input,29,FOLLOW_29_in_pointcutBody447); if (state.failed) return retval;
+            char_literal19=(Token)match(input,29,FOLLOW_29_in_pointcutBody453); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            char_literal21_tree = (Object)adaptor.create(char_literal21);
-            adaptor.addChild(root_0, char_literal21_tree);
+            char_literal19_tree = (Object)adaptor.create(char_literal19);
+            adaptor.addChild(root_0, char_literal19_tree);
             }
             // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:192:8: ( pointcutBodyDeclaration[$pointcut] )*
             loop8:
@@ -1321,12 +1324,12 @@ public class MstageParser extends ChameleonParser {
             	case 1 :
             	    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:0:0: pointcutBodyDeclaration[$pointcut]
             	    {
-            	    pushFollow(FOLLOW_pointcutBodyDeclaration_in_pointcutBody449);
-            	    pointcutBodyDeclaration22=pointcutBodyDeclaration(pointcut);
+            	    pushFollow(FOLLOW_pointcutBodyDeclaration_in_pointcutBody455);
+            	    pointcutBodyDeclaration20=pointcutBodyDeclaration(pointcut);
 
             	    state._fsp--;
             	    if (state.failed) return retval;
-            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, pointcutBodyDeclaration22.getTree());
+            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, pointcutBodyDeclaration20.getTree());
 
             	    }
             	    break;
@@ -1336,10 +1339,10 @@ public class MstageParser extends ChameleonParser {
                 }
             } while (true);
 
-            char_literal23=(Token)match(input,30,FOLLOW_30_in_pointcutBody453); if (state.failed) return retval;
+            char_literal21=(Token)match(input,30,FOLLOW_30_in_pointcutBody459); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            char_literal23_tree = (Object)adaptor.create(char_literal23);
-            adaptor.addChild(root_0, char_literal23_tree);
+            char_literal21_tree = (Object)adaptor.create(char_literal21);
+            adaptor.addChild(root_0, char_literal21_tree);
             }
 
             }
@@ -1378,9 +1381,9 @@ public class MstageParser extends ChameleonParser {
         int pointcutBodyDeclaration_StartIndex = input.index();
         Object root_0 = null;
 
-        MstageParser.pointcutKindDeclaration_return pointcutKindDeclaration24 = null;
+        MstageParser.pointcutKindDeclaration_return pointcutKindDeclaration22 = null;
 
-        MstageParser.pointcutSignatureDeclaration_return pointcutSignatureDeclaration25 = null;
+        MstageParser.pointcutSignatureDeclaration_return pointcutSignatureDeclaration23 = null;
 
 
 
@@ -1409,12 +1412,12 @@ public class MstageParser extends ChameleonParser {
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_pointcutKindDeclaration_in_pointcutBodyDeclaration466);
-                    pointcutKindDeclaration24=pointcutKindDeclaration(pointcut);
+                    pushFollow(FOLLOW_pointcutKindDeclaration_in_pointcutBodyDeclaration472);
+                    pointcutKindDeclaration22=pointcutKindDeclaration(pointcut);
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, pointcutKindDeclaration24.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, pointcutKindDeclaration22.getTree());
 
                     }
                     break;
@@ -1423,12 +1426,12 @@ public class MstageParser extends ChameleonParser {
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_pointcutSignatureDeclaration_in_pointcutBodyDeclaration472);
-                    pointcutSignatureDeclaration25=pointcutSignatureDeclaration(pointcut);
+                    pushFollow(FOLLOW_pointcutSignatureDeclaration_in_pointcutBodyDeclaration478);
+                    pointcutSignatureDeclaration23=pointcutSignatureDeclaration(pointcut);
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, pointcutSignatureDeclaration25.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, pointcutSignatureDeclaration23.getTree());
 
                     }
                     break;
@@ -1468,15 +1471,15 @@ public class MstageParser extends ChameleonParser {
         int pointcutKindDeclaration_StartIndex = input.index();
         Object root_0 = null;
 
-        Token string_literal26=null;
-        Token char_literal27=null;
-        Token char_literal28=null;
+        Token string_literal24=null;
+        Token char_literal25=null;
+        Token char_literal26=null;
         MstageParser.joinpointKind_return kind = null;
 
 
-        Object string_literal26_tree=null;
-        Object char_literal27_tree=null;
-        Object char_literal28_tree=null;
+        Object string_literal24_tree=null;
+        Object char_literal25_tree=null;
+        Object char_literal26_tree=null;
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 16) ) { return retval; }
@@ -1485,26 +1488,26 @@ public class MstageParser extends ChameleonParser {
             {
             root_0 = (Object)adaptor.nil();
 
-            string_literal26=(Token)match(input,33,FOLLOW_33_in_pointcutKindDeclaration488); if (state.failed) return retval;
+            string_literal24=(Token)match(input,33,FOLLOW_33_in_pointcutKindDeclaration494); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            string_literal26_tree = (Object)adaptor.create(string_literal26);
-            adaptor.addChild(root_0, string_literal26_tree);
+            string_literal24_tree = (Object)adaptor.create(string_literal24);
+            adaptor.addChild(root_0, string_literal24_tree);
             }
-            char_literal27=(Token)match(input,34,FOLLOW_34_in_pointcutKindDeclaration490); if (state.failed) return retval;
+            char_literal25=(Token)match(input,34,FOLLOW_34_in_pointcutKindDeclaration496); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            char_literal27_tree = (Object)adaptor.create(char_literal27);
-            adaptor.addChild(root_0, char_literal27_tree);
+            char_literal25_tree = (Object)adaptor.create(char_literal25);
+            adaptor.addChild(root_0, char_literal25_tree);
             }
-            pushFollow(FOLLOW_joinpointKind_in_pointcutKindDeclaration494);
+            pushFollow(FOLLOW_joinpointKind_in_pointcutKindDeclaration500);
             kind=joinpointKind();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, kind.getTree());
-            char_literal28=(Token)match(input,24,FOLLOW_24_in_pointcutKindDeclaration496); if (state.failed) return retval;
+            char_literal26=(Token)match(input,24,FOLLOW_24_in_pointcutKindDeclaration502); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            char_literal28_tree = (Object)adaptor.create(char_literal28);
-            adaptor.addChild(root_0, char_literal28_tree);
+            char_literal26_tree = (Object)adaptor.create(char_literal26);
+            adaptor.addChild(root_0, char_literal26_tree);
             }
             if ( state.backtracking==0 ) {
 
@@ -1549,16 +1552,16 @@ public class MstageParser extends ChameleonParser {
         Object root_0 = null;
 
         Token pattern=null;
-        Token string_literal29=null;
+        Token string_literal27=null;
+        Token char_literal28=null;
+        Token wildcard29=null;
         Token char_literal30=null;
-        Token wildcard31=null;
-        Token char_literal32=null;
 
         Object pattern_tree=null;
-        Object string_literal29_tree=null;
+        Object string_literal27_tree=null;
+        Object char_literal28_tree=null;
+        Object wildcard29_tree=null;
         Object char_literal30_tree=null;
-        Object wildcard31_tree=null;
-        Object char_literal32_tree=null;
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 17) ) { return retval; }
@@ -1567,15 +1570,15 @@ public class MstageParser extends ChameleonParser {
             {
             root_0 = (Object)adaptor.nil();
 
-            string_literal29=(Token)match(input,35,FOLLOW_35_in_pointcutSignatureDeclaration511); if (state.failed) return retval;
+            string_literal27=(Token)match(input,35,FOLLOW_35_in_pointcutSignatureDeclaration517); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            string_literal29_tree = (Object)adaptor.create(string_literal29);
-            adaptor.addChild(root_0, string_literal29_tree);
+            string_literal27_tree = (Object)adaptor.create(string_literal27);
+            adaptor.addChild(root_0, string_literal27_tree);
             }
-            char_literal30=(Token)match(input,34,FOLLOW_34_in_pointcutSignatureDeclaration513); if (state.failed) return retval;
+            char_literal28=(Token)match(input,34,FOLLOW_34_in_pointcutSignatureDeclaration519); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            char_literal30_tree = (Object)adaptor.create(char_literal30);
-            adaptor.addChild(root_0, char_literal30_tree);
+            char_literal28_tree = (Object)adaptor.create(char_literal28);
+            adaptor.addChild(root_0, char_literal28_tree);
             }
             // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:209:28: ( ( . )* )
             // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:209:29: ( . )*
@@ -1604,11 +1607,11 @@ public class MstageParser extends ChameleonParser {
             	case 1 :
             	    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:0:0: .
             	    {
-            	    wildcard31=(Token)input.LT(1);
+            	    wildcard29=(Token)input.LT(1);
             	    matchAny(input); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
-            	    wildcard31_tree = (Object)adaptor.create(wildcard31);
-            	    adaptor.addChild(root_0, wildcard31_tree);
+            	    wildcard29_tree = (Object)adaptor.create(wildcard29);
+            	    adaptor.addChild(root_0, wildcard29_tree);
             	    }
 
             	    }
@@ -1622,10 +1625,10 @@ public class MstageParser extends ChameleonParser {
 
             }
 
-            char_literal32=(Token)match(input,24,FOLLOW_24_in_pointcutSignatureDeclaration522); if (state.failed) return retval;
+            char_literal30=(Token)match(input,24,FOLLOW_24_in_pointcutSignatureDeclaration528); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            char_literal32_tree = (Object)adaptor.create(char_literal32);
-            adaptor.addChild(root_0, char_literal32_tree);
+            char_literal30_tree = (Object)adaptor.create(char_literal30);
+            adaptor.addChild(root_0, char_literal30_tree);
             }
             if ( state.backtracking==0 ) {
 
@@ -1670,9 +1673,9 @@ public class MstageParser extends ChameleonParser {
         int pointcutCallerDeclaration_StartIndex = input.index();
         Object root_0 = null;
 
-        Token string_literal33=null;
+        Token string_literal31=null;
 
-        Object string_literal33_tree=null;
+        Object string_literal31_tree=null;
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 18) ) { return retval; }
@@ -1681,10 +1684,10 @@ public class MstageParser extends ChameleonParser {
             {
             root_0 = (Object)adaptor.nil();
 
-            string_literal33=(Token)match(input,36,FOLLOW_36_in_pointcutCallerDeclaration542); if (state.failed) return retval;
+            string_literal31=(Token)match(input,36,FOLLOW_36_in_pointcutCallerDeclaration548); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            string_literal33_tree = (Object)adaptor.create(string_literal33);
-            adaptor.addChild(root_0, string_literal33_tree);
+            string_literal31_tree = (Object)adaptor.create(string_literal31);
+            adaptor.addChild(root_0, string_literal31_tree);
             }
 
             }
@@ -1723,9 +1726,9 @@ public class MstageParser extends ChameleonParser {
         int pointcutCalleeDeclaration_StartIndex = input.index();
         Object root_0 = null;
 
-        Token string_literal34=null;
+        Token string_literal32=null;
 
-        Object string_literal34_tree=null;
+        Object string_literal32_tree=null;
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 19) ) { return retval; }
@@ -1734,10 +1737,10 @@ public class MstageParser extends ChameleonParser {
             {
             root_0 = (Object)adaptor.nil();
 
-            string_literal34=(Token)match(input,37,FOLLOW_37_in_pointcutCalleeDeclaration555); if (state.failed) return retval;
+            string_literal32=(Token)match(input,37,FOLLOW_37_in_pointcutCalleeDeclaration561); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            string_literal34_tree = (Object)adaptor.create(string_literal34);
-            adaptor.addChild(root_0, string_literal34_tree);
+            string_literal32_tree = (Object)adaptor.create(string_literal32);
+            adaptor.addChild(root_0, string_literal32_tree);
             }
 
             }
@@ -1777,11 +1780,11 @@ public class MstageParser extends ChameleonParser {
         int adviceDeclaration_StartIndex = input.index();
         Object root_0 = null;
 
-        Token string_literal35=null;
-        MstageParser.adviceBody_return adviceBody36 = null;
+        Token string_literal33=null;
+        MstageParser.adviceBody_return adviceBody34 = null;
 
 
-        Object string_literal35_tree=null;
+        Object string_literal33_tree=null;
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 20) ) { return retval; }
@@ -1790,17 +1793,17 @@ public class MstageParser extends ChameleonParser {
             {
             root_0 = (Object)adaptor.nil();
 
-            string_literal35=(Token)match(input,38,FOLLOW_38_in_adviceDeclaration573); if (state.failed) return retval;
+            string_literal33=(Token)match(input,38,FOLLOW_38_in_adviceDeclaration579); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            string_literal35_tree = (Object)adaptor.create(string_literal35);
-            adaptor.addChild(root_0, string_literal35_tree);
+            string_literal33_tree = (Object)adaptor.create(string_literal33);
+            adaptor.addChild(root_0, string_literal33_tree);
             }
-            pushFollow(FOLLOW_adviceBody_in_adviceDeclaration575);
-            adviceBody36=adviceBody(retval.element);
+            pushFollow(FOLLOW_adviceBody_in_adviceDeclaration581);
+            adviceBody34=adviceBody(retval.element);
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, adviceBody36.getTree());
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, adviceBody34.getTree());
             if ( state.backtracking==0 ) {
 
               				retval.element = new Advice();
@@ -1843,13 +1846,13 @@ public class MstageParser extends ChameleonParser {
         int adviceBody_StartIndex = input.index();
         Object root_0 = null;
 
+        Token char_literal35=null;
         Token char_literal37=null;
-        Token char_literal39=null;
-        MstageParser.adviceBodyDeclaration_return adviceBodyDeclaration38 = null;
+        MstageParser.adviceBodyDeclaration_return adviceBodyDeclaration36 = null;
 
 
+        Object char_literal35_tree=null;
         Object char_literal37_tree=null;
-        Object char_literal39_tree=null;
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 21) ) { return retval; }
@@ -1858,10 +1861,10 @@ public class MstageParser extends ChameleonParser {
             {
             root_0 = (Object)adaptor.nil();
 
-            char_literal37=(Token)match(input,29,FOLLOW_29_in_adviceBody590); if (state.failed) return retval;
+            char_literal35=(Token)match(input,29,FOLLOW_29_in_adviceBody596); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            char_literal37_tree = (Object)adaptor.create(char_literal37);
-            adaptor.addChild(root_0, char_literal37_tree);
+            char_literal35_tree = (Object)adaptor.create(char_literal35);
+            adaptor.addChild(root_0, char_literal35_tree);
             }
             // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:238:8: ( adviceBodyDeclaration[$advice] )*
             loop11:
@@ -1878,12 +1881,12 @@ public class MstageParser extends ChameleonParser {
             	case 1 :
             	    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:0:0: adviceBodyDeclaration[$advice]
             	    {
-            	    pushFollow(FOLLOW_adviceBodyDeclaration_in_adviceBody592);
-            	    adviceBodyDeclaration38=adviceBodyDeclaration(advice);
+            	    pushFollow(FOLLOW_adviceBodyDeclaration_in_adviceBody598);
+            	    adviceBodyDeclaration36=adviceBodyDeclaration(advice);
 
             	    state._fsp--;
             	    if (state.failed) return retval;
-            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, adviceBodyDeclaration38.getTree());
+            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, adviceBodyDeclaration36.getTree());
 
             	    }
             	    break;
@@ -1893,10 +1896,10 @@ public class MstageParser extends ChameleonParser {
                 }
             } while (true);
 
-            char_literal39=(Token)match(input,30,FOLLOW_30_in_adviceBody596); if (state.failed) return retval;
+            char_literal37=(Token)match(input,30,FOLLOW_30_in_adviceBody602); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            char_literal39_tree = (Object)adaptor.create(char_literal39);
-            adaptor.addChild(root_0, char_literal39_tree);
+            char_literal37_tree = (Object)adaptor.create(char_literal37);
+            adaptor.addChild(root_0, char_literal37_tree);
             }
 
             }
@@ -1935,9 +1938,9 @@ public class MstageParser extends ChameleonParser {
         int adviceBodyDeclaration_StartIndex = input.index();
         Object root_0 = null;
 
-        MstageParser.adviceServiceDeclaration_return adviceServiceDeclaration40 = null;
+        MstageParser.adviceServiceDeclaration_return adviceServiceDeclaration38 = null;
 
-        MstageParser.adviceTypeDeclaration_return adviceTypeDeclaration41 = null;
+        MstageParser.adviceTypeDeclaration_return adviceTypeDeclaration39 = null;
 
 
 
@@ -1966,12 +1969,12 @@ public class MstageParser extends ChameleonParser {
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_adviceServiceDeclaration_in_adviceBodyDeclaration609);
-                    adviceServiceDeclaration40=adviceServiceDeclaration(advice);
+                    pushFollow(FOLLOW_adviceServiceDeclaration_in_adviceBodyDeclaration615);
+                    adviceServiceDeclaration38=adviceServiceDeclaration(advice);
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, adviceServiceDeclaration40.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, adviceServiceDeclaration38.getTree());
 
                     }
                     break;
@@ -1980,12 +1983,12 @@ public class MstageParser extends ChameleonParser {
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_adviceTypeDeclaration_in_adviceBodyDeclaration615);
-                    adviceTypeDeclaration41=adviceTypeDeclaration(advice);
+                    pushFollow(FOLLOW_adviceTypeDeclaration_in_adviceBodyDeclaration621);
+                    adviceTypeDeclaration39=adviceTypeDeclaration(advice);
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, adviceTypeDeclaration41.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, adviceTypeDeclaration39.getTree());
 
                     }
                     break;
@@ -2026,16 +2029,16 @@ public class MstageParser extends ChameleonParser {
         Object root_0 = null;
 
         Token service=null;
-        Token string_literal42=null;
+        Token string_literal40=null;
+        Token char_literal41=null;
+        Token wildcard42=null;
         Token char_literal43=null;
-        Token wildcard44=null;
-        Token char_literal45=null;
 
         Object service_tree=null;
-        Object string_literal42_tree=null;
+        Object string_literal40_tree=null;
+        Object char_literal41_tree=null;
+        Object wildcard42_tree=null;
         Object char_literal43_tree=null;
-        Object wildcard44_tree=null;
-        Object char_literal45_tree=null;
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 23) ) { return retval; }
@@ -2044,15 +2047,15 @@ public class MstageParser extends ChameleonParser {
             {
             root_0 = (Object)adaptor.nil();
 
-            string_literal42=(Token)match(input,39,FOLLOW_39_in_adviceServiceDeclaration629); if (state.failed) return retval;
+            string_literal40=(Token)match(input,39,FOLLOW_39_in_adviceServiceDeclaration635); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            string_literal42_tree = (Object)adaptor.create(string_literal42);
-            adaptor.addChild(root_0, string_literal42_tree);
+            string_literal40_tree = (Object)adaptor.create(string_literal40);
+            adaptor.addChild(root_0, string_literal40_tree);
             }
-            char_literal43=(Token)match(input,34,FOLLOW_34_in_adviceServiceDeclaration631); if (state.failed) return retval;
+            char_literal41=(Token)match(input,34,FOLLOW_34_in_adviceServiceDeclaration637); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            char_literal43_tree = (Object)adaptor.create(char_literal43);
-            adaptor.addChild(root_0, char_literal43_tree);
+            char_literal41_tree = (Object)adaptor.create(char_literal41);
+            adaptor.addChild(root_0, char_literal41_tree);
             }
             // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:247:26: ( ( . )* )
             // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:247:27: ( . )*
@@ -2081,11 +2084,11 @@ public class MstageParser extends ChameleonParser {
             	case 1 :
             	    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:0:0: .
             	    {
-            	    wildcard44=(Token)input.LT(1);
+            	    wildcard42=(Token)input.LT(1);
             	    matchAny(input); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
-            	    wildcard44_tree = (Object)adaptor.create(wildcard44);
-            	    adaptor.addChild(root_0, wildcard44_tree);
+            	    wildcard42_tree = (Object)adaptor.create(wildcard42);
+            	    adaptor.addChild(root_0, wildcard42_tree);
             	    }
 
             	    }
@@ -2099,10 +2102,10 @@ public class MstageParser extends ChameleonParser {
 
             }
 
-            char_literal45=(Token)match(input,24,FOLLOW_24_in_adviceServiceDeclaration640); if (state.failed) return retval;
+            char_literal43=(Token)match(input,24,FOLLOW_24_in_adviceServiceDeclaration646); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            char_literal45_tree = (Object)adaptor.create(char_literal45);
-            adaptor.addChild(root_0, char_literal45_tree);
+            char_literal43_tree = (Object)adaptor.create(char_literal43);
+            adaptor.addChild(root_0, char_literal43_tree);
             }
             if ( state.backtracking==0 ) {
 
@@ -2146,15 +2149,15 @@ public class MstageParser extends ChameleonParser {
         int adviceTypeDeclaration_StartIndex = input.index();
         Object root_0 = null;
 
-        Token string_literal46=null;
-        Token char_literal47=null;
-        Token char_literal48=null;
+        Token string_literal44=null;
+        Token char_literal45=null;
+        Token char_literal46=null;
         MstageParser.adviceType_return advtype = null;
 
 
-        Object string_literal46_tree=null;
-        Object char_literal47_tree=null;
-        Object char_literal48_tree=null;
+        Object string_literal44_tree=null;
+        Object char_literal45_tree=null;
+        Object char_literal46_tree=null;
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 24) ) { return retval; }
@@ -2163,26 +2166,26 @@ public class MstageParser extends ChameleonParser {
             {
             root_0 = (Object)adaptor.nil();
 
-            string_literal46=(Token)match(input,40,FOLLOW_40_in_adviceTypeDeclaration655); if (state.failed) return retval;
+            string_literal44=(Token)match(input,40,FOLLOW_40_in_adviceTypeDeclaration661); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            string_literal46_tree = (Object)adaptor.create(string_literal46);
-            adaptor.addChild(root_0, string_literal46_tree);
+            string_literal44_tree = (Object)adaptor.create(string_literal44);
+            adaptor.addChild(root_0, string_literal44_tree);
             }
-            char_literal47=(Token)match(input,34,FOLLOW_34_in_adviceTypeDeclaration657); if (state.failed) return retval;
+            char_literal45=(Token)match(input,34,FOLLOW_34_in_adviceTypeDeclaration663); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            char_literal47_tree = (Object)adaptor.create(char_literal47);
-            adaptor.addChild(root_0, char_literal47_tree);
+            char_literal45_tree = (Object)adaptor.create(char_literal45);
+            adaptor.addChild(root_0, char_literal45_tree);
             }
-            pushFollow(FOLLOW_adviceType_in_adviceTypeDeclaration661);
+            pushFollow(FOLLOW_adviceType_in_adviceTypeDeclaration667);
             advtype=adviceType();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, advtype.getTree());
-            char_literal48=(Token)match(input,24,FOLLOW_24_in_adviceTypeDeclaration663); if (state.failed) return retval;
+            char_literal46=(Token)match(input,24,FOLLOW_24_in_adviceTypeDeclaration669); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            char_literal48_tree = (Object)adaptor.create(char_literal48);
-            adaptor.addChild(root_0, char_literal48_tree);
+            char_literal46_tree = (Object)adaptor.create(char_literal46);
+            adaptor.addChild(root_0, char_literal46_tree);
             }
             if ( state.backtracking==0 ) {
 
@@ -2228,12 +2231,12 @@ public class MstageParser extends ChameleonParser {
         Object root_0 = null;
 
         Token name=null;
-        Token string_literal49=null;
-        MstageParser.compositeBody_return compositeBody50 = null;
+        Token string_literal47=null;
+        MstageParser.compositeBody_return compositeBody48 = null;
 
 
         Object name_tree=null;
-        Object string_literal49_tree=null;
+        Object string_literal47_tree=null;
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 25) ) { return retval; }
@@ -2242,12 +2245,12 @@ public class MstageParser extends ChameleonParser {
             {
             root_0 = (Object)adaptor.nil();
 
-            string_literal49=(Token)match(input,41,FOLLOW_41_in_compositeDeclaration687); if (state.failed) return retval;
+            string_literal47=(Token)match(input,41,FOLLOW_41_in_compositeDeclaration693); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            string_literal49_tree = (Object)adaptor.create(string_literal49);
-            adaptor.addChild(root_0, string_literal49_tree);
+            string_literal47_tree = (Object)adaptor.create(string_literal47);
+            adaptor.addChild(root_0, string_literal47_tree);
             }
-            name=(Token)match(input,Identifier,FOLLOW_Identifier_in_compositeDeclaration691); if (state.failed) return retval;
+            name=(Token)match(input,Identifier,FOLLOW_Identifier_in_compositeDeclaration697); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             name_tree = (Object)adaptor.create(name);
             adaptor.addChild(root_0, name_tree);
@@ -2257,12 +2260,12 @@ public class MstageParser extends ChameleonParser {
               				retval.element = new Composite(new SimpleNameSignature((name!=null?name.getText():null)));
               			
             }
-            pushFollow(FOLLOW_compositeBody_in_compositeDeclaration697);
-            compositeBody50=compositeBody(retval.element);
+            pushFollow(FOLLOW_compositeBody_in_compositeDeclaration703);
+            compositeBody48=compositeBody(retval.element);
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, compositeBody50.getTree());
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, compositeBody48.getTree());
 
             }
 
@@ -2300,15 +2303,15 @@ public class MstageParser extends ChameleonParser {
         int compositeBody_StartIndex = input.index();
         Object root_0 = null;
 
-        Token char_literal51=null;
-        Token char_literal54=null;
-        MstageParser.compositeBodyDeclaration_return compositeBodyDeclaration52 = null;
+        Token char_literal49=null;
+        Token char_literal52=null;
+        MstageParser.compositeBodyDeclaration_return compositeBodyDeclaration50 = null;
 
-        MstageParser.componentBodyDeclaration_return componentBodyDeclaration53 = null;
+        MstageParser.componentBodyDeclaration_return componentBodyDeclaration51 = null;
 
 
-        Object char_literal51_tree=null;
-        Object char_literal54_tree=null;
+        Object char_literal49_tree=null;
+        Object char_literal52_tree=null;
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 26) ) { return retval; }
@@ -2317,10 +2320,10 @@ public class MstageParser extends ChameleonParser {
             {
             root_0 = (Object)adaptor.nil();
 
-            char_literal51=(Token)match(input,29,FOLLOW_29_in_compositeBody711); if (state.failed) return retval;
+            char_literal49=(Token)match(input,29,FOLLOW_29_in_compositeBody717); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            char_literal51_tree = (Object)adaptor.create(char_literal51);
-            adaptor.addChild(root_0, char_literal51_tree);
+            char_literal49_tree = (Object)adaptor.create(char_literal49);
+            adaptor.addChild(root_0, char_literal49_tree);
             }
             // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:272:8: ( compositeBodyDeclaration[$element] | componentBodyDeclaration[$element] )*
             loop14:
@@ -2340,24 +2343,24 @@ public class MstageParser extends ChameleonParser {
             	case 1 :
             	    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:272:9: compositeBodyDeclaration[$element]
             	    {
-            	    pushFollow(FOLLOW_compositeBodyDeclaration_in_compositeBody714);
-            	    compositeBodyDeclaration52=compositeBodyDeclaration(element);
+            	    pushFollow(FOLLOW_compositeBodyDeclaration_in_compositeBody720);
+            	    compositeBodyDeclaration50=compositeBodyDeclaration(element);
 
             	    state._fsp--;
             	    if (state.failed) return retval;
-            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, compositeBodyDeclaration52.getTree());
+            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, compositeBodyDeclaration50.getTree());
 
             	    }
             	    break;
             	case 2 :
             	    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:272:46: componentBodyDeclaration[$element]
             	    {
-            	    pushFollow(FOLLOW_componentBodyDeclaration_in_compositeBody719);
-            	    componentBodyDeclaration53=componentBodyDeclaration(element);
+            	    pushFollow(FOLLOW_componentBodyDeclaration_in_compositeBody725);
+            	    componentBodyDeclaration51=componentBodyDeclaration(element);
 
             	    state._fsp--;
             	    if (state.failed) return retval;
-            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, componentBodyDeclaration53.getTree());
+            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, componentBodyDeclaration51.getTree());
 
             	    }
             	    break;
@@ -2367,10 +2370,10 @@ public class MstageParser extends ChameleonParser {
                 }
             } while (true);
 
-            char_literal54=(Token)match(input,30,FOLLOW_30_in_compositeBody724); if (state.failed) return retval;
+            char_literal52=(Token)match(input,30,FOLLOW_30_in_compositeBody730); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            char_literal54_tree = (Object)adaptor.create(char_literal54);
-            adaptor.addChild(root_0, char_literal54_tree);
+            char_literal52_tree = (Object)adaptor.create(char_literal52);
+            adaptor.addChild(root_0, char_literal52_tree);
             }
 
             }
@@ -2409,11 +2412,11 @@ public class MstageParser extends ChameleonParser {
         int compositeBodyDeclaration_StartIndex = input.index();
         Object root_0 = null;
 
-        Token string_literal55=null;
+        Token string_literal53=null;
         MstageParser.compositeContainBody_return conts = null;
 
 
-        Object string_literal55_tree=null;
+        Object string_literal53_tree=null;
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 27) ) { return retval; }
@@ -2422,12 +2425,12 @@ public class MstageParser extends ChameleonParser {
             {
             root_0 = (Object)adaptor.nil();
 
-            string_literal55=(Token)match(input,42,FOLLOW_42_in_compositeBodyDeclaration737); if (state.failed) return retval;
+            string_literal53=(Token)match(input,42,FOLLOW_42_in_compositeBodyDeclaration743); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            string_literal55_tree = (Object)adaptor.create(string_literal55);
-            adaptor.addChild(root_0, string_literal55_tree);
+            string_literal53_tree = (Object)adaptor.create(string_literal53);
+            adaptor.addChild(root_0, string_literal53_tree);
             }
-            pushFollow(FOLLOW_compositeContainBody_in_compositeBodyDeclaration741);
+            pushFollow(FOLLOW_compositeContainBody_in_compositeBodyDeclaration747);
             conts=compositeContainBody();
 
             state._fsp--;
@@ -2478,13 +2481,13 @@ public class MstageParser extends ChameleonParser {
         int compositeContainBody_StartIndex = input.index();
         Object root_0 = null;
 
-        Token char_literal56=null;
-        Token char_literal57=null;
+        Token char_literal54=null;
+        Token char_literal55=null;
         MstageParser.commaSeparatedBodyDecls_return decls = null;
 
 
-        Object char_literal56_tree=null;
-        Object char_literal57_tree=null;
+        Object char_literal54_tree=null;
+        Object char_literal55_tree=null;
 
          retval.elements = new ArrayList<String>(); 
         try {
@@ -2494,10 +2497,10 @@ public class MstageParser extends ChameleonParser {
             {
             root_0 = (Object)adaptor.nil();
 
-            char_literal56=(Token)match(input,29,FOLLOW_29_in_compositeContainBody762); if (state.failed) return retval;
+            char_literal54=(Token)match(input,29,FOLLOW_29_in_compositeContainBody768); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            char_literal56_tree = (Object)adaptor.create(char_literal56);
-            adaptor.addChild(root_0, char_literal56_tree);
+            char_literal54_tree = (Object)adaptor.create(char_literal54);
+            adaptor.addChild(root_0, char_literal54_tree);
             }
             // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:286:8: (decls= commaSeparatedBodyDecls )?
             int alt15=2;
@@ -2510,7 +2513,7 @@ public class MstageParser extends ChameleonParser {
                 case 1 :
                     // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:286:9: decls= commaSeparatedBodyDecls
                     {
-                    pushFollow(FOLLOW_commaSeparatedBodyDecls_in_compositeContainBody767);
+                    pushFollow(FOLLOW_commaSeparatedBodyDecls_in_compositeContainBody773);
                     decls=commaSeparatedBodyDecls();
 
                     state._fsp--;
@@ -2525,10 +2528,10 @@ public class MstageParser extends ChameleonParser {
 
             }
 
-            char_literal57=(Token)match(input,30,FOLLOW_30_in_compositeContainBody774); if (state.failed) return retval;
+            char_literal55=(Token)match(input,30,FOLLOW_30_in_compositeContainBody780); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            char_literal57_tree = (Object)adaptor.create(char_literal57);
-            adaptor.addChild(root_0, char_literal57_tree);
+            char_literal55_tree = (Object)adaptor.create(char_literal55);
+            adaptor.addChild(root_0, char_literal55_tree);
             }
 
             }
@@ -2569,12 +2572,12 @@ public class MstageParser extends ChameleonParser {
         Object root_0 = null;
 
         Token name=null;
-        Token string_literal58=null;
-        MstageParser.componentBody_return componentBody59 = null;
+        Token string_literal56=null;
+        MstageParser.componentBody_return componentBody57 = null;
 
 
         Object name_tree=null;
-        Object string_literal58_tree=null;
+        Object string_literal56_tree=null;
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 29) ) { return retval; }
@@ -2583,12 +2586,12 @@ public class MstageParser extends ChameleonParser {
             {
             root_0 = (Object)adaptor.nil();
 
-            string_literal58=(Token)match(input,43,FOLLOW_43_in_componentDeclaration803); if (state.failed) return retval;
+            string_literal56=(Token)match(input,43,FOLLOW_43_in_componentDeclaration809); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            string_literal58_tree = (Object)adaptor.create(string_literal58);
-            adaptor.addChild(root_0, string_literal58_tree);
+            string_literal56_tree = (Object)adaptor.create(string_literal56);
+            adaptor.addChild(root_0, string_literal56_tree);
             }
-            name=(Token)match(input,Identifier,FOLLOW_Identifier_in_componentDeclaration807); if (state.failed) return retval;
+            name=(Token)match(input,Identifier,FOLLOW_Identifier_in_componentDeclaration813); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             name_tree = (Object)adaptor.create(name);
             adaptor.addChild(root_0, name_tree);
@@ -2599,12 +2602,12 @@ public class MstageParser extends ChameleonParser {
                   			setLocation(retval.element,name,"__NAME");
               			
             }
-            pushFollow(FOLLOW_componentBody_in_componentDeclaration811);
-            componentBody59=componentBody(retval.element);
+            pushFollow(FOLLOW_componentBody_in_componentDeclaration817);
+            componentBody57=componentBody(retval.element);
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, componentBody59.getTree());
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, componentBody57.getTree());
 
             }
 
@@ -2642,13 +2645,13 @@ public class MstageParser extends ChameleonParser {
         int componentBody_StartIndex = input.index();
         Object root_0 = null;
 
+        Token char_literal58=null;
         Token char_literal60=null;
-        Token char_literal62=null;
-        MstageParser.componentBodyDeclaration_return componentBodyDeclaration61 = null;
+        MstageParser.componentBodyDeclaration_return componentBodyDeclaration59 = null;
 
 
+        Object char_literal58_tree=null;
         Object char_literal60_tree=null;
-        Object char_literal62_tree=null;
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 30) ) { return retval; }
@@ -2657,10 +2660,10 @@ public class MstageParser extends ChameleonParser {
             {
             root_0 = (Object)adaptor.nil();
 
-            char_literal60=(Token)match(input,29,FOLLOW_29_in_componentBody833); if (state.failed) return retval;
+            char_literal58=(Token)match(input,29,FOLLOW_29_in_componentBody839); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            char_literal60_tree = (Object)adaptor.create(char_literal60);
-            adaptor.addChild(root_0, char_literal60_tree);
+            char_literal58_tree = (Object)adaptor.create(char_literal58);
+            adaptor.addChild(root_0, char_literal58_tree);
             }
             // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:308:8: ( componentBodyDeclaration[$element] )*
             loop16:
@@ -2677,12 +2680,12 @@ public class MstageParser extends ChameleonParser {
             	case 1 :
             	    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:0:0: componentBodyDeclaration[$element]
             	    {
-            	    pushFollow(FOLLOW_componentBodyDeclaration_in_componentBody835);
-            	    componentBodyDeclaration61=componentBodyDeclaration(element);
+            	    pushFollow(FOLLOW_componentBodyDeclaration_in_componentBody841);
+            	    componentBodyDeclaration59=componentBodyDeclaration(element);
 
             	    state._fsp--;
             	    if (state.failed) return retval;
-            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, componentBodyDeclaration61.getTree());
+            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, componentBodyDeclaration59.getTree());
 
             	    }
             	    break;
@@ -2692,10 +2695,10 @@ public class MstageParser extends ChameleonParser {
                 }
             } while (true);
 
-            char_literal62=(Token)match(input,30,FOLLOW_30_in_componentBody839); if (state.failed) return retval;
+            char_literal60=(Token)match(input,30,FOLLOW_30_in_componentBody845); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            char_literal62_tree = (Object)adaptor.create(char_literal62);
-            adaptor.addChild(root_0, char_literal62_tree);
+            char_literal60_tree = (Object)adaptor.create(char_literal60);
+            adaptor.addChild(root_0, char_literal60_tree);
             }
 
             }
@@ -2734,9 +2737,9 @@ public class MstageParser extends ChameleonParser {
         int componentBodyDeclaration_StartIndex = input.index();
         Object root_0 = null;
 
-        MstageParser.moduleRequireDependencyDeclaration_return moduleRequireDependencyDeclaration63 = null;
+        MstageParser.moduleRequireDependencyDeclaration_return moduleRequireDependencyDeclaration61 = null;
 
-        MstageParser.moduleProvideDependencyDeclaration_return moduleProvideDependencyDeclaration64 = null;
+        MstageParser.moduleProvideDependencyDeclaration_return moduleProvideDependencyDeclaration62 = null;
 
 
 
@@ -2765,12 +2768,12 @@ public class MstageParser extends ChameleonParser {
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_moduleRequireDependencyDeclaration_in_componentBodyDeclaration857);
-                    moduleRequireDependencyDeclaration63=moduleRequireDependencyDeclaration(element);
+                    pushFollow(FOLLOW_moduleRequireDependencyDeclaration_in_componentBodyDeclaration863);
+                    moduleRequireDependencyDeclaration61=moduleRequireDependencyDeclaration(element);
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, moduleRequireDependencyDeclaration63.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, moduleRequireDependencyDeclaration61.getTree());
 
                     }
                     break;
@@ -2779,12 +2782,12 @@ public class MstageParser extends ChameleonParser {
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_moduleProvideDependencyDeclaration_in_componentBodyDeclaration863);
-                    moduleProvideDependencyDeclaration64=moduleProvideDependencyDeclaration(element);
+                    pushFollow(FOLLOW_moduleProvideDependencyDeclaration_in_componentBodyDeclaration869);
+                    moduleProvideDependencyDeclaration62=moduleProvideDependencyDeclaration(element);
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, moduleProvideDependencyDeclaration64.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, moduleProvideDependencyDeclaration62.getTree());
 
                     }
                     break;
@@ -2825,13 +2828,13 @@ public class MstageParser extends ChameleonParser {
         int moduleDependencyBody_StartIndex = input.index();
         Object root_0 = null;
 
-        Token char_literal65=null;
-        Token char_literal66=null;
+        Token char_literal63=null;
+        Token char_literal64=null;
         MstageParser.commaSeparatedBodyDecls_return decls = null;
 
 
-        Object char_literal65_tree=null;
-        Object char_literal66_tree=null;
+        Object char_literal63_tree=null;
+        Object char_literal64_tree=null;
 
          retval.elements = new ArrayList<String>(); 
         try {
@@ -2841,10 +2844,10 @@ public class MstageParser extends ChameleonParser {
             {
             root_0 = (Object)adaptor.nil();
 
-            char_literal65=(Token)match(input,29,FOLLOW_29_in_moduleDependencyBody894); if (state.failed) return retval;
+            char_literal63=(Token)match(input,29,FOLLOW_29_in_moduleDependencyBody900); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            char_literal65_tree = (Object)adaptor.create(char_literal65);
-            adaptor.addChild(root_0, char_literal65_tree);
+            char_literal63_tree = (Object)adaptor.create(char_literal63);
+            adaptor.addChild(root_0, char_literal63_tree);
             }
             // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:329:8: (decls= commaSeparatedBodyDecls )?
             int alt18=2;
@@ -2857,7 +2860,7 @@ public class MstageParser extends ChameleonParser {
                 case 1 :
                     // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:329:9: decls= commaSeparatedBodyDecls
                     {
-                    pushFollow(FOLLOW_commaSeparatedBodyDecls_in_moduleDependencyBody899);
+                    pushFollow(FOLLOW_commaSeparatedBodyDecls_in_moduleDependencyBody905);
                     decls=commaSeparatedBodyDecls();
 
                     state._fsp--;
@@ -2872,10 +2875,10 @@ public class MstageParser extends ChameleonParser {
 
             }
 
-            char_literal66=(Token)match(input,30,FOLLOW_30_in_moduleDependencyBody906); if (state.failed) return retval;
+            char_literal64=(Token)match(input,30,FOLLOW_30_in_moduleDependencyBody912); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            char_literal66_tree = (Object)adaptor.create(char_literal66);
-            adaptor.addChild(root_0, char_literal66_tree);
+            char_literal64_tree = (Object)adaptor.create(char_literal64);
+            adaptor.addChild(root_0, char_literal64_tree);
             }
 
             }
@@ -2914,11 +2917,11 @@ public class MstageParser extends ChameleonParser {
         int moduleRequireDependencyDeclaration_StartIndex = input.index();
         Object root_0 = null;
 
-        Token string_literal67=null;
+        Token string_literal65=null;
         MstageParser.moduleDependencyBody_return rd = null;
 
 
-        Object string_literal67_tree=null;
+        Object string_literal65_tree=null;
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 33) ) { return retval; }
@@ -2927,12 +2930,12 @@ public class MstageParser extends ChameleonParser {
             {
             root_0 = (Object)adaptor.nil();
 
-            string_literal67=(Token)match(input,44,FOLLOW_44_in_moduleRequireDependencyDeclaration920); if (state.failed) return retval;
+            string_literal65=(Token)match(input,44,FOLLOW_44_in_moduleRequireDependencyDeclaration926); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            string_literal67_tree = (Object)adaptor.create(string_literal67);
-            adaptor.addChild(root_0, string_literal67_tree);
+            string_literal65_tree = (Object)adaptor.create(string_literal65);
+            adaptor.addChild(root_0, string_literal65_tree);
             }
-            pushFollow(FOLLOW_moduleDependencyBody_in_moduleRequireDependencyDeclaration924);
+            pushFollow(FOLLOW_moduleDependencyBody_in_moduleRequireDependencyDeclaration930);
             rd=moduleDependencyBody();
 
             state._fsp--;
@@ -2982,11 +2985,11 @@ public class MstageParser extends ChameleonParser {
         int moduleProvideDependencyDeclaration_StartIndex = input.index();
         Object root_0 = null;
 
-        Token string_literal68=null;
+        Token string_literal66=null;
         MstageParser.moduleDependencyBody_return rd = null;
 
 
-        Object string_literal68_tree=null;
+        Object string_literal66_tree=null;
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 34) ) { return retval; }
@@ -2995,12 +2998,12 @@ public class MstageParser extends ChameleonParser {
             {
             root_0 = (Object)adaptor.nil();
 
-            string_literal68=(Token)match(input,45,FOLLOW_45_in_moduleProvideDependencyDeclaration940); if (state.failed) return retval;
+            string_literal66=(Token)match(input,45,FOLLOW_45_in_moduleProvideDependencyDeclaration946); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            string_literal68_tree = (Object)adaptor.create(string_literal68);
-            adaptor.addChild(root_0, string_literal68_tree);
+            string_literal66_tree = (Object)adaptor.create(string_literal66);
+            adaptor.addChild(root_0, string_literal66_tree);
             }
-            pushFollow(FOLLOW_moduleDependencyBody_in_moduleProvideDependencyDeclaration944);
+            pushFollow(FOLLOW_moduleDependencyBody_in_moduleProvideDependencyDeclaration950);
             rd=moduleDependencyBody();
 
             state._fsp--;
@@ -3052,12 +3055,12 @@ public class MstageParser extends ChameleonParser {
         Object root_0 = null;
 
         Token id=null;
-        Token char_literal69=null;
+        Token char_literal67=null;
         MstageParser.commaSeparatedBodyDecls_return decls = null;
 
 
         Object id_tree=null;
-        Object char_literal69_tree=null;
+        Object char_literal67_tree=null;
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 35) ) { return retval; }
@@ -3066,7 +3069,7 @@ public class MstageParser extends ChameleonParser {
             {
             root_0 = (Object)adaptor.nil();
 
-            id=(Token)match(input,Identifier,FOLLOW_Identifier_in_commaSeparatedBodyDecls968); if (state.failed) return retval;
+            id=(Token)match(input,Identifier,FOLLOW_Identifier_in_commaSeparatedBodyDecls974); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             id_tree = (Object)adaptor.create(id);
             adaptor.addChild(root_0, id_tree);
@@ -3082,12 +3085,12 @@ public class MstageParser extends ChameleonParser {
                 case 1 :
                     // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:355:19: ',' decls= commaSeparatedBodyDecls
                     {
-                    char_literal69=(Token)match(input,27,FOLLOW_27_in_commaSeparatedBodyDecls971); if (state.failed) return retval;
+                    char_literal67=(Token)match(input,27,FOLLOW_27_in_commaSeparatedBodyDecls977); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal69_tree = (Object)adaptor.create(char_literal69);
-                    adaptor.addChild(root_0, char_literal69_tree);
+                    char_literal67_tree = (Object)adaptor.create(char_literal67);
+                    adaptor.addChild(root_0, char_literal67_tree);
                     }
-                    pushFollow(FOLLOW_commaSeparatedBodyDecls_in_commaSeparatedBodyDecls975);
+                    pushFollow(FOLLOW_commaSeparatedBodyDecls_in_commaSeparatedBodyDecls981);
                     decls=commaSeparatedBodyDecls();
 
                     state._fsp--;
@@ -3150,13 +3153,13 @@ public class MstageParser extends ChameleonParser {
         int adviceType_StartIndex = input.index();
         Object root_0 = null;
 
+        Token string_literal68=null;
+        Token string_literal69=null;
         Token string_literal70=null;
-        Token string_literal71=null;
-        Token string_literal72=null;
 
+        Object string_literal68_tree=null;
+        Object string_literal69_tree=null;
         Object string_literal70_tree=null;
-        Object string_literal71_tree=null;
-        Object string_literal72_tree=null;
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 36) ) { return retval; }
@@ -3192,10 +3195,10 @@ public class MstageParser extends ChameleonParser {
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    string_literal70=(Token)match(input,46,FOLLOW_46_in_adviceType1007); if (state.failed) return retval;
+                    string_literal68=(Token)match(input,46,FOLLOW_46_in_adviceType1013); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    string_literal70_tree = (Object)adaptor.create(string_literal70);
-                    adaptor.addChild(root_0, string_literal70_tree);
+                    string_literal68_tree = (Object)adaptor.create(string_literal68);
+                    adaptor.addChild(root_0, string_literal68_tree);
                     }
                     if ( state.backtracking==0 ) {
                       retval.element = AdviceType.BEFORE;
@@ -3208,10 +3211,10 @@ public class MstageParser extends ChameleonParser {
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    string_literal71=(Token)match(input,47,FOLLOW_47_in_adviceType1014); if (state.failed) return retval;
+                    string_literal69=(Token)match(input,47,FOLLOW_47_in_adviceType1020); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    string_literal71_tree = (Object)adaptor.create(string_literal71);
-                    adaptor.addChild(root_0, string_literal71_tree);
+                    string_literal69_tree = (Object)adaptor.create(string_literal69);
+                    adaptor.addChild(root_0, string_literal69_tree);
                     }
                     if ( state.backtracking==0 ) {
                       retval.element = AdviceType.AFTER;
@@ -3224,10 +3227,10 @@ public class MstageParser extends ChameleonParser {
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    string_literal72=(Token)match(input,48,FOLLOW_48_in_adviceType1021); if (state.failed) return retval;
+                    string_literal70=(Token)match(input,48,FOLLOW_48_in_adviceType1027); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    string_literal72_tree = (Object)adaptor.create(string_literal72);
-                    adaptor.addChild(root_0, string_literal72_tree);
+                    string_literal70_tree = (Object)adaptor.create(string_literal70);
+                    adaptor.addChild(root_0, string_literal70_tree);
                     }
                     if ( state.backtracking==0 ) {
                       retval.element = AdviceType.AROUND;
@@ -3272,11 +3275,11 @@ public class MstageParser extends ChameleonParser {
         int joinpointKind_StartIndex = input.index();
         Object root_0 = null;
 
-        Token string_literal73=null;
-        Token string_literal74=null;
+        Token string_literal71=null;
+        Token string_literal72=null;
 
-        Object string_literal73_tree=null;
-        Object string_literal74_tree=null;
+        Object string_literal71_tree=null;
+        Object string_literal72_tree=null;
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 37) ) { return retval; }
@@ -3303,10 +3306,10 @@ public class MstageParser extends ChameleonParser {
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    string_literal73=(Token)match(input,49,FOLLOW_49_in_joinpointKind1039); if (state.failed) return retval;
+                    string_literal71=(Token)match(input,49,FOLLOW_49_in_joinpointKind1045); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    string_literal73_tree = (Object)adaptor.create(string_literal73);
-                    adaptor.addChild(root_0, string_literal73_tree);
+                    string_literal71_tree = (Object)adaptor.create(string_literal71);
+                    adaptor.addChild(root_0, string_literal71_tree);
                     }
                     if ( state.backtracking==0 ) {
                       retval.element = JoinpointKind.EXECUTION;
@@ -3319,10 +3322,10 @@ public class MstageParser extends ChameleonParser {
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    string_literal74=(Token)match(input,50,FOLLOW_50_in_joinpointKind1046); if (state.failed) return retval;
+                    string_literal72=(Token)match(input,50,FOLLOW_50_in_joinpointKind1052); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    string_literal74_tree = (Object)adaptor.create(string_literal74);
-                    adaptor.addChild(root_0, string_literal74_tree);
+                    string_literal72_tree = (Object)adaptor.create(string_literal72);
+                    adaptor.addChild(root_0, string_literal72_tree);
                     }
                     if ( state.backtracking==0 ) {
                       retval.element = JoinpointKind.CALL;
@@ -3367,9 +3370,9 @@ public class MstageParser extends ChameleonParser {
         int voidType_StartIndex = input.index();
         Object root_0 = null;
 
-        Token string_literal75=null;
+        Token string_literal73=null;
 
-        Object string_literal75_tree=null;
+        Object string_literal73_tree=null;
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 38) ) { return retval; }
@@ -3378,10 +3381,10 @@ public class MstageParser extends ChameleonParser {
             {
             root_0 = (Object)adaptor.nil();
 
-            string_literal75=(Token)match(input,51,FOLLOW_51_in_voidType1072); if (state.failed) return retval;
+            string_literal73=(Token)match(input,51,FOLLOW_51_in_voidType1078); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            string_literal75_tree = (Object)adaptor.create(string_literal75);
-            adaptor.addChild(root_0, string_literal75_tree);
+            string_literal73_tree = (Object)adaptor.create(string_literal73);
+            adaptor.addChild(root_0, string_literal73_tree);
             }
             if ( state.backtracking==0 ) {
               retval.element =new TypeReference("void");
@@ -3455,7 +3458,7 @@ public class MstageParser extends ChameleonParser {
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_classOrInterfaceType_in_type1099);
+                    pushFollow(FOLLOW_classOrInterfaceType_in_type1105);
                     cd=classOrInterfaceType();
 
                     state._fsp--;
@@ -3472,7 +3475,7 @@ public class MstageParser extends ChameleonParser {
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_primitiveType_in_type1108);
+                    pushFollow(FOLLOW_primitiveType_in_type1114);
                     pt=primitiveType();
 
                     state._fsp--;
@@ -3523,11 +3526,11 @@ public class MstageParser extends ChameleonParser {
 
         Token name=null;
         Token namex=null;
-        Token char_literal76=null;
+        Token char_literal74=null;
 
         Object name_tree=null;
         Object namex_tree=null;
-        Object char_literal76_tree=null;
+        Object char_literal74_tree=null;
 
         NamespaceOrTypeReference target = null;
         try {
@@ -3537,7 +3540,7 @@ public class MstageParser extends ChameleonParser {
             {
             root_0 = (Object)adaptor.nil();
 
-            name=(Token)match(input,Identifier,FOLLOW_Identifier_in_classOrInterfaceType1133); if (state.failed) return retval;
+            name=(Token)match(input,Identifier,FOLLOW_Identifier_in_classOrInterfaceType1139); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             name_tree = (Object)adaptor.create(name);
             adaptor.addChild(root_0, name_tree);
@@ -3563,12 +3566,12 @@ public class MstageParser extends ChameleonParser {
             	case 1 :
             	    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:403:11: '.' namex= Identifier
             	    {
-            	    char_literal76=(Token)match(input,52,FOLLOW_52_in_classOrInterfaceType1160); if (state.failed) return retval;
+            	    char_literal74=(Token)match(input,52,FOLLOW_52_in_classOrInterfaceType1166); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
-            	    char_literal76_tree = (Object)adaptor.create(char_literal76);
-            	    adaptor.addChild(root_0, char_literal76_tree);
+            	    char_literal74_tree = (Object)adaptor.create(char_literal74);
+            	    adaptor.addChild(root_0, char_literal74_tree);
             	    }
-            	    namex=(Token)match(input,Identifier,FOLLOW_Identifier_in_classOrInterfaceType1164); if (state.failed) return retval;
+            	    namex=(Token)match(input,Identifier,FOLLOW_Identifier_in_classOrInterfaceType1170); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
             	    namex_tree = (Object)adaptor.create(namex);
             	    adaptor.addChild(root_0, namex_tree);
@@ -3632,23 +3635,23 @@ public class MstageParser extends ChameleonParser {
         int primitiveType_StartIndex = input.index();
         Object root_0 = null;
 
+        Token string_literal75=null;
+        Token string_literal76=null;
         Token string_literal77=null;
         Token string_literal78=null;
         Token string_literal79=null;
         Token string_literal80=null;
         Token string_literal81=null;
         Token string_literal82=null;
-        Token string_literal83=null;
-        Token string_literal84=null;
 
+        Object string_literal75_tree=null;
+        Object string_literal76_tree=null;
         Object string_literal77_tree=null;
         Object string_literal78_tree=null;
         Object string_literal79_tree=null;
         Object string_literal80_tree=null;
         Object string_literal81_tree=null;
         Object string_literal82_tree=null;
-        Object string_literal83_tree=null;
-        Object string_literal84_tree=null;
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 41) ) { return retval; }
@@ -3709,10 +3712,10 @@ public class MstageParser extends ChameleonParser {
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    string_literal77=(Token)match(input,53,FOLLOW_53_in_primitiveType1213); if (state.failed) return retval;
+                    string_literal75=(Token)match(input,53,FOLLOW_53_in_primitiveType1219); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    string_literal77_tree = (Object)adaptor.create(string_literal77);
-                    adaptor.addChild(root_0, string_literal77_tree);
+                    string_literal75_tree = (Object)adaptor.create(string_literal75);
+                    adaptor.addChild(root_0, string_literal75_tree);
                     }
                     if ( state.backtracking==0 ) {
                       retval.element = new TypeReference("boolean");
@@ -3725,10 +3728,10 @@ public class MstageParser extends ChameleonParser {
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    string_literal78=(Token)match(input,54,FOLLOW_54_in_primitiveType1225); if (state.failed) return retval;
+                    string_literal76=(Token)match(input,54,FOLLOW_54_in_primitiveType1231); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    string_literal78_tree = (Object)adaptor.create(string_literal78);
-                    adaptor.addChild(root_0, string_literal78_tree);
+                    string_literal76_tree = (Object)adaptor.create(string_literal76);
+                    adaptor.addChild(root_0, string_literal76_tree);
                     }
                     if ( state.backtracking==0 ) {
                       retval.element = new TypeReference("char");
@@ -3741,10 +3744,10 @@ public class MstageParser extends ChameleonParser {
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    string_literal79=(Token)match(input,55,FOLLOW_55_in_primitiveType1237); if (state.failed) return retval;
+                    string_literal77=(Token)match(input,55,FOLLOW_55_in_primitiveType1243); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    string_literal79_tree = (Object)adaptor.create(string_literal79);
-                    adaptor.addChild(root_0, string_literal79_tree);
+                    string_literal77_tree = (Object)adaptor.create(string_literal77);
+                    adaptor.addChild(root_0, string_literal77_tree);
                     }
                     if ( state.backtracking==0 ) {
                       retval.element = new TypeReference("byte");
@@ -3757,10 +3760,10 @@ public class MstageParser extends ChameleonParser {
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    string_literal80=(Token)match(input,56,FOLLOW_56_in_primitiveType1249); if (state.failed) return retval;
+                    string_literal78=(Token)match(input,56,FOLLOW_56_in_primitiveType1255); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    string_literal80_tree = (Object)adaptor.create(string_literal80);
-                    adaptor.addChild(root_0, string_literal80_tree);
+                    string_literal78_tree = (Object)adaptor.create(string_literal78);
+                    adaptor.addChild(root_0, string_literal78_tree);
                     }
                     if ( state.backtracking==0 ) {
                       retval.element = new TypeReference("short");
@@ -3773,10 +3776,10 @@ public class MstageParser extends ChameleonParser {
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    string_literal81=(Token)match(input,57,FOLLOW_57_in_primitiveType1261); if (state.failed) return retval;
+                    string_literal79=(Token)match(input,57,FOLLOW_57_in_primitiveType1267); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    string_literal81_tree = (Object)adaptor.create(string_literal81);
-                    adaptor.addChild(root_0, string_literal81_tree);
+                    string_literal79_tree = (Object)adaptor.create(string_literal79);
+                    adaptor.addChild(root_0, string_literal79_tree);
                     }
                     if ( state.backtracking==0 ) {
                       retval.element = new TypeReference("int");
@@ -3789,10 +3792,10 @@ public class MstageParser extends ChameleonParser {
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    string_literal82=(Token)match(input,58,FOLLOW_58_in_primitiveType1273); if (state.failed) return retval;
+                    string_literal80=(Token)match(input,58,FOLLOW_58_in_primitiveType1279); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    string_literal82_tree = (Object)adaptor.create(string_literal82);
-                    adaptor.addChild(root_0, string_literal82_tree);
+                    string_literal80_tree = (Object)adaptor.create(string_literal80);
+                    adaptor.addChild(root_0, string_literal80_tree);
                     }
                     if ( state.backtracking==0 ) {
                       retval.element = new TypeReference("long");
@@ -3805,10 +3808,10 @@ public class MstageParser extends ChameleonParser {
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    string_literal83=(Token)match(input,59,FOLLOW_59_in_primitiveType1285); if (state.failed) return retval;
+                    string_literal81=(Token)match(input,59,FOLLOW_59_in_primitiveType1291); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    string_literal83_tree = (Object)adaptor.create(string_literal83);
-                    adaptor.addChild(root_0, string_literal83_tree);
+                    string_literal81_tree = (Object)adaptor.create(string_literal81);
+                    adaptor.addChild(root_0, string_literal81_tree);
                     }
                     if ( state.backtracking==0 ) {
                       retval.element = new TypeReference("float");
@@ -3821,10 +3824,10 @@ public class MstageParser extends ChameleonParser {
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    string_literal84=(Token)match(input,60,FOLLOW_60_in_primitiveType1297); if (state.failed) return retval;
+                    string_literal82=(Token)match(input,60,FOLLOW_60_in_primitiveType1303); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    string_literal84_tree = (Object)adaptor.create(string_literal84);
-                    adaptor.addChild(root_0, string_literal84_tree);
+                    string_literal82_tree = (Object)adaptor.create(string_literal82);
+                    adaptor.addChild(root_0, string_literal82_tree);
                     }
                     if ( state.backtracking==0 ) {
                       retval.element = new TypeReference("double");
@@ -3868,7 +3871,7 @@ public class MstageParser extends ChameleonParser {
         int annotations_StartIndex = input.index();
         Object root_0 = null;
 
-        MstageParser.annotation_return annotation85 = null;
+        MstageParser.annotation_return annotation83 = null;
 
 
 
@@ -3895,12 +3898,12 @@ public class MstageParser extends ChameleonParser {
             	case 1 :
             	    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:0:0: annotation
             	    {
-            	    pushFollow(FOLLOW_annotation_in_annotations1321);
-            	    annotation85=annotation();
+            	    pushFollow(FOLLOW_annotation_in_annotations1327);
+            	    annotation83=annotation();
 
             	    state._fsp--;
             	    if (state.failed) return retval;
-            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, annotation85.getTree());
+            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, annotation83.getTree());
 
             	    }
             	    break;
@@ -3952,19 +3955,19 @@ public class MstageParser extends ChameleonParser {
         int annotation_StartIndex = input.index();
         Object root_0 = null;
 
+        Token char_literal84=null;
         Token char_literal86=null;
-        Token char_literal88=null;
-        Token char_literal91=null;
-        MstageParser.annotationName_return annotationName87 = null;
+        Token char_literal89=null;
+        MstageParser.annotationName_return annotationName85 = null;
 
-        MstageParser.elementValuePairs_return elementValuePairs89 = null;
+        MstageParser.elementValuePairs_return elementValuePairs87 = null;
 
-        MstageParser.elementValue_return elementValue90 = null;
+        MstageParser.elementValue_return elementValue88 = null;
 
 
+        Object char_literal84_tree=null;
         Object char_literal86_tree=null;
-        Object char_literal88_tree=null;
-        Object char_literal91_tree=null;
+        Object char_literal89_tree=null;
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 43) ) { return retval; }
@@ -3973,17 +3976,17 @@ public class MstageParser extends ChameleonParser {
             {
             root_0 = (Object)adaptor.nil();
 
-            char_literal86=(Token)match(input,61,FOLLOW_61_in_annotation1341); if (state.failed) return retval;
+            char_literal84=(Token)match(input,61,FOLLOW_61_in_annotation1347); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            char_literal86_tree = (Object)adaptor.create(char_literal86);
-            adaptor.addChild(root_0, char_literal86_tree);
+            char_literal84_tree = (Object)adaptor.create(char_literal84);
+            adaptor.addChild(root_0, char_literal84_tree);
             }
-            pushFollow(FOLLOW_annotationName_in_annotation1343);
-            annotationName87=annotationName();
+            pushFollow(FOLLOW_annotationName_in_annotation1349);
+            annotationName85=annotationName();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, annotationName87.getTree());
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, annotationName85.getTree());
             // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:437:28: ( '(' ( elementValuePairs | elementValue )? ')' )?
             int alt27=2;
             int LA27_0 = input.LA(1);
@@ -3995,10 +3998,10 @@ public class MstageParser extends ChameleonParser {
                 case 1 :
                     // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:437:30: '(' ( elementValuePairs | elementValue )? ')'
                     {
-                    char_literal88=(Token)match(input,25,FOLLOW_25_in_annotation1347); if (state.failed) return retval;
+                    char_literal86=(Token)match(input,25,FOLLOW_25_in_annotation1353); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal88_tree = (Object)adaptor.create(char_literal88);
-                    adaptor.addChild(root_0, char_literal88_tree);
+                    char_literal86_tree = (Object)adaptor.create(char_literal86);
+                    adaptor.addChild(root_0, char_literal86_tree);
                     }
                     // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:437:34: ( elementValuePairs | elementValue )?
                     int alt26=3;
@@ -4014,34 +4017,34 @@ public class MstageParser extends ChameleonParser {
                         case 1 :
                             // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:437:36: elementValuePairs
                             {
-                            pushFollow(FOLLOW_elementValuePairs_in_annotation1351);
-                            elementValuePairs89=elementValuePairs();
+                            pushFollow(FOLLOW_elementValuePairs_in_annotation1357);
+                            elementValuePairs87=elementValuePairs();
 
                             state._fsp--;
                             if (state.failed) return retval;
-                            if ( state.backtracking==0 ) adaptor.addChild(root_0, elementValuePairs89.getTree());
+                            if ( state.backtracking==0 ) adaptor.addChild(root_0, elementValuePairs87.getTree());
 
                             }
                             break;
                         case 2 :
                             // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:437:56: elementValue
                             {
-                            pushFollow(FOLLOW_elementValue_in_annotation1355);
-                            elementValue90=elementValue();
+                            pushFollow(FOLLOW_elementValue_in_annotation1361);
+                            elementValue88=elementValue();
 
                             state._fsp--;
                             if (state.failed) return retval;
-                            if ( state.backtracking==0 ) adaptor.addChild(root_0, elementValue90.getTree());
+                            if ( state.backtracking==0 ) adaptor.addChild(root_0, elementValue88.getTree());
 
                             }
                             break;
 
                     }
 
-                    char_literal91=(Token)match(input,26,FOLLOW_26_in_annotation1360); if (state.failed) return retval;
+                    char_literal89=(Token)match(input,26,FOLLOW_26_in_annotation1366); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal91_tree = (Object)adaptor.create(char_literal91);
-                    adaptor.addChild(root_0, char_literal91_tree);
+                    char_literal89_tree = (Object)adaptor.create(char_literal89);
+                    adaptor.addChild(root_0, char_literal89_tree);
                     }
 
                     }
@@ -4086,13 +4089,13 @@ public class MstageParser extends ChameleonParser {
         int annotationName_StartIndex = input.index();
         Object root_0 = null;
 
+        Token Identifier90=null;
+        Token char_literal91=null;
         Token Identifier92=null;
-        Token char_literal93=null;
-        Token Identifier94=null;
 
+        Object Identifier90_tree=null;
+        Object char_literal91_tree=null;
         Object Identifier92_tree=null;
-        Object char_literal93_tree=null;
-        Object Identifier94_tree=null;
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 44) ) { return retval; }
@@ -4101,10 +4104,10 @@ public class MstageParser extends ChameleonParser {
             {
             root_0 = (Object)adaptor.nil();
 
-            Identifier92=(Token)match(input,Identifier,FOLLOW_Identifier_in_annotationName1384); if (state.failed) return retval;
+            Identifier90=(Token)match(input,Identifier,FOLLOW_Identifier_in_annotationName1390); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            Identifier92_tree = (Object)adaptor.create(Identifier92);
-            adaptor.addChild(root_0, Identifier92_tree);
+            Identifier90_tree = (Object)adaptor.create(Identifier90);
+            adaptor.addChild(root_0, Identifier90_tree);
             }
             // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:441:18: ( '.' Identifier )*
             loop28:
@@ -4121,15 +4124,15 @@ public class MstageParser extends ChameleonParser {
             	case 1 :
             	    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:441:19: '.' Identifier
             	    {
-            	    char_literal93=(Token)match(input,52,FOLLOW_52_in_annotationName1387); if (state.failed) return retval;
+            	    char_literal91=(Token)match(input,52,FOLLOW_52_in_annotationName1393); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
-            	    char_literal93_tree = (Object)adaptor.create(char_literal93);
-            	    adaptor.addChild(root_0, char_literal93_tree);
+            	    char_literal91_tree = (Object)adaptor.create(char_literal91);
+            	    adaptor.addChild(root_0, char_literal91_tree);
             	    }
-            	    Identifier94=(Token)match(input,Identifier,FOLLOW_Identifier_in_annotationName1389); if (state.failed) return retval;
+            	    Identifier92=(Token)match(input,Identifier,FOLLOW_Identifier_in_annotationName1395); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
-            	    Identifier94_tree = (Object)adaptor.create(Identifier94);
-            	    adaptor.addChild(root_0, Identifier94_tree);
+            	    Identifier92_tree = (Object)adaptor.create(Identifier92);
+            	    adaptor.addChild(root_0, Identifier92_tree);
             	    }
 
             	    }
@@ -4177,13 +4180,13 @@ public class MstageParser extends ChameleonParser {
         int elementValuePairs_StartIndex = input.index();
         Object root_0 = null;
 
-        Token char_literal96=null;
+        Token char_literal94=null;
+        MstageParser.elementValuePair_return elementValuePair93 = null;
+
         MstageParser.elementValuePair_return elementValuePair95 = null;
 
-        MstageParser.elementValuePair_return elementValuePair97 = null;
 
-
-        Object char_literal96_tree=null;
+        Object char_literal94_tree=null;
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 45) ) { return retval; }
@@ -4192,12 +4195,12 @@ public class MstageParser extends ChameleonParser {
             {
             root_0 = (Object)adaptor.nil();
 
-            pushFollow(FOLLOW_elementValuePair_in_elementValuePairs1410);
-            elementValuePair95=elementValuePair();
+            pushFollow(FOLLOW_elementValuePair_in_elementValuePairs1416);
+            elementValuePair93=elementValuePair();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, elementValuePair95.getTree());
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, elementValuePair93.getTree());
             // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:445:26: ( ',' elementValuePair )*
             loop29:
             do {
@@ -4213,17 +4216,17 @@ public class MstageParser extends ChameleonParser {
             	case 1 :
             	    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:445:27: ',' elementValuePair
             	    {
-            	    char_literal96=(Token)match(input,27,FOLLOW_27_in_elementValuePairs1413); if (state.failed) return retval;
+            	    char_literal94=(Token)match(input,27,FOLLOW_27_in_elementValuePairs1419); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
-            	    char_literal96_tree = (Object)adaptor.create(char_literal96);
-            	    adaptor.addChild(root_0, char_literal96_tree);
+            	    char_literal94_tree = (Object)adaptor.create(char_literal94);
+            	    adaptor.addChild(root_0, char_literal94_tree);
             	    }
-            	    pushFollow(FOLLOW_elementValuePair_in_elementValuePairs1415);
-            	    elementValuePair97=elementValuePair();
+            	    pushFollow(FOLLOW_elementValuePair_in_elementValuePairs1421);
+            	    elementValuePair95=elementValuePair();
 
             	    state._fsp--;
             	    if (state.failed) return retval;
-            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, elementValuePair97.getTree());
+            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, elementValuePair95.getTree());
 
             	    }
             	    break;
@@ -4270,13 +4273,13 @@ public class MstageParser extends ChameleonParser {
         int elementValuePair_StartIndex = input.index();
         Object root_0 = null;
 
-        Token Identifier98=null;
-        Token char_literal99=null;
-        MstageParser.elementValue_return elementValue100 = null;
+        Token Identifier96=null;
+        Token char_literal97=null;
+        MstageParser.elementValue_return elementValue98 = null;
 
 
-        Object Identifier98_tree=null;
-        Object char_literal99_tree=null;
+        Object Identifier96_tree=null;
+        Object char_literal97_tree=null;
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 46) ) { return retval; }
@@ -4285,22 +4288,22 @@ public class MstageParser extends ChameleonParser {
             {
             root_0 = (Object)adaptor.nil();
 
-            Identifier98=(Token)match(input,Identifier,FOLLOW_Identifier_in_elementValuePair1436); if (state.failed) return retval;
+            Identifier96=(Token)match(input,Identifier,FOLLOW_Identifier_in_elementValuePair1442); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            Identifier98_tree = (Object)adaptor.create(Identifier98);
-            adaptor.addChild(root_0, Identifier98_tree);
+            Identifier96_tree = (Object)adaptor.create(Identifier96);
+            adaptor.addChild(root_0, Identifier96_tree);
             }
-            char_literal99=(Token)match(input,62,FOLLOW_62_in_elementValuePair1438); if (state.failed) return retval;
+            char_literal97=(Token)match(input,62,FOLLOW_62_in_elementValuePair1444); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            char_literal99_tree = (Object)adaptor.create(char_literal99);
-            adaptor.addChild(root_0, char_literal99_tree);
+            char_literal97_tree = (Object)adaptor.create(char_literal97);
+            adaptor.addChild(root_0, char_literal97_tree);
             }
-            pushFollow(FOLLOW_elementValue_in_elementValuePair1440);
-            elementValue100=elementValue();
+            pushFollow(FOLLOW_elementValue_in_elementValuePair1446);
+            elementValue98=elementValue();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, elementValue100.getTree());
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, elementValue98.getTree());
 
             }
 
@@ -4338,9 +4341,9 @@ public class MstageParser extends ChameleonParser {
         int elementValue_StartIndex = input.index();
         Object root_0 = null;
 
-        MstageParser.annotation_return annotation101 = null;
+        MstageParser.annotation_return annotation99 = null;
 
-        MstageParser.elementValueArrayInitializer_return elementValueArrayInitializer102 = null;
+        MstageParser.elementValueArrayInitializer_return elementValueArrayInitializer100 = null;
 
 
 
@@ -4369,12 +4372,12 @@ public class MstageParser extends ChameleonParser {
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_annotation_in_elementValue1463);
-                    annotation101=annotation();
+                    pushFollow(FOLLOW_annotation_in_elementValue1469);
+                    annotation99=annotation();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, annotation101.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, annotation99.getTree());
 
                     }
                     break;
@@ -4383,12 +4386,12 @@ public class MstageParser extends ChameleonParser {
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_elementValueArrayInitializer_in_elementValue1473);
-                    elementValueArrayInitializer102=elementValueArrayInitializer();
+                    pushFollow(FOLLOW_elementValueArrayInitializer_in_elementValue1479);
+                    elementValueArrayInitializer100=elementValueArrayInitializer();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, elementValueArrayInitializer102.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, elementValueArrayInitializer100.getTree());
 
                     }
                     break;
@@ -4428,19 +4431,19 @@ public class MstageParser extends ChameleonParser {
         int elementValueArrayInitializer_StartIndex = input.index();
         Object root_0 = null;
 
+        Token char_literal101=null;
         Token char_literal103=null;
         Token char_literal105=null;
-        Token char_literal107=null;
-        Token char_literal108=null;
+        Token char_literal106=null;
+        MstageParser.elementValue_return elementValue102 = null;
+
         MstageParser.elementValue_return elementValue104 = null;
 
-        MstageParser.elementValue_return elementValue106 = null;
 
-
+        Object char_literal101_tree=null;
         Object char_literal103_tree=null;
         Object char_literal105_tree=null;
-        Object char_literal107_tree=null;
-        Object char_literal108_tree=null;
+        Object char_literal106_tree=null;
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 48) ) { return retval; }
@@ -4449,10 +4452,10 @@ public class MstageParser extends ChameleonParser {
             {
             root_0 = (Object)adaptor.nil();
 
-            char_literal103=(Token)match(input,29,FOLLOW_29_in_elementValueArrayInitializer1496); if (state.failed) return retval;
+            char_literal101=(Token)match(input,29,FOLLOW_29_in_elementValueArrayInitializer1502); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            char_literal103_tree = (Object)adaptor.create(char_literal103);
-            adaptor.addChild(root_0, char_literal103_tree);
+            char_literal101_tree = (Object)adaptor.create(char_literal101);
+            adaptor.addChild(root_0, char_literal101_tree);
             }
             // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:458:13: ( elementValue ( ',' elementValue )* )?
             int alt32=2;
@@ -4465,12 +4468,12 @@ public class MstageParser extends ChameleonParser {
                 case 1 :
                     // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:458:14: elementValue ( ',' elementValue )*
                     {
-                    pushFollow(FOLLOW_elementValue_in_elementValueArrayInitializer1499);
-                    elementValue104=elementValue();
+                    pushFollow(FOLLOW_elementValue_in_elementValueArrayInitializer1505);
+                    elementValue102=elementValue();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, elementValue104.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, elementValue102.getTree());
                     // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:458:27: ( ',' elementValue )*
                     loop31:
                     do {
@@ -4492,17 +4495,17 @@ public class MstageParser extends ChameleonParser {
                     	case 1 :
                     	    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:458:28: ',' elementValue
                     	    {
-                    	    char_literal105=(Token)match(input,27,FOLLOW_27_in_elementValueArrayInitializer1502); if (state.failed) return retval;
+                    	    char_literal103=(Token)match(input,27,FOLLOW_27_in_elementValueArrayInitializer1508); if (state.failed) return retval;
                     	    if ( state.backtracking==0 ) {
-                    	    char_literal105_tree = (Object)adaptor.create(char_literal105);
-                    	    adaptor.addChild(root_0, char_literal105_tree);
+                    	    char_literal103_tree = (Object)adaptor.create(char_literal103);
+                    	    adaptor.addChild(root_0, char_literal103_tree);
                     	    }
-                    	    pushFollow(FOLLOW_elementValue_in_elementValueArrayInitializer1504);
-                    	    elementValue106=elementValue();
+                    	    pushFollow(FOLLOW_elementValue_in_elementValueArrayInitializer1510);
+                    	    elementValue104=elementValue();
 
                     	    state._fsp--;
                     	    if (state.failed) return retval;
-                    	    if ( state.backtracking==0 ) adaptor.addChild(root_0, elementValue106.getTree());
+                    	    if ( state.backtracking==0 ) adaptor.addChild(root_0, elementValue104.getTree());
 
                     	    }
                     	    break;
@@ -4529,10 +4532,10 @@ public class MstageParser extends ChameleonParser {
                 case 1 :
                     // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:458:50: ','
                     {
-                    char_literal107=(Token)match(input,27,FOLLOW_27_in_elementValueArrayInitializer1511); if (state.failed) return retval;
+                    char_literal105=(Token)match(input,27,FOLLOW_27_in_elementValueArrayInitializer1517); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal107_tree = (Object)adaptor.create(char_literal107);
-                    adaptor.addChild(root_0, char_literal107_tree);
+                    char_literal105_tree = (Object)adaptor.create(char_literal105);
+                    adaptor.addChild(root_0, char_literal105_tree);
                     }
 
                     }
@@ -4540,10 +4543,10 @@ public class MstageParser extends ChameleonParser {
 
             }
 
-            char_literal108=(Token)match(input,30,FOLLOW_30_in_elementValueArrayInitializer1515); if (state.failed) return retval;
+            char_literal106=(Token)match(input,30,FOLLOW_30_in_elementValueArrayInitializer1521); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            char_literal108_tree = (Object)adaptor.create(char_literal108);
-            adaptor.addChild(root_0, char_literal108_tree);
+            char_literal106_tree = (Object)adaptor.create(char_literal106);
+            adaptor.addChild(root_0, char_literal106_tree);
             }
 
             }
@@ -4584,14 +4587,14 @@ public class MstageParser extends ChameleonParser {
         Object root_0 = null;
 
         Token name=null;
-        Token char_literal109=null;
-        Token string_literal110=null;
-        MstageParser.annotationTypeBody_return annotationTypeBody111 = null;
+        Token char_literal107=null;
+        Token string_literal108=null;
+        MstageParser.annotationTypeBody_return annotationTypeBody109 = null;
 
 
         Object name_tree=null;
-        Object char_literal109_tree=null;
-        Object string_literal110_tree=null;
+        Object char_literal107_tree=null;
+        Object string_literal108_tree=null;
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 49) ) { return retval; }
@@ -4600,27 +4603,27 @@ public class MstageParser extends ChameleonParser {
             {
             root_0 = (Object)adaptor.nil();
 
-            char_literal109=(Token)match(input,61,FOLLOW_61_in_annotationTypeDeclaration1542); if (state.failed) return retval;
+            char_literal107=(Token)match(input,61,FOLLOW_61_in_annotationTypeDeclaration1548); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            char_literal109_tree = (Object)adaptor.create(char_literal109);
-            adaptor.addChild(root_0, char_literal109_tree);
+            char_literal107_tree = (Object)adaptor.create(char_literal107);
+            adaptor.addChild(root_0, char_literal107_tree);
             }
-            string_literal110=(Token)match(input,23,FOLLOW_23_in_annotationTypeDeclaration1544); if (state.failed) return retval;
+            string_literal108=(Token)match(input,23,FOLLOW_23_in_annotationTypeDeclaration1550); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            string_literal110_tree = (Object)adaptor.create(string_literal110);
-            adaptor.addChild(root_0, string_literal110_tree);
+            string_literal108_tree = (Object)adaptor.create(string_literal108);
+            adaptor.addChild(root_0, string_literal108_tree);
             }
-            name=(Token)match(input,Identifier,FOLLOW_Identifier_in_annotationTypeDeclaration1548); if (state.failed) return retval;
+            name=(Token)match(input,Identifier,FOLLOW_Identifier_in_annotationTypeDeclaration1554); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             name_tree = (Object)adaptor.create(name);
             adaptor.addChild(root_0, name_tree);
             }
-            pushFollow(FOLLOW_annotationTypeBody_in_annotationTypeDeclaration1550);
-            annotationTypeBody111=annotationTypeBody();
+            pushFollow(FOLLOW_annotationTypeBody_in_annotationTypeDeclaration1556);
+            annotationTypeBody109=annotationTypeBody();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, annotationTypeBody111.getTree());
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, annotationTypeBody109.getTree());
 
             }
 
@@ -4658,13 +4661,13 @@ public class MstageParser extends ChameleonParser {
         int annotationTypeBody_StartIndex = input.index();
         Object root_0 = null;
 
+        Token char_literal110=null;
         Token char_literal112=null;
-        Token char_literal114=null;
-        MstageParser.annotationTypeElementDeclaration_return annotationTypeElementDeclaration113 = null;
+        MstageParser.annotationTypeElementDeclaration_return annotationTypeElementDeclaration111 = null;
 
 
+        Object char_literal110_tree=null;
         Object char_literal112_tree=null;
-        Object char_literal114_tree=null;
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 50) ) { return retval; }
@@ -4673,10 +4676,10 @@ public class MstageParser extends ChameleonParser {
             {
             root_0 = (Object)adaptor.nil();
 
-            char_literal112=(Token)match(input,29,FOLLOW_29_in_annotationTypeBody1573); if (state.failed) return retval;
+            char_literal110=(Token)match(input,29,FOLLOW_29_in_annotationTypeBody1579); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            char_literal112_tree = (Object)adaptor.create(char_literal112);
-            adaptor.addChild(root_0, char_literal112_tree);
+            char_literal110_tree = (Object)adaptor.create(char_literal110);
+            adaptor.addChild(root_0, char_literal110_tree);
             }
             // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:466:13: ( annotationTypeElementDeclaration )*
             loop34:
@@ -4693,12 +4696,12 @@ public class MstageParser extends ChameleonParser {
             	case 1 :
             	    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:466:14: annotationTypeElementDeclaration
             	    {
-            	    pushFollow(FOLLOW_annotationTypeElementDeclaration_in_annotationTypeBody1576);
-            	    annotationTypeElementDeclaration113=annotationTypeElementDeclaration();
+            	    pushFollow(FOLLOW_annotationTypeElementDeclaration_in_annotationTypeBody1582);
+            	    annotationTypeElementDeclaration111=annotationTypeElementDeclaration();
 
             	    state._fsp--;
             	    if (state.failed) return retval;
-            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, annotationTypeElementDeclaration113.getTree());
+            	    if ( state.backtracking==0 ) adaptor.addChild(root_0, annotationTypeElementDeclaration111.getTree());
 
             	    }
             	    break;
@@ -4708,10 +4711,10 @@ public class MstageParser extends ChameleonParser {
                 }
             } while (true);
 
-            char_literal114=(Token)match(input,30,FOLLOW_30_in_annotationTypeBody1580); if (state.failed) return retval;
+            char_literal112=(Token)match(input,30,FOLLOW_30_in_annotationTypeBody1586); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            char_literal114_tree = (Object)adaptor.create(char_literal114);
-            adaptor.addChild(root_0, char_literal114_tree);
+            char_literal112_tree = (Object)adaptor.create(char_literal112);
+            adaptor.addChild(root_0, char_literal112_tree);
             }
 
             }
@@ -4750,7 +4753,7 @@ public class MstageParser extends ChameleonParser {
         int annotationTypeElementDeclaration_StartIndex = input.index();
         Object root_0 = null;
 
-        MstageParser.annotationTypeElementRest_return annotationTypeElementRest115 = null;
+        MstageParser.annotationTypeElementRest_return annotationTypeElementRest113 = null;
 
 
 
@@ -4761,12 +4764,12 @@ public class MstageParser extends ChameleonParser {
             {
             root_0 = (Object)adaptor.nil();
 
-            pushFollow(FOLLOW_annotationTypeElementRest_in_annotationTypeElementDeclaration1605);
-            annotationTypeElementRest115=annotationTypeElementRest();
+            pushFollow(FOLLOW_annotationTypeElementRest_in_annotationTypeElementDeclaration1611);
+            annotationTypeElementRest113=annotationTypeElementRest();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, annotationTypeElementRest115.getTree());
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, annotationTypeElementRest113.getTree());
 
             }
 
@@ -4804,17 +4807,17 @@ public class MstageParser extends ChameleonParser {
         int annotationTypeElementRest_StartIndex = input.index();
         Object root_0 = null;
 
+        Token char_literal116=null;
         Token char_literal118=null;
-        Token char_literal120=null;
-        MstageParser.type_return type116 = null;
+        MstageParser.type_return type114 = null;
 
-        MstageParser.annotationMethodOrConstantRest_return annotationMethodOrConstantRest117 = null;
+        MstageParser.annotationMethodOrConstantRest_return annotationMethodOrConstantRest115 = null;
 
-        MstageParser.annotationTypeDeclaration_return annotationTypeDeclaration119 = null;
+        MstageParser.annotationTypeDeclaration_return annotationTypeDeclaration117 = null;
 
 
+        Object char_literal116_tree=null;
         Object char_literal118_tree=null;
-        Object char_literal120_tree=null;
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 52) ) { return retval; }
@@ -4841,22 +4844,22 @@ public class MstageParser extends ChameleonParser {
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_type_in_annotationTypeElementRest1628);
-                    type116=type();
+                    pushFollow(FOLLOW_type_in_annotationTypeElementRest1634);
+                    type114=type();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, type116.getTree());
-                    pushFollow(FOLLOW_annotationMethodOrConstantRest_in_annotationTypeElementRest1630);
-                    annotationMethodOrConstantRest117=annotationMethodOrConstantRest();
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, type114.getTree());
+                    pushFollow(FOLLOW_annotationMethodOrConstantRest_in_annotationTypeElementRest1636);
+                    annotationMethodOrConstantRest115=annotationMethodOrConstantRest();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, annotationMethodOrConstantRest117.getTree());
-                    char_literal118=(Token)match(input,24,FOLLOW_24_in_annotationTypeElementRest1632); if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, annotationMethodOrConstantRest115.getTree());
+                    char_literal116=(Token)match(input,24,FOLLOW_24_in_annotationTypeElementRest1638); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    char_literal118_tree = (Object)adaptor.create(char_literal118);
-                    adaptor.addChild(root_0, char_literal118_tree);
+                    char_literal116_tree = (Object)adaptor.create(char_literal116);
+                    adaptor.addChild(root_0, char_literal116_tree);
                     }
 
                     }
@@ -4866,12 +4869,12 @@ public class MstageParser extends ChameleonParser {
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_annotationTypeDeclaration_in_annotationTypeElementRest1642);
-                    annotationTypeDeclaration119=annotationTypeDeclaration();
+                    pushFollow(FOLLOW_annotationTypeDeclaration_in_annotationTypeElementRest1648);
+                    annotationTypeDeclaration117=annotationTypeDeclaration();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, annotationTypeDeclaration119.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, annotationTypeDeclaration117.getTree());
                     // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:475:35: ( ';' )?
                     int alt35=2;
                     int LA35_0 = input.LA(1);
@@ -4883,10 +4886,10 @@ public class MstageParser extends ChameleonParser {
                         case 1 :
                             // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:0:0: ';'
                             {
-                            char_literal120=(Token)match(input,24,FOLLOW_24_in_annotationTypeElementRest1644); if (state.failed) return retval;
+                            char_literal118=(Token)match(input,24,FOLLOW_24_in_annotationTypeElementRest1650); if (state.failed) return retval;
                             if ( state.backtracking==0 ) {
-                            char_literal120_tree = (Object)adaptor.create(char_literal120);
-                            adaptor.addChild(root_0, char_literal120_tree);
+                            char_literal118_tree = (Object)adaptor.create(char_literal118);
+                            adaptor.addChild(root_0, char_literal118_tree);
                             }
 
                             }
@@ -4933,7 +4936,7 @@ public class MstageParser extends ChameleonParser {
         int annotationMethodOrConstantRest_StartIndex = input.index();
         Object root_0 = null;
 
-        MstageParser.annotationMethodRest_return annotationMethodRest121 = null;
+        MstageParser.annotationMethodRest_return annotationMethodRest119 = null;
 
 
 
@@ -4944,12 +4947,12 @@ public class MstageParser extends ChameleonParser {
             {
             root_0 = (Object)adaptor.nil();
 
-            pushFollow(FOLLOW_annotationMethodRest_in_annotationMethodOrConstantRest1668);
-            annotationMethodRest121=annotationMethodRest();
+            pushFollow(FOLLOW_annotationMethodRest_in_annotationMethodOrConstantRest1674);
+            annotationMethodRest119=annotationMethodRest();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, annotationMethodRest121.getTree());
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, annotationMethodRest119.getTree());
 
             }
 
@@ -4987,15 +4990,15 @@ public class MstageParser extends ChameleonParser {
         int annotationMethodRest_StartIndex = input.index();
         Object root_0 = null;
 
-        Token Identifier122=null;
-        Token char_literal123=null;
-        Token char_literal124=null;
-        MstageParser.defaultValue_return defaultValue125 = null;
+        Token Identifier120=null;
+        Token char_literal121=null;
+        Token char_literal122=null;
+        MstageParser.defaultValue_return defaultValue123 = null;
 
 
-        Object Identifier122_tree=null;
-        Object char_literal123_tree=null;
-        Object char_literal124_tree=null;
+        Object Identifier120_tree=null;
+        Object char_literal121_tree=null;
+        Object char_literal122_tree=null;
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 54) ) { return retval; }
@@ -5004,20 +5007,20 @@ public class MstageParser extends ChameleonParser {
             {
             root_0 = (Object)adaptor.nil();
 
-            Identifier122=(Token)match(input,Identifier,FOLLOW_Identifier_in_annotationMethodRest1691); if (state.failed) return retval;
+            Identifier120=(Token)match(input,Identifier,FOLLOW_Identifier_in_annotationMethodRest1697); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            Identifier122_tree = (Object)adaptor.create(Identifier122);
-            adaptor.addChild(root_0, Identifier122_tree);
+            Identifier120_tree = (Object)adaptor.create(Identifier120);
+            adaptor.addChild(root_0, Identifier120_tree);
             }
-            char_literal123=(Token)match(input,25,FOLLOW_25_in_annotationMethodRest1693); if (state.failed) return retval;
+            char_literal121=(Token)match(input,25,FOLLOW_25_in_annotationMethodRest1699); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            char_literal123_tree = (Object)adaptor.create(char_literal123);
-            adaptor.addChild(root_0, char_literal123_tree);
+            char_literal121_tree = (Object)adaptor.create(char_literal121);
+            adaptor.addChild(root_0, char_literal121_tree);
             }
-            char_literal124=(Token)match(input,26,FOLLOW_26_in_annotationMethodRest1695); if (state.failed) return retval;
+            char_literal122=(Token)match(input,26,FOLLOW_26_in_annotationMethodRest1701); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            char_literal124_tree = (Object)adaptor.create(char_literal124);
-            adaptor.addChild(root_0, char_literal124_tree);
+            char_literal122_tree = (Object)adaptor.create(char_literal122);
+            adaptor.addChild(root_0, char_literal122_tree);
             }
             // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:483:28: ( defaultValue )?
             int alt37=2;
@@ -5030,12 +5033,12 @@ public class MstageParser extends ChameleonParser {
                 case 1 :
                     // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:0:0: defaultValue
                     {
-                    pushFollow(FOLLOW_defaultValue_in_annotationMethodRest1697);
-                    defaultValue125=defaultValue();
+                    pushFollow(FOLLOW_defaultValue_in_annotationMethodRest1703);
+                    defaultValue123=defaultValue();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, defaultValue125.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, defaultValue123.getTree());
 
                     }
                     break;
@@ -5079,11 +5082,11 @@ public class MstageParser extends ChameleonParser {
         int defaultValue_StartIndex = input.index();
         Object root_0 = null;
 
-        Token string_literal126=null;
-        MstageParser.elementValue_return elementValue127 = null;
+        Token string_literal124=null;
+        MstageParser.elementValue_return elementValue125 = null;
 
 
-        Object string_literal126_tree=null;
+        Object string_literal124_tree=null;
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 55) ) { return retval; }
@@ -5092,17 +5095,17 @@ public class MstageParser extends ChameleonParser {
             {
             root_0 = (Object)adaptor.nil();
 
-            string_literal126=(Token)match(input,63,FOLLOW_63_in_defaultValue1725); if (state.failed) return retval;
+            string_literal124=(Token)match(input,63,FOLLOW_63_in_defaultValue1731); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            string_literal126_tree = (Object)adaptor.create(string_literal126);
-            adaptor.addChild(root_0, string_literal126_tree);
+            string_literal124_tree = (Object)adaptor.create(string_literal124);
+            adaptor.addChild(root_0, string_literal124_tree);
             }
-            pushFollow(FOLLOW_elementValue_in_defaultValue1727);
-            elementValue127=elementValue();
+            pushFollow(FOLLOW_elementValue_in_defaultValue1733);
+            elementValue125=elementValue();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, elementValue127.getTree());
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, elementValue125.getTree());
 
             }
 
@@ -5183,162 +5186,162 @@ public class MstageParser extends ChameleonParser {
 
  
 
-    public static final BitSet FOLLOW_componentDeclaration_in_compilationUnit82 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_interfaceDeclaration_in_compilationUnit87 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_23_in_interfaceDeclaration110 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_Identifier_in_interfaceDeclaration114 = new BitSet(new long[]{0x1FE8000000000010L});
-    public static final BitSet FOLLOW_interfaceBody_in_interfaceDeclaration120 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_serviceDeclaration_in_interfaceBody137 = new BitSet(new long[]{0x0000000001000000L});
-    public static final BitSet FOLLOW_24_in_interfaceBody138 = new BitSet(new long[]{0x1FE8000000000012L});
-    public static final BitSet FOLLOW_serviceReturnType_in_serviceDeclaration159 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_Identifier_in_serviceDeclaration163 = new BitSet(new long[]{0x0000000002000000L});
-    public static final BitSet FOLLOW_formalParameters_in_serviceDeclaration167 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_voidType_in_serviceReturnType186 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_type_in_serviceReturnType195 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_25_in_formalParameters222 = new BitSet(new long[]{0x1FE8000004000010L});
-    public static final BitSet FOLLOW_formalParameterDecls_in_formalParameters227 = new BitSet(new long[]{0x0000000004000000L});
-    public static final BitSet FOLLOW_26_in_formalParameters233 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_type_in_formalParameterDecls258 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_Identifier_in_formalParameterDecls262 = new BitSet(new long[]{0x0000000008000002L});
-    public static final BitSet FOLLOW_27_in_formalParameterDecls265 = new BitSet(new long[]{0x1FE8000000000010L});
-    public static final BitSet FOLLOW_formalParameterDecls_in_formalParameterDecls269 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_28_in_connectorDeclaration304 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_Identifier_in_connectorDeclaration308 = new BitSet(new long[]{0x0000000020000000L});
-    public static final BitSet FOLLOW_connectorBody_in_connectorDeclaration310 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_29_in_connectorBody326 = new BitSet(new long[]{0x00001000C0000000L});
-    public static final BitSet FOLLOW_connectorBodyDeclaration_in_connectorBody329 = new BitSet(new long[]{0x00001000C0000000L});
-    public static final BitSet FOLLOW_30_in_connectorBody334 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_connectorAOCompositionDeclaration_in_connectorBodyDeclaration347 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_moduleRequireDependencyDeclaration_in_connectorBodyDeclaration352 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_31_in_connectorAOCompositionDeclaration371 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_Identifier_in_connectorAOCompositionDeclaration375 = new BitSet(new long[]{0x0000000020000000L});
-    public static final BitSet FOLLOW_connectorAOCompositionBody_in_connectorAOCompositionDeclaration379 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_29_in_connectorAOCompositionBody397 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_pointcutDeclaration_in_connectorAOCompositionBody401 = new BitSet(new long[]{0x0000004000000000L});
-    public static final BitSet FOLLOW_adviceDeclaration_in_connectorAOCompositionBody405 = new BitSet(new long[]{0x0000000040000000L});
-    public static final BitSet FOLLOW_30_in_connectorAOCompositionBody407 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_32_in_pointcutDeclaration427 = new BitSet(new long[]{0x0000000020000000L});
-    public static final BitSet FOLLOW_pointcutBody_in_pointcutDeclaration429 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_29_in_pointcutBody447 = new BitSet(new long[]{0x0000000A40000000L});
-    public static final BitSet FOLLOW_pointcutBodyDeclaration_in_pointcutBody449 = new BitSet(new long[]{0x0000000A40000000L});
-    public static final BitSet FOLLOW_30_in_pointcutBody453 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_pointcutKindDeclaration_in_pointcutBodyDeclaration466 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_pointcutSignatureDeclaration_in_pointcutBodyDeclaration472 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_33_in_pointcutKindDeclaration488 = new BitSet(new long[]{0x0000000400000000L});
-    public static final BitSet FOLLOW_34_in_pointcutKindDeclaration490 = new BitSet(new long[]{0x0006000000000000L});
-    public static final BitSet FOLLOW_joinpointKind_in_pointcutKindDeclaration494 = new BitSet(new long[]{0x0000000001000000L});
-    public static final BitSet FOLLOW_24_in_pointcutKindDeclaration496 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_35_in_pointcutSignatureDeclaration511 = new BitSet(new long[]{0x0000000400000000L});
-    public static final BitSet FOLLOW_34_in_pointcutSignatureDeclaration513 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF0L});
-    public static final BitSet FOLLOW_24_in_pointcutSignatureDeclaration522 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_36_in_pointcutCallerDeclaration542 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_37_in_pointcutCalleeDeclaration555 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_38_in_adviceDeclaration573 = new BitSet(new long[]{0x0000000020000000L});
-    public static final BitSet FOLLOW_adviceBody_in_adviceDeclaration575 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_29_in_adviceBody590 = new BitSet(new long[]{0x0000018040000000L});
-    public static final BitSet FOLLOW_adviceBodyDeclaration_in_adviceBody592 = new BitSet(new long[]{0x0000018040000000L});
-    public static final BitSet FOLLOW_30_in_adviceBody596 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_adviceServiceDeclaration_in_adviceBodyDeclaration609 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_adviceTypeDeclaration_in_adviceBodyDeclaration615 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_39_in_adviceServiceDeclaration629 = new BitSet(new long[]{0x0000000400000000L});
-    public static final BitSet FOLLOW_34_in_adviceServiceDeclaration631 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF0L});
-    public static final BitSet FOLLOW_24_in_adviceServiceDeclaration640 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_40_in_adviceTypeDeclaration655 = new BitSet(new long[]{0x0000000400000000L});
-    public static final BitSet FOLLOW_34_in_adviceTypeDeclaration657 = new BitSet(new long[]{0x0001C00000000000L});
-    public static final BitSet FOLLOW_adviceType_in_adviceTypeDeclaration661 = new BitSet(new long[]{0x0000000001000000L});
-    public static final BitSet FOLLOW_24_in_adviceTypeDeclaration663 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_41_in_compositeDeclaration687 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_Identifier_in_compositeDeclaration691 = new BitSet(new long[]{0x0000000020000000L});
-    public static final BitSet FOLLOW_compositeBody_in_compositeDeclaration697 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_29_in_compositeBody711 = new BitSet(new long[]{0x00003400C0000000L});
-    public static final BitSet FOLLOW_compositeBodyDeclaration_in_compositeBody714 = new BitSet(new long[]{0x00003400C0000000L});
-    public static final BitSet FOLLOW_componentBodyDeclaration_in_compositeBody719 = new BitSet(new long[]{0x00003400C0000000L});
-    public static final BitSet FOLLOW_30_in_compositeBody724 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_42_in_compositeBodyDeclaration737 = new BitSet(new long[]{0x0000000020000000L});
-    public static final BitSet FOLLOW_compositeContainBody_in_compositeBodyDeclaration741 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_29_in_compositeContainBody762 = new BitSet(new long[]{0x0000000040000010L});
-    public static final BitSet FOLLOW_commaSeparatedBodyDecls_in_compositeContainBody767 = new BitSet(new long[]{0x0000000040000000L});
-    public static final BitSet FOLLOW_30_in_compositeContainBody774 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_43_in_componentDeclaration803 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_Identifier_in_componentDeclaration807 = new BitSet(new long[]{0x0000000020000000L});
-    public static final BitSet FOLLOW_componentBody_in_componentDeclaration811 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_29_in_componentBody833 = new BitSet(new long[]{0x00003400C0000000L});
-    public static final BitSet FOLLOW_componentBodyDeclaration_in_componentBody835 = new BitSet(new long[]{0x00003400C0000000L});
-    public static final BitSet FOLLOW_30_in_componentBody839 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_moduleRequireDependencyDeclaration_in_componentBodyDeclaration857 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_moduleProvideDependencyDeclaration_in_componentBodyDeclaration863 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_29_in_moduleDependencyBody894 = new BitSet(new long[]{0x0000000040000010L});
-    public static final BitSet FOLLOW_commaSeparatedBodyDecls_in_moduleDependencyBody899 = new BitSet(new long[]{0x0000000040000000L});
-    public static final BitSet FOLLOW_30_in_moduleDependencyBody906 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_44_in_moduleRequireDependencyDeclaration920 = new BitSet(new long[]{0x0000000020000000L});
-    public static final BitSet FOLLOW_moduleDependencyBody_in_moduleRequireDependencyDeclaration924 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_45_in_moduleProvideDependencyDeclaration940 = new BitSet(new long[]{0x0000000020000000L});
-    public static final BitSet FOLLOW_moduleDependencyBody_in_moduleProvideDependencyDeclaration944 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_Identifier_in_commaSeparatedBodyDecls968 = new BitSet(new long[]{0x0000000008000002L});
-    public static final BitSet FOLLOW_27_in_commaSeparatedBodyDecls971 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_commaSeparatedBodyDecls_in_commaSeparatedBodyDecls975 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_46_in_adviceType1007 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_47_in_adviceType1014 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_48_in_adviceType1021 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_49_in_joinpointKind1039 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_50_in_joinpointKind1046 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_51_in_voidType1072 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_classOrInterfaceType_in_type1099 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_primitiveType_in_type1108 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_Identifier_in_classOrInterfaceType1133 = new BitSet(new long[]{0x0010000000000002L});
-    public static final BitSet FOLLOW_52_in_classOrInterfaceType1160 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_Identifier_in_classOrInterfaceType1164 = new BitSet(new long[]{0x0010000000000002L});
-    public static final BitSet FOLLOW_53_in_primitiveType1213 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_54_in_primitiveType1225 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_55_in_primitiveType1237 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_56_in_primitiveType1249 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_57_in_primitiveType1261 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_58_in_primitiveType1273 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_59_in_primitiveType1285 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_60_in_primitiveType1297 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_annotation_in_annotations1321 = new BitSet(new long[]{0x2000000000000002L});
-    public static final BitSet FOLLOW_61_in_annotation1341 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_annotationName_in_annotation1343 = new BitSet(new long[]{0x0000000002000002L});
-    public static final BitSet FOLLOW_25_in_annotation1347 = new BitSet(new long[]{0x2000000024000010L});
-    public static final BitSet FOLLOW_elementValuePairs_in_annotation1351 = new BitSet(new long[]{0x0000000004000000L});
-    public static final BitSet FOLLOW_elementValue_in_annotation1355 = new BitSet(new long[]{0x0000000004000000L});
-    public static final BitSet FOLLOW_26_in_annotation1360 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_Identifier_in_annotationName1384 = new BitSet(new long[]{0x0010000000000002L});
-    public static final BitSet FOLLOW_52_in_annotationName1387 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_Identifier_in_annotationName1389 = new BitSet(new long[]{0x0010000000000002L});
-    public static final BitSet FOLLOW_elementValuePair_in_elementValuePairs1410 = new BitSet(new long[]{0x0000000008000002L});
-    public static final BitSet FOLLOW_27_in_elementValuePairs1413 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_elementValuePair_in_elementValuePairs1415 = new BitSet(new long[]{0x0000000008000002L});
-    public static final BitSet FOLLOW_Identifier_in_elementValuePair1436 = new BitSet(new long[]{0x4000000000000000L});
-    public static final BitSet FOLLOW_62_in_elementValuePair1438 = new BitSet(new long[]{0x2000000020000000L});
-    public static final BitSet FOLLOW_elementValue_in_elementValuePair1440 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_annotation_in_elementValue1463 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_elementValueArrayInitializer_in_elementValue1473 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_29_in_elementValueArrayInitializer1496 = new BitSet(new long[]{0x2000000068000000L});
-    public static final BitSet FOLLOW_elementValue_in_elementValueArrayInitializer1499 = new BitSet(new long[]{0x0000000048000000L});
-    public static final BitSet FOLLOW_27_in_elementValueArrayInitializer1502 = new BitSet(new long[]{0x2000000020000000L});
-    public static final BitSet FOLLOW_elementValue_in_elementValueArrayInitializer1504 = new BitSet(new long[]{0x0000000048000000L});
-    public static final BitSet FOLLOW_27_in_elementValueArrayInitializer1511 = new BitSet(new long[]{0x0000000040000000L});
-    public static final BitSet FOLLOW_30_in_elementValueArrayInitializer1515 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_61_in_annotationTypeDeclaration1542 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_23_in_annotationTypeDeclaration1544 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_Identifier_in_annotationTypeDeclaration1548 = new BitSet(new long[]{0x0000000020000000L});
-    public static final BitSet FOLLOW_annotationTypeBody_in_annotationTypeDeclaration1550 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_29_in_annotationTypeBody1573 = new BitSet(new long[]{0x3FE8000040000010L});
-    public static final BitSet FOLLOW_annotationTypeElementDeclaration_in_annotationTypeBody1576 = new BitSet(new long[]{0x3FE8000040000010L});
-    public static final BitSet FOLLOW_30_in_annotationTypeBody1580 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_annotationTypeElementRest_in_annotationTypeElementDeclaration1605 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_type_in_annotationTypeElementRest1628 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_annotationMethodOrConstantRest_in_annotationTypeElementRest1630 = new BitSet(new long[]{0x0000000001000000L});
-    public static final BitSet FOLLOW_24_in_annotationTypeElementRest1632 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_annotationTypeDeclaration_in_annotationTypeElementRest1642 = new BitSet(new long[]{0x0000000001000002L});
-    public static final BitSet FOLLOW_24_in_annotationTypeElementRest1644 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_annotationMethodRest_in_annotationMethodOrConstantRest1668 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_Identifier_in_annotationMethodRest1691 = new BitSet(new long[]{0x0000000002000000L});
-    public static final BitSet FOLLOW_25_in_annotationMethodRest1693 = new BitSet(new long[]{0x0000000004000000L});
-    public static final BitSet FOLLOW_26_in_annotationMethodRest1695 = new BitSet(new long[]{0x8000000000000002L});
-    public static final BitSet FOLLOW_defaultValue_in_annotationMethodRest1697 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_63_in_defaultValue1725 = new BitSet(new long[]{0x2000000020000000L});
-    public static final BitSet FOLLOW_elementValue_in_defaultValue1727 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_componentDeclaration_in_compilationUnit84 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_interfaceDeclaration_in_compilationUnit93 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_23_in_interfaceDeclaration116 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_Identifier_in_interfaceDeclaration120 = new BitSet(new long[]{0x1FE8000000000010L});
+    public static final BitSet FOLLOW_interfaceBody_in_interfaceDeclaration126 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_serviceDeclaration_in_interfaceBody143 = new BitSet(new long[]{0x0000000001000000L});
+    public static final BitSet FOLLOW_24_in_interfaceBody144 = new BitSet(new long[]{0x1FE8000000000012L});
+    public static final BitSet FOLLOW_serviceReturnType_in_serviceDeclaration165 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_Identifier_in_serviceDeclaration169 = new BitSet(new long[]{0x0000000002000000L});
+    public static final BitSet FOLLOW_formalParameters_in_serviceDeclaration173 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_voidType_in_serviceReturnType192 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_type_in_serviceReturnType201 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_25_in_formalParameters228 = new BitSet(new long[]{0x1FE8000004000010L});
+    public static final BitSet FOLLOW_formalParameterDecls_in_formalParameters233 = new BitSet(new long[]{0x0000000004000000L});
+    public static final BitSet FOLLOW_26_in_formalParameters239 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_type_in_formalParameterDecls264 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_Identifier_in_formalParameterDecls268 = new BitSet(new long[]{0x0000000008000002L});
+    public static final BitSet FOLLOW_27_in_formalParameterDecls271 = new BitSet(new long[]{0x1FE8000000000010L});
+    public static final BitSet FOLLOW_formalParameterDecls_in_formalParameterDecls275 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_28_in_connectorDeclaration310 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_Identifier_in_connectorDeclaration314 = new BitSet(new long[]{0x0000000020000000L});
+    public static final BitSet FOLLOW_connectorBody_in_connectorDeclaration316 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_29_in_connectorBody332 = new BitSet(new long[]{0x00001000C0000000L});
+    public static final BitSet FOLLOW_connectorBodyDeclaration_in_connectorBody335 = new BitSet(new long[]{0x00001000C0000000L});
+    public static final BitSet FOLLOW_30_in_connectorBody340 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_connectorAOCompositionDeclaration_in_connectorBodyDeclaration353 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_moduleRequireDependencyDeclaration_in_connectorBodyDeclaration358 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_31_in_connectorAOCompositionDeclaration377 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_Identifier_in_connectorAOCompositionDeclaration381 = new BitSet(new long[]{0x0000000020000000L});
+    public static final BitSet FOLLOW_connectorAOCompositionBody_in_connectorAOCompositionDeclaration385 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_29_in_connectorAOCompositionBody403 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_pointcutDeclaration_in_connectorAOCompositionBody407 = new BitSet(new long[]{0x0000004000000000L});
+    public static final BitSet FOLLOW_adviceDeclaration_in_connectorAOCompositionBody411 = new BitSet(new long[]{0x0000000040000000L});
+    public static final BitSet FOLLOW_30_in_connectorAOCompositionBody413 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_32_in_pointcutDeclaration433 = new BitSet(new long[]{0x0000000020000000L});
+    public static final BitSet FOLLOW_pointcutBody_in_pointcutDeclaration435 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_29_in_pointcutBody453 = new BitSet(new long[]{0x0000000A40000000L});
+    public static final BitSet FOLLOW_pointcutBodyDeclaration_in_pointcutBody455 = new BitSet(new long[]{0x0000000A40000000L});
+    public static final BitSet FOLLOW_30_in_pointcutBody459 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_pointcutKindDeclaration_in_pointcutBodyDeclaration472 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_pointcutSignatureDeclaration_in_pointcutBodyDeclaration478 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_33_in_pointcutKindDeclaration494 = new BitSet(new long[]{0x0000000400000000L});
+    public static final BitSet FOLLOW_34_in_pointcutKindDeclaration496 = new BitSet(new long[]{0x0006000000000000L});
+    public static final BitSet FOLLOW_joinpointKind_in_pointcutKindDeclaration500 = new BitSet(new long[]{0x0000000001000000L});
+    public static final BitSet FOLLOW_24_in_pointcutKindDeclaration502 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_35_in_pointcutSignatureDeclaration517 = new BitSet(new long[]{0x0000000400000000L});
+    public static final BitSet FOLLOW_34_in_pointcutSignatureDeclaration519 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF0L});
+    public static final BitSet FOLLOW_24_in_pointcutSignatureDeclaration528 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_36_in_pointcutCallerDeclaration548 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_37_in_pointcutCalleeDeclaration561 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_38_in_adviceDeclaration579 = new BitSet(new long[]{0x0000000020000000L});
+    public static final BitSet FOLLOW_adviceBody_in_adviceDeclaration581 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_29_in_adviceBody596 = new BitSet(new long[]{0x0000018040000000L});
+    public static final BitSet FOLLOW_adviceBodyDeclaration_in_adviceBody598 = new BitSet(new long[]{0x0000018040000000L});
+    public static final BitSet FOLLOW_30_in_adviceBody602 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_adviceServiceDeclaration_in_adviceBodyDeclaration615 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_adviceTypeDeclaration_in_adviceBodyDeclaration621 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_39_in_adviceServiceDeclaration635 = new BitSet(new long[]{0x0000000400000000L});
+    public static final BitSet FOLLOW_34_in_adviceServiceDeclaration637 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF0L});
+    public static final BitSet FOLLOW_24_in_adviceServiceDeclaration646 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_40_in_adviceTypeDeclaration661 = new BitSet(new long[]{0x0000000400000000L});
+    public static final BitSet FOLLOW_34_in_adviceTypeDeclaration663 = new BitSet(new long[]{0x0001C00000000000L});
+    public static final BitSet FOLLOW_adviceType_in_adviceTypeDeclaration667 = new BitSet(new long[]{0x0000000001000000L});
+    public static final BitSet FOLLOW_24_in_adviceTypeDeclaration669 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_41_in_compositeDeclaration693 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_Identifier_in_compositeDeclaration697 = new BitSet(new long[]{0x0000000020000000L});
+    public static final BitSet FOLLOW_compositeBody_in_compositeDeclaration703 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_29_in_compositeBody717 = new BitSet(new long[]{0x00003400C0000000L});
+    public static final BitSet FOLLOW_compositeBodyDeclaration_in_compositeBody720 = new BitSet(new long[]{0x00003400C0000000L});
+    public static final BitSet FOLLOW_componentBodyDeclaration_in_compositeBody725 = new BitSet(new long[]{0x00003400C0000000L});
+    public static final BitSet FOLLOW_30_in_compositeBody730 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_42_in_compositeBodyDeclaration743 = new BitSet(new long[]{0x0000000020000000L});
+    public static final BitSet FOLLOW_compositeContainBody_in_compositeBodyDeclaration747 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_29_in_compositeContainBody768 = new BitSet(new long[]{0x0000000040000010L});
+    public static final BitSet FOLLOW_commaSeparatedBodyDecls_in_compositeContainBody773 = new BitSet(new long[]{0x0000000040000000L});
+    public static final BitSet FOLLOW_30_in_compositeContainBody780 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_43_in_componentDeclaration809 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_Identifier_in_componentDeclaration813 = new BitSet(new long[]{0x0000000020000000L});
+    public static final BitSet FOLLOW_componentBody_in_componentDeclaration817 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_29_in_componentBody839 = new BitSet(new long[]{0x00003400C0000000L});
+    public static final BitSet FOLLOW_componentBodyDeclaration_in_componentBody841 = new BitSet(new long[]{0x00003400C0000000L});
+    public static final BitSet FOLLOW_30_in_componentBody845 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_moduleRequireDependencyDeclaration_in_componentBodyDeclaration863 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_moduleProvideDependencyDeclaration_in_componentBodyDeclaration869 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_29_in_moduleDependencyBody900 = new BitSet(new long[]{0x0000000040000010L});
+    public static final BitSet FOLLOW_commaSeparatedBodyDecls_in_moduleDependencyBody905 = new BitSet(new long[]{0x0000000040000000L});
+    public static final BitSet FOLLOW_30_in_moduleDependencyBody912 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_44_in_moduleRequireDependencyDeclaration926 = new BitSet(new long[]{0x0000000020000000L});
+    public static final BitSet FOLLOW_moduleDependencyBody_in_moduleRequireDependencyDeclaration930 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_45_in_moduleProvideDependencyDeclaration946 = new BitSet(new long[]{0x0000000020000000L});
+    public static final BitSet FOLLOW_moduleDependencyBody_in_moduleProvideDependencyDeclaration950 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_Identifier_in_commaSeparatedBodyDecls974 = new BitSet(new long[]{0x0000000008000002L});
+    public static final BitSet FOLLOW_27_in_commaSeparatedBodyDecls977 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_commaSeparatedBodyDecls_in_commaSeparatedBodyDecls981 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_46_in_adviceType1013 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_47_in_adviceType1020 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_48_in_adviceType1027 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_49_in_joinpointKind1045 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_50_in_joinpointKind1052 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_51_in_voidType1078 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_classOrInterfaceType_in_type1105 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_primitiveType_in_type1114 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_Identifier_in_classOrInterfaceType1139 = new BitSet(new long[]{0x0010000000000002L});
+    public static final BitSet FOLLOW_52_in_classOrInterfaceType1166 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_Identifier_in_classOrInterfaceType1170 = new BitSet(new long[]{0x0010000000000002L});
+    public static final BitSet FOLLOW_53_in_primitiveType1219 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_54_in_primitiveType1231 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_55_in_primitiveType1243 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_56_in_primitiveType1255 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_57_in_primitiveType1267 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_58_in_primitiveType1279 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_59_in_primitiveType1291 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_60_in_primitiveType1303 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_annotation_in_annotations1327 = new BitSet(new long[]{0x2000000000000002L});
+    public static final BitSet FOLLOW_61_in_annotation1347 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_annotationName_in_annotation1349 = new BitSet(new long[]{0x0000000002000002L});
+    public static final BitSet FOLLOW_25_in_annotation1353 = new BitSet(new long[]{0x2000000024000010L});
+    public static final BitSet FOLLOW_elementValuePairs_in_annotation1357 = new BitSet(new long[]{0x0000000004000000L});
+    public static final BitSet FOLLOW_elementValue_in_annotation1361 = new BitSet(new long[]{0x0000000004000000L});
+    public static final BitSet FOLLOW_26_in_annotation1366 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_Identifier_in_annotationName1390 = new BitSet(new long[]{0x0010000000000002L});
+    public static final BitSet FOLLOW_52_in_annotationName1393 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_Identifier_in_annotationName1395 = new BitSet(new long[]{0x0010000000000002L});
+    public static final BitSet FOLLOW_elementValuePair_in_elementValuePairs1416 = new BitSet(new long[]{0x0000000008000002L});
+    public static final BitSet FOLLOW_27_in_elementValuePairs1419 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_elementValuePair_in_elementValuePairs1421 = new BitSet(new long[]{0x0000000008000002L});
+    public static final BitSet FOLLOW_Identifier_in_elementValuePair1442 = new BitSet(new long[]{0x4000000000000000L});
+    public static final BitSet FOLLOW_62_in_elementValuePair1444 = new BitSet(new long[]{0x2000000020000000L});
+    public static final BitSet FOLLOW_elementValue_in_elementValuePair1446 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_annotation_in_elementValue1469 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_elementValueArrayInitializer_in_elementValue1479 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_29_in_elementValueArrayInitializer1502 = new BitSet(new long[]{0x2000000068000000L});
+    public static final BitSet FOLLOW_elementValue_in_elementValueArrayInitializer1505 = new BitSet(new long[]{0x0000000048000000L});
+    public static final BitSet FOLLOW_27_in_elementValueArrayInitializer1508 = new BitSet(new long[]{0x2000000020000000L});
+    public static final BitSet FOLLOW_elementValue_in_elementValueArrayInitializer1510 = new BitSet(new long[]{0x0000000048000000L});
+    public static final BitSet FOLLOW_27_in_elementValueArrayInitializer1517 = new BitSet(new long[]{0x0000000040000000L});
+    public static final BitSet FOLLOW_30_in_elementValueArrayInitializer1521 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_61_in_annotationTypeDeclaration1548 = new BitSet(new long[]{0x0000000000800000L});
+    public static final BitSet FOLLOW_23_in_annotationTypeDeclaration1550 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_Identifier_in_annotationTypeDeclaration1554 = new BitSet(new long[]{0x0000000020000000L});
+    public static final BitSet FOLLOW_annotationTypeBody_in_annotationTypeDeclaration1556 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_29_in_annotationTypeBody1579 = new BitSet(new long[]{0x3FE8000040000010L});
+    public static final BitSet FOLLOW_annotationTypeElementDeclaration_in_annotationTypeBody1582 = new BitSet(new long[]{0x3FE8000040000010L});
+    public static final BitSet FOLLOW_30_in_annotationTypeBody1586 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_annotationTypeElementRest_in_annotationTypeElementDeclaration1611 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_type_in_annotationTypeElementRest1634 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_annotationMethodOrConstantRest_in_annotationTypeElementRest1636 = new BitSet(new long[]{0x0000000001000000L});
+    public static final BitSet FOLLOW_24_in_annotationTypeElementRest1638 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_annotationTypeDeclaration_in_annotationTypeElementRest1648 = new BitSet(new long[]{0x0000000001000002L});
+    public static final BitSet FOLLOW_24_in_annotationTypeElementRest1650 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_annotationMethodRest_in_annotationMethodOrConstantRest1674 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_Identifier_in_annotationMethodRest1697 = new BitSet(new long[]{0x0000000002000000L});
+    public static final BitSet FOLLOW_25_in_annotationMethodRest1699 = new BitSet(new long[]{0x0000000004000000L});
+    public static final BitSet FOLLOW_26_in_annotationMethodRest1701 = new BitSet(new long[]{0x8000000000000002L});
+    public static final BitSet FOLLOW_defaultValue_in_annotationMethodRest1703 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_63_in_defaultValue1731 = new BitSet(new long[]{0x2000000020000000L});
+    public static final BitSet FOLLOW_elementValue_in_defaultValue1733 = new BitSet(new long[]{0x0000000000000002L});
 
 }
