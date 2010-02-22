@@ -75,7 +75,7 @@ compilationUnit returns [CompilationUnit element]
 	$element.add(npp);
 }
 	:	cd=componentDeclaration {npp.add($cd.element);}
-	|	id=interfaceDeclaration
+	|	id=interfaceDeclaration {npp.add($id.element);}
 	;
 
 
