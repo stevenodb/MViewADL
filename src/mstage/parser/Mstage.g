@@ -1,4 +1,4 @@
-grammar Mstage;
+gBasicTypeReferencerammar Mstage;
 
 options {
   backtrack=true; 
@@ -47,6 +47,7 @@ import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.declaration.Signature;
 import chameleon.core.expression.InvocationTarget;
 import chameleon.core.type.TypeReference;
+import chameleon.core.type.BasicTypeReference;
 import chameleon.core.type.Type;
 import chameleon.core.namespace.NamespaceOrTypeReference;
 import chameleon.core.namespacepart.NamespacePart;
@@ -382,7 +383,7 @@ joinpointKind returns [JoinpointKind element]
  
 voidType returns [TypeReference element]
 /*@after{setLocation(retval.element, (CommonToken)retval.start, (CommonToken)retval.stop, "__PRIMITIVE");}*/
-     	:	 'void' {$element=new TypeReference("void");}
+     	:	 'void' {$element=new BasicTypeReference("void");}
      	;
 
 
@@ -397,18 +398,18 @@ classOrInterfaceType returns [TypeReference element]
 @init{NamespaceOrTypeReference target = null;}
 	:	name=Identifier 
 	          {
-	           retval.element = new TypeReference($name.text); 
+	           retval.element = new BasicTypeReference($name.text); 
 	           target =  new NamespaceOrTypeReference($name.text); 
 	          } 
 	        ('.' namex=Identifier 
 	          {
 	           if(target != null) {
-	             retval.element = new TypeReference(target,$namex.text);
+	             retval.element = new BasicTypeReference(target,$namex.text);
 	             // We must clone the target here, or else it will be removed from the
 	             // type reference we just created.
 	             target = new NamespaceOrTypeReference(target.clone(),$namex.text);
 	           } else {
-	             retval.element = new TypeReference(retval.element,$namex.text);
+	             retval.element = new BasicTypeReference(retval.element,$namex.text);
 	           }
 	          } 
 	         )*
@@ -416,14 +417,14 @@ classOrInterfaceType returns [TypeReference element]
 
 
 primitiveType returns [TypeReference element]
-    :   'boolean' {retval.element = new TypeReference("boolean");}
-    |   'char' {retval.element = new TypeReference("char");}
-    |   'byte' {retval.element = new TypeReference("byte");}
-    |   'short' {retval.element = new TypeReference("short");}
-    |   'int' {retval.element = new TypeReference("int");}
-    |   'long' {retval.element = new TypeReference("long");}
-    |   'float' {retval.element = new TypeReference("float");}
-    |   'double' {retval.element = new TypeReference("double");}
+    :   'boolean' {retval.element = new BasicTypeReference("boolean");}
+    |   'char' {retval.element = new BasicTypeReference("char");}
+    |   'byte' {retval.element = new BasicTypeReference("byte");}
+    |   'short' {retval.element = new BasicTypeReference("short");}
+    |   'int' {retval.element = new BasicTypeReference("int");}
+    |   'long' {retval.element = new BasicTypeReference("long");}
+    |   'float' {retval.element = new BasicTypeReference("float");}
+    |   'double' {retval.element = new BasicTypeReference("double");}
     ;
 
 

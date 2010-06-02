@@ -22,6 +22,7 @@ package mstage.model.deployment;
 import java.util.List;
 
 import mstage.model.application.Application;
+import mstage.model.module.Connector;
 import mstage.reuse.HostMapper;
 
 import org.rejuse.association.OrderedMultiAssociation;
@@ -40,7 +41,8 @@ public class Deployment extends HostMapper<Deployment,HostMap> {
 	/*
 	 * Applications
 	 */
-	private final OrderedMultiAssociation<Deployment, SimpleReference<Application>> _applications =
+	private final OrderedMultiAssociation<Deployment, SimpleReference<Application>> 
+		_applications =
 		new OrderedMultiAssociation<Deployment, SimpleReference<Application>>(this);
 	
 	/**
@@ -62,6 +64,35 @@ public class Deployment extends HostMapper<Deployment,HostMap> {
 	 */
 	public void removeApplication(SimpleReference<Application> relation) {
 		_applications.remove(relation.parentLink());
+	}
+	
+	/*
+	 * Connectors
+	 */
+	
+	private final OrderedMultiAssociation<Deployment, SimpleReference<Connector>>
+		_connectors =
+		new OrderedMultiAssociation<Deployment, SimpleReference<Connector>>(this);
+	
+	/**
+	 * @return
+	 */
+	public List<SimpleReference<Connector>> connectors() {
+		return _connectors.getOtherEnds();
+	}
+	
+	/**
+	 * @param relation
+	 */
+	public void addConnector(SimpleReference<Connector> relation) {
+		_connectors.add(relation.parentLink());
+	}
+	
+	/**
+	 * @param relation
+	 */
+	public void removeConnector(SimpleReference<Connector> relation) {
+		_connectors.remove(relation.parentLink());
 	}
 	
 	/*

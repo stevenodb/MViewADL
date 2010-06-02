@@ -30,8 +30,10 @@ import chameleon.core.validation.VerificationResult;
 import chameleon.util.Util;
 
 /**
+ * Class representing the Module concept.
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
+ * @param <E>
  */
 public abstract class Module<E extends Module<E>> extends MStageDeclaration<E, Element> {
 
@@ -81,7 +83,8 @@ public abstract class Module<E extends Module<E>> extends MStageDeclaration<E, E
 	/*
 	 * Required Interfaces association
 	 */
-	private final OrderedMultiAssociation<Module<E>, SimpleReference<Interface>> _requiredInterfaces = 
+	private final OrderedMultiAssociation<Module<E>, SimpleReference<Interface>> 
+		_requiredInterfaces = 
 		new OrderedMultiAssociation<Module<E>, SimpleReference<Interface>>(this);
 	
 	/**

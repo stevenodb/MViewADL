@@ -49,4 +49,12 @@ public class Mstage extends Language {
 		return Character.isJavaIdentifierPart(character);
 	}
 
+	/* (non-Javadoc)
+	 * @see chameleon.core.language.Language#cloneThis()
+	 */
+	@Override
+	protected Language cloneThis() {
+		throw new RuntimeException("unimplemented");
+	}
+
 }

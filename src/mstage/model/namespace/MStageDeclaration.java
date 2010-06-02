@@ -24,6 +24,7 @@ import java.util.List;
 import org.rejuse.association.SingleAssociation;
 
 import chameleon.core.declaration.Declaration;
+import chameleon.core.declaration.Signature;
 import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.element.Element;
 import chameleon.core.lookup.LookupException;
@@ -85,12 +86,19 @@ public abstract class MStageDeclaration<E extends MStageDeclaration<E,P>, P exte
 	/**
 	 * @param signature
 	 */
-	public void setSignature(SimpleNameSignature signature) {
+	public void setSignature(Signature signature) {
 		if(signature != null) {
 			_signature.connectTo(signature.parentLink());
 		} else {
 			_signature.connectTo(null);
 		}
+	}
+	
+	/* (non-Javadoc)
+	 * @see chameleon.core.declaration.Declaration#declarator()
+	 */
+	public Declaration declarator() {
+		return this;
 	}
 	
 	

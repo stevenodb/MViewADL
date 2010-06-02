@@ -2,59 +2,48 @@
 
 package mstage.parser;
 
-import mstage.model.application.AbstractHost;
-import mstage.model.application.Application;
-import mstage.model.application.Locate;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Stack;
+
+import mstage.model.composition.AOComposition;
 import mstage.model.composition.Advice;
 import mstage.model.composition.AdviceType;
-import mstage.model.composition.AOComposition;
 import mstage.model.composition.JoinPoint;
 import mstage.model.composition.JoinpointKind;
-import mstage.model.composition.NamedJoinPoint;
 import mstage.model.composition.PatternJoinPoint;
 import mstage.model.composition.Pointcut;
-import mstage.model.composition.PropertyJoinPoint;
-import mstage.model.composition.SingleJoinPoint;
-import mstage.model.deployment.Deployment;
-import mstage.model.deployment.Host;
-import mstage.model.deployment.HostMap;
 import mstage.model.module.Component;
 import mstage.model.module.Composite;
 import mstage.model.module.Connector;
 import mstage.model.module.Interface;
-import mstage.model.module.JoinPointElement;
 import mstage.model.module.Module;
-import mstage.model.module.Property;
 import mstage.model.module.Service;
-import mstage.model.namespace.MStageDeclaration;
 
+import org.antlr.runtime.BitSet;
+import org.antlr.runtime.EarlyExitException;
+import org.antlr.runtime.NoViableAltException;
+import org.antlr.runtime.ParserRuleReturnScope;
+import org.antlr.runtime.RecognitionException;
+import org.antlr.runtime.RecognizerSharedState;
+import org.antlr.runtime.Token;
+import org.antlr.runtime.TokenStream;
+import org.antlr.runtime.tree.CommonTreeAdaptor;
+import org.antlr.runtime.tree.TreeAdaptor;
 
 import chameleon.core.compilationunit.CompilationUnit;
-import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.declaration.Signature;
+import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.expression.InvocationTarget;
-import chameleon.core.type.TypeReference;
-import chameleon.core.type.Type;
 import chameleon.core.namespace.NamespaceOrTypeReference;
 import chameleon.core.namespacepart.NamespacePart;
 import chameleon.core.reference.SimpleReference;
 import chameleon.core.variable.FormalParameter;
-
+import chameleon.oo.type.BasicTypeReference;
+import chameleon.oo.type.Type;
+import chameleon.oo.type.TypeReference;
 import chameleon.support.input.ChameleonParser;
-
-
-import mstage.reuse.Mapping;
-import mstage.reuse.HostMapper;
-
-
-import org.antlr.runtime.*;
-import java.util.Stack;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.HashMap;
-
-import org.antlr.runtime.tree.*;
 
 public class MstageParser extends ChameleonParser {
     public static final String[] tokenNames = new String[] {
@@ -3387,7 +3376,7 @@ public class MstageParser extends ChameleonParser {
             adaptor.addChild(root_0, string_literal73_tree);
             }
             if ( state.backtracking==0 ) {
-              retval.element =new TypeReference("void");
+              retval.element =new BasicTypeReference("void");
             }
 
             }

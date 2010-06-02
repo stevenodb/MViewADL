@@ -27,11 +27,11 @@ import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.element.Element;
 import chameleon.core.method.MethodHeader;
 import chameleon.core.reference.SimpleReference;
-import chameleon.core.type.TypeReference;
 import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.Valid;
 import chameleon.core.validation.VerificationResult;
 import chameleon.core.variable.FormalParameter;
+import chameleon.oo.type.TypeReference;
 import chameleon.support.member.simplename.SimpleNameMethodHeader;
 import chameleon.util.Util;
 
@@ -64,7 +64,7 @@ public class Service extends JoinPointElement<Service, Element> {
 		//signature (+formal parameters)
 		MethodHeader header = new SimpleNameMethodHeader(signature.toString());
 		for (FormalParameter formalParameter : formalParameters) {
-			header.addParameter(formalParameter);
+			header.addFormalParameter(formalParameter);
 		}
 		setHeader(header);
 		
@@ -85,13 +85,13 @@ public class Service extends JoinPointElement<Service, Element> {
 	}
 
 	/* (non-Javadoc)
-	 * @see chameleon.core.method.MethodHeader#addParameter(chameleon.core.variable.FormalParameter)
+	 * @see chameleon.core.method.MethodHeader#addFormalParameter(chameleon.core.variable.FormalParameter)
 	 */
 	/**
 	 * @param arg
 	 */
-	public void addParameter(FormalParameter arg) {
-		header().addParameter(arg);
+	public void addFormalParameter(FormalParameter arg) {
+		header().addFormalParameter(arg);
 	}
 
 	/* (non-Javadoc)

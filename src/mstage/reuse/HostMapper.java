@@ -30,7 +30,9 @@ import chameleon.core.validation.VerificationResult;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
- * 
+ *
+ * @param <E>
+ * @param <M>
  */
 public abstract class HostMapper<E extends HostMapper<E,M>,M extends Mapping<M,?,?>> 
 	extends	MStageDeclaration<E,Element> {

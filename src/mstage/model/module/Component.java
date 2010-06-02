@@ -24,6 +24,7 @@ import chameleon.core.declaration.SimpleNameSignature;
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
+ * @param <E>
  */
 public class Component<E extends Component<E>> extends Module<E> {
 
@@ -49,33 +50,4 @@ public class Component<E extends Component<E>> extends Module<E> {
 	protected E cloneThis() {
 		return (E) new Component();
 	}
-
-//	/* (non-Javadoc)
-//	 * @see mstage.model.module.Module#clone()
-//	 */
-//	@Override
-//	public E clone() {
-//		// TODO Auto-generated method stub
-//	}
-
-	
-//	/* (non-Javadoc)
-//	 * @see chameleon.core.element.ElementImpl#verifySelf()
-//	 */
-//	@Override
-//	public VerificationResult verifySelf() {
-//		VerificationResult result = super.verifySelf();
-//					
-//		return result;
-//	}
-
-//	/* (non-Javadoc)
-//	 * @see mstage.model.namespace.MStageDeclaration#children()
-//	 */
-//	@Override
-//	public List<Element> children() {
-//		List<Element> result = super.children();
-//		return result;
-//	}
-	
 }
