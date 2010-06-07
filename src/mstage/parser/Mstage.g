@@ -87,8 +87,9 @@ compilationUnit returns [CompilationUnit element]
  *********** */
  
  interfaceDeclaration returns [Interface element]
-	:	'interface' name=Identifier {
+	:	intkw='interface' name=Identifier {
 			$element = new Interface(new SimpleNameSignature($name.text));
+			setKeyword($element,$intkw);
 			setLocation($element,$name,"__NAME");
 		}
 		interfaceBody[$element]
@@ -276,15 +277,15 @@ compositeBody[Composite element]
 
 compositeBodyDeclaration[Composite element]
 	:	'contain' conts=compositeContainBody {
-			for(String module : $conts.elements) {
-				$element.addSubmodules(new SimpleReference<Module>(module,Module.class));
+			for(SimpleReference module : $conts.elements) {
+				$element.addSubmodules(module);
 			}
 		}
 	;
 
-compositeContainBody returns [List<String> elements]
-@init{ $elements = new ArrayList<String>(); }
-	:	'{' (decls=commaSeparatedBodyDecls {$elements=$decls.elements;} )? '}'
+compositeContainBody returns [List<SimpleReference> elements]
+@init{ $elements = new ArrayList<SimpleReference>(); }
+	:	'{' (decls=commaSeparatedBodyDecls[Module.class] {$elements=$decls.elements;} )? '}'
 	;
 	
 
@@ -298,9 +299,10 @@ compositeContainBody returns [List<String> elements]
  
  
 componentDeclaration returns [Component element]
-	:   'component' name=Identifier {
+	:  compkw='component' name=Identifier {
     			$element = new Component(new SimpleNameSignature($name.text)); 
-    			setLocation(retval.element,name,"__NAME");
+    			setKeyword($element,$compkw);
+    			setLocation($element,$name,"__NAME");
 			} componentBody[$element]
 	;
     
@@ -325,24 +327,25 @@ componentBodyDeclaration[Component element]
  * MODULE
  *********** */
  
-moduleDependencyBody returns [List<String> elements]
-@init{ $elements = new ArrayList<String>(); }
-	:	'{' (decls=commaSeparatedBodyDecls {$elements=$decls.elements; } )? '}'
+moduleDependencyBody returns [List<SimpleReference> elements]
+@init{ $elements = new ArrayList<SimpleReference>(); }
+	:	'{' (decls=commaSeparatedBodyDecls[Interface.class] {$elements=$decls.elements; } )? '}'
 	;
  
- moduleRequireDependencyDeclaration[Module element]
+ 
+moduleRequireDependencyDeclaration[Module element]
 	:	'require' rd=moduleDependencyBody {
-			for(String iface : $rd.elements ) {
-				$element.addRequiredInterface(new SimpleReference<Interface>(iface, Interface.class));
+			for(SimpleReference iface : $rd.elements ) {
+				$element.addRequiredInterface(iface);
 			}
 		 }
 	;
 
 
- moduleProvideDependencyDeclaration[Module element]
+moduleProvideDependencyDeclaration[Module element]
 	:	'provide' rd=moduleDependencyBody {
-			for(String iface : $rd.elements ) {
-				$element.addProvidedInterface(new SimpleReference<Interface>(iface, Interface.class));
+			for(SimpleReference iface : $rd.elements ) {		
+				$element.addProvidedInterface(iface);
 			}
 		 }
 	;
@@ -352,14 +355,16 @@ moduleDependencyBody returns [List<String> elements]
  * MISC
  *********** */
  
-commaSeparatedBodyDecls returns [List<String> elements]
-	:	id=Identifier (',' decls=commaSeparatedBodyDecls {$elements=$decls.elements;})? {
+commaSeparatedBodyDecls[Class targetType] returns [List<SimpleReference> elements]
+	:	id=Identifier (',' decls=commaSeparatedBodyDecls[$targetType] {$elements=$decls.elements;})? {
 			
 			if ($elements == null) {
-				$elements = new ArrayList<String>();
+				$elements = new ArrayList<SimpleReference>();
 			}
 			
-			$elements.add(0,$id.text);
+			SimpleReference<Interface> relation = new SimpleReference($id.text, $targetType);
+			$elements.add(0,relation);
+			setLocation(relation, id, id);
 		}
 	;
 	
