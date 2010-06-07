@@ -1,4 +1,4 @@
-gBasicTypeReferencerammar Mstage;
+grammar Mstage;
 
 options {
   backtrack=true; 
@@ -46,9 +46,9 @@ import chameleon.core.compilationunit.CompilationUnit;
 import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.declaration.Signature;
 import chameleon.core.expression.InvocationTarget;
-import chameleon.core.type.TypeReference;
-import chameleon.core.type.BasicTypeReference;
-import chameleon.core.type.Type;
+import chameleon.oo.type.TypeReference;
+import chameleon.oo.type.BasicTypeReference;
+import chameleon.oo.type.Type;
 import chameleon.core.namespace.NamespaceOrTypeReference;
 import chameleon.core.namespacepart.NamespacePart;
 import chameleon.core.reference.SimpleReference;
@@ -62,7 +62,7 @@ import mstage.reuse.HostMapper;
 }
 
 @lexer::header {
-package mstage.parser;
+	package mstage.parser;
 }
 
 
