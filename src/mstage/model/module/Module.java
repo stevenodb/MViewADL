@@ -159,7 +159,6 @@ public abstract class Module<E extends Module<E>> extends MStageDeclaration<E, E
 	public List<Element> children() {
 		final List<Element> result = super.children();
 		
-		Util.addNonNull(signature(), result);
 		result.addAll(providedInterfaces());
 		result.addAll(requiredInterfaces());
 		

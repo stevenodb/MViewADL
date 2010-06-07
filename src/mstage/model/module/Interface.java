@@ -51,7 +51,9 @@ public class Interface extends MStageDeclaration<Interface, Element> {
 		new OrderedMultiAssociation<Interface, Service>(this);
 	
 	public void removeService(Service service) {
-		_services.remove(service.parentLink());
+		if (service != null) {
+			_services.remove(service.parentLink());
+		}
 	}
 
 	public List<Service> services() {
@@ -59,7 +61,9 @@ public class Interface extends MStageDeclaration<Interface, Element> {
 	}
 	
 	public void addService(Service service) {
-		_services.add(service.parentLink());
+		if (service != null) {
+			_services.add(service.parentLink());
+		}
 	}
 
 	

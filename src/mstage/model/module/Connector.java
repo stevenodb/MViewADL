@@ -55,11 +55,15 @@ public class Connector<E extends Connector<E>> extends Module<E> {
 	}
 	
 	public void removeComposition(AOComposition relation) {
-		_compositions.remove(relation.parentLink());
+		if (relation != null) {
+			_compositions.remove(relation.parentLink());
+		}
 	}
 	
 	public void addComposition(AOComposition relation) {
+		if (relation != null) {
 		_compositions.add(relation.parentLink());
+		}
 	}
 
 	
