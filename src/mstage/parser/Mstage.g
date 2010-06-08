@@ -70,13 +70,15 @@ import mstage.reuse.HostMapper;
 // starting point for parsing
 compilationUnit returns [CompilationUnit element] 
 @init{ 
-	NamespacePart npp = null;
 	$element = getCompilationUnit();
-	npp = new NamespacePart(language().defaultNamespace());
+	NamespacePart npp = new NamespacePart(language().defaultNamespace());
 	$element.add(npp);
 }
-	:	cd=componentDeclaration {npp.add($cd.element);}
-	|	id=interfaceDeclaration {npp.add($id.element);}
+	:	( 
+			cd=componentDeclaration {npp.add($cd.element);} 
+	|	
+			id=interfaceDeclaration {npp.add($id.element);} 
+		)*
 	;
 
 
@@ -95,12 +97,16 @@ compilationUnit returns [CompilationUnit element]
 		interfaceBody[$element]
 	;
 
-
 interfaceBody[Interface element]
-	:	(service=serviceDeclaration';')* {
+	:	'{' interfaceBodyDeclaration[$element]* '}'
+	;
+
+interfaceBodyDeclaration[Interface element]
+	:	(service=serviceDeclaration';') {
 			$element.addService($service.element);
 		}
 	;
+
 
 serviceDeclaration returns [Service element]
 	:	rtype=serviceReturnType name=Identifier params=formalParameters {
