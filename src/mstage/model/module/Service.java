@@ -58,20 +58,27 @@ public class Service extends JoinPointElement<Service, Element> {
 		
 		
 		//return type
-		setReturnType(returnType);
+		if(returnType != null) {
+			setReturnType(returnType);
+		}
 		
 		
 		//signature (+formal parameters)
 		MethodHeader header = new SimpleNameMethodHeader(signature.toString());
-		for (FormalParameter formalParameter : formalParameters) {
-			header.addFormalParameter(formalParameter);
+		
+		if (formalParameters != null) {
+			for (FormalParameter formalParameter : formalParameters) {
+				header.addFormalParameter(formalParameter);
+			}
 		}
 		setHeader(header);
 		
 		
 		//properties
-		for (SimpleReference<Property> property : properties) {
-			addProperty(property);
+		if (properties != null) {
+			for (SimpleReference<Property> property : properties) {
+				addProperty(property);
+			}
 		}
 	}
 	
