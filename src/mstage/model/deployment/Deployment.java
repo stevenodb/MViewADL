@@ -27,6 +27,7 @@ import mstage.reuse.HostMapper;
 
 import org.rejuse.association.OrderedMultiAssociation;
 
+import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.element.Element;
 import chameleon.core.reference.SimpleReference;
 import chameleon.core.validation.BasicProblem;
@@ -38,6 +39,19 @@ import chameleon.core.validation.VerificationResult;
  */
 public class Deployment extends HostMapper<Deployment,HostMap> {
 	
+	/**
+	 * default
+	 */
+	protected Deployment() {
+	}
+
+	/**
+	 * @param signature
+	 */
+	public Deployment(SimpleNameSignature signature) {
+		super(signature);
+	}
+
 	/*
 	 * Applications
 	 */

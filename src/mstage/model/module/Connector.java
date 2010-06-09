@@ -34,7 +34,6 @@ public class Connector<E extends Connector<E>> extends Module<E> {
 	 * Default constructor 
 	 */
 	protected Connector() {
-		super();
 	}
 
 	/**

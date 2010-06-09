@@ -25,6 +25,7 @@ import mstage.model.namespace.MStageDeclaration;
 
 import org.rejuse.association.OrderedMultiAssociation;
 
+import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.element.Element;
 import chameleon.core.validation.VerificationResult;
 
@@ -36,6 +37,19 @@ import chameleon.core.validation.VerificationResult;
  */
 public abstract class HostMapper<E extends HostMapper<E,M>,M extends Mapping<M,?,?>> 
 	extends	MStageDeclaration<E,Element> {
+	
+	/**
+	 * default
+	 */
+	protected HostMapper() {
+	}
+
+	/**
+	 * @param signature
+	 */
+	protected HostMapper(SimpleNameSignature signature) {
+		super(signature);
+	}
 
 	/*
 	 * HostMap association

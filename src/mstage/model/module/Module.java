@@ -24,6 +24,7 @@ import org.rejuse.association.OrderedMultiAssociation;
 
 import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.element.Element;
+import chameleon.core.lookup.LookupException;
 import chameleon.core.reference.SimpleReference;
 import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.VerificationResult;
@@ -47,7 +48,7 @@ public abstract class Module<E extends Module<E>> extends MStageDeclaration<E, E
 	 * @param signature
 	 */
 	protected Module(SimpleNameSignature signature) {
-		setSignature(signature);
+		super(signature);
 	}
 	
 
@@ -148,7 +149,33 @@ public abstract class Module<E extends Module<E>> extends MStageDeclaration<E, E
 		if ( ! (this.providedInterfaces().size() >= 1) ) {
 			result = result.and(new BasicProblem(this, "Missing provided interface"));
 		}
-				
+		
+		
+		
+		boolean containsAny = false;
+		
+		try {
+			
+			for (SimpleReference<Interface> provided : this.providedInterfaces()) {
+				for (SimpleReference<Interface> required : this.requiredInterfaces()) {
+						if(provided.getElement().sameAs(required.getElement())) {
+							containsAny = true;
+						}
+					if (containsAny) break;
+				}
+				if (containsAny) break;
+			}
+			
+		} catch (LookupException e) {
+			e.printStackTrace();
+		}
+
+		
+		if (containsAny) {
+			result = result.and(new BasicProblem(this, "Provided and required " +
+					"interfaces should not overlap."));
+		}
+		
 		return result;
 	}
 

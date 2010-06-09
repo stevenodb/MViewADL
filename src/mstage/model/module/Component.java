@@ -31,7 +31,7 @@ public class Component<E extends Component<E>> extends Module<E> {
 	/**
 	 * default
 	 */
-	public Component() {
+	protected Component() {
 	}
 	
 	/**

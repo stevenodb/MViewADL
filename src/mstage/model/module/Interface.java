@@ -34,7 +34,6 @@ public class Interface extends MStageDeclaration<Interface, Element> {
 	 * Default constructor 
 	 */
 	protected Interface() {
-		super();
 	}
 
 	/**
