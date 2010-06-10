@@ -47,6 +47,7 @@ import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.declaration.Signature;
 import chameleon.core.expression.InvocationTarget;
 import chameleon.oo.type.TypeReference;
+import chameleon.oo.type.generics.ActualTypeArgument;
 import chameleon.oo.type.BasicTypeReference;
 import chameleon.oo.type.Type;
 import chameleon.core.namespace.NamespaceOrTypeReference;
@@ -75,9 +76,18 @@ compilationUnit returns [CompilationUnit element]
 	$element.add(npp);
 }
 	:	( 
-			cd=componentDeclaration {npp.add($cd.element);} 
-	|	
-			id=interfaceDeclaration {npp.add($id.element);} 
+			ifd=interfaceDeclaration {npp.add($ifd.element);}
+		|
+			cod=componentDeclaration {npp.add($cod.element);} 
+		|		
+			cmd=compositeDeclaration {npp.add($cmd.element);}
+		|
+			cnd=connectorDeclaration {npp.add($cnd.element);}
+		|
+			apd=applicationDeclaration {npp.add($apd.element);}
+		|
+			dpd=deploymentDeclaration {npp.add($dpd.element);}
+			
 		)*
 	;
 
@@ -87,8 +97,9 @@ compilationUnit returns [CompilationUnit element]
 /* ***********
  * INTERFACE
  *********** */
- 
- interfaceDeclaration returns [Interface element]
+
+
+interfaceDeclaration returns [Interface element]
 	:	intkw='interface' name=Identifier {
 			$element = new Interface(new SimpleNameSignature($name.text));
 			setKeyword($element,$intkw);
@@ -97,15 +108,24 @@ compilationUnit returns [CompilationUnit element]
 		interfaceBody[$element]
 	;
 
+
 interfaceBody[Interface element]
 	:	'{' interfaceBodyDeclaration[$element]* '}'
 	;
+
 
 interfaceBodyDeclaration[Interface element]
 	:	(service=serviceDeclaration';') {
 			$element.addService($service.element);
 		}
 	;
+
+
+
+
+/* ***********
+ * SERVICE
+ *********** */
 
 
 serviceDeclaration returns [Service element]
@@ -116,8 +136,11 @@ serviceDeclaration returns [Service element]
 	;
 
 serviceReturnType returns [TypeReference element]
-	:	vt=voidType { $element=$vt.element; }
-	|	tp=type { $element=$tp.element; }
+	:	( 
+			vt=voidType { $element=$vt.element; }
+		| 
+			tp=type { $element=$tp.element; } 
+		)
 	;
 
 formalParameters returns [List<FormalParameter> element]
@@ -297,8 +320,6 @@ compositeContainBody returns [List<SimpleReference> elements]
 
 
 
-
-
 /* ***********
  * COMPONENT
  *********** */
@@ -357,6 +378,42 @@ moduleProvideDependencyDeclaration[Module element]
 	;
 
 
+
+
+/* ***********
+ * APPLICATION
+ *********** */
+
+
+applicationDeclaration returns [Application element]
+	: appkw='application' name=Identifier { 
+			$element = new Application(new SimpleNameSignature($name.text));
+			setKeyword($element,$appkw);
+   			setLocation($element,$name,"__NAME");
+		}
+	;
+
+
+
+
+/* ***********
+ * DEPLOYMENT
+ *********** */
+
+
+deploymentDeclaration returns [Deployment element]
+	: depkw='deployment' name=Identifier { 
+			$element = new Deployment(new SimpleNameSignature($name.text)); 
+			setKeyword($element,$depkw);
+   			setLocation($element,$name,"__NAME");
+		}
+	;
+
+
+
+
+
+
 /* ***********
  * MISC
  *********** */
@@ -411,7 +468,8 @@ classOrInterfaceType returns [TypeReference element]
 	          {
 	           retval.element = new BasicTypeReference($name.text); 
 	           target =  new NamespaceOrTypeReference($name.text); 
-	          } 
+	          }
+			typeArguments? 
 	        ('.' namex=Identifier 
 	          {
 	           if(target != null) {
@@ -423,7 +481,7 @@ classOrInterfaceType returns [TypeReference element]
 	             retval.element = new BasicTypeReference(retval.element,$namex.text);
 	           }
 	          } 
-	         )*
+	         typeArguments? )*
 	;
 
 
@@ -437,6 +495,18 @@ primitiveType returns [TypeReference element]
     |   'float' {retval.element = new BasicTypeReference("float");}
     |   'double' {retval.element = new BasicTypeReference("double");}
     ;
+
+// GENERICS
+
+typeArguments
+    :   '<' typeArgument ( ',' typeArgument )* '>'
+    ;
+    
+typeArgument
+    :   t=type |   '?'  ( ('extends' | 'super') t=type )?
+    ;
+
+
 
 
 // ANNOTATIONS
@@ -609,89 +679,3 @@ LINE_COMMENT
     : '//' ~('\n'|'\r')* '\r'? '\n' {$channel=HIDDEN;}
     ;
 
-
-
-/*@lexer::members {
- 
-}*/
-
-/*
-@parser::members {
-
-  public InvocationTarget cloneTarget(InvocationTarget target) {
-    InvocationTarget result = null;
-    if(target != null) {
-        result = target.clone();
-    }
-    return result;
-  }
-}
-*/
-
-
-/*	
-componentDependencyBodyDecls returns [List<SimpleReference<Interface>> elements]
-	:	iface=Identifier (',' decls=componentDependencyBodyDecls {$elements = $decls.elements; })? {
-		
-			if ($elements == null) {
-				$elements = new ArrayList<SimpleReference<Interface>>();
-			}
-			
-			SimpleReference<Interface> reference =
-				new SimpleReference<Interface>($iface.text, Interface.class);
-				
-			$elements.add(0,reference);
-			}
-	;
-*/
-
-/*componentInterfaceDependencyBody returns [List<String> interfaces]
-	:	'{' { 
-				$interfaces=new ArrayList<String>(); 
-			} iface=Identifier 
-				{
-					$interfaces.add($iface.text);
-				} (',' iface=Identifier 
-					{
-						$interfaces.add($iface.text);
-					})*
-		'}'
-	;
-*/
-
-/*
-interfaceDeclaration returns [Interface element]
-    :   ifkw='interface' name=Identifier {
-    			retval.element = new Interface(new SimpleNameSignature($name.text)); 
-                setLocation(retval.element,name,"__NAME");
-			} 
-    ;
-    
-classBody returns [ClassBody element]
-    :   '{' {retval.element = new ClassBody();} (decl=classBodyDeclaration {retval.element.add(decl.element);})* '}'
-    ;
-    
-interfaceBody returns [ClassBody element]
-    :   '{' {retval.element = new ClassBody();} (decl=interfaceBodyDeclaration {retval.element.add(decl.element);})* '}'
-    ;
-
-classBodyDeclaration returns [TypeElement element]
-@init{
-  Token start=null;
-  Token stop=null;
-}
-@after{setLocation(retval.element, (CommonToken)start, (CommonToken)stop);}
-    :   sckw=';' {retval.element = new EmptyTypeElement(); start=sckw; stop=sckw;}
-    |   stkw='static'? bl=block {retval.element = new StaticInitializer(bl.element); start=stkw;stop=bl.stop;}
-    |   mods=modifiers decl=memberDecl {retval.element = decl.element; retval.element.addModifiers(mods.element); start=mods.start; stop=decl.stop;}
-    ;
-    
-memberDecl returns [TypeElement element]
-    :   gen=genericMethodOrConstructorDecl {retval.element = gen.element;}
-    |   mem=memberDeclaration {retval.element = mem.element;}
-    |   vmd=voidMethodDeclaration {retval.element = vmd.element;}
-    |   cs=constructorDeclaration {retval.element = cs.element;}
-    |   id=interfaceDeclaration {retval.element=id.element; addNonTopLevelObjectInheritance(id.element);}
-    |   cd=classDeclaration {retval.element=cd.element; addNonTopLevelObjectInheritance(cd.element);}
-    ;
-*/
