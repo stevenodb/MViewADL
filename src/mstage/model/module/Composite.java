@@ -34,7 +34,7 @@ import chameleon.core.validation.VerificationResult;
  * @param <E>
  *
  */
-public class Composite<E extends Composite<E>> extends Component<E> {
+public class Composite<E extends Composite<E>> extends Component<E> implements ModuleContainer {
 	
 	
 	/**
@@ -52,32 +52,32 @@ public class Composite<E extends Composite<E>> extends Component<E> {
 	}
 
 	/*
-	 * Association to composite's submodules 
+	 * Association to composite's modules 
 	 */
-	private OrderedMultiAssociation<Composite<E>, SimpleReference<Module<?>>> _submodules =
+	private OrderedMultiAssociation<Composite<E>, SimpleReference<Module<?>>> _modules =
 		new OrderedMultiAssociation<Composite<E>, SimpleReference<Module<?>>>(this);
 
 	
-	/**
-	 * @return a list of references to submodules
+	/* (non-Javadoc)
+	 * @see mstage.model.module.ModuleContainer#modules()
 	 */
-	public List<SimpleReference<Module<?>>> submodules() {
-		return _submodules.getOtherEnds();
+	public List<SimpleReference<Module<?>>> modules() {
+		return _modules.getOtherEnds();
 	}
 
-	/**
-	 * @param relation	reference to the Module to add
+	/* (non-Javadoc)
+	 * @see mstage.model.module.ModuleContainer#addModule(chameleon.core.reference.SimpleReference)
 	 */
-	public void addSubmodules(SimpleReference<Module<?>> relation) {
-		_submodules.add(relation.parentLink());
+	public void addModule(SimpleReference<Module<?>> relation) {
+		_modules.add(relation.parentLink());
 	}
 	
 	
-	/**
-	 * @param relation	reference to the Module to remove
+	/* (non-Javadoc)
+	 * @see mstage.model.module.ModuleContainer#removeModule(chameleon.core.reference.SimpleReference)
 	 */
-	public void removeSubmodules(SimpleReference<Module<?>> relation) {
-		_submodules.remove(relation.parentLink());
+	public void removeModule(SimpleReference<Module<?>> relation) {
+		_modules.remove(relation.parentLink());
 	}
 	
 
@@ -97,10 +97,10 @@ public class Composite<E extends Composite<E>> extends Component<E> {
 	public E clone() {
 		final E clone = super.clone();
 		
-		for (SimpleReference<Module<?>> simpleReference : this.submodules()) {
+		for (SimpleReference<Module<?>> simpleReference : this.modules()) {
 			SimpleReference<Module<?>> localClone = simpleReference.clone();
 
-			clone.addSubmodules(localClone);
+			clone.addModule(localClone);
 		}
 		
 		return clone;
@@ -113,7 +113,7 @@ public class Composite<E extends Composite<E>> extends Component<E> {
 	public VerificationResult verifySelf() {
 		VerificationResult result = super.verifySelf();
 		
-		if ( ! (submodules().size() > 0) ) {
+		if ( ! (modules().size() > 0) ) {
 			result = result.and(new BasicProblem(this, "No submodules in Composite"));
 		}
 		
@@ -127,7 +127,7 @@ public class Composite<E extends Composite<E>> extends Component<E> {
 	public List<Element> children() {
 		final List<Element> result = super.children();
 		
-		result.addAll(submodules());
+		result.addAll(modules());
 
 		return result;
 	}

@@ -35,8 +35,11 @@ import chameleon.core.validation.VerificationResult;
  * @param <E>
  * @param <M>
  */
-public abstract class HostMapper<E extends HostMapper<E,M>,M extends Mapping<M,?,?>> 
-	extends	MStageDeclaration<E,Element> {
+public abstract class HostMapper
+						<E extends HostMapper<E,H,M>,
+						H extends Host<H>,
+						M extends HostMapping<M,?,H>> 
+								extends	MStageDeclaration<E,Element> {
 	
 	/**
 	 * default
@@ -51,33 +54,75 @@ public abstract class HostMapper<E extends HostMapper<E,M>,M extends Mapping<M,?
 		super(signature);
 	}
 
-	/*
-	 * HostMap association
-	 */
-	private final OrderedMultiAssociation<HostMapper<E,M>, M> _hostMap = 
-		new OrderedMultiAssociation<HostMapper<E,M>, M>(this);
-
+	
 	/**
 	 * @return
 	 */
-	protected List<M> hostMaps() {
+	public abstract M createEmptyMapping();
+	
+	
+	/*
+	 * HostMap association
+	 */
+	private final OrderedMultiAssociation<HostMapper<E,H,M>, M> _hostMap = 
+		new OrderedMultiAssociation<HostMapper<E,H,M>, M>(this);
+
+	
+	/**
+	 * @return
+	 */
+	public List<M> hostMappings() {
 		return _hostMap.getOtherEnds();
 	}
 
 	/**
 	 * @param relation
 	 */
-	protected void addHostMap(M relation) {
-		_hostMap.add(relation.parentLink());
+	public void addHostMapping(M relation) {
+		if (relation != null)
+			_hostMap.add(relation.parentLink());
 	}
 	
 	/**
 	 * @param relation
 	 */
-	protected void removeHostMap(M relation) {
-		_hostMap.add(relation.parentLink());
+	public void removeHostMapping(M relation) {
+		if (relation != null)
+			_hostMap.remove(relation.parentLink());
 	}
 
+	
+	/*
+	 * Hosts
+	 */	
+	private final OrderedMultiAssociation<HostMapper<E,H,M>,H> _hosts =
+		new OrderedMultiAssociation<HostMapper<E,H,M>, H>(this);
+	
+	
+	/**
+	 * @return
+	 */
+	public List<H> hosts(){
+		return _hosts.getOtherEnds();
+	}
+	
+	/**
+	 * @param relation
+	 */
+	public void addHost(H relation) {
+		if (relation != null)
+			_hosts.add(relation.parentLink());
+	}
+	
+	/**
+	 * @param relation
+	 */
+	public void removeHost(H relation) {
+		if (relation != null)
+			_hosts.remove(relation.parentLink());
+	}
+	
+	
 	/* (non-Javadoc)
 	 * @see mstage.model.namespace.MStageDeclaration#clone()
 	 */
@@ -85,10 +130,10 @@ public abstract class HostMapper<E extends HostMapper<E,M>,M extends Mapping<M,?
 	public E clone() {
 		final E clone = (E) super.clone();
 		
-		for (M hostMap : this.hostMaps()) {
+		for (M hostMap : this.hostMappings()) {
 			M localClone = hostMap.clone();
 			
-			clone.addHostMap(localClone);
+			clone.addHostMapping(localClone);
 		}
 		
 		return clone;
@@ -101,7 +146,7 @@ public abstract class HostMapper<E extends HostMapper<E,M>,M extends Mapping<M,?
 	public VerificationResult verifySelf() {
 		VerificationResult result = super.verifySelf();
 		
-		if ( ! (this.hostMaps().size() >= 0) ) {
+		if ( ! (this.hostMappings().size() >= 0) ) {
 			//nothing
 		}
 		
@@ -115,7 +160,7 @@ public abstract class HostMapper<E extends HostMapper<E,M>,M extends Mapping<M,?
 	public List<Element> children() {
 		final List<Element> result = super.children();
 		
-		result.addAll(this.hostMaps());
+		result.addAll(this.hostMappings());
 			
 		return result;	
 	}

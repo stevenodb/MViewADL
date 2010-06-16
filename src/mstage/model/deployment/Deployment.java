@@ -22,6 +22,7 @@ package mstage.model.deployment;
 import java.util.List;
 
 import mstage.model.application.Application;
+import mstage.model.application.Locate;
 import mstage.model.module.Connector;
 import mstage.reuse.HostMapper;
 
@@ -37,7 +38,7 @@ import chameleon.core.validation.VerificationResult;
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public class Deployment extends HostMapper<Deployment,HostMap> {
+public class Deployment extends HostMapper<Deployment,PhysicalHost,HostMap> {
 	
 	/**
 	 * default
@@ -58,6 +59,16 @@ public class Deployment extends HostMapper<Deployment,HostMap> {
 	private final OrderedMultiAssociation<Deployment, SimpleReference<Application>> 
 		_applications =
 		new OrderedMultiAssociation<Deployment, SimpleReference<Application>>(this);
+	
+	
+	/* (non-Javadoc)
+	 * @see mstage.reuse.HostMapper#createEmptyMapping()
+	 */
+	@Override
+	public HostMap createEmptyMapping() {
+		return new HostMap();
+	}
+
 	
 	/**
 	 * @return
@@ -113,26 +124,26 @@ public class Deployment extends HostMapper<Deployment,HostMap> {
 	 * Maps
 	 */
 
-	/**
-	 * @return
-	 */
-	public List<HostMap> maps() {
-		return this.hostMaps();
-	}	
-
-	/**
-	 * @param relation
-	 */
-	public void addLocate(HostMap relation) {
-		this.addHostMap(relation);
-	}
-	
-	/**
-	 * @param relation
-	 */
-	public void removeLocate(HostMap relation) {
-		this.removeHostMap(relation);
-	}
+//	/**
+//	 * @return
+//	 */
+//	public List<HostMap> maps() {
+//		return this.hostMaps();
+//	}	
+//
+//	/**
+//	 * @param relation
+//	 */
+//	public void addLocate(HostMap relation) {
+//		this.addHostMapping(relation);
+//	}
+//	
+//	/**
+//	 * @param relation
+//	 */
+//	public void removeLocate(HostMap relation) {
+//		this.removeHostMapping(relation);
+//	}
 
 	
 	

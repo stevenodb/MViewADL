@@ -22,6 +22,7 @@ package mstage.model.application;
 import java.util.List;
 
 import mstage.model.module.Module;
+import mstage.model.module.ModuleContainer;
 import mstage.reuse.HostMapper;
 
 import org.rejuse.association.OrderedMultiAssociation;
@@ -37,7 +38,7 @@ import chameleon.core.validation.VerificationResult;
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public class Application extends HostMapper<Application, Locate> {
+public class Application extends HostMapper<Application,AbstractHost,Locate> implements ModuleContainer {
 	
 	/**
 	 * default 
@@ -57,6 +58,7 @@ public class Application extends HostMapper<Application, Locate> {
 	 */
 	private final OrderedMultiAssociation<Application, SimpleReference<Module<?>>> _modules =
 		new OrderedMultiAssociation<Application, SimpleReference<Module<?>>>(this);
+	
 	
 	/**
 	 * @return
@@ -80,32 +82,14 @@ public class Application extends HostMapper<Application, Locate> {
 	}
 	
 	
-	/*
-	 * Locates
+	/* (non-Javadoc)
+	 * @see mstage.reuse.HostMapper#createEmptyMapping()
 	 */
-
-	/**
-	 * @return
-	 */
-	public List<Locate> locates() {
-		return this.hostMaps();
-	}	
-
-	/**
-	 * @param relation
-	 */
-	public void addLocate(Locate relation) {
-		this.addHostMap(relation);
+	@Override
+	public Locate createEmptyMapping() {
+		return new Locate();
 	}
-	
-	/**
-	 * @param relation
-	 */
-	public void removeLocate(Locate relation) {
-		this.removeHostMap(relation);
-	}
-
-	
+		
 	
 	/* (non-Javadoc)
 	 * @see mstage.model.namespace.MStageDeclaration#cloneThis()
@@ -156,4 +140,5 @@ public class Application extends HostMapper<Application, Locate> {
 		
 		return result;
 	}
+
 }
