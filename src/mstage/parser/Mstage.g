@@ -29,7 +29,7 @@ import mstage.model.composition.Pointcut;
 import mstage.model.composition.PropertyJoinPoint;
 import mstage.model.composition.SingleJoinPoint;
 import mstage.model.deployment.Deployment;
-import mstage.model.deployment.Host;
+import mstage.model.deployment.PhysicalHost;
 import mstage.model.deployment.HostMap;
 import mstage.model.module.Component;
 import mstage.model.module.Composite;
@@ -39,6 +39,7 @@ import mstage.model.module.JoinPointElement;
 import mstage.model.module.Module;
 import mstage.model.module.Property;
 import mstage.model.module.Service;
+import mstage.model.module.ModuleContainer;
 import mstage.model.namespace.MStageDeclaration;
 
 
@@ -58,8 +59,9 @@ import chameleon.core.variable.FormalParameter;
 import chameleon.support.input.ChameleonParser;
 
 
-import mstage.reuse.Mapping;
+import mstage.reuse.HostMapping;
 import mstage.reuse.HostMapper;
+import mstage.reuse.Host;
 }
 
 @lexer::header {
@@ -112,6 +114,7 @@ interfaceDeclaration returns [Interface element]
 interfaceBody[Interface element]
 	:	'{' interfaceBodyDeclaration[$element]* '}'
 	;
+
 
 
 interfaceBodyDeclaration[Interface element]
@@ -172,8 +175,10 @@ formalParameterDecls returns [List<FormalParameter> element]
  *********** */
 
 connectorDeclaration returns [Connector element]
-	:	'connector' name=Identifier connectorBody[$element] {
+	:	conkw='connector' name=Identifier connectorBody[$element] {
 			$element = new Connector(new SimpleNameSignature($name.text));
+			setKeyword($element,$conkw);
+			setLocation($element,$name,"__NAME");
 		}
 	;
 
@@ -286,39 +291,6 @@ adviceTypeDeclaration[Advice advice]
 		}
 	;
 
-/* ***********
- * COMPOSITE
- *********** */
-  
- 
-compositeDeclaration returns [Composite element]
-	:	'composite' name=Identifier {
-				$element = new Composite(new SimpleNameSignature($name.text));
-			}
-	 compositeBody[$element]
-	;
-
-
-compositeBody[Composite element]
-	:	'{' (compositeBodyDeclaration[$element] | componentBodyDeclaration[$element])* '}'
-	;
-
-
-compositeBodyDeclaration[Composite element]
-	:	'contain' conts=compositeContainBody {
-			for(SimpleReference module : $conts.elements) {
-				$element.addSubmodules(module);
-			}
-		}
-	;
-
-compositeContainBody returns [List<SimpleReference> elements]
-@init{ $elements = new ArrayList<SimpleReference>(); }
-	:	'{' (decls=commaSeparatedBodyDecls[Module.class] {$elements=$decls.elements;} )? '}'
-	;
-	
-
-
 
 /* ***********
  * COMPONENT
@@ -381,6 +353,32 @@ moduleProvideDependencyDeclaration[Module element]
 
 
 /* ***********
+ * COMPOSITE
+ *********** */
+  
+ 
+compositeDeclaration returns [Composite element]
+	:	cmkw='composite' name=Identifier {
+				$element = new Composite(new SimpleNameSignature($name.text));
+    			setKeyword($element,$cmkw);
+    			setLocation($element,$name,"__NAME");
+			}
+	 compositeBody[$element]
+	;
+
+
+compositeBody[Composite element]
+	:	'{' (compositeBodyDeclaration[$element] | componentBodyDeclaration[$element])* '}'
+	;
+
+
+compositeBodyDeclaration[Composite element]
+	: modulecontainerDeclaration[$element]
+	;
+
+
+
+/* ***********
  * APPLICATION
  *********** */
 
@@ -390,11 +388,78 @@ applicationDeclaration returns [Application element]
 			$element = new Application(new SimpleNameSignature($name.text));
 			setKeyword($element,$appkw);
    			setLocation($element,$name,"__NAME");
+		} applicationBody[$element]
+	;
+
+applicationBody[Application element]
+	: '{' applicationBodyDeclaration[$element]* '}'
+	;
+
+
+applicationBodyDeclaration[Application element]
+	: modulecontainerDeclaration[$element]
+	| locateDeclaration[$element]
+	;
+	
+	
+locateDeclaration[Application element]
+	: lockw='locate' mappingDeclaration[$element, Module.class, AbstractHost.class] {
+			setKeyword($element,$lockw);
 		}
 	;
 
 
+mappingDeclaration[HostMapper element, Class<? extends MStageDeclaration> fromType, Class<? extends Host> toType]
+	: name=Identifier rfroms=mappingDeclarationBody[fromType] {
 
+				// create the abstracthost, as it is declared and defined here
+				Host host = null;
+				try {
+					host = $toType.newInstance();
+					host.setSignature(new SimpleNameSignature($name.text));
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				setLocation(host,$name,"__NAME");
+				
+				// add it to HostMapper
+				$element.addHost(host);
+				
+				SimpleReference<Host> to = new SimpleReference($name.text,$toType);
+				System.out.println($name + " -- " + toType);
+				
+		        for(SimpleReference<Module> from : $rfroms.elements) {
+		        
+			        HostMapping mapping = null;
+					mapping = $element.createEmptyMapping();
+					
+					mapping.setFrom(from);
+					mapping.setTo(to);
+			
+					$element.addHostMapping(mapping);
+				}
+			
+			}
+	;
+
+mappingDeclarationBody[Class fromType] returns [List<SimpleReference> elements]
+//@init { $elements = new ArrayList<SimpleReference>(); }
+	: '{' ( decls = commaSeparatedBodyDecls[fromType] { $elements = $decls.elements; } )? '}'
+	;
+
+/*
+abstracthostDeclaration[Application element]
+	:	'astracthost' ahd=abstracthostBody[$element] {
+			
+		}
+	;
+	
+	
+abstracthostBody return [List<>]
+	:	
+	;
+*/	
+	
 
 /* ***********
  * DEPLOYMENT
@@ -411,6 +476,23 @@ deploymentDeclaration returns [Deployment element]
 
 
 
+/* ***********
+ * MODULECONTAINER
+ *********** */
+
+modulecontainerDeclaration[ModuleContainer element]
+	:	ctkw='contain' conts=modulecontainerBody {
+
+			for(SimpleReference module : $conts.elements) {
+				$element.addModule(module);
+			}
+		}
+	;
+
+modulecontainerBody returns [List<SimpleReference> elements]
+@init{ $elements = new ArrayList<SimpleReference>(); }
+	:	'{' (decls=commaSeparatedBodyDecls[Module.class] {$elements=$decls.elements;} )? '}'
+	;
 
 
 
@@ -419,11 +501,8 @@ deploymentDeclaration returns [Deployment element]
  *********** */
  
 commaSeparatedBodyDecls[Class targetType] returns [List<SimpleReference> elements]
+@init{ $elements = new ArrayList<SimpleReference>(); }
 	:	id=Identifier (',' decls=commaSeparatedBodyDecls[$targetType] {$elements=$decls.elements;})? {
-			
-			if ($elements == null) {
-				$elements = new ArrayList<SimpleReference>();
-			}
 			
 			SimpleReference<Interface> relation = new SimpleReference($id.text, $targetType);
 			$elements.add(0,relation);
@@ -431,7 +510,7 @@ commaSeparatedBodyDecls[Class targetType] returns [List<SimpleReference> element
 		}
 	;
 	
-	
+
 	
 /* ***********
  * TYPING, etc.
