@@ -22,6 +22,8 @@ package mstage.reuse;
 import java.util.ArrayList;
 import java.util.List;
 
+import mstage.model.namespace.MStageDeclaration;
+
 import org.rejuse.association.SingleAssociation;
 
 import chameleon.core.declaration.Declaration;
@@ -39,15 +41,32 @@ import chameleon.util.Util;
  * @param <From>
  * @param <To>
  */
-public abstract class Mapping<M extends Mapping<M,From,To>,From extends Declaration<?,?,?,?>,To extends Declaration<?, ?, ?, ? extends To>> 
+public abstract class HostMapping<M extends HostMapping<M,From,To>,
+			From extends MStageDeclaration<?,? extends Element>,
+			To extends Host<? extends Host<?>>> 
 			extends NamespaceElementImpl<M, Element> {
 
+	/**
+	 * default
+	 */
+	public HostMapping() {
+	}
+	
+	/**
+	 * @param from
+	 * @param to
+	 */
+	public HostMapping(SimpleReference<From> from, SimpleReference<To> to) {
+		setFrom(from);
+		setTo(to);
+	}
 	
 	/*
-	 * Association to Host
+	 * Association to From
 	 */
-	private final SingleAssociation<Mapping<M,From,To>, SimpleReference<From>> _from =
-		new SingleAssociation<Mapping<M,From,To>, SimpleReference<From>>(this); 
+	private final SingleAssociation<HostMapping<M,From,To>, SimpleReference<From>> _from =
+		new SingleAssociation<HostMapping<M,From,To>, SimpleReference<From>>(this); 
+	
 	
 	/**
 	 * @return
@@ -65,10 +84,10 @@ public abstract class Mapping<M extends Mapping<M,From,To>,From extends Declarat
 	
 	
 	/*
-	 * Association to Module
+	 * Association to To
 	 */
-	private final SingleAssociation<Mapping<M,From,To>, SimpleReference<To>> _to =
-		new SingleAssociation<Mapping<M,From,To>, SimpleReference<To>>(this);
+	private final SingleAssociation<HostMapping<M,From,To>, SimpleReference<To>> _to =
+		new SingleAssociation<HostMapping<M,From,To>, SimpleReference<To>>(this);
 
 	/**
 	 * @param relation
@@ -83,8 +102,6 @@ public abstract class Mapping<M extends Mapping<M,From,To>,From extends Declarat
 	public SimpleReference<To> to() {
 		return _to.getOtherEnd();
 	}
-	
-	
 	
 	
 	/**

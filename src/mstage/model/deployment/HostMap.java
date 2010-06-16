@@ -20,13 +20,13 @@
 package mstage.model.deployment;
 
 import mstage.model.application.AbstractHost;
-import mstage.reuse.Mapping;
+import mstage.reuse.HostMapping;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public class HostMap extends Mapping<HostMap,Host,AbstractHost> {
+public class HostMap extends HostMapping<HostMap,AbstractHost,PhysicalHost> {
 
 	/* (non-Javadoc)
 	 * @see mstage.model.module.HostMap#cloneThis()
@@ -35,6 +35,5 @@ public class HostMap extends Mapping<HostMap,Host,AbstractHost> {
 	protected HostMap cloneThis() {
 		return new HostMap();
 	}
-
 
 }
