@@ -1,7 +1,7 @@
 /**
  * author:   Steven Op de beeck <steven /at/ opdebeeck /./ org>
- * filename: AbstractHost.java
- * created:  Dec 1, 2009, 6:00:49 PM
+ * filename: Host.java
+ * created:  Dec 2, 2009, 10:24:43 AM
  * license:
  * The code contained in this file is free software: you can redistribute 
  * it and/or modify it under the terms of the GNU General Public License
@@ -17,23 +17,23 @@
  *
  * If not, see <http://www.gnu.org/licenses/>.
  */
-package mstage.model.application;
+package mstage.model.deployment;
 
 import mstage.reuse.Host;
-
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public class AbstractHost extends Host<AbstractHost> {
+public class PhysicalHost extends Host<PhysicalHost> {
 
 	/* (non-Javadoc)
 	 * @see mstage.model.namespace.MStageDeclaration#cloneThis()
 	 */
 	@Override
-	protected AbstractHost cloneThis() {
-		return (AbstractHost) new AbstractHost();
+	protected PhysicalHost cloneThis() {
+		return (PhysicalHost) new PhysicalHost();
 	}
+
 
 }

@@ -1,7 +1,7 @@
 /**
  * author:   Steven Op de beeck <steven /at/ opdebeeck /./ org>
  * filename: Host.java
- * created:  Dec 2, 2009, 10:24:43 AM
+ * created:  Jun 16, 2010, 12:19:08 PM
  * license:
  * The code contained in this file is free software: you can redistribute 
  * it and/or modify it under the terms of the GNU General Public License
@@ -13,28 +13,35 @@
  * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
  * See the GNU General Public License for more details.
  *
- * You should have received a copy of the GNU General Public License
- *
+ * You should have received a copy of the GNU General Public License. 
  * If not, see <http://www.gnu.org/licenses/>.
  */
-package mstage.model.deployment;
+package mstage.reuse;
 
 import mstage.model.namespace.MStageDeclaration;
+import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.element.Element;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
+ * @param <E>
  */
-public class Host extends MStageDeclaration<Host, Element> {
+public abstract class Host<E extends Host<E>> extends
+		MStageDeclaration<E, Element> {
 
-	/* (non-Javadoc)
-	 * @see mstage.model.namespace.MStageDeclaration#cloneThis()
+	/**
+	 * 
 	 */
-	@Override
-	protected Host cloneThis() {
-		return new Host();
+	public Host() {
+		super();
 	}
 
+	/**
+	 * @param signature
+	 */
+	public Host(SimpleNameSignature signature) {
+		super(signature);
+	}
 
 }
