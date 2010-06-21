@@ -69,14 +69,16 @@ public abstract class Module<E extends Module<E>> extends MStageDeclaration<E, E
 	 * @param relation
 	 */
 	public void addProvidedInterface(SimpleReference<Interface> relation) {
-		_providedInterfaces.add(relation.parentLink());
+		if (relation != null)
+			_providedInterfaces.add(relation.parentLink());
 	}
 	
 	/**
 	 * @param relation
 	 */
 	public void removeProvidedInterface(SimpleReference<Interface> relation) {
-		_providedInterfaces.remove(relation.parentLink());
+		if (relation != null)
+			_providedInterfaces.remove(relation.parentLink());
 	}
 
 	
@@ -99,14 +101,16 @@ public abstract class Module<E extends Module<E>> extends MStageDeclaration<E, E
 	 * @param relation
 	 */
 	public void addRequiredInterface(SimpleReference<Interface> relation) {
-		_requiredInterfaces.add(relation.parentLink());
+		if (relation != null)
+			_requiredInterfaces.add(relation.parentLink());
 	}
 	
 	/**
 	 * @param relation
 	 */
 	public void removeRequiredInterface(SimpleReference<Interface> relation) {
-		_requiredInterfaces.remove(relation.parentLink());
+		if (relation != null)
+			_requiredInterfaces.remove(relation.parentLink());
 	}
 
 		
