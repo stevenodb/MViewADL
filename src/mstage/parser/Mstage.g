@@ -403,63 +403,11 @@ applicationBodyDeclaration[Application element]
 	
 	
 locateDeclaration[Application element]
-	: lockw='locate' mappingDeclaration[$element, Module.class, AbstractHost.class] {
-			setKeyword($element,$lockw);
-		}
+	: mappingDeclaration[$element, Module.class, AbstractHost.class]
 	;
 
 
-mappingDeclaration[HostMapper element, Class<? extends MStageDeclaration> fromType, Class<? extends Host> toType]
-	: name=Identifier rfroms=mappingDeclarationBody[fromType] {
 
-				// create the abstracthost, as it is declared and defined here
-				Host host = null;
-				try {
-					host = $toType.newInstance();
-					host.setSignature(new SimpleNameSignature($name.text));
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				setLocation(host,$name,"__NAME");
-				
-				// add it to HostMapper
-				$element.addHost(host);
-				
-				SimpleReference<Host> to = new SimpleReference($name.text,$toType);
-				System.out.println($name + " -- " + toType);
-				
-		        for(SimpleReference<Module> from : $rfroms.elements) {
-		        
-			        HostMapping mapping = null;
-					mapping = $element.createEmptyMapping();
-					
-					mapping.setFrom(from);
-					mapping.setTo(to);
-			
-					$element.addHostMapping(mapping);
-				}
-			
-			}
-	;
-
-mappingDeclarationBody[Class fromType] returns [List<SimpleReference> elements]
-//@init { $elements = new ArrayList<SimpleReference>(); }
-	: '{' ( decls = commaSeparatedBodyDecls[fromType] { $elements = $decls.elements; } )? '}'
-	;
-
-/*
-abstracthostDeclaration[Application element]
-	:	'astracthost' ahd=abstracthostBody[$element] {
-			
-		}
-	;
-	
-	
-abstracthostBody return [List<>]
-	:	
-	;
-*/	
-	
 
 /* ***********
  * DEPLOYMENT
@@ -471,9 +419,85 @@ deploymentDeclaration returns [Deployment element]
 			$element = new Deployment(new SimpleNameSignature($name.text)); 
 			setKeyword($element,$depkw);
    			setLocation($element,$name,"__NAME");
-		}
+		} deploymentBody[$element]
 	;
 
+deploymentBody[Deployment element]
+	: '{' deploymentBodyDeclaration[$element]* '}'
+	;
+
+
+deploymentBodyDeclaration[Deployment element]
+	: appcontainDeclaration[$element]
+	| hostMapDeclaration[$element]
+	;
+	
+	
+appcontainDeclaration[Deployment element]
+	:	ctkw='contain' conts=appcontainBody {
+
+			for(SimpleReference<Application> app : $conts.elements) {
+				$element.addApplication(app);
+			}
+		}
+	;
+	
+
+appcontainBody returns [List<SimpleReference> elements]
+@init{ $elements = new ArrayList<SimpleReference>(); }
+	:	'{' (decls=commaSeparatedBodyDecls[Application.class] {$elements=$decls.elements;} )? '}'
+	;
+
+	
+hostMapDeclaration[Deployment element]
+	: mappingDeclaration[$element, AbstractHost.class, PhysicalHost.class]
+	;
+
+
+
+/* **********
+ * HOSTMAPPER
+ ********** */
+
+mappingDeclaration[HostMapper element, Class<? extends MStageDeclaration> fromType, Class<? extends Host> toType]
+	: mapkw=('map'|'locate') name=Identifier rfroms=mappingDeclarationBody[fromType] {
+
+				// create the host, as it is declared and defined here
+				Host<? extends Host> host = null;
+				try {
+					host = $toType.newInstance();
+					host.setSignature(new SimpleNameSignature($name.text));
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				setLocation(host,$name,"__NAME");
+				setKeyword(host,$mapkw);				
+				
+				// add it to HostMapper
+				$element.addHost(host);
+				
+				SimpleReference<? extends Host> to = new SimpleReference($name.text,$toType);
+				
+		        for(SimpleReference<Module> from : $rfroms.elements) {
+		        
+			        HostMapping mapping = 
+			        	$element.createEmptyMapping();
+					
+					mapping.setFrom(from);
+					mapping.setTo(to);
+			
+					$element.addHostMapping(mapping);
+					
+					System.out.println(from.parentLink().getObject().signature() + 
+						" --> " +to.parentLink().getObject().signature());
+				}
+			}
+	;
+
+mappingDeclarationBody[Class<? extends MStageDeclaration> fromType] returns [List<SimpleReference> elements]
+	: '{' ( decls = commaSeparatedBodyDecls[fromType] { $elements = $decls.elements; } )? '}'
+	;
+	
 
 
 /* ***********
@@ -483,7 +507,7 @@ deploymentDeclaration returns [Deployment element]
 modulecontainerDeclaration[ModuleContainer element]
 	:	ctkw='contain' conts=modulecontainerBody {
 
-			for(SimpleReference module : $conts.elements) {
+			for(SimpleReference<Module<?>> module : $conts.elements) {
 				$element.addModule(module);
 			}
 		}
