@@ -19,6 +19,7 @@
  */
 package mstage.model.deployment;
 
+import chameleon.core.declaration.SimpleNameSignature;
 import mstage.reuse.Host;
 
 /**
@@ -26,6 +27,20 @@ import mstage.reuse.Host;
  *
  */
 public class PhysicalHost extends Host<PhysicalHost> {
+
+	/**
+	 * 
+	 */
+	public PhysicalHost() {
+		super();
+	}
+
+	/**
+	 * @param signature
+	 */
+	public PhysicalHost(SimpleNameSignature signature) {
+		super(signature);
+	}
 
 	/* (non-Javadoc)
 	 * @see mstage.model.namespace.MStageDeclaration#cloneThis()
