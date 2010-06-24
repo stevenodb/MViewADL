@@ -21,9 +21,11 @@ package mstage.reuse;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import mstage.model.namespace.MStageDeclaration;
 
+import org.rejuse.association.OrderedMultiAssociation;
 import org.rejuse.association.SingleAssociation;
 
 import chameleon.core.declaration.Declaration;
@@ -52,34 +54,31 @@ public abstract class HostMapping<M extends HostMapping<M,From,To>,
 	public HostMapping() {
 	}
 	
-	/**
-	 * @param from
-	 * @param to
-	 */
-	public HostMapping(SimpleReference<From> from, SimpleReference<To> to) {
-		setFrom(from);
-		setTo(to);
-	}
-	
+
 	/*
 	 * Association to From
 	 */
-	private final SingleAssociation<HostMapping<M,From,To>, SimpleReference<From>> _from =
-		new SingleAssociation<HostMapping<M,From,To>, SimpleReference<From>>(this); 
+	private final OrderedMultiAssociation<HostMapping<M,From,To>, SimpleReference<From>> _from =
+		new OrderedMultiAssociation<HostMapping<M,From,To>, SimpleReference<From>>(this); 
 	
 	
 	/**
 	 * @return
 	 */
-	public SimpleReference<From> from() {
-		return _from.getOtherEnd();
+	public List<SimpleReference<From>> from() {
+		return _from.getOtherEnds();
 	}
 
 	/**
 	 * @param relation
 	 */
-	public void setFrom(SimpleReference<From> relation) {
-		_from.connectTo(relation.parentLink());
+	public void addFrom(SimpleReference<From> relation) {
+		_from.add(relation.parentLink());
+	}
+	
+	
+	public void removeFrom(SimpleReference<From> relation) {
+		_from.remove(relation.parentLink());
 	}
 	
 	
@@ -116,9 +115,11 @@ public abstract class HostMapping<M extends HostMapping<M,From,To>,
 	public M clone() {
 		final M clone = (M) this.cloneThis();
 		
-		clone.setFrom(
-			this.from().clone()
-		);
+		for (SimpleReference<From> simpleReference : this.from()) {
+			SimpleReference<From> localClone = simpleReference.clone();
+			
+			clone.addFrom(localClone);
+		}
 		
 		clone.setTo(
 			this.to().clone()
@@ -136,7 +137,10 @@ public abstract class HostMapping<M extends HostMapping<M,From,To>,
 		
 		if ( ! (this.from() != null) ) {
 			result = result.and(new BasicProblem(this, "From is null"));
-		}
+		} else
+			if ( ! (this.from().size() > 0) ) {
+				result = result.and(new BasicProblem(this, "Does not have any From targets."));
+			}
 
 		if ( ! (this.to() != null) ) {
 			result = result.and(new BasicProblem(this, "To is null"));
@@ -151,7 +155,7 @@ public abstract class HostMapping<M extends HostMapping<M,From,To>,
 	public List<Element> children() {
 		final List<Element> result = new ArrayList<Element>();
 		
-		Util.addNonNull(this.from(), result);
+		result.addAll(this.from());
 		Util.addNonNull(this.to(), result);
 		
 		return result;

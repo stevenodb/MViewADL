@@ -27,6 +27,7 @@ import org.rejuse.association.OrderedMultiAssociation;
 
 import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.element.Element;
+import chameleon.core.reference.SimpleReference;
 import chameleon.core.validation.VerificationResult;
 
 /**
@@ -95,21 +96,21 @@ public abstract class HostMapper
 	/*
 	 * Hosts
 	 */	
-	private final OrderedMultiAssociation<HostMapper<E,H,M>,H> _hosts =
-		new OrderedMultiAssociation<HostMapper<E,H,M>, H>(this);
+	private final OrderedMultiAssociation<HostMapper<E,H,M>,SimpleReference<H>> _hosts =
+		new OrderedMultiAssociation<HostMapper<E,H,M>, SimpleReference<H>>(this);
 	
 	
 	/**
 	 * @return
 	 */
-	public List<H> hosts(){
+	public List<SimpleReference<H>> hosts(){
 		return _hosts.getOtherEnds();
 	}
 	
 	/**
 	 * @param relation
 	 */
-	public void addHost(H relation) {
+	public void addHost(SimpleReference<H> relation) {
 		if (relation != null)
 			_hosts.add(relation.parentLink());
 	}
@@ -117,7 +118,7 @@ public abstract class HostMapper
 	/**
 	 * @param relation
 	 */
-	public void removeHost(H relation) {
+	public void removeHost(SimpleReference<H> relation) {
 		if (relation != null)
 			_hosts.remove(relation.parentLink());
 	}
@@ -132,8 +133,12 @@ public abstract class HostMapper
 		
 		for (M hostMap : this.hostMappings()) {
 			M localClone = hostMap.clone();
-			
 			clone.addHostMapping(localClone);
+		}
+		
+		for (SimpleReference<H> relation : this.hosts()) {
+			SimpleReference<H> localClone = relation.clone();
+			clone.addHost(localClone);
 		}
 		
 		return clone;
@@ -161,6 +166,8 @@ public abstract class HostMapper
 		final List<Element> result = super.children();
 		
 		result.addAll(this.hostMappings());
+		
+		result.addAll(this.hosts());
 			
 		return result;	
 	}
