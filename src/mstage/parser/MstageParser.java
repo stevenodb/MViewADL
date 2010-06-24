@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g 2010-06-24 09:24:49
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g 2010-06-24 19:34:41
 
 package mstage.parser;
 
@@ -3775,6 +3775,7 @@ public class MstageParser extends ChameleonParser {
             if ( state.backtracking==0 ) adaptor.addChild(root_0, conts.getTree());
             if ( state.backtracking==0 ) {
 
+              			setKeyword(element,ctkw);
 
               			for(SimpleReference<Application> app : (conts!=null?conts.elements:null)) {
               				element.addApplication(app);
@@ -3812,7 +3813,7 @@ public class MstageParser extends ChameleonParser {
     };
 
     // $ANTLR start "appcontainBody"
-    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:445:1: appcontainBody returns [List<SimpleReference> elements] : '{' (decls= commaSeparatedBodyDecls[Application.class] )? '}' ;
+    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:446:1: appcontainBody returns [List<SimpleReference> elements] : '{' (decls= commaSeparatedBodyDecls[Application.class] )? '}' ;
     public final MstageParser.appcontainBody_return appcontainBody() throws RecognitionException {
         MstageParser.appcontainBody_return retval = new MstageParser.appcontainBody_return();
         retval.start = input.LT(1);
@@ -3830,8 +3831,8 @@ public class MstageParser extends ChameleonParser {
          retval.elements = new ArrayList<SimpleReference>(); 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 43) ) { return retval; }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:447:2: ( '{' (decls= commaSeparatedBodyDecls[Application.class] )? '}' )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:447:4: '{' (decls= commaSeparatedBodyDecls[Application.class] )? '}'
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:448:2: ( '{' (decls= commaSeparatedBodyDecls[Application.class] )? '}' )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:448:4: '{' (decls= commaSeparatedBodyDecls[Application.class] )? '}'
             {
             root_0 = (Object)adaptor.nil();
 
@@ -3840,7 +3841,7 @@ public class MstageParser extends ChameleonParser {
             char_literal76_tree = (Object)adaptor.create(char_literal76);
             adaptor.addChild(root_0, char_literal76_tree);
             }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:447:8: (decls= commaSeparatedBodyDecls[Application.class] )?
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:448:8: (decls= commaSeparatedBodyDecls[Application.class] )?
             int alt22=2;
             int LA22_0 = input.LA(1);
 
@@ -3849,7 +3850,7 @@ public class MstageParser extends ChameleonParser {
             }
             switch (alt22) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:447:9: decls= commaSeparatedBodyDecls[Application.class]
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:448:9: decls= commaSeparatedBodyDecls[Application.class]
                     {
                     pushFollow(FOLLOW_commaSeparatedBodyDecls_in_appcontainBody1253);
                     decls=commaSeparatedBodyDecls(Application.class);
@@ -3901,7 +3902,7 @@ public class MstageParser extends ChameleonParser {
     };
 
     // $ANTLR start "hostMapDeclaration"
-    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:451:1: hostMapDeclaration[Deployment element] : mappingDeclaration[$element, AbstractHost.class, PhysicalHost.class] ;
+    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:452:1: hostMapDeclaration[Deployment element] : mappingDeclaration[$element, AbstractHost.class, PhysicalHost.class] ;
     public final MstageParser.hostMapDeclaration_return hostMapDeclaration(Deployment element) throws RecognitionException {
         MstageParser.hostMapDeclaration_return retval = new MstageParser.hostMapDeclaration_return();
         retval.start = input.LT(1);
@@ -3914,8 +3915,8 @@ public class MstageParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 44) ) { return retval; }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:452:2: ( mappingDeclaration[$element, AbstractHost.class, PhysicalHost.class] )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:452:4: mappingDeclaration[$element, AbstractHost.class, PhysicalHost.class]
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:453:2: ( mappingDeclaration[$element, AbstractHost.class, PhysicalHost.class] )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:453:4: mappingDeclaration[$element, AbstractHost.class, PhysicalHost.class]
             {
             root_0 = (Object)adaptor.nil();
 
@@ -3956,7 +3957,7 @@ public class MstageParser extends ChameleonParser {
     };
 
     // $ANTLR start "abstractHostDeclaration"
-    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:461:1: abstractHostDeclaration returns [AbstractHost element] : ahkw= 'abstracthost' name= Identifier abstractHostBody[$element] ;
+    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:462:1: abstractHostDeclaration returns [AbstractHost element] : ahkw= 'abstracthost' name= Identifier abstractHostBody[$element] ;
     public final MstageParser.abstractHostDeclaration_return abstractHostDeclaration() throws RecognitionException {
         MstageParser.abstractHostDeclaration_return retval = new MstageParser.abstractHostDeclaration_return();
         retval.start = input.LT(1);
@@ -3973,8 +3974,8 @@ public class MstageParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 45) ) { return retval; }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:462:2: (ahkw= 'abstracthost' name= Identifier abstractHostBody[$element] )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:462:4: ahkw= 'abstracthost' name= Identifier abstractHostBody[$element]
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:463:2: (ahkw= 'abstracthost' name= Identifier abstractHostBody[$element] )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:463:4: ahkw= 'abstracthost' name= Identifier abstractHostBody[$element]
             {
             root_0 = (Object)adaptor.nil();
 
@@ -3992,7 +3993,7 @@ public class MstageParser extends ChameleonParser {
 
               			retval.element = new AbstractHost(new SimpleNameSignature((name!=null?name.getText():null)));
               	    	setKeyword(retval.element,ahkw);
-                  		setLocation(retval.element,name,"__NAME");	
+                  		setLocation(retval.element,name,"__NAME");
               		
             }
             pushFollow(FOLLOW_abstractHostBody_in_abstractHostDeclaration1306);
@@ -4031,7 +4032,7 @@ public class MstageParser extends ChameleonParser {
     };
 
     // $ANTLR start "abstractHostBody"
-    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:470:1: abstractHostBody[AbstractHost element] : '{' ( abstractHostBodyDeclaration[$element] )* '}' ;
+    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:471:1: abstractHostBody[AbstractHost element] : '{' ( abstractHostBodyDeclaration[$element] )* '}' ;
     public final MstageParser.abstractHostBody_return abstractHostBody(AbstractHost element) throws RecognitionException {
         MstageParser.abstractHostBody_return retval = new MstageParser.abstractHostBody_return();
         retval.start = input.LT(1);
@@ -4048,8 +4049,8 @@ public class MstageParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 46) ) { return retval; }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:471:2: ( '{' ( abstractHostBodyDeclaration[$element] )* '}' )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:471:4: '{' ( abstractHostBodyDeclaration[$element] )* '}'
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:472:2: ( '{' ( abstractHostBodyDeclaration[$element] )* '}' )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:472:4: '{' ( abstractHostBodyDeclaration[$element] )* '}'
             {
             root_0 = (Object)adaptor.nil();
 
@@ -4058,7 +4059,7 @@ public class MstageParser extends ChameleonParser {
             char_literal80_tree = (Object)adaptor.create(char_literal80);
             adaptor.addChild(root_0, char_literal80_tree);
             }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:471:8: ( abstractHostBodyDeclaration[$element] )*
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:472:8: ( abstractHostBodyDeclaration[$element] )*
             loop23:
             do {
                 int alt23=2;
@@ -4123,7 +4124,7 @@ public class MstageParser extends ChameleonParser {
     };
 
     // $ANTLR start "abstractHostBodyDeclaration"
-    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:475:1: abstractHostBodyDeclaration[AbstractHost element] : 'none' ;
+    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:476:1: abstractHostBodyDeclaration[AbstractHost element] : 'none' ;
     public final MstageParser.abstractHostBodyDeclaration_return abstractHostBodyDeclaration(AbstractHost element) throws RecognitionException {
         MstageParser.abstractHostBodyDeclaration_return retval = new MstageParser.abstractHostBodyDeclaration_return();
         retval.start = input.LT(1);
@@ -4136,8 +4137,8 @@ public class MstageParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 47) ) { return retval; }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:476:2: ( 'none' )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:476:4: 'none'
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:477:2: ( 'none' )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:477:4: 'none'
             {
             root_0 = (Object)adaptor.nil();
 
@@ -4176,7 +4177,7 @@ public class MstageParser extends ChameleonParser {
     };
 
     // $ANTLR start "mappingDeclaration"
-    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:484:1: mappingDeclaration[HostMapper element, Class<? extends MStageDeclaration> fromType, Class<? extends Host> toType] : mapkw= ( 'map' | 'locate' ) name= Identifier rfroms= mappingDeclarationBody[fromType] ;
+    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:485:1: mappingDeclaration[HostMapper element, Class<? extends MStageDeclaration> fromType, Class<? extends Host> toType] : mapkw= ( 'map' | 'locate' ) name= Identifier rfroms= mappingDeclarationBody[fromType] ;
     public final MstageParser.mappingDeclaration_return mappingDeclaration(HostMapper element, Class<? extends MStageDeclaration> fromType, Class<? extends Host> toType) throws RecognitionException {
         MstageParser.mappingDeclaration_return retval = new MstageParser.mappingDeclaration_return();
         retval.start = input.LT(1);
@@ -4193,8 +4194,8 @@ public class MstageParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 48) ) { return retval; }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:485:2: (mapkw= ( 'map' | 'locate' ) name= Identifier rfroms= mappingDeclarationBody[fromType] )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:485:4: mapkw= ( 'map' | 'locate' ) name= Identifier rfroms= mappingDeclarationBody[fromType]
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:486:2: (mapkw= ( 'map' | 'locate' ) name= Identifier rfroms= mappingDeclarationBody[fromType] )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:486:4: mapkw= ( 'map' | 'locate' ) name= Identifier rfroms= mappingDeclarationBody[fromType]
             {
             root_0 = (Object)adaptor.nil();
 
@@ -4224,36 +4225,27 @@ public class MstageParser extends ChameleonParser {
             if ( state.backtracking==0 ) {
 
 
-              				// create the host, as it is declared and defined here
-              				Host<? extends Host> host = null;
-              				try {
-              					host = toType.newInstance();
-              					host.setSignature(new SimpleNameSignature((name!=null?name.getText():null)));
-              				} catch (Exception e) {
-              					e.printStackTrace();
-              				}
-              				setLocation(host,name,"__NAME");
-              				setKeyword(host,mapkw);				
+              			HostMapping mapping = element.createEmptyMapping();
+
+              			SimpleReference<? extends Host> to = 
+              				new SimpleReference((name!=null?name.getText():null),toType);
               				
-              				// add it to HostMapper
-              				element.addHost(host);
-              				
-              				SimpleReference<? extends Host> to = new SimpleReference((name!=null?name.getText():null),toType);
-              				
-              		        for(SimpleReference<Module> from : (rfroms!=null?rfroms.elements:null)) {
-              		        
-              			        HostMapping mapping = 
-              			        	element.createEmptyMapping();
-              					
-              					mapping.setFrom(from);
-              					mapping.setTo(to);
+              			setLocation(to,name,name);
+              			setKeyword(to,mapkw);					
+
+              			// add host reference to host list
+              			element.addHost(to);
               			
-              					element.addHostMapping(mapping);
-              					
-              //					System.out.println(from.parentLink().getObject().signature() + 
-              //						" --> " +to.parentLink().getObject().signature());
-              				}
+              			// set host to mapping target
+              			mapping.setTo(to);
+
+              	        for(SimpleReference<Module> from : (rfroms!=null?rfroms.elements:null)) { 	
+              				mapping.addFrom(from);
+              			}
               			
+              			// add hostmapping
+              			element.addHostMapping(mapping);
+              		
             }
 
             }
@@ -4286,7 +4278,7 @@ public class MstageParser extends ChameleonParser {
     };
 
     // $ANTLR start "mappingDeclarationBody"
-    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:519:1: mappingDeclarationBody[Class<? extends MStageDeclaration> fromType] returns [List<SimpleReference> elements] : '{' (decls= commaSeparatedBodyDecls[fromType] )? '}' ;
+    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:512:1: mappingDeclarationBody[Class<? extends MStageDeclaration> fromType] returns [List<SimpleReference> elements] : '{' (decls= commaSeparatedBodyDecls[fromType] )? '}' ;
     public final MstageParser.mappingDeclarationBody_return mappingDeclarationBody(Class<? extends MStageDeclaration> fromType) throws RecognitionException {
         MstageParser.mappingDeclarationBody_return retval = new MstageParser.mappingDeclarationBody_return();
         retval.start = input.LT(1);
@@ -4303,17 +4295,17 @@ public class MstageParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 49) ) { return retval; }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:520:2: ( '{' (decls= commaSeparatedBodyDecls[fromType] )? '}' )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:520:4: '{' (decls= commaSeparatedBodyDecls[fromType] )? '}'
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:513:2: ( '{' (decls= commaSeparatedBodyDecls[fromType] )? '}' )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:513:4: '{' (decls= commaSeparatedBodyDecls[fromType] )? '}'
             {
             root_0 = (Object)adaptor.nil();
 
-            char_literal84=(Token)match(input,24,FOLLOW_24_in_mappingDeclarationBody1390); if (state.failed) return retval;
+            char_literal84=(Token)match(input,24,FOLLOW_24_in_mappingDeclarationBody1394); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal84_tree = (Object)adaptor.create(char_literal84);
             adaptor.addChild(root_0, char_literal84_tree);
             }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:520:8: (decls= commaSeparatedBodyDecls[fromType] )?
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:513:8: (decls= commaSeparatedBodyDecls[fromType] )?
             int alt24=2;
             int LA24_0 = input.LA(1);
 
@@ -4322,9 +4314,9 @@ public class MstageParser extends ChameleonParser {
             }
             switch (alt24) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:520:10: decls= commaSeparatedBodyDecls[fromType]
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:513:10: decls= commaSeparatedBodyDecls[fromType]
                     {
-                    pushFollow(FOLLOW_commaSeparatedBodyDecls_in_mappingDeclarationBody1398);
+                    pushFollow(FOLLOW_commaSeparatedBodyDecls_in_mappingDeclarationBody1402);
                     decls=commaSeparatedBodyDecls(fromType);
 
                     state._fsp--;
@@ -4339,7 +4331,7 @@ public class MstageParser extends ChameleonParser {
 
             }
 
-            char_literal85=(Token)match(input,25,FOLLOW_25_in_mappingDeclarationBody1406); if (state.failed) return retval;
+            char_literal85=(Token)match(input,25,FOLLOW_25_in_mappingDeclarationBody1410); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal85_tree = (Object)adaptor.create(char_literal85);
             adaptor.addChild(root_0, char_literal85_tree);
@@ -4374,7 +4366,7 @@ public class MstageParser extends ChameleonParser {
     };
 
     // $ANTLR start "modulecontainerDeclaration"
-    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:529:1: modulecontainerDeclaration[ModuleContainer element] : ctkw= 'contain' conts= modulecontainerBody ;
+    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:522:1: modulecontainerDeclaration[ModuleContainer element] : ctkw= 'contain' conts= modulecontainerBody ;
     public final MstageParser.modulecontainerDeclaration_return modulecontainerDeclaration(ModuleContainer element) throws RecognitionException {
         MstageParser.modulecontainerDeclaration_return retval = new MstageParser.modulecontainerDeclaration_return();
         retval.start = input.LT(1);
@@ -4389,17 +4381,17 @@ public class MstageParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 50) ) { return retval; }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:530:2: (ctkw= 'contain' conts= modulecontainerBody )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:530:4: ctkw= 'contain' conts= modulecontainerBody
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:523:2: (ctkw= 'contain' conts= modulecontainerBody )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:523:4: ctkw= 'contain' conts= modulecontainerBody
             {
             root_0 = (Object)adaptor.nil();
 
-            ctkw=(Token)match(input,47,FOLLOW_47_in_modulecontainerDeclaration1426); if (state.failed) return retval;
+            ctkw=(Token)match(input,47,FOLLOW_47_in_modulecontainerDeclaration1430); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             ctkw_tree = (Object)adaptor.create(ctkw);
             adaptor.addChild(root_0, ctkw_tree);
             }
-            pushFollow(FOLLOW_modulecontainerBody_in_modulecontainerDeclaration1430);
+            pushFollow(FOLLOW_modulecontainerBody_in_modulecontainerDeclaration1434);
             conts=modulecontainerBody();
 
             state._fsp--;
@@ -4444,7 +4436,7 @@ public class MstageParser extends ChameleonParser {
     };
 
     // $ANTLR start "modulecontainerBody"
-    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:538:1: modulecontainerBody returns [List<SimpleReference> elements] : '{' (decls= commaSeparatedBodyDecls[Module.class] )? '}' ;
+    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:531:1: modulecontainerBody returns [List<SimpleReference> elements] : '{' (decls= commaSeparatedBodyDecls[Module.class] )? '}' ;
     public final MstageParser.modulecontainerBody_return modulecontainerBody() throws RecognitionException {
         MstageParser.modulecontainerBody_return retval = new MstageParser.modulecontainerBody_return();
         retval.start = input.LT(1);
@@ -4462,17 +4454,17 @@ public class MstageParser extends ChameleonParser {
          retval.elements = new ArrayList<SimpleReference>(); 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 51) ) { return retval; }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:540:2: ( '{' (decls= commaSeparatedBodyDecls[Module.class] )? '}' )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:540:4: '{' (decls= commaSeparatedBodyDecls[Module.class] )? '}'
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:533:2: ( '{' (decls= commaSeparatedBodyDecls[Module.class] )? '}' )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:533:4: '{' (decls= commaSeparatedBodyDecls[Module.class] )? '}'
             {
             root_0 = (Object)adaptor.nil();
 
-            char_literal86=(Token)match(input,24,FOLLOW_24_in_modulecontainerBody1451); if (state.failed) return retval;
+            char_literal86=(Token)match(input,24,FOLLOW_24_in_modulecontainerBody1455); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal86_tree = (Object)adaptor.create(char_literal86);
             adaptor.addChild(root_0, char_literal86_tree);
             }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:540:8: (decls= commaSeparatedBodyDecls[Module.class] )?
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:533:8: (decls= commaSeparatedBodyDecls[Module.class] )?
             int alt25=2;
             int LA25_0 = input.LA(1);
 
@@ -4481,9 +4473,9 @@ public class MstageParser extends ChameleonParser {
             }
             switch (alt25) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:540:9: decls= commaSeparatedBodyDecls[Module.class]
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:533:9: decls= commaSeparatedBodyDecls[Module.class]
                     {
-                    pushFollow(FOLLOW_commaSeparatedBodyDecls_in_modulecontainerBody1456);
+                    pushFollow(FOLLOW_commaSeparatedBodyDecls_in_modulecontainerBody1460);
                     decls=commaSeparatedBodyDecls(Module.class);
 
                     state._fsp--;
@@ -4498,7 +4490,7 @@ public class MstageParser extends ChameleonParser {
 
             }
 
-            char_literal87=(Token)match(input,25,FOLLOW_25_in_modulecontainerBody1464); if (state.failed) return retval;
+            char_literal87=(Token)match(input,25,FOLLOW_25_in_modulecontainerBody1468); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal87_tree = (Object)adaptor.create(char_literal87);
             adaptor.addChild(root_0, char_literal87_tree);
@@ -4534,7 +4526,7 @@ public class MstageParser extends ChameleonParser {
     };
 
     // $ANTLR start "commaSeparatedBodyDecls"
-    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:549:1: commaSeparatedBodyDecls[Class targetType] returns [List<SimpleReference> elements] : id= Identifier ( ',' decls= commaSeparatedBodyDecls[$targetType] )? ;
+    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:542:1: commaSeparatedBodyDecls[Class targetType] returns [List<SimpleReference> elements] : id= Identifier ( ',' decls= commaSeparatedBodyDecls[$targetType] )? ;
     public final MstageParser.commaSeparatedBodyDecls_return commaSeparatedBodyDecls(Class targetType) throws RecognitionException {
         MstageParser.commaSeparatedBodyDecls_return retval = new MstageParser.commaSeparatedBodyDecls_return();
         retval.start = input.LT(1);
@@ -4552,17 +4544,17 @@ public class MstageParser extends ChameleonParser {
          retval.elements = new ArrayList<SimpleReference>(); 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 52) ) { return retval; }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:551:2: (id= Identifier ( ',' decls= commaSeparatedBodyDecls[$targetType] )? )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:551:4: id= Identifier ( ',' decls= commaSeparatedBodyDecls[$targetType] )?
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:544:2: (id= Identifier ( ',' decls= commaSeparatedBodyDecls[$targetType] )? )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:544:4: id= Identifier ( ',' decls= commaSeparatedBodyDecls[$targetType] )?
             {
             root_0 = (Object)adaptor.nil();
 
-            id=(Token)match(input,Identifier,FOLLOW_Identifier_in_commaSeparatedBodyDecls1492); if (state.failed) return retval;
+            id=(Token)match(input,Identifier,FOLLOW_Identifier_in_commaSeparatedBodyDecls1496); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             id_tree = (Object)adaptor.create(id);
             adaptor.addChild(root_0, id_tree);
             }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:551:18: ( ',' decls= commaSeparatedBodyDecls[$targetType] )?
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:544:18: ( ',' decls= commaSeparatedBodyDecls[$targetType] )?
             int alt26=2;
             int LA26_0 = input.LA(1);
 
@@ -4571,14 +4563,14 @@ public class MstageParser extends ChameleonParser {
             }
             switch (alt26) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:551:19: ',' decls= commaSeparatedBodyDecls[$targetType]
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:544:19: ',' decls= commaSeparatedBodyDecls[$targetType]
                     {
-                    char_literal88=(Token)match(input,29,FOLLOW_29_in_commaSeparatedBodyDecls1495); if (state.failed) return retval;
+                    char_literal88=(Token)match(input,29,FOLLOW_29_in_commaSeparatedBodyDecls1499); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     char_literal88_tree = (Object)adaptor.create(char_literal88);
                     adaptor.addChild(root_0, char_literal88_tree);
                     }
-                    pushFollow(FOLLOW_commaSeparatedBodyDecls_in_commaSeparatedBodyDecls1499);
+                    pushFollow(FOLLOW_commaSeparatedBodyDecls_in_commaSeparatedBodyDecls1503);
                     decls=commaSeparatedBodyDecls(targetType);
 
                     state._fsp--;
@@ -4632,7 +4624,7 @@ public class MstageParser extends ChameleonParser {
     };
 
     // $ANTLR start "adviceType"
-    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:566:1: adviceType returns [AdviceType value] : ( 'before' | 'after' | 'around' );
+    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:559:1: adviceType returns [AdviceType value] : ( 'before' | 'after' | 'around' );
     public final MstageParser.adviceType_return adviceType() throws RecognitionException {
         MstageParser.adviceType_return retval = new MstageParser.adviceType_return();
         retval.start = input.LT(1);
@@ -4649,7 +4641,7 @@ public class MstageParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 53) ) { return retval; }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:567:2: ( 'before' | 'after' | 'around' )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:560:2: ( 'before' | 'after' | 'around' )
             int alt27=3;
             switch ( input.LA(1) ) {
             case 52:
@@ -4677,11 +4669,11 @@ public class MstageParser extends ChameleonParser {
 
             switch (alt27) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:567:4: 'before'
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:560:4: 'before'
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    string_literal89=(Token)match(input,52,FOLLOW_52_in_adviceType1531); if (state.failed) return retval;
+                    string_literal89=(Token)match(input,52,FOLLOW_52_in_adviceType1535); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     string_literal89_tree = (Object)adaptor.create(string_literal89);
                     adaptor.addChild(root_0, string_literal89_tree);
@@ -4693,11 +4685,11 @@ public class MstageParser extends ChameleonParser {
                     }
                     break;
                 case 2 :
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:568:4: 'after'
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:561:4: 'after'
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    string_literal90=(Token)match(input,53,FOLLOW_53_in_adviceType1538); if (state.failed) return retval;
+                    string_literal90=(Token)match(input,53,FOLLOW_53_in_adviceType1542); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     string_literal90_tree = (Object)adaptor.create(string_literal90);
                     adaptor.addChild(root_0, string_literal90_tree);
@@ -4709,11 +4701,11 @@ public class MstageParser extends ChameleonParser {
                     }
                     break;
                 case 3 :
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:569:4: 'around'
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:562:4: 'around'
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    string_literal91=(Token)match(input,54,FOLLOW_54_in_adviceType1545); if (state.failed) return retval;
+                    string_literal91=(Token)match(input,54,FOLLOW_54_in_adviceType1549); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     string_literal91_tree = (Object)adaptor.create(string_literal91);
                     adaptor.addChild(root_0, string_literal91_tree);
@@ -4754,7 +4746,7 @@ public class MstageParser extends ChameleonParser {
     };
 
     // $ANTLR start "joinpointKind"
-    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:572:1: joinpointKind returns [JoinpointKind value] : ( 'execution' | 'call' );
+    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:565:1: joinpointKind returns [JoinpointKind value] : ( 'execution' | 'call' );
     public final MstageParser.joinpointKind_return joinpointKind() throws RecognitionException {
         MstageParser.joinpointKind_return retval = new MstageParser.joinpointKind_return();
         retval.start = input.LT(1);
@@ -4769,7 +4761,7 @@ public class MstageParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 54) ) { return retval; }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:573:2: ( 'execution' | 'call' )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:566:2: ( 'execution' | 'call' )
             int alt28=2;
             int LA28_0 = input.LA(1);
 
@@ -4788,11 +4780,11 @@ public class MstageParser extends ChameleonParser {
             }
             switch (alt28) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:573:4: 'execution'
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:566:4: 'execution'
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    string_literal92=(Token)match(input,55,FOLLOW_55_in_joinpointKind1563); if (state.failed) return retval;
+                    string_literal92=(Token)match(input,55,FOLLOW_55_in_joinpointKind1567); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     string_literal92_tree = (Object)adaptor.create(string_literal92);
                     adaptor.addChild(root_0, string_literal92_tree);
@@ -4804,11 +4796,11 @@ public class MstageParser extends ChameleonParser {
                     }
                     break;
                 case 2 :
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:574:4: 'call'
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:567:4: 'call'
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    string_literal93=(Token)match(input,56,FOLLOW_56_in_joinpointKind1570); if (state.failed) return retval;
+                    string_literal93=(Token)match(input,56,FOLLOW_56_in_joinpointKind1574); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     string_literal93_tree = (Object)adaptor.create(string_literal93);
                     adaptor.addChild(root_0, string_literal93_tree);
@@ -4849,7 +4841,7 @@ public class MstageParser extends ChameleonParser {
     };
 
     // $ANTLR start "voidType"
-    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:577:1: voidType returns [TypeReference value] : 'void' ;
+    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:570:1: voidType returns [TypeReference value] : 'void' ;
     public final MstageParser.voidType_return voidType() throws RecognitionException {
         MstageParser.voidType_return retval = new MstageParser.voidType_return();
         retval.start = input.LT(1);
@@ -4862,12 +4854,12 @@ public class MstageParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 55) ) { return retval; }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:579:7: ( 'void' )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:579:10: 'void'
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:572:7: ( 'void' )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:572:10: 'void'
             {
             root_0 = (Object)adaptor.nil();
 
-            string_literal94=(Token)match(input,57,FOLLOW_57_in_voidType1596); if (state.failed) return retval;
+            string_literal94=(Token)match(input,57,FOLLOW_57_in_voidType1600); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             string_literal94_tree = (Object)adaptor.create(string_literal94);
             adaptor.addChild(root_0, string_literal94_tree);
@@ -4906,7 +4898,7 @@ public class MstageParser extends ChameleonParser {
     };
 
     // $ANTLR start "type"
-    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:583:1: type returns [TypeReference value] : (cd= classOrInterfaceType | pt= primitiveType );
+    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:576:1: type returns [TypeReference value] : (cd= classOrInterfaceType | pt= primitiveType );
     public final MstageParser.type_return type() throws RecognitionException {
         MstageParser.type_return retval = new MstageParser.type_return();
         retval.start = input.LT(1);
@@ -4921,7 +4913,7 @@ public class MstageParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 56) ) { return retval; }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:585:2: (cd= classOrInterfaceType | pt= primitiveType )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:578:2: (cd= classOrInterfaceType | pt= primitiveType )
             int alt29=2;
             int LA29_0 = input.LA(1);
 
@@ -4940,11 +4932,11 @@ public class MstageParser extends ChameleonParser {
             }
             switch (alt29) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:585:4: cd= classOrInterfaceType
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:578:4: cd= classOrInterfaceType
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_classOrInterfaceType_in_type1623);
+                    pushFollow(FOLLOW_classOrInterfaceType_in_type1627);
                     cd=classOrInterfaceType();
 
                     state._fsp--;
@@ -4957,11 +4949,11 @@ public class MstageParser extends ChameleonParser {
                     }
                     break;
                 case 2 :
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:586:4: pt= primitiveType
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:579:4: pt= primitiveType
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_primitiveType_in_type1632);
+                    pushFollow(FOLLOW_primitiveType_in_type1636);
                     pt=primitiveType();
 
                     state._fsp--;
@@ -5003,7 +4995,7 @@ public class MstageParser extends ChameleonParser {
     };
 
     // $ANTLR start "classOrInterfaceType"
-    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:590:1: classOrInterfaceType returns [TypeReference element] : name= Identifier ( typeArguments )? ( '.' namex= Identifier ( typeArguments )? )* ;
+    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:583:1: classOrInterfaceType returns [TypeReference element] : name= Identifier ( typeArguments )? ( '.' namex= Identifier ( typeArguments )? )* ;
     public final MstageParser.classOrInterfaceType_return classOrInterfaceType() throws RecognitionException {
         MstageParser.classOrInterfaceType_return retval = new MstageParser.classOrInterfaceType_return();
         retval.start = input.LT(1);
@@ -5025,12 +5017,12 @@ public class MstageParser extends ChameleonParser {
         NamespaceOrTypeReference target = null;
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 57) ) { return retval; }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:592:2: (name= Identifier ( typeArguments )? ( '.' namex= Identifier ( typeArguments )? )* )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:592:4: name= Identifier ( typeArguments )? ( '.' namex= Identifier ( typeArguments )? )*
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:585:2: (name= Identifier ( typeArguments )? ( '.' namex= Identifier ( typeArguments )? )* )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:585:4: name= Identifier ( typeArguments )? ( '.' namex= Identifier ( typeArguments )? )*
             {
             root_0 = (Object)adaptor.nil();
 
-            name=(Token)match(input,Identifier,FOLLOW_Identifier_in_classOrInterfaceType1657); if (state.failed) return retval;
+            name=(Token)match(input,Identifier,FOLLOW_Identifier_in_classOrInterfaceType1661); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             name_tree = (Object)adaptor.create(name);
             adaptor.addChild(root_0, name_tree);
@@ -5041,7 +5033,7 @@ public class MstageParser extends ChameleonParser {
               	           target =  new NamespaceOrTypeReference((name!=null?name.getText():null)); 
               	          
             }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:597:4: ( typeArguments )?
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:590:4: ( typeArguments )?
             int alt30=2;
             int LA30_0 = input.LA(1);
 
@@ -5052,7 +5044,7 @@ public class MstageParser extends ChameleonParser {
                 case 1 :
                     // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:0:0: typeArguments
                     {
-                    pushFollow(FOLLOW_typeArguments_in_classOrInterfaceType1676);
+                    pushFollow(FOLLOW_typeArguments_in_classOrInterfaceType1680);
                     typeArguments95=typeArguments();
 
                     state._fsp--;
@@ -5064,7 +5056,7 @@ public class MstageParser extends ChameleonParser {
 
             }
 
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:598:10: ( '.' namex= Identifier ( typeArguments )? )*
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:591:10: ( '.' namex= Identifier ( typeArguments )? )*
             loop32:
             do {
                 int alt32=2;
@@ -5077,14 +5069,14 @@ public class MstageParser extends ChameleonParser {
 
                 switch (alt32) {
             	case 1 :
-            	    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:598:11: '.' namex= Identifier ( typeArguments )?
+            	    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:591:11: '.' namex= Identifier ( typeArguments )?
             	    {
-            	    char_literal96=(Token)match(input,58,FOLLOW_58_in_classOrInterfaceType1690); if (state.failed) return retval;
+            	    char_literal96=(Token)match(input,58,FOLLOW_58_in_classOrInterfaceType1694); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
             	    char_literal96_tree = (Object)adaptor.create(char_literal96);
             	    adaptor.addChild(root_0, char_literal96_tree);
             	    }
-            	    namex=(Token)match(input,Identifier,FOLLOW_Identifier_in_classOrInterfaceType1694); if (state.failed) return retval;
+            	    namex=(Token)match(input,Identifier,FOLLOW_Identifier_in_classOrInterfaceType1698); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
             	    namex_tree = (Object)adaptor.create(namex);
             	    adaptor.addChild(root_0, namex_tree);
@@ -5101,7 +5093,7 @@ public class MstageParser extends ChameleonParser {
             	      	           }
             	      	          
             	    }
-            	    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:609:11: ( typeArguments )?
+            	    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:602:11: ( typeArguments )?
             	    int alt31=2;
             	    int LA31_0 = input.LA(1);
 
@@ -5112,7 +5104,7 @@ public class MstageParser extends ChameleonParser {
             	        case 1 :
             	            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:0:0: typeArguments
             	            {
-            	            pushFollow(FOLLOW_typeArguments_in_classOrInterfaceType1721);
+            	            pushFollow(FOLLOW_typeArguments_in_classOrInterfaceType1725);
             	            typeArguments97=typeArguments();
 
             	            state._fsp--;
@@ -5164,7 +5156,7 @@ public class MstageParser extends ChameleonParser {
     };
 
     // $ANTLR start "primitiveType"
-    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:613:1: primitiveType returns [TypeReference value] : ( 'boolean' | 'char' | 'byte' | 'short' | 'int' | 'long' | 'float' | 'double' );
+    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:606:1: primitiveType returns [TypeReference value] : ( 'boolean' | 'char' | 'byte' | 'short' | 'int' | 'long' | 'float' | 'double' );
     public final MstageParser.primitiveType_return primitiveType() throws RecognitionException {
         MstageParser.primitiveType_return retval = new MstageParser.primitiveType_return();
         retval.start = input.LT(1);
@@ -5191,7 +5183,7 @@ public class MstageParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 58) ) { return retval; }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:614:5: ( 'boolean' | 'char' | 'byte' | 'short' | 'int' | 'long' | 'float' | 'double' )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:607:5: ( 'boolean' | 'char' | 'byte' | 'short' | 'int' | 'long' | 'float' | 'double' )
             int alt33=8;
             switch ( input.LA(1) ) {
             case 59:
@@ -5244,11 +5236,11 @@ public class MstageParser extends ChameleonParser {
 
             switch (alt33) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:614:9: 'boolean'
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:607:9: 'boolean'
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    string_literal98=(Token)match(input,59,FOLLOW_59_in_primitiveType1746); if (state.failed) return retval;
+                    string_literal98=(Token)match(input,59,FOLLOW_59_in_primitiveType1750); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     string_literal98_tree = (Object)adaptor.create(string_literal98);
                     adaptor.addChild(root_0, string_literal98_tree);
@@ -5260,11 +5252,11 @@ public class MstageParser extends ChameleonParser {
                     }
                     break;
                 case 2 :
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:615:9: 'char'
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:608:9: 'char'
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    string_literal99=(Token)match(input,60,FOLLOW_60_in_primitiveType1758); if (state.failed) return retval;
+                    string_literal99=(Token)match(input,60,FOLLOW_60_in_primitiveType1762); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     string_literal99_tree = (Object)adaptor.create(string_literal99);
                     adaptor.addChild(root_0, string_literal99_tree);
@@ -5276,11 +5268,11 @@ public class MstageParser extends ChameleonParser {
                     }
                     break;
                 case 3 :
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:616:9: 'byte'
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:609:9: 'byte'
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    string_literal100=(Token)match(input,61,FOLLOW_61_in_primitiveType1770); if (state.failed) return retval;
+                    string_literal100=(Token)match(input,61,FOLLOW_61_in_primitiveType1774); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     string_literal100_tree = (Object)adaptor.create(string_literal100);
                     adaptor.addChild(root_0, string_literal100_tree);
@@ -5292,11 +5284,11 @@ public class MstageParser extends ChameleonParser {
                     }
                     break;
                 case 4 :
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:617:9: 'short'
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:610:9: 'short'
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    string_literal101=(Token)match(input,62,FOLLOW_62_in_primitiveType1782); if (state.failed) return retval;
+                    string_literal101=(Token)match(input,62,FOLLOW_62_in_primitiveType1786); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     string_literal101_tree = (Object)adaptor.create(string_literal101);
                     adaptor.addChild(root_0, string_literal101_tree);
@@ -5308,11 +5300,11 @@ public class MstageParser extends ChameleonParser {
                     }
                     break;
                 case 5 :
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:618:9: 'int'
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:611:9: 'int'
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    string_literal102=(Token)match(input,63,FOLLOW_63_in_primitiveType1794); if (state.failed) return retval;
+                    string_literal102=(Token)match(input,63,FOLLOW_63_in_primitiveType1798); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     string_literal102_tree = (Object)adaptor.create(string_literal102);
                     adaptor.addChild(root_0, string_literal102_tree);
@@ -5324,11 +5316,11 @@ public class MstageParser extends ChameleonParser {
                     }
                     break;
                 case 6 :
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:619:9: 'long'
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:612:9: 'long'
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    string_literal103=(Token)match(input,64,FOLLOW_64_in_primitiveType1806); if (state.failed) return retval;
+                    string_literal103=(Token)match(input,64,FOLLOW_64_in_primitiveType1810); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     string_literal103_tree = (Object)adaptor.create(string_literal103);
                     adaptor.addChild(root_0, string_literal103_tree);
@@ -5340,11 +5332,11 @@ public class MstageParser extends ChameleonParser {
                     }
                     break;
                 case 7 :
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:620:9: 'float'
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:613:9: 'float'
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    string_literal104=(Token)match(input,65,FOLLOW_65_in_primitiveType1818); if (state.failed) return retval;
+                    string_literal104=(Token)match(input,65,FOLLOW_65_in_primitiveType1822); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     string_literal104_tree = (Object)adaptor.create(string_literal104);
                     adaptor.addChild(root_0, string_literal104_tree);
@@ -5356,11 +5348,11 @@ public class MstageParser extends ChameleonParser {
                     }
                     break;
                 case 8 :
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:621:9: 'double'
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:614:9: 'double'
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    string_literal105=(Token)match(input,66,FOLLOW_66_in_primitiveType1830); if (state.failed) return retval;
+                    string_literal105=(Token)match(input,66,FOLLOW_66_in_primitiveType1834); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     string_literal105_tree = (Object)adaptor.create(string_literal105);
                     adaptor.addChild(root_0, string_literal105_tree);
@@ -5400,7 +5392,7 @@ public class MstageParser extends ChameleonParser {
     };
 
     // $ANTLR start "typeArguments"
-    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:626:1: typeArguments : '<' typeArgument ( ',' typeArgument )* '>' ;
+    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:619:1: typeArguments : '<' typeArgument ( ',' typeArgument )* '>' ;
     public final MstageParser.typeArguments_return typeArguments() throws RecognitionException {
         MstageParser.typeArguments_return retval = new MstageParser.typeArguments_return();
         retval.start = input.LT(1);
@@ -5421,23 +5413,23 @@ public class MstageParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 59) ) { return retval; }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:627:5: ( '<' typeArgument ( ',' typeArgument )* '>' )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:627:9: '<' typeArgument ( ',' typeArgument )* '>'
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:620:5: ( '<' typeArgument ( ',' typeArgument )* '>' )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:620:9: '<' typeArgument ( ',' typeArgument )* '>'
             {
             root_0 = (Object)adaptor.nil();
 
-            char_literal106=(Token)match(input,67,FOLLOW_67_in_typeArguments1853); if (state.failed) return retval;
+            char_literal106=(Token)match(input,67,FOLLOW_67_in_typeArguments1857); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal106_tree = (Object)adaptor.create(char_literal106);
             adaptor.addChild(root_0, char_literal106_tree);
             }
-            pushFollow(FOLLOW_typeArgument_in_typeArguments1855);
+            pushFollow(FOLLOW_typeArgument_in_typeArguments1859);
             typeArgument107=typeArgument();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, typeArgument107.getTree());
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:627:26: ( ',' typeArgument )*
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:620:26: ( ',' typeArgument )*
             loop34:
             do {
                 int alt34=2;
@@ -5450,14 +5442,14 @@ public class MstageParser extends ChameleonParser {
 
                 switch (alt34) {
             	case 1 :
-            	    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:627:28: ',' typeArgument
+            	    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:620:28: ',' typeArgument
             	    {
-            	    char_literal108=(Token)match(input,29,FOLLOW_29_in_typeArguments1859); if (state.failed) return retval;
+            	    char_literal108=(Token)match(input,29,FOLLOW_29_in_typeArguments1863); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
             	    char_literal108_tree = (Object)adaptor.create(char_literal108);
             	    adaptor.addChild(root_0, char_literal108_tree);
             	    }
-            	    pushFollow(FOLLOW_typeArgument_in_typeArguments1861);
+            	    pushFollow(FOLLOW_typeArgument_in_typeArguments1865);
             	    typeArgument109=typeArgument();
 
             	    state._fsp--;
@@ -5472,7 +5464,7 @@ public class MstageParser extends ChameleonParser {
                 }
             } while (true);
 
-            char_literal110=(Token)match(input,68,FOLLOW_68_in_typeArguments1866); if (state.failed) return retval;
+            char_literal110=(Token)match(input,68,FOLLOW_68_in_typeArguments1870); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal110_tree = (Object)adaptor.create(char_literal110);
             adaptor.addChild(root_0, char_literal110_tree);
@@ -5507,7 +5499,7 @@ public class MstageParser extends ChameleonParser {
     };
 
     // $ANTLR start "typeArgument"
-    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:630:1: typeArgument : (t= type | '?' ( ( 'extends' | 'super' ) t= type )? );
+    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:623:1: typeArgument : (t= type | '?' ( ( 'extends' | 'super' ) t= type )? );
     public final MstageParser.typeArgument_return typeArgument() throws RecognitionException {
         MstageParser.typeArgument_return retval = new MstageParser.typeArgument_return();
         retval.start = input.LT(1);
@@ -5524,7 +5516,7 @@ public class MstageParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 60) ) { return retval; }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:631:5: (t= type | '?' ( ( 'extends' | 'super' ) t= type )? )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:624:5: (t= type | '?' ( ( 'extends' | 'super' ) t= type )? )
             int alt36=2;
             int LA36_0 = input.LA(1);
 
@@ -5543,11 +5535,11 @@ public class MstageParser extends ChameleonParser {
             }
             switch (alt36) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:631:9: t= type
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:624:9: t= type
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_type_in_typeArgument1891);
+                    pushFollow(FOLLOW_type_in_typeArgument1895);
                     t=type();
 
                     state._fsp--;
@@ -5557,16 +5549,16 @@ public class MstageParser extends ChameleonParser {
                     }
                     break;
                 case 2 :
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:631:20: '?' ( ( 'extends' | 'super' ) t= type )?
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:624:20: '?' ( ( 'extends' | 'super' ) t= type )?
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    char_literal111=(Token)match(input,69,FOLLOW_69_in_typeArgument1897); if (state.failed) return retval;
+                    char_literal111=(Token)match(input,69,FOLLOW_69_in_typeArgument1901); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     char_literal111_tree = (Object)adaptor.create(char_literal111);
                     adaptor.addChild(root_0, char_literal111_tree);
                     }
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:631:25: ( ( 'extends' | 'super' ) t= type )?
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:624:25: ( ( 'extends' | 'super' ) t= type )?
                     int alt35=2;
                     int LA35_0 = input.LA(1);
 
@@ -5575,7 +5567,7 @@ public class MstageParser extends ChameleonParser {
                     }
                     switch (alt35) {
                         case 1 :
-                            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:631:27: ( 'extends' | 'super' ) t= type
+                            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:624:27: ( 'extends' | 'super' ) t= type
                             {
                             set112=(Token)input.LT(1);
                             if ( (input.LA(1)>=70 && input.LA(1)<=71) ) {
@@ -5589,7 +5581,7 @@ public class MstageParser extends ChameleonParser {
                                 throw mse;
                             }
 
-                            pushFollow(FOLLOW_type_in_typeArgument1912);
+                            pushFollow(FOLLOW_type_in_typeArgument1916);
                             t=type();
 
                             state._fsp--;
@@ -5633,7 +5625,7 @@ public class MstageParser extends ChameleonParser {
     };
 
     // $ANTLR start "annotations"
-    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:639:1: annotations : ( annotation )+ ;
+    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:632:1: annotations : ( annotation )+ ;
     public final MstageParser.annotations_return annotations() throws RecognitionException {
         MstageParser.annotations_return retval = new MstageParser.annotations_return();
         retval.start = input.LT(1);
@@ -5646,12 +5638,12 @@ public class MstageParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 61) ) { return retval; }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:640:5: ( ( annotation )+ )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:640:9: ( annotation )+
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:633:5: ( ( annotation )+ )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:633:9: ( annotation )+
             {
             root_0 = (Object)adaptor.nil();
 
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:640:9: ( annotation )+
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:633:9: ( annotation )+
             int cnt37=0;
             loop37:
             do {
@@ -5667,7 +5659,7 @@ public class MstageParser extends ChameleonParser {
             	case 1 :
             	    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:0:0: annotation
             	    {
-            	    pushFollow(FOLLOW_annotation_in_annotations1939);
+            	    pushFollow(FOLLOW_annotation_in_annotations1947);
             	    annotation113=annotation();
 
             	    state._fsp--;
@@ -5717,7 +5709,7 @@ public class MstageParser extends ChameleonParser {
     };
 
     // $ANTLR start "annotation"
-    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:643:1: annotation : '@' annotationName ( '(' ( elementValuePairs | elementValue )? ')' )? ;
+    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:636:1: annotation : '@' annotationName ( '(' ( elementValuePairs | elementValue )? ')' )? ;
     public final MstageParser.annotation_return annotation() throws RecognitionException {
         MstageParser.annotation_return retval = new MstageParser.annotation_return();
         retval.start = input.LT(1);
@@ -5740,23 +5732,23 @@ public class MstageParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 62) ) { return retval; }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:644:5: ( '@' annotationName ( '(' ( elementValuePairs | elementValue )? ')' )? )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:644:9: '@' annotationName ( '(' ( elementValuePairs | elementValue )? ')' )?
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:637:5: ( '@' annotationName ( '(' ( elementValuePairs | elementValue )? ')' )? )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:637:9: '@' annotationName ( '(' ( elementValuePairs | elementValue )? ')' )?
             {
             root_0 = (Object)adaptor.nil();
 
-            char_literal114=(Token)match(input,72,FOLLOW_72_in_annotation1959); if (state.failed) return retval;
+            char_literal114=(Token)match(input,72,FOLLOW_72_in_annotation1967); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal114_tree = (Object)adaptor.create(char_literal114);
             adaptor.addChild(root_0, char_literal114_tree);
             }
-            pushFollow(FOLLOW_annotationName_in_annotation1961);
+            pushFollow(FOLLOW_annotationName_in_annotation1969);
             annotationName115=annotationName();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, annotationName115.getTree());
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:644:28: ( '(' ( elementValuePairs | elementValue )? ')' )?
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:637:28: ( '(' ( elementValuePairs | elementValue )? ')' )?
             int alt39=2;
             int LA39_0 = input.LA(1);
 
@@ -5765,14 +5757,14 @@ public class MstageParser extends ChameleonParser {
             }
             switch (alt39) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:644:30: '(' ( elementValuePairs | elementValue )? ')'
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:637:30: '(' ( elementValuePairs | elementValue )? ')'
                     {
-                    char_literal116=(Token)match(input,27,FOLLOW_27_in_annotation1965); if (state.failed) return retval;
+                    char_literal116=(Token)match(input,27,FOLLOW_27_in_annotation1973); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     char_literal116_tree = (Object)adaptor.create(char_literal116);
                     adaptor.addChild(root_0, char_literal116_tree);
                     }
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:644:34: ( elementValuePairs | elementValue )?
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:637:34: ( elementValuePairs | elementValue )?
                     int alt38=3;
                     int LA38_0 = input.LA(1);
 
@@ -5784,9 +5776,9 @@ public class MstageParser extends ChameleonParser {
                     }
                     switch (alt38) {
                         case 1 :
-                            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:644:36: elementValuePairs
+                            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:637:36: elementValuePairs
                             {
-                            pushFollow(FOLLOW_elementValuePairs_in_annotation1969);
+                            pushFollow(FOLLOW_elementValuePairs_in_annotation1977);
                             elementValuePairs117=elementValuePairs();
 
                             state._fsp--;
@@ -5796,9 +5788,9 @@ public class MstageParser extends ChameleonParser {
                             }
                             break;
                         case 2 :
-                            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:644:56: elementValue
+                            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:637:56: elementValue
                             {
-                            pushFollow(FOLLOW_elementValue_in_annotation1973);
+                            pushFollow(FOLLOW_elementValue_in_annotation1981);
                             elementValue118=elementValue();
 
                             state._fsp--;
@@ -5810,7 +5802,7 @@ public class MstageParser extends ChameleonParser {
 
                     }
 
-                    char_literal119=(Token)match(input,28,FOLLOW_28_in_annotation1978); if (state.failed) return retval;
+                    char_literal119=(Token)match(input,28,FOLLOW_28_in_annotation1986); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     char_literal119_tree = (Object)adaptor.create(char_literal119);
                     adaptor.addChild(root_0, char_literal119_tree);
@@ -5851,7 +5843,7 @@ public class MstageParser extends ChameleonParser {
     };
 
     // $ANTLR start "annotationName"
-    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:647:1: annotationName : Identifier ( '.' Identifier )* ;
+    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:640:1: annotationName : Identifier ( '.' Identifier )* ;
     public final MstageParser.annotationName_return annotationName() throws RecognitionException {
         MstageParser.annotationName_return retval = new MstageParser.annotationName_return();
         retval.start = input.LT(1);
@@ -5868,17 +5860,17 @@ public class MstageParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 63) ) { return retval; }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:648:5: ( Identifier ( '.' Identifier )* )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:648:7: Identifier ( '.' Identifier )*
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:641:5: ( Identifier ( '.' Identifier )* )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:641:7: Identifier ( '.' Identifier )*
             {
             root_0 = (Object)adaptor.nil();
 
-            Identifier120=(Token)match(input,Identifier,FOLLOW_Identifier_in_annotationName2002); if (state.failed) return retval;
+            Identifier120=(Token)match(input,Identifier,FOLLOW_Identifier_in_annotationName2010); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             Identifier120_tree = (Object)adaptor.create(Identifier120);
             adaptor.addChild(root_0, Identifier120_tree);
             }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:648:18: ( '.' Identifier )*
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:641:18: ( '.' Identifier )*
             loop40:
             do {
                 int alt40=2;
@@ -5891,14 +5883,14 @@ public class MstageParser extends ChameleonParser {
 
                 switch (alt40) {
             	case 1 :
-            	    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:648:19: '.' Identifier
+            	    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:641:19: '.' Identifier
             	    {
-            	    char_literal121=(Token)match(input,58,FOLLOW_58_in_annotationName2005); if (state.failed) return retval;
+            	    char_literal121=(Token)match(input,58,FOLLOW_58_in_annotationName2013); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
             	    char_literal121_tree = (Object)adaptor.create(char_literal121);
             	    adaptor.addChild(root_0, char_literal121_tree);
             	    }
-            	    Identifier122=(Token)match(input,Identifier,FOLLOW_Identifier_in_annotationName2007); if (state.failed) return retval;
+            	    Identifier122=(Token)match(input,Identifier,FOLLOW_Identifier_in_annotationName2015); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
             	    Identifier122_tree = (Object)adaptor.create(Identifier122);
             	    adaptor.addChild(root_0, Identifier122_tree);
@@ -5942,7 +5934,7 @@ public class MstageParser extends ChameleonParser {
     };
 
     // $ANTLR start "elementValuePairs"
-    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:651:1: elementValuePairs : elementValuePair ( ',' elementValuePair )* ;
+    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:644:1: elementValuePairs : elementValuePair ( ',' elementValuePair )* ;
     public final MstageParser.elementValuePairs_return elementValuePairs() throws RecognitionException {
         MstageParser.elementValuePairs_return retval = new MstageParser.elementValuePairs_return();
         retval.start = input.LT(1);
@@ -5959,18 +5951,18 @@ public class MstageParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 64) ) { return retval; }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:652:5: ( elementValuePair ( ',' elementValuePair )* )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:652:9: elementValuePair ( ',' elementValuePair )*
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:645:5: ( elementValuePair ( ',' elementValuePair )* )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:645:9: elementValuePair ( ',' elementValuePair )*
             {
             root_0 = (Object)adaptor.nil();
 
-            pushFollow(FOLLOW_elementValuePair_in_elementValuePairs2028);
+            pushFollow(FOLLOW_elementValuePair_in_elementValuePairs2036);
             elementValuePair123=elementValuePair();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, elementValuePair123.getTree());
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:652:26: ( ',' elementValuePair )*
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:645:26: ( ',' elementValuePair )*
             loop41:
             do {
                 int alt41=2;
@@ -5983,14 +5975,14 @@ public class MstageParser extends ChameleonParser {
 
                 switch (alt41) {
             	case 1 :
-            	    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:652:27: ',' elementValuePair
+            	    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:645:27: ',' elementValuePair
             	    {
-            	    char_literal124=(Token)match(input,29,FOLLOW_29_in_elementValuePairs2031); if (state.failed) return retval;
+            	    char_literal124=(Token)match(input,29,FOLLOW_29_in_elementValuePairs2039); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
             	    char_literal124_tree = (Object)adaptor.create(char_literal124);
             	    adaptor.addChild(root_0, char_literal124_tree);
             	    }
-            	    pushFollow(FOLLOW_elementValuePair_in_elementValuePairs2033);
+            	    pushFollow(FOLLOW_elementValuePair_in_elementValuePairs2041);
             	    elementValuePair125=elementValuePair();
 
             	    state._fsp--;
@@ -6035,7 +6027,7 @@ public class MstageParser extends ChameleonParser {
     };
 
     // $ANTLR start "elementValuePair"
-    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:655:1: elementValuePair : Identifier '=' elementValue ;
+    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:648:1: elementValuePair : Identifier '=' elementValue ;
     public final MstageParser.elementValuePair_return elementValuePair() throws RecognitionException {
         MstageParser.elementValuePair_return retval = new MstageParser.elementValuePair_return();
         retval.start = input.LT(1);
@@ -6052,22 +6044,22 @@ public class MstageParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 65) ) { return retval; }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:656:5: ( Identifier '=' elementValue )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:656:9: Identifier '=' elementValue
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:649:5: ( Identifier '=' elementValue )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:649:9: Identifier '=' elementValue
             {
             root_0 = (Object)adaptor.nil();
 
-            Identifier126=(Token)match(input,Identifier,FOLLOW_Identifier_in_elementValuePair2054); if (state.failed) return retval;
+            Identifier126=(Token)match(input,Identifier,FOLLOW_Identifier_in_elementValuePair2062); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             Identifier126_tree = (Object)adaptor.create(Identifier126);
             adaptor.addChild(root_0, Identifier126_tree);
             }
-            char_literal127=(Token)match(input,73,FOLLOW_73_in_elementValuePair2056); if (state.failed) return retval;
+            char_literal127=(Token)match(input,73,FOLLOW_73_in_elementValuePair2064); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal127_tree = (Object)adaptor.create(char_literal127);
             adaptor.addChild(root_0, char_literal127_tree);
             }
-            pushFollow(FOLLOW_elementValue_in_elementValuePair2058);
+            pushFollow(FOLLOW_elementValue_in_elementValuePair2066);
             elementValue128=elementValue();
 
             state._fsp--;
@@ -6103,7 +6095,7 @@ public class MstageParser extends ChameleonParser {
     };
 
     // $ANTLR start "elementValue"
-    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:659:1: elementValue : ( annotation | elementValueArrayInitializer );
+    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:652:1: elementValue : ( annotation | elementValueArrayInitializer );
     public final MstageParser.elementValue_return elementValue() throws RecognitionException {
         MstageParser.elementValue_return retval = new MstageParser.elementValue_return();
         retval.start = input.LT(1);
@@ -6118,7 +6110,7 @@ public class MstageParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 66) ) { return retval; }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:660:5: ( annotation | elementValueArrayInitializer )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:653:5: ( annotation | elementValueArrayInitializer )
             int alt42=2;
             int LA42_0 = input.LA(1);
 
@@ -6137,11 +6129,11 @@ public class MstageParser extends ChameleonParser {
             }
             switch (alt42) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:660:9: annotation
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:653:9: annotation
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_annotation_in_elementValue2081);
+                    pushFollow(FOLLOW_annotation_in_elementValue2089);
                     annotation129=annotation();
 
                     state._fsp--;
@@ -6151,11 +6143,11 @@ public class MstageParser extends ChameleonParser {
                     }
                     break;
                 case 2 :
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:661:9: elementValueArrayInitializer
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:654:9: elementValueArrayInitializer
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_elementValueArrayInitializer_in_elementValue2091);
+                    pushFollow(FOLLOW_elementValueArrayInitializer_in_elementValue2099);
                     elementValueArrayInitializer130=elementValueArrayInitializer();
 
                     state._fsp--;
@@ -6193,7 +6185,7 @@ public class MstageParser extends ChameleonParser {
     };
 
     // $ANTLR start "elementValueArrayInitializer"
-    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:664:1: elementValueArrayInitializer : '{' ( elementValue ( ',' elementValue )* )? ( ',' )? '}' ;
+    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:657:1: elementValueArrayInitializer : '{' ( elementValue ( ',' elementValue )* )? ( ',' )? '}' ;
     public final MstageParser.elementValueArrayInitializer_return elementValueArrayInitializer() throws RecognitionException {
         MstageParser.elementValueArrayInitializer_return retval = new MstageParser.elementValueArrayInitializer_return();
         retval.start = input.LT(1);
@@ -6216,17 +6208,17 @@ public class MstageParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 67) ) { return retval; }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:665:5: ( '{' ( elementValue ( ',' elementValue )* )? ( ',' )? '}' )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:665:9: '{' ( elementValue ( ',' elementValue )* )? ( ',' )? '}'
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:658:5: ( '{' ( elementValue ( ',' elementValue )* )? ( ',' )? '}' )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:658:9: '{' ( elementValue ( ',' elementValue )* )? ( ',' )? '}'
             {
             root_0 = (Object)adaptor.nil();
 
-            char_literal131=(Token)match(input,24,FOLLOW_24_in_elementValueArrayInitializer2114); if (state.failed) return retval;
+            char_literal131=(Token)match(input,24,FOLLOW_24_in_elementValueArrayInitializer2122); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal131_tree = (Object)adaptor.create(char_literal131);
             adaptor.addChild(root_0, char_literal131_tree);
             }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:665:13: ( elementValue ( ',' elementValue )* )?
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:658:13: ( elementValue ( ',' elementValue )* )?
             int alt44=2;
             int LA44_0 = input.LA(1);
 
@@ -6235,15 +6227,15 @@ public class MstageParser extends ChameleonParser {
             }
             switch (alt44) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:665:14: elementValue ( ',' elementValue )*
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:658:14: elementValue ( ',' elementValue )*
                     {
-                    pushFollow(FOLLOW_elementValue_in_elementValueArrayInitializer2117);
+                    pushFollow(FOLLOW_elementValue_in_elementValueArrayInitializer2125);
                     elementValue132=elementValue();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) adaptor.addChild(root_0, elementValue132.getTree());
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:665:27: ( ',' elementValue )*
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:658:27: ( ',' elementValue )*
                     loop43:
                     do {
                         int alt43=2;
@@ -6262,14 +6254,14 @@ public class MstageParser extends ChameleonParser {
 
                         switch (alt43) {
                     	case 1 :
-                    	    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:665:28: ',' elementValue
+                    	    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:658:28: ',' elementValue
                     	    {
-                    	    char_literal133=(Token)match(input,29,FOLLOW_29_in_elementValueArrayInitializer2120); if (state.failed) return retval;
+                    	    char_literal133=(Token)match(input,29,FOLLOW_29_in_elementValueArrayInitializer2128); if (state.failed) return retval;
                     	    if ( state.backtracking==0 ) {
                     	    char_literal133_tree = (Object)adaptor.create(char_literal133);
                     	    adaptor.addChild(root_0, char_literal133_tree);
                     	    }
-                    	    pushFollow(FOLLOW_elementValue_in_elementValueArrayInitializer2122);
+                    	    pushFollow(FOLLOW_elementValue_in_elementValueArrayInitializer2130);
                     	    elementValue134=elementValue();
 
                     	    state._fsp--;
@@ -6290,7 +6282,7 @@ public class MstageParser extends ChameleonParser {
 
             }
 
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:665:49: ( ',' )?
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:658:49: ( ',' )?
             int alt45=2;
             int LA45_0 = input.LA(1);
 
@@ -6299,9 +6291,9 @@ public class MstageParser extends ChameleonParser {
             }
             switch (alt45) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:665:50: ','
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:658:50: ','
                     {
-                    char_literal135=(Token)match(input,29,FOLLOW_29_in_elementValueArrayInitializer2129); if (state.failed) return retval;
+                    char_literal135=(Token)match(input,29,FOLLOW_29_in_elementValueArrayInitializer2137); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     char_literal135_tree = (Object)adaptor.create(char_literal135);
                     adaptor.addChild(root_0, char_literal135_tree);
@@ -6312,7 +6304,7 @@ public class MstageParser extends ChameleonParser {
 
             }
 
-            char_literal136=(Token)match(input,25,FOLLOW_25_in_elementValueArrayInitializer2133); if (state.failed) return retval;
+            char_literal136=(Token)match(input,25,FOLLOW_25_in_elementValueArrayInitializer2141); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal136_tree = (Object)adaptor.create(char_literal136);
             adaptor.addChild(root_0, char_literal136_tree);
@@ -6348,7 +6340,7 @@ public class MstageParser extends ChameleonParser {
     };
 
     // $ANTLR start "annotationTypeDeclaration"
-    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:668:1: annotationTypeDeclaration returns [Type element] : '@' 'interface' name= Identifier annotationTypeBody ;
+    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:661:1: annotationTypeDeclaration returns [Type element] : '@' 'interface' name= Identifier annotationTypeBody ;
     public final MstageParser.annotationTypeDeclaration_return annotationTypeDeclaration() throws RecognitionException {
         MstageParser.annotationTypeDeclaration_return retval = new MstageParser.annotationTypeDeclaration_return();
         retval.start = input.LT(1);
@@ -6367,27 +6359,27 @@ public class MstageParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 68) ) { return retval; }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:669:5: ( '@' 'interface' name= Identifier annotationTypeBody )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:669:9: '@' 'interface' name= Identifier annotationTypeBody
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:662:5: ( '@' 'interface' name= Identifier annotationTypeBody )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:662:9: '@' 'interface' name= Identifier annotationTypeBody
             {
             root_0 = (Object)adaptor.nil();
 
-            char_literal137=(Token)match(input,72,FOLLOW_72_in_annotationTypeDeclaration2160); if (state.failed) return retval;
+            char_literal137=(Token)match(input,72,FOLLOW_72_in_annotationTypeDeclaration2168); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal137_tree = (Object)adaptor.create(char_literal137);
             adaptor.addChild(root_0, char_literal137_tree);
             }
-            string_literal138=(Token)match(input,23,FOLLOW_23_in_annotationTypeDeclaration2162); if (state.failed) return retval;
+            string_literal138=(Token)match(input,23,FOLLOW_23_in_annotationTypeDeclaration2170); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             string_literal138_tree = (Object)adaptor.create(string_literal138);
             adaptor.addChild(root_0, string_literal138_tree);
             }
-            name=(Token)match(input,Identifier,FOLLOW_Identifier_in_annotationTypeDeclaration2166); if (state.failed) return retval;
+            name=(Token)match(input,Identifier,FOLLOW_Identifier_in_annotationTypeDeclaration2174); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             name_tree = (Object)adaptor.create(name);
             adaptor.addChild(root_0, name_tree);
             }
-            pushFollow(FOLLOW_annotationTypeBody_in_annotationTypeDeclaration2168);
+            pushFollow(FOLLOW_annotationTypeBody_in_annotationTypeDeclaration2176);
             annotationTypeBody139=annotationTypeBody();
 
             state._fsp--;
@@ -6423,7 +6415,7 @@ public class MstageParser extends ChameleonParser {
     };
 
     // $ANTLR start "annotationTypeBody"
-    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:672:1: annotationTypeBody : '{' ( annotationTypeElementDeclaration )* '}' ;
+    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:665:1: annotationTypeBody : '{' ( annotationTypeElementDeclaration )* '}' ;
     public final MstageParser.annotationTypeBody_return annotationTypeBody() throws RecognitionException {
         MstageParser.annotationTypeBody_return retval = new MstageParser.annotationTypeBody_return();
         retval.start = input.LT(1);
@@ -6440,17 +6432,17 @@ public class MstageParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 69) ) { return retval; }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:673:5: ( '{' ( annotationTypeElementDeclaration )* '}' )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:673:9: '{' ( annotationTypeElementDeclaration )* '}'
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:666:5: ( '{' ( annotationTypeElementDeclaration )* '}' )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:666:9: '{' ( annotationTypeElementDeclaration )* '}'
             {
             root_0 = (Object)adaptor.nil();
 
-            char_literal140=(Token)match(input,24,FOLLOW_24_in_annotationTypeBody2191); if (state.failed) return retval;
+            char_literal140=(Token)match(input,24,FOLLOW_24_in_annotationTypeBody2199); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal140_tree = (Object)adaptor.create(char_literal140);
             adaptor.addChild(root_0, char_literal140_tree);
             }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:673:13: ( annotationTypeElementDeclaration )*
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:666:13: ( annotationTypeElementDeclaration )*
             loop46:
             do {
                 int alt46=2;
@@ -6463,9 +6455,9 @@ public class MstageParser extends ChameleonParser {
 
                 switch (alt46) {
             	case 1 :
-            	    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:673:14: annotationTypeElementDeclaration
+            	    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:666:14: annotationTypeElementDeclaration
             	    {
-            	    pushFollow(FOLLOW_annotationTypeElementDeclaration_in_annotationTypeBody2194);
+            	    pushFollow(FOLLOW_annotationTypeElementDeclaration_in_annotationTypeBody2202);
             	    annotationTypeElementDeclaration141=annotationTypeElementDeclaration();
 
             	    state._fsp--;
@@ -6480,7 +6472,7 @@ public class MstageParser extends ChameleonParser {
                 }
             } while (true);
 
-            char_literal142=(Token)match(input,25,FOLLOW_25_in_annotationTypeBody2198); if (state.failed) return retval;
+            char_literal142=(Token)match(input,25,FOLLOW_25_in_annotationTypeBody2206); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal142_tree = (Object)adaptor.create(char_literal142);
             adaptor.addChild(root_0, char_literal142_tree);
@@ -6515,7 +6507,7 @@ public class MstageParser extends ChameleonParser {
     };
 
     // $ANTLR start "annotationTypeElementDeclaration"
-    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:676:1: annotationTypeElementDeclaration : annotationTypeElementRest ;
+    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:669:1: annotationTypeElementDeclaration : annotationTypeElementRest ;
     public final MstageParser.annotationTypeElementDeclaration_return annotationTypeElementDeclaration() throws RecognitionException {
         MstageParser.annotationTypeElementDeclaration_return retval = new MstageParser.annotationTypeElementDeclaration_return();
         retval.start = input.LT(1);
@@ -6528,12 +6520,12 @@ public class MstageParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 70) ) { return retval; }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:677:5: ( annotationTypeElementRest )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:677:23: annotationTypeElementRest
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:670:5: ( annotationTypeElementRest )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:670:23: annotationTypeElementRest
             {
             root_0 = (Object)adaptor.nil();
 
-            pushFollow(FOLLOW_annotationTypeElementRest_in_annotationTypeElementDeclaration2223);
+            pushFollow(FOLLOW_annotationTypeElementRest_in_annotationTypeElementDeclaration2231);
             annotationTypeElementRest143=annotationTypeElementRest();
 
             state._fsp--;
@@ -6569,7 +6561,7 @@ public class MstageParser extends ChameleonParser {
     };
 
     // $ANTLR start "annotationTypeElementRest"
-    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:680:1: annotationTypeElementRest : ( type annotationMethodOrConstantRest ';' | annotationTypeDeclaration ( ';' )? );
+    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:673:1: annotationTypeElementRest : ( type annotationMethodOrConstantRest ';' | annotationTypeDeclaration ( ';' )? );
     public final MstageParser.annotationTypeElementRest_return annotationTypeElementRest() throws RecognitionException {
         MstageParser.annotationTypeElementRest_return retval = new MstageParser.annotationTypeElementRest_return();
         retval.start = input.LT(1);
@@ -6590,7 +6582,7 @@ public class MstageParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 71) ) { return retval; }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:681:5: ( type annotationMethodOrConstantRest ';' | annotationTypeDeclaration ( ';' )? )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:674:5: ( type annotationMethodOrConstantRest ';' | annotationTypeDeclaration ( ';' )? )
             int alt48=2;
             int LA48_0 = input.LA(1);
 
@@ -6609,23 +6601,23 @@ public class MstageParser extends ChameleonParser {
             }
             switch (alt48) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:681:9: type annotationMethodOrConstantRest ';'
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:674:9: type annotationMethodOrConstantRest ';'
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_type_in_annotationTypeElementRest2246);
+                    pushFollow(FOLLOW_type_in_annotationTypeElementRest2254);
                     type144=type();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) adaptor.addChild(root_0, type144.getTree());
-                    pushFollow(FOLLOW_annotationMethodOrConstantRest_in_annotationTypeElementRest2248);
+                    pushFollow(FOLLOW_annotationMethodOrConstantRest_in_annotationTypeElementRest2256);
                     annotationMethodOrConstantRest145=annotationMethodOrConstantRest();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) adaptor.addChild(root_0, annotationMethodOrConstantRest145.getTree());
-                    char_literal146=(Token)match(input,26,FOLLOW_26_in_annotationTypeElementRest2250); if (state.failed) return retval;
+                    char_literal146=(Token)match(input,26,FOLLOW_26_in_annotationTypeElementRest2258); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     char_literal146_tree = (Object)adaptor.create(char_literal146);
                     adaptor.addChild(root_0, char_literal146_tree);
@@ -6634,17 +6626,17 @@ public class MstageParser extends ChameleonParser {
                     }
                     break;
                 case 2 :
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:682:9: annotationTypeDeclaration ( ';' )?
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:675:9: annotationTypeDeclaration ( ';' )?
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_annotationTypeDeclaration_in_annotationTypeElementRest2260);
+                    pushFollow(FOLLOW_annotationTypeDeclaration_in_annotationTypeElementRest2268);
                     annotationTypeDeclaration147=annotationTypeDeclaration();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) adaptor.addChild(root_0, annotationTypeDeclaration147.getTree());
-                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:682:35: ( ';' )?
+                    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:675:35: ( ';' )?
                     int alt47=2;
                     int LA47_0 = input.LA(1);
 
@@ -6655,7 +6647,7 @@ public class MstageParser extends ChameleonParser {
                         case 1 :
                             // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:0:0: ';'
                             {
-                            char_literal148=(Token)match(input,26,FOLLOW_26_in_annotationTypeElementRest2262); if (state.failed) return retval;
+                            char_literal148=(Token)match(input,26,FOLLOW_26_in_annotationTypeElementRest2270); if (state.failed) return retval;
                             if ( state.backtracking==0 ) {
                             char_literal148_tree = (Object)adaptor.create(char_literal148);
                             adaptor.addChild(root_0, char_literal148_tree);
@@ -6698,7 +6690,7 @@ public class MstageParser extends ChameleonParser {
     };
 
     // $ANTLR start "annotationMethodOrConstantRest"
-    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:685:1: annotationMethodOrConstantRest : annotationMethodRest ;
+    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:678:1: annotationMethodOrConstantRest : annotationMethodRest ;
     public final MstageParser.annotationMethodOrConstantRest_return annotationMethodOrConstantRest() throws RecognitionException {
         MstageParser.annotationMethodOrConstantRest_return retval = new MstageParser.annotationMethodOrConstantRest_return();
         retval.start = input.LT(1);
@@ -6711,12 +6703,12 @@ public class MstageParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 72) ) { return retval; }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:686:5: ( annotationMethodRest )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:686:9: annotationMethodRest
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:679:5: ( annotationMethodRest )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:679:9: annotationMethodRest
             {
             root_0 = (Object)adaptor.nil();
 
-            pushFollow(FOLLOW_annotationMethodRest_in_annotationMethodOrConstantRest2286);
+            pushFollow(FOLLOW_annotationMethodRest_in_annotationMethodOrConstantRest2294);
             annotationMethodRest149=annotationMethodRest();
 
             state._fsp--;
@@ -6752,7 +6744,7 @@ public class MstageParser extends ChameleonParser {
     };
 
     // $ANTLR start "annotationMethodRest"
-    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:689:1: annotationMethodRest : Identifier '(' ')' ( defaultValue )? ;
+    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:682:1: annotationMethodRest : Identifier '(' ')' ( defaultValue )? ;
     public final MstageParser.annotationMethodRest_return annotationMethodRest() throws RecognitionException {
         MstageParser.annotationMethodRest_return retval = new MstageParser.annotationMethodRest_return();
         retval.start = input.LT(1);
@@ -6771,27 +6763,27 @@ public class MstageParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 73) ) { return retval; }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:690:5: ( Identifier '(' ')' ( defaultValue )? )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:690:9: Identifier '(' ')' ( defaultValue )?
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:683:5: ( Identifier '(' ')' ( defaultValue )? )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:683:9: Identifier '(' ')' ( defaultValue )?
             {
             root_0 = (Object)adaptor.nil();
 
-            Identifier150=(Token)match(input,Identifier,FOLLOW_Identifier_in_annotationMethodRest2309); if (state.failed) return retval;
+            Identifier150=(Token)match(input,Identifier,FOLLOW_Identifier_in_annotationMethodRest2317); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             Identifier150_tree = (Object)adaptor.create(Identifier150);
             adaptor.addChild(root_0, Identifier150_tree);
             }
-            char_literal151=(Token)match(input,27,FOLLOW_27_in_annotationMethodRest2311); if (state.failed) return retval;
+            char_literal151=(Token)match(input,27,FOLLOW_27_in_annotationMethodRest2319); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal151_tree = (Object)adaptor.create(char_literal151);
             adaptor.addChild(root_0, char_literal151_tree);
             }
-            char_literal152=(Token)match(input,28,FOLLOW_28_in_annotationMethodRest2313); if (state.failed) return retval;
+            char_literal152=(Token)match(input,28,FOLLOW_28_in_annotationMethodRest2321); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal152_tree = (Object)adaptor.create(char_literal152);
             adaptor.addChild(root_0, char_literal152_tree);
             }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:690:28: ( defaultValue )?
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:683:28: ( defaultValue )?
             int alt49=2;
             int LA49_0 = input.LA(1);
 
@@ -6802,7 +6794,7 @@ public class MstageParser extends ChameleonParser {
                 case 1 :
                     // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:0:0: defaultValue
                     {
-                    pushFollow(FOLLOW_defaultValue_in_annotationMethodRest2315);
+                    pushFollow(FOLLOW_defaultValue_in_annotationMethodRest2323);
                     defaultValue153=defaultValue();
 
                     state._fsp--;
@@ -6844,7 +6836,7 @@ public class MstageParser extends ChameleonParser {
     };
 
     // $ANTLR start "defaultValue"
-    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:693:1: defaultValue : 'default' elementValue ;
+    // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:686:1: defaultValue : 'default' elementValue ;
     public final MstageParser.defaultValue_return defaultValue() throws RecognitionException {
         MstageParser.defaultValue_return retval = new MstageParser.defaultValue_return();
         retval.start = input.LT(1);
@@ -6859,17 +6851,17 @@ public class MstageParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 74) ) { return retval; }
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:694:5: ( 'default' elementValue )
-            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:694:9: 'default' elementValue
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:687:5: ( 'default' elementValue )
+            // /Users/steveno/Documents/repos/mstage-lang/src/mstage/parser/Mstage.g:687:9: 'default' elementValue
             {
             root_0 = (Object)adaptor.nil();
 
-            string_literal154=(Token)match(input,74,FOLLOW_74_in_defaultValue2343); if (state.failed) return retval;
+            string_literal154=(Token)match(input,74,FOLLOW_74_in_defaultValue2351); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             string_literal154_tree = (Object)adaptor.create(string_literal154);
             adaptor.addChild(root_0, string_literal154_tree);
             }
-            pushFollow(FOLLOW_elementValue_in_defaultValue2345);
+            pushFollow(FOLLOW_elementValue_in_defaultValue2353);
             elementValue155=elementValue();
 
             state._fsp--;
@@ -7083,90 +7075,90 @@ public class MstageParser extends ChameleonParser {
     public static final BitSet FOLLOW_set_in_mappingDeclaration1359 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_Identifier_in_mappingDeclaration1367 = new BitSet(new long[]{0x0000000001000000L});
     public static final BitSet FOLLOW_mappingDeclarationBody_in_mappingDeclaration1371 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_24_in_mappingDeclarationBody1390 = new BitSet(new long[]{0x0000000002000010L});
-    public static final BitSet FOLLOW_commaSeparatedBodyDecls_in_mappingDeclarationBody1398 = new BitSet(new long[]{0x0000000002000000L});
-    public static final BitSet FOLLOW_25_in_mappingDeclarationBody1406 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_47_in_modulecontainerDeclaration1426 = new BitSet(new long[]{0x0000000001000000L});
-    public static final BitSet FOLLOW_modulecontainerBody_in_modulecontainerDeclaration1430 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_24_in_modulecontainerBody1451 = new BitSet(new long[]{0x0000000002000010L});
-    public static final BitSet FOLLOW_commaSeparatedBodyDecls_in_modulecontainerBody1456 = new BitSet(new long[]{0x0000000002000000L});
-    public static final BitSet FOLLOW_25_in_modulecontainerBody1464 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_Identifier_in_commaSeparatedBodyDecls1492 = new BitSet(new long[]{0x0000000020000002L});
-    public static final BitSet FOLLOW_29_in_commaSeparatedBodyDecls1495 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_commaSeparatedBodyDecls_in_commaSeparatedBodyDecls1499 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_52_in_adviceType1531 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_53_in_adviceType1538 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_54_in_adviceType1545 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_55_in_joinpointKind1563 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_56_in_joinpointKind1570 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_57_in_voidType1596 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_classOrInterfaceType_in_type1623 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_primitiveType_in_type1632 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_Identifier_in_classOrInterfaceType1657 = new BitSet(new long[]{0x0400000000000002L,0x0000000000000008L});
-    public static final BitSet FOLLOW_typeArguments_in_classOrInterfaceType1676 = new BitSet(new long[]{0x0400000000000002L});
-    public static final BitSet FOLLOW_58_in_classOrInterfaceType1690 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_Identifier_in_classOrInterfaceType1694 = new BitSet(new long[]{0x0400000000000002L,0x0000000000000008L});
-    public static final BitSet FOLLOW_typeArguments_in_classOrInterfaceType1721 = new BitSet(new long[]{0x0400000000000002L});
-    public static final BitSet FOLLOW_59_in_primitiveType1746 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_60_in_primitiveType1758 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_61_in_primitiveType1770 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_62_in_primitiveType1782 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_63_in_primitiveType1794 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_64_in_primitiveType1806 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_65_in_primitiveType1818 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_66_in_primitiveType1830 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_67_in_typeArguments1853 = new BitSet(new long[]{0xFA00000000000010L,0x0000000000000027L});
-    public static final BitSet FOLLOW_typeArgument_in_typeArguments1855 = new BitSet(new long[]{0x0000000020000000L,0x0000000000000010L});
-    public static final BitSet FOLLOW_29_in_typeArguments1859 = new BitSet(new long[]{0xFA00000000000010L,0x0000000000000027L});
-    public static final BitSet FOLLOW_typeArgument_in_typeArguments1861 = new BitSet(new long[]{0x0000000020000000L,0x0000000000000010L});
-    public static final BitSet FOLLOW_68_in_typeArguments1866 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_type_in_typeArgument1891 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_69_in_typeArgument1897 = new BitSet(new long[]{0x0000000000000002L,0x00000000000000C0L});
-    public static final BitSet FOLLOW_set_in_typeArgument1902 = new BitSet(new long[]{0xFA00000000000010L,0x0000000000000007L});
-    public static final BitSet FOLLOW_type_in_typeArgument1912 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_annotation_in_annotations1939 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000100L});
-    public static final BitSet FOLLOW_72_in_annotation1959 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_annotationName_in_annotation1961 = new BitSet(new long[]{0x0000000008000002L});
-    public static final BitSet FOLLOW_27_in_annotation1965 = new BitSet(new long[]{0x0000000011000010L,0x0000000000000100L});
-    public static final BitSet FOLLOW_elementValuePairs_in_annotation1969 = new BitSet(new long[]{0x0000000010000000L});
-    public static final BitSet FOLLOW_elementValue_in_annotation1973 = new BitSet(new long[]{0x0000000010000000L});
-    public static final BitSet FOLLOW_28_in_annotation1978 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_Identifier_in_annotationName2002 = new BitSet(new long[]{0x0400000000000002L});
-    public static final BitSet FOLLOW_58_in_annotationName2005 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_Identifier_in_annotationName2007 = new BitSet(new long[]{0x0400000000000002L});
-    public static final BitSet FOLLOW_elementValuePair_in_elementValuePairs2028 = new BitSet(new long[]{0x0000000020000002L});
-    public static final BitSet FOLLOW_29_in_elementValuePairs2031 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_elementValuePair_in_elementValuePairs2033 = new BitSet(new long[]{0x0000000020000002L});
-    public static final BitSet FOLLOW_Identifier_in_elementValuePair2054 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000200L});
-    public static final BitSet FOLLOW_73_in_elementValuePair2056 = new BitSet(new long[]{0x0000000001000000L,0x0000000000000100L});
-    public static final BitSet FOLLOW_elementValue_in_elementValuePair2058 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_annotation_in_elementValue2081 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_elementValueArrayInitializer_in_elementValue2091 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_24_in_elementValueArrayInitializer2114 = new BitSet(new long[]{0x0000000023000000L,0x0000000000000100L});
-    public static final BitSet FOLLOW_elementValue_in_elementValueArrayInitializer2117 = new BitSet(new long[]{0x0000000022000000L});
-    public static final BitSet FOLLOW_29_in_elementValueArrayInitializer2120 = new BitSet(new long[]{0x0000000001000000L,0x0000000000000100L});
-    public static final BitSet FOLLOW_elementValue_in_elementValueArrayInitializer2122 = new BitSet(new long[]{0x0000000022000000L});
-    public static final BitSet FOLLOW_29_in_elementValueArrayInitializer2129 = new BitSet(new long[]{0x0000000002000000L});
-    public static final BitSet FOLLOW_25_in_elementValueArrayInitializer2133 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_72_in_annotationTypeDeclaration2160 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_23_in_annotationTypeDeclaration2162 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_Identifier_in_annotationTypeDeclaration2166 = new BitSet(new long[]{0x0000000001000000L});
-    public static final BitSet FOLLOW_annotationTypeBody_in_annotationTypeDeclaration2168 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_24_in_annotationTypeBody2191 = new BitSet(new long[]{0xFA00000002000010L,0x0000000000000107L});
-    public static final BitSet FOLLOW_annotationTypeElementDeclaration_in_annotationTypeBody2194 = new BitSet(new long[]{0xFA00000002000010L,0x0000000000000107L});
-    public static final BitSet FOLLOW_25_in_annotationTypeBody2198 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_annotationTypeElementRest_in_annotationTypeElementDeclaration2223 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_type_in_annotationTypeElementRest2246 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_annotationMethodOrConstantRest_in_annotationTypeElementRest2248 = new BitSet(new long[]{0x0000000004000000L});
-    public static final BitSet FOLLOW_26_in_annotationTypeElementRest2250 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_annotationTypeDeclaration_in_annotationTypeElementRest2260 = new BitSet(new long[]{0x0000000004000002L});
-    public static final BitSet FOLLOW_26_in_annotationTypeElementRest2262 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_annotationMethodRest_in_annotationMethodOrConstantRest2286 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_Identifier_in_annotationMethodRest2309 = new BitSet(new long[]{0x0000000008000000L});
-    public static final BitSet FOLLOW_27_in_annotationMethodRest2311 = new BitSet(new long[]{0x0000000010000000L});
-    public static final BitSet FOLLOW_28_in_annotationMethodRest2313 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000400L});
-    public static final BitSet FOLLOW_defaultValue_in_annotationMethodRest2315 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_74_in_defaultValue2343 = new BitSet(new long[]{0x0000000001000000L,0x0000000000000100L});
-    public static final BitSet FOLLOW_elementValue_in_defaultValue2345 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_24_in_mappingDeclarationBody1394 = new BitSet(new long[]{0x0000000002000010L});
+    public static final BitSet FOLLOW_commaSeparatedBodyDecls_in_mappingDeclarationBody1402 = new BitSet(new long[]{0x0000000002000000L});
+    public static final BitSet FOLLOW_25_in_mappingDeclarationBody1410 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_47_in_modulecontainerDeclaration1430 = new BitSet(new long[]{0x0000000001000000L});
+    public static final BitSet FOLLOW_modulecontainerBody_in_modulecontainerDeclaration1434 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_24_in_modulecontainerBody1455 = new BitSet(new long[]{0x0000000002000010L});
+    public static final BitSet FOLLOW_commaSeparatedBodyDecls_in_modulecontainerBody1460 = new BitSet(new long[]{0x0000000002000000L});
+    public static final BitSet FOLLOW_25_in_modulecontainerBody1468 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_Identifier_in_commaSeparatedBodyDecls1496 = new BitSet(new long[]{0x0000000020000002L});
+    public static final BitSet FOLLOW_29_in_commaSeparatedBodyDecls1499 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_commaSeparatedBodyDecls_in_commaSeparatedBodyDecls1503 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_52_in_adviceType1535 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_53_in_adviceType1542 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_54_in_adviceType1549 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_55_in_joinpointKind1567 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_56_in_joinpointKind1574 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_57_in_voidType1600 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_classOrInterfaceType_in_type1627 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_primitiveType_in_type1636 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_Identifier_in_classOrInterfaceType1661 = new BitSet(new long[]{0x0400000000000002L,0x0000000000000008L});
+    public static final BitSet FOLLOW_typeArguments_in_classOrInterfaceType1680 = new BitSet(new long[]{0x0400000000000002L});
+    public static final BitSet FOLLOW_58_in_classOrInterfaceType1694 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_Identifier_in_classOrInterfaceType1698 = new BitSet(new long[]{0x0400000000000002L,0x0000000000000008L});
+    public static final BitSet FOLLOW_typeArguments_in_classOrInterfaceType1725 = new BitSet(new long[]{0x0400000000000002L});
+    public static final BitSet FOLLOW_59_in_primitiveType1750 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_60_in_primitiveType1762 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_61_in_primitiveType1774 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_62_in_primitiveType1786 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_63_in_primitiveType1798 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_64_in_primitiveType1810 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_65_in_primitiveType1822 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_66_in_primitiveType1834 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_67_in_typeArguments1857 = new BitSet(new long[]{0xFA00000000000010L,0x0000000000000027L});
+    public static final BitSet FOLLOW_typeArgument_in_typeArguments1859 = new BitSet(new long[]{0x0000000020000000L,0x0000000000000010L});
+    public static final BitSet FOLLOW_29_in_typeArguments1863 = new BitSet(new long[]{0xFA00000000000010L,0x0000000000000027L});
+    public static final BitSet FOLLOW_typeArgument_in_typeArguments1865 = new BitSet(new long[]{0x0000000020000000L,0x0000000000000010L});
+    public static final BitSet FOLLOW_68_in_typeArguments1870 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_type_in_typeArgument1895 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_69_in_typeArgument1901 = new BitSet(new long[]{0x0000000000000002L,0x00000000000000C0L});
+    public static final BitSet FOLLOW_set_in_typeArgument1906 = new BitSet(new long[]{0xFA00000000000010L,0x0000000000000007L});
+    public static final BitSet FOLLOW_type_in_typeArgument1916 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_annotation_in_annotations1947 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000100L});
+    public static final BitSet FOLLOW_72_in_annotation1967 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_annotationName_in_annotation1969 = new BitSet(new long[]{0x0000000008000002L});
+    public static final BitSet FOLLOW_27_in_annotation1973 = new BitSet(new long[]{0x0000000011000010L,0x0000000000000100L});
+    public static final BitSet FOLLOW_elementValuePairs_in_annotation1977 = new BitSet(new long[]{0x0000000010000000L});
+    public static final BitSet FOLLOW_elementValue_in_annotation1981 = new BitSet(new long[]{0x0000000010000000L});
+    public static final BitSet FOLLOW_28_in_annotation1986 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_Identifier_in_annotationName2010 = new BitSet(new long[]{0x0400000000000002L});
+    public static final BitSet FOLLOW_58_in_annotationName2013 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_Identifier_in_annotationName2015 = new BitSet(new long[]{0x0400000000000002L});
+    public static final BitSet FOLLOW_elementValuePair_in_elementValuePairs2036 = new BitSet(new long[]{0x0000000020000002L});
+    public static final BitSet FOLLOW_29_in_elementValuePairs2039 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_elementValuePair_in_elementValuePairs2041 = new BitSet(new long[]{0x0000000020000002L});
+    public static final BitSet FOLLOW_Identifier_in_elementValuePair2062 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000200L});
+    public static final BitSet FOLLOW_73_in_elementValuePair2064 = new BitSet(new long[]{0x0000000001000000L,0x0000000000000100L});
+    public static final BitSet FOLLOW_elementValue_in_elementValuePair2066 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_annotation_in_elementValue2089 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_elementValueArrayInitializer_in_elementValue2099 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_24_in_elementValueArrayInitializer2122 = new BitSet(new long[]{0x0000000023000000L,0x0000000000000100L});
+    public static final BitSet FOLLOW_elementValue_in_elementValueArrayInitializer2125 = new BitSet(new long[]{0x0000000022000000L});
+    public static final BitSet FOLLOW_29_in_elementValueArrayInitializer2128 = new BitSet(new long[]{0x0000000001000000L,0x0000000000000100L});
+    public static final BitSet FOLLOW_elementValue_in_elementValueArrayInitializer2130 = new BitSet(new long[]{0x0000000022000000L});
+    public static final BitSet FOLLOW_29_in_elementValueArrayInitializer2137 = new BitSet(new long[]{0x0000000002000000L});
+    public static final BitSet FOLLOW_25_in_elementValueArrayInitializer2141 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_72_in_annotationTypeDeclaration2168 = new BitSet(new long[]{0x0000000000800000L});
+    public static final BitSet FOLLOW_23_in_annotationTypeDeclaration2170 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_Identifier_in_annotationTypeDeclaration2174 = new BitSet(new long[]{0x0000000001000000L});
+    public static final BitSet FOLLOW_annotationTypeBody_in_annotationTypeDeclaration2176 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_24_in_annotationTypeBody2199 = new BitSet(new long[]{0xFA00000002000010L,0x0000000000000107L});
+    public static final BitSet FOLLOW_annotationTypeElementDeclaration_in_annotationTypeBody2202 = new BitSet(new long[]{0xFA00000002000010L,0x0000000000000107L});
+    public static final BitSet FOLLOW_25_in_annotationTypeBody2206 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_annotationTypeElementRest_in_annotationTypeElementDeclaration2231 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_type_in_annotationTypeElementRest2254 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_annotationMethodOrConstantRest_in_annotationTypeElementRest2256 = new BitSet(new long[]{0x0000000004000000L});
+    public static final BitSet FOLLOW_26_in_annotationTypeElementRest2258 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_annotationTypeDeclaration_in_annotationTypeElementRest2268 = new BitSet(new long[]{0x0000000004000002L});
+    public static final BitSet FOLLOW_26_in_annotationTypeElementRest2270 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_annotationMethodRest_in_annotationMethodOrConstantRest2294 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_Identifier_in_annotationMethodRest2317 = new BitSet(new long[]{0x0000000008000000L});
+    public static final BitSet FOLLOW_27_in_annotationMethodRest2319 = new BitSet(new long[]{0x0000000010000000L});
+    public static final BitSet FOLLOW_28_in_annotationMethodRest2321 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000400L});
+    public static final BitSet FOLLOW_defaultValue_in_annotationMethodRest2323 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_74_in_defaultValue2351 = new BitSet(new long[]{0x0000000001000000L,0x0000000000000100L});
+    public static final BitSet FOLLOW_elementValue_in_defaultValue2353 = new BitSet(new long[]{0x0000000000000002L});
 
 }

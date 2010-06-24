@@ -462,7 +462,7 @@ abstractHostDeclaration returns [AbstractHost element]
 	: ahkw='abstracthost' name=Identifier {
 			$element = new AbstractHost(new SimpleNameSignature($name.text));
 	    	setKeyword($element,$ahkw);
-    		setLocation($element,$name,"__NAME");	
+    		setLocation($element,$name,"__NAME");
 		} abstractHostBody[$element]
 	;
 	
@@ -484,35 +484,28 @@ abstractHostBodyDeclaration[AbstractHost element]
 mappingDeclaration[HostMapper element, Class<? extends MStageDeclaration> fromType, Class<? extends Host> toType]
 	: mapkw=('map'|'locate') name=Identifier rfroms=mappingDeclarationBody[fromType] {
 
-				Host<? extends Host> host = null;
-				try {
-					host = $toType.newInstance();
-					host.setSignature(new SimpleNameSignature($name.text));
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				setLocation(host,$name,"__NAME");
-				setKeyword(host,$mapkw);				
+			HostMapping mapping = $element.createEmptyMapping();
+
+			SimpleReference<? extends Host> to = 
+				new SimpleReference($name.text,$toType);
 				
-				// add it to HostMapper
-				$element.addHost(host);
-				
-				SimpleReference<? extends Host> to = new SimpleReference($name.text,$toType);
-				
-		        for(SimpleReference<Module> from : $rfroms.elements) {
-		        
-			        HostMapping mapping = 
-			        	$element.createEmptyMapping();
-					
-					mapping.setFrom(from);
-					mapping.setTo(to);
+			setLocation(to,$name,$name);
+			setKeyword(to,$mapkw);					
+
+			// add host reference to host list
+			$element.addHost(to);
 			
-					$element.addHostMapping(mapping);
-					
-//					System.out.println(from.parentLink().getObject().signature() + 
-//						" --> " +to.parentLink().getObject().signature());
-				}
+			// set host to mapping target
+			mapping.setTo(to);
+
+	        for(SimpleReference<Module> from : $rfroms.elements) { 	
+				mapping.addFrom(from);
 			}
+			
+			// add hostmapping
+			$element.addHostMapping(mapping);
+		} 
+		
 	;
 
 mappingDeclarationBody[Class<? extends MStageDeclaration> fromType] returns [List<SimpleReference> elements]
@@ -629,7 +622,7 @@ typeArguments
 typeArgument
     :   t=type |   '?'  ( ('extends' | 'super') t=type )?
     ;
-
+    
 
 
 
