@@ -150,34 +150,31 @@ public abstract class Module<E extends Module<E>> extends MStageDeclaration<E, E
 			result = result.and(new BasicProblem(this, "No valid signature"));
 		}
 		
-		if ( ! (this.providedInterfaces().size() >= 1) ) {
-			result = result.and(new BasicProblem(this, "Missing provided interface"));
-		}
 		
-		
-		
-		boolean containsAny = false;
-		
-		try {
+		{ // check provided and required interface overlap
+			boolean containsAny = false;
 			
-			for (SimpleReference<Interface> provided : this.providedInterfaces()) {
-				for (SimpleReference<Interface> required : this.requiredInterfaces()) {
-						if(provided.getElement().sameAs(required.getElement())) {
-							containsAny = true;
-						}
+			try {
+				
+				for (SimpleReference<Interface> provided : this.providedInterfaces()) {
+					for (SimpleReference<Interface> required : this.requiredInterfaces()) {
+							if(provided.getElement().sameAs(required.getElement())) {
+								containsAny = true;
+							}
+						if (containsAny) break;
+					}
 					if (containsAny) break;
 				}
-				if (containsAny) break;
+				
+			} catch (LookupException e) {
+				e.printStackTrace();
 			}
+	
 			
-		} catch (LookupException e) {
-			e.printStackTrace();
-		}
-
-		
-		if (containsAny) {
-			result = result.and(new BasicProblem(this, "Provided and required " +
-					"interfaces should not overlap."));
+			if (containsAny) {
+				result = result.and(new BasicProblem(this, "Provided and required " +
+						"interfaces should not overlap."));
+			}
 		}
 		
 		return result;

@@ -20,6 +20,8 @@
 package mstage.model.module;
 
 import chameleon.core.declaration.SimpleNameSignature;
+import chameleon.core.validation.BasicProblem;
+import chameleon.core.validation.VerificationResult;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
@@ -50,4 +52,19 @@ public class Component<E extends Component<E>> extends Module<E> {
 	protected E cloneThis() {
 		return (E) new Component();
 	}
+	
+	/* (non-Javadoc)
+	 * @see mstage.model.module.Module#verifySelf()
+	 */
+	@Override
+	public VerificationResult verifySelf() {
+		VerificationResult result = super.verifySelf();
+		
+		if ( ! (this.providedInterfaces().size() >= 1) ) {
+			result = result.and(new BasicProblem(this, "Missing provided interface"));
+		}
+		
+		return result;
+	}
+
 }
