@@ -89,7 +89,8 @@ compilationUnit returns [CompilationUnit element]
 			apd=applicationDeclaration {npp.add($apd.element);}
 		|
 			dpd=deploymentDeclaration {npp.add($dpd.element);}
-			
+		|
+			ahd=abstractHostDeclaration {npp.add($ahd.element);}			
 		)*
 	;
 
@@ -134,15 +135,15 @@ interfaceBodyDeclaration[Interface element]
 serviceDeclaration returns [Service element]
 	:	rtype=serviceReturnType name=Identifier params=formalParameters {
 			Signature signature = new SimpleNameSignature($name.text);
-			$element= new Service(signature,$rtype.element,$params.element,null); //TODO: add properties
+			$element= new Service(signature,$rtype.value,$params.element,null); //TODO: add properties
 		}
 	;
 
-serviceReturnType returns [TypeReference element]
+serviceReturnType returns [TypeReference value]
 	:	( 
-			vt=voidType { $element=$vt.element; }
+			vt=voidType { $value=$vt.value; }
 		| 
-			tp=type { $element=$tp.element; } 
+			tp=type { $value=$tp.value; } 
 		)
 	;
 
@@ -159,14 +160,11 @@ formalParameterDecls returns [List<FormalParameter> element]
          	}
 			
 			FormalParameter param = 
-				new FormalParameter(new SimpleNameSignature($name.text),$t.element);
+				new FormalParameter(new SimpleNameSignature($name.text),$t.value);
 			
 			$element.add(0,param);
          }
 	;
-
-
-
 
 
 
@@ -175,11 +173,11 @@ formalParameterDecls returns [List<FormalParameter> element]
  *********** */
 
 connectorDeclaration returns [Connector element]
-	:	conkw='connector' name=Identifier connectorBody[$element] {
+	:	conkw='connector' name=Identifier {
 			$element = new Connector(new SimpleNameSignature($name.text));
 			setKeyword($element,$conkw);
 			setLocation($element,$name,"__NAME");
-		}
+		} connectorBody[$element]
 	;
 
 
@@ -188,39 +186,38 @@ connectorBody[Connector element]
 	;
 
 
-connectorBodyDeclaration[Connector component]
-	:	connectorAOCompositionDeclaration
-	|	moduleRequireDependencyDeclaration[$component]
+connectorBodyDeclaration[Connector element]
+	:	connectorAOCompositionDeclaration[$element]
+	|	moduleRequireDependencyDeclaration[$element]
 	;	
 	
 
-connectorAOCompositionDeclaration returns [AOComposition element]
-	:	'ao-composition' name=Identifier aoc=connectorAOCompositionBody {
-			$element = new AOComposition(new SimpleNameSignature($name.text));
+connectorAOCompositionDeclaration[Connector element]
+	:	kw='ao-composition' name=Identifier aoc=connectorAOCompositionBody {
+			AOComposition composition = new AOComposition(new SimpleNameSignature($name.text));
+			setKeyword(composition,$kw);
+			setLocation(composition,$name,"__NAME");
 			
-			$element.setAdvice($aoc.advice);
-			$element.setPointcut($aoc.pointcut);
+			composition.setAdvice($aoc.advice);
+			composition.setPointcut($aoc.pointcut);
+			
+			$element.addComposition(composition);
 		}
 	;
 
 
 connectorAOCompositionBody returns [Pointcut pointcut, Advice advice]
-	:	'{' pc=pointcutDeclaration adv=adviceDeclaration '}' {
-				$pointcut = $pc.element;
-				$advice = $adv.element;
+	:	'{' pc=pointcutDeclaration {
+				$pointcut = $pc.pointcut;
+			} adv=adviceDeclaration '}' {
+				$advice = $adv.advice;
 			}
 	;
 
-/*
-connectorAOCompositionBodyDeclaration
-	:	
-	;
-*/
-
-pointcutDeclaration returns [Pointcut element]
-	:	'pointcut' pointcutBody[$element] {
-				$element = new Pointcut();
-			}
+pointcutDeclaration returns [Pointcut pointcut]
+	:	'pointcut' {
+				$pointcut = new Pointcut();
+			} pointcutBody[$pointcut]
 	;
 	
 	
@@ -237,13 +234,14 @@ pointcutBodyDeclaration[Pointcut pointcut]
 	
 pointcutKindDeclaration[Pointcut pointcut]
 	:	'kind' ':' kind=joinpointKind ';' {
-				$pointcut.setKind($kind.element);
+				$pointcut.setKind($kind.value);
 			}
 	;
 	
 pointcutSignatureDeclaration[Pointcut pointcut]
 	:	'signature' ':' pattern=(.*) ';' {
 				JoinPoint jp = new PatternJoinPoint($pattern.text);
+				System.out.println($pattern.text);
 				$pointcut.addJoinPoint(jp);
 			}
 	;
@@ -264,10 +262,11 @@ pointcutCalleeDeclaration[Pointcut pointcut]
 	;
 	
 	
-adviceDeclaration returns [Advice element]
-	:	'advice' adviceBody[$element] {
-				$element = new Advice();
-			}
+adviceDeclaration returns [Advice advice]
+	:	'advice' { 
+				$advice = new Advice(); 
+				System.out.println("construct advice "+$advice);				
+			} adviceBody[$advice]
 	;
 
 adviceBody[Advice advice]
@@ -287,7 +286,7 @@ adviceServiceDeclaration[Advice advice]
 	
 adviceTypeDeclaration[Advice advice]
 	:	'type' ':' advtype=adviceType ';' {
-			$advice.setType($advtype.element);
+			$advice.setType($advtype.value);
 		}
 	;
 
@@ -454,6 +453,29 @@ hostMapDeclaration[Deployment element]
 	;
 
 
+/* **********
+ * HOST
+ ********** */
+
+
+abstractHostDeclaration returns [AbstractHost element]
+	: ahkw='abstracthost' name=Identifier {
+			$element = new AbstractHost(new SimpleNameSignature($name.text));
+	    	setKeyword($element,$ahkw);
+    		setLocation($element,$name,"__NAME");	
+		} abstractHostBody[$element]
+	;
+	
+	
+abstractHostBody[AbstractHost element]
+	: '{' abstractHostBodyDeclaration[$element]* '}'
+	;
+
+
+abstractHostBodyDeclaration[AbstractHost element]
+	: 'none'
+	;
+
 
 /* **********
  * HOSTMAPPER
@@ -462,7 +484,6 @@ hostMapDeclaration[Deployment element]
 mappingDeclaration[HostMapper element, Class<? extends MStageDeclaration> fromType, Class<? extends Host> toType]
 	: mapkw=('map'|'locate') name=Identifier rfroms=mappingDeclarationBody[fromType] {
 
-				// create the host, as it is declared and defined here
 				Host<? extends Host> host = null;
 				try {
 					host = $toType.newInstance();
@@ -488,8 +509,8 @@ mappingDeclaration[HostMapper element, Class<? extends MStageDeclaration> fromTy
 			
 					$element.addHostMapping(mapping);
 					
-					System.out.println(from.parentLink().getObject().signature() + 
-						" --> " +to.parentLink().getObject().signature());
+//					System.out.println(from.parentLink().getObject().signature() + 
+//						" --> " +to.parentLink().getObject().signature());
 				}
 			}
 	;
@@ -541,27 +562,27 @@ commaSeparatedBodyDecls[Class targetType] returns [List<SimpleReference> element
  *********** */
  
  
-adviceType returns [AdviceType element]
-	:	'before' {$element = AdviceType.BEFORE;}
-	|	'after' {$element = AdviceType.AFTER;}
-	|	'around' {$element = AdviceType.AROUND;}
+adviceType returns [AdviceType value]
+	:	'before' {$value = AdviceType.BEFORE;}
+	|	'after' {$value = AdviceType.AFTER;}
+	|	'around' {$value = AdviceType.AROUND;}
 	;
  
-joinpointKind returns [JoinpointKind element]
-	:	'execution'	{$element = JoinpointKind.EXECUTION;}
-	|	'call' {$element = JoinpointKind.CALL;}
+joinpointKind returns [JoinpointKind value]
+	:	'execution'	{$value = JoinpointKind.EXECUTION;}
+	|	'call' {$value = JoinpointKind.CALL;}
 	;
  
-voidType returns [TypeReference element]
+voidType returns [TypeReference value]
 /*@after{setLocation(retval.element, (CommonToken)retval.start, (CommonToken)retval.stop, "__PRIMITIVE");}*/
-     	:	 'void' {$element=new BasicTypeReference("void");}
+     	:	 'void' {$value=new BasicTypeReference("void");}
      	;
 
 
-type returns [TypeReference element]
+type returns [TypeReference value]
 /*@after{setLocation(retval.element, retval.start, retval.stop);}*/
-	:	cd=classOrInterfaceType {$element = $cd.element;}
-	|	pt=primitiveType {$element = $pt.element;}
+	:	cd=classOrInterfaceType {$value = $cd.element;}
+	|	pt=primitiveType {$value = $pt.value;}
 	;
 	
 
@@ -569,34 +590,34 @@ classOrInterfaceType returns [TypeReference element]
 @init{NamespaceOrTypeReference target = null;}
 	:	name=Identifier 
 	          {
-	           retval.element = new BasicTypeReference($name.text); 
+	           $element = new BasicTypeReference($name.text); 
 	           target =  new NamespaceOrTypeReference($name.text); 
 	          }
 			typeArguments? 
 	        ('.' namex=Identifier 
 	          {
 	           if(target != null) {
-	             retval.element = new BasicTypeReference(target,$namex.text);
+	             $element = new BasicTypeReference(target,$namex.text);
 	             // We must clone the target here, or else it will be removed from the
 	             // type reference we just created.
 	             target = new NamespaceOrTypeReference(target.clone(),$namex.text);
 	           } else {
-	             retval.element = new BasicTypeReference(retval.element,$namex.text);
+	             $element = new BasicTypeReference($element,$namex.text);
 	           }
 	          } 
 	         typeArguments? )*
 	;
 
 
-primitiveType returns [TypeReference element]
-    :   'boolean' {retval.element = new BasicTypeReference("boolean");}
-    |   'char' {retval.element = new BasicTypeReference("char");}
-    |   'byte' {retval.element = new BasicTypeReference("byte");}
-    |   'short' {retval.element = new BasicTypeReference("short");}
-    |   'int' {retval.element = new BasicTypeReference("int");}
-    |   'long' {retval.element = new BasicTypeReference("long");}
-    |   'float' {retval.element = new BasicTypeReference("float");}
-    |   'double' {retval.element = new BasicTypeReference("double");}
+primitiveType returns [TypeReference value]
+    :   'boolean' {$value = new BasicTypeReference("boolean");}
+    |   'char' {$value = new BasicTypeReference("char");}
+    |   'byte' {$value = new BasicTypeReference("byte");}
+    |   'short' {$value = new BasicTypeReference("short");}
+    |   'int' {$value = new BasicTypeReference("int");}
+    |   'long' {$value = new BasicTypeReference("long");}
+    |   'float' {$value = new BasicTypeReference("float");}
+    |   'double' {$value = new BasicTypeReference("double");}
     ;
 
 // GENERICS
