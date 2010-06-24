@@ -90,7 +90,9 @@ compilationUnit returns [CompilationUnit element]
 		|
 			dpd=deploymentDeclaration {npp.add($dpd.element);}
 		|
-			ahd=abstractHostDeclaration {npp.add($ahd.element);}			
+			ahd=abstractHostDeclaration {npp.add($ahd.element);}
+		|	
+			phd=physicalHostDeclaration {npp.add($phd.element);}
 		)*
 	;
 
@@ -454,7 +456,7 @@ hostMapDeclaration[Deployment element]
 
 
 /* **********
- * HOST
+ * ABSTRACTHOST
  ********** */
 
 
@@ -473,6 +475,29 @@ abstractHostBody[AbstractHost element]
 
 
 abstractHostBodyDeclaration[AbstractHost element]
+	: 'none'
+	;
+
+
+
+/* **********
+ * PHYSICALHOST
+ ********** */
+
+
+physicalHostDeclaration returns [PhysicalHost element]
+	: phkw='host' name=Identifier {
+			$element = new PhysicalHost(new SimpleNameSignature($name.text));
+	    	setKeyword($element,$phkw);
+    		setLocation($element,$name,"__NAME");	
+		} physicalHostBody[$element]
+	;
+
+physicalHostBody[PhysicalHost element]
+	: '{' physicalHostBodyDeclaration[$element]* '}'
+	;
+
+physicalHostBodyDeclaration[PhysicalHost element]
 	: 'none'
 	;
 
