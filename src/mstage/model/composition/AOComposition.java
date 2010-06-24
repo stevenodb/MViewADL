@@ -21,6 +21,7 @@ package mstage.model.composition;
 
 import java.util.List;
 
+import mstage.model.module.Service;
 import mstage.model.namespace.MStageDeclaration;
 
 import org.rejuse.association.SingleAssociation;
@@ -29,6 +30,7 @@ import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.element.Element;
 import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.VerificationResult;
+import chameleon.oo.type.TypeReference;
 import chameleon.util.Util;
 
 /**
@@ -55,40 +57,49 @@ public class AOComposition extends MStageDeclaration<AOComposition, Element> {
 	/*
 	 * Advice
 	 */
-	private SingleAssociation<AOComposition, Advice> _advice;
+	private SingleAssociation<AOComposition, Advice> _advice =
+		new SingleAssociation<AOComposition, Advice>(this);
 	
 	/**
 	 * @return
 	 */
 	public Advice advice() {
-		return _advice.getOtherEnd();
+		if (_advice != null)
+			return _advice.getOtherEnd();
+		else 
+			return null;
 	}
 	
 	/**
 	 * @param relation
 	 */
 	public void setAdvice(Advice relation) {
-		_advice.connectTo(relation.parentLink());
+		if (relation != null)
+			_advice.connectTo(relation.parentLink());
 	}
-
 	
 	/*
 	 * Pointcut
 	 */
-	private SingleAssociation<AOComposition, Pointcut> _pointcut;
+	private SingleAssociation<AOComposition, Pointcut> _pointcut =
+		new SingleAssociation<AOComposition, Pointcut>(this);
 
 	/**
 	 * @return
 	 */
 	public Pointcut pointcut() {
-		return _pointcut.getOtherEnd();
+		if (_pointcut != null)
+			return _pointcut.getOtherEnd();
+		else 
+			return null;
 	}
 	
 	/**
 	 * @param relation
 	 */
 	public void setPointcut(Pointcut relation) {
-		_pointcut.connectTo(relation.parentLink());
+		if (relation != null)
+			_pointcut.connectTo(relation.parentLink());
 	}
 
 	/* (non-Javadoc)
@@ -138,11 +149,11 @@ public class AOComposition extends MStageDeclaration<AOComposition, Element> {
 		VerificationResult result = super.verifySelf();
 		
 		if ( ! (this.advice() != null) ) {
-			result = result.and(new BasicProblem(this, "Advice is null"));
+			result = result.and(new BasicProblem(this, "Composition needs an advice."));
 		}
 		
 		if ( ! (this.pointcut() != null) ) {
-			result = result.and(new BasicProblem(this, "Pointcut is null"));
+			result = result.and(new BasicProblem(this, "Composition needs a pointcut."));
 		}
 		
 		return result;

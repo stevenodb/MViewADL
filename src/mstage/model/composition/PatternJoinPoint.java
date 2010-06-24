@@ -93,14 +93,16 @@ public class PatternJoinPoint<E extends PatternJoinPoint<E>>
 	 * @param relation	reference to the Service to add
 	 */
 	public void addService(SimpleReference<Service> relation) {
-		_services.add(relation.parentLink());
+		if (relation != null)
+			_services.add(relation.parentLink());
 	}
 	
 	/**
 	 * @param relation	reference to the Service to remove
 	 */
 	public void removeService(SimpleReference<Service> relation) {
-		_services.remove(relation.parentLink());
+		if (relation != null)
+			_services.remove(relation.parentLink());
 	}
 	
 	

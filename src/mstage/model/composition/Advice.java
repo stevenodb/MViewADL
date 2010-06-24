@@ -39,6 +39,12 @@ import chameleon.core.validation.VerificationResult;
  */
 public class Advice extends NamespaceElementImpl<Advice, Element> {
 	
+	/**
+	 * default constructor
+	 */
+	public Advice() {
+	}
+	
 	// Advice type
 	private AdviceType _type;
 	
@@ -74,7 +80,8 @@ public class Advice extends NamespaceElementImpl<Advice, Element> {
 	 * @param reference	the reference to set
 	 */
 	public void setService(SimpleReference<Service> relation) {
-		_service.connectTo(relation.parentLink());
+		if (relation != null)
+			_service.connectTo(relation.parentLink());
 	}
 
 	

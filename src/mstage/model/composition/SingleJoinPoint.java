@@ -46,14 +46,18 @@ public abstract class SingleJoinPoint<E extends SingleJoinPoint<E,JPE>,JPE exten
 	 * @return the joinPoint
 	 */
 	public SimpleReference<JPE> joinPoint() {
-		return _joinPoint.getOtherEnd();
+		if (_joinPoint != null)
+			return _joinPoint.getOtherEnd();
+		else
+			return null;
 	}
 
 	/**
 	 * @param joinPoint the joinPoint to set
 	 */
-	public void setJoinPoint(
-			SimpleReference<JPE> relation) {_joinPoint.connectTo(relation.parentLink());
+	public void setJoinPoint(SimpleReference<JPE> relation) {
+		if (relation != null)
+			_joinPoint.connectTo(relation.parentLink());
 	}
 
 	
