@@ -30,4 +30,12 @@ import chameleon.core.element.Element;
 public abstract class JoinPointElement<E extends JoinPointElement<E,P>,P extends Element> 
 					extends MStageDeclaration<E,P> {
 
+	/* (non-Javadoc)
+	 * @see mstage.model.namespace.MStageDeclaration#clone()
+	 */
+	@Override
+	public E clone() {
+		return super.clone();
+	}
+
 }
