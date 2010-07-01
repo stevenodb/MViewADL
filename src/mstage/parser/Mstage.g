@@ -42,6 +42,9 @@ import mstage.model.module.Service;
 import mstage.model.module.ModuleContainer;
 import mstage.model.namespace.MStageDeclaration;
 
+import mstage.reuse.HostMapping;
+import mstage.reuse.HostMapper;
+import mstage.reuse.Host;
 
 import chameleon.core.compilationunit.CompilationUnit;
 import chameleon.core.declaration.SimpleNameSignature;
@@ -57,11 +60,6 @@ import chameleon.core.reference.SimpleReference;
 import chameleon.core.variable.FormalParameter;
 
 import chameleon.support.input.ChameleonParser;
-
-
-import mstage.reuse.HostMapping;
-import mstage.reuse.HostMapper;
-import mstage.reuse.Host;
 }
 
 @lexer::header {
@@ -86,6 +84,8 @@ compilationUnit returns [CompilationUnit element]
 		|
 			cnd=connectorDeclaration {npp.add($cnd.element);}
 		|
+			mid=moduleInstanceDeclaration {npp.add($mid.element);}
+		|
 			apd=applicationDeclaration {npp.add($apd.element);}
 		|
 			dpd=deploymentDeclaration {npp.add($dpd.element);}
@@ -97,6 +97,16 @@ compilationUnit returns [CompilationUnit element]
 	;
 
 
+
+/* ***********
+ * MODULE INSTANCE
+ *********** */
+
+moduleInstanceDeclaration returns [Instance element]
+	: 	'componentinstance'
+		|
+		'connectorinstance'
+	;
 
 
 /* ***********
@@ -121,12 +131,46 @@ interfaceBody[Interface element]
 
 
 interfaceBodyDeclaration[Interface element]
-	:	(service=serviceDeclaration';') {
+	:	(service=serviceDeclaration ';') {
 			$element.addService($service.element);
 		}
 	;
 
 
+
+/* ***********
+ * SERVICE -- REFERENCE 
+ *********** */
+
+
+serviceReferenceDeclaration returns [SimpleReference<Service> relation]
+	:	name=Identifier params=actualParameters {
+			String signature = $name.text;
+			$relation = new SimpleReference(signature, Service.class);
+			
+			setLocation($relation,$name,$name);
+			
+			System.err.print(signature + " parameters: ");
+			for(String arg : $params.lst) { System.err.print(arg+" "); }
+			System.err.println();
+		}
+	;
+
+actualParameters returns [List<String> lst]
+@init{$lst = new ArrayList<String>();} // create empty one, in case there are no parameters
+    :   '(' (pars=actualParameterDecls {$lst=$pars.lst;})? ')'
+    ;
+
+actualParameterDecls returns [List<String> lst]
+    :   name=Identifier (',' decls=actualParameterDecls { $lst=decls.lst; })?
+    	{
+    		if($lst == null) {
+         		$lst=new ArrayList<String>();
+         	}
+					
+			$lst.add(0,$name.text);
+         }
+	;
 
 
 /* ***********
@@ -135,9 +179,18 @@ interfaceBodyDeclaration[Interface element]
 
 
 serviceDeclaration returns [Service element]
+	: result=serviceHeaderDeclaration {
+			Signature signature = new SimpleNameSignature($result.signature);
+			$element= new Service(signature,$result.returnType,$result.parLst,null); //TODO: add properties
+		}
+	;
+
+
+serviceHeaderDeclaration returns [String signature, TypeReference returnType, List<FormalParameter> parLst]
 	:	rtype=serviceReturnType name=Identifier params=formalParameters {
-			Signature signature = new SimpleNameSignature($name.text);
-			$element= new Service(signature,$rtype.value,$params.element,null); //TODO: add properties
+			$signature = $name.text;
+			$returnType = $rtype.value;
+			$parLst = $params.lst;
 		}
 	;
 
@@ -149,23 +202,77 @@ serviceReturnType returns [TypeReference value]
 		)
 	;
 
-formalParameters returns [List<FormalParameter> element]
-@init{$element = new ArrayList<FormalParameter>();} // create empty one, in case there are no parameters
-    :   '(' (pars=formalParameterDecls {$element=$pars.element;})? ')'
+formalParameters returns [List<FormalParameter> lst]
+@init{$lst = new ArrayList<FormalParameter>();} // create empty one, in case there are no parameters
+    :   '(' (pars=formalParameterDecls {$lst=$pars.lst;})? ')'
     ;
 
-formalParameterDecls returns [List<FormalParameter> element]
-    :   t=type name=Identifier (',' decls=formalParameterDecls { $element=decls.element; })? 
+formalParameterDecls returns [List<FormalParameter> lst]
+    :   t=type name=Identifier (',' decls=formalParameterDecls { $lst=decls.lst; })?
+    	{
+    		if($lst == null) {
+         		$lst=new ArrayList<FormalParameter>();
+         	}
+			
+			FormalParameter param = 
+				new FormalParameter(
+					new SimpleNameSignature($name.text),$t.value);
+			
+			$lst.add(0,param);
+         }
+	;
+
+
+
+
+/* ***********
+ * JOINPOINT
+ *********** */
+
+
+joinPointDeclaration returns [JoinPoint element]
+	:	rtype=jointPointReturnType 
+		((name=Identifier)'*' | '*'(name=Identifier) | (name=Identifier)) 
+		params=formalJoinPointParameters {
+			Signature signature = new SimpleNameSignature($name.text);
+			Service service = new Service(signature,$rtype.value,$params.element,null);
+			$element = new NamedJoinPoint(service);
+		}
+	;
+
+
+jointPointReturnType returns [TypeReference value]
+	:	(
+			rt=serviceReturnType { $value = $rt.value; }
+		|
+			wt=wildcardType { $value = wt.value; }
+		)
+	;
+	
+
+formalJoinPointParameters returns [List<FormalParameter> element]
+@init{$element = new ArrayList<FormalParameter>();}
+    :   '(' (pars=formalJoinPointParameterDecls {$element=$pars.element;})? ')'
+    ;
+    
+
+formalJoinPointParameterDecls returns [List<FormalParameter> element]
+    :   t=type name=Identifier (',' decls=formalJoinPointParameterDecls { $element=decls.element; })? 
     	{
     		if($element == null) {
          		$element=new ArrayList<FormalParameter>();
          	}
 			
 			FormalParameter param = 
-				new FormalParameter(new SimpleNameSignature($name.text),$t.value);
+				new FormalParameter(
+					new SimpleNameSignature($name.text),$t.value);
 			
 			$element.add(0,param);
          }
+	|
+		'..' {
+			System.err.println("TODO: implement '..' ");
+		}
 	;
 
 
@@ -184,7 +291,7 @@ connectorDeclaration returns [Connector element]
 
 
 connectorBody[Connector element]
-	:	'{'  connectorBodyDeclaration[$element]*  '}'
+	:	'{' connectorBodyDeclaration[$element]* '}'
 	;
 
 
@@ -200,6 +307,8 @@ connectorAOCompositionDeclaration[Connector element]
 			setKeyword(composition,$kw);
 			setLocation(composition,$name,"__NAME");
 			
+			System.err.println($aoc.advice);
+			System.err.println($aoc.pointcut);
 			composition.setAdvice($aoc.advice);
 			composition.setPointcut($aoc.pointcut);
 			
@@ -209,11 +318,14 @@ connectorAOCompositionDeclaration[Connector element]
 
 
 connectorAOCompositionBody returns [Pointcut pointcut, Advice advice]
-	:	'{' pc=pointcutDeclaration {
+	:	'{' 
+		pc=pointcutDeclaration {
 				$pointcut = $pc.pointcut;
-			} adv=adviceDeclaration '}' {
+			} 
+		adv=adviceDeclaration {
 				$advice = $adv.advice;
 			}
+		'}'
 	;
 
 pointcutDeclaration returns [Pointcut pointcut]
@@ -235,16 +347,14 @@ pointcutBodyDeclaration[Pointcut pointcut]
 	;
 	
 pointcutKindDeclaration[Pointcut pointcut]
-	:	'kind' ':' kind=joinpointKind ';' {
+	:	'kind' ':' kind=joinPointKind ';' {
 				$pointcut.setKind($kind.value);
 			}
 	;
 	
 pointcutSignatureDeclaration[Pointcut pointcut]
-	:	'signature' ':' pattern=(.*) ';' {
-				JoinPoint jp = new PatternJoinPoint($pattern.text);
-				System.out.println($pattern.text);
-				$pointcut.addJoinPoint(jp);
+	:	'signature' ':' jp=joinPointDeclaration ';' {
+				$pointcut.addJoinPoint($jp.element);
 			}
 	;
 	
@@ -281,8 +391,8 @@ adviceBodyDeclaration[Advice advice]
 	;
 	
 adviceServiceDeclaration[Advice advice]
-	:	'service' ':' service=(.*) ';' {
-			$advice.setService(new SimpleReference($service.text,Service.class));
+	:	'service' ':' service=serviceReferenceDeclaration ';' {
+			$advice.setService($service.relation);
 		}
 	;
 	
@@ -586,15 +696,22 @@ adviceType returns [AdviceType value]
 	|	'around' {$value = AdviceType.AROUND;}
 	;
  
-joinpointKind returns [JoinpointKind value]
+
+joinPointKind returns [JoinpointKind value]
 	:	'execution'	{$value = JoinpointKind.EXECUTION;}
 	|	'call' {$value = JoinpointKind.CALL;}
 	;
  
+
 voidType returns [TypeReference value]
 /*@after{setLocation(retval.element, (CommonToken)retval.start, (CommonToken)retval.stop, "__PRIMITIVE");}*/
-     	:	 'void' {$value=new BasicTypeReference("void");}
-     	;
+    : 'void' {$value=new BasicTypeReference("void");}
+    ;
+
+
+wildcardType returns [TypeReference value]
+	: '*' { $value = new BasicTypeReference("wildcard"); }
+	;
 
 
 type returns [TypeReference value]
