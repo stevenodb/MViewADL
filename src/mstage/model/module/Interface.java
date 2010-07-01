@@ -55,10 +55,16 @@ public class Interface extends MStageDeclaration<Interface, Element> {
 		}
 	}
 
+	/**
+	 * @return
+	 */
 	public List<Service> services() {
 		return _services.getOtherEnds();
 	}
 	
+	/**
+	 * @param service
+	 */
 	public void addService(Service service) {
 		if (service != null) {
 			_services.add(service.parentLink());
