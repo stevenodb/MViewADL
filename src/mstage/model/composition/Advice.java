@@ -32,6 +32,7 @@ import chameleon.core.reference.SimpleReference;
 import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.Valid;
 import chameleon.core.validation.VerificationResult;
+import chameleon.util.Util;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
@@ -62,7 +63,6 @@ public class Advice extends NamespaceElementImpl<Advice, Element> {
 		this._type = type;
 	}
 
-	
 	
 	// Service
 	private SingleAssociation<Advice, SimpleReference<Service>> _service =
@@ -125,7 +125,7 @@ public class Advice extends NamespaceElementImpl<Advice, Element> {
 	public List<Element> children() {
 		final List<Element> result = new ArrayList<Element>();
 		
-		result.add(this.service());
+		Util.addNonNull(this.service(), result);
 		
 		return result;
 	}

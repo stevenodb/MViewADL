@@ -19,6 +19,9 @@
  */
 package mstage.model.composition;
 
+import org.rejuse.association.SingleAssociation;
+
+import chameleon.core.reference.SimpleReference;
 import mstage.model.module.Property;
 
 /**
@@ -27,6 +30,20 @@ import mstage.model.module.Property;
  */
 public class PropertyJoinPoint<E extends PropertyJoinPoint<E>> 
 					extends SingleJoinPoint<PropertyJoinPoint<E>,Property> {
+
+	/**
+	 * Default constructor
+	 */
+	public PropertyJoinPoint() {
+		super();
+	}
+
+	/**
+	 * @param joinPoint
+	 */
+	public PropertyJoinPoint(Property joinPoint) {
+		super(joinPoint);
+	}
 
 	/* (non-Javadoc)
 	 * @see mstage.model.composition.JoinPoint#cloneThis()

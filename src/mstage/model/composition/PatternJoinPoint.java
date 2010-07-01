@@ -54,7 +54,6 @@ public class PatternJoinPoint<E extends PatternJoinPoint<E>>
 	}
 
 
-
 	/*
 	 * The raw pattern
 	 */

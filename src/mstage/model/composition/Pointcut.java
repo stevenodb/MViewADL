@@ -119,8 +119,8 @@ public class Pointcut extends NamespaceElementImpl<Pointcut, Element> {
 			result = result.and(new BasicProblem(this, "Does not have a kind set"));
 		}
 		
-		if (! (this.joinPoints().size() >= 1)) {
-			result = result.and(new BasicProblem(this, "Does not aggregate any JoinPoint"));
+		if (! ((this.joinPoints() != null) && (this.joinPoints().size() >= 1))) {
+			result = result.and(new BasicProblem(this, "Does not aggregate any join point"));
 		}
 		
 		return result;

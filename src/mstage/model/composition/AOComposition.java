@@ -122,7 +122,7 @@ public class AOComposition extends MStageDeclaration<AOComposition, Element> {
 		);
 		
 		clone.setPointcut(
-				this.pointcut()
+				this.pointcut().clone()
 		);
 		
 		return clone;

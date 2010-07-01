@@ -19,6 +19,9 @@
  */
 package mstage.model.composition;
 
+import org.rejuse.association.SingleAssociation;
+
+import chameleon.core.reference.SimpleReference;
 import mstage.model.module.Service;
 
 /**
@@ -26,8 +29,22 @@ import mstage.model.module.Service;
  *
  */
 public class NamedJoinPoint<E extends NamedJoinPoint<E>> 
-	extends SingleJoinPoint<NamedJoinPoint<E>,Service> {
+					extends SingleJoinPoint<NamedJoinPoint<E>,Service> {
 	
+	/**
+	 * 
+	 */
+	public NamedJoinPoint() {
+		super();
+	}
+
+	/**
+	 * @param joinPoint
+	 */
+	public NamedJoinPoint(Service joinPoint) {
+		super(joinPoint);
+	}
+
 	/* (non-Javadoc)
 	 * @see mstage.model.composition.JoinPoint#cloneThis()
 	 */

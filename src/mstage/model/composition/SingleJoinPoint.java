@@ -36,18 +36,34 @@ import chameleon.util.Util;
  */
 public abstract class SingleJoinPoint<E extends SingleJoinPoint<E,JPE>,JPE extends JoinPointElement> 
 					extends JoinPoint<SingleJoinPoint<E,JPE>> {
+	
+	
+	/**
+	 * Default constructor
+	 */
+	public SingleJoinPoint() {
+	}
+	
+	/**
+	 * @param joinPoint
+	 */
+	public SingleJoinPoint(JPE joinPoint) {
+		this();
+		setShadow(joinPoint);
+	}
 
 	/*
 	 * Accessors for joinPoint  
 	 */
-	private SingleAssociation<NamedJoinPoint, SimpleReference<JPE>> _joinPoint;
+	private SingleAssociation<SingleJoinPoint, JPE> _shadow =
+		new SingleAssociation<SingleJoinPoint, JPE>(this);
 
 	/**
 	 * @return the joinPoint
 	 */
-	public SimpleReference<JPE> joinPoint() {
-		if (_joinPoint != null)
-			return _joinPoint.getOtherEnd();
+	public JPE shadow() {
+		if (_shadow != null)
+			return _shadow.getOtherEnd();
 		else
 			return null;
 	}
@@ -55,9 +71,9 @@ public abstract class SingleJoinPoint<E extends SingleJoinPoint<E,JPE>,JPE exten
 	/**
 	 * @param joinPoint the joinPoint to set
 	 */
-	public void setJoinPoint(SimpleReference<JPE> relation) {
+	public void setShadow(JPE relation) {
 		if (relation != null)
-			_joinPoint.connectTo(relation.parentLink());
+			_shadow.connectTo(relation.parentLink());
 	}
 
 	
@@ -68,8 +84,8 @@ public abstract class SingleJoinPoint<E extends SingleJoinPoint<E,JPE>,JPE exten
 	public E clone() {
 		final E clone =	(E) super.clone();
 	
-		clone.setJoinPoint(
-				this.joinPoint().clone()
+		clone.setShadow(
+				(JPE) this.shadow().clone()
 		);
 		
 		return clone;
@@ -82,7 +98,7 @@ public abstract class SingleJoinPoint<E extends SingleJoinPoint<E,JPE>,JPE exten
 	public List<Element> children() {
 		final List<Element> result = super.children();
 		
-		Util.addNonNull(this.joinPoint(), result);
+		Util.addNonNull(this.shadow(), result);
 		
 		return result;
 	}
@@ -94,8 +110,8 @@ public abstract class SingleJoinPoint<E extends SingleJoinPoint<E,JPE>,JPE exten
 	public VerificationResult verifySelf() {
 		VerificationResult result = super.verifySelf();
 		
-		if ( ! (this.joinPoint() != null)) {
-			result = result.and(new BasicProblem(this, "JoinPoint is null"));
+		if ( ! (this.shadow() != null)) {
+			result = result.and(new BasicProblem(this, "Missing a joinpoint."));
 		}
 		
 		return result;
