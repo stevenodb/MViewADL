@@ -18,9 +18,11 @@
  */
 package mstage.model.language;
 
+import mstage.model.composition.Pointcut;
 import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.language.Language;
 import chameleon.core.namespace.RootNamespace;
+import chameleon.core.property.StaticChameleonProperty;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
@@ -28,12 +30,20 @@ import chameleon.core.namespace.RootNamespace;
  */
 public class Mstage extends Language {
 
+	// final. ... properties
+	public final StaticChameleonProperty EXECUTION;
+	public final StaticChameleonProperty CALL;
+	
 	/**
 	 * @param name
 	 */
 	public Mstage() {
 		super("Mstage",new MstageLookupFactory());
 		new RootNamespace(new SimpleNameSignature(""), this);
+		
+		EXECUTION = new StaticChameleonProperty("Execution", this, Pointcut.class);
+		CALL = (StaticChameleonProperty) EXECUTION.inverse();
+		CALL.setName("Call");
 	}
 
 	@Override

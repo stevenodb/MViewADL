@@ -28,6 +28,7 @@ import org.rejuse.association.OrderedMultiAssociation;
 
 import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.element.Element;
+import chameleon.core.modifier.ElementWithModifiersImpl;
 import chameleon.core.namespace.NamespaceElementImpl;
 import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.Valid;
@@ -38,7 +39,8 @@ import chameleon.core.validation.VerificationResult;
  * @param <E>
  *
  */
-public class Pointcut extends NamespaceElementImpl<Pointcut, Element> {
+public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element> { 
+	// NamespaceElementImpl<Pointcut, Element> {
 		
 	/**
 	 * Default constructor
