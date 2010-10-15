@@ -75,6 +75,7 @@ public abstract class MStageDeclaration<E extends MStageDeclaration<E,P>, P exte
 	
 	private final SingleAssociation<MStageDeclaration<E,P>, SimpleNameSignature> _signature = 
 		new SingleAssociation<MStageDeclaration<E,P>, SimpleNameSignature>(this); 
+
 	
 	/* (non-Javadoc)
 	 * @see chameleon.core.declaration.Declaration#signature()
@@ -93,6 +94,16 @@ public abstract class MStageDeclaration<E extends MStageDeclaration<E,P>, P exte
 			_signature.connectTo(null);
 		}
 	}
+
+		
+	/* (non-Javadoc)
+	 * @see chameleon.core.declaration.Declaration#setName(java.lang.String)
+	 */
+	@Override
+	public void setName(String name) {
+		signature().setName(name);
+	}
+
 	
 	/* (non-Javadoc)
 	 * @see chameleon.core.declaration.Declaration#declarator()
