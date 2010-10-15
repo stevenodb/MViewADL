@@ -31,7 +31,7 @@ import chameleon.core.validation.VerificationResult;
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public abstract class JoinPoint<E extends JoinPoint<E>> extends NamespaceElementImpl<E, Element> {
+public abstract class Signature<E extends Signature<E>> extends NamespaceElementImpl<E, Element> {
 
 	/**
 	 * @return An incomplete clone with the correct sub-Type 

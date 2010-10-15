@@ -1,7 +1,7 @@
 /**
  * author:   Steven Op de beeck <steven /at/ opdebeeck /./ org>
- * filename: JoinpointKind.java
- * created:  Jan 29, 2010, 12:00:53 PM
+ * filename: PropertyJoinPoint.java
+ * created:  Nov 27, 2009, 6:06:45 PM
  * license:
  * The code contained in this file is free software: you can redistribute 
  * it and/or modify it under the terms of the GNU General Public License
@@ -13,15 +13,44 @@
  * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
  * See the GNU General Public License for more details.
  *
- * You should have received a copy of the GNU General Public License. 
+ * You should have received a copy of the GNU General Public License
+ *
  * If not, see <http://www.gnu.org/licenses/>.
  */
 package mstage.model.composition;
+
+import org.rejuse.association.SingleAssociation;
+
+import chameleon.core.reference.SimpleReference;
+import mstage.model.module.Property;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public enum JoinpointKind {
-	EXECUTION, CALL 
+public class PropertySignature<E extends PropertySignature<E>> 
+					extends SingleSignature<PropertySignature<E>,Property> {
+
+	/**
+	 * Default constructor
+	 */
+	public PropertySignature() {
+		super();
+	}
+
+	/**
+	 * @param joinPoint
+	 */
+	public PropertySignature(Property joinPoint) {
+		super(joinPoint);
+	}
+
+	/* (non-Javadoc)
+	 * @see mstage.model.composition.JoinPoint#cloneThis()
+	 */
+	@Override
+	protected E cloneThis() {
+		return (E) new PropertySignature();
+	}
+
 }

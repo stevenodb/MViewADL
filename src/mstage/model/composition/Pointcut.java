@@ -48,45 +48,45 @@ public class Pointcut extends NamespaceElementImpl<Pointcut, Element> {
 	}
 
 	// KIND
-	private JoinpointKind _kind;
+//	private JoinpointKind _kind;
 	
-	/**
-	 * @param kind the kind to set
-	 */
-	public void setKind(JoinpointKind kind) {
-		this._kind = kind;
-	}
-
-	/**
-	 * @return the kind
-	 */
-	public JoinpointKind kind() {
-		return _kind;
-	}
+//	/**
+//	 * @param kind the kind to set
+//	 */
+//	public void setKind(JoinpointKind kind) {
+//		this._kind = kind;
+//	}
+//
+//	/**
+//	 * @return the kind
+//	 */
+//	public JoinpointKind kind() {
+//		return _kind;
+//	}
 
 	
 	// Join points
-	private OrderedMultiAssociation<Pointcut,JoinPoint<?>> _joinpoints =
-		new OrderedMultiAssociation<Pointcut, JoinPoint<?>>(this);
+	private OrderedMultiAssociation<Pointcut,Signature<?>> _joinpoints =
+		new OrderedMultiAssociation<Pointcut, Signature<?>>(this);
 	
 	/**
 	 * @return
 	 */
-	public List<JoinPoint<?>> joinPoints() {
+	public List<Signature<?>> joinPoints() {
 		return _joinpoints.getOtherEnds();
 	}
 	
 	/**
 	 * @param joinPoint
 	 */
-	public void addJoinPoint(JoinPoint<?> joinPoint) {
+	public void addJoinPoint(Signature<?> joinPoint) {
 		_joinpoints.add(joinPoint.parentLink());
 	}
 	
 	/**
 	 * @param joinPoint
 	 */
-	public void removeJoinPoint(JoinPoint<?> joinPoint) {
+	public void removeJoinPoint(Signature<?> joinPoint) {
 		_joinpoints.remove(joinPoint.parentLink());
 	}
 	
@@ -97,10 +97,10 @@ public class Pointcut extends NamespaceElementImpl<Pointcut, Element> {
 	public Pointcut clone() {
 		final Pointcut clone = new Pointcut();
 		
-		clone.setKind(this.kind());
+//		clone.setKind(this.kind());
 		
-		for (JoinPoint<?> joinpoint : this.joinPoints()) {
-			JoinPoint<?> localClone = joinpoint.clone();
+		for (Signature<?> joinpoint : this.joinPoints()) {
+			Signature<?> localClone = joinpoint.clone();
 			
 			clone.addJoinPoint(localClone);
 		}
@@ -115,9 +115,9 @@ public class Pointcut extends NamespaceElementImpl<Pointcut, Element> {
 	public VerificationResult verifySelf() {
 		VerificationResult result = Valid.create();
 		
-		if (! (this.kind() != null)) {
-			result = result.and(new BasicProblem(this, "Does not have a kind set"));
-		}
+//		if (! (this.kind() != null)) {
+//			result = result.and(new BasicProblem(this, "Does not have a kind set"));
+//		}
 		
 		if (! ((this.joinPoints() != null) && (this.joinPoints().size() >= 1))) {
 			result = result.and(new BasicProblem(this, "Does not aggregate any join point"));

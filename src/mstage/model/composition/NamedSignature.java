@@ -28,20 +28,20 @@ import mstage.model.module.Service;
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public class NamedJoinPoint<E extends NamedJoinPoint<E>> 
-					extends SingleJoinPoint<NamedJoinPoint<E>,Service> {
+public class NamedSignature<E extends NamedSignature<E>> 
+					extends SingleSignature<NamedSignature<E>,Service> {
 	
 	/**
-	 * 
+	 * default
 	 */
-	public NamedJoinPoint() {
+	public NamedSignature() {
 		super();
 	}
 
 	/**
 	 * @param joinPoint
 	 */
-	public NamedJoinPoint(Service joinPoint) {
+	public NamedSignature(Service joinPoint) {
 		super(joinPoint);
 	}
 
@@ -50,7 +50,7 @@ public class NamedJoinPoint<E extends NamedJoinPoint<E>>
 	 */
 	@Override
 	protected E cloneThis() {
-		return (E) new NamedJoinPoint();
+		return (E) new NamedSignature();
 	}
 	
 }

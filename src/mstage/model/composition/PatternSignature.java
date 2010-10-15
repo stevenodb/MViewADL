@@ -35,20 +35,20 @@ import chameleon.util.Util;
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public class PatternJoinPoint<E extends PatternJoinPoint<E>> 
-						extends JoinPoint<PatternJoinPoint<E>> {
+public class PatternSignature<E extends PatternSignature<E>> 
+						extends Signature<PatternSignature<E>> {
 	
 	/**
 	 * 
 	 */
-	protected PatternJoinPoint() {
+	protected PatternSignature() {
 		super();
 	}
 	
 	/**
 	 * @param rawPattern
 	 */
-	public PatternJoinPoint(String rawPattern) {
+	public PatternSignature(String rawPattern) {
 		this();
 		this._rawPattern = rawPattern;
 	}
@@ -78,8 +78,8 @@ public class PatternJoinPoint<E extends PatternJoinPoint<E>>
 	/*
 	 * Assessors for service association
 	 */
-	private OrderedMultiAssociation<PatternJoinPoint<?>, SimpleReference<Service>> _services =
-		new OrderedMultiAssociation<PatternJoinPoint<?>, SimpleReference<Service>>(this);
+	private OrderedMultiAssociation<PatternSignature<?>, SimpleReference<Service>> _services =
+		new OrderedMultiAssociation<PatternSignature<?>, SimpleReference<Service>>(this);
 	
 	/**
 	 * @return	a List of references to Services
@@ -111,7 +111,7 @@ public class PatternJoinPoint<E extends PatternJoinPoint<E>>
 	 */
 	@Override
 	protected E cloneThis() {
-		return (E) new PatternJoinPoint(); 
+		return (E) new PatternSignature(); 
 	}
 
 	/* (non-Javadoc)

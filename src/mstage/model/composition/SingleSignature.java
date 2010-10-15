@@ -34,20 +34,20 @@ import chameleon.util.Util;
 /**
  * @author  Steven Op de beeck <steven /at/ opdebeeck /./ org>
  */
-public abstract class SingleJoinPoint<E extends SingleJoinPoint<E,JPE>,JPE extends JoinPointElement> 
-					extends JoinPoint<SingleJoinPoint<E,JPE>> {
+public abstract class SingleSignature<E extends SingleSignature<E,JPE>,JPE extends JoinPointElement> 
+					extends Signature<SingleSignature<E,JPE>> {
 	
 	
 	/**
 	 * Default constructor
 	 */
-	public SingleJoinPoint() {
+	public SingleSignature() {
 	}
 	
 	/**
 	 * @param joinPoint
 	 */
-	public SingleJoinPoint(JPE joinPoint) {
+	public SingleSignature(JPE joinPoint) {
 		this();
 		setShadow(joinPoint);
 	}
@@ -55,8 +55,8 @@ public abstract class SingleJoinPoint<E extends SingleJoinPoint<E,JPE>,JPE exten
 	/*
 	 * Accessors for joinPoint  
 	 */
-	private SingleAssociation<SingleJoinPoint, JPE> _shadow =
-		new SingleAssociation<SingleJoinPoint, JPE>(this);
+	private SingleAssociation<SingleSignature, JPE> _shadow =
+		new SingleAssociation<SingleSignature, JPE>(this);
 
 	/**
 	 * @return the joinPoint
