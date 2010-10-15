@@ -22,10 +22,10 @@ import java.util.List;
 import org.rejuse.association.OrderedMultiAssociation;
 import org.rejuse.association.SingleAssociation;
 
-import chameleon.core.declaration.Signature;
 import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.element.Element;
 import chameleon.core.method.MethodHeader;
+import chameleon.core.method.MethodSignature;
 import chameleon.core.reference.SimpleReference;
 import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.Valid;
@@ -50,7 +50,7 @@ public class Service extends JoinPointElement<Service, Element> {
 	 * @param formalParameters
 	 * @param properties
 	 */
-	public Service(Signature signature, TypeReference returnType, 
+	public Service(MethodSignature signature, TypeReference returnType, 
 			List<FormalParameter> formalParameters, 
 			List<SimpleReference<Property>> properties) {
 		
