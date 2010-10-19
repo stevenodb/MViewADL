@@ -1,6 +1,6 @@
 /**
  * author:   Steven Op de beeck <steven /at/ opdebeeck /./ org>
- * filename: MstageLookupFactory.java
+ * filename: MViewLookupFactory.java
  * created:  Feb 1, 2010, 2:01:37 PM
  * license:
  * The code contained in this file is free software: you can redistribute 
@@ -24,5 +24,5 @@ import chameleon.core.lookup.LookupStrategyFactory;
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public class MstageLookupFactory extends LookupStrategyFactory {
+public class MViewLookupFactory extends LookupStrategyFactory {
 }

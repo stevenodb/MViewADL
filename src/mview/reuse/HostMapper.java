@@ -21,7 +21,7 @@ package mview.reuse;
 
 import java.util.List;
 
-import mview.model.namespace.MStageDeclaration;
+import mview.model.namespace.MViewDeclaration;
 
 import org.rejuse.association.OrderedMultiAssociation;
 
@@ -40,7 +40,7 @@ public abstract class HostMapper
 						<E extends HostMapper<E,H,M>,
 						H extends Host<H>,
 						M extends HostMapping<M,?,H>> 
-								extends	MStageDeclaration<E,Element> {
+								extends	MViewDeclaration<E,Element> {
 	
 	/**
 	 * default

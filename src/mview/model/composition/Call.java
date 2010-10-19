@@ -18,7 +18,7 @@
  */
 package mview.model.composition;
 
-import mview.model.language.Mstage;
+import mview.model.language.MView;
 
 import org.rejuse.property.PropertySet;
 
@@ -37,7 +37,7 @@ public class Call extends ModifierImpl<Call,Element> {
 	 */
 	@Override
 	public PropertySet<Element,ChameleonProperty> impliedProperties() {
-		return createSet(language(Mstage.class).CALL);
+		return createSet(language(MView.class).CALL);
 	}
 
 	/* (non-Javadoc)

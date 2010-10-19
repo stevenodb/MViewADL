@@ -19,7 +19,7 @@
  */
 package mview.model.module;
 
-import mview.model.namespace.MStageDeclaration;
+import mview.model.namespace.MViewDeclaration;
 import chameleon.core.element.Element;
 
 
@@ -28,7 +28,7 @@ import chameleon.core.element.Element;
  *
  */
 public abstract class JoinPointElement<E extends JoinPointElement<E,P>,P extends Element> 
-					extends MStageDeclaration<E,P> {
+					extends MViewDeclaration<E,P> {
 
 	/* (non-Javadoc)
 	 * @see mstage.model.namespace.MStageDeclaration#clone()

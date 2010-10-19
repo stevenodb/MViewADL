@@ -43,19 +43,19 @@ import chameleon.util.Util;
  * @param <E>	Element
  * @param <P>	Parent Element
  */
-public abstract class MStageDeclaration<E extends MStageDeclaration<E,P>, P extends Element> 
+public abstract class MViewDeclaration<E extends MViewDeclaration<E,P>, P extends Element> 
 	extends NamespaceElementImpl<E,P> implements Declaration<E,P,SimpleNameSignature,E> {
 	
 	/**
 	 * Default constructor
 	 */
-	protected MStageDeclaration() {
+	protected MViewDeclaration() {
 	}
 	
 	/**
 	 * @param signature
 	 */
-	protected MStageDeclaration(SimpleNameSignature signature) {
+	protected MViewDeclaration(SimpleNameSignature signature) {
 		setSignature(signature);
 	}
 
@@ -73,8 +73,8 @@ public abstract class MStageDeclaration<E extends MStageDeclaration<E,P>, P exte
 	}
 
 	
-	private final SingleAssociation<MStageDeclaration<E,P>, SimpleNameSignature> _signature = 
-		new SingleAssociation<MStageDeclaration<E,P>, SimpleNameSignature>(this); 
+	private final SingleAssociation<MViewDeclaration<E,P>, SimpleNameSignature> _signature = 
+		new SingleAssociation<MViewDeclaration<E,P>, SimpleNameSignature>(this); 
 
 	
 	/* (non-Javadoc)

@@ -18,7 +18,7 @@
  */
 package mview.reuse;
 
-import mview.model.namespace.MStageDeclaration;
+import mview.model.namespace.MViewDeclaration;
 import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.element.Element;
 
@@ -28,7 +28,7 @@ import chameleon.core.element.Element;
  * @param <E>
  */
 public abstract class Host<E extends Host<E>> extends
-		MStageDeclaration<E, Element> {
+		MViewDeclaration<E, Element> {
 
 	/**
 	 * 

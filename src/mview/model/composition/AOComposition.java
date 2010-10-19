@@ -22,7 +22,7 @@ package mview.model.composition;
 import java.util.List;
 
 import mview.model.module.Service;
-import mview.model.namespace.MStageDeclaration;
+import mview.model.namespace.MViewDeclaration;
 
 import org.rejuse.association.SingleAssociation;
 
@@ -37,7 +37,7 @@ import chameleon.util.Util;
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public class AOComposition extends MStageDeclaration<AOComposition, Element> {
+public class AOComposition extends MViewDeclaration<AOComposition, Element> {
 	
 	/**
 	 * 

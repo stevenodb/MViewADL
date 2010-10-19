@@ -1,6 +1,6 @@
 /**
  * author:   Steven Op de beeck <steven /at/ opdebeeck /./ org>
- * filename: Mstage.java
+ * filename: MView.java
  * created:  Jan 22, 2010, 1:56:34 PM
  * license:
  * The code contained in this file is free software: you can redistribute 
@@ -28,7 +28,7 @@ import chameleon.core.property.StaticChameleonProperty;
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public class Mstage extends Language {
+public class MView extends Language {
 
 	// final. ... properties
 	public final StaticChameleonProperty EXECUTION;
@@ -37,8 +37,8 @@ public class Mstage extends Language {
 	/**
 	 * @param name
 	 */
-	public Mstage() {
-		super("Mstage",new MstageLookupFactory());
+	public MView() {
+		super("MView",new MViewLookupFactory());
 		new RootNamespace(new SimpleNameSignature(""), this);
 		
 		EXECUTION = new StaticChameleonProperty("Execution", this, Pointcut.class);

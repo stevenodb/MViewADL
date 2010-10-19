@@ -22,7 +22,7 @@ package mview.model.composition;
 import java.util.ArrayList;
 import java.util.List;
 
-import mview.model.namespace.MStageDeclaration;
+import mview.model.namespace.MViewDeclaration;
 
 import org.rejuse.association.OrderedMultiAssociation;
 

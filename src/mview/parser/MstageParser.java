@@ -2687,7 +2687,7 @@ public class MstageParser extends ChameleonParser {
             }
             if ( state.backtracking==0 ) {
 
-              				pointcut.addJoinPoint((jp!=null?jp.element:null));
+              				pointcut.addSignature((jp!=null?jp.element:null));
               			
             }
 

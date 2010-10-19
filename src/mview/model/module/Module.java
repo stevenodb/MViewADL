@@ -18,7 +18,7 @@
 package mview.model.module;
 import java.util.List;
 
-import mview.model.namespace.MStageDeclaration;
+import mview.model.namespace.MViewDeclaration;
 
 import org.rejuse.association.OrderedMultiAssociation;
 
@@ -36,7 +36,7 @@ import chameleon.util.Util;
  *
  * @param <E>
  */
-public abstract class Module<E extends Module<E>> extends MStageDeclaration<E, Element> {
+public abstract class Module<E extends Module<E>> extends MViewDeclaration<E, Element> {
 
 	/**
 	 * Default constructor
@@ -121,7 +121,7 @@ public abstract class Module<E extends Module<E>> extends MStageDeclaration<E, E
 	public E clone() {
 		final E clone = super.clone();
 		
-		//moved to MStageDeclaration
+		//moved to MViewDeclaration
 		//clone.setSignature(signature().clone());		
 		
 		for (SimpleReference<Interface> simpleReference : this.providedInterfaces()) {

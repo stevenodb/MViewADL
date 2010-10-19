@@ -19,7 +19,7 @@ package mview.model.module;
 
 import java.util.List;
 
-import mview.model.namespace.MStageDeclaration;
+import mview.model.namespace.MViewDeclaration;
 
 import org.rejuse.association.OrderedMultiAssociation;
 
@@ -28,7 +28,7 @@ import chameleon.core.element.Element;
 import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.VerificationResult;
 
-public class Interface extends MStageDeclaration<Interface, Element> {
+public class Interface extends MViewDeclaration<Interface, Element> {
 	
 	/**
 	 * Default constructor 

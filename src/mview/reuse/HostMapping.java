@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import mview.model.namespace.MStageDeclaration;
+import mview.model.namespace.MViewDeclaration;
 
 import org.rejuse.association.OrderedMultiAssociation;
 import org.rejuse.association.SingleAssociation;
@@ -44,7 +44,7 @@ import chameleon.util.Util;
  * @param <To>
  */
 public abstract class HostMapping<M extends HostMapping<M,From,To>,
-			From extends MStageDeclaration<?,? extends Element>,
+			From extends MViewDeclaration<?,? extends Element>,
 			To extends Host<? extends Host<?>>> 
 			extends NamespaceElementImpl<M, Element> {
 
