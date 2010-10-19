@@ -29,6 +29,7 @@ import org.rejuse.association.OrderedMultiAssociation;
 import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.element.Element;
 import chameleon.core.modifier.ElementWithModifiersImpl;
+import chameleon.core.modifier.Modifier;
 import chameleon.core.namespace.NamespaceElementImpl;
 import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.Valid;
@@ -48,49 +49,61 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element> {
 	public Pointcut() {
 		super();
 	}
+	
 
 	// KIND
-//	private JoinpointKind _kind;
-	
-//	/**
-//	 * @param kind the kind to set
-//	 */
-//	public void setKind(JoinpointKind kind) {
-//		this._kind = kind;
-//	}
-//
-//	/**
-//	 * @return the kind
-//	 */
-//	public JoinpointKind kind() {
-//		return _kind;
-//	}
+	/**
+	 * @param kind the kind to set
+	 */
+	public void setKind(Modifier kind) {
+		this.addModifier(kind);
+	}
+
+	/**
+	 * @return the kind
+	 */
+	public Modifier kind() {
+		Modifier result = null;
+		
+		if(this.modifiers().size() > 0) {
+			result = this.modifiers().get(0);
+		}
+		return result;
+	}
 
 	
-	// Join points
-	private OrderedMultiAssociation<Pointcut,Signature<?>> _joinpoints =
+	
+	// signatures
+	private OrderedMultiAssociation<Pointcut,Signature<?>> _signatures =
 		new OrderedMultiAssociation<Pointcut, Signature<?>>(this);
 	
 	/**
 	 * @return
 	 */
-	public List<Signature<?>> joinPoints() {
-		return _joinpoints.getOtherEnds();
+	public List<Signature<?>> signatures() {
+		return _signatures.getOtherEnds();
 	}
 	
 	/**
-	 * @param joinPoint
+	 * @param signature
 	 */
-	public void addJoinPoint(Signature<?> joinPoint) {
-		_joinpoints.add(joinPoint.parentLink());
+	public void addSignature(Signature<?> signature) {
+		_signatures.add(signature.parentLink());
 	}
 	
 	/**
-	 * @param joinPoint
+	 * @param signature
 	 */
-	public void removeJoinPoint(Signature<?> joinPoint) {
-		_joinpoints.remove(joinPoint.parentLink());
+	public void removeJoinPoint(Signature<?> signature) {
+		_signatures.remove(signature.parentLink());
 	}
+	
+	
+	
+	// actors
+	
+	
+	
 	
 	/* (non-Javadoc)
 	 * @see chameleon.core.element.ElementImpl#clone()
@@ -99,12 +112,12 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element> {
 	public Pointcut clone() {
 		final Pointcut clone = new Pointcut();
 		
-//		clone.setKind(this.kind());
+		clone.setKind(this.kind());
 		
-		for (Signature<?> joinpoint : this.joinPoints()) {
+		for (Signature<?> joinpoint : this.signatures()) {
 			Signature<?> localClone = joinpoint.clone();
 			
-			clone.addJoinPoint(localClone);
+			clone.addSignature(localClone);
 		}
 		
 		return clone;
@@ -117,11 +130,11 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element> {
 	public VerificationResult verifySelf() {
 		VerificationResult result = Valid.create();
 		
-//		if (! (this.kind() != null)) {
-//			result = result.and(new BasicProblem(this, "Does not have a kind set"));
-//		}
+		if (! (this.kind() != null)) {
+			result = result.and(new BasicProblem(this, "Does not have a kind set"));
+		}
 		
-		if (! ((this.joinPoints() != null) && (this.joinPoints().size() >= 1))) {
+		if (! ((this.signatures() != null) && (this.signatures().size() >= 1))) {
 			result = result.and(new BasicProblem(this, "Does not aggregate any join point"));
 		}
 		
@@ -134,7 +147,8 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element> {
 	public List<Element> children() {
 		List<Element> result = new ArrayList<Element>();
 
-		result.addAll(this.joinPoints());
+		result.addAll(this.signatures());
+		result.addAll(this.modifiers());
 		
 		return result;
 	}	

@@ -23,7 +23,6 @@ import mview.model.language.Mstage;
 import org.rejuse.property.PropertySet;
 
 import chameleon.core.element.Element;
-import chameleon.core.modifier.Modifier;
 import chameleon.core.modifier.ModifierImpl;
 import chameleon.core.property.ChameleonProperty;
 
