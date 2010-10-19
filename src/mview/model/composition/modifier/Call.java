@@ -1,7 +1,7 @@
 /**
  * author:   Steven Op de beeck <steven /at/ opdebeeck /./ org>
- * filename: Execution.java
- * created:  Oct 15, 2010, 4:31:40 PM
+ * filename: Call.java
+ * created:  Oct 15, 2010, 4:53:57 PM
  * license:
  * The code contained in this file is free software: you can redistribute 
  * it and/or modify it under the terms of the GNU General Public License
@@ -16,38 +16,36 @@
  * You should have received a copy of the GNU General Public License. 
  * If not, see <http://www.gnu.org/licenses/>.
  */
-package mview.model.composition;
+package mview.model.composition.modifier;
 
 import mview.model.language.MView;
 
 import org.rejuse.property.PropertySet;
 
 import chameleon.core.element.Element;
-import chameleon.core.modifier.Modifier;
 import chameleon.core.modifier.ModifierImpl;
 import chameleon.core.property.ChameleonProperty;
-import chameleon.core.property.StaticChameleonProperty;
-import chameleon.oo.language.ObjectOrientedLanguage;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public class Execution extends ModifierImpl<Execution,Element> {
+public class Call extends ModifierImpl<Call,Element> {
 
 	/* (non-Javadoc)
 	 * @see chameleon.core.modifier.Modifier#impliedProperties()
 	 */
 	@Override
 	public PropertySet<Element,ChameleonProperty> impliedProperties() {
-		return createSet(language(MView.class).EXECUTION);
+		return createSet(language(MView.class).CALL);
 	}
 
 	/* (non-Javadoc)
 	 * @see chameleon.core.modifier.ModifierImpl#clone()
 	 */
 	@Override
-	public Execution clone() {
-		return new Execution();
+	public Call clone() {
+		return new Call();
 	}
+
 }
