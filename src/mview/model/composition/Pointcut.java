@@ -22,15 +22,11 @@ package mview.model.composition;
 import java.util.ArrayList;
 import java.util.List;
 
-import mview.model.namespace.MViewDeclaration;
-
 import org.rejuse.association.OrderedMultiAssociation;
 
-import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.element.Element;
 import chameleon.core.modifier.ElementWithModifiersImpl;
 import chameleon.core.modifier.Modifier;
-import chameleon.core.namespace.NamespaceElementImpl;
 import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.Valid;
 import chameleon.core.validation.VerificationResult;
@@ -52,25 +48,26 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element> {
 	
 
 	// KIND
-	/**
-	 * @param kind the kind to set
-	 */
-	public void setKind(Modifier kind) {
-		this.addModifier(kind);
-	}
-
-	/**
-	 * @return the kind
-	 */
-	public Modifier kind() {
-		Modifier result = null;
-		
-		if(this.modifiers().size() > 0) {
-			result = this.modifiers().get(0);
-		}
-		return result;
-	}
-
+	// done through modifiers
+	
+//	/**
+//	 * @param kind the kind to set
+//	 */
+//	public void setKind(Modifier kind) {
+//		this.addModifier(kind);
+//	}
+//
+//	/**
+//	 * @return the kind
+//	 */
+//	public Modifier kind() {
+//		Modifier result = null;
+//		
+//		if(this.modifiers().size() > 0) {
+//			result = this.modifiers().get(0);
+//		}
+//		return result;
+//	}
 	
 	
 	// signatures
@@ -102,8 +99,13 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element> {
 	
 	// actors
 	
+	public void addCallerProp() {
+		
+	}
 	
-	
+	public void addCalleeProp() {
+		
+	}
 	
 	/* (non-Javadoc)
 	 * @see chameleon.core.element.ElementImpl#clone()
@@ -112,7 +114,7 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element> {
 	public Pointcut clone() {
 		final Pointcut clone = new Pointcut();
 		
-		clone.setKind(this.kind());
+		clone.addModifiers(this.modifiers());
 		
 		for (Signature<?> joinpoint : this.signatures()) {
 			Signature<?> localClone = joinpoint.clone();
@@ -130,8 +132,12 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element> {
 	public VerificationResult verifySelf() {
 		VerificationResult result = Valid.create();
 		
-		if (! (this.kind() != null)) {
-			result = result.and(new BasicProblem(this, "Does not have a kind set"));
+		if (! (this.modifiers().size() > 0 )) {
+			result = result.and(new BasicProblem(this, "Does not have a kind modifier"));
+		}
+			
+		if (! (this.modifiers().size() < 2)) {
+			result = result.and(new BasicProblem(this, "Has more than one kind modifier"));
 		}
 		
 		if (! ((this.signatures() != null) && (this.signatures().size() >= 1))) {
@@ -145,10 +151,10 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element> {
 	 * @see chameleon.core.element.Element#children()
 	 */
 	public List<Element> children() {
-		List<Element> result = new ArrayList<Element>();
+		List<Element> result = super.children();
 
 		result.addAll(this.signatures());
-		result.addAll(this.modifiers());
+//		result.addAll(this.modifiers()); cfr super.children()
 		
 		return result;
 	}	

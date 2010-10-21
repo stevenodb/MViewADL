@@ -20,32 +20,84 @@ package mview.model.composition;
 
 import java.util.List;
 
+import mview.model.composition.modifier.PropModifier;
+import mview.model.module.Interface;
+import mview.model.namespace.MViewDeclaration;
+
+import org.rejuse.association.OrderedMultiAssociation;
+
+import chameleon.core.declaration.Declaration;
 import chameleon.core.element.Element;
-import chameleon.core.namespace.NamespaceElementImpl;
+import chameleon.core.lookup.LookupException;
+import chameleon.core.modifier.ElementWithModifiersImpl;
+import chameleon.core.reference.SimpleReference;
+import chameleon.core.validation.BasicProblem;
+import chameleon.core.validation.Valid;
 import chameleon.core.validation.VerificationResult;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public class Actor extends NamespaceElementImpl<Actor, Element> {
+public class Actor<D extends Declaration> extends ElementWithModifiersImpl<Actor<D>, Element> {
 
+	// list of prop (rich join point properties)
+	OrderedMultiAssociation<Actor, SimpleReference<D>> _props =
+		new OrderedMultiAssociation<Actor, SimpleReference<D>>(this);
+
+	/**
+	 * @return
+	 */
+	public List<SimpleReference<D>> props() {
+		return _props.getOtherEnds();
+	}
+	
+	/**
+	 * @param relation
+	 */
+	public void addProp(SimpleReference<D> relation) {
+		_props.add(relation.parentLink());
+	}
+	
+	/**
+	 * @param relations
+	 */
+	public void addProps(List<SimpleReference<D>> relations) {
+		for (SimpleReference<D> relation : relations) {
+			this.addProp(relation);
+		}
+	}
+	
+	/**
+	 * @return the guaranteed single modifier of this Actor
+	 */
+	private PropModifier propModifier() {
+		return (PropModifier) modifiers().get(0);
+	}
+		
 	/* (non-Javadoc)
 	 * @see chameleon.core.element.Element#children()
 	 */
 	@Override
-	public List<? extends Element> children() {
-		return null;
-		// TODO Auto-generated method stub
+	public List<Element> children() {
+		List<Element> result = super.children();
+		
+		result.addAll(props());
+		
+		return result;
 	}
 
 	/* (non-Javadoc)
 	 * @see chameleon.core.element.ElementImpl#clone()
 	 */
 	@Override
-	public Actor clone() {
-		return null;
-		// TODO Auto-generated method stub
+	public Actor<D> clone() {
+		final Actor<D> clone = new Actor<D>();
+		
+		clone.addModifiers(modifiers());
+		clone.addProps(props());
+		
+		return clone;
 	}
 
 	/* (non-Javadoc)
@@ -53,8 +105,32 @@ public class Actor extends NamespaceElementImpl<Actor, Element> {
 	 */
 	@Override
 	public VerificationResult verifySelf() {
-		return null;
-		// TODO Auto-generated method stub
+		final VerificationResult result = Valid.create();
+		
+		if ( ! ( ( this.modifiers().size() > 0 ) && ( this.modifiers().size() < 2 ) ) ) {
+			result.and(new BasicProblem(this, "Must contain a single prop modifier"));
+		}
+		
+		if ( ! ( this.props().size() > 0 )) {
+			result.and(new BasicProblem(this, "Does not contain an actor property"));
+		}
+		
+		for (SimpleReference<D> relation : props()) {
+			D declaration = null;
+			
+			try {
+				declaration = relation.getElement();
+			} catch (LookupException e) {
+				result.and(new BasicProblem(this, "Invalid reference to declaration"));
+			}
+			
+			if ( declaration instanceof Interface ) {
+				result.and(new BasicProblem(this, "Contains declaration of invalid type"));
+			}
+			//relation.nearestAncestor(c)
+		}
+		
+		return result;
 	}
 
 }
