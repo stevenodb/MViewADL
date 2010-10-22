@@ -18,6 +18,7 @@
  */
 package mview.model.language;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -28,6 +29,7 @@ import mview.model.module.Component;
 import mview.model.module.Interface;
 import mview.reuse.Host;
 
+import org.rejuse.property.Property;
 import org.rejuse.property.PropertyMutex;
 
 import chameleon.core.declaration.Declaration;
@@ -41,8 +43,7 @@ import chameleon.core.property.StaticChameleonProperty;
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public class MView extends Language {
-
+public class MView<D extends Declaration> extends Language {
 
 	// mutex
 	public final PropertyMutex<ChameleonProperty> ACTOR_MUTEX;
@@ -50,7 +51,7 @@ public class MView extends Language {
 	
 	// final. ... properties
 	public final StaticChameleonProperty EXECUTION;
-	public final StaticChameleonProperty CALL;
+	public final ChameleonProperty CALL;
 	
 	public final StaticChameleonProperty INTERFACE;
 	public final StaticChameleonProperty COMPONENT;
@@ -58,8 +59,7 @@ public class MView extends Language {
 	public final StaticChameleonProperty INSTANCE;
 	public final StaticChameleonProperty HOST;
 	
-	private final Set<StaticChameleonProperty> ACTOR_PROPERTIES 
-		= new HashSet<StaticChameleonProperty>();
+	private final Set<StaticChameleonProperty> ACTOR_PROPERTIES; 
 	
 	/**
 	 * @param name
@@ -68,26 +68,43 @@ public class MView extends Language {
 		super("MView",new MViewLookupFactory());
 		new RootNamespace(new SimpleNameSignature(""), this);
 		
+		// Pointcut
 		EXECUTION = new StaticChameleonProperty("Execution", this, Pointcut.class);
-		CALL = (StaticChameleonProperty) EXECUTION.inverse();
+		CALL = EXECUTION.inverse();
 		CALL.setName("Call");
 		
+		
+		//Actor
 		ACTOR_MUTEX = new PropertyMutex<ChameleonProperty>();
 		
-		INTERFACE = new StaticChameleonProperty("Interface", this, ACTOR_MUTEX, Interface.class);
-		ACTOR_PROPERTIES.add(INTERFACE);
 		
-		COMPONENT = new StaticChameleonProperty("Component", this, ACTOR_MUTEX, Component.class);
-		ACTOR_PROPERTIES.add(COMPONENT);
+		INTERFACE = new StaticChameleonProperty("Interface", this, ACTOR_MUTEX, 
+				Interface.class);
 		
-		INSTANCE = new StaticChameleonProperty("Instance",this,ACTOR_MUTEX,Instance.class);
-		ACTOR_PROPERTIES.add(INSTANCE);
+		COMPONENT = new StaticChameleonProperty("Component", this, ACTOR_MUTEX,
+				Component.class);
 		
-		APPLICATION = new StaticChameleonProperty("Application", this, ACTOR_MUTEX, Application.class);
-		ACTOR_PROPERTIES.add(APPLICATION);
+		INSTANCE = new StaticChameleonProperty("Instance",this,ACTOR_MUTEX,
+				Instance.class);
 		
-		HOST = new StaticChameleonProperty("Host", this, ACTOR_MUTEX, Host.class);
-		ACTOR_PROPERTIES.add(HOST);
+		APPLICATION = new StaticChameleonProperty("Application", this, ACTOR_MUTEX,
+				Application.class);
+		
+		HOST = new StaticChameleonProperty("Host", this, ACTOR_MUTEX, 
+				Host.class);
+		
+
+		final StaticChameleonProperty[] ACTOR_PROPERTIES_DECL = 
+			{
+				INTERFACE,
+				COMPONENT,
+				APPLICATION,
+				INSTANCE,
+				HOST
+			};
+
+		ACTOR_PROPERTIES = new HashSet<StaticChameleonProperty>(
+				Arrays.asList(ACTOR_PROPERTIES_DECL));
 		
 	}
 	
@@ -96,7 +113,7 @@ public class MView extends Language {
 	 * @param declaration
 	 * @return	A PropertySet of actor properties for the given declaration
 	 */
-	public Set<ChameleonProperty> actorProperties(Class<Declaration> declaration) {
+	public Set<ChameleonProperty> actorProperties(Class<D> declaration) {
 		Set<ChameleonProperty> result = new HashSet<ChameleonProperty>();
 		
 		for (StaticChameleonProperty property : ACTOR_PROPERTIES) {

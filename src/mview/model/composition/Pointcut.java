@@ -24,6 +24,7 @@ import java.util.List;
 
 import org.rejuse.association.OrderedMultiAssociation;
 
+import chameleon.core.declaration.Declaration;
 import chameleon.core.element.Element;
 import chameleon.core.modifier.ElementWithModifiersImpl;
 import chameleon.core.modifier.Modifier;
@@ -37,7 +38,6 @@ import chameleon.core.validation.VerificationResult;
  *
  */
 public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element> { 
-	// NamespaceElementImpl<Pointcut, Element> {
 		
 	/**
 	 * Default constructor
@@ -46,33 +46,26 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element> {
 		super();
 	}
 	
+	/**
+	 * @param kind	the kind of pointcut modifier
+	 */
+	public Pointcut(Modifier kind) {
+		this();
+		addModifier(kind);
+	}
+	
 
-	// KIND
-	// done through modifiers
-	
-//	/**
-//	 * @param kind the kind to set
-//	 */
-//	public void setKind(Modifier kind) {
-//		this.addModifier(kind);
-//	}
-//
-//	/**
-//	 * @return the kind
-//	 */
-//	public Modifier kind() {
-//		Modifier result = null;
-//		
-//		if(this.modifiers().size() > 0) {
-//			result = this.modifiers().get(0);
-//		}
-//		return result;
-//	}
-	
-	
-	// signatures
+	/* KIND
+	 * is realized through modifier
+	 */
+		
+
+
+	/*
+	 * SIGNATURES
+	 */
 	private OrderedMultiAssociation<Pointcut,Signature<?>> _signatures =
-		new OrderedMultiAssociation<Pointcut, Signature<?>>(this);
+		new OrderedMultiAssociation<Pointcut,Signature<?>>(this);
 	
 	/**
 	 * @return
@@ -97,15 +90,49 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element> {
 	
 	
 	
-	// actors
+	/*
+	 * ACTORS
+	 */
 	
-	public void addCallerProp() {
-		
+	// caller
+	OrderedMultiAssociation<Pointcut, Actor<?>> _callerProps =
+		new OrderedMultiAssociation<Pointcut, Actor<?>>(this);
+	
+	/**
+	 * @param actor
+	 */
+	public void addCallerProp(Actor<?> actor) {
+		_callerProps.add(actor.parentLink());
 	}
 	
-	public void addCalleeProp() {
-		
+	/**
+	 * @return
+	 */
+	public List<Actor<?>> callerProps() {
+		return _callerProps.getOtherEnds();
 	}
+
+
+
+	// callee
+	OrderedMultiAssociation<Pointcut, Actor<?>> _calleeProps =
+		new OrderedMultiAssociation<Pointcut, Actor<?>>(this);
+
+	/**
+	 * @param actor
+	 */
+	public void addCalleeProp(Actor<?> actor) {
+		_calleeProps.add(actor.parentLink());
+	}
+	
+	/**
+	 * @return
+	 */
+	public List<Actor<?>> calleeProps() {
+		return _calleeProps.getOtherEnds();
+	}
+	
+	
 	
 	/* (non-Javadoc)
 	 * @see chameleon.core.element.ElementImpl#clone()
@@ -114,12 +141,22 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element> {
 	public Pointcut clone() {
 		final Pointcut clone = new Pointcut();
 		
+		// modifiers
 		clone.addModifiers(this.modifiers());
 		
-		for (Signature<?> joinpoint : this.signatures()) {
-			Signature<?> localClone = joinpoint.clone();
-			
-			clone.addSignature(localClone);
+		// signatures
+		for (Signature<?> sig : this.signatures()) {
+			clone.addSignature(sig.clone());
+		}
+		
+		// callees
+		for (Actor<?> actor : calleeProps()) {
+			clone.addCalleeProp(actor.clone());
+		}
+
+		// callers
+		for (Actor<?> actor : callerProps()) {
+			clone.addCallerProp(actor.clone());
 		}
 		
 		return clone;
@@ -133,15 +170,18 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element> {
 		VerificationResult result = Valid.create();
 		
 		if (! (this.modifiers().size() > 0 )) {
-			result = result.and(new BasicProblem(this, "Does not have a kind modifier"));
+			result = result.and(new BasicProblem(this, 
+					"Does not have a kind modifier"));
 		}
 			
 		if (! (this.modifiers().size() < 2)) {
-			result = result.and(new BasicProblem(this, "Has more than one kind modifier"));
+			result = result.and(new BasicProblem(this, 
+					"Has more than one kind modifier"));
 		}
 		
 		if (! ((this.signatures() != null) && (this.signatures().size() >= 1))) {
-			result = result.and(new BasicProblem(this, "Does not aggregate any join point"));
+			result = result.and(new BasicProblem(this, 
+					"Does not aggregate any join point"));
 		}
 		
 		return result;
@@ -154,7 +194,8 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element> {
 		List<Element> result = super.children();
 
 		result.addAll(this.signatures());
-//		result.addAll(this.modifiers()); cfr super.children()
+		result.addAll(this.callerProps());
+		result.addAll(this.calleeProps());
 		
 		return result;
 	}	

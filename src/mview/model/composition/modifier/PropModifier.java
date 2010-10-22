@@ -38,21 +38,22 @@ import chameleon.core.validation.VerificationResult;
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public class PropModifier extends ModifierImpl<PropModifier,Element> {
+public class PropModifier<D extends Declaration> 
+					extends ModifierImpl<PropModifier,D> {
 	
-	private final Class<Declaration> _targetDeclarationClass;
+	private final Class<D> _targetDeclarationClass;
 	
 	/**
 	 * @param declarationClass
 	 */
-	protected PropModifier(Class<Declaration> declarationClass) {
+	public PropModifier(Class<D> declarationClass) {
 		this._targetDeclarationClass = declarationClass;
 	}
 	
 	/**
 	 * @return
 	 */
-	public Class<Declaration> targetDeclarationClass() {
+	public Class<D> targetDeclarationClass() {
 		return _targetDeclarationClass;
 	}
 	
@@ -64,7 +65,9 @@ public class PropModifier extends ModifierImpl<PropModifier,Element> {
 		PropertySet<Element, ChameleonProperty> result = createSet();
 	
 		Set<ChameleonProperty> propSet = 
-			((MView)language()).actorProperties(_targetDeclarationClass);
+			((MView)language()).actorProperties(
+				(Class<D>) _targetDeclarationClass);
+		
 		result.addAll(propSet);
 
 		return result;
@@ -86,9 +89,8 @@ public class PropModifier extends ModifierImpl<PropModifier,Element> {
 	 * @see chameleon.core.modifier.ModifierImpl#clone()
 	 */
 	@Override
-	public PropModifier clone() {
-		PropModifier clone = new PropModifier(_targetDeclarationClass);
-		return clone;
+	public PropModifier<D> clone() {
+		return new PropModifier<D>(_targetDeclarationClass);
 	}
 
 }

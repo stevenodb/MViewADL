@@ -44,7 +44,6 @@ public abstract class Signature<E extends Signature<E>> extends NamespaceElement
 	@Override
 	public E clone() {
 		final E clone = this.cloneThis();
-		
 		return clone;
 	}
 

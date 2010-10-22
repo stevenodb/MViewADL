@@ -22,7 +22,6 @@ import java.util.List;
 
 import mview.model.composition.modifier.PropModifier;
 import mview.model.module.Interface;
-import mview.model.namespace.MViewDeclaration;
 
 import org.rejuse.association.OrderedMultiAssociation;
 
@@ -30,6 +29,7 @@ import chameleon.core.declaration.Declaration;
 import chameleon.core.element.Element;
 import chameleon.core.lookup.LookupException;
 import chameleon.core.modifier.ElementWithModifiersImpl;
+import chameleon.core.modifier.Modifier;
 import chameleon.core.reference.SimpleReference;
 import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.Valid;
@@ -42,9 +42,22 @@ import chameleon.core.validation.VerificationResult;
 public class Actor<D extends Declaration> extends ElementWithModifiersImpl<Actor<D>, Element> {
 
 	// list of prop (rich join point properties)
-	OrderedMultiAssociation<Actor, SimpleReference<D>> _props =
-		new OrderedMultiAssociation<Actor, SimpleReference<D>>(this);
+	OrderedMultiAssociation<Actor<?>, SimpleReference<D>> _props =
+		new OrderedMultiAssociation<Actor<?>, SimpleReference<D>>(this);
 
+	
+	public Actor() {
+		super();
+	}
+	
+	/**
+	 * @param modifier
+	 */
+	public Actor(PropModifier<D> modifier) {
+		this();
+		addModifier(modifier);
+	}
+	
 	/**
 	 * @return
 	 */
@@ -62,7 +75,7 @@ public class Actor<D extends Declaration> extends ElementWithModifiersImpl<Actor
 	/**
 	 * @param relations
 	 */
-	public void addProps(List<SimpleReference<D>> relations) {
+	public void addAllProps(List<SimpleReference<D>> relations) {
 		for (SimpleReference<D> relation : relations) {
 			this.addProp(relation);
 		}
@@ -71,10 +84,11 @@ public class Actor<D extends Declaration> extends ElementWithModifiersImpl<Actor
 	/**
 	 * @return the guaranteed single modifier of this Actor
 	 */
-	private PropModifier propModifier() {
-		return (PropModifier) modifiers().get(0);
+	private PropModifier<D> modifier() {
+		return (PropModifier<D>) modifiers().get(0);
 	}
-		
+	
+	
 	/* (non-Javadoc)
 	 * @see chameleon.core.element.Element#children()
 	 */
@@ -94,8 +108,11 @@ public class Actor<D extends Declaration> extends ElementWithModifiersImpl<Actor
 	public Actor<D> clone() {
 		final Actor<D> clone = new Actor<D>();
 		
-		clone.addModifiers(modifiers());
-		clone.addProps(props());
+		clone.addModifier(modifier().clone());
+		
+		for (SimpleReference<D> reference : props()) {
+			clone.addProp(reference.clone());			
+		}
 		
 		return clone;
 	}
