@@ -23,14 +23,12 @@ import java.util.List;
 
 import mview.model.module.Module;
 import mview.model.module.ModuleContainer;
-import mview.reuse.HostMapper;
+import mview.model.namespace.MViewDeclaration;
 
 import org.rejuse.association.OrderedMultiAssociation;
 
-
 import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.element.Element;
-import chameleon.core.reference.SimpleReference;
 import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.VerificationResult;
 
@@ -38,7 +36,10 @@ import chameleon.core.validation.VerificationResult;
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public class Application extends HostMapper<Application,AbstractHost,Locate> implements ModuleContainer {
+public class Application<A extends Application<A>> 
+		extends	MViewDeclaration<A,Element> 
+		implements ModuleContainer {
+	//extends HostMapper<Application,AbstractHost,Locate>
 	
 	/**
 	 * default 
@@ -52,63 +53,118 @@ public class Application extends HostMapper<Application,AbstractHost,Locate> imp
 	public Application(SimpleNameSignature signature) {
 		super(signature);
 	}
+	
+	/*
+	 * Hosts
+	 */
+	private final OrderedMultiAssociation<Application<A>, Host> _hosts =
+		new OrderedMultiAssociation<Application<A>, Host>(this);
 
+	/**
+	 * @return
+	 */
+	public List<Host> hosts() {
+		return _hosts.getOtherEnds();
+	}
+	
+	/**
+	 * @param host
+	 */
+	public void addHost(Host host) {
+		_hosts.add(host.parentLink());
+	}
+	
+	/**
+	 * @param host
+	 */
+	public void removeHost(Host host) {
+		_hosts.remove(host.parentLink());
+	}
+	
+	
+	/*
+	 * Instances
+	 */
+	private final OrderedMultiAssociation<Application<A>, Instance> _instances =
+		new OrderedMultiAssociation<Application<A>, Instance>(this);
+
+	/**
+	 * @return
+	 */
+	public List<Instance> instances() {
+		return _instances.getOtherEnds();
+	}
+	
+	/**
+	 * @param host
+	 */
+	public void addInstance(Instance instance) {
+		_instances.add(instance.parentLink());
+	}
+	
+	/**
+	 * @param host
+	 */
+	public void removeInstance(Instance instance) {
+		_instances.remove(instance.parentLink());
+	}
+
+	
 	/*
 	 * Modules
 	 */
-	private final OrderedMultiAssociation<Application, SimpleReference<Module<?>>> _modules =
-		new OrderedMultiAssociation<Application, SimpleReference<Module<?>>>(this);
+	private final OrderedMultiAssociation<Application, Module> _modules =
+		new OrderedMultiAssociation<Application, Module>(this);
 	
 	
 	/**
 	 * @return
 	 */
-	public List<SimpleReference<Module<?>>> modules() {
+	public List<Module> modules() {
 		return _modules.getOtherEnds();
 	}
 	
 	/**
 	 * @param relation
 	 */
-	public void addModule(SimpleReference<Module<?>> relation) {
+	public void addModule(Module relation) {
 		_modules.add(relation.parentLink());
 	}
 	
 	/**
 	 * @param relation
 	 */
-	public void removeModule(SimpleReference<Module<?>> relation) {
+	public void removeModule(Module relation) {
 		_modules.remove(relation.parentLink());
 	}
 	
-	
-	/* (non-Javadoc)
-	 * @see mstage.reuse.HostMapper#createEmptyMapping()
-	 */
-	@Override
-	public Locate createEmptyMapping() {
-		return new Locate();
-	}
-		
+			
 	
 	/* (non-Javadoc)
 	 * @see mstage.model.namespace.MStageDeclaration#cloneThis()
 	 */
 	@Override
-	protected Application cloneThis() {
-		return new Application();
+	protected A cloneThis() {
+		return (A) new Application();
 	}
 	
 	/* (non-Javadoc)
 	 * @see mstage.model.application.HostMapper#clone()
 	 */
 	@Override
-	public Application clone() {
-		final Application clone = super.clone();
+	public A clone() {
+		final A clone = super.clone();
 		
-		for (SimpleReference<Module<?>> ref : this.modules()) {
-			SimpleReference<Module<?>> localClone = ref.clone();
-			
+		for (Host host : hosts()) {
+			clone.addHost(host.clone());
+		}
+		
+		for (Instance instance : instances()) {
+			clone.addInstance(instance.clone());
+		}
+		
+		for (Module module : this.modules()) {
+			Module localClone = module.clone();			
 			clone.addModule(localClone);
 		}
 		
@@ -120,10 +176,10 @@ public class Application extends HostMapper<Application,AbstractHost,Locate> imp
 	 */
 	@Override
 	public List<Element> children() {
-		final List<Element> result = super.children();
-		
+		final List<Element> result = super.children();		
 		result.addAll(modules());
-		
+		result.addAll(instances());
+		result.addAll(hosts());
 		return result;
 	}
 
@@ -133,10 +189,24 @@ public class Application extends HostMapper<Application,AbstractHost,Locate> imp
 	@Override
 	public VerificationResult verifySelf() {
 		VerificationResult result = super.verifySelf();
-		
-		if ( !(this.modules() != null) ) {
-			result = result.and(new BasicProblem(this, "Modules is null"));
+
+		if ( !(this.instances() != null) ) {
+			result = result.and(new BasicProblem(this, "Application needs an instance"));
 		}
+
+		if ( !(this.hosts() != null) ) {
+			result = result.and(new BasicProblem(this, "Application needs a host"));
+		}
+
+		for (Instance instance : this.instances()) {
+			if ( ! this.hosts().contains(instance.host()) ) {
+				result = result.and(new BasicProblem(this, "Host undefined in this application: " + instance.host()));
+			}
+		}
+		
+//		if ( !(this.modules() != null) ) {
+//			result = result.and(new BasicProblem(this, "Modules is null"));
+//		}
 		
 		return result;
 	}

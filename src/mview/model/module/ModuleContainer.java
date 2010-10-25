@@ -20,28 +20,25 @@ package mview.model.module;
 
 import java.util.List;
 
-import chameleon.core.reference.SimpleReference;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
- *
- * @param <E>
  */
 public interface ModuleContainer {
 
 	/**
-	 * @return a list of references to the contained modules
+	 * @return a list of contained modules
 	 */
-	public List<SimpleReference<Module<?>>> modules();
+	public List<Module> modules();
 
 	/**
-	 * @param relation	reference to the Module to add
+	 * @param relation	the Module to add
 	 */
-	public void addModule(SimpleReference<Module<?>> relation);
+	public void addModule(Module relation);
 
 	/**
-	 * @param relation	reference to the Module to remove
+	 * @param relation	the Module to remove
 	 */
-	public void removeModule(SimpleReference<Module<?>> relation);
+	public void removeModule(Module relation);
 
 }

@@ -22,129 +22,14 @@ package mview.model.deployment;
 import java.util.List;
 
 import mview.model.application.Application;
-import mview.model.application.Locate;
-import mview.model.module.Connector;
-import mview.reuse.HostMapper;
-
-import org.rejuse.association.OrderedMultiAssociation;
-
-import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.element.Element;
-import chameleon.core.reference.SimpleReference;
-import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.VerificationResult;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public class Deployment extends HostMapper<Deployment,PhysicalHost,HostMap> {
-	
-	/**
-	 * default
-	 */
-	protected Deployment() {
-	}
-
-	/**
-	 * @param signature
-	 */
-	public Deployment(SimpleNameSignature signature) {
-		super(signature);
-	}
-
-	/*
-	 * Applications
-	 */
-	private final OrderedMultiAssociation<Deployment, SimpleReference<Application>> 
-		_applications =
-		new OrderedMultiAssociation<Deployment, SimpleReference<Application>>(this);
-	
-	
-	/* (non-Javadoc)
-	 * @see mstage.reuse.HostMapper#createEmptyMapping()
-	 */
-	@Override
-	public HostMap createEmptyMapping() {
-		return new HostMap();
-	}
-
-	
-	/**
-	 * @return
-	 */
-	public List<SimpleReference<Application>> applications() {
-		return _applications.getOtherEnds();
-	}
-	
-	/**
-	 * @param relation
-	 */
-	public void addApplication(SimpleReference<Application> relation) {
-		_applications.add(relation.parentLink());
-	}
-	
-	/**
-	 * @param relation
-	 */
-	public void removeApplication(SimpleReference<Application> relation) {
-		_applications.remove(relation.parentLink());
-	}
-	
-	/*
-	 * Connectors
-	 */
-	
-	private final OrderedMultiAssociation<Deployment, SimpleReference<Connector>>
-		_connectors =
-		new OrderedMultiAssociation<Deployment, SimpleReference<Connector>>(this);
-	
-	/**
-	 * @return
-	 */
-	public List<SimpleReference<Connector>> connectors() {
-		return _connectors.getOtherEnds();
-	}
-	
-	/**
-	 * @param relation
-	 */
-	public void addConnector(SimpleReference<Connector> relation) {
-		_connectors.add(relation.parentLink());
-	}
-	
-	/**
-	 * @param relation
-	 */
-	public void removeConnector(SimpleReference<Connector> relation) {
-		_connectors.remove(relation.parentLink());
-	}
-	
-	/*
-	 * Maps
-	 */
-
-//	/**
-//	 * @return
-//	 */
-//	public List<HostMap> maps() {
-//		return this.hostMaps();
-//	}	
-//
-//	/**
-//	 * @param relation
-//	 */
-//	public void addLocate(HostMap relation) {
-//		this.addHostMapping(relation);
-//	}
-//	
-//	/**
-//	 * @param relation
-//	 */
-//	public void removeLocate(HostMap relation) {
-//		this.removeHostMapping(relation);
-//	}
-
+public class Deployment extends Application<Deployment> {
 	
 	
 	/* (non-Javadoc)
@@ -156,30 +41,11 @@ public class Deployment extends HostMapper<Deployment,PhysicalHost,HostMap> {
 	}
 
 	/* (non-Javadoc)
-	 * @see mstage.model.application.HostMapper#clone()
-	 */
-	@Override
-	public Deployment clone() {
-		final Deployment clone = super.clone();
-		
-		for (SimpleReference<Application> ref : this.applications()) {
-			SimpleReference<Application> localClone = ref.clone();
-			
-			clone.addApplication(localClone);
-		}
-		
-		return clone;
-	}
-
-	/* (non-Javadoc)
 	 * @see mstage.model.application.HostMapper#children()
 	 */
 	@Override
 	public List<Element> children() {
 		final List<Element> result = super.children();
-		
-		result.addAll(applications());
-		
 		return result;
 	}
 
@@ -189,11 +55,6 @@ public class Deployment extends HostMapper<Deployment,PhysicalHost,HostMap> {
 	@Override
 	public VerificationResult verifySelf() {
 		VerificationResult result = super.verifySelf();
-		
-		if ( !(this.applications() != null) ) {
-			result = result.and(new BasicProblem(this, "Applications is null"));
-		}
-		
 		return result;
 	}
 

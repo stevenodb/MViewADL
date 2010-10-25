@@ -1,7 +1,7 @@
 /**
  * author:   Steven Op de beeck <steven /at/ opdebeeck /./ org>
- * filename: Host.java
- * created:  Dec 2, 2009, 10:24:43 AM
+ * filename: HostName.java
+ * created:  Oct 25, 2010, 1:23:53 PM
  * license:
  * The code contained in this file is free software: you can redistribute 
  * it and/or modify it under the terms of the GNU General Public License
@@ -13,42 +13,41 @@
  * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
  * See the GNU General Public License for more details.
  *
- * You should have received a copy of the GNU General Public License
- *
+ * You should have received a copy of the GNU General Public License. 
  * If not, see <http://www.gnu.org/licenses/>.
  */
 package mview.model.deployment;
 
 import chameleon.core.declaration.SimpleNameSignature;
-import mview.reuse.Host;
+import chameleon.core.element.Element;
+import mview.model.namespace.MViewDeclaration;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public class PhysicalHost extends Host<PhysicalHost> {
-
+public class HostName extends MViewDeclaration<HostName,Element> {
+	
 	/**
-	 * 
+	 * default 
 	 */
-	public PhysicalHost() {
+	public HostName() {
 		super();
 	}
 
 	/**
 	 * @param signature
 	 */
-	public PhysicalHost(SimpleNameSignature signature) {
+	public HostName(SimpleNameSignature signature) {
 		super(signature);
 	}
 
 	/* (non-Javadoc)
-	 * @see mstage.model.namespace.MStageDeclaration#cloneThis()
+	 * @see mview.model.namespace.MViewDeclaration#cloneThis()
 	 */
 	@Override
-	protected PhysicalHost cloneThis() {
-		return (PhysicalHost) new PhysicalHost();
+	protected HostName cloneThis() {
+		return new HostName();
 	}
-
 
 }

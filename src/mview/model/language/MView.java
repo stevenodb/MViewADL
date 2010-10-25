@@ -23,12 +23,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 import mview.model.application.Application;
+import mview.model.application.Host;
 import mview.model.application.Instance;
 import mview.model.composition.Advice;
 import mview.model.composition.Pointcut;
 import mview.model.module.Component;
 import mview.model.module.Interface;
-import mview.reuse.Host;
 
 import org.rejuse.property.Property;
 import org.rejuse.property.PropertyMutex;
