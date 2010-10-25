@@ -1,7 +1,7 @@
 /**
  * author:   Steven Op de beeck <steven /at/ opdebeeck /./ org>
- * filename: NamedJoinPoint.java
- * created:  Nov 27, 2009, 6:04:34 PM
+ * filename: Before.java
+ * created:  Oct 25, 2010, 10:30:09 AM
  * license:
  * The code contained in this file is free software: you can redistribute 
  * it and/or modify it under the terms of the GNU General Public License
@@ -13,44 +13,40 @@
  * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
  * See the GNU General Public License for more details.
  *
- * You should have received a copy of the GNU General Public License
- *
+ * You should have received a copy of the GNU General Public License. 
  * If not, see <http://www.gnu.org/licenses/>.
  */
-package mview.model.composition;
+package mview.model.composition.modifier;
 
-import org.rejuse.association.SingleAssociation;
+import mview.model.language.MView;
 
-import chameleon.core.reference.SimpleReference;
-import mview.model.module.Service;
+import org.rejuse.property.PropertySet;
+
+import chameleon.core.element.Element;
+import chameleon.core.modifier.Modifier;
+import chameleon.core.modifier.ModifierImpl;
+import chameleon.core.property.ChameleonProperty;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public class NamedSignature<E extends NamedSignature<E>> 
-					extends SingleSignature<NamedSignature<E>,Service> {
-	
-	/**
-	 * default
-	 */
-	public NamedSignature() {
-		super();
-	}
+public class After extends ModifierImpl<After,Element> {
 
-	/**
-	 * @param joinPoint
+	/* (non-Javadoc)
+	 * @see chameleon.core.modifier.Modifier#impliedProperties()
 	 */
-	public NamedSignature(SimpleReference<Service> joinPoint) {
-		super(joinPoint);
+	@Override
+	public PropertySet<Element,ChameleonProperty> impliedProperties() {
+		return createSet(language(MView.class).AFTER);
 	}
 
 	/* (non-Javadoc)
-	 * @see mstage.model.composition.JoinPoint#cloneThis()
+	 * @see chameleon.core.modifier.ModifierImpl#clone()
 	 */
 	@Override
-	protected E cloneThis() {
-		return (E) new NamedSignature();
+	public After clone() {
+		return new After();
 	}
-	
+
 }

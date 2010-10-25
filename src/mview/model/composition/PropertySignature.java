@@ -19,9 +19,6 @@
  */
 package mview.model.composition;
 
-import org.rejuse.association.SingleAssociation;
-
-import chameleon.core.reference.SimpleReference;
 import mview.model.module.Property;
 
 /**
@@ -41,9 +38,9 @@ public class PropertySignature<E extends PropertySignature<E>>
 	/**
 	 * @param joinPoint
 	 */
-	public PropertySignature(Property joinPoint) {
-		super(joinPoint);
-	}
+//	public PropertySignature(Property joinPoint) {
+//		super(joinPoint);
+//	}
 
 	/* (non-Javadoc)
 	 * @see mstage.model.composition.JoinPoint#cloneThis()

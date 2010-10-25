@@ -24,6 +24,7 @@ import java.util.Set;
 
 import mview.model.application.Application;
 import mview.model.application.Instance;
+import mview.model.composition.Advice;
 import mview.model.composition.Pointcut;
 import mview.model.module.Component;
 import mview.model.module.Interface;
@@ -41,90 +42,107 @@ import chameleon.core.property.StaticChameleonProperty;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
- *
+ * 
  */
 public class MView<D extends Declaration> extends Language {
 
 	// mutex
 	public final PropertyMutex<ChameleonProperty> ACTOR_MUTEX;
-	
-	
+	public final PropertyMutex<ChameleonProperty> ADVICE_MUTEX;
+
 	// final. ... properties
 	public final StaticChameleonProperty EXECUTION;
 	public final ChameleonProperty CALL;
-	
+
+	public final StaticChameleonProperty BEFORE;
+	public final StaticChameleonProperty AFTER;
+	public final StaticChameleonProperty AROUND;
+
 	public final StaticChameleonProperty INTERFACE;
 	public final StaticChameleonProperty COMPONENT;
 	public final StaticChameleonProperty APPLICATION;
 	public final StaticChameleonProperty INSTANCE;
 	public final StaticChameleonProperty HOST;
-	
-	private final Set<StaticChameleonProperty> ACTOR_PROPERTIES; 
-	
+
+	private final Set<StaticChameleonProperty> ACTOR_PROPERTIES;
+
 	/**
 	 * @param name
 	 */
 	public MView() {
-		super("MView",new MViewLookupFactory());
+		super("MView", new MViewLookupFactory());
 		new RootNamespace(new SimpleNameSignature(""), this);
-		
+
 		// Pointcut
-		EXECUTION = new StaticChameleonProperty("Execution", this, Pointcut.class);
+		EXECUTION =
+				new StaticChameleonProperty("Execution", this, Pointcut.class);
 		CALL = EXECUTION.inverse();
 		CALL.setName("Call");
-		
-		
-		//Actor
+
+		// Advice
+		ADVICE_MUTEX = new PropertyMutex<ChameleonProperty>();
+
+		BEFORE =
+				new StaticChameleonProperty("Before advice", this,
+						ADVICE_MUTEX,
+						Advice.class);
+
+		AFTER = new StaticChameleonProperty("After advice", this, ADVICE_MUTEX,
+				Advice.class);
+
+		AROUND =
+				new StaticChameleonProperty("Around advice", this,
+						ADVICE_MUTEX,
+						Advice.class);
+
+		// Actor
 		ACTOR_MUTEX = new PropertyMutex<ChameleonProperty>();
-		
-		
-		INTERFACE = new StaticChameleonProperty("Interface", this, ACTOR_MUTEX, 
+
+		INTERFACE = new StaticChameleonProperty("Interface", this, ACTOR_MUTEX,
 				Interface.class);
-		
+
 		COMPONENT = new StaticChameleonProperty("Component", this, ACTOR_MUTEX,
 				Component.class);
-		
-		INSTANCE = new StaticChameleonProperty("Instance",this,ACTOR_MUTEX,
-				Instance.class);
-		
-		APPLICATION = new StaticChameleonProperty("Application", this, ACTOR_MUTEX,
-				Application.class);
-		
-		HOST = new StaticChameleonProperty("Host", this, ACTOR_MUTEX, 
-				Host.class);
-		
 
-		final StaticChameleonProperty[] ACTOR_PROPERTIES_DECL = 
+		INSTANCE = new StaticChameleonProperty("Instance", this, ACTOR_MUTEX,
+				Instance.class);
+
+		APPLICATION =
+				new StaticChameleonProperty("Application", this, ACTOR_MUTEX,
+						Application.class);
+
+		HOST = new StaticChameleonProperty("Host", this, ACTOR_MUTEX,
+				Host.class);
+
+		final StaticChameleonProperty[] ACTOR_PROPERTIES_DECL =
 			{
-				INTERFACE,
-				COMPONENT,
-				APPLICATION,
-				INSTANCE,
-				HOST
+					INTERFACE,
+					COMPONENT,
+					APPLICATION,
+					INSTANCE,
+					HOST
 			};
 
 		ACTOR_PROPERTIES = new HashSet<StaticChameleonProperty>(
 				Arrays.asList(ACTOR_PROPERTIES_DECL));
-		
+
 	}
-	
-	
+
 	/**
 	 * @param declaration
-	 * @return	A PropertySet of actor properties for the given declaration
+	 * @return A PropertySet of actor properties for the given declaration
 	 */
 	public Set<ChameleonProperty> actorProperties(Class<D> declaration) {
 		Set<ChameleonProperty> result = new HashSet<ChameleonProperty>();
-		
+
 		for (StaticChameleonProperty property : ACTOR_PROPERTIES) {
 			if (property.validElementTypes().contains(declaration)) {
 				result.add(property);
 			}
 		}
-		
+
 		return result;
 	}
-	
 
 	@Override
 	protected void initializePropertyRules() {
@@ -139,7 +157,9 @@ public class MView<D extends Declaration> extends Language {
 		return Character.isJavaIdentifierPart(character);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see chameleon.core.language.Language#cloneThis()
 	 */
 	@Override

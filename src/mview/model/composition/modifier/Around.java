@@ -1,7 +1,7 @@
 /**
  * author:   Steven Op de beeck <steven /at/ opdebeeck /./ org>
- * filename: AdviceType.java
- * created:  Feb 1, 2010, 3:16:38 PM
+ * filename: Before.java
+ * created:  Oct 25, 2010, 10:30:09 AM
  * license:
  * The code contained in this file is free software: you can redistribute 
  * it and/or modify it under the terms of the GNU General Public License
@@ -16,12 +16,37 @@
  * You should have received a copy of the GNU General Public License. 
  * If not, see <http://www.gnu.org/licenses/>.
  */
-package mview.model.composition;
+package mview.model.composition.modifier;
+
+import mview.model.language.MView;
+
+import org.rejuse.property.PropertySet;
+
+import chameleon.core.element.Element;
+import chameleon.core.modifier.Modifier;
+import chameleon.core.modifier.ModifierImpl;
+import chameleon.core.property.ChameleonProperty;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public enum AdviceType {
-	BEFORE, AROUND, AFTER
+public class Around extends ModifierImpl<Around,Element> {
+
+	/* (non-Javadoc)
+	 * @see chameleon.core.modifier.Modifier#impliedProperties()
+	 */
+	@Override
+	public PropertySet<Element,ChameleonProperty> impliedProperties() {
+		return createSet(language(MView.class).AROUND);
+	}
+
+	/* (non-Javadoc)
+	 * @see chameleon.core.modifier.ModifierImpl#clone()
+	 */
+	@Override
+	public Around clone() {
+		return new Around();
+	}
+
 }

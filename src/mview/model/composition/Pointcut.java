@@ -19,12 +19,10 @@
  */
 package mview.model.composition;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.rejuse.association.OrderedMultiAssociation;
 
-import chameleon.core.declaration.Declaration;
 import chameleon.core.element.Element;
 import chameleon.core.modifier.ElementWithModifiersImpl;
 import chameleon.core.modifier.Modifier;

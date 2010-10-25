@@ -27,6 +27,7 @@ import mview.model.module.Service;
 import org.rejuse.association.SingleAssociation;
 
 import chameleon.core.element.Element;
+import chameleon.core.modifier.ElementWithModifiersImpl;
 import chameleon.core.namespace.NamespaceElementImpl;
 import chameleon.core.reference.SimpleReference;
 import chameleon.core.validation.BasicProblem;
@@ -38,7 +39,8 @@ import chameleon.util.Util;
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public class Advice extends NamespaceElementImpl<Advice, Element> {
+public class Advice extends ElementWithModifiersImpl<Advice, Element> { 
+//extends NamespaceElementImpl<Advice, Element> {
 	
 	/**
 	 * default constructor
@@ -46,23 +48,11 @@ public class Advice extends NamespaceElementImpl<Advice, Element> {
 	public Advice() {
 	}
 	
-	// Advice type
-	private AdviceType _type;
-	
-	/**
-	 * @return the type
+	/* 
+	 * Advice type
+	 * through modifier
 	 */
-	public AdviceType type() {
-		return this._type;
-	}
-
-	/**
-	 * @param type the type to set
-	 */
-	public void setType(AdviceType type) {
-		this._type = type;
-	}
-
+		
 	
 	// Service
 	private SingleAssociation<Advice, SimpleReference<Service>> _service =
@@ -92,7 +82,7 @@ public class Advice extends NamespaceElementImpl<Advice, Element> {
 	public Advice clone() {
 		final Advice clone = new Advice();
 		
-		clone.setType(this.type());
+		clone.addModifiers(this.modifiers());
 		
 		clone.setService(
 				this.service().clone()
@@ -108,7 +98,7 @@ public class Advice extends NamespaceElementImpl<Advice, Element> {
 	public VerificationResult verifySelf() {
 		VerificationResult result = Valid.create();
 		
-		if (! (this.type() != null)) {
+		if (! (this.modifiers().size() == 0)) {
 			result = result.and(new BasicProblem(this, "Does not have a type set"));
 		}
 		
@@ -123,7 +113,7 @@ public class Advice extends NamespaceElementImpl<Advice, Element> {
 	 * @see chameleon.core.element.Element#children()
 	 */
 	public List<Element> children() {
-		final List<Element> result = new ArrayList<Element>();
+		final List<Element> result = super.children();
 		
 		Util.addNonNull(this.service(), result);
 		

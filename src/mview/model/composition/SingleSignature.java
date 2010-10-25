@@ -25,6 +25,8 @@ import mview.model.module.JoinPointElement;
 
 import org.rejuse.association.SingleAssociation;
 
+import com.sun.xml.internal.ws.server.SingletonResolver;
+
 import chameleon.core.element.Element;
 import chameleon.core.reference.SimpleReference;
 import chameleon.core.validation.BasicProblem;
@@ -47,7 +49,7 @@ public abstract class SingleSignature<E extends SingleSignature<E,JPE>,JPE exten
 	/**
 	 * @param joinPoint
 	 */
-	public SingleSignature(JPE joinPoint) {
+	public SingleSignature(SimpleReference<JPE> joinPoint) {
 		this();
 		setShadow(joinPoint);
 	}
@@ -55,13 +57,13 @@ public abstract class SingleSignature<E extends SingleSignature<E,JPE>,JPE exten
 	/*
 	 * Accessors for joinPoint  
 	 */
-	private SingleAssociation<SingleSignature, JPE> _shadow =
-		new SingleAssociation<SingleSignature, JPE>(this);
+	private SingleAssociation<SingleSignature<E,JPE>, SimpleReference<JPE>> _shadow =
+		new SingleAssociation<SingleSignature<E,JPE>, SimpleReference<JPE>>(this);
 
 	/**
 	 * @return the joinPoint
 	 */
-	public JPE shadow() {
+	public SimpleReference<JPE> shadow() {
 		if (_shadow != null)
 			return _shadow.getOtherEnd();
 		else
@@ -71,7 +73,7 @@ public abstract class SingleSignature<E extends SingleSignature<E,JPE>,JPE exten
 	/**
 	 * @param joinPoint the joinPoint to set
 	 */
-	public void setShadow(JPE relation) {
+	public void setShadow(SimpleReference<JPE> relation) {
 		if (relation != null)
 			_shadow.connectTo(relation.parentLink());
 	}
@@ -85,7 +87,7 @@ public abstract class SingleSignature<E extends SingleSignature<E,JPE>,JPE exten
 		final E clone =	(E) super.clone();
 	
 		clone.setShadow(
-				(JPE) this.shadow().clone()
+				(SimpleReference<JPE>) this.shadow().clone()
 		);
 		
 		return clone;

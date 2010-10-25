@@ -37,19 +37,20 @@ import chameleon.core.validation.VerificationResult;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
- *
+ * 
  */
-public class Actor<D extends Declaration> extends ElementWithModifiersImpl<Actor<D>, Element> {
+public class Actor<D extends Declaration> extends
+		ElementWithModifiersImpl<Actor<D>, Element> {
 
 	// list of prop (rich join point properties)
 	OrderedMultiAssociation<Actor<?>, SimpleReference<D>> _props =
-		new OrderedMultiAssociation<Actor<?>, SimpleReference<D>>(this);
+			new OrderedMultiAssociation<Actor<?>, SimpleReference<D>>(
+																					this);
 
-	
 	public Actor() {
 		super();
 	}
-	
+
 	/**
 	 * @param modifier
 	 */
@@ -57,21 +58,21 @@ public class Actor<D extends Declaration> extends ElementWithModifiersImpl<Actor
 		this();
 		addModifier(modifier);
 	}
-	
+
 	/**
 	 * @return
 	 */
 	public List<SimpleReference<D>> props() {
 		return _props.getOtherEnds();
 	}
-	
+
 	/**
 	 * @param relation
 	 */
 	public void addProp(SimpleReference<D> relation) {
 		_props.add(relation.parentLink());
 	}
-	
+
 	/**
 	 * @param relations
 	 */
@@ -80,73 +81,82 @@ public class Actor<D extends Declaration> extends ElementWithModifiersImpl<Actor
 			this.addProp(relation);
 		}
 	}
-	
+
 	/**
 	 * @return the guaranteed single modifier of this Actor
 	 */
 	private PropModifier<D> modifier() {
 		return (PropModifier<D>) modifiers().get(0);
 	}
-	
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see chameleon.core.element.Element#children()
 	 */
 	@Override
 	public List<Element> children() {
 		List<Element> result = super.children();
-		
+
 		result.addAll(props());
-		
+
 		return result;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see chameleon.core.element.ElementImpl#clone()
 	 */
 	@Override
 	public Actor<D> clone() {
 		final Actor<D> clone = new Actor<D>();
-		
+
 		clone.addModifier(modifier().clone());
-		
+
 		for (SimpleReference<D> reference : props()) {
-			clone.addProp(reference.clone());			
+			clone.addProp(reference.clone());
 		}
-		
+
 		return clone;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see chameleon.core.element.ElementImpl#verifySelf()
 	 */
 	@Override
 	public VerificationResult verifySelf() {
 		final VerificationResult result = Valid.create();
-		
-		if ( ! ( ( this.modifiers().size() > 0 ) && ( this.modifiers().size() < 2 ) ) ) {
-			result.and(new BasicProblem(this, "Must contain a single prop modifier"));
+
+		if (!((this.modifiers().size() > 0) && (this.modifiers().size() < 2))) {
+			result.and(new BasicProblem(this,
+					"Must contain a single prop modifier"));
 		}
-		
-		if ( ! ( this.props().size() > 0 )) {
-			result.and(new BasicProblem(this, "Does not contain an actor property"));
+
+		if (!(this.props().size() > 0)) {
+			result.and(new BasicProblem(this,
+					"Does not contain an actor property"));
 		}
-		
+
 		for (SimpleReference<D> relation : props()) {
 			D declaration = null;
-			
+
 			try {
 				declaration = relation.getElement();
 			} catch (LookupException e) {
-				result.and(new BasicProblem(this, "Invalid reference to declaration"));
+				result.and(new BasicProblem(this,
+						"Invalid reference to declaration"));
 			}
-			
-			if ( declaration instanceof Interface ) {
-				result.and(new BasicProblem(this, "Contains declaration of invalid type"));
+
+			if (declaration instanceof Interface) {
+				result.and(new BasicProblem(this,
+						"Contains declaration of invalid type: " + declaration));
 			}
-			//relation.nearestAncestor(c)
+			// relation.nearestAncestor(c)
 		}
-		
+
 		return result;
 	}
 
