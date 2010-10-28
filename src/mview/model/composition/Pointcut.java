@@ -62,27 +62,27 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element> {
 	/*
 	 * SIGNATURES
 	 */
-	private OrderedMultiAssociation<Pointcut,Signature<?>> _signatures =
-		new OrderedMultiAssociation<Pointcut,Signature<?>>(this);
+	private OrderedMultiAssociation<Pointcut,PointcutSignature> _signatures =
+		new OrderedMultiAssociation<Pointcut,PointcutSignature>(this);
 	
 	/**
 	 * @return
 	 */
-	public List<Signature<?>> signatures() {
+	public List<PointcutSignature> signatures() {
 		return _signatures.getOtherEnds();
 	}
 	
 	/**
 	 * @param signature
 	 */
-	public void addSignature(Signature<?> signature) {
+	public void addSignature(PointcutSignature signature) {
 		_signatures.add(signature.parentLink());
 	}
 	
 	/**
 	 * @param signature
 	 */
-	public void removeJoinPoint(Signature<?> signature) {
+	public void removeJoinPoint(PointcutSignature signature) {
 		_signatures.remove(signature.parentLink());
 	}
 	
@@ -143,7 +143,7 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element> {
 		clone.addModifiers(this.modifiers());
 		
 		// signatures
-		for (Signature<?> sig : this.signatures()) {
+		for (PointcutSignature sig : this.signatures()) {
 			clone.addSignature(sig.clone());
 		}
 		

@@ -103,7 +103,7 @@ public class AOComposition extends MViewDeclaration<AOComposition, Element> {
 	}
 
 	/* (non-Javadoc)
-	 * @see mstage.model.namespace.MStageDeclaration#cloneThis()
+	 * @see mview.model.namespace.MViewDeclaration#cloneThis()
 	 */
 	@Override
 	protected AOComposition cloneThis() {
@@ -111,7 +111,7 @@ public class AOComposition extends MViewDeclaration<AOComposition, Element> {
 	}
 
 	/* (non-Javadoc)
-	 * @see mstage.model.namespace.MStageDeclaration#clone()
+	 * @see mview.model.namespace.MViewDeclaration#clone()
 	 */
 	@Override
 	public AOComposition clone() {
@@ -129,7 +129,7 @@ public class AOComposition extends MViewDeclaration<AOComposition, Element> {
 	}
 
 	/* (non-Javadoc)
-	 * @see mstage.model.namespace.MStageDeclaration#children()
+	 * @see mview.model.namespace.MViewDeclaration#children()
 	 */
 	@Override
 	public List<Element> children() {
@@ -142,7 +142,7 @@ public class AOComposition extends MViewDeclaration<AOComposition, Element> {
 	}
 
 	/* (non-Javadoc)
-	 * @see mstage.model.namespace.MStageDeclaration#verifySelf()
+	 * @see mview.model.namespace.MViewDeclaration#verifySelf()
 	 */
 	@Override
 	public VerificationResult verifySelf() {

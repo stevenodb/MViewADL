@@ -19,152 +19,328 @@
  */
 package mview.model.composition;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
-import org.rejuse.association.OrderedMultiAssociation;
-
+import mview.model.module.JoinPointElement;
 import mview.model.module.Service;
 
+import org.rejuse.predicate.UnsafePredicate;
+
+import com.sun.org.apache.xerces.internal.impl.xs.identity.Selector.Matcher;
+
 import chameleon.core.element.Element;
+import chameleon.core.lookup.LookupException;
+import chameleon.core.method.MethodSignature;
 import chameleon.core.reference.SimpleReference;
 import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.VerificationResult;
+import chameleon.core.variable.FormalParameter;
+import chameleon.oo.type.TypeReference;
+import chameleon.util.Pair;
 import chameleon.util.Util;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
- *
+ * 
  */
-public class PatternSignature<E extends PatternSignature<E>> 
-						extends Signature<PatternSignature<E>> {
-	
+public class PatternSignature extends
+		PointcutSignature<PatternSignature, Service> {
+
+	// eg: *, *Map, System*, newspaper..Article
+	private String _returnTypePattern;
+
+	// eg: *, do*, fetch*
+	private String _signaturePattern;
+
+	// eg: *, .. , *Set set, *List lst, *Person p,
+	private List<Pair<String, String>> _formalParametersPattern;
+
 	/**
-	 * 
+	 * default constructor
 	 */
 	protected PatternSignature() {
 		super();
 	}
+
+	/**
+	 * @param returnTypePattern
+	 * @param signaturePattern
+	 */
+	public PatternSignature(String returnTypePattern,
+			String signaturePattern) {
+		
+		this(
+			returnTypePattern,
+			signaturePattern, 
+			new ArrayList<Pair<String,String>>()
+			);
+	}
 	
 	/**
-	 * @param rawPattern
+	 * @param returnTypePattern
+	 * @param signaturePattern
+	 * @param formalParamPatterns
 	 */
-	public PatternSignature(String rawPattern) {
+	public PatternSignature(String returnTypePattern,
+			String signaturePattern,
+			List<Pair<String, String>> formalParamPatterns) {
 		this();
-		this._rawPattern = rawPattern;
+		
+		_returnTypePattern = returnTypePattern;
+		_signaturePattern = signaturePattern;
+		_formalParametersPattern = formalParamPatterns;
 	}
 
-
-	/*
-	 * The raw pattern
-	 */
-	private String _rawPattern;
-
-	/**
-	 * @return the pattern
-	 */
-	public String rawPattern() {
-		return _rawPattern;
-	}
-
-	/**
-	 * @param pattern the pattern to set
-	 */
-	public void setPattern(String pattern) {
-		_rawPattern = pattern;
-	}
-	
-	
-	
 	/*
 	 * Assessors for service association
 	 */
-	private OrderedMultiAssociation<PatternSignature<?>, SimpleReference<Service>> _services =
-		new OrderedMultiAssociation<PatternSignature<?>, SimpleReference<Service>>(this);
-	
+
 	/**
-	 * @return	a List of references to Services
+	 * @param returnTypePattern
+	 *            the returnTypePattern to set
 	 */
-	public List<SimpleReference<Service>> services() {
-		return _services.getOtherEnds();
-	}
-	
-	/**
-	 * @param relation	reference to the Service to add
-	 */
-	public void addService(SimpleReference<Service> relation) {
-		if (relation != null)
-			_services.add(relation.parentLink());
-	}
-	
-	/**
-	 * @param relation	reference to the Service to remove
-	 */
-	public void removeService(SimpleReference<Service> relation) {
-		if (relation != null)
-			_services.remove(relation.parentLink());
-	}
-	
-	
-	
-	/* (non-Javadoc)
-	 * @see mstage.model.composition.JoinPoint#cloneThis()
-	 */
-	@Override
-	protected E cloneThis() {
-		return (E) new PatternSignature(); 
+	public void setReturnTypePattern(String returnTypePattern) {
+		this._returnTypePattern = returnTypePattern;
 	}
 
-	/* (non-Javadoc)
+	/**
+	 * @return the returnTypePattern
+	 */
+	private String returnTypePattern() {
+		return _returnTypePattern;
+	}
+
+	/**
+	 * @param signaturePattern
+	 *            the signaturePattern to set
+	 */
+	public void setSignaturePattern(String signaturePattern) {
+		this._signaturePattern = signaturePattern;
+	}
+
+	/**
+	 * @return the signaturePattern
+	 */
+	private String signaturePattern() {
+		return _signaturePattern;
+	}
+
+	/**
+	 * @param formalParametersPattern
+	 *            the formalParametersPattern to set
+	 */
+	private void setFormalParametersPattern(
+			List<Pair<String, String>> formalParametersPattern) {
+		this._formalParametersPattern = formalParametersPattern;
+	}
+	
+	public void addFormalParameterPattern(String id, String typePattern) {
+		
+	}
+
+	/**
+	 * @return the formalParametersPattern
+	 */
+	private List<Pair<String, String>> formalParametersPattern() {
+		return _formalParametersPattern;
+	}
+
+	
+	/**
+	 * Convert Wildcards to Regular Expression. Shamelessly stolen from the
+	 * web and possibly adjusted. (RŽal Gagnon)
+	 * @param wildcard	the wildcard pattern to convert
+	 * @return	the resulting regexp
+	 */
+	private String wildcardToRegex(String wildcard) {
+		StringBuffer s = new StringBuffer(wildcard.length());
+		s.append('^');
+		for (int i = 0, is = wildcard.length(); i < is; i++) {
+			char c = wildcard.charAt(i);
+			switch (c) {
+			case '*':
+				s.append(".*");
+				break;
+			case '?':
+				s.append(".");
+				break;
+			// escape special regexp-characters
+			case '(':
+			case ')':
+			case '[':
+			case ']':
+			case '$':
+			case '^':
+			case '.':
+			case '{':
+			case '}':
+			case '|':
+			case '\\':
+				s.append("\\");
+				s.append(c);
+				break;
+			default:
+				s.append(c);
+				break;
+			}
+		}
+		s.append('$');
+		return (s.toString());
+	}	
+	
+	/**
+	 * @return a List of references to Services
+	 * @throws LookupException
+	 */
+	@SuppressWarnings("unchecked")
+	public List<SimpleReference<Service>> services() throws LookupException {
+
+		List<SimpleReference<Service>> result =
+				new ArrayList<SimpleReference<Service>>();
+
+		try {
+			getNamespace().descendants(Service.class,
+					new UnsafePredicate<Service, LookupException>() {
+
+						@Override
+						public boolean eval(Service service)
+								throws LookupException {
+
+		boolean evalResult;
+
+	// 1. deal with service signatures
+			
+		String reSigPattern 
+			= wildcardToRegex(signaturePattern());
+
+		String signature = service.signature().name();
+		
+		evalResult = signature.matches(reSigPattern);
+			
+
+	// 2. deal with return type
+			
+		if (evalResult) {
+			
+			String reReturnType 
+				= wildcardToRegex(returnTypePattern());
+			
+			String returnTypeName 
+				= service.returnType().getType().getName();				
+
+			evalResult &= returnTypeName.matches(reReturnType);
+			
+		}
+			
+
+	// 3. deal with formal parameters
+		
+		if (evalResult) {
+
+			if (service.formalParameters().size() 
+								< formalParametersPattern().size() ) {
+				evalResult = false;
+			} else {
+
+				for (int i = 0; i < formalParametersPattern().size(); i++) {
+					
+					Pair<String,String> formalParam 
+						= formalParametersPattern().get(i);
+					
+					String reFormalParamType = wildcardToRegex(formalParam.first());
+					
+					String formalParamType 
+						= service.formalParameters().get(i).getType().getName();
+							
+					evalResult &= formalParamType.matches(reFormalParamType);
+				}
+			}
+		}
+				
+		return evalResult;
+
+						}
+					});
+		} catch (Exception e) {
+			throw new LookupException("Exception during Declaration lookup");
+		}
+
+		return result;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see mview.model.composition.JoinPoint#cloneThis()
+	 */
+	@Override
+	protected PatternSignature cloneThis() {
+		return new PatternSignature();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see chameleon.core.element.ElementImpl#clone()
 	 */
 	@Override
-	public E clone() {
-		final E clone = (E) super.clone();
-		
-		// 1
-		clone.setPattern(
-				this.rawPattern() //string is immutable.
-		);
-		
-		// 2
-		for (SimpleReference<Service> ref : this.services()) {
-			SimpleReference<Service> localClone = ref.clone();
-			
-			clone.addService(localClone);
-		}
+	public PatternSignature clone() {
+		final PatternSignature clone = super.clone();
+
+		clone.setReturnTypePattern(returnTypePattern());
+		clone.setSignaturePattern(signaturePattern());
+		clone.setFormalParametersPattern(formalParametersPattern());
 		
 		return clone;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see chameleon.core.element.ElementImpl#verifySelf()
 	 */
 	@Override
 	public VerificationResult verifySelf() {
 		VerificationResult result = super.verifySelf();
-		
-		if ( ! (this.rawPattern() != null )  ) {
-			result = result.and(new BasicProblem(this, "Raw pattern is null"));
+
+		if (!(this.returnTypePattern() != null)) {
+			result =
+					result.and(new BasicProblem(this,
+							"returnType patterns is null"));
+		}
+
+		if (!(this.signaturePattern() != null)) {
+			result =
+					result.and(new BasicProblem(this,
+							"signature patterns is null"));
 		}
 		
-		if ( ! (this.services().size() >= 0) ) {
-			//nothing
+		if (!(this.formalParametersPattern() != null)) {
+			result =
+					result.and(new BasicProblem(this,
+							"returnType patterns is null"));
 		}
-		
+
 		return result;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see chameleon.core.element.Element#children()
 	 */
 	public List<Element> children() {
 		final List<Element> result = super.children();
-		
-		Util.addNonNull(this.rawPattern(), result);
-		result.addAll(this.services());
-		
+
+		// Util.addNonNull(this.rawPattern(), result);
+		try {
+			result.addAll(this.services());
+		} catch (LookupException e) {
+		}
+
 		return result;
 	}
-
 
 }

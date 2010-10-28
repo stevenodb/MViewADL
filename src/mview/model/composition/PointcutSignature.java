@@ -22,23 +22,43 @@ package mview.model.composition;
 import java.util.ArrayList;
 import java.util.List;
 
+import mview.model.module.JoinPointElement;
+import mview.model.module.Service;
+
 import chameleon.core.element.Element;
+import chameleon.core.lookup.LookupException;
 import chameleon.core.namespace.NamespaceElementImpl;
+import chameleon.core.reference.SimpleReference;
 import chameleon.core.validation.Valid;
 import chameleon.core.validation.VerificationResult;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
- *
+ * 
  */
-public abstract class Signature<E extends Signature<E>> extends NamespaceElementImpl<E, Element> {
+public abstract class PointcutSignature
+			<E extends PointcutSignature<E, JPE>, 
+			JPE extends JoinPointElement>
+		extends	NamespaceElementImpl<E, Element> {
+
+	
+	public static PointcutSignature createSignature() {
+		return null;
+	}
 
 	/**
-	 * @return An incomplete clone with the correct sub-Type 
+	 * @return
+	 */
+	public abstract List<SimpleReference<JPE>> services() throws LookupException;
+
+	/**
+	 * @return An incomplete clone with the correct sub-Type
 	 */
 	protected abstract E cloneThis();
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see chameleon.core.element.ElementImpl#clone()
 	 */
 	@Override
@@ -47,7 +67,9 @@ public abstract class Signature<E extends Signature<E>> extends NamespaceElement
 		return clone;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see chameleon.core.element.ElementImpl#verifySelf()
 	 */
 	@Override
@@ -55,7 +77,9 @@ public abstract class Signature<E extends Signature<E>> extends NamespaceElement
 		return Valid.create();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see chameleon.core.element.Element#children()
 	 */
 	public List<Element> children() {
