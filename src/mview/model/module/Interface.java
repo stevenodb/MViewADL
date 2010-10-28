@@ -73,7 +73,7 @@ public class Interface extends MViewDeclaration<Interface, Element> {
 
 	
 	/* (non-Javadoc)
-	 * @see mstage.model.namespace.MStageDeclaration#cloneThis()
+	 * @see mview.model.namespace.MViewDeclaration#cloneThis()
 	 */
 	@Override
 	protected Interface cloneThis() {
@@ -81,7 +81,7 @@ public class Interface extends MViewDeclaration<Interface, Element> {
 	}
 
 	/* (non-Javadoc)
-	 * @see mstage.model.namespace.MStageDeclaration#clone()
+	 * @see mview.model.namespace.MViewDeclaration#clone()
 	 */
 	@Override
 	public Interface clone() {
@@ -97,7 +97,7 @@ public class Interface extends MViewDeclaration<Interface, Element> {
 	}
 
 	/* (non-Javadoc)
-	 * @see mstage.model.namespace.MStageDeclaration#verifySelf()
+	 * @see mview.model.namespace.MViewDeclaration#verifySelf()
 	 */
 	@Override
 	public VerificationResult verifySelf() {
@@ -111,7 +111,7 @@ public class Interface extends MViewDeclaration<Interface, Element> {
 	}
 
 	/* (non-Javadoc)
-	 * @see mstage.model.namespace.MStageDeclaration#children()
+	 * @see mview.model.namespace.MViewDeclaration#children()
 	 */
 	@Override
 	public List<Element> children() {

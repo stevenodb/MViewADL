@@ -23,7 +23,7 @@ public class Property extends JoinPointElement<Property, Element> {
 		
 
 	/* (non-Javadoc)
-	 * @see mstage.model.namespace.MStageDeclaration#cloneThis()
+	 * @see mview.model.namespace.MViewDeclaration#cloneThis()
 	 */
 	@Override
 	protected Property cloneThis() {

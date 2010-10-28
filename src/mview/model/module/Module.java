@@ -181,7 +181,7 @@ public abstract class Module<E extends Module<E>> extends MViewDeclaration<E, El
 	}
 
 	/* (non-Javadoc)
-	 * @see mstage.model.namespace.MStageDeclaration#children()
+	 * @see mview.model.namespace.MViewDeclaration#children()
 	 */
 	@Override
 	public List<Element> children() {

@@ -39,26 +39,28 @@ import chameleon.util.Util;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
- *
- * @param <E>	Element
- * @param <P>	Parent Element
+ * 
+ * @param <E>
+ *            Element
+ * @param <P>
+ *            Parent Element
  */
-public abstract class MViewDeclaration<E extends MViewDeclaration<E,P>, P extends Element> 
-	extends NamespaceElementImpl<E,P> implements Declaration<E,P,SimpleNameSignature,E> {
-	
+public abstract class MViewDeclaration<E extends MViewDeclaration<E, P>, P extends Element>
+		extends NamespaceElementImpl<E, P> implements
+		Declaration<E, P, SimpleNameSignature, E> {
+
 	/**
 	 * Default constructor
 	 */
 	protected MViewDeclaration() {
 	}
-	
+
 	/**
 	 * @param signature
 	 */
 	protected MViewDeclaration(SimpleNameSignature signature) {
 		setSignature(signature);
 	}
-
 
 	public E actualDeclaration() throws LookupException {
 		return (E) this;
@@ -68,16 +70,22 @@ public abstract class MViewDeclaration<E extends MViewDeclaration<E,P>, P extend
 		return new UniversalScope();
 	}
 
-	public Declaration<?, ?, SimpleNameSignature, E> selectionDeclaration() throws LookupException {
+	public Declaration<?, ?, SimpleNameSignature, E> selectionDeclaration()
+			throws LookupException {
 		return this;
 	}
 
-	
-	private final SingleAssociation<MViewDeclaration<E,P>, SimpleNameSignature> _signature = 
-		new SingleAssociation<MViewDeclaration<E,P>, SimpleNameSignature>(this); 
+	/*
+	 * SIGNATURE
+	 */
 
-	
-	/* (non-Javadoc)
+	private final SingleAssociation<MViewDeclaration<E, P>, SimpleNameSignature> _signature =
+			new SingleAssociation<MViewDeclaration<E, P>, SimpleNameSignature>(
+					this);
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see chameleon.core.declaration.Declaration#signature()
 	 */
 	public SimpleNameSignature signature() {
@@ -88,15 +96,16 @@ public abstract class MViewDeclaration<E extends MViewDeclaration<E,P>, P extend
 	 * @param signature
 	 */
 	public void setSignature(Signature signature) {
-		if(signature != null) {
+		if (signature != null) {
 			_signature.connectTo(signature.parentLink());
 		} else {
 			_signature.connectTo(null);
 		}
 	}
 
-		
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see chameleon.core.declaration.Declaration#setName(java.lang.String)
 	 */
 	@Override
@@ -104,52 +113,57 @@ public abstract class MViewDeclaration<E extends MViewDeclaration<E,P>, P extend
 		signature().setName(name);
 	}
 
-	
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see chameleon.core.declaration.Declaration#declarator()
 	 */
 	public Declaration declarator() {
 		return this;
 	}
-	
-	
+
 	/**
-	 * @return An incomplete clone with the correct sub-Type 
+	 * @return An incomplete clone with the correct sub-Type
 	 */
 	protected abstract E cloneThis();
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see chameleon.core.element.ElementImpl#clone()
 	 */
 	@Override
 	public E clone() {
 		final E clone = cloneThis();
-		
+
 		clone.setSignature(signature().clone());
-		
+
 		return clone;
 	}
 
-	/* Override in Subtypes
-	 * (non-Javadoc)
+	/*
+	 * Override in Subtypes (non-Javadoc)
+	 * 
 	 * @see chameleon.core.element.Element#children()
 	 */
 	public List<Element> children() {
 		final List<Element> result = new ArrayList<Element>();
-		
+
 		Util.addNonNull(signature(), result);
-		
+
 		return result;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see chameleon.core.element.ElementImpl#verifySelf()
 	 */
 	@Override
 	public VerificationResult verifySelf() {
 		VerificationResult result = Valid.create();
-		
-		if ( ! (signature() != null) ) {
+
+		if (!(signature() != null)) {
 			result = result.and(new BasicProblem(this, "No valid signature"));
 		}
 		return result;

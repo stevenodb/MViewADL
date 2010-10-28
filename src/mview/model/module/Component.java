@@ -46,7 +46,7 @@ public class Component<E extends Component<E>> extends Module<E> {
 	
 
 	/* (non-Javadoc)
-	 * @see mstage.model.module.Module#cloneThis()
+	 * @see mview.model.module.Module#cloneThis()
 	 */
 	@Override
 	protected E cloneThis() {
@@ -54,7 +54,7 @@ public class Component<E extends Component<E>> extends Module<E> {
 	}
 	
 	/* (non-Javadoc)
-	 * @see mstage.model.module.Module#verifySelf()
+	 * @see mview.model.module.Module#verifySelf()
 	 */
 	@Override
 	public VerificationResult verifySelf() {

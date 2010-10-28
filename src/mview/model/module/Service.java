@@ -36,12 +36,16 @@ import chameleon.support.member.simplename.SimpleNameMethodHeader;
 import chameleon.util.Util;
 
 public class Service extends JoinPointElement<Service, Element> {
-	
-	
+
 	/**
 	 * Default constructor
 	 */
 	protected Service() {
+	}
+
+	public Service(MethodSignature signature, TypeReference returnType,
+			List<FormalParameter> formalParameters) {
+		this(signature,returnType,formalParameters,null);
 	}
 	
 	/**
@@ -50,49 +54,51 @@ public class Service extends JoinPointElement<Service, Element> {
 	 * @param formalParameters
 	 * @param properties
 	 */
-	public Service(MethodSignature signature, TypeReference returnType, 
-			List<FormalParameter> formalParameters, 
+	public Service(MethodSignature signature, TypeReference returnType,
+			List<FormalParameter> formalParameters,
 			List<SimpleReference<Property>> properties) {
-		
+
 		super();
-		
-		
-		//return type
-		if(returnType != null) {
+
+		// return type
+		if (returnType != null) {
 			setReturnType(returnType);
 		}
-		
-		
-		//signature (+formal parameters)
+
+		// signature (+formal parameters)
 		MethodHeader header = new SimpleNameMethodHeader(signature.toString());
-		
+
 		if (formalParameters != null) {
 			for (FormalParameter formalParameter : formalParameters) {
 				header.addFormalParameter(formalParameter);
 			}
 		}
 		setHeader(header);
-		
-		
-		//properties
+
+		// properties
 		if (properties != null) {
 			for (SimpleReference<Property> property : properties) {
 				addProperty(property);
 			}
 		}
 	}
-	
 
-	/* (non-Javadoc)
-	 * @see mstage.model.namespace.MStageDeclaration#signature()
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see mview.model.namespace.MViewDeclaration#signature()
 	 */
 	@Override
 	public SimpleNameSignature signature() {
 		return new SimpleNameSignature(header().name());
 	}
 
-	/* (non-Javadoc)
-	 * @see chameleon.core.method.MethodHeader#addFormalParameter(chameleon.core.variable.FormalParameter)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * chameleon.core.method.MethodHeader#addFormalParameter(chameleon.core.
+	 * variable.FormalParameter)
 	 */
 	/**
 	 * @param arg
@@ -101,32 +107,31 @@ public class Service extends JoinPointElement<Service, Element> {
 		header().addFormalParameter(arg);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see chameleon.core.method.MethodHeader#formalParameters()
 	 */
 	/**
-	 * @return	a List of FormalParameter objects
+	 * @return a List of FormalParameter objects
 	 */
 	public List<FormalParameter> formalParameters() {
 		return header().formalParameters();
 	}
 
-	
-	
 	/*
 	 * Association to the return type
 	 */
 	private final SingleAssociation<Service, TypeReference> _returnType =
-		new SingleAssociation<Service, TypeReference>(this);
-	
-	
+			new SingleAssociation<Service, TypeReference>(this);
+
 	/**
-	 * @return	the service's return type
+	 * @return the service's return type
 	 */
 	public TypeReference returnType() {
 		return _returnType.getOtherEnd();
 	}
-	
+
 	/**
 	 * @param returnType
 	 */
@@ -135,24 +140,23 @@ public class Service extends JoinPointElement<Service, Element> {
 			_returnType.connectTo(returnType.parentLink());
 		}
 	}
-	
-	
-	
+
 	/*
-	 * Association to the Service 
+	 * Association to the Service
 	 */
 	private final SingleAssociation<Service, MethodHeader> _header =
-		new SingleAssociation<Service, MethodHeader>(this);
-	
+			new SingleAssociation<Service, MethodHeader>(this);
+
 	/**
 	 * @return the service's header
 	 */
 	public MethodHeader header() {
 		return _header.getOtherEnd();
 	}
-	
+
 	/**
-	 * @param header	the header to set
+	 * @param header
+	 *            the header to set
 	 */
 	public void setHeader(MethodHeader header) {
 		if (header != null) {
@@ -160,110 +164,119 @@ public class Service extends JoinPointElement<Service, Element> {
 		}
 	}
 
-
-	
 	/*
 	 * The service's attached properties
 	 */
 	private final OrderedMultiAssociation<Service, SimpleReference<Property>> _attachedProperties =
-		new OrderedMultiAssociation<Service, SimpleReference<Property>>(this);
-	
+			new OrderedMultiAssociation<Service, SimpleReference<Property>>(
+					this);
+
 	/**
-	 * @return	the attached properties
+	 * @return the attached properties
 	 */
 	public List<SimpleReference<Property>> attachedProperties() {
 		return _attachedProperties.getOtherEnds();
 	}
-	
+
 	/**
-	 * @param relation	the property to attach
+	 * @param relation
+	 *            the property to attach
 	 */
 	public void addProperty(SimpleReference<Property> relation) {
 		_attachedProperties.add(relation.parentLink());
 	}
-	
+
 	/**
-	 * @param relation the service to remove from the aggregation
+	 * @param relation
+	 *            the service to remove from the aggregation
 	 */
 	public void removeProperty(SimpleReference<Property> relation) {
 		_attachedProperties.remove(relation.parentLink());
 	}
 
-	
+	// /* (non-Javadoc)
+	// * @see mview.model.namespace.MViewDeclaration#cloneThis()
+	// */
+	// @Override
+	// protected Service cloneThis() throws InstantiationException,
+	// IllegalAccessException {
+	// return this.getClass().newInstance();
+	// }
 
-//	/* (non-Javadoc)
-//	 * @see mstage.model.namespace.MStageDeclaration#cloneThis()
-//	 */
-//	@Override
-//	protected Service cloneThis() throws InstantiationException, IllegalAccessException {
-//		return this.getClass().newInstance();
-//	}	
-	
-	
-	/* (non-Javadoc)
-	 * @see mstage.model.namespace.MStageDeclaration#cloneThis()
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see mview.model.namespace.MViewDeclaration#cloneThis()
 	 */
 	@Override
 	protected Service cloneThis() {
 		return new Service();
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see chameleon.core.element.ElementImpl#clone()
 	 */
 	@Override
 	public Service clone() {
 		final Service clone = super.clone();
-		
+
 		clone.setHeader(
 				this.header().clone()
-		);
-		
+				);
+
 		clone.setReturnType(
 				this.returnType().clone()
-		);
-		
+				);
+
 		for (SimpleReference<Property> property : attachedProperties()) {
 			SimpleReference<Property> localClone = property.clone();
-			
+
 			clone.addProperty(localClone);
 		}
-		
+
 		return clone;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see chameleon.core.element.ElementImpl#verifySelf()
 	 */
 	@Override
 	public VerificationResult verifySelf() {
 		VerificationResult result = Valid.create();
-		
-		if ( ! (this.header() != null) ) {
+
+		if (!(this.header() != null)) {
 			result = result.and(new BasicProblem(this, "Missing header"));
 		}
-		
-		if ( ! (this.returnType() != null) ) {
+
+		if (!(this.returnType() != null)) {
 			result = result.and(new BasicProblem(this, "ReturnType is null"));
 		}
 
-		if ( ! (this.attachedProperties() != null) ) {
-			result = result.and(new BasicProblem(this, "AttachedProperties is null"));
+		if (!(this.attachedProperties() != null)) {
+			result =
+					result.and(new BasicProblem(this,
+							"AttachedProperties is null"));
 		}
-		
+
 		return result;
 	}
 
-	/* (non-Javadoc)
-	 * @see mstage.model.namespace.MStageDeclaration#children()
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see mview.model.namespace.MViewDeclaration#children()
 	 */
 	@Override
 	public List<Element> children() {
 		final List<Element> result = super.children();
-		
+
 		Util.addNonNull(this.header(), result);
 		result.addAll(attachedProperties());
-		
+
 		return result;
 	}
 

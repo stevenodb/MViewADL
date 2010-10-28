@@ -67,7 +67,7 @@ public class Connector<E extends Connector<E>> extends Module<E> {
 
 	
 	/* (non-Javadoc)
-	 * @see mstage.model.module.Module#cloneThis()
+	 * @see mview.model.module.Module#cloneThis()
 	 */
 	@Override
 	protected E cloneThis() {
@@ -75,7 +75,7 @@ public class Connector<E extends Connector<E>> extends Module<E> {
 	}
 
 	/* (non-Javadoc)
-	 * @see mstage.model.module.Module#clone()
+	 * @see mview.model.module.Module#clone()
 	 */
 	@Override
 	public E clone() {
@@ -102,7 +102,7 @@ public class Connector<E extends Connector<E>> extends Module<E> {
 	}
 
 	/* (non-Javadoc)
-	 * @see mstage.model.module.Module#children()
+	 * @see mview.model.module.Module#children()
 	 */
 	@Override
 	public List<Element> children() {

@@ -59,31 +59,31 @@ public class Composite<E extends Composite<E>> extends Component<E> implements M
 
 	
 	/* (non-Javadoc)
-	 * @see mstage.model.module.ModuleContainer#modules()
+	 * @see mview.model.module.ModuleContainer#modules()
 	 */
-	public List<SimpleReference<Module<?>>> modules() {
+	public List<Module> modules() {
 		return _modules.getOtherEnds();
 	}
 
 	/* (non-Javadoc)
-	 * @see mstage.model.module.ModuleContainer#addModule(chameleon.core.reference.SimpleReference)
+	 * @see mview.model.module.ModuleContainer#addModule(chameleon.core.reference.SimpleReference)
 	 */
-	public void addModule(SimpleReference<Module<?>> relation) {
+	public void addModule(Module relation) {
 		_modules.add(relation.parentLink());
 	}
 	
 	
 	/* (non-Javadoc)
-	 * @see mstage.model.module.ModuleContainer#removeModule(chameleon.core.reference.SimpleReference)
+	 * @see mview.model.module.ModuleContainer#removeModule(chameleon.core.reference.SimpleReference)
 	 */
-	public void removeModule(SimpleReference<Module<?>> relation) {
+	public void removeModule(Module relation) {
 		_modules.remove(relation.parentLink());
 	}
 	
 
 
 	/* (non-Javadoc)
-	 * @see mstage.model.module.Component#cloneThis()
+	 * @see mview.model.module.Component#cloneThis()
 	 */
 	@Override
 	protected E cloneThis() {
@@ -91,7 +91,7 @@ public class Composite<E extends Composite<E>> extends Component<E> implements M
 	}
 
 	/* (non-Javadoc)
-	 * @see mstage.model.module.Module#clone()
+	 * @see mview.model.module.Module#clone()
 	 */
 	@Override
 	public E clone() {
@@ -107,7 +107,7 @@ public class Composite<E extends Composite<E>> extends Component<E> implements M
 	}
 
 	/* (non-Javadoc)
-	 * @see mstage.model.Component#verifySelf()
+	 * @see mview.model.Component#verifySelf()
 	 */
 	@Override
 	public VerificationResult verifySelf() {
@@ -121,7 +121,7 @@ public class Composite<E extends Composite<E>> extends Component<E> implements M
 	}
 	
 	/* (non-Javadoc)
-	 * @see mstage.model.namespace.MStageDeclaration#children()
+	 * @see mview.model.namespace.MViewDeclaration#children()
 	 */
 	@Override
 	public List<Element> children() {

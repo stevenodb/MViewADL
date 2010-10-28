@@ -141,7 +141,7 @@ public class Application<A extends Application<A>>
 			
 	
 	/* (non-Javadoc)
-	 * @see mstage.model.namespace.MStageDeclaration#cloneThis()
+	 * @see mview.model.namespace.MViewDeclaration#cloneThis()
 	 */
 	@Override
 	protected A cloneThis() {
@@ -149,7 +149,7 @@ public class Application<A extends Application<A>>
 	}
 	
 	/* (non-Javadoc)
-	 * @see mstage.model.application.HostMapper#clone()
+	 * @see mview.model.application.HostMapper#clone()
 	 */
 	@Override
 	public A clone() {
@@ -172,7 +172,7 @@ public class Application<A extends Application<A>>
 	}
 
 	/* (non-Javadoc)
-	 * @see mstage.model.application.HostMapper#children()
+	 * @see mview.model.application.HostMapper#children()
 	 */
 	@Override
 	public List<Element> children() {
@@ -184,7 +184,7 @@ public class Application<A extends Application<A>>
 	}
 
 	/* (non-Javadoc)
-	 * @see mstage.model.application.HostMapper#verifySelf()
+	 * @see mview.model.application.HostMapper#verifySelf()
 	 */
 	@Override
 	public VerificationResult verifySelf() {

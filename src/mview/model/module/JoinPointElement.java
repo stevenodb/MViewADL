@@ -31,7 +31,7 @@ public abstract class JoinPointElement<E extends JoinPointElement<E,P>,P extends
 					extends MViewDeclaration<E,P> {
 
 	/* (non-Javadoc)
-	 * @see mstage.model.namespace.MStageDeclaration#clone()
+	 * @see mview.model.namespace.MViewDeclaration#clone()
 	 */
 	@Override
 	public E clone() {

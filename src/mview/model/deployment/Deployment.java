@@ -33,7 +33,7 @@ public class Deployment extends Application<Deployment> {
 	
 	
 	/* (non-Javadoc)
-	 * @see mstage.model.namespace.MStageDeclaration#cloneThis()
+	 * @see mview.model.namespace.MViewDeclaration#cloneThis()
 	 */
 	@Override
 	protected Deployment cloneThis() {
@@ -41,7 +41,7 @@ public class Deployment extends Application<Deployment> {
 	}
 
 	/* (non-Javadoc)
-	 * @see mstage.model.application.HostMapper#children()
+	 * @see mview.model.application.HostMapper#children()
 	 */
 	@Override
 	public List<Element> children() {
@@ -50,7 +50,7 @@ public class Deployment extends Application<Deployment> {
 	}
 
 	/* (non-Javadoc)
-	 * @see mstage.model.application.HostMapper#verifySelf()
+	 * @see mview.model.application.HostMapper#verifySelf()
 	 */
 	@Override
 	public VerificationResult verifySelf() {
