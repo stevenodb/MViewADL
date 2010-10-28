@@ -1,4 +1,4 @@
-grammar Mstage;
+grammar MView;
 
 options {
   backtrack=true; 
@@ -13,38 +13,42 @@ scope TargetScope {
 }
 
 @parser::header {
-package mstage.parser;
+package mview.parser;
 
-import mstage.model.application.AbstractHost;
-import mstage.model.application.Application;
-import mstage.model.application.Locate;
-import mstage.model.composition.Advice;
-import mstage.model.composition.AdviceType;
-import mstage.model.composition.AOComposition;
-import mstage.model.composition.JoinPoint;
-import mstage.model.composition.JoinpointKind;
-import mstage.model.composition.NamedJoinPoint;
-import mstage.model.composition.PatternJoinPoint;
-import mstage.model.composition.Pointcut;
-import mstage.model.composition.PropertyJoinPoint;
-import mstage.model.composition.SingleJoinPoint;
-import mstage.model.deployment.Deployment;
-import mstage.model.deployment.PhysicalHost;
-import mstage.model.deployment.HostMap;
-import mstage.model.module.Component;
-import mstage.model.module.Composite;
-import mstage.model.module.Connector;
-import mstage.model.module.Interface;
-import mstage.model.module.JoinPointElement;
-import mstage.model.module.Module;
-import mstage.model.module.Property;
-import mstage.model.module.Service;
-import mstage.model.module.ModuleContainer;
-import mstage.model.namespace.MStageDeclaration;
+import mview.model.application.Application;
+import mview.model.application.Host;
+import mview.model.application.Instance;
 
-import mstage.reuse.HostMapping;
-import mstage.reuse.HostMapper;
-import mstage.reuse.Host;
+import mview.model.composition.Actor;
+import mview.model.composition.Advice;
+import mview.model.composition.AOComposition;
+import mview.model.composition.NamedSignature;
+import mview.model.composition.PatternSignature;
+import mview.model.composition.Pointcut;
+//import mview.model.composition.PropertySignature;
+import mview.model.composition.JPSignature;
+import mview.model.composition.SingleSignature;
+import mview.model.composition.modifier.After;
+import mview.model.composition.modifier.Before;
+import mview.model.composition.modifier.Around;
+import mview.model.composition.modifier.Execution;
+import mview.model.composition.modifier.Call;
+import mview.model.composition.modifier.PropModifier;
+
+import mview.model.deployment.Deployment;
+import mview.model.deployment.HostName;
+
+import mview.model.module.Component;
+//import mview.model.module.Composite;
+import mview.model.module.Connector;
+import mview.model.module.Interface;
+import mview.model.module.JoinPointElement;
+import mview.model.module.Module;
+import mview.model.module.ModuleContainer;
+import mview.model.module.Property;
+import mview.model.module.Service;
+
+import mview.model.namespace.MViewDeclaration;
 
 import chameleon.core.compilationunit.CompilationUnit;
 import chameleon.core.declaration.SimpleNameSignature;
@@ -63,7 +67,7 @@ import chameleon.support.input.ChameleonParser;
 }
 
 @lexer::header {
-	package mstage.parser;
+	package mview.parser;
 }
 
 
@@ -75,29 +79,29 @@ compilationUnit returns [CompilationUnit element]
 	NamespacePart npp = new NamespacePart(language().defaultNamespace());
 	$element.add(npp);
 }
-	:	( 
-			ifd=interfaceDeclaration {npp.add($ifd.element);}
-		|
-			cod=componentDeclaration {npp.add($cod.element);} 
-		|		
-			cmd=compositeDeclaration {npp.add($cmd.element);}
-		|
-			cnd=connectorDeclaration {npp.add($cnd.element);}
+	:	(  'abc'
+//			ifd=interfaceDeclaration {npp.add($ifd.element);}
+//		|
+//			cod=componentDeclaration {npp.add($cod.element);} 
+//		|		
+//			cmd=compositeDeclaration {npp.add($cmd.element);}
+//		|
+//			cnd=connectorDeclaration {npp.add($cnd.element);}
 //		|
 //			mid=moduleInstanceDeclaration {npp.add($mid.element);}
-		|
-			apd=applicationDeclaration {
-				npp.add($apd.element);
-				for(Host host : $apd.hosts) {
-					if (host != null) npp.add(host);
-				}
-			}
-		|
-			dpd=deploymentDeclaration {npp.add($dpd.element);}
-		|
-			ahd=abstractHostDeclaration {npp.add($ahd.element);}
-		|	
-			phd=physicalHostDeclaration {npp.add($phd.element);}
+//		|
+//			apd=applicationDeclaration {
+//				npp.add($apd.element);
+//				for(Host host : $apd.hosts) {
+//					if (host != null) npp.add(host);
+//				}
+//			}
+//		|
+//			dpd=deploymentDeclaration {npp.add($dpd.element);}
+///		|
+	//		ahd=abstractHostDeclaration {npp.add($ahd.element);}
+	//	|	
+	//		phd=physicalHostDeclaration {npp.add($phd.element);}
 		)*
 	;
 
@@ -623,7 +627,7 @@ physicalHostBodyDeclaration[PhysicalHost element]
  * HOSTMAPPER
  ********** */
 
-mappingDeclaration[HostMapper element, Class<? extends MStageDeclaration> fromType, Class<? extends Host> toType]
+mappingDeclaration[HostMapper element, Class<? extends MViewDeclaration> fromType, Class<? extends Host> toType]
 	: mapkw=('map'|'locate') name=Identifier rfroms=mappingDeclarationBody[fromType] {
 
 			HostMapping mapping = $element.createEmptyMapping();
@@ -650,7 +654,7 @@ mappingDeclaration[HostMapper element, Class<? extends MStageDeclaration> fromTy
 		
 	;
 
-mappingDeclarationBody[Class<? extends MStageDeclaration> fromType] returns [List<SimpleReference> elements]
+mappingDeclarationBody[Class<? extends MViewDeclaration> fromType] returns [List<SimpleReference> elements]
 	: '{' ( decls = commaSeparatedBodyDecls[fromType] { $elements = $decls.elements; } )? '}'
 	;
 	
@@ -774,7 +778,6 @@ typeArgument
     
 
 
-
 // ANNOTATIONS
 
 annotations
@@ -892,8 +895,14 @@ UnicodeEscape
     ;
     
 Identifier 
-    :   Letter (Letter|JavaIDDigit)*
+//    :   Letter (Letter|JavaIDDigit)*
+    :   Letter (Letter|JavaIDDigit|'*')*
     ;
+    
+//WildCardIdentifier 
+//    :   Letter (Letter|JavaIDDigit|'..'|'*')*
+//    ;
+
 
 /**I found this char range in JavaCC's grammar, but Letter and Digit overlap.
    Still works, but...

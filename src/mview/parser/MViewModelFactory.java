@@ -1,6 +1,6 @@
 /**
  * author:   Steven Op de beeck <steven /at/ opdebeeck /./ org>
- * filename: MstageModelFactory.java
+ * filename: MViewModelFactory.java
  * created:  Jan 22, 2010, 1:59:47 PM
  * license:
  * The code contained in this file is free software: you can redistribute 
@@ -22,9 +22,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringBufferInputStream;
 
-import mstage.model.language.Mstage;
-import mstage.parser.MstageLexer;
-import mstage.parser.MstageParser;
+import mview.model.language.MView;
 
 import org.antlr.runtime.ANTLRInputStream;
 import org.antlr.runtime.CommonTokenStream;
@@ -40,16 +38,16 @@ import chameleon.support.input.ModelFactoryUsingANTLR;
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public class MstageModelFactory extends ModelFactoryUsingANTLR {
+public class MViewModelFactory extends ModelFactoryUsingANTLR {
 
-	public MstageModelFactory() {
-		this(new Mstage());
+	public MViewModelFactory() {
+		this(new MView());
 	}
 	
 	/**
 	 * @param result
 	 */
-	public MstageModelFactory(Language language) {
+	public MViewModelFactory(Language language) {
 		setLanguage(language, ModelFactory.class);
 	}
 
@@ -60,9 +58,9 @@ public class MstageModelFactory extends ModelFactoryUsingANTLR {
 	public ChameleonParser getParser(InputStream inputStream, String fileName)
 			throws IOException {
         ANTLRInputStream input = new ANTLRInputStream(inputStream);
-        MstageLexer lexer = new MstageLexer(input);
+        MViewLexer lexer = new MViewLexer(input);
         CommonTokenStream tokens = new CommonTokenStream(lexer);
-        MstageParser parser = new MstageParser(tokens);
+        MViewParser parser = new MViewParser(tokens);
         parser.setLanguage((Language) language());
         return parser;
 	}
@@ -92,9 +90,9 @@ public class MstageModelFactory extends ModelFactoryUsingANTLR {
 	}
 
 	@Override
-	public MstageModelFactory clone() {
+	public MViewModelFactory clone() {
 		try {
-			return new MstageModelFactory();
+			return new MViewModelFactory();
 		} catch (Exception e) {
 			throw new RuntimeException("Exception while cloning a JavaModelFactory", e);
 		}
