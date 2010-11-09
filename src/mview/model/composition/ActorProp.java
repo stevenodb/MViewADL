@@ -1,6 +1,6 @@
 /**
  * author:   Steven Op de beeck <steven /at/ opdebeeck /./ org>
- * filename: Actor.java
+ * filename: ActorProp.java
  * created:  Oct 7, 2010, 5:27:04 PM
  * license:
  * The code contained in this file is free software: you can redistribute 
@@ -41,29 +41,29 @@ import exception.MergeNotSupportedException;
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  * 
  */
-public class Actor<D extends Declaration> extends
-		ElementWithModifiersImpl<Actor<D>, Element>
-		implements MViewMember<Actor<D>, Element> {
+public class ActorProp<D extends Declaration> extends
+		ElementWithModifiersImpl<ActorProp<D>, Element>
+		implements MViewMember<ActorProp<D>, Element> {
 
 	/**
 	 * default
 	 */
-	public Actor() {
+	public ActorProp() {
 		super();
 	}
 
 	/**
 	 * @param modifier
 	 */
-	public Actor(PropModifier<D> modifier, Class<D> declaration) {
+	public ActorProp(PropModifier<D> modifier, Class<D> declaration) {
 		this();
 		addModifier(modifier);
 		setDeclarationType(declaration);
 	}
 
 	// list of prop values
-	private OrderedMultiAssociation<Actor<D>, SimpleReference<D>> _propValues =
-			new OrderedMultiAssociation<Actor<D>, SimpleReference<D>>(this);
+	private OrderedMultiAssociation<ActorProp<D>, SimpleReference<D>> _propValues =
+			new OrderedMultiAssociation<ActorProp<D>, SimpleReference<D>>(this);
 
 	/**
 	 * @return
@@ -136,7 +136,7 @@ public class Actor<D extends Declaration> extends
 	}
 
 	/**
-	 * @return the guaranteed single modifier of this Actor
+	 * @return the guaranteed single modifier of this ActorProp
 	 */
 	private PropModifier<D> modifier() {
 		return (PropModifier<D>) modifiers().get(0);
@@ -162,8 +162,8 @@ public class Actor<D extends Declaration> extends
 	 * @see chameleon.core.element.ElementImpl#clone()
 	 */
 	@Override
-	public Actor<D> clone() {
-		final Actor<D> clone = new Actor<D>();
+	public ActorProp<D> clone() {
+		final ActorProp<D> clone = new ActorProp<D>();
 
 		clone.addModifier(this.modifier().clone());
 		clone.setDeclarationType(this.declarationType());
@@ -227,7 +227,7 @@ public class Actor<D extends Declaration> extends
 	 * MViewMember)
 	 */
 	@Override
-	public boolean overrides(Actor<D> other) {
+	public boolean overrides(ActorProp<D> other) {
 		return _propsOverride
 				&& this.declarationType().equals(other.declarationType()) &&
 				this.nearestAncestor(RefinableDeclaration.class).hasParent(
@@ -242,9 +242,9 @@ public class Actor<D extends Declaration> extends
 	 * )
 	 */
 	@Override
-	public Actor<D> merge(Actor<D> other) throws MergeNotSupportedException {
+	public ActorProp<D> merge(ActorProp<D> other) throws MergeNotSupportedException {
 
-		Actor<D> result = null;
+		ActorProp<D> result = null;
 
 		if (overrides(other)) {
 			throw new MergeNotSupportedException("This member can only " +
@@ -255,7 +255,7 @@ public class Actor<D extends Declaration> extends
 		}	
 		else {
 			result = this.clone();
-			Actor<D> parent = other.clone();
+			ActorProp<D> parent = other.clone();
 
 			this.addAllPropValues(parent.propValues());
 		}
@@ -288,9 +288,9 @@ public class Actor<D extends Declaration> extends
 	 */
 	@Override
 	public boolean uniSameAs(Element other) throws LookupException {
-		return (other instanceof Actor)
-				&& (this.override() == ((Actor) other).override()) &&
-				modifier().equals(((Actor) other).modifier());
+		return (other instanceof ActorProp)
+				&& (this.override() == ((ActorProp) other).override()) &&
+				modifier().equals(((ActorProp) other).modifier());
 
 	}
 }

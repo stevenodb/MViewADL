@@ -128,15 +128,15 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element>
 	 * @param props
 	 * @return
 	 */
-	private <D extends Declaration> Actor<D> actorProp(
+	private <D extends Declaration> ActorProp<D> actorProp(
 			Class<D> declarationType,
-			List<Actor> props) {
+			List<ActorProp> props) {
 
-		Actor<D> result = null;
+		ActorProp<D> result = null;
 
-		for (Actor actor : props) {
-			if (actor.declarationType().equals(declarationType)) {
-				result = actor;
+		for (ActorProp actorProp : props) {
+			if (actorProp.declarationType().equals(declarationType)) {
+				result = actorProp;
 				break;
 			}
 		}
@@ -145,38 +145,38 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element>
 	}
 
 	// caller
-	OrderedMultiAssociation<Pointcut, Actor> _callerProps =
-			new OrderedMultiAssociation<Pointcut, Actor>(this);
+	OrderedMultiAssociation<Pointcut, ActorProp> _callerProps =
+			new OrderedMultiAssociation<Pointcut, ActorProp>(this);
 
 	/**
-	 * @param actor
+	 * @param actorProp
 	 */
-	public void addCallerProp(Actor actor) {
-		_callerProps.add(actor.parentLink());
+	public void addCallerProp(ActorProp actorProp) {
+		_callerProps.add(actorProp.parentLink());
 	}
 
 	/**
-	 * @param actors
+	 * @param actorProps
 	 */
-	public void addAllCallerProps(List<Actor> actors) {
-		for (Actor actor : actors) {
-			this.addCallerProp(actor);
+	public void addAllCallerProps(List<ActorProp> actorProps) {
+		for (ActorProp actorProp : actorProps) {
+			this.addCallerProp(actorProp);
 		}
 	}
 
 	/**
 	 * Remove actor from caller props
 	 * 
-	 * @param actor
+	 * @param actorProp
 	 */
-	public void removeCallerProp(Actor actor) {
-		_callerProps.remove(actor.parentLink());
+	public void removeCallerProp(ActorProp actorProp) {
+		_callerProps.remove(actorProp.parentLink());
 	}
 
 	/**
 	 * @return
 	 */
-	public List<Actor> callerProps() {
+	public List<ActorProp> callerProps() {
 		return _callerProps.getOtherEnds();
 	}
 
@@ -185,43 +185,43 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element>
 	 * @param declarationType
 	 * @return
 	 */
-	public <D extends Declaration> Actor<D> callerProp(Class<D> declarationType) {
+	public <D extends Declaration> ActorProp<D> callerProp(Class<D> declarationType) {
 		return actorProp(declarationType, callerProps());
 	}
 
 	// callee
-	OrderedMultiAssociation<Pointcut, Actor> _calleeProps =
-			new OrderedMultiAssociation<Pointcut, Actor>(this);
+	OrderedMultiAssociation<Pointcut, ActorProp> _calleeProps =
+			new OrderedMultiAssociation<Pointcut, ActorProp>(this);
 
 	/**
-	 * @param actor
+	 * @param actorProp
 	 */
-	public void addCalleeProp(Actor actor) {
-		_calleeProps.add(actor.parentLink());
+	public void addCalleeProp(ActorProp actorProp) {
+		_calleeProps.add(actorProp.parentLink());
 	}
 
 	/**
-	 * @param actors
+	 * @param actorProps
 	 */
-	public void addAllCalleeProps(List<Actor> actors) {
-		for (Actor actor : actors) {
-			this.addCalleeProp(actor);
+	public void addAllCalleeProps(List<ActorProp> actorProps) {
+		for (ActorProp actorProp : actorProps) {
+			this.addCalleeProp(actorProp);
 		}
 	}
 
 	/**
 	 * Remove actor from callee props
 	 * 
-	 * @param actor
+	 * @param actorProp
 	 */
-	public void removeCalleeProp(Actor actor) {
-		_calleeProps.remove(actor.parentLink());
+	public void removeCalleeProp(ActorProp actorProp) {
+		_calleeProps.remove(actorProp.parentLink());
 	}
 
 	/**
 	 * @return
 	 */
-	public List<Actor> calleeProps() {
+	public List<ActorProp> calleeProps() {
 		return _calleeProps.getOtherEnds();
 	}
 
@@ -230,7 +230,7 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element>
 	 * @param declarationType
 	 * @return
 	 */
-	public <D extends Declaration> Actor<D> calleeProp(Class<D> declarationType) {
+	public <D extends Declaration> ActorProp<D> calleeProp(Class<D> declarationType) {
 		return actorProp(declarationType, calleeProps());
 	}
 
@@ -252,12 +252,12 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element>
 		}
 
 		// callees
-		for (Actor<?> actor : calleeProps()) {
+		for (ActorProp<?> actor : calleeProps()) {
 			clone.addCalleeProp(actor.clone());
 		}
 
 		// callers
-		for (Actor<?> actor : callerProps()) {
+		for (ActorProp<?> actor : callerProps()) {
 			clone.addCallerProp(actor.clone());
 		}
 
@@ -352,12 +352,12 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element>
 		// 3. CallerProps
 
 		// for all caller props
-		for (Actor childCallerProp : child.callerProps()) {
+		for (ActorProp childCallerProp : child.callerProps()) {
 
 			// get the respective prop of the parent, if it has one
 			// in which case, this one's a refinement (merge/overidde) of
 			// the parent's
-			Actor parentCallerProp =
+			ActorProp parentCallerProp =
 					parent.callerProp(childCallerProp.declarationType());
 
 			if (parentCallerProp != null) {
@@ -366,7 +366,7 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element>
 				if (!childCallerProp.overrides(parentCallerProp)) {
 					
 					// if it doesn't, merge both of their props
-					Actor mergedProp = childCallerProp.merge(parentCallerProp);
+					ActorProp mergedProp = childCallerProp.merge(parentCallerProp);
 					merged.addCallerProp(mergedProp);
 				} else {
 					

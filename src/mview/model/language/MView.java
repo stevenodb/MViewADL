@@ -95,7 +95,7 @@ public class MView<D extends Declaration> extends Language {
 						ADVICE_MUTEX,
 						Advice.class);
 
-		// Actor
+		// ActorProp
 		ACTOR_MUTEX = new PropertyMutex<ChameleonProperty>();
 
 		INTERFACE = new StaticChameleonProperty("Interface", this, ACTOR_MUTEX,
