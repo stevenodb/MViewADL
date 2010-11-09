@@ -1,7 +1,7 @@
 /**
  * author:   Steven Op de beeck <steven /at/ opdebeeck /./ org>
- * filename: MViewMember.java
- * created:  Nov 3, 2010, 4:46:45 PM
+ * filename: MergeNotSupportedException.java
+ * created:  Nov 5, 2010, 3:14:13 PM
  * license:
  * The code contained in this file is free software: you can redistribute 
  * it and/or modify it under the terms of the GNU General Public License
@@ -16,31 +16,32 @@
  * You should have received a copy of the GNU General Public License. 
  * If not, see <http://www.gnu.org/licenses/>.
  */
-package mview.model.refinement;
-
-import chameleon.core.element.Element;
-import exception.MergeNotSupportedException;
+package exception;
 
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public interface MViewMember<M extends MViewMember<M,P>, P extends Element> extends Element<M, P> {
+public class MergeNotSupportedException extends Exception {
 	
 	/**
-	 * Check whether this member overrides the given member
-	 * @param other the member to check
-	 * @return
+	 * 
 	 */
-	public boolean overrides(M other);
+	private static final long serialVersionUID = -5930589425559260240L;
+
+	/**
+	 * default 
+	 */
+	public MergeNotSupportedException() {
+		super();
+	}
 	
 	/**
-	 * Merge this member with given member.
-	 * @param other the member to merge with
-	 * @return A merged member
-	 * @throws MergeNotSupportedException 
+	 * @param message
 	 */
-	public M merge(M other) throws MergeNotSupportedException;
+	public MergeNotSupportedException(String message) {
+		super(message);
+	}
 
 }

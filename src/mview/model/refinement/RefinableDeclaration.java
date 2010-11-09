@@ -24,7 +24,6 @@ import chameleon.core.declaration.Declaration;
 import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.element.Element;
 import chameleon.core.lookup.LookupException;
-import chameleon.core.member.Member;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
@@ -57,7 +56,7 @@ public interface RefinableDeclaration<D extends RefinableDeclaration<D, P>, P ex
 	 * @return the list of members
 	 * @throws LookupException
 	 */
-	public <M extends MViewMember> List<M> members() throws LookupException;
+	public List<MViewMember> members() throws LookupException;
 
 	/**
 	 * Return the list of local members
@@ -65,7 +64,7 @@ public interface RefinableDeclaration<D extends RefinableDeclaration<D, P>, P ex
 	 * @return the list of local members
 	 * @throws LookupException
 	 */
-	public <M extends MViewMember> List<M> localMembers() throws LookupException;
+	public List<MViewMember> localMembers() throws LookupException;
 
 	/**
 	 * Returns the list of all direct refinable parent declarations.
@@ -73,6 +72,16 @@ public interface RefinableDeclaration<D extends RefinableDeclaration<D, P>, P ex
 	 * @return the list of all direct refinable parent declarations.
 	 */
 	public List<RefinableDeclaration> getDirectParents();
+
+	/**
+	 * Returns whether this refinable declaration has <code>other</code> as a
+	 * parent.
+	 * 
+	 * @param other
+	 *            the parent declaration
+	 * @return true is other is a parent
+	 */
+	public boolean hasParent(RefinableDeclaration other);
 
 	/**
 	 * Add a refinement relation

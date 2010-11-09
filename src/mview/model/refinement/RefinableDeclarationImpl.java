@@ -26,6 +26,7 @@ import mview.model.namespace.MViewDeclaration;
 import org.rejuse.association.MultiAssociation;
 
 import chameleon.core.declaration.Declaration;
+import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.element.Element;
 import chameleon.core.lookup.LookupException;
 import chameleon.core.validation.VerificationResult;
@@ -36,11 +37,26 @@ import chameleon.core.validation.VerificationResult;
  */
 public abstract class RefinableDeclarationImpl<D extends RefinableDeclarationImpl<D, P>, P extends Element>
 		extends MViewDeclaration<D, P> implements RefinableDeclaration<D, P> {
+	
+	/**
+	 * default constructor 
+	 */
+	protected RefinableDeclarationImpl() {
+		super();
+	}
+	
+	/**
+	 * @param signature
+	 */
+	protected RefinableDeclarationImpl(SimpleNameSignature signature) {
+		super(signature);
+	}
+
 
 	/*
 	 * Parent declarations
 	 */
-	MultiAssociation<RefinableDeclaration, RefinementRelation> _refinementRelations =
+	private MultiAssociation<RefinableDeclaration, RefinementRelation> _refinementRelations =
 			new MultiAssociation<RefinableDeclaration, RefinementRelation>(this);
 
 	/**
@@ -95,7 +111,7 @@ public abstract class RefinableDeclarationImpl<D extends RefinableDeclarationImp
 	}
 
 	@Override
-	public List<? extends MViewMember> members() throws LookupException {
+	public List<MViewMember> members() throws LookupException {
 		List<MViewMember> result;
 		
 		// 1. local members
@@ -111,20 +127,31 @@ public abstract class RefinableDeclarationImpl<D extends RefinableDeclarationImp
 
 	@Override
 	public List<RefinableDeclaration> getDirectParents() {
-		return null;
+		List<RefinableDeclaration> result = new ArrayList<RefinableDeclaration>();
+		
+		for (RefinementRelation relation : refinementRelations()) {
+			result.add(relation.parentDeclarationEnd());
+		}
+		
+		return result;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see mview.model.namespace.MViewDeclaration#cloneThis()
-	 */
 	@Override
-	protected D cloneThis() {
-		return null;
-		// TODO Auto-generated method stub
+	public boolean hasParent(RefinableDeclaration other) {
+		List<RefinableDeclaration> parents = getDirectParents();
+		
+		// breadth first search
+		boolean result = parents.contains(other);
+		
+		if (! result) {
+			for (RefinableDeclaration declaration : parents) {
+				result = declaration.hasParent(other);
+				if (result) break;
+			}
+		}
+		return result;
 	}
-
+	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -132,8 +159,13 @@ public abstract class RefinableDeclarationImpl<D extends RefinableDeclarationImp
 	 */
 	@Override
 	public D clone() {
-		return null;
-		// TODO Auto-generated method stub
+		D clone = super.clone();
+		
+		for (RefinementRelation relation : refinementRelations()) {
+			clone.addRefinementRelation(relation);	
+		}
+
+		return clone;
 	}
 
 	/*
@@ -143,8 +175,11 @@ public abstract class RefinableDeclarationImpl<D extends RefinableDeclarationImp
 	 */
 	@Override
 	public List<Element> children() {
-		return null;
-		// TODO Auto-generated method stub
+		List<Element> result = super.children();
+		
+		result.addAll(refinementRelations());
+		
+		return result;
 	}
 
 	/*
@@ -154,8 +189,8 @@ public abstract class RefinableDeclarationImpl<D extends RefinableDeclarationImp
 	 */
 	@Override
 	public VerificationResult verifySelf() {
-		return null;
-		// TODO Auto-generated method stub
+		VerificationResult result = super.verifySelf();
+		return result;
 	}
-
+	
 }
