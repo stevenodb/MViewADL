@@ -19,16 +19,19 @@
  */
 package mview.model.application;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import mview.model.module.Module;
 import mview.model.module.ModuleContainer;
-import mview.model.namespace.MViewDeclaration;
+import mview.model.refinement.MViewMember;
+import mview.model.refinement.RefinableDeclarationImpl;
 
 import org.rejuse.association.OrderedMultiAssociation;
 
 import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.element.Element;
+import chameleon.core.lookup.LookupException;
 import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.VerificationResult;
 
@@ -37,14 +40,16 @@ import chameleon.core.validation.VerificationResult;
  *
  */
 public class Application<A extends Application<A>> 
-		extends	MViewDeclaration<A,Element> 
+		extends RefinableDeclarationImpl<A, Element> 
 		implements ModuleContainer {
+	
 	//extends HostMapper<Application,AbstractHost,Locate>
 	
 	/**
 	 * default 
 	 */
 	protected Application() {
+		super();
 	}
 
 	/**
@@ -138,7 +143,13 @@ public class Application<A extends Application<A>>
 		_modules.remove(relation.parentLink());
 	}
 	
-			
+	
+	
+	/*
+	 * REFINEMENT
+	 */
+	
+	
 	
 	/* (non-Javadoc)
 	 * @see mview.model.namespace.MViewDeclaration#cloneThis()
@@ -207,6 +218,21 @@ public class Application<A extends Application<A>>
 //		if ( !(this.modules() != null) ) {
 //			result = result.and(new BasicProblem(this, "Modules is null"));
 //		}
+		
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see mview.model.refinement.RefinableDeclaration#localMembers()
+	 */
+	@Override
+	public List<MViewMember> localMembers()
+			throws LookupException {
+		List<MViewMember> result = new ArrayList<MViewMember>();
+		
+		result.addAll(hosts());
+		result.addAll(instances());
+		result.addAll(modules());
 		
 		return result;
 	}

@@ -20,10 +20,11 @@ package mview.model.application;
 
 import java.util.List;
 
+import mview.model.deployment.HostName;
+import mview.model.refinement.MViewMemberDeclarationImpl;
+
 import org.rejuse.association.SingleAssociation;
 
-import mview.model.deployment.HostName;
-import mview.model.namespace.MViewDeclaration;
 import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.element.Element;
 import chameleon.core.reference.SimpleReference;
@@ -34,7 +35,7 @@ import chameleon.core.validation.VerificationResult;
  * 
  * @param <E>
  */
-public class Host extends MViewDeclaration<Host, Element> {
+public class Host extends MViewMemberDeclarationImpl<Host, Element> {
 
 	/**
 	 * default
@@ -113,5 +114,32 @@ public class Host extends MViewDeclaration<Host, Element> {
 		final VerificationResult result = super.verifySelf();
 		return result;
 	}
+
+//	/*
+//	 * (non-Javadoc)
+//	 * 
+//	 * @see mview.model.refinement.MViewMember#overrides(mview.model.refinement.
+//	 * MViewMember)
+//	 */
+//	@Override
+//	public boolean overrides(Host other) {
+//		boolean equal = this.equals(other);
+//		boolean inARelationship =
+//				this.nearestAncestor(RefinableDeclaration.class).hasParent(
+//						other.nearestAncestor(RefinableDeclaration.class));
+//		return equal && inARelationship;
+//	}
+//
+//	/*
+//	 * (non-Javadoc)
+//	 * 
+//	 * @see
+//	 * mview.model.refinement.MViewMember#merge(mview.model.refinement.MViewMember
+//	 * )
+//	 */
+//	@Override
+//	public Host merge(Host member) throws MergeNotSupportedException {
+//		throw new MergeNotSupportedException(this + " doesn't support merge.");
+//	}
 
 }

@@ -20,6 +20,9 @@ package mview.model.application;
 
 import java.util.List;
 
+import mview.model.module.Module;
+import mview.model.refinement.MViewMemberDeclarationImpl;
+
 import org.rejuse.association.SingleAssociation;
 
 import chameleon.core.declaration.SimpleNameSignature;
@@ -27,14 +30,12 @@ import chameleon.core.element.Element;
 import chameleon.core.reference.SimpleReference;
 import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.VerificationResult;
-import mview.model.module.Module;
-import mview.model.namespace.MViewDeclaration;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public class Instance extends MViewDeclaration<Instance,Element> {
+public class Instance extends MViewMemberDeclarationImpl<Instance,Element> {
 	
 	/**
 	 * Default 
@@ -136,7 +137,20 @@ public class Instance extends MViewDeclaration<Instance,Element> {
 		
 		return result;
 	}
-	
-	
 
+//	/* (non-Javadoc)
+//	 * @see mview.model.refinement.MViewMember#overrides(mview.model.refinement.MViewMember)
+//	 */
+//	@Override
+//	public boolean overrides(Instance other) {
+//		return this.equals(other);
+//	}
+//
+//	/* (non-Javadoc)
+//	 * @see mview.model.refinement.MViewMember#merge(mview.model.refinement.MViewMember)
+//	 */
+//	@Override
+//	public Instance merge(Instance member) throws MergeNotSupportedException {
+//		throw new MergeNotSupportedException(this+" does not support merge");
+//	}
 }
