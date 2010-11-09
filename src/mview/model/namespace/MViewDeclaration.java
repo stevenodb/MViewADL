@@ -46,8 +46,9 @@ import chameleon.util.Util;
  *            Parent Element
  */
 public abstract class MViewDeclaration<E extends MViewDeclaration<E, P>, P extends Element>
-		extends NamespaceElementImpl<E, P> implements
-		Declaration<E, P, SimpleNameSignature, E> {
+		extends NamespaceElementImpl<E, P> 
+		implements Declaration<E, P, SimpleNameSignature, E> //, MViewMember<E,P>, 
+		{
 
 	/**
 	 * Default constructor
@@ -167,6 +168,14 @@ public abstract class MViewDeclaration<E extends MViewDeclaration<E, P>, P exten
 			result = result.and(new BasicProblem(this, "No valid signature"));
 		}
 		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see chameleon.core.element.ElementImpl#uniSameAs(chameleon.core.element.Element)
+	 */
+	@Override
+	public boolean uniSameAs(Element other) throws LookupException {
+		return (other != null) && (signature().uniSameAs(other));
 	}
 
 }
