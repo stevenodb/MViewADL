@@ -18,7 +18,7 @@
 package mview.model.module;
 import java.util.List;
 
-import mview.model.namespace.MViewDeclaration;
+import mview.model.refinement.MViewMemberDeclarationImpl;
 
 import org.rejuse.association.OrderedMultiAssociation;
 
@@ -28,7 +28,6 @@ import chameleon.core.lookup.LookupException;
 import chameleon.core.reference.SimpleReference;
 import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.VerificationResult;
-import chameleon.util.Util;
 
 /**
  * Class representing the Module concept.
@@ -36,7 +35,8 @@ import chameleon.util.Util;
  *
  * @param <E>
  */
-public abstract class Module<E extends Module<E>> extends MViewDeclaration<E, Element> {
+public abstract class Module<E extends Module<E>>
+			extends MViewMemberDeclarationImpl<E, Element> {
 
 	/**
 	 * Default constructor
@@ -192,4 +192,20 @@ public abstract class Module<E extends Module<E>> extends MViewDeclaration<E, El
 		
 		return result;
 	}
+
+//	/* (non-Javadoc)
+//	 * @see mview.model.refinement.MViewMember#overrides(mview.model.refinement.MViewMember)
+//	 */
+//	@Override
+//	public boolean overrides(E other) {
+//		return this.equals(other);
+//	}
+//
+//	/* (non-Javadoc)
+//	 * @see mview.model.refinement.MViewMember#merge(mview.model.refinement.MViewMember)
+//	 */
+//	@Override
+//	public E merge(E member) throws MergeNotSupportedException {
+//		throw new MergeNotSupportedException(this+" does not support merge");
+//	}
 }
