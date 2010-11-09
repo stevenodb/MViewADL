@@ -20,19 +20,15 @@ package mview.model.composition.modifier;
 
 import java.util.Set;
 
-import mview.model.composition.Actor;
 import mview.model.language.MView;
-import mview.model.namespace.MViewDeclaration;
 
-import org.rejuse.property.Property;
 import org.rejuse.property.PropertySet;
 
 import chameleon.core.declaration.Declaration;
 import chameleon.core.element.Element;
+import chameleon.core.lookup.LookupException;
 import chameleon.core.modifier.ModifierImpl;
 import chameleon.core.property.ChameleonProperty;
-import chameleon.core.validation.BasicProblem;
-import chameleon.core.validation.VerificationResult;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
@@ -91,6 +87,16 @@ public class PropModifier<D extends Declaration>
 	@Override
 	public PropModifier<D> clone() {
 		return new PropModifier<D>(_targetDeclarationClass);
+	}
+
+	/* (non-Javadoc)
+	 * @see chameleon.core.element.ElementImpl#uniSameAs(chameleon.core.element.Element)
+	 */
+	@Override
+	public boolean uniSameAs(Element other) throws LookupException {
+		return (other instanceof PropModifier) 
+			&& ((PropModifier) other).targetDeclarationClass().equals(
+					this.targetDeclarationClass());
 	}
 
 }
