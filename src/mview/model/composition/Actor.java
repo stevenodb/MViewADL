@@ -22,6 +22,8 @@ import java.util.List;
 
 import mview.model.composition.modifier.PropModifier;
 import mview.model.module.Interface;
+import mview.model.refinement.MViewMember;
+import mview.model.refinement.RefinableDeclaration;
 
 import org.rejuse.association.OrderedMultiAssociation;
 
@@ -29,24 +31,23 @@ import chameleon.core.declaration.Declaration;
 import chameleon.core.element.Element;
 import chameleon.core.lookup.LookupException;
 import chameleon.core.modifier.ElementWithModifiersImpl;
-import chameleon.core.modifier.Modifier;
 import chameleon.core.reference.SimpleReference;
 import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.Valid;
 import chameleon.core.validation.VerificationResult;
+import exception.MergeNotSupportedException;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  * 
  */
 public class Actor<D extends Declaration> extends
-		ElementWithModifiersImpl<Actor<D>, Element> {
+		ElementWithModifiersImpl<Actor<D>, Element>
+		implements MViewMember<Actor<D>, Element> {
 
-	// list of prop (rich join point properties)
-	OrderedMultiAssociation<Actor<?>, SimpleReference<D>> _props =
-			new OrderedMultiAssociation<Actor<?>, SimpleReference<D>>(
-																					this);
-
+	/**
+	 * default
+	 */
 	public Actor() {
 		super();
 	}
@@ -54,32 +55,84 @@ public class Actor<D extends Declaration> extends
 	/**
 	 * @param modifier
 	 */
-	public Actor(PropModifier<D> modifier) {
+	public Actor(PropModifier<D> modifier, Class<D> declaration) {
 		this();
 		addModifier(modifier);
+		setDeclarationType(declaration);
 	}
+
+	// list of prop values
+	private OrderedMultiAssociation<Actor<D>, SimpleReference<D>> _propValues =
+			new OrderedMultiAssociation<Actor<D>, SimpleReference<D>>(this);
 
 	/**
 	 * @return
 	 */
-	public List<SimpleReference<D>> props() {
-		return _props.getOtherEnds();
+	public List<SimpleReference<D>> propValues() {
+		return _propValues.getOtherEnds();
 	}
 
 	/**
 	 * @param relation
 	 */
-	public void addProp(SimpleReference<D> relation) {
-		_props.add(relation.parentLink());
+	public void addPropValue(SimpleReference<D> relation) {
+		_propValues.add(relation.parentLink());
+	}
+
+	/**
+	 * @param relation
+	 */
+	public void removePropValue(SimpleReference<D> relation) {
+		_propValues.remove(relation.parentLink());
 	}
 
 	/**
 	 * @param relations
 	 */
-	public void addAllProps(List<SimpleReference<D>> relations) {
+	public void addAllPropValues(List<SimpleReference<D>> relations) {
 		for (SimpleReference<D> relation : relations) {
-			this.addProp(relation);
+			this.addPropValue(relation);
 		}
+	}
+
+	/*
+	 * DECLARATION
+	 */
+	private Class<D> _declarationType = null;
+
+	/**
+	 * @param declaration
+	 *            the declaration to set
+	 */
+	public void setDeclarationType(Class<D> declaration) {
+		this._declarationType = declaration;
+	}
+
+	/**
+	 * @return the declaration
+	 */
+	public Class<D> declarationType() {
+		return _declarationType;
+	}
+
+	/*
+	 * PROPSOVERRIDE
+	 */
+	private boolean _propsOverride = false;
+
+	/**
+	 * @return
+	 */
+	protected boolean override() {
+		return _propsOverride;
+	}
+
+	/**
+	 * @param propsOverride
+	 *            the propsOverride to set
+	 */
+	public void setOverride(boolean propsOverride) {
+		this._propsOverride = propsOverride;
 	}
 
 	/**
@@ -98,7 +151,7 @@ public class Actor<D extends Declaration> extends
 	public List<Element> children() {
 		List<Element> result = super.children();
 
-		result.addAll(props());
+		result.addAll(propValues());
 
 		return result;
 	}
@@ -112,10 +165,12 @@ public class Actor<D extends Declaration> extends
 	public Actor<D> clone() {
 		final Actor<D> clone = new Actor<D>();
 
-		clone.addModifier(modifier().clone());
+		clone.addModifier(this.modifier().clone());
+		clone.setDeclarationType(this.declarationType());
+		clone.setOverride(this.override());
 
-		for (SimpleReference<D> reference : props()) {
-			clone.addProp(reference.clone());
+		for (SimpleReference<D> reference : propValues()) {
+			clone.addPropValue(reference.clone());
 		}
 
 		return clone;
@@ -135,12 +190,17 @@ public class Actor<D extends Declaration> extends
 					"Must contain a single prop modifier"));
 		}
 
-		if (!(this.props().size() > 0)) {
+		if (!(this.propValues().size() > 0)) {
 			result.and(new BasicProblem(this,
 					"Does not contain an actor property"));
 		}
 
-		for (SimpleReference<D> relation : props()) {
+		if (!(this.declarationType() != null)) {
+			result.and(new BasicProblem(this,
+					"Does not contain a target declaration type"));
+		}
+
+		for (SimpleReference<D> relation : propValues()) {
 			D declaration = null;
 
 			try {
@@ -160,4 +220,77 @@ public class Actor<D extends Declaration> extends
 		return result;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see mview.model.refinement.MViewMember#overrides(mview.model.refinement.
+	 * MViewMember)
+	 */
+	@Override
+	public boolean overrides(Actor<D> other) {
+		return _propsOverride
+				&& this.declarationType().equals(other.declarationType()) &&
+				this.nearestAncestor(RefinableDeclaration.class).hasParent(
+						other.nearestAncestor(RefinableDeclaration.class));
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * mview.model.refinement.MViewMember#merge(mview.model.refinement.MViewMember
+	 * )
+	 */
+	@Override
+	public Actor<D> merge(Actor<D> other) throws MergeNotSupportedException {
+
+		Actor<D> result = null;
+
+		if (overrides(other)) {
+			throw new MergeNotSupportedException("This member can only " +
+					"be overridden.");
+		} else if (!this.declarationType().equals(other.declarationType())) {
+			throw new MergeNotSupportedException("Actors are of different" +
+					"declaration types.");
+		}	
+		else {
+			result = this.clone();
+			Actor<D> parent = other.clone();
+
+			this.addAllPropValues(parent.propValues());
+		}
+
+		return result;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		int result = 0;
+
+		for (SimpleReference<D> relation : propValues()) {
+			result = (result * 10) + relation.parentLink().hashCode();
+		}
+
+		return result;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * chameleon.core.element.ElementImpl#uniSameAs(chameleon.core.element.Element
+	 * )
+	 */
+	@Override
+	public boolean uniSameAs(Element other) throws LookupException {
+		return (other instanceof Actor)
+				&& (this.override() == ((Actor) other).override()) &&
+				modifier().equals(((Actor) other).modifier());
+
+	}
 }

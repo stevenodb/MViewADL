@@ -23,33 +23,39 @@ import java.util.ArrayList;
 import java.util.List;
 
 import mview.model.module.JoinPointElement;
-import mview.model.module.Service;
-
+import mview.model.refinement.MViewMember;
 import chameleon.core.element.Element;
 import chameleon.core.lookup.LookupException;
 import chameleon.core.namespace.NamespaceElementImpl;
 import chameleon.core.reference.SimpleReference;
 import chameleon.core.validation.Valid;
 import chameleon.core.validation.VerificationResult;
+import exception.MergeNotSupportedException;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  * 
  */
-public abstract class PointcutSignature
-			<E extends PointcutSignature<E, JPE>, 
-			JPE extends JoinPointElement>
-		extends	NamespaceElementImpl<E, Element> {
+public abstract class PointcutSignature<E extends PointcutSignature<E, JPE>, JPE extends JoinPointElement>
+			extends NamespaceElementImpl<E, Element> {
+//			implements MViewMember<E, Element> {
 
+	// public static PointcutSignature createSignature() {
+	// return null;
+	// }
 	
-	public static PointcutSignature createSignature() {
-		return null;
+	/**
+	 * default constructor
+	 */
+	protected PointcutSignature() {
+		super();
 	}
 
 	/**
 	 * @return
 	 */
-	public abstract List<SimpleReference<JPE>> services() throws LookupException;
+	public abstract List<SimpleReference<JPE>> services()
+			throws LookupException;
 
 	/**
 	 * @return An incomplete clone with the correct sub-Type

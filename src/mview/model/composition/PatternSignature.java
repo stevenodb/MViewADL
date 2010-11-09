@@ -20,26 +20,19 @@
 package mview.model.composition;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
-import java.util.regex.Pattern;
 
-import mview.model.module.JoinPointElement;
 import mview.model.module.Service;
 
 import org.rejuse.predicate.UnsafePredicate;
 
-import com.sun.org.apache.xerces.internal.impl.xs.identity.Selector.Matcher;
-
 import chameleon.core.element.Element;
 import chameleon.core.lookup.LookupException;
-import chameleon.core.method.MethodSignature;
 import chameleon.core.reference.SimpleReference;
 import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.VerificationResult;
-import chameleon.core.variable.FormalParameter;
-import chameleon.oo.type.TypeReference;
 import chameleon.util.Pair;
-import chameleon.util.Util;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
@@ -136,8 +129,28 @@ public class PatternSignature extends
 		this._formalParametersPattern = formalParametersPattern;
 	}
 	
+	/**
+	 * @param id
+	 * @param typePattern
+	 */
 	public void addFormalParameterPattern(String id, String typePattern) {
+		this._formalParametersPattern.add(
+				new Pair<String,String>(typePattern, id));
+	}
+	
+	/**
+	 * @param id
+	 */
+	public void removeFormalParameterPattern(String id) {
+		Iterator<Pair<String,String>> it = 
+			this._formalParametersPattern.iterator();
 		
+		while (it.hasNext()) {
+			Pair<String,String> paramPair = it.next();
+			if (paramPair.second().equals(id)) {
+				it.remove();
+			}
+		}
 	}
 
 	/**
@@ -342,5 +355,4 @@ public class PatternSignature extends
 
 		return result;
 	}
-
 }

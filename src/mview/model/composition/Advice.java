@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import mview.model.module.Service;
+import mview.model.refinement.MViewMember;
 
 import org.rejuse.association.SingleAssociation;
 
@@ -34,13 +35,15 @@ import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.Valid;
 import chameleon.core.validation.VerificationResult;
 import chameleon.util.Util;
+import exception.MergeNotSupportedException;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public class Advice extends ElementWithModifiersImpl<Advice, Element> { 
-//extends NamespaceElementImpl<Advice, Element> {
+public class Advice extends ElementWithModifiersImpl<Advice, Element> 
+		implements MViewMember<Advice, Element> { 
+	//extends NamespaceElementImpl<Advice, Element> {
 	
 	/**
 	 * default constructor
@@ -118,6 +121,22 @@ public class Advice extends ElementWithModifiersImpl<Advice, Element> {
 		Util.addNonNull(this.service(), result);
 		
 		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see mview.model.refinement.MViewMember#overrides(mview.model.refinement.MViewMember)
+	 */
+	@Override
+	public boolean overrides(Advice member) {
+		return false;
+	}
+
+	/* (non-Javadoc)
+	 * @see mview.model.refinement.MViewMember#merge(mview.model.refinement.MViewMember)
+	 */
+	@Override
+	public Advice merge(Advice member) throws MergeNotSupportedException {
+		// TODO Auto-generated method stub
 	}
 
 }

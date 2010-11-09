@@ -21,8 +21,8 @@ package mview.model.composition;
 
 import java.util.List;
 
-import mview.model.module.Service;
 import mview.model.namespace.MViewDeclaration;
+import mview.model.refinement.MViewMember;
 
 import org.rejuse.association.SingleAssociation;
 
@@ -30,14 +30,15 @@ import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.element.Element;
 import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.VerificationResult;
-import chameleon.oo.type.TypeReference;
 import chameleon.util.Util;
+import exception.MergeNotSupportedException;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public class AOComposition extends MViewDeclaration<AOComposition, Element> {
+public class AOComposition extends MViewDeclaration<AOComposition, Element>
+			implements MViewMember<AOComposition, Element> {
 	
 	/**
 	 * 
@@ -157,6 +158,23 @@ public class AOComposition extends MViewDeclaration<AOComposition, Element> {
 		}
 		
 		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see mview.model.refinement.MViewMember#overrides(mview.model.refinement.MViewMember)
+	 */
+	@Override
+	public boolean overrides(AOComposition other) {
+		return this.equals(other);
+	}
+
+	/* (non-Javadoc)
+	 * @see mview.model.refinement.MViewMember#merge(mview.model.refinement.MViewMember)
+	 */
+	@Override
+	public AOComposition merge(AOComposition member)
+			throws MergeNotSupportedException {
+		throw new MergeNotSupportedException(this+" does not support merge");
 	}
 
 }
