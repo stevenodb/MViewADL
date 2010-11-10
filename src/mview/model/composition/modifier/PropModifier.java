@@ -46,13 +46,6 @@ public class PropModifier<D extends Declaration>
 		this._targetDeclarationClass = declarationClass;
 	}
 	
-	/**
-	 * @return
-	 */
-	public Class<D> targetDeclarationClass() {
-		return _targetDeclarationClass;
-	}
-	
 	/* (non-Javadoc)
 	 * @see chameleon.core.modifier.Modifier#impliedProperties()
 	 */
@@ -95,8 +88,7 @@ public class PropModifier<D extends Declaration>
 	@Override
 	public boolean uniSameAs(Element other) throws LookupException {
 		return (other instanceof PropModifier) 
-			&& ((PropModifier) other).targetDeclarationClass().equals(
-					this.targetDeclarationClass());
+			&& ((PropModifier) other)._targetDeclarationClass 
+				== this._targetDeclarationClass;
 	}
-
 }
