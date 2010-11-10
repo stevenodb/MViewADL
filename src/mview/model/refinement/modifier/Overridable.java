@@ -1,7 +1,7 @@
 /**
  * author:   Steven Op de beeck <steven /at/ opdebeeck /./ org>
- * filename: MViewMember.java
- * created:  Nov 3, 2010, 4:46:45 PM
+ * filename: Overridable.java
+ * created:  Nov 10, 2010, 1:26:31 PM
  * license:
  * The code contained in this file is free software: you can redistribute 
  * it and/or modify it under the terms of the GNU General Public License
@@ -16,32 +16,36 @@
  * You should have received a copy of the GNU General Public License. 
  * If not, see <http://www.gnu.org/licenses/>.
  */
-package mview.model.refinement;
+package mview.model.refinement.modifier;
+
+import mview.model.language.MView;
+
+import org.rejuse.property.PropertySet;
 
 import chameleon.core.element.Element;
-import exception.MergeNotSupportedException;
-
+import chameleon.core.modifier.ModifierImpl;
+import chameleon.core.property.ChameleonProperty;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public interface MViewMember<M extends MViewMember<M,P>, P extends Element> extends Element<M, P> {
-	
-	/**
-	 * Check whether this member overrides the given member
-	 * @param other the member to check
-	 * @return
+public class Overridable extends ModifierImpl<Overridable, Element> {
+
+	/* (non-Javadoc)
+	 * @see chameleon.core.modifier.Modifier#impliedProperties()
 	 */
-	public boolean overrides(M other);
-	
-	/**
-	 * Merge this member with given member. This method does not check
-	 * if merging is allowed according to the specific context.
-	 * @param other the member to merge with
-	 * @return A merged member
-	 * @throws MergeNotSupportedException 
+	@Override
+	public PropertySet<Element, ChameleonProperty> impliedProperties() {
+		return createSet(language(MView.class).OVERRIDABLE);
+	}
+
+	/* (non-Javadoc)
+	 * @see chameleon.core.modifier.ModifierImpl#clone()
 	 */
-	public M merge(M other) throws MergeNotSupportedException;
+	@Override
+	public Overridable clone() {
+		return new Overridable();
+	}
 
 }

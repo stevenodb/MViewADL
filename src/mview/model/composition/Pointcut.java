@@ -25,8 +25,8 @@ import mview.model.refinement.MViewMember;
 import mview.model.refinement.RefinableDeclaration;
 
 import org.rejuse.association.OrderedMultiAssociation;
+import org.rejuse.association.SingleAssociation;
 
-import chameleon.core.declaration.Declaration;
 import chameleon.core.element.Element;
 import chameleon.core.modifier.ElementWithModifiersImpl;
 import chameleon.core.modifier.Modifier;
@@ -69,7 +69,7 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element>
 	private OrderedMultiAssociation<Pointcut, PointcutSignature> _signatures =
 			new OrderedMultiAssociation<Pointcut, PointcutSignature>(this);
 
-	private boolean _signatureOverride = false;
+//	private boolean _signatureOverride = false;
 
 	/**
 	 * @return
@@ -120,120 +120,67 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element>
 	 * ACTORS
 	 */
 
-	/**
-	 * Generic actor prop getter based on given declarationType
-	 * 
-	 * @param <D>
-	 * @param declarationType
-	 * @param props
-	 * @return
+	/*
+	 * CALLER 
 	 */
-	private <D extends Declaration> ActorProp<D> actorProp(
-			Class<D> declarationType,
-			List<ActorProp> props) {
+	private SingleAssociation<Pointcut, Actor> _caller =
+		new SingleAssociation<Pointcut, Actor>(this);
 
-		ActorProp<D> result = null;
-
-		for (ActorProp actorProp : props) {
-			if (actorProp.declarationType().equals(declarationType)) {
-				result = actorProp;
-				break;
-			}
-		}
-
-		return result;
+	
+	/**
+	 * Add Caller actor
+	 * @param actor
+	 */
+	public void addCaller(Actor actor) {
+		_caller.connectTo(actor.parentLink());
+	}
+	
+	/**
+	 * Clear Caller actor
+	 * @param actor
+	 */
+	public void clearCaller() {
+		_caller.clear();
+	}
+	
+	/**
+	 * @return the Caller actor
+	 */
+	public Actor caller() {
+		return _caller.getOtherEnd();
 	}
 
-	// caller
-	OrderedMultiAssociation<Pointcut, ActorProp> _callerProps =
-			new OrderedMultiAssociation<Pointcut, ActorProp>(this);
+
+	/*
+	 * CALLEE 
+	 */
+	private SingleAssociation<Pointcut, Actor> _callee =
+		new SingleAssociation<Pointcut, Actor>(this);
 
 	/**
-	 * @param actorProp
+	 * Add Callee actor
+	 * @param actor
 	 */
-	public void addCallerProp(ActorProp actorProp) {
-		_callerProps.add(actorProp.parentLink());
+	public void addCallee(Actor actor) {
+		_callee.connectTo(actor.parentLink());
 	}
-
+	
 	/**
-	 * @param actorProps
+	 * Clear Callee actor
+	 * @param actor
 	 */
-	public void addAllCallerProps(List<ActorProp> actorProps) {
-		for (ActorProp actorProp : actorProps) {
-			this.addCallerProp(actorProp);
-		}
+	public void clearCallee() {
+		_callee.clear();
 	}
-
+	
 	/**
-	 * Remove actor from caller props
-	 * 
-	 * @param actorProp
+	 * @return the Callee actor
 	 */
-	public void removeCallerProp(ActorProp actorProp) {
-		_callerProps.remove(actorProp.parentLink());
+	public Actor callee() {
+		return _callee.getOtherEnd();
 	}
 
-	/**
-	 * @return
-	 */
-	public List<ActorProp> callerProps() {
-		return _callerProps.getOtherEnds();
-	}
-
-	/**
-	 * @param <D>
-	 * @param declarationType
-	 * @return
-	 */
-	public <D extends Declaration> ActorProp<D> callerProp(Class<D> declarationType) {
-		return actorProp(declarationType, callerProps());
-	}
-
-	// callee
-	OrderedMultiAssociation<Pointcut, ActorProp> _calleeProps =
-			new OrderedMultiAssociation<Pointcut, ActorProp>(this);
-
-	/**
-	 * @param actorProp
-	 */
-	public void addCalleeProp(ActorProp actorProp) {
-		_calleeProps.add(actorProp.parentLink());
-	}
-
-	/**
-	 * @param actorProps
-	 */
-	public void addAllCalleeProps(List<ActorProp> actorProps) {
-		for (ActorProp actorProp : actorProps) {
-			this.addCalleeProp(actorProp);
-		}
-	}
-
-	/**
-	 * Remove actor from callee props
-	 * 
-	 * @param actorProp
-	 */
-	public void removeCalleeProp(ActorProp actorProp) {
-		_calleeProps.remove(actorProp.parentLink());
-	}
-
-	/**
-	 * @return
-	 */
-	public List<ActorProp> calleeProps() {
-		return _calleeProps.getOtherEnds();
-	}
-
-	/**
-	 * @param <D>
-	 * @param declarationType
-	 * @return
-	 */
-	public <D extends Declaration> ActorProp<D> calleeProp(Class<D> declarationType) {
-		return actorProp(declarationType, calleeProps());
-	}
-
+	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -251,15 +198,8 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element>
 			clone.addSignature(sig.clone());
 		}
 
-		// callees
-		for (ActorProp<?> actor : calleeProps()) {
-			clone.addCalleeProp(actor.clone());
-		}
-
-		// callers
-		for (ActorProp<?> actor : callerProps()) {
-			clone.addCallerProp(actor.clone());
-		}
+		clone.addCallee(this.callee().clone());
+		clone.addCaller(this.caller().clone());
 
 		return clone;
 	}
@@ -300,8 +240,8 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element>
 		List<Element> result = super.children();
 
 		result.addAll(this.signatures());
-		result.addAll(this.callerProps());
-		result.addAll(this.calleeProps());
+		result.add(this.caller());
+		result.add(this.callee());
 
 		return result;
 	}
@@ -326,12 +266,10 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element>
 	 */
 	@Override
 	public Pointcut merge(Pointcut other) throws MergeNotSupportedException {
-		RefinableDeclaration thisD =
-				this.nearestAncestor(RefinableDeclaration.class);
-		RefinableDeclaration otherD =
-				other.nearestAncestor(RefinableDeclaration.class);
+		RefinableDeclaration thisD = this.nearestAncestor(RefinableDeclaration.class);
+		RefinableDeclaration otherD = other.nearestAncestor(RefinableDeclaration.class);
 
-		if (!thisD.hasParent(otherD)) {
+		if (!thisD.isRefinementOf(otherD)) {
 			throw new MergeNotSupportedException(
 					"This member and other member " +
 							"do not share the same refinement context.");
@@ -350,40 +288,10 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element>
 		}
 
 		// 3. CallerProps
-
-		// for all caller props
-		for (ActorProp childCallerProp : child.callerProps()) {
-
-			// get the respective prop of the parent, if it has one
-			// in which case, this one's a refinement (merge/overidde) of
-			// the parent's
-			ActorProp parentCallerProp =
-					parent.callerProp(childCallerProp.declarationType());
-
-			if (parentCallerProp != null) {
-				
-				// check if the childprop overrides its parent
-				if (!childCallerProp.overrides(parentCallerProp)) {
-					
-					// if it doesn't, merge both of their props
-					ActorProp mergedProp = childCallerProp.merge(parentCallerProp);
-					merged.addCallerProp(mergedProp);
-				} else {
-					
-					// if it does, only keep the child's props
-					merged.addCallerProp(childCallerProp);
-				}
-
-				// remove callerprop from the parent, we are done with it
-				parent.removeCallerProp(parentCallerProp);
-			}		
-		}
-
-		// add remaining parent props
-		merged.addAllCallerProps(parent.callerProps());
-		
+		merged.addCaller(child.caller().merge(parent.caller()));
 		
 		// 4. CalleeProps
+		merged.addCallee(child.callee().merge(parent.callee()));
 
 		return merged;
 	}

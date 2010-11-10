@@ -137,7 +137,7 @@ public abstract class RefinableDeclarationImpl<D extends RefinableDeclarationImp
 	}
 
 	@Override
-	public boolean hasParent(RefinableDeclaration other) {
+	public boolean isRefinementOf(RefinableDeclaration other) {
 		List<RefinableDeclaration> parents = getDirectParents();
 		
 		// breadth first search
@@ -145,7 +145,7 @@ public abstract class RefinableDeclarationImpl<D extends RefinableDeclarationImp
 		
 		if (! result) {
 			for (RefinableDeclaration declaration : parents) {
-				result = declaration.hasParent(other);
+				result = declaration.isRefinementOf(other);
 				if (result) break;
 			}
 		}

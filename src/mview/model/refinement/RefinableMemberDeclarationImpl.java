@@ -1,7 +1,7 @@
 /**
  * author:   Steven Op de beeck <steven /at/ opdebeeck /./ org>
- * filename: MViewMemberDeclarationImpl.java
- * created:  Nov 5, 2010, 5:32:07 PM
+ * filename: RefinableMemberDeclarationImpl.java
+ * created:  Nov 9, 2010, 3:39:56 PM
  * license:
  * The code contained in this file is free software: you can redistribute 
  * it and/or modify it under the terms of the GNU General Public License
@@ -18,7 +18,6 @@
  */
 package mview.model.refinement;
 
-import mview.model.namespace.MViewDeclaration;
 import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.element.Element;
 import exception.MergeNotSupportedException;
@@ -27,31 +26,29 @@ import exception.MergeNotSupportedException;
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  * 
  */
-public abstract class MViewMemberDeclarationImpl<M extends MViewMemberDeclarationImpl<M, P>, P extends Element>
-		extends MViewDeclaration<M, P> implements MViewMember<M, P> {
+public abstract class RefinableMemberDeclarationImpl<
+			D extends RefinableMemberDeclarationImpl<D, P>, P extends Element>
+		extends RefinableDeclarationImpl<D, P> implements MViewMember<D, P> {
 
 	/**
-	 * default constructor
+	 * default
 	 */
-	protected MViewMemberDeclarationImpl() {
+	protected RefinableMemberDeclarationImpl() {
 		super();
 	}
 
 	/**
 	 * @param signature
 	 */
-	protected MViewMemberDeclarationImpl(SimpleNameSignature signature) {
+	protected RefinableMemberDeclarationImpl(SimpleNameSignature signature) {
 		super(signature);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see mview.model.refinement.MViewMember#overrides(mview.model.refinement.
-	 * MViewMember)
+	/* (non-Javadoc)
+	 * @see mview.model.refinement.MViewMember#overrides(mview.model.refinement.MViewMember)
 	 */
 	@Override
-	public boolean overrides(M other) {
+	public boolean overrides(D other) {
 		boolean equal = this.equals(other);
 		boolean parentRelationship =
 				this.nearestAncestor(RefinableDeclaration.class).isRefinementOf(
@@ -61,15 +58,11 @@ public abstract class MViewMemberDeclarationImpl<M extends MViewMemberDeclaratio
 		return equal && sameType && parentRelationship;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * mview.model.refinement.MViewMember#merge(mview.model.refinement.MViewMember
-	 * )
+	/* (non-Javadoc)
+	 * @see mview.model.refinement.MViewMember#merge(mview.model.refinement.MViewMember)
 	 */
 	@Override
-	public M merge(M other) throws MergeNotSupportedException {
+	public D merge(D other) throws MergeNotSupportedException {
 		throw new MergeNotSupportedException(this + " doesn't support merge.");
 	}
 

@@ -21,9 +21,11 @@ package mview.model.composition;
 import java.util.List;
 
 import mview.model.composition.modifier.PropModifier;
+import mview.model.language.MView;
 import mview.model.module.Interface;
 import mview.model.refinement.MViewMember;
 import mview.model.refinement.RefinableDeclaration;
+import mview.model.refinement.modifier.Overridable;
 
 import org.rejuse.association.OrderedMultiAssociation;
 
@@ -31,10 +33,13 @@ import chameleon.core.declaration.Declaration;
 import chameleon.core.element.Element;
 import chameleon.core.lookup.LookupException;
 import chameleon.core.modifier.ElementWithModifiersImpl;
+import chameleon.core.modifier.Modifier;
+import chameleon.core.property.StaticChameleonProperty;
 import chameleon.core.reference.SimpleReference;
 import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.Valid;
 import chameleon.core.validation.VerificationResult;
+import chameleon.exception.ModelException;
 import exception.MergeNotSupportedException;
 
 /**
@@ -58,7 +63,18 @@ public class ActorProp<D extends Declaration> extends
 	public ActorProp(PropModifier<D> modifier, Class<D> declaration) {
 		this();
 		addModifier(modifier);
-		setDeclarationType(declaration);
+	}
+
+	/**
+	 * @param modifier
+	 * @param declaration
+	 * @param overridable
+	 */
+	public ActorProp(PropModifier<D> modifier, Class<D> declaration,
+			boolean overridable) {
+
+		this(modifier, declaration);
+		setOverride(overridable);
 	}
 
 	// list of prop values
@@ -96,35 +112,14 @@ public class ActorProp<D extends Declaration> extends
 	}
 
 	/*
-	 * DECLARATION
+	 * OVERRIDE through modifier
 	 */
-	private Class<D> _declarationType = null;
 
 	/**
-	 * @param declaration
-	 *            the declaration to set
+	 * @return true if overridable
 	 */
-	public void setDeclarationType(Class<D> declaration) {
-		this._declarationType = declaration;
-	}
-
-	/**
-	 * @return the declaration
-	 */
-	public Class<D> declarationType() {
-		return _declarationType;
-	}
-
-	/*
-	 * PROPSOVERRIDE
-	 */
-	private boolean _propsOverride = false;
-
-	/**
-	 * @return
-	 */
-	protected boolean override() {
-		return _propsOverride;
+	public boolean overridable() {
+		return this.hasModifier(new Overridable());
 	}
 
 	/**
@@ -132,14 +127,28 @@ public class ActorProp<D extends Declaration> extends
 	 *            the propsOverride to set
 	 */
 	public void setOverride(boolean propsOverride) {
-		this._propsOverride = propsOverride;
+		if (propsOverride) {
+			addModifier(new Overridable());
+		} else {
+			removeModifier(new Overridable());
+		}
 	}
 
 	/**
-	 * @return the guaranteed single modifier of this ActorProp
+	 * @return
 	 */
-	private PropModifier<D> modifier() {
-		return (PropModifier<D>) modifiers().get(0);
+	public Class<D> declarationType() {
+		Class<D> result = null;
+
+		try {
+			result =
+					(Class<D>) ((StaticChameleonProperty)
+					property(language(MView.class).ACTOR_MUTEX))
+							.validElementTypes().get(0);
+		} catch (ModelException e) {
+		}
+
+		return result;
 	}
 
 	/*
@@ -165,9 +174,7 @@ public class ActorProp<D extends Declaration> extends
 	public ActorProp<D> clone() {
 		final ActorProp<D> clone = new ActorProp<D>();
 
-		clone.addModifier(this.modifier().clone());
-		clone.setDeclarationType(this.declarationType());
-		clone.setOverride(this.override());
+		clone.addModifiers(this.modifiers());
 
 		for (SimpleReference<D> reference : propValues()) {
 			clone.addPropValue(reference.clone());
@@ -185,10 +192,11 @@ public class ActorProp<D extends Declaration> extends
 	public VerificationResult verifySelf() {
 		final VerificationResult result = Valid.create();
 
-		if (!((this.modifiers().size() > 0) && (this.modifiers().size() < 2))) {
-			result.and(new BasicProblem(this,
-					"Must contain a single prop modifier"));
-		}
+		// if (!((this.modifiers().size() > 0) && (this.modifiers().size() <
+		// 2))) {
+		// result.and(new BasicProblem(this,
+		// "Must contain a single prop modifier"));
+		// }
 
 		if (!(this.propValues().size() > 0)) {
 			result.and(new BasicProblem(this,
@@ -210,11 +218,10 @@ public class ActorProp<D extends Declaration> extends
 						"Invalid reference to declaration"));
 			}
 
-			if (declaration instanceof Interface) {
+			if (declaration.getClass() == declarationType()) {
 				result.and(new BasicProblem(this,
 						"Contains declaration of invalid type: " + declaration));
 			}
-			// relation.nearestAncestor(c)
 		}
 
 		return result;
@@ -228,10 +235,11 @@ public class ActorProp<D extends Declaration> extends
 	 */
 	@Override
 	public boolean overrides(ActorProp<D> other) {
-		return _propsOverride
-				&& this.declarationType().equals(other.declarationType()) &&
-				this.nearestAncestor(RefinableDeclaration.class).hasParent(
-						other.nearestAncestor(RefinableDeclaration.class));
+		return this.overridable()
+				&& this.declarationType() == other.declarationType()
+				&& this.nearestAncestor(RefinableDeclaration.class)
+						.isRefinementOf(
+								other.nearestAncestor(RefinableDeclaration.class));
 	}
 
 	/*
@@ -242,25 +250,22 @@ public class ActorProp<D extends Declaration> extends
 	 * )
 	 */
 	@Override
-	public ActorProp<D> merge(ActorProp<D> other) throws MergeNotSupportedException {
+	public ActorProp<D> merge(ActorProp<D> other)
+			throws MergeNotSupportedException {
 
-		ActorProp<D> result = null;
+		ActorProp<D> merged = this.clone();
 
-		if (overrides(other)) {
-			throw new MergeNotSupportedException("This member can only " +
-					"be overridden.");
-		} else if (!this.declarationType().equals(other.declarationType())) {
+		if (!(this.declarationType() == other.declarationType())) {
 			throw new MergeNotSupportedException("Actors are of different" +
 					"declaration types.");
-		}	
-		else {
-			result = this.clone();
-			ActorProp<D> parent = other.clone();
-
-			this.addAllPropValues(parent.propValues());
 		}
 
-		return result;
+		if (!this.overrides(other)) {
+			ActorProp<D> parent = other.clone();
+			merged.addAllPropValues(parent.propValues());
+		}
+
+		return merged;
 	}
 
 	/*
@@ -289,8 +294,8 @@ public class ActorProp<D extends Declaration> extends
 	@Override
 	public boolean uniSameAs(Element other) throws LookupException {
 		return (other instanceof ActorProp)
-				&& (this.override() == ((ActorProp) other).override()) &&
-				modifier().equals(((ActorProp) other).modifier());
+				&& (this.overridable() == ((ActorProp) other).overridable()) &&
+				this.declarationType() == ((ActorProp) other).declarationType();
 
 	}
 }

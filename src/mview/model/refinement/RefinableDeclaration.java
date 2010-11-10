@@ -74,14 +74,14 @@ public interface RefinableDeclaration<D extends RefinableDeclaration<D, P>, P ex
 	public List<RefinableDeclaration> getDirectParents();
 
 	/**
-	 * Returns whether this refinable declaration has <code>other</code> as a
-	 * parent.
+	 * Returns whether this refinable declaration is a refinement of 
+	 * <code>other</code>. This method is recursive.
 	 * 
 	 * @param other
-	 *            the parent declaration
-	 * @return true is other is a parent
+	 *            the other declaration
+	 * @return true if this is a refinement of other
 	 */
-	public boolean hasParent(RefinableDeclaration other);
+	public boolean isRefinementOf(RefinableDeclaration other);
 
 	/**
 	 * Add a refinement relation

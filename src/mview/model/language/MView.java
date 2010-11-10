@@ -25,12 +25,13 @@ import java.util.Set;
 import mview.model.application.Application;
 import mview.model.application.Host;
 import mview.model.application.Instance;
+import mview.model.composition.ActorProp;
 import mview.model.composition.Advice;
 import mview.model.composition.Pointcut;
 import mview.model.module.Component;
 import mview.model.module.Interface;
+import mview.model.refinement.MViewMember;
 
-import org.rejuse.property.Property;
 import org.rejuse.property.PropertyMutex;
 
 import chameleon.core.declaration.Declaration;
@@ -63,6 +64,8 @@ public class MView<D extends Declaration> extends Language {
 	public final StaticChameleonProperty APPLICATION;
 	public final StaticChameleonProperty INSTANCE;
 	public final StaticChameleonProperty HOST;
+	
+	public final StaticChameleonProperty OVERRIDABLE;
 
 	private final Set<StaticChameleonProperty> ACTOR_PROPERTIES;
 
@@ -126,6 +129,9 @@ public class MView<D extends Declaration> extends Language {
 		ACTOR_PROPERTIES = new HashSet<StaticChameleonProperty>(
 				Arrays.asList(ACTOR_PROPERTIES_DECL));
 
+		OVERRIDABLE =
+				new StaticChameleonProperty("Overridable", this,
+						MViewMember.class);
 	}
 
 	/**
