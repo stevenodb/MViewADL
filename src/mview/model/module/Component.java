@@ -19,7 +19,12 @@
  */
 package mview.model.module;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import mview.model.refinement.MViewMember;
 import chameleon.core.declaration.SimpleNameSignature;
+import chameleon.core.lookup.LookupException;
 import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.VerificationResult;
 
@@ -65,6 +70,14 @@ public class Component<E extends Component<E>> extends Module<E> {
 		}
 		
 		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see mview.model.refinement.RefinableDeclaration#localMembers()
+	 */
+	@Override
+	public List<MViewMember> localMembers() throws LookupException {
+		return new ArrayList<MViewMember>();
 	}
 
 }
