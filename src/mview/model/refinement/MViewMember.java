@@ -27,6 +27,13 @@ import exception.MergeNotSupportedException;
  *
  */
 public interface MViewMember<M extends MViewMember<M,P>, P extends Element> extends Element<M, P> {
+
+	/**
+	 * Checks whether this member and other share the same context
+	 * @param other the member to check
+	 * @return
+	 */
+	public boolean sharesContext(M other);
 	
 	/**
 	 * Check whether this member overrides the given member
@@ -36,8 +43,12 @@ public interface MViewMember<M extends MViewMember<M,P>, P extends Element> exte
 	public boolean overrides(M other);
 	
 	/**
-	 * Merge this member with given member. This method does not check
-	 * if merging is allowed according to the specific context.
+	 * Merge this member with given member. Returns this if 
+	 * {@link #overrides(MViewMember)} is true. Should verify that 
+	 * both members share the same context 
+	 * ({@link #sharesContext(MViewMember)}). Throws {@link MergeNotSupportedException}
+	 * exception if both members cannot be merged.
+	 * 
 	 * @param other the member to merge with
 	 * @return A merged member
 	 * @throws MergeNotSupportedException 
