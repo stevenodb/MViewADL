@@ -90,14 +90,16 @@ public class MView<D extends Declaration> extends Language {
 						ADVICE_MUTEX,
 						Advice.class);
 
-		AFTER = new StaticChameleonProperty("After advice", this, ADVICE_MUTEX,
-				Advice.class);
+		AFTER = new StaticChameleonProperty("After advice", this, 
+						ADVICE_MUTEX,
+						Advice.class);
 
 		AROUND =
 				new StaticChameleonProperty("Around advice", this,
 						ADVICE_MUTEX,
 						Advice.class);
 
+		
 		// ActorProp
 		ACTOR_MUTEX = new PropertyMutex<ChameleonProperty>();
 
@@ -129,6 +131,7 @@ public class MView<D extends Declaration> extends Language {
 		ACTOR_PROPERTIES = new HashSet<StaticChameleonProperty>(
 				Arrays.asList(ACTOR_PROPERTIES_DECL));
 
+		// overridable property
 		OVERRIDABLE =
 				new StaticChameleonProperty("Overridable", this,
 						MViewMember.class);
