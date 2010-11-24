@@ -19,21 +19,24 @@
  */
 package mview.model.composition;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import mview.model.language.MView;
 import mview.model.module.Service;
+import mview.model.refinement.AbstractElement;
 import mview.model.refinement.MViewMember;
+import mview.model.refinement.RefinementContext;
 
 import org.rejuse.association.SingleAssociation;
 
 import chameleon.core.element.Element;
 import chameleon.core.modifier.ElementWithModifiersImpl;
-import chameleon.core.namespace.NamespaceElementImpl;
+import chameleon.core.modifier.Modifier;
 import chameleon.core.reference.SimpleReference;
 import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.Valid;
 import chameleon.core.validation.VerificationResult;
+import chameleon.exception.ModelException;
 import chameleon.util.Util;
 import exception.MergeNotSupportedException;
 
@@ -42,7 +45,7 @@ import exception.MergeNotSupportedException;
  *
  */
 public class Advice extends ElementWithModifiersImpl<Advice, Element> 
-		implements MViewMember<Advice, Element> { 
+		implements MViewMember<Advice, Element>, AbstractElement { 
 	//extends NamespaceElementImpl<Advice, Element> {
 	
 	/**
@@ -78,6 +81,29 @@ public class Advice extends ElementWithModifiersImpl<Advice, Element>
 	}
 
 	
+//	/**
+//	 * @return
+//	 */
+//	public boolean hasTypeModifier() {
+//	}
+	
+	public Modifier type() {
+		Modifier result = null;
+		for (Modifier modifier : this.modifiers()) {
+			try {
+				if (modifier.property(language(MView.class).ADVICE_MUTEX) != null) {
+					if (result == null) {
+						result = modifier;
+					}
+				}
+			} catch (ModelException e) {
+				e.printStackTrace();
+			}
+		}
+
+		return null;
+	}
+	
 	/* (non-Javadoc)
 	 * @see chameleon.core.element.ElementImpl#clone()
 	 */
@@ -101,12 +127,26 @@ public class Advice extends ElementWithModifiersImpl<Advice, Element>
 	public VerificationResult verifySelf() {
 		VerificationResult result = Valid.create();
 		
-		if (! (this.modifiers().size() == 0)) {
-			result = result.and(new BasicProblem(this, "Does not have a type set"));
+		int n = 0;
+		try {
+			for (Modifier modifier : this.modifiers()) {
+				if (modifier.property(language(MView.class).ADVICE_MUTEX) != null) {
+					n++;
+				}
+			}
+		} catch (ModelException e) {
+			result = result.and(new BasicProblem(this, "Something wrong in the" +
+					"model with type modifier."));
+		}
+		
+		if (! (n == 1) ) {
+			result = result.and(new BasicProblem(this, "Type is not correctly " +
+					"set. ("+n+")"));
 		}
 		
 		if (! (this.service() != null)) {
-			result = result.and(new BasicProblem(this, "Does not have a service set"));
+			result = result.and(new BasicProblem(this, "Does not have a service " +
+					"set"));
 		}
 		
 		return result;
@@ -124,19 +164,65 @@ public class Advice extends ElementWithModifiersImpl<Advice, Element>
 	}
 
 	/* (non-Javadoc)
+	 * @see mview.model.refinement.MViewMember#sharesContext(mview.model.refinement.MViewMember)
+	 */
+	@Override
+	public boolean sharesContext(Advice other) {
+		return new RefinementContext<Advice>(this, other).verify();
+	}
+	
+	/* (non-Javadoc)
 	 * @see mview.model.refinement.MViewMember#overrides(mview.model.refinement.MViewMember)
 	 */
 	@Override
-	public boolean overrides(Advice member) {
+	public boolean overrides(Advice other) {
 		return false;
+	}
+
+	/* (non-Javadoc)
+	 * @see mview.model.refinement.MViewMember#mergesWith(mview.model.refinement.MViewMember)
+	 */
+	@Override
+	public boolean mergesWith(Advice other) {
+		return sharesContext(other) && !overrides(other);
 	}
 
 	/* (non-Javadoc)
 	 * @see mview.model.refinement.MViewMember#merge(mview.model.refinement.MViewMember)
 	 */
 	@Override
-	public Advice merge(Advice member) throws MergeNotSupportedException {
-		// TODO Auto-generated method stub
+	public Advice merge(Advice other) throws MergeNotSupportedException {
+		
+		Advice merged;
+		
+		if (mergesWith(other)) {
+			
+			merged = new Advice();
+					
+			if (this.service() != null) {
+				merged.setService(this.service().clone());
+			} else if (other.service() != null) {
+				merged.setService(other.service().clone());
+			}
+			
+			if (this.type() != null) {
+				merged.addModifier(this.type());
+			} else if (other.type() != null) {
+				merged.addModifier(other.type().clone());
+			}
+		} else {
+			merged = this.clone();
+		}
+		
+		return merged;
 	}
 
+	/* (non-Javadoc)
+	 * @see mview.model.refinement.AbstractElement#isAbstract()
+	 */
+	@Override
+	public boolean isAbstract() {
+		return false;
+	}
+	
 }

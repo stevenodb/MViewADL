@@ -18,7 +18,6 @@
 package mview.model.module;
 import java.util.List;
 
-import mview.model.refinement.MViewMember;
 import mview.model.refinement.RefinableMemberDeclarationImpl;
 
 import org.rejuse.association.OrderedMultiAssociation;

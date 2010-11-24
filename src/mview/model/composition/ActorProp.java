@@ -25,6 +25,7 @@ import mview.model.language.MView;
 import mview.model.module.Interface;
 import mview.model.refinement.MViewMember;
 import mview.model.refinement.RefinableDeclaration;
+import mview.model.refinement.RefinementContext;
 import mview.model.refinement.modifier.Overridable;
 
 import org.rejuse.association.OrderedMultiAssociation;
@@ -60,7 +61,7 @@ public class ActorProp<D extends Declaration> extends
 	/**
 	 * @param modifier
 	 */
-	public ActorProp(PropModifier<D> modifier, Class<D> declaration) {
+	public ActorProp(PropModifier<D> modifier) {
 		this();
 		addModifier(modifier);
 	}
@@ -70,11 +71,9 @@ public class ActorProp<D extends Declaration> extends
 	 * @param declaration
 	 * @param overridable
 	 */
-	public ActorProp(PropModifier<D> modifier, Class<D> declaration,
-			boolean overridable) {
-
-		this(modifier, declaration);
-		setOverride(overridable);
+	public ActorProp(PropModifier<D> modifier, boolean overridable) {
+		this(modifier);
+		setOverridable(overridable);
 	}
 
 	// list of prop values
@@ -126,7 +125,7 @@ public class ActorProp<D extends Declaration> extends
 	 * @param propsOverride
 	 *            the propsOverride to set
 	 */
-	public void setOverride(boolean propsOverride) {
+	public void setOverridable(boolean propsOverride) {
 		if (propsOverride) {
 			addModifier(new Overridable());
 		} else {
@@ -143,9 +142,10 @@ public class ActorProp<D extends Declaration> extends
 		try {
 			result =
 					(Class<D>) ((StaticChameleonProperty)
-					property(language(MView.class).ACTOR_MUTEX))
-							.validElementTypes().get(0);
+							this.property(language(MView.class).ACTOR_MUTEX))
+									.validElementTypes().get(0);
 		} catch (ModelException e) {
+			return null;
 		}
 
 		return result;
@@ -230,16 +230,39 @@ public class ActorProp<D extends Declaration> extends
 	/*
 	 * (non-Javadoc)
 	 * 
+	 * @see
+	 * mview.model.refinement.MViewMember#sharesContext(mview.model.refinement
+	 * .MViewMember)
+	 */
+	@Override
+	public boolean sharesContext(ActorProp<D> other) {
+		return new RefinementContext<ActorProp<D>>(this, other).verify();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see mview.model.refinement.MViewMember#overrides(mview.model.refinement.
 	 * MViewMember)
 	 */
 	@Override
 	public boolean overrides(ActorProp<D> other) {
-		return this.overridable()
-				&& this.declarationType() == other.declarationType()
-				&& this.nearestAncestor(RefinableDeclaration.class)
-						.isRefinementOf(
-								other.nearestAncestor(RefinableDeclaration.class));
+		boolean result = this.overridable();
+		result &= this.declarationType() == other.declarationType();
+		result &= sharesContext(other);
+		return result;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * mview.model.refinement.MViewMember#mergesWith(mview.model.refinement.
+	 * MViewMember)
+	 */
+	@Override
+	public boolean mergesWith(ActorProp<D> other) {
+		return sharesContext(other) && !overrides(other);
 	}
 
 	/*
@@ -253,14 +276,14 @@ public class ActorProp<D extends Declaration> extends
 	public ActorProp<D> merge(ActorProp<D> other)
 			throws MergeNotSupportedException {
 
-		ActorProp<D> merged = this.clone();
-
 		if (!(this.declarationType() == other.declarationType())) {
 			throw new MergeNotSupportedException("Actors are of different" +
 					"declaration types.");
 		}
 
-		if (!this.overrides(other)) {
+		ActorProp<D> merged = this.clone();
+
+		if (mergesWith(other)) {
 			ActorProp<D> parent = other.clone();
 			merged.addAllPropValues(parent.propValues());
 		}

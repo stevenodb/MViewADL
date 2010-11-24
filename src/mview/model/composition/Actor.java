@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import mview.model.refinement.MViewMember;
+import mview.model.refinement.RefinementContext;
 
 import org.rejuse.association.OrderedMultiAssociation;
 
@@ -43,7 +44,7 @@ public class Actor extends NamespaceElementImpl<Actor, Element> implements
 	/*
 	 * Props
 	 */
-	OrderedMultiAssociation<Actor, ActorProp> _props =
+	private OrderedMultiAssociation<Actor, ActorProp> _props =
 			new OrderedMultiAssociation<Actor, ActorProp>(this);
 
 	/**
@@ -99,6 +100,14 @@ public class Actor extends NamespaceElementImpl<Actor, Element> implements
 		return result;
 	}
 
+	/* (non-Javadoc)
+	 * @see mview.model.refinement.MViewMember#sharesContext(mview.model.refinement.MViewMember)
+	 */
+	@Override
+	public boolean sharesContext(Actor other) {
+		return new RefinementContext(this, other).verify(); 
+	}
+	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -110,6 +119,14 @@ public class Actor extends NamespaceElementImpl<Actor, Element> implements
 		return false;
 	}
 
+	/* (non-Javadoc)
+	 * @see mview.model.refinement.MViewMember#canMergeWith()
+	 */
+	@Override
+	public boolean mergesWith(Actor other) {
+		return sharesContext(other) && !overrides(other);
+	}
+		
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -119,32 +136,36 @@ public class Actor extends NamespaceElementImpl<Actor, Element> implements
 	 */
 	@Override
 	public Actor merge(Actor other) throws MergeNotSupportedException {
-		Actor merged = new Actor();
-
-		Actor child = this.clone();
-		Actor parent = other.clone();
-
-		// for all props
-		for (ActorProp childProp : child.props()) {
-
-			// get the respective prop of the parent, if it has one
-			// in which case, this one's a refinement (merge/overidde) of
-			// the parent's
-			ActorProp parentProp =
-					parent.prop(childProp.declarationType());
-
-			if (parentProp != null) {
-
-				ActorProp mergedProp = childProp.merge(parentProp);
-				merged.addProp(mergedProp);
-
-				// remove callerprop from the parent, we are done with it
-				parent.removeProp(parentProp);
+		Actor merged = this.clone();
+		
+		if (mergesWith(other)) {
+			merged = new Actor();
+	
+			Actor child = this.clone();
+			Actor parent = other.clone();
+	
+			// for all props
+			for (ActorProp childProp : child.props()) {
+	
+				// get the respective prop of the parent, if it has one
+				// in which case, this one's a refinement (merge/overidde) of
+				// the parent's
+				ActorProp parentProp =
+						parent.prop(childProp.declarationType());
+	
+				if (parentProp != null) {
+	
+					ActorProp mergedProp = childProp.merge(parentProp);
+					merged.addProp(mergedProp);
+	
+					// remove callerprop from the parent, we are done with it
+					parent.removeProp(parentProp);
+				}
 			}
+	
+			// add remaining parent props that haven't been refined here
+			merged.addAllProps(parent.props());
 		}
-
-		// add remaining parent props that haven't been refined here
-		merged.addAllProps(parent.props());
 
 		return merged;
 	}

@@ -21,6 +21,7 @@ package mview.model.refinement;
 import mview.model.namespace.MViewDeclaration;
 import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.element.Element;
+import chameleon.core.lookup.LookupException;
 import exception.MergeNotSupportedException;
 
 /**
@@ -47,18 +48,39 @@ public abstract class MViewMemberDeclarationImpl<M extends MViewMemberDeclaratio
 	/*
 	 * (non-Javadoc)
 	 * 
+	 * @see
+	 * mview.model.refinement.MViewMember#sharesContext(mview.model.refinement
+	 * .MViewMember)
+	 */
+	@Override
+	public boolean sharesContext(M other) {
+		return new RefinementContext(this, other).verify();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see mview.model.refinement.MViewMember#overrides(mview.model.refinement.
 	 * MViewMember)
 	 */
 	@Override
 	public boolean overrides(M other) {
-		boolean equal = this.equals(other);
-		boolean parentRelationship =
-				this.nearestAncestor(RefinableDeclaration.class).isRefinementOf(
-						other.nearestAncestor(RefinableDeclaration.class));
-		boolean sameType = this.getClass().equals(other.getClass()); 
+		boolean result = false;
+		try {
+			result = this.sameAs(other) && sharesContext(other);
+		} catch (LookupException e) {
+			e.printStackTrace();
+		}
 		
-		return equal && sameType && parentRelationship;
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see mview.model.refinement.MViewMember#mergesWith(mview.model.refinement.MViewMember)
+	 */
+	@Override
+	public boolean mergesWith(M other) {
+		return false;
 	}
 
 	/*

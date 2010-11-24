@@ -56,27 +56,22 @@ public class RefinementContext<M extends MViewMember<M, Element>> {
 	 * @return
 	 */
 	public boolean verify() {
-		boolean result;
+		RefinableDeclaration childD, parentD;
 		
-		if (child() instanceof RefinableDeclaration) {
-			result = 
-				((RefinableDeclaration)child()).isRefinementOf(
-					((RefinableDeclaration)parent()));
+/*		if ((child() instanceof RefinableDeclaration) 
+				&& (parent() instanceof RefinableDeclaration)) {
+		
+			childD = (RefinableDeclaration)child();
+			parentD = (RefinableDeclaration)parent();
+
 		} else {
-			result = child().nearestAncestor(RefinableDeclaration.class)
-			.isRefinementOf(
-				parent().nearestAncestor(RefinableDeclaration.class));
-		}
 		
-		return result;
+		} */
+		
+		childD = child().nearestAncestor(RefinableDeclaration.class);
+		parentD = parent().nearestAncestor(RefinableDeclaration.class);
+
+		return childD.isRefinementOf(parentD);
 	}
-//	
-//	public <D extends RefinableDeclaration> boolean verify(D child, D parent) {
-//		return false;
-//	}
-//	
-//	public <M extends MViewMember> boolean verify(M child, M parent) {
-//		return false;
-//	}
 	
 }

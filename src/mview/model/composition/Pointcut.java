@@ -22,12 +22,12 @@ package mview.model.composition;
 import java.util.List;
 
 import mview.model.refinement.MViewMember;
-import mview.model.refinement.RefinableDeclaration;
+import mview.model.refinement.RefinementContext;
 
-import org.rejuse.association.OrderedMultiAssociation;
 import org.rejuse.association.SingleAssociation;
 
 import chameleon.core.element.Element;
+import chameleon.core.lookup.LookupException;
 import chameleon.core.modifier.ElementWithModifiersImpl;
 import chameleon.core.modifier.Modifier;
 import chameleon.core.validation.BasicProblem;
@@ -63,59 +63,34 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element>
 	 * KIND is realized through modifier
 	 */
 
+
 	/*
-	 * SIGNATURES
+	 * SIGNATURE
 	 */
-	private OrderedMultiAssociation<Pointcut, PointcutSignature> _signatures =
-			new OrderedMultiAssociation<Pointcut, PointcutSignature>(this);
-
-//	private boolean _signatureOverride = false;
-
+	private SingleAssociation<Pointcut, Signature> _signature =
+		new SingleAssociation<Pointcut, Signature>(this);
+	
 	/**
 	 * @return
 	 */
-	public List<PointcutSignature> signatures() {
-		return _signatures.getOtherEnds();
+	public Signature signature() {
+		return _signature.getOtherEnd();
 	}
-
+	
 	/**
 	 * @param signature
 	 */
-	public void addSignature(PointcutSignature signature) {
-		_signatures.add(signature.parentLink());
+	public void setSignature(Signature signature) {
+		_signature.connectTo(signature.parentLink());
 	}
-
+	
 	/**
-	 * @param signatures
+	 * Clears the signature
 	 */
-	public void addAllSignatures(List<PointcutSignature> signatures) {
-		for (PointcutSignature signature : signatures) {
-			addSignature(signature);
-		}
+	public void clearSignature() {
+		_signature.clear();
 	}
-
-	/**
-	 * @param signature
-	 */
-	public void removeSignature(PointcutSignature signature) {
-		_signatures.remove(signature.parentLink());
-	}
-
-	/**
-	 * @param signatureOverride
-	 *            the signatureOverride to set
-	 */
-	public void setSignatureOverride(boolean signatureOverride) {
-		this._signatureOverride = signatureOverride;
-	}
-
-	/**
-	 * @return the signatureOverride
-	 */
-	public boolean signatureOverride() {
-		return _signatureOverride;
-	}
-
+	
 	/*
 	 * ACTORS
 	 */
@@ -131,7 +106,7 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element>
 	 * Add Caller actor
 	 * @param actor
 	 */
-	public void addCaller(Actor actor) {
+	public void setCaller(Actor actor) {
 		_caller.connectTo(actor.parentLink());
 	}
 	
@@ -161,7 +136,7 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element>
 	 * Add Callee actor
 	 * @param actor
 	 */
-	public void addCallee(Actor actor) {
+	public void setCallee(Actor actor) {
 		_callee.connectTo(actor.parentLink());
 	}
 	
@@ -193,13 +168,11 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element>
 		// modifiers
 		clone.addModifiers(this.modifiers());
 
-		// signatures
-		for (PointcutSignature sig : this.signatures()) {
-			clone.addSignature(sig.clone());
-		}
+		// signature
+		clone.setSignature(this.signature());
 
-		clone.addCallee(this.callee().clone());
-		clone.addCaller(this.caller().clone());
+		clone.setCallee(this.callee().clone());
+		clone.setCaller(this.caller().clone());
 
 		return clone;
 	}
@@ -223,9 +196,9 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element>
 					"Has more than one kind modifier"));
 		}
 
-		if (!((this.signatures() != null) && (this.signatures().size() >= 1))) {
+		if (! (this.signature() != null)) {
 			result = result.and(new BasicProblem(this,
-					"Does not aggregate any join point"));
+					"Does not have a signature"));
 		}
 
 		return result;
@@ -239,11 +212,19 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element>
 	public List<Element> children() {
 		List<Element> result = super.children();
 
-		result.addAll(this.signatures());
+		result.add(this.signature());
 		result.add(this.caller());
 		result.add(this.callee());
 
 		return result;
+	}
+	
+	/* (non-Javadoc)
+	 * @see mview.model.refinement.MViewMember#sharesContext(mview.model.refinement.MViewMember)
+	 */
+	@Override
+	public boolean sharesContext(Pointcut other) {
+		return new RefinementContext(this, other).verify();
 	}
 
 	/*
@@ -257,6 +238,14 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element>
 		return false;
 	}
 
+	/* (non-Javadoc)
+	 * @see mview.model.refinement.MViewMember#mergesWith(mview.model.refinement.MViewMember)
+	 */
+	@Override
+	public boolean mergesWith(Pointcut other) {
+		return sharesContext(other) && !overrides(other);
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -266,32 +255,29 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element>
 	 */
 	@Override
 	public Pointcut merge(Pointcut other) throws MergeNotSupportedException {
-		RefinableDeclaration thisD = this.nearestAncestor(RefinableDeclaration.class);
-		RefinableDeclaration otherD = other.nearestAncestor(RefinableDeclaration.class);
 
-		if (!thisD.isRefinementOf(otherD)) {
-			throw new MergeNotSupportedException(
-					"This member and other member " +
-							"do not share the same refinement context.");
-		}
-
-		Pointcut child = this.clone();
-		Pointcut parent = other.clone();
-
-		// 1. kind modifier: override with child's kind
-		Pointcut merged = new Pointcut(child.modifiers().get(0));
-
-		// 2. signature
-		merged.addAllSignatures(child.signatures());
-		if (!this.signatureOverride()) {
-			merged.addAllSignatures(parent.signatures());
-		}
-
-		// 3. CallerProps
-		merged.addCaller(child.caller().merge(parent.caller()));
+		Pointcut merged;
 		
-		// 4. CalleeProps
-		merged.addCallee(child.callee().merge(parent.callee()));
+		if (mergesWith(other)) {
+			
+			Pointcut child = this.clone();
+			Pointcut parent = other.clone();
+			
+			// 1. kind modifier: override with child's kind
+			merged = new Pointcut(child.modifiers().get(0));
+			
+			// 2. signature
+			merged.setSignature(child.signature().merge(parent.signature()));
+			
+			// 3. CallerProps
+			merged.setCaller(child.caller().merge(parent.caller()));
+			
+			// 4. CalleeProps
+			merged.setCallee(child.callee().merge(parent.callee()));
+		} else {
+			merged = this.clone();
+		}
+		
 
 		return merged;
 	}

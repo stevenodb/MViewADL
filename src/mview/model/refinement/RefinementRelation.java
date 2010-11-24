@@ -30,6 +30,7 @@ import chameleon.core.reference.SimpleReference;
 import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.Valid;
 import chameleon.core.validation.VerificationResult;
+import exception.MergeNotSupportedException;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
@@ -82,15 +83,26 @@ public class RefinementRelation
 		List<M> toAdd = new ArrayList<M>();
 		List<M>	potential = parentDeclarationEnd().members();
 
-		for (M parentM : toAdd) {
-			boolean canAdd = true;
+		for (M parentM : potential) {
+			boolean canAdd = false;
 
-			for (Iterator<M> itCur = current.iterator(); itCur.hasNext();) {
+			for (Iterator<M> itCur = current.iterator(); itCur.hasNext() && canAdd;) {
 				
 				M childM = itCur.next();
-				
-				canAdd = ! ( childM.sameAs(parentM) || childM.overrides(parentM) );
 
+				if (!childM.overrides(parentM)) {
+					canAdd = true;
+				} else if (childM.mergesWith(parentM)) {
+					try {
+						parentM = (M) childM.merge(parentM);
+						canAdd = true;
+					} catch (MergeNotSupportedException e) {
+						e.printStackTrace();
+						canAdd = false;
+					} 
+				} else if (!childM.sameAs(parentM)) {
+					canAdd = true;
+				}
 			}
 			
 			if (canAdd) toAdd.add(parentM);

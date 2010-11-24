@@ -19,11 +19,13 @@
 package mview.model.refinement;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import mview.model.namespace.MViewDeclaration;
 
 import org.rejuse.association.MultiAssociation;
+import org.rejuse.java.collections.TypeFilter;
 
 import chameleon.core.declaration.Declaration;
 import chameleon.core.declaration.SimpleNameSignature;
@@ -83,19 +85,16 @@ public abstract class RefinableDeclarationImpl<D extends RefinableDeclarationImp
 
 	@Override
 	public List<Declaration> declarations() throws LookupException {
-
 		List<Declaration> result = new ArrayList<Declaration>();
+		
+		Collection<Declaration> localDeclarations = 
+			new TypeFilter(Declaration.class).retain(localMembers());
+
+		result.addAll(localDeclarations);
 
 		for (RefinableDeclaration declaration : getDirectParents()) {
 			result.addAll(declaration.declarations());
 		}
-
-		for (Element elem : members()) {
-			if (elem instanceof Declaration) {
-				result.add((Declaration) elem);
-			}
-		}
-
 		return result;
 	}
 
@@ -103,9 +102,9 @@ public abstract class RefinableDeclarationImpl<D extends RefinableDeclarationImp
 	public List<Element> flatten() throws LookupException {
 		List<Element> result = new ArrayList<Element>();
 
-		for (Element elem : members()) {
-
-		}
+		for (Element element : members()) {
+			result.add(element.clone());
+		} 
 
 		return result;
 	}
@@ -117,7 +116,7 @@ public abstract class RefinableDeclarationImpl<D extends RefinableDeclarationImp
 		// 1. local members
 		result = new ArrayList<MViewMember>(localMembers());
 		
-		// 2. parent members
+		// 2. fetch all parent members
 		for (RefinementRelation	relation : refinementRelations()) {
 			relation.gatherParentMembers(result);
 		}

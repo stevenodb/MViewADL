@@ -20,6 +20,7 @@ package mview.model.refinement;
 
 import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.element.Element;
+import chameleon.core.lookup.LookupException;
 import exception.MergeNotSupportedException;
 
 /**
@@ -45,17 +46,35 @@ public abstract class RefinableMemberDeclarationImpl<
 	}
 
 	/* (non-Javadoc)
+	 * @see mview.model.refinement.MViewMember#sharesContext(mview.model.refinement.MViewMember)
+	 */
+	@Override
+	public boolean sharesContext(D other) {
+		return new RefinementContext(this, other).verify();
+	}
+
+	/* (non-Javadoc)
 	 * @see mview.model.refinement.MViewMember#overrides(mview.model.refinement.MViewMember)
 	 */
 	@Override
 	public boolean overrides(D other) {
-		boolean equal = this.equals(other);
-		boolean parentRelationship =
-				this.nearestAncestor(RefinableDeclaration.class).isRefinementOf(
-						other.nearestAncestor(RefinableDeclaration.class));
-		boolean sameType = this.getClass().equals(other.getClass()); 
+		boolean result = false;
 		
-		return equal && sameType && parentRelationship;
+		try {
+			result = this.sameAs(other) && this.sharesContext(other);
+		} catch (LookupException e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see mview.model.refinement.MViewMember#mergesWith(mview.model.refinement.MViewMember)
+	 */
+	@Override
+	public boolean mergesWith(D other) {
+		return false;
 	}
 
 	/* (non-Javadoc)

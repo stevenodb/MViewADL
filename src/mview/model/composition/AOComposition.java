@@ -19,26 +19,28 @@
  */
 package mview.model.composition;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import mview.model.namespace.MViewDeclaration;
+import mview.model.refinement.AbstractElement;
 import mview.model.refinement.MViewMember;
+import mview.model.refinement.RefinableMemberDeclarationImpl;
 
 import org.rejuse.association.SingleAssociation;
 
 import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.element.Element;
+import chameleon.core.lookup.LookupException;
 import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.VerificationResult;
 import chameleon.util.Util;
-import exception.MergeNotSupportedException;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public class AOComposition extends MViewDeclaration<AOComposition, Element>
-			implements MViewMember<AOComposition, Element> {
+public class AOComposition extends RefinableMemberDeclarationImpl<AOComposition, Element>
+		implements AbstractElement { 
 	
 	/**
 	 * 
@@ -160,21 +162,39 @@ public class AOComposition extends MViewDeclaration<AOComposition, Element>
 		return result;
 	}
 
-	/* (non-Javadoc)
-	 * @see mview.model.refinement.MViewMember#overrides(mview.model.refinement.MViewMember)
-	 */
-	@Override
-	public boolean overrides(AOComposition other) {
-		return this.equals(other);
-	}
+//	/* (non-Javadoc)
+//	 * @see mview.model.refinement.MViewMember#overrides(mview.model.refinement.MViewMember)
+//	 */
+//	@Override
+//	public boolean overrides(AOComposition other) {
+//		return this.equals(other);
+//	}
+//
+//	/* (non-Javadoc)
+//	 * @see mview.model.refinement.MViewMember#merge(mview.model.refinement.MViewMember)
+//	 */
+//	@Override
+//	public AOComposition merge(AOComposition member)
+//			throws MergeNotSupportedException {
+//		throw new MergeNotSupportedException(this+" does not support merge");
+//	}
 
 	/* (non-Javadoc)
-	 * @see mview.model.refinement.MViewMember#merge(mview.model.refinement.MViewMember)
+	 * @see mview.model.refinement.RefinableDeclaration#localMembers()
 	 */
 	@Override
-	public AOComposition merge(AOComposition member)
-			throws MergeNotSupportedException {
-		throw new MergeNotSupportedException(this+" does not support merge");
+	public List<MViewMember> localMembers() throws LookupException {
+		List<MViewMember> result = new ArrayList<MViewMember>();
+		result.add(advice());
+		result.add(pointcut());
+		return result;
+	}
+	
+	/* (non-Javadoc)
+	 * @see mview.model.refinement.AbstractElement#isAbstract()
+	 */
+	public boolean isAbstract() {
+		return false;
 	}
 
 }

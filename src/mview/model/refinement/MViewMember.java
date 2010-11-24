@@ -37,22 +37,51 @@ public interface MViewMember<M extends MViewMember<M,P>, P extends Element> exte
 	
 	/**
 	 * Check whether this member overrides the given member
-	 * @param other the member to check
+	 * @param other the member to check with
 	 * @return
 	 */
 	public boolean overrides(M other);
+
+	/**
+	 * Check whether this member can be merged with the given member
+	 * @return	other the member to check with
+	 */
+	public boolean mergesWith(M other);
 	
 	/**
-	 * Merge this member with given member. Returns this if 
-	 * {@link #overrides(MViewMember)} is true. Should verify that 
-	 * both members share the same context 
-	 * ({@link #sharesContext(MViewMember)}). Throws {@link MergeNotSupportedException}
-	 * exception if both members cannot be merged.
+	 * If {@link #mergesWith(MViewMember)} is true, returns merged result of 
+	 * a merge with this and the other member. 
+	 * Otherwise, if {@link #mergesWith(MViewMember)} is false, returns a clone
+	 * of this.
+	 * 
+	 * Throws {@link MergeNotSupportedException} exception if this member
+	 * does not support the merge operation.
 	 * 
 	 * @param other the member to merge with
-	 * @return A merged member
-	 * @throws MergeNotSupportedException 
+	 * @return the merged member
+	 * @throws MergeNotSupportedException when merge is not supported 
 	 */
 	public M merge(M other) throws MergeNotSupportedException;
-
+	
+	/*
+	 * Override vs. Merge
+	 * 
+	 * Member A overrides Member B when 
+	 * (
+	 * 	(1) they share the same declaration signature
+	 * 	 OR
+	 *  (1') they are marked to be overridden
+	 * )
+	 * (2) AND are of the same declaration type 
+	 * (3) AND A is a member of a refinable declaration that refines 
+	 * another refinable declaration of which B is a member.
+	 * 
+	 * 
+	 * Member C merges with Member D when
+	 * 
+	 * (1) C and D are of type Element (not Declaration)
+	 * (2) C and D are of the same Element type
+	 * (3) Do not override each other
+	 * 
+	 */
 }
