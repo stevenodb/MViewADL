@@ -39,7 +39,7 @@ import chameleon.util.Pair;
  * 
  */
 public class PatternSignature extends
-		PointcutSignature<PatternSignature, Service> {
+		ServiceSignature<PatternSignature, Service> {
 
 	// eg: *, *Map, System*, newspaper..Article
 	private String _returnTypePattern;

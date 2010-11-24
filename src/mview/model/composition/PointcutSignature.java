@@ -1,7 +1,7 @@
 /**
  * author:   Steven Op de beeck <steven /at/ opdebeeck /./ org>
- * filename: JointPoint.java
- * created:  Nov 27, 2009, 6:03:10 PM
+ * filename: PointcutSignature.java
+ * created:  Nov 10, 2010, 10:16:03 PM
  * license:
  * The code contained in this file is free software: you can redistribute 
  * it and/or modify it under the terms of the GNU General Public License
@@ -13,47 +13,112 @@
  * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
  * See the GNU General Public License for more details.
  *
- * You should have received a copy of the GNU General Public License
- *
+ * You should have received a copy of the GNU General Public License. 
  * If not, see <http://www.gnu.org/licenses/>.
  */
 package mview.model.composition;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import mview.model.module.JoinPointElement;
+import mview.model.refinement.MViewMember;
+import mview.model.refinement.RefinementContext;
+import mview.model.refinement.modifier.Overridable;
+
+import org.rejuse.association.OrderedMultiAssociation;
+
 import chameleon.core.element.Element;
-import chameleon.core.lookup.LookupException;
-import chameleon.core.namespace.NamespaceElementImpl;
-import chameleon.core.reference.SimpleReference;
+import chameleon.core.modifier.ElementWithModifiersImpl;
+import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.Valid;
 import chameleon.core.validation.VerificationResult;
+import exception.MergeNotSupportedException;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  * 
  */
-public abstract class PointcutSignature<E extends PointcutSignature<E, JPE>, JPE extends JoinPointElement>
-			extends NamespaceElementImpl<E, Element> {
+public class PointcutSignature extends ElementWithModifiersImpl<PointcutSignature, Element>
+		implements MViewMember<PointcutSignature, Element> {
 
 	/**
 	 * default constructor
 	 */
-	protected PointcutSignature() {
+	public PointcutSignature() {
 		super();
 	}
+
+	public PointcutSignature(boolean overridable) {
+		this();
+		setOverridable(overridable);
+	}
+
+	/*
+	 * SIGNATURES
+	 */
+	private OrderedMultiAssociation<PointcutSignature, ServiceSignature> _pointcutSignatures =
+			new OrderedMultiAssociation<PointcutSignature, ServiceSignature>(this);
 
 	/**
 	 * @return
 	 */
-	public abstract List<SimpleReference<JPE>> services()
-			throws LookupException;
+	public List<ServiceSignature> signatures() {
+		return _pointcutSignatures.getOtherEnds();
+	}
 
 	/**
-	 * @return An incomplete clone with the correct sub-Type
+	 * @param signature
 	 */
-	protected abstract E cloneThis();
+	public void addSignature(ServiceSignature signature) {
+		_pointcutSignatures.add(signature.parentLink());
+	}
+
+	/**
+	 * @param signatures
+	 */
+	public void addAllSignatures(List<ServiceSignature> signatures) {
+		for (ServiceSignature signature : signatures) {
+			addSignature(signature);
+		}
+	}
+
+	/**
+	 * @param signature
+	 */
+	public void removeSignature(ServiceSignature signature) {
+		_pointcutSignatures.remove(signature.parentLink());
+	}
+
+	/**
+	 * @return true if overridable
+	 */
+	public boolean overridable() {
+		return this.hasModifier(new Overridable());
+	}
+
+	/**
+	 * @param overridable
+	 */
+	public void setOverridable(boolean overridable) {
+		if (overridable) {
+			addModifier(new Overridable());
+		} else {
+			removeModifier(new Overridable());
+		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see chameleon.core.element.Element#children()
+	 */
+	@Override
+	public List<Element> children() {
+		List<Element> result = super.children();
+
+		result.addAll(this.signatures());
+
+		return result;
+	}
 
 	/*
 	 * (non-Javadoc)
@@ -61,8 +126,15 @@ public abstract class PointcutSignature<E extends PointcutSignature<E, JPE>, JPE
 	 * @see chameleon.core.element.ElementImpl#clone()
 	 */
 	@Override
-	public E clone() {
-		final E clone = this.cloneThis();
+	public PointcutSignature clone() {
+		final PointcutSignature clone = new PointcutSignature();
+
+		clone.addModifiers(this.modifiers());
+
+		for (ServiceSignature sig : signatures()) {
+			clone.addSignature(sig.clone());
+		}
+
 		return clone;
 	}
 
@@ -73,15 +145,59 @@ public abstract class PointcutSignature<E extends PointcutSignature<E, JPE>, JPE
 	 */
 	@Override
 	public VerificationResult verifySelf() {
-		return Valid.create();
+		VerificationResult result = Valid.create();
+
+		if (!((this.signatures() != null) && (this.signatures().size() >= 1))) {
+			result = result.and(new BasicProblem(this,
+					"Does not aggregate any signature"));
+		}
+
+		return result;
+	}
+	
+	/* (non-Javadoc)
+	 * @see mview.model.refinement.MViewMember#sharesContext(mview.model.refinement.MViewMember)
+	 */
+	@Override
+	public boolean sharesContext(PointcutSignature other) {
+		return new RefinementContext<PointcutSignature>(this, other).verify();
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see chameleon.core.element.Element#children()
+	 * @see mview.model.refinement.MViewMember#overrides(mview.model.refinement.
+	 * MViewMember)
 	 */
-	public List<Element> children() {
-		return new ArrayList<Element>();
+	@Override
+	public boolean overrides(PointcutSignature other) {
+		return this.overridable() && this.sharesContext(other);
+	}
+
+	/* (non-Javadoc)
+	 * @see mview.model.refinement.MViewMember#mergesWith(mview.model.refinement.MViewMember)
+	 */
+	@Override
+	public boolean mergesWith(PointcutSignature other) {
+		return sharesContext(other) && !overridable();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * mview.model.refinement.MViewMember#merge(mview.model.refinement.MViewMember
+	 * )
+	 */
+	@Override
+	public PointcutSignature merge(PointcutSignature other) throws MergeNotSupportedException {
+		
+		PointcutSignature merged = this.clone();
+		
+		if (mergesWith(other) ) {
+			merged.addAllSignatures(other.signatures());
+		}
+		
+		return merged;
 	}
 }

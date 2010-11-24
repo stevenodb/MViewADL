@@ -27,7 +27,6 @@ import mview.model.refinement.RefinementContext;
 import org.rejuse.association.SingleAssociation;
 
 import chameleon.core.element.Element;
-import chameleon.core.lookup.LookupException;
 import chameleon.core.modifier.ElementWithModifiersImpl;
 import chameleon.core.modifier.Modifier;
 import chameleon.core.validation.BasicProblem;
@@ -67,28 +66,28 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element>
 	/*
 	 * SIGNATURE
 	 */
-	private SingleAssociation<Pointcut, Signature> _signature =
-		new SingleAssociation<Pointcut, Signature>(this);
+	private SingleAssociation<Pointcut, PointcutSignature> _pointcutSignature =
+		new SingleAssociation<Pointcut, PointcutSignature>(this);
 	
 	/**
 	 * @return
 	 */
-	public Signature signature() {
-		return _signature.getOtherEnd();
+	public PointcutSignature pointcutSignature() {
+		return _pointcutSignature.getOtherEnd();
 	}
 	
 	/**
-	 * @param signature
+	 * @param pointcutSignature
 	 */
-	public void setSignature(Signature signature) {
-		_signature.connectTo(signature.parentLink());
+	public void setSignature(PointcutSignature pointcutSignature) {
+		_pointcutSignature.connectTo(pointcutSignature.parentLink());
 	}
 	
 	/**
 	 * Clears the signature
 	 */
 	public void clearSignature() {
-		_signature.clear();
+		_pointcutSignature.clear();
 	}
 	
 	/*
@@ -169,7 +168,7 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element>
 		clone.addModifiers(this.modifiers());
 
 		// signature
-		clone.setSignature(this.signature());
+		clone.setSignature(this.pointcutSignature());
 
 		clone.setCallee(this.callee().clone());
 		clone.setCaller(this.caller().clone());
@@ -196,7 +195,7 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element>
 					"Has more than one kind modifier"));
 		}
 
-		if (! (this.signature() != null)) {
+		if (! (this.pointcutSignature() != null)) {
 			result = result.and(new BasicProblem(this,
 					"Does not have a signature"));
 		}
@@ -212,7 +211,7 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element>
 	public List<Element> children() {
 		List<Element> result = super.children();
 
-		result.add(this.signature());
+		result.add(this.pointcutSignature());
 		result.add(this.caller());
 		result.add(this.callee());
 
@@ -267,7 +266,7 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element>
 			merged = new Pointcut(child.modifiers().get(0));
 			
 			// 2. signature
-			merged.setSignature(child.signature().merge(parent.signature()));
+			merged.setSignature(child.pointcutSignature().merge(parent.pointcutSignature()));
 			
 			// 3. CallerProps
 			merged.setCaller(child.caller().merge(parent.caller()));
