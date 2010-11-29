@@ -38,11 +38,11 @@ public class ParserTest {
 	public static void main(String[] args) throws IOException, RecognitionException {
 		ANTLRInputStream input = new ANTLRInputStream(System.in);
 		
-		MstageLexer lexer = new MstageLexer(input);
+		MViewLexer lexer = new MViewLexer(input);
 		
 		CommonTokenStream tokens = new CommonTokenStream(lexer);
 		
-		MstageParser parser = new MstageParser(tokens);
+		MViewParser parser = new MViewParser(tokens);
 		
 		parser.compilationUnit();
 	}

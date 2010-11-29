@@ -606,6 +606,35 @@ compositeBodyDeclaration[Composite element]
  * APPLICATION
  *********** */
 
+applicationDeclaration returns [Application element]
+	:	appkw='application' name=Identifier {
+			$element = new Application(new SimpleNameSignature($name.text));
+			setKeyword($element,$appkw);
+   			setLocation($element,$name,"__NAME");
+		} applicationBody[$element]
+	;
+
+
+applicationBody[Application element]
+	: '{' ( applicationBodyDeclaration[$element] )* '}'
+	;
+	
+
+applicationBodyDeclaration[Application element]
+	:	mod=moduleContainerDeclarations {
+			$element.addModule(mod.element);
+		}
+	|
+		hod=hostDeclaration {
+			$element.addHost(hod.element);
+		}
+	|	
+		ind=instanceDeclaration {
+			$element.addInstance(ind.element); 
+		}
+	;
+	
+	
 /*
 
 applicationDeclaration returns [Application element, List<Host> hosts]
@@ -802,7 +831,18 @@ mappingDeclarationBody[Class<? extends MViewDeclaration> fromType] returns [List
  * MODULECONTAINER
  *********** */
 
- /*
+moduleContainerDeclarations returns [Module element]
+	:	
+		cod=componentDeclaration {
+			$element = $cod.element;
+		}
+	|
+		cnd=connectorDeclaration {
+			$element = $cnd.element;
+		}
+	;
+	
+/*
 modulecontainerDeclaration[ModuleContainer element]
 	:	ctkw='contain' conts=modulecontainerBody {
 

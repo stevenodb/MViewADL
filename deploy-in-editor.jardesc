@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="MacRoman" standalone="no"?>
 <jardesc>
-    <jar path="mstage-editor/lib/mstage.jar"/>
-    <options buildIfNeeded="true" compress="true" descriptionLocation="/mstage-lang/deploy-in-editor.jardesc" exportErrors="false" exportWarnings="true" includeDirectoryEntries="true" overwrite="true" saveDescription="true" storeRefactorings="false" useSourceFolders="false"/>
+    <jar path="/Users/steveno/Documents/repos/steveno-hg/PhD/language/chameleon/mstage-editor/lib/mview.jar"/>
+    <options buildIfNeeded="true" compress="true" descriptionLocation="/mview-lang/deploy-in-editor.jardesc" exportErrors="true" exportWarnings="true" includeDirectoryEntries="true" overwrite="true" saveDescription="true" storeRefactorings="false" useSourceFolders="false"/>
     <storedRefactorings deprecationInfo="true" structuralOnly="false"/>
     <selectedProjects/>
     <manifest generateManifest="true" manifestLocation="" manifestVersion="1.0" reuseManifest="false" saveManifest="false" usesManifest="true">
@@ -11,6 +11,24 @@
         </sealing>
     </manifest>
     <selectedElements exportClassFiles="true" exportJavaFiles="false" exportOutputFolder="false">
-        <javaElement handleIdentifier="=mstage-lang/src"/>
+        <javaElement handleIdentifier="=mview-lang/src&lt;mview.model.language"/>
+        <javaElement handleIdentifier="=mview-lang/src&lt;mview.model.module{Interface.java"/>
+        <javaElement handleIdentifier="=mview-lang/src&lt;mview.model.module{Service.java"/>
+        <javaElement handleIdentifier="=mview-lang/src&lt;mview.model.namespace"/>
+        <javaElement handleIdentifier="=mview-lang/src&lt;mview.model.application"/>
+        <javaElement handleIdentifier="=mview-lang/src&lt;mview.model.module{Property.java"/>
+        <javaElement handleIdentifier="=mview-lang/src&lt;mview.parser.classes"/>
+        <javaElement handleIdentifier="=mview-lang/src&lt;mview.model.refinement.modifier"/>
+        <javaElement handleIdentifier="=mview-lang/src&lt;mview.model.composition"/>
+        <javaElement handleIdentifier="=mview-lang/src&lt;mview.model.module{JoinPointElement.java"/>
+        <javaElement handleIdentifier="=mview-lang/src&lt;mview.model.module{Module.java"/>
+        <javaElement handleIdentifier="=mview-lang/src&lt;mview.model.module{Component.java"/>
+        <javaElement handleIdentifier="=mview-lang/src&lt;exception"/>
+        <javaElement handleIdentifier="=mview-lang/src&lt;mview.model.composition.modifier"/>
+        <javaElement handleIdentifier="=mview-lang/src&lt;mview.parser"/>
+        <javaElement handleIdentifier="=mview-lang/src&lt;mview.model.refinement"/>
+        <javaElement handleIdentifier="=mview-lang/src&lt;mview.model.module{Connector.java"/>
+        <javaElement handleIdentifier="=mview-lang/src&lt;mview.model.module{ModuleContainer.java"/>
+        <javaElement handleIdentifier="=mview-lang/src&lt;mview.model.deployment"/>
     </selectedElements>
 </jardesc>
