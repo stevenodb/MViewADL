@@ -25,7 +25,6 @@ import java.util.Set;
 import mview.model.application.Application;
 import mview.model.application.Host;
 import mview.model.application.Instance;
-import mview.model.composition.ActorProp;
 import mview.model.composition.Advice;
 import mview.model.composition.Pointcut;
 import mview.model.module.Component;

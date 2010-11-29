@@ -39,6 +39,11 @@ import chameleon.core.validation.VerificationResult;
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
+/**
+ * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
+ *
+ * @param <A>
+ */
 public class Application<A extends Application<A>> 
 		extends RefinableDeclarationImpl<A, Element> 
 		implements ModuleContainer {
@@ -122,22 +127,24 @@ public class Application<A extends Application<A>>
 		new OrderedMultiAssociation<Application, Module>(this);
 	
 	
-	/**
-	 * @return
+	
+	
+	/* (non-Javadoc)
+	 * @see mview.model.module.ModuleContainer#modules()
 	 */
 	public List<Module> modules() {
 		return _modules.getOtherEnds();
 	}
 	
-	/**
-	 * @param relation
+	/* (non-Javadoc)
+	 * @see mview.model.module.ModuleContainer#addModule(mview.model.module.Module)
 	 */
 	public void addModule(Module relation) {
 		_modules.add(relation.parentLink());
 	}
 	
-	/**
-	 * @param relation
+	/* (non-Javadoc)
+	 * @see mview.model.module.ModuleContainer#removeModule(mview.model.module.Module)
 	 */
 	public void removeModule(Module relation) {
 		_modules.remove(relation.parentLink());

@@ -22,9 +22,7 @@ import java.util.List;
 
 import mview.model.composition.modifier.PropModifier;
 import mview.model.language.MView;
-import mview.model.module.Interface;
 import mview.model.refinement.MViewMember;
-import mview.model.refinement.RefinableDeclaration;
 import mview.model.refinement.RefinementContext;
 import mview.model.refinement.modifier.Overridable;
 
@@ -34,7 +32,6 @@ import chameleon.core.declaration.Declaration;
 import chameleon.core.element.Element;
 import chameleon.core.lookup.LookupException;
 import chameleon.core.modifier.ElementWithModifiersImpl;
-import chameleon.core.modifier.Modifier;
 import chameleon.core.property.StaticChameleonProperty;
 import chameleon.core.reference.SimpleReference;
 import chameleon.core.validation.BasicProblem;
@@ -66,15 +63,15 @@ public class ActorProp<D extends Declaration> extends
 		addModifier(modifier);
 	}
 
-	/**
-	 * @param modifier
-	 * @param declaration
-	 * @param overridable
-	 */
-	public ActorProp(PropModifier<D> modifier, boolean overridable) {
-		this(modifier);
-		setOverridable(overridable);
-	}
+//	/**
+//	 * @param modifier
+//	 * @param declaration
+//	 * @param overridable
+//	 */
+//	public ActorProp(PropModifier<D> modifier, boolean overridable) {
+//		this(modifier);
+//		setOverridable(overridable);
+//	}
 
 	// list of prop values
 	private OrderedMultiAssociation<ActorProp<D>, SimpleReference<D>> _propValues =
@@ -121,17 +118,17 @@ public class ActorProp<D extends Declaration> extends
 		return this.hasModifier(new Overridable());
 	}
 
-	/**
-	 * @param propsOverride
-	 *            the propsOverride to set
-	 */
-	public void setOverridable(boolean propsOverride) {
-		if (propsOverride) {
-			addModifier(new Overridable());
-		} else {
-			removeModifier(new Overridable());
-		}
-	}
+//	/**
+//	 * @param propsOverride
+//	 *            the propsOverride to set
+//	 */
+//	public void setOverridable(boolean propsOverride) {
+//		if (propsOverride) {
+//			addModifier(new Overridable());
+//		} else {
+//			removeModifier(new Overridable());
+//		}
+//	}
 
 	/**
 	 * @return

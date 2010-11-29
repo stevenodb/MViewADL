@@ -47,10 +47,10 @@ public class PointcutSignature extends ElementWithModifiersImpl<PointcutSignatur
 		super();
 	}
 
-	public PointcutSignature(boolean overridable) {
-		this();
-		setOverridable(overridable);
-	}
+//	public PointcutSignature(boolean overridable) {
+//		this();
+//		setOverridable(overridable);
+//	}
 
 	/*
 	 * SIGNATURES
@@ -95,16 +95,16 @@ public class PointcutSignature extends ElementWithModifiersImpl<PointcutSignatur
 		return this.hasModifier(new Overridable());
 	}
 
-	/**
-	 * @param overridable
-	 */
-	public void setOverridable(boolean overridable) {
-		if (overridable) {
-			addModifier(new Overridable());
-		} else {
-			removeModifier(new Overridable());
-		}
-	}
+//	/**
+//	 * @param overridable
+//	 */
+//	public void setOverridable(boolean overridable) {
+//		if (overridable) {
+//			addModifier(new Overridable());
+//		} else {
+//			removeModifier(new Overridable());
+//		}
+//	}
 
 	/*
 	 * (non-Javadoc)

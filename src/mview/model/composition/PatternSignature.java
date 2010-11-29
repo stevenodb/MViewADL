@@ -77,7 +77,7 @@ public class PatternSignature extends
 	 * @param formalParamPatterns
 	 */
 	public PatternSignature(String returnTypePattern,
-			String signaturePattern,
+			String signaturePattern,	
 			List<Pair<String, String>> formalParamPatterns) {
 		this();
 		
