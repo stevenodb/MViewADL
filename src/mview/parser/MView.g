@@ -104,15 +104,8 @@ compilationUnit returns [CompilationUnit element]
 //			cmd=compositeDeclaration {npp.add($cmd.element);}
 		|
 			cnd=connectorDeclaration {npp.add($cnd.element);}
-//		|
-//			mid=moduleInstanceDeclaration {npp.add($mid.element);}
-//		|
-//			apd=applicationDeclaration {
-//				npp.add($apd.element);
-//				for(Host host : $apd.hosts) {
-//					if (host != null) npp.add(host);
-//				}
-//			}
+		|
+			apd=applicationDeclaration {npp.add($apd.element);}
 //		|
 //			dpd=deploymentDeclaration {npp.add($dpd.element);}
 ///		|
@@ -716,6 +709,7 @@ hostMapDeclaration[Deployment element]
  * INSTANCE DECLARATION
  ********************* */
 
+
 instanceDeclaration returns [Instance element]
 	:	tpe=Identifier name=Identifier onkw='on' host=Identifier {
 			$element = new Instance(new SimpleNameSignature($name.text));
@@ -723,6 +717,7 @@ instanceDeclaration returns [Instance element]
 			$element.setHost(new SimpleReference<Host>($host.text,Host.class));
 		}
 	;
+
 
 /* ****************
  * HOST DECLARATION
@@ -739,97 +734,10 @@ hostDeclaration returns [Host element]
 	;
  
 
-/* **********
- * ABSTRACTHOST
- ********** */
 
-/*
-abstractHostDeclaration returns [AbstractHost element]
-	: ahkw='abstracthost' name=Identifier {
-			$element = new AbstractHost(new SimpleNameSignature($name.text));
-	    	setKeyword($element,$ahkw);
-    		setLocation($element,$name,"__NAME");
-		} abstractHostBody[$element]
-	;
-	
-	
-abstractHostBody[AbstractHost element]
-	: '{' abstractHostBodyDeclaration[$element]* '}'
-	;
-
-
-abstractHostBodyDeclaration[AbstractHost element]
-	: 'none'
-	;
-
-*/
-
-/* **********
- * PHYSICALHOST
- ********** */
-
-/*
-
-physicalHostDeclaration returns [PhysicalHost element]
-	: phkw='host' name=Identifier {
-			$element = new PhysicalHost(new SimpleNameSignature($name.text));
-	    	setKeyword($element,$phkw);
-    		setLocation($element,$name,"__NAME");	
-		} physicalHostBody[$element]
-	;
-
-physicalHostBody[PhysicalHost element]
-	: '{' physicalHostBodyDeclaration[$element]* '}'
-	;
-
-physicalHostBodyDeclaration[PhysicalHost element]
-	: 'none'
-	;
-
-*/
-
-/* **********
- * HOSTMAPPER
- ********** */
-
-/*
-mappingDeclaration[HostMapper element, Class<? extends MViewDeclaration> fromType, Class<? extends Host> toType]
-	: mapkw=('map'|'locate') name=Identifier rfroms=mappingDeclarationBody[fromType] {
-
-			HostMapping mapping = $element.createEmptyMapping();
-
-			SimpleReference<? extends Host> to = 
-				new SimpleReference($name.text,$toType);
-				
-			setLocation(to,$name,$name);
-			setKeyword(to,$mapkw);					
-
-			// add host reference to host list
-			$element.addHost(to);
-			
-			// set host to mapping target
-			mapping.setTo(to);
-
-	        for(SimpleReference<Module> from : $rfroms.elements) { 	
-				mapping.addFrom(from);
-			}
-			
-			// add hostmapping
-			$element.addHostMapping(mapping);
-		} 
-		
-	;
-
-mappingDeclarationBody[Class<? extends MViewDeclaration> fromType] returns [List<SimpleReference> elements]
-	: '{' ( decls = commaSeparatedBodyDecls[fromType] { $elements = $decls.elements; } )? '}'
-	;
-
-*/
-
-
-/* ***********
+/* ***************
  * MODULECONTAINER
- *********** */
+ *************** */
 
 moduleContainerDeclarations returns [Module element]
 	:	
