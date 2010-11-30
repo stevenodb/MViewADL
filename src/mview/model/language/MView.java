@@ -44,7 +44,7 @@ import chameleon.core.property.StaticChameleonProperty;
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  * 
  */
-public class MView<D extends Declaration> extends Language {
+public class MView extends Language {
 
 	// mutex
 	public final PropertyMutex<ChameleonProperty> ACTOR_MUTEX;
@@ -140,7 +140,7 @@ public class MView<D extends Declaration> extends Language {
 	 * @param declaration
 	 * @return A PropertySet of actor properties for the given declaration
 	 */
-	public Set<ChameleonProperty> actorProperties(Class<D> declaration) {
+	public <D extends Declaration> Set<ChameleonProperty> actorProperties(Class<D> declaration) {
 		Set<ChameleonProperty> result = new HashSet<ChameleonProperty>();
 
 		for (StaticChameleonProperty property : ACTOR_PROPERTIES) {
