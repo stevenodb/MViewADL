@@ -260,7 +260,7 @@ pointcutServiceSignatureParameters returns [List<Pair<String,String>> lst]
 	;
 
 pointcutServiceSignatureParameterDecls[List<Pair<String,String>> lst]
-	: t=Identifier name=Identifier (',' pointcutServiceSignatureParameterDecls[lst])?
+	: t=Identifier name=Identifier (',' pointcutServiceSignatureParameterDecls[$lst])?
 	 {
 	 	Pair pair = new Pair($t.text,$name.text);
 	 	$lst.add(0,pair);
@@ -395,7 +395,7 @@ pointcutSignatureDeclaration[Pointcut pointcut]
 		pointcut.setSignature(ps);
 	}
 	:	(override=overrideOrMerge)? {
-			ps.addModifier($override.value);
+			if (override != null) {ps.addModifier($override.value);}
 		} 'signature' ':' pointcutSignatureBodyDecls[ps] ';' ;
 
 //pointcutSignatureBody returns [PointcutSignature element]
@@ -460,7 +460,7 @@ pointcutActorBodyDecls[Actor actor]
 		} 
 	) {
 		prop = new ActorProp(new PropModifier(declClass));
-		prop.addModifier($override.value);
+		if (override != null) {prop.addModifier($override.value);}
 		actor.addProp(prop);
 	} pointcutActorPropDecls[prop,declClass]
 	;
