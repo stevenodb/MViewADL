@@ -18,17 +18,21 @@
  */
 package mview.model.composition.modifier;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import mview.model.language.MView;
 
 import org.rejuse.property.PropertySet;
 
+import property.ActorProperty;
+
 import chameleon.core.declaration.Declaration;
 import chameleon.core.element.Element;
 import chameleon.core.lookup.LookupException;
 import chameleon.core.modifier.ModifierImpl;
 import chameleon.core.property.ChameleonProperty;
+import chameleon.core.property.StaticChameleonProperty;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
@@ -37,15 +41,22 @@ import chameleon.core.property.ChameleonProperty;
 public class PropModifier<D extends Declaration> 
 					extends ModifierImpl<PropModifier,D> {
 	
-	private final Class<D> _targetDeclarationClass;
+	private final Class<D> _targetDeclarationType;
 	
 	/**
-	 * @param declarationClass
+	 * @param declarationType
 	 */
-	public PropModifier(Class<D> declarationClass) {
-		this._targetDeclarationClass = declarationClass;
+	public PropModifier(Class<D> declarationType) {
+		this._targetDeclarationType = declarationType;
 	}
 	
+	/**
+	 * @return the targetDeclarationClass
+	 */
+	public Class<D> targetDeclarationType() {
+		return _targetDeclarationType;
+	}
+
 	/* (non-Javadoc)
 	 * @see chameleon.core.modifier.Modifier#impliedProperties()
 	 */
@@ -53,12 +64,16 @@ public class PropModifier<D extends Declaration>
 	public PropertySet impliedProperties() {
 		PropertySet<Element, ChameleonProperty> result = createSet();
 	
-		Set<ChameleonProperty> propSet = 
-			((MView)language()).actorProperties(
-				(Class<D>) _targetDeclarationClass);
-		
-		result.addAll(propSet);
+//		Set<ChameleonProperty> propSet = 
+//			(language(MView.class)).actorProperties(
+//				targetDeclarationType());
 
+		for (ActorProperty property : language(MView.class).ACTOR_PROPERTIES) {
+			if (property.targetDeclarationType().equals(_targetDeclarationType)) {
+				result.add(property);
+			}
+		}
+		
 		return result;
 	}
 
@@ -79,7 +94,7 @@ public class PropModifier<D extends Declaration>
 	 */
 	@Override
 	public PropModifier<D> clone() {
-		return new PropModifier<D>(_targetDeclarationClass);
+		return new PropModifier<D>(targetDeclarationType());
 	}
 
 	/* (non-Javadoc)
@@ -88,7 +103,7 @@ public class PropModifier<D extends Declaration>
 	@Override
 	public boolean uniSameAs(Element other) throws LookupException {
 		return (other instanceof PropModifier) 
-			&& ((PropModifier) other)._targetDeclarationClass 
-				== this._targetDeclarationClass;
+			&& ((PropModifier) other).targetDeclarationType() 
+				== this.targetDeclarationType();
 	}
 }

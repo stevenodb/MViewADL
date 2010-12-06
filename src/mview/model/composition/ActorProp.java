@@ -28,6 +28,8 @@ import mview.model.refinement.modifier.Overridable;
 
 import org.rejuse.association.OrderedMultiAssociation;
 
+import property.ActorProperty;
+
 import chameleon.core.declaration.Declaration;
 import chameleon.core.element.Element;
 import chameleon.core.lookup.LookupException;
@@ -138,9 +140,9 @@ public class ActorProp<D extends Declaration> extends
 
 		try {
 			result =
-					(Class<D>) ((StaticChameleonProperty)
+					(Class<D>) ((ActorProperty)
 							this.property(language(MView.class).ACTOR_MUTEX))
-									.validElementTypes().get(0);
+									.targetDeclarationType();
 		} catch (ModelException e) {
 			return null;
 		}
@@ -215,7 +217,7 @@ public class ActorProp<D extends Declaration> extends
 						"Invalid reference to declaration"));
 			}
 
-			if (declaration.getClass() == declarationType()) {
+			if ((declaration != null) && (declaration.getClass() == declarationType())) {
 				result.and(new BasicProblem(this,
 						"Contains declaration of invalid type: " + declaration));
 			}
@@ -259,7 +261,9 @@ public class ActorProp<D extends Declaration> extends
 	 */
 	@Override
 	public boolean mergesWith(ActorProp<D> other) {
-		return sharesContext(other) && !overrides(other);
+		return sharesContext(other) 
+			&& !overrides(other)
+			&& this.declarationType() == other.declarationType();
 	}
 
 	/*
@@ -273,10 +277,10 @@ public class ActorProp<D extends Declaration> extends
 	public ActorProp<D> merge(ActorProp<D> other)
 			throws MergeNotSupportedException {
 
-		if (!(this.declarationType() == other.declarationType())) {
-			throw new MergeNotSupportedException("Actors are of different" +
-					"declaration types.");
-		}
+//		if (!(this.declarationType() == other.declarationType())) {
+//			throw new MergeNotSupportedException("Actors are of different" +
+//					"declaration types.");
+//		}
 
 		ActorProp<D> merged = this.clone();
 

@@ -20,11 +20,14 @@ package mview.model.language;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Set;
 
 import mview.model.application.Application;
 import mview.model.application.Host;
 import mview.model.application.Instance;
+import mview.model.composition.ActorProp;
 import mview.model.composition.Advice;
 import mview.model.composition.Pointcut;
 import mview.model.module.Component;
@@ -32,6 +35,8 @@ import mview.model.module.Interface;
 import mview.model.refinement.MViewMember;
 
 import org.rejuse.property.PropertyMutex;
+
+import property.ActorProperty;
 
 import chameleon.core.declaration.Declaration;
 import chameleon.core.declaration.SimpleNameSignature;
@@ -58,15 +63,15 @@ public class MView extends Language {
 	public final StaticChameleonProperty AFTER;
 	public final StaticChameleonProperty AROUND;
 
-	public final StaticChameleonProperty INTERFACE;
-	public final StaticChameleonProperty COMPONENT;
-	public final StaticChameleonProperty APPLICATION;
-	public final StaticChameleonProperty INSTANCE;
-	public final StaticChameleonProperty HOST;
-	
+	public final ActorProperty INTERFACE;
+	public final ActorProperty COMPONENT;
+	public final ActorProperty APPLICATION;
+	public final ActorProperty INSTANCE;
+	public final ActorProperty HOST;
+
 	public final StaticChameleonProperty OVERRIDABLE;
 
-	private final Set<StaticChameleonProperty> ACTOR_PROPERTIES;
+	public final Set<ActorProperty> ACTOR_PROPERTIES;
 
 	/**
 	 * @param name
@@ -89,7 +94,7 @@ public class MView extends Language {
 						ADVICE_MUTEX,
 						Advice.class);
 
-		AFTER = new StaticChameleonProperty("After advice", this, 
+		AFTER = new StaticChameleonProperty("After advice", this,
 						ADVICE_MUTEX,
 						Advice.class);
 
@@ -98,27 +103,28 @@ public class MView extends Language {
 						ADVICE_MUTEX,
 						Advice.class);
 
-		
 		// ActorProp
 		ACTOR_MUTEX = new PropertyMutex<ChameleonProperty>();
 
-		INTERFACE = new StaticChameleonProperty("Interface", this, ACTOR_MUTEX,
-				Interface.class);
+		
+		INTERFACE = new ActorProperty(Interface.class, this, ACTOR_MUTEX,
+				ActorProp.class);
 
-		COMPONENT = new StaticChameleonProperty("Component", this, ACTOR_MUTEX,
-				Component.class);
-
-		INSTANCE = new StaticChameleonProperty("Instance", this, ACTOR_MUTEX,
-				Instance.class);
-
+		COMPONENT = new ActorProperty(Component.class, this, ACTOR_MUTEX,
+				ActorProp.class);
+				
+		INSTANCE = new ActorProperty(Instance.class, this, ACTOR_MUTEX,
+				ActorProp.class);
+		
 		APPLICATION =
-				new StaticChameleonProperty("Application", this, ACTOR_MUTEX,
-						Application.class);
+				new ActorProperty(Application.class, this, ACTOR_MUTEX,
+						ActorProp.class);
 
-		HOST = new StaticChameleonProperty("Host", this, ACTOR_MUTEX,
-				Host.class);
+		HOST = new ActorProperty(Host.class, this, ACTOR_MUTEX,
+				ActorProp.class);
+		
 
-		final StaticChameleonProperty[] ACTOR_PROPERTIES_DECL =
+		final ActorProperty[] ACTOR_PROPERTIES_DECL =
 			{
 					INTERFACE,
 					COMPONENT,
@@ -127,7 +133,8 @@ public class MView extends Language {
 					HOST
 			};
 
-		ACTOR_PROPERTIES = new HashSet<StaticChameleonProperty>(
+
+		 ACTOR_PROPERTIES = new HashSet<ActorProperty>(
 				Arrays.asList(ACTOR_PROPERTIES_DECL));
 
 		// overridable property
@@ -140,17 +147,19 @@ public class MView extends Language {
 	 * @param declaration
 	 * @return A PropertySet of actor properties for the given declaration
 	 */
-	public <D extends Declaration> Set<ChameleonProperty> actorProperties(Class<D> declaration) {
+	public <D extends Declaration> Set<ChameleonProperty> actorProperties(
+			Class<D> declaration) {
 		Set<ChameleonProperty> result = new HashSet<ChameleonProperty>();
 
-		for (StaticChameleonProperty property : ACTOR_PROPERTIES) {
-			if (property.validElementTypes().contains(declaration)) {
+		for (ActorProperty property : ACTOR_PROPERTIES) {
+			if (property.targetDeclarationType().equals(declaration)) {
 				result.add(property);
 			}
 		}
-
+		
 		return result;
 	}
+
 
 	@Override
 	protected void initializePropertyRules() {
