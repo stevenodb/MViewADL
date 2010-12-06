@@ -129,13 +129,11 @@ public class Advice extends ElementWithModifiersImpl<Advice, Element>
 		
 		int n = 0;
 		try {
-			for (Modifier modifier : this.modifiers()) {
-				if (modifier.property(language(MView.class).ADVICE_MUTEX) != null) {
-					n++;
-				}
+			if (this.property(language(MView.class).ADVICE_MUTEX) != null) {
+				n++;
 			}
 		} catch (ModelException e) {
-			result = result.and(new BasicProblem(this, "Something wrong in the" +
+			result = result.and(new BasicProblem(this, "Something wrong in the " +
 					"model with type modifier."));
 		}
 		
