@@ -69,7 +69,9 @@ public class PointcutSignature extends ElementWithModifiersImpl<PointcutSignatur
 	 * @param signature
 	 */
 	public void addSignature(ServiceSignature signature) {
-		_pointcutSignatures.add(signature.parentLink());
+		if (signature != null) {
+			_pointcutSignatures.add(signature.parentLink());
+		}
 	}
 
 	/**
@@ -85,7 +87,9 @@ public class PointcutSignature extends ElementWithModifiersImpl<PointcutSignatur
 	 * @param signature
 	 */
 	public void removeSignature(ServiceSignature signature) {
-		_pointcutSignatures.remove(signature.parentLink());
+		if (signature != null)  {
+			_pointcutSignatures.remove(signature.parentLink());
+		}
 	}
 
 	/**
