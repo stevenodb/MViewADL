@@ -51,12 +51,12 @@ public class Actor extends NamespaceElementImpl<Actor, Element> implements
 	 * @param actorProp
 	 */
 	public void addProp(ActorProp actorProp) {
-		if (!props().contains(actorProp)) {
+//		if (!props().contains(actorProp)) {
 			_props.add(actorProp.parentLink());
-		} else {
-			throw new IllegalArgumentException("ActorProp for " + actorProp
-					+ " already exists.");
-		}
+//		} else {
+//			throw new IllegalArgumentException("ActorProp for " + actorProp
+//					+ " already exists.");
+//		}
 	}
 
 	/**
