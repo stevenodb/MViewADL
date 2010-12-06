@@ -67,6 +67,7 @@ import mview.model.refinement.RefinementRelation;
 import chameleon.core.compilationunit.CompilationUnit;
 import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.declaration.Signature;
+import chameleon.core.declaration.Declaration;
 //import chameleon.core.method.MethodSignature;
 import chameleon.core.expression.InvocationTarget;
 import chameleon.oo.type.TypeReference;
@@ -168,10 +169,6 @@ serviceReferenceDeclaration returns [SimpleReference<Service> relation]
 			$relation = new SimpleReference(signature, Service.class);
 			
 			setLocation($relation,$name,$name);
-			
-			System.err.print(signature + " parameters: ");
-			for(String arg : $params.lst) { System.err.print(arg+" "); }
-			System.err.println();
 		}
 	;
 
@@ -217,7 +214,7 @@ serviceReturnType returns [TypeReference value]
 	:	( 
 			vt=voidType { $value=$vt.value; }
 		| 
-			tp=type { $value=$tp.value; } 
+			tp=type { $value=$tp.value; }
 		)
 	;
 
@@ -345,8 +342,9 @@ connectorAOCompositionDeclaration[Connector element]
 			setKeyword(composition,$kw);
 			setLocation(composition,$name,"__NAME");
 			
-			System.err.println($aoc.advice);
-			System.err.println($aoc.pointcut);
+//			System.err.println($aoc.advice);
+//			System.err.println($aoc.pointcut);
+
 			composition.setAdvice($aoc.advice);
 			composition.setPointcut($aoc.pointcut);
 			
@@ -357,18 +355,19 @@ connectorAOCompositionDeclaration[Connector element]
 
 connectorAOCompositionBody returns [Pointcut pointcut, Advice advice]
 	:	'{' 
-		pc=pointcutDeclaration {
+		pc=pointcutDeclaration? {
 				$pointcut = $pc.pointcut;
-			} 
-		adv=adviceDeclaration {
+			}
+		adv=adviceDeclaration? {
 				$advice = $adv.advice;
 			}
 		'}'
 	;
 
 pointcutDeclaration returns [Pointcut pointcut]
-	:	'pointcut' {
+	:	pckw='pointcut' {
 				$pointcut = new Pointcut();
+				setKeyword($pointcut,$pckw);
 			} pointcutBody[$pointcut]
 	;
 	
@@ -384,8 +383,9 @@ pointcutBodyDeclaration[Pointcut pointcut]
 	;
 	
 pointcutKindDeclaration[Pointcut pointcut]
-	:	'kind' ':' kind=joinPointKind ';' {
+	:	kikw='kind' ':' kind=joinPointKind ';' {
 				$pointcut.addModifier($kind.value);
+				setKeyword($kind.value,$kikw);
 			}
 	;
 	
@@ -394,9 +394,11 @@ pointcutSignatureDeclaration[Pointcut pointcut]
 		PointcutSignature ps = new PointcutSignature();
 		pointcut.setSignature(ps);
 	}
-	:	(override=overrideOrMerge)? {
-			if (override != null) {ps.addModifier($override.value);}
-		} 'signature' ':' pointcutSignatureBodyDecls[ps] ';' ;
+	:	(override=overrideOrExtend {
+			if (override != null) { ps.addModifier($override.value); }
+		})? sikw='signature' ':' pointcutSignatureBodyDecls[ps] {
+				setKeyword(ps,$sikw);
+			} ';' ;
 
 //pointcutSignatureBody returns [PointcutSignature element]
 //@init{$element = new PointcutSignature();}
@@ -411,11 +413,13 @@ pointcutSignatureBodyDecls[PointcutSignature element]
 
 	
 pointcutActorDeclaration[Pointcut pointcut]
-	:	'caller' actor=pointcutActorBody {
+	:	clkw='caller' actor=pointcutActorBody {
+   			setKeyword($actor.element,$clkw);
 			$pointcut.setCaller($actor.element);
 		}
 	|
-		'callee' actor=pointcutActorBody {
+		clkw='callee' actor=pointcutActorBody {
+   			setKeyword($actor.element,$clkw);
 			$pointcut.setCallee($actor.element);
 		}
 	;
@@ -437,7 +441,7 @@ pointcutActorBodyDecls[Actor actor]
 	ActorProp prop = null;
 	Class<? extends MViewDeclaration> declClass = null;
 }
-	: (override=overrideOrMerge)?
+	: (override=overrideOrExtend)?
 	(
 		'interface' ':' {
 			declClass = Interface.class;
@@ -460,30 +464,32 @@ pointcutActorBodyDecls[Actor actor]
 		} 
 	) {
 		prop = new ActorProp(new PropModifier(declClass));
-		if (override != null) {prop.addModifier($override.value);}
 		actor.addProp(prop);
-	} pointcutActorPropDecls[prop,declClass]
+		if (override != null) {prop.addModifier($override.value);}
+	} pointcutActorPropDecls[prop,declClass] ';'
 	;
 
 
-pointcutActorPropDecls[ActorProp prop,Class<? extends MViewDeclaration> declClass]
+pointcutActorPropDecls[ActorProp prop,Class<? extends Declaration> declClass]
 	: 	apdref=pointcutActorPropDecl[$declClass] ( ',' pointcutActorPropDecls[$prop,$declClass] )? {
 			$prop.addPropValue($apdref.relation);
 		}
 	;
 
-pointcutActorPropDecl[Class<? extends MViewDeclaration> declClass] returns [SimpleReference<? extends MViewDeclaration> relation]
+pointcutActorPropDecl[Class<? extends Declaration> declClass] returns [SimpleReference<? extends Declaration> relation]
 	: 	name=Identifier {
 			$relation = new SimpleReference($name.text,$declClass);
+			setLocation($relation, $name, $name);
 		}
 	;
 
 	
 	
 adviceDeclaration returns [Advice advice]
-	:	'advice' { 
-				$advice = new Advice(); 
-				System.out.println("construct advice "+$advice);				
+	:	avkw='advice' { 
+				$advice = new Advice();
+				setKeyword($advice,$avkw);
+//				System.out.println("construct advice "+$advice);				
 			} adviceBody[$advice]
 	;
 
@@ -497,14 +503,16 @@ adviceBodyDeclaration[Advice advice]
 	;
 	
 adviceServiceDeclaration[Advice advice]
-	:	'service' ':' service=serviceReferenceDeclaration ';' {
+	:	svkw='service' ':' service=serviceReferenceDeclaration ';' {
 			$advice.setService($service.relation);
+			setKeyword($service.relation,$svkw);
 		}
 	;
 	
 adviceTypeDeclaration[Advice advice]
-	:	'type' ':' advMod=adviceType ';' {
-			$advice.addModifier($advMod.value);
+	:	tpkw='type' ':' avtype=adviceType ';' {
+			$advice.addModifier($avtype.value);
+			setKeyword($avtype.value,$tpkw);
 		}
 	;
 
@@ -550,7 +558,7 @@ moduleDependencyBody returns [List<SimpleReference> elements]
  
  
 moduleRequireDependencyDeclaration[Module element]
-	:	'require' rd=moduleDependencyBody {
+	:	rekw='require' rd=moduleDependencyBody {
 			for(SimpleReference iface : $rd.elements ) {
 				$element.addRequiredInterface(iface);
 			}
@@ -711,10 +719,17 @@ hostMapDeclaration[Deployment element]
 
 
 instanceDeclaration returns [Instance element]
-	:	tpe=Identifier name=Identifier onkw='on' host=Identifier {
+	:	tpe=Identifier name=Identifier onkw='on' host=Identifier ';' {
 			$element = new Instance(new SimpleNameSignature($name.text));
-			$element.setType(new SimpleReference<Module>($tpe.text,Module.class));
-			$element.setHost(new SimpleReference<Host>($host.text,Host.class));
+			setKeyword($element,$onkw);
+			
+			SimpleReference<Module> modRelation = new SimpleReference<Module>($tpe.text,Module.class);
+			$element.setType(modRelation);
+			setLocation(modRelation,$tpe,$tpe);
+			
+			SimpleReference<Host> hostRelation = new SimpleReference<Host>($host.text,Host.class);
+			$element.setHost(hostRelation);
+			setLocation(hostRelation,$host,$host);
 		}
 	;
 
@@ -727,10 +742,11 @@ instanceDeclaration returns [Instance element]
 hostDeclaration returns [Host element]
 	: 	hkw='host' name=Identifier {
 			$element = new Host(new SimpleNameSignature($name.text));
-		} onkw='on' value=StringLiteral {
+			setKeyword($element,$hkw);
+		} ( onkw='on' value=StringLiteral {
 			HostName hostName = new HostName(new SimpleNameSignature($value.text));
 			$element.setHostName(new SimpleReference<HostName>($value.text,HostName.class));
-		}
+		} )? ';'
 	;
  
 
@@ -777,7 +793,7 @@ commaSeparatedBodyDecls[Class targetType] returns [List<SimpleReference> element
 			
 			SimpleReference<Interface> relation = new SimpleReference($id.text, $targetType);
 			$elements.add(0,relation);
-			setLocation(relation, id, id);
+			setLocation(relation, $id, $id);
 		}
 	;
 	
@@ -799,7 +815,7 @@ joinPointKind returns [Modifier value]
 	|	'call' {$value = new Call();}
 	;
  
-overrideOrMerge returns [Modifier value]
+overrideOrExtend returns [Modifier value]
 	:	'override' {$value = new Overridable();}
 	|	'extend' {$value = null;}
 	;
