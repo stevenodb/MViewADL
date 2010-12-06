@@ -218,7 +218,7 @@ public class Application<A extends Application<A>>
 
 		for (Instance instance : this.instances()) {
 			if ( ! this.hosts().contains(instance.host()) ) {
-				result = result.and(new BasicProblem(this, "Host undefined in this application: " + instance.host()));
+				result = result.and(new BasicProblem(this, "Host undefined in this application: " + instance.host().name()));
 			}
 		}
 		
