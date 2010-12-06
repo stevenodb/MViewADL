@@ -170,8 +170,13 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element>
 		// signature
 		clone.setSignature(this.pointcutSignature());
 
-		clone.setCallee(this.callee().clone());
-		clone.setCaller(this.caller().clone());
+		if (this.callee() != null) {
+			clone.setCallee(this.callee().clone());
+		}
+		
+		if (this.caller() != null) {
+			clone.setCaller(this.caller().clone());
+		}
 
 		return clone;
 	}
@@ -212,8 +217,13 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element>
 		List<Element> result = super.children();
 
 		result.add(this.pointcutSignature());
-		result.add(this.caller());
-		result.add(this.callee());
+		
+		if (this.caller() != null) {
+			result.add(this.caller());
+		}
+		if (this.callee() != null) {
+			result.add(this.callee());
+		}
 
 		return result;
 	}
