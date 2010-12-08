@@ -22,6 +22,7 @@ package mview.model.deployment;
 import java.util.List;
 
 import mview.model.application.Application;
+import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.element.Element;
 import chameleon.core.validation.VerificationResult;
 
@@ -31,7 +32,20 @@ import chameleon.core.validation.VerificationResult;
  */
 public class Deployment extends Application<Deployment> {
 	
-	
+	/**
+	 * default
+	 */
+	public Deployment() {
+		super();
+	}
+
+	/**
+	 * @param signature
+	 */
+	public Deployment(SimpleNameSignature signature) {
+		super(signature);
+	}
+
 	/* (non-Javadoc)
 	 * @see mview.model.namespace.MViewDeclaration#cloneThis()
 	 */
