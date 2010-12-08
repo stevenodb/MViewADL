@@ -100,7 +100,7 @@ compilationUnit returns [CompilationUnit element]
 	:	(
 			ifd=interfaceDeclaration {npp.add($ifd.element);}
 		|
-			cod=componentDeclaration {npp.add($cod.element);} 
+			cod=componentDeclaration {npp.add($cod.element);}
 //		|		
 //			cmd=compositeDeclaration {npp.add($cmd.element);}
 		|
@@ -109,24 +109,9 @@ compilationUnit returns [CompilationUnit element]
 			apd=applicationDeclaration {npp.add($apd.element);}
 //		|
 //			dpd=deploymentDeclaration {npp.add($dpd.element);}
-///		|
-	//		ahd=abstractHostDeclaration {npp.add($ahd.element);}
-	//	|	
-	//		phd=physicalHostDeclaration {npp.add($phd.element);}
 		)*
 	;
 
-
-
-/* ***********
- * MODULE INSTANCE
- *********** */
-
-//moduleInstanceDeclaration returns [Instance element]
-//	: 	'componentinstance'
-//		|
-//		'connectorinstance'
-//	;
 
 
 /* ***********
@@ -149,7 +134,6 @@ interfaceBody[Interface element]
 	;
 
 
-
 interfaceBodyDeclaration[Interface element]
 	:	(service=serviceDeclaration ';') {
 			$element.addService($service.element);
@@ -166,8 +150,7 @@ interfaceBodyDeclaration[Interface element]
 serviceReferenceDeclaration returns [SimpleReference<Service> relation]
 	:	name=Identifier params=actualParameters {
 			String signature = $name.text;
-			$relation = new SimpleReference(signature, Service.class);
-			
+			$relation = new SimpleReference<Service>(signature, Service.class);
 			setLocation($relation,$name,$name);
 		}
 	;
@@ -321,7 +304,9 @@ connectorDeclaration returns [Connector element]
 			$element = new Connector(new SimpleNameSignature($name.text));
 			setKeyword($element,$conkw);
 			setLocation($element,$name,"__NAME");
-		} connectorBody[$element]
+		} 
+		refinementDeclaration[$element]
+		connectorBody[$element]
 	;
 
 
@@ -331,36 +316,32 @@ connectorBody[Connector element]
 
 
 connectorBodyDeclaration[Connector element]
-	:	connectorAOCompositionDeclaration[$element]
+	:	aoc=connectorAOCompositionDeclaration {
+			$element.addComposition($aoc.element);
+		}
 	|	moduleRequireDependencyDeclaration[$element]
 	;	
 	
 
-connectorAOCompositionDeclaration[Connector element]
-	:	kw='ao-composition' name=Identifier aoc=connectorAOCompositionBody {
-			AOComposition composition = new AOComposition(new SimpleNameSignature($name.text));
-			setKeyword(composition,$kw);
-			setLocation(composition,$name,"__NAME");
-			
-//			System.err.println($aoc.advice);
-//			System.err.println($aoc.pointcut);
-
-			composition.setAdvice($aoc.advice);
-			composition.setPointcut($aoc.pointcut);
-			
-			$element.addComposition(composition);
+connectorAOCompositionDeclaration returns [AOComposition element]
+	:	kw='ao-composition' name=Identifier  {
+			$element = new AOComposition(new SimpleNameSignature($name.text));
+			setKeyword($element,$kw);
+			setLocation($element,$name,"__NAME");
 		}
+		refinementDeclaration[$element] 
+		connectorAOCompositionBody[$element]
 	;
 
 
-connectorAOCompositionBody returns [Pointcut pointcut, Advice advice]
+connectorAOCompositionBody[AOComposition element]
 	:	'{' 
-		pc=pointcutDeclaration? {
-				$pointcut = $pc.pointcut;
-			}
+		pc=pointcutDeclaration? {	
+			$element.setPointcut($pc.pointcut);
+		}
 		adv=adviceDeclaration? {
-				$advice = $adv.advice;
-			}
+			$element.setAdvice($adv.advice);
+		}
 		'}'
 	;
 
@@ -376,34 +357,39 @@ pointcutBody[Pointcut pointcut]
 	:	'{' pointcutBodyDeclaration[$pointcut]* '}'
 	;
 	
+
 pointcutBodyDeclaration[Pointcut pointcut]
 	:	pointcutKindDeclaration[$pointcut]
 	|	pointcutSignatureDeclaration[$pointcut]
 	|	pointcutActorDeclaration[$pointcut]
 	;
+
 	
 pointcutKindDeclaration[Pointcut pointcut]
 	:	kikw='kind' ':' kind=joinPointKind ';' {
-				$pointcut.addModifier($kind.value);
-				setKeyword($kind.value,$kikw);
-			}
+			$pointcut.addModifier($kind.value);
+			setKeyword($kind.value,$kikw);
+		}
 	;
-	
-pointcutSignatureDeclaration[Pointcut pointcut]
-	@init{
-		PointcutSignature ps = new PointcutSignature();
-		pointcut.setSignature(ps);
-	}
-	:	(override=overrideOrExtend {
-			if (override != null) { ps.addModifier($override.value); }
-		})? sikw='signature' ':' pointcutSignatureBodyDecls[ps] {
-				setKeyword(ps,$sikw);
-			} ';' ;
 
-//pointcutSignatureBody returns [PointcutSignature element]
-//@init{$element = new PointcutSignature();}
-//	:	pointcutSignatureBodyDecls[$element]
-//	;
+	
+pointcutSignatureDeclaration[Pointcut element]
+	:	(override=)? sikw='signature' ':' ps=pointcutSignatureBody {
+			PointcutSignature pcsig = $ps.element;
+			Modifier override = $override.value;
+			if (override != null) {
+				pcsig.addModifier(override);
+			}
+			$element.setSignature(pcsig);
+			setKeyword(pcsig,$sikw);
+		} ';' ;
+
+
+pointcutSignatureBody returns [PointcutSignature element]
+@init{ $element = new PointcutSignature(); }
+	:	pointcutSignatureBodyDecls[$element]
+	;
+
 	
 pointcutSignatureBodyDecls[PointcutSignature element]
 	:	pss=pointcutServiceSignatureDecl ( ',' pointcutSignatureBodyDecls[$element] )? {
@@ -517,7 +503,7 @@ adviceTypeDeclaration[Advice advice]
 	;
 
 
-/* ***********
+/* ***********overrideOrExtend
  * COMPONENT
  *********** */
  
@@ -612,7 +598,9 @@ applicationDeclaration returns [Application element]
 			$element = new Application(new SimpleNameSignature($name.text));
 			setKeyword($element,$appkw);
    			setLocation($element,$name,"__NAME");
-		} applicationBody[$element]
+		} 
+		refinementDeclaration[$element]
+		applicationBody[$element]
 	;
 
 
@@ -636,36 +624,6 @@ applicationBodyDeclaration[Application element]
 	;
 	
 	
-/*
-
-applicationDeclaration returns [Application element, List<Host> hosts]
-	: appkw='application' name=Identifier { 
-			$element = new Application(new SimpleNameSignature($name.text));
-			setKeyword($element,$appkw);
-   			setLocation($element,$name,"__NAME");
-		} ret=applicationBody[$element] { $hosts = $ret.hosts; }
-	;
-
-applicationBody[Application element] returns [List<Host> hosts]
-@init { $hosts = new ArrayList<Host>(); }
-	: '{' (ret=applicationBodyDeclaration[$element]{ $hosts.add($ret.host); })*  '}'
-	;
-
-
-applicationBodyDeclaration[Application element] returns [Host host]
-	: modulecontainerDeclaration[$element]
-	| locateDeclaration[$element]
-//	| ahd=abstractHostDeclaration { $host = $ahd.element; }
-	;
-	
-	
-locateDeclaration[Application element]
-	: mappingDeclaration[$element, Module.class, AbstractHost.class]
-	;
-
-*/
-
-
 /* ***********
  * DEPLOYMENT
  *********** */
@@ -719,17 +677,22 @@ hostMapDeclaration[Deployment element]
 
 
 instanceDeclaration returns [Instance element]
-	:	tpe=Identifier name=Identifier onkw='on' host=Identifier ';' {
+	:	tpe=Identifier name=Identifier onkw='on' hst=Identifier ';' {
+	
 			$element = new Instance(new SimpleNameSignature($name.text));
-			setKeyword($element,$onkw);
-			
+
 			SimpleReference<Module> modRelation = new SimpleReference<Module>($tpe.text,Module.class);
-			$element.setType(modRelation);
-			setLocation(modRelation,$tpe,$tpe);
+			if (modRelation != null) {
+				$element.setType(modRelation);
+				setLocation(modRelation,$tpe,$tpe);
+			}
 			
-			SimpleReference<Host> hostRelation = new SimpleReference<Host>($host.text,Host.class);
-			$element.setHost(hostRelation);
-			setLocation(hostRelation,$host,$host);
+			SimpleReference<Host> hostRelation = new SimpleReference<Host>($hst.text,Host.class);
+			if (hostRelation != null) {
+				$element.setHost(hostRelation);
+				setLocation(hostRelation,$hst,$hst);
+				setKeyword(hostRelation,$onkw);
+			}
 		}
 	;
 
@@ -741,11 +704,18 @@ instanceDeclaration returns [Instance element]
  
 hostDeclaration returns [Host element]
 	: 	hkw='host' name=Identifier {
+			
 			$element = new Host(new SimpleNameSignature($name.text));
 			setKeyword($element,$hkw);
+			setLocation($element,$name,"__NAME");
+			
 		} ( onkw='on' value=StringLiteral {
+			
 			HostName hostName = new HostName(new SimpleNameSignature($value.text));
-			$element.setHostName(new SimpleReference<HostName>($value.text,HostName.class));
+			SimpleReference<HostName> hostNameRelation = new SimpleReference<HostName>($value.text,HostName.class);
+			$element.setHostName(hostNameRelation);
+			setKeyword(hostNameRelation,$onkw);
+			
 		} )? ';'
 	;
  
@@ -781,6 +751,26 @@ modulecontainerBody returns [List<SimpleReference> elements]
 	:	'{' (decls=commaSeparatedBodyDecls[Module.class] {$elements=$decls.elements;} )? '}'
 	;
 */
+
+
+/* ***********
+ * REFINEMENT
+ *********** */
+
+refinementDeclaration[RefinableDeclaration element]
+	:	rfkw=':' refinementRelationDeclarations[$element] {
+			setKeyword($element,$rfkw);
+		}
+	;
+
+refinementRelationDeclarations[RefinableDeclaration element]
+	:	name=Identifier ( ',' refinementRelationDeclarations[$element] )? {
+			SimpleReference parentRef = new SimpleReference($name.text,$element.getClass());
+			RefinementRelation relation = new RefinementRelation(parentRef);
+			$element.addRefinementRelation(relation);
+			setLocation(parentRef,$name,$name);
+		}
+	;
 
 
 /* ***********

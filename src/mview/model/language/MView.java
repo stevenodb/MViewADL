@@ -143,22 +143,22 @@ public class MView extends Language {
 						MViewMember.class);
 	}
 
-	/**
-	 * @param declaration
-	 * @return A PropertySet of actor properties for the given declaration
-	 */
-	public <D extends Declaration> Set<ChameleonProperty> actorProperties(
-			Class<D> declaration) {
-		Set<ChameleonProperty> result = new HashSet<ChameleonProperty>();
-
-		for (ActorProperty property : ACTOR_PROPERTIES) {
-			if (property.targetDeclarationType().equals(declaration)) {
-				result.add(property);
-			}
-		}
-		
-		return result;
-	}
+//	/**
+//	 * @param declaration
+//	 * @return A PropertySet of actor properties for the given declaration
+//	 */
+//	public <D extends Declaration> Set<ChameleonProperty> actorProperties(
+//			Class<D> declaration) {
+//		Set<ChameleonProperty> result = new HashSet<ChameleonProperty>();
+//
+//		for (ActorProperty property : ACTOR_PROPERTIES) {
+//			if (property.targetDeclarationType().equals(declaration)) {
+//				result.add(property);
+//			}
+//		}
+//		
+//		return result;
+//	}
 
 
 	@Override
