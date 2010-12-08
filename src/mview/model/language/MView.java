@@ -70,6 +70,7 @@ public class MView extends Language {
 	public final ActorProperty HOST;
 
 	public final StaticChameleonProperty OVERRIDABLE;
+	public final ChameleonProperty EXTENDABLE;
 
 	public final Set<ActorProperty> ACTOR_PROPERTIES;
 
@@ -141,6 +142,9 @@ public class MView extends Language {
 		OVERRIDABLE =
 				new StaticChameleonProperty("Overridable", this,
 						MViewMember.class);
+		
+		EXTENDABLE = OVERRIDABLE.inverse();
+		OVERRIDABLE.setName("Extendable");
 	}
 
 //	/**
