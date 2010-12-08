@@ -55,6 +55,7 @@ import mview.model.namespace.MViewDeclaration;
 
 import mview.model.refinement.AbstractElement;
 import mview.model.refinement.modifier.Overridable;
+import mview.model.refinement.modifier.Extendable;
 import mview.model.refinement.MViewMember;
 import mview.model.refinement.MViewMemberDeclarationImpl;
 import mview.model.refinement.RefinableDeclaration;
@@ -107,8 +108,8 @@ compilationUnit returns [CompilationUnit element]
 			cnd=connectorDeclaration {npp.add($cnd.element);}
 		|
 			apd=applicationDeclaration {npp.add($apd.element);}
-//		|
-//			dpd=deploymentDeclaration {npp.add($dpd.element);}
+		|
+			dpd=deploymentDeclaration {npp.add($dpd.element);}
 		)*
 	;
 
@@ -374,11 +375,11 @@ pointcutKindDeclaration[Pointcut pointcut]
 
 	
 pointcutSignatureDeclaration[Pointcut element]
-	:	(override=)? sikw='signature' ':' ps=pointcutSignatureBody {
+	:	(override=overrideOrExtend)? sikw='signature' ':' ps=pointcutSignatureBody {
 			PointcutSignature pcsig = $ps.element;
-			Modifier override = $override.value;
-			if (override != null) {
-				pcsig.addModifier(override);
+			Modifier ovr = $override.value;
+			if (ovr != null) {
+				pcsig.addModifier(ovr);
 			}
 			$element.setSignature(pcsig);
 			setKeyword(pcsig,$sikw);
@@ -451,7 +452,9 @@ pointcutActorBodyDecls[Actor actor]
 	) {
 		prop = new ActorProp(new PropModifier(declClass));
 		actor.addProp(prop);
-		if (override != null) {prop.addModifier($override.value);}
+		if ($override.value != null) {
+			prop.addModifier($override.value);
+		}
 	} pointcutActorPropDecls[prop,declClass] ';'
 	;
 
@@ -627,6 +630,16 @@ applicationBodyDeclaration[Application element]
 /* ***********
  * DEPLOYMENT
  *********** */
+
+deploymentDeclaration returns [Deployment element]
+	:	appkw='deployment' name=Identifier {
+			$element = new Deployment(new SimpleNameSignature($name.text));
+			setKeyword($element,$appkw);
+   			setLocation($element,$name,"__NAME");
+		} 
+		refinementDeclaration[$element]
+		applicationBody[$element]
+	;
 
 /*
 
@@ -806,8 +819,8 @@ joinPointKind returns [Modifier value]
 	;
  
 overrideOrExtend returns [Modifier value]
-	:	'override' {$value = new Overridable();}
-	|	'extend' {$value = null;}
+	:	okw='override' {$value = new Overridable(); setKeyword($value,$okw); }
+	|	ekw='extend' {$value = new Extendable(); setKeyword($value,$ekw); }
 	;
 
 voidType returns [TypeReference value]
