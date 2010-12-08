@@ -39,6 +39,22 @@ import exception.MergeNotSupportedException;
 public class RefinementRelation
 		extends ElementImpl<RefinementRelation, RefinableDeclaration> {
 
+	/**
+	 * default
+	 */
+	public RefinementRelation() {
+		super();
+	}
+
+	/**
+	 * @param parentRef
+	 *            reference to parent declaration
+	 */
+	public RefinementRelation(SimpleReference<RefinableDeclaration> parentRef) {
+		this();
+		setParentDeclaration(parentRef);
+	}
+
 	/*
 	 * Parent declaration
 	 */
@@ -47,7 +63,7 @@ public class RefinementRelation
 			SimpleReference<RefinableDeclaration>>(this);
 
 	/**
-	 * @return	the parent declaration
+	 * @return the parent declaration
 	 */
 	public RefinableDeclaration parentDeclarationEnd() {
 		try {
@@ -58,12 +74,12 @@ public class RefinementRelation
 	}
 
 	/**
-	 * @return	a SimpleReference to the parent declaration
+	 * @return a SimpleReference to the parent declaration
 	 */
 	public SimpleReference<RefinableDeclaration> parentDeclaration() {
 		return _parentDeclaration.getOtherEnd();
 	}
-	
+
 	/**
 	 * @param relation
 	 */
@@ -79,15 +95,16 @@ public class RefinementRelation
 	 */
 	public <M extends MViewMember> void gatherParentMembers(List<M> current)
 			throws LookupException {
-		
+
 		List<M> toAdd = new ArrayList<M>();
-		List<M>	potential = parentDeclarationEnd().members();
+		List<M> potential = parentDeclarationEnd().members();
 
 		for (M parentM : potential) {
 			boolean canAdd = false;
 
-			for (Iterator<M> itCur = current.iterator(); itCur.hasNext() && canAdd;) {
-				
+			for (Iterator<M> itCur = current.iterator(); itCur.hasNext()
+					&& canAdd;) {
+
 				M childM = itCur.next();
 
 				if (!childM.overrides(parentM)) {
@@ -99,13 +116,14 @@ public class RefinementRelation
 					} catch (MergeNotSupportedException e) {
 						e.printStackTrace();
 						canAdd = false;
-					} 
+					}
 				} else if (!childM.sameAs(parentM)) {
 					canAdd = true;
 				}
 			}
-			
-			if (canAdd) toAdd.add(parentM);
+
+			if (canAdd)
+				toAdd.add(parentM);
 		}
 
 		current.addAll(toAdd);
