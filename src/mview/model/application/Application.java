@@ -41,17 +41,17 @@ import chameleon.core.validation.VerificationResult;
  */
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
- *
+ * 
  * @param <A>
  */
-public class Application<A extends Application<A>> 
-		extends RefinableDeclarationImpl<A, Element> 
+public class Application<A extends Application<A>>
+		extends RefinableDeclarationImpl<A, Element>
 		implements ModuleContainer {
-	
-	//extends HostMapper<Application,AbstractHost,Locate>
-	
+
+	// extends HostMapper<Application,AbstractHost,Locate>
+
 	/**
-	 * default 
+	 * default
 	 */
 	protected Application() {
 		super();
@@ -63,12 +63,12 @@ public class Application<A extends Application<A>>
 	public Application(SimpleNameSignature signature) {
 		super(signature);
 	}
-	
+
 	/*
 	 * Hosts
 	 */
 	private final OrderedMultiAssociation<Application<A>, Host> _hosts =
-		new OrderedMultiAssociation<Application<A>, Host>(this);
+			new OrderedMultiAssociation<Application<A>, Host>(this);
 
 	/**
 	 * @return
@@ -76,27 +76,30 @@ public class Application<A extends Application<A>>
 	public List<Host> hosts() {
 		return _hosts.getOtherEnds();
 	}
-	
+
 	/**
 	 * @param host
 	 */
 	public void addHost(Host host) {
-		_hosts.add(host.parentLink());
+		if (host != null) {
+			_hosts.add(host.parentLink());
+		}
 	}
-	
+
 	/**
 	 * @param host
 	 */
 	public void removeHost(Host host) {
-		_hosts.remove(host.parentLink());
+		if (host != null) {
+			_hosts.remove(host.parentLink());
+		}
 	}
-	
-	
+
 	/*
 	 * Instances
 	 */
 	private final OrderedMultiAssociation<Application<A>, Instance> _instances =
-		new OrderedMultiAssociation<Application<A>, Instance>(this);
+			new OrderedMultiAssociation<Application<A>, Instance>(this);
 
 	/**
 	 * @return
@@ -104,143 +107,184 @@ public class Application<A extends Application<A>>
 	public List<Instance> instances() {
 		return _instances.getOtherEnds();
 	}
-	
+
 	/**
 	 * @param host
 	 */
 	public void addInstance(Instance instance) {
-		_instances.add(instance.parentLink());
+		if (instance != null) {
+			_instances.add(instance.parentLink());
+		}
 	}
-	
+
 	/**
 	 * @param host
 	 */
 	public void removeInstance(Instance instance) {
-		_instances.remove(instance.parentLink());
+		if (instance != null) {
+			_instances.remove(instance.parentLink());
+		}
 	}
 
-	
 	/*
 	 * Modules
 	 */
 	private final OrderedMultiAssociation<Application, Module> _modules =
-		new OrderedMultiAssociation<Application, Module>(this);
-	
-	
-	
-	
-	/* (non-Javadoc)
+			new OrderedMultiAssociation<Application, Module>(this);
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see mview.model.module.ModuleContainer#modules()
 	 */
 	public List<Module> modules() {
 		return _modules.getOtherEnds();
 	}
-	
-	/* (non-Javadoc)
-	 * @see mview.model.module.ModuleContainer#addModule(mview.model.module.Module)
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * mview.model.module.ModuleContainer#addModule(mview.model.module.Module)
 	 */
-	public void addModule(Module relation) {
-		_modules.add(relation.parentLink());
+	public void addModule(Module module) {
+		if (module != null) {
+			_modules.add(module.parentLink());
+		}
 	}
-	
-	/* (non-Javadoc)
-	 * @see mview.model.module.ModuleContainer#removeModule(mview.model.module.Module)
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * mview.model.module.ModuleContainer#removeModule(mview.model.module.Module
+	 * )
 	 */
-	public void removeModule(Module relation) {
-		_modules.remove(relation.parentLink());
+	public void removeModule(Module module) {
+		if (module != null) {
+			_modules.remove(module.parentLink());
+		}
 	}
-	
-	
-	
+
 	/*
 	 * REFINEMENT
 	 */
-	
-	
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see mview.model.namespace.MViewDeclaration#cloneThis()
 	 */
 	@Override
 	protected A cloneThis() {
 		return (A) new Application();
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see mview.model.application.HostMapper#clone()
 	 */
 	@Override
 	public A clone() {
 		final A clone = super.clone();
-		
+
 		for (Host host : hosts()) {
 			clone.addHost(host.clone());
 		}
-		
+
 		for (Instance instance : instances()) {
 			clone.addInstance(instance.clone());
 		}
-		
+
 		for (Module module : this.modules()) {
-			Module localClone = module.clone();			
+			Module localClone = module.clone();
 			clone.addModule(localClone);
 		}
-		
+
 		return clone;
 	}
 
-	/* (non-Javadoc)
+	// /* (non-Javadoc)
+	// * @see
+	// mview.model.namespace.MViewDeclaration#uniSameAs(chameleon.core.element.Element)
+	// */
+	// @Override
+	// public boolean uniSameAs(Element other) throws LookupException {
+	// return super.uniSameAs(other);
+	// }
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see mview.model.application.HostMapper#children()
 	 */
 	@Override
 	public List<Element> children() {
-		final List<Element> result = super.children();		
+		final List<Element> result = super.children();
 		result.addAll(modules());
 		result.addAll(instances());
 		result.addAll(hosts());
 		return result;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see mview.model.application.HostMapper#verifySelf()
 	 */
 	@Override
 	public VerificationResult verifySelf() {
 		VerificationResult result = super.verifySelf();
 
-		if ( !(this.instances() != null) ) {
-			result = result.and(new BasicProblem(this, "Application needs an instance"));
+		if (!(this.instances() != null)) {
+			result =
+					result.and(new BasicProblem(this,
+							"Application needs an instance"));
 		}
 
-		if ( !(this.hosts() != null) ) {
-			result = result.and(new BasicProblem(this, "Application needs a host"));
+		if (!(this.hosts() != null)) {
+			result =
+					result.and(new BasicProblem(this,
+							"Application needs a host"));
 		}
 
 		for (Instance instance : this.instances()) {
-			if ( ! this.hosts().contains(instance.host()) ) {
-				result = result.and(new BasicProblem(this, "Host undefined in this application: " + instance.host().name()));
+			try {
+				if (!this.hosts().contains(instance.host().getElement())) {
+					result =
+							result.and(new BasicProblem(this,
+									"Host undefined in this application: "
+											+ instance.host().name()));
+				}
+			} catch (LookupException e) {
+				result.and(new BasicProblem(this,
+						"Exception looking up instance's host."));
+				e.printStackTrace();
 			}
 		}
-		
-//		if ( !(this.modules() != null) ) {
-//			result = result.and(new BasicProblem(this, "Modules is null"));
-//		}
-		
+
+		// if ( !(this.modules() != null) ) {
+		// result = result.and(new BasicProblem(this, "Modules is null"));
+		// }
+
 		return result;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see mview.model.refinement.RefinableDeclaration#localMembers()
 	 */
 	@Override
 	public List<MViewMember> localMembers()
 			throws LookupException {
 		List<MViewMember> result = new ArrayList<MViewMember>();
-		
+
 		result.addAll(hosts());
 		result.addAll(instances());
 		result.addAll(modules());
-		
+
 		return result;
 	}
 

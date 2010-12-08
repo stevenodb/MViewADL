@@ -216,7 +216,9 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element>
 	public List<Element> children() {
 		List<Element> result = super.children();
 
-		result.add(this.pointcutSignature());
+		if (this.pointcutSignature() != null) {
+			result.add(this.pointcutSignature());
+		}
 		
 		if (this.caller() != null) {
 			result.add(this.caller());
