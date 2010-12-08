@@ -90,6 +90,7 @@ public class Host extends MViewMemberDeclarationImpl<Host, Element> {
 	@Override
 	public Host clone() {
 		final Host clone = super.clone();
+		clone.setHostName(hostName());
 		return clone;
 	}
 
@@ -101,6 +102,9 @@ public class Host extends MViewMemberDeclarationImpl<Host, Element> {
 	@Override
 	public List<Element> children() {
 		final List<Element> result = super.children();
+		if (hostName() != null) {
+			result.add(hostName());
+		}
 		return result;
 	}
 
@@ -112,6 +116,9 @@ public class Host extends MViewMemberDeclarationImpl<Host, Element> {
 	@Override
 	public VerificationResult verifySelf() {
 		final VerificationResult result = super.verifySelf();
+		
+		// check whether part of application or deployment?
+		
 		return result;
 	}
 
