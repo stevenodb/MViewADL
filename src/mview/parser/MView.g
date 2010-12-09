@@ -476,10 +476,9 @@ pointcutActorPropDecl[Class<? extends Declaration> declClass] returns [SimpleRef
 	
 adviceDeclaration returns [Advice advice]
 	:	avkw='advice' { 
-				$advice = new Advice();
-				setKeyword($advice,$avkw);
-//				System.out.println("construct advice "+$advice);				
-			} adviceBody[$advice]
+			$advice = new Advice();
+			setKeyword($advice,$avkw);
+		} adviceBody[$advice]
 	;
 
 adviceBody[Advice advice]
@@ -506,17 +505,17 @@ adviceTypeDeclaration[Advice advice]
 	;
 
 
-/* ***********overrideOrExtend
+/* ***********
  * COMPONENT
  *********** */
  
  
 componentDeclaration returns [Component element]
 	:  compkw='component' name=Identifier {
-    			$element = new Component(new SimpleNameSignature($name.text)); 
-    			setKeyword($element,$compkw);
-    			setLocation($element,$name,"__NAME");
-			} componentBody[$element]
+   			$element = new Component(new SimpleNameSignature($name.text)); 
+   			setKeyword($element,$compkw);
+   			setLocation($element,$name,"__NAME");
+		} componentBody[$element]
 	;
     
     
@@ -771,9 +770,9 @@ modulecontainerBody returns [List<SimpleReference> elements]
  *********** */
 
 refinementDeclaration[RefinableDeclaration element]
-	:	rfkw=':' refinementRelationDeclarations[$element] {
+	:	(rfkw=':' refinementRelationDeclarations[$element] {
 			setKeyword($element,$rfkw);
-		}
+		})?
 	;
 
 refinementRelationDeclarations[RefinableDeclaration element]
