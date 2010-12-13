@@ -24,6 +24,7 @@ import java.util.List;
 
 import mview.model.refinement.AbstractElement;
 import mview.model.refinement.MViewMember;
+import mview.model.refinement.MViewMemberDeclaration;
 import mview.model.refinement.RefinableMemberDeclarationImpl;
 
 import org.rejuse.association.SingleAssociation;
@@ -151,13 +152,13 @@ public class AOComposition extends RefinableMemberDeclarationImpl<AOComposition,
 	public VerificationResult verifySelf() {
 		VerificationResult result = super.verifySelf();
 		
-		if ( ! (this.advice() != null) ) {
-			result = result.and(new BasicProblem(this, "Composition needs an advice."));
-		}
-		
-		if ( ! (this.pointcut() != null) ) {
-			result = result.and(new BasicProblem(this, "Composition needs a pointcut."));
-		}
+//		if ( ! (this.advice() != null) ) {
+//			result = result.and(new BasicProblem(this, "Composition needs an advice."));
+//		}
+//		
+//		if ( ! (this.pointcut() != null) ) {
+//			result = result.and(new BasicProblem(this, "Composition needs a pointcut."));
+//		}
 		
 		return result;
 	}

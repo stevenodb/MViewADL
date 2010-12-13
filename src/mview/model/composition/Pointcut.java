@@ -190,20 +190,20 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element>
 	public VerificationResult verifySelf() {
 		VerificationResult result = Valid.create();
 
-		if (!(this.modifiers().size() > 0)) {
-			result = result.and(new BasicProblem(this,
-					"Does not have a kind modifier"));
-		}
+//		if (!(this.modifiers().size() > 0)) {
+//			result = result.and(new BasicProblem(this,
+//					"Does not have a kind modifier"));
+//		}
 
 		if (!(this.modifiers().size() < 2)) {
 			result = result.and(new BasicProblem(this,
 					"Has more than one kind modifier"));
 		}
 
-		if (! (this.pointcutSignature() != null)) {
-			result = result.and(new BasicProblem(this,
-					"Does not have a signature"));
-		}
+//		if (! (this.pointcutSignature() != null)) {
+//			result = result.and(new BasicProblem(this,
+//					"Does not have a signature"));
+//		}
 
 		return result;
 	}
@@ -234,7 +234,7 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element>
 	 * @see mview.model.refinement.MViewMember#sharesContext(mview.model.refinement.MViewMember)
 	 */
 	@Override
-	public boolean sharesContext(Pointcut other) {
+	public boolean sharesContext(MViewMember other) {
 		return new RefinementContext(this, other).verify();
 	}
 
@@ -245,7 +245,7 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element>
 	 * MViewMember)
 	 */
 	@Override
-	public boolean overrides(Pointcut member) {
+	public boolean overrides(MViewMember member) {
 		return false;
 	}
 
@@ -253,7 +253,7 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element>
 	 * @see mview.model.refinement.MViewMember#mergesWith(mview.model.refinement.MViewMember)
 	 */
 	@Override
-	public boolean mergesWith(Pointcut other) {
+	public boolean mergesWith(MViewMember other) {
 		return sharesContext(other) && !overrides(other);
 	}
 
@@ -265,14 +265,14 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element>
 	 * )
 	 */
 	@Override
-	public Pointcut merge(Pointcut other) throws MergeNotSupportedException {
+	public Pointcut merge(MViewMember other) throws MergeNotSupportedException {
 
 		Pointcut merged;
 		
 		if (mergesWith(other)) {
 			
 			Pointcut child = this.clone();
-			Pointcut parent = other.clone();
+			Pointcut parent = (Pointcut) other.clone();
 			
 			// 1. kind modifier: override with child's kind
 			merged = new Pointcut(child.modifiers().get(0));

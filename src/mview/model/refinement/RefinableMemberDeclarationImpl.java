@@ -29,7 +29,7 @@ import exception.MergeNotSupportedException;
  */
 public abstract class RefinableMemberDeclarationImpl<
 			D extends RefinableMemberDeclarationImpl<D, P>, P extends Element>
-		extends RefinableDeclarationImpl<D, P> implements MViewMember<D, P> {
+		extends RefinableDeclarationImpl<D, P> implements MViewMemberDeclaration<D, P> {
 
 	/**
 	 * default
@@ -49,7 +49,7 @@ public abstract class RefinableMemberDeclarationImpl<
 	 * @see mview.model.refinement.MViewMember#sharesContext(mview.model.refinement.MViewMember)
 	 */
 	@Override
-	public boolean sharesContext(D other) {
+	public boolean sharesContext(MViewMember other) {
 		return new RefinementContext(this, other).verify();
 	}
 
@@ -57,7 +57,7 @@ public abstract class RefinableMemberDeclarationImpl<
 	 * @see mview.model.refinement.MViewMember#overrides(mview.model.refinement.MViewMember)
 	 */
 	@Override
-	public boolean overrides(D other) {
+	public boolean overrides(MViewMember other) {
 		boolean result = false;
 		
 		try {
@@ -73,7 +73,7 @@ public abstract class RefinableMemberDeclarationImpl<
 	 * @see mview.model.refinement.MViewMember#mergesWith(mview.model.refinement.MViewMember)
 	 */
 	@Override
-	public boolean mergesWith(D other) {
+	public boolean mergesWith(MViewMember other) {
 		return false;
 	}
 
@@ -81,7 +81,7 @@ public abstract class RefinableMemberDeclarationImpl<
 	 * @see mview.model.refinement.MViewMember#merge(mview.model.refinement.MViewMember)
 	 */
 	@Override
-	public D merge(D other) throws MergeNotSupportedException {
+	public D merge(MViewMember other) throws MergeNotSupportedException {
 		throw new MergeNotSupportedException(this + " doesn't support merge.");
 	}
 

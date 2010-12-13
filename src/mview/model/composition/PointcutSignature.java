@@ -163,8 +163,8 @@ public class PointcutSignature extends ElementWithModifiersImpl<PointcutSignatur
 	 * @see mview.model.refinement.MViewMember#sharesContext(mview.model.refinement.MViewMember)
 	 */
 	@Override
-	public boolean sharesContext(PointcutSignature other) {
-		return new RefinementContext<PointcutSignature>(this, other).verify();
+	public boolean sharesContext(MViewMember other) {
+		return new RefinementContext(this, other).verify();
 	}
 
 	/*
@@ -174,7 +174,7 @@ public class PointcutSignature extends ElementWithModifiersImpl<PointcutSignatur
 	 * MViewMember)
 	 */
 	@Override
-	public boolean overrides(PointcutSignature other) {
+	public boolean overrides(MViewMember other) {
 		return this.overridable() && this.sharesContext(other);
 	}
 
@@ -182,7 +182,7 @@ public class PointcutSignature extends ElementWithModifiersImpl<PointcutSignatur
 	 * @see mview.model.refinement.MViewMember#mergesWith(mview.model.refinement.MViewMember)
 	 */
 	@Override
-	public boolean mergesWith(PointcutSignature other) {
+	public boolean mergesWith(MViewMember other) {
 		return sharesContext(other) && !overridable();
 	}
 
@@ -194,12 +194,12 @@ public class PointcutSignature extends ElementWithModifiersImpl<PointcutSignatur
 	 * )
 	 */
 	@Override
-	public PointcutSignature merge(PointcutSignature other) throws MergeNotSupportedException {
+	public PointcutSignature merge(MViewMember other) throws MergeNotSupportedException {
 		
 		PointcutSignature merged = this.clone();
 		
 		if (mergesWith(other) ) {
-			merged.addAllSignatures(other.signatures());
+			merged.addAllSignatures(((PointcutSignature)other).signatures());
 		}
 		
 		return merged;

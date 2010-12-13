@@ -29,7 +29,7 @@ import exception.MergeNotSupportedException;
  * 
  */
 public abstract class MViewMemberDeclarationImpl<M extends MViewMemberDeclarationImpl<M, P>, P extends Element>
-		extends MViewDeclaration<M, P> implements MViewMember<M, P> {
+		extends MViewDeclaration<M, P> implements MViewMemberDeclaration<M, P> {
 
 	/**
 	 * default constructor
@@ -53,7 +53,7 @@ public abstract class MViewMemberDeclarationImpl<M extends MViewMemberDeclaratio
 	 * .MViewMember)
 	 */
 	@Override
-	public boolean sharesContext(M other) {
+	public boolean sharesContext(MViewMember other) {
 		return new RefinementContext(this, other).verify();
 	}
 
@@ -64,7 +64,7 @@ public abstract class MViewMemberDeclarationImpl<M extends MViewMemberDeclaratio
 	 * MViewMember)
 	 */
 	@Override
-	public boolean overrides(M other) {
+	public boolean overrides(MViewMember other) {
 		boolean result = false;
 		try {
 			result = this.sameAs(other) && sharesContext(other);
@@ -79,7 +79,7 @@ public abstract class MViewMemberDeclarationImpl<M extends MViewMemberDeclaratio
 	 * @see mview.model.refinement.MViewMember#mergesWith(mview.model.refinement.MViewMember)
 	 */
 	@Override
-	public boolean mergesWith(M other) {
+	public boolean mergesWith(MViewMember other) {
 		return false;
 	}
 
@@ -91,7 +91,7 @@ public abstract class MViewMemberDeclarationImpl<M extends MViewMemberDeclaratio
 	 * )
 	 */
 	@Override
-	public M merge(M other) throws MergeNotSupportedException {
+	public M merge(MViewMember other) throws MergeNotSupportedException {
 		throw new MergeNotSupportedException(this + " doesn't support merge.");
 	}
 

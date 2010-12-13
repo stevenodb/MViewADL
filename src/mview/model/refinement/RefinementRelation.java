@@ -37,7 +37,7 @@ import exception.MergeNotSupportedException;
  * 
  */
 public class RefinementRelation
-		extends ElementImpl<RefinementRelation, RefinableDeclaration> {
+		extends ElementImpl<RefinementRelation, RefinableDeclaration> {//NameSpaceElementImpl
 
 	/**
 	 * default
@@ -93,40 +93,48 @@ public class RefinementRelation
 	 * @return
 	 * @throws LookupException
 	 */
-	public <M extends MViewMember> void gatherParentMembers(List<M> current)
-			throws LookupException {
-
+	public <M extends MViewMember> void gatherParentMembers(Class<M> kind, 
+			List<M> current)
+	throws LookupException {
 		List<M> toAdd = new ArrayList<M>();
-		List<M> potential = parentDeclarationEnd().members();
+		RefinableDeclaration pe = parentDeclarationEnd();
+		if(pe != null) {
+			List<M> potential = pe.members(kind);
 
-		for (M parentM : potential) {
-			boolean canAdd = false;
+			for (M parentM : potential) {
+				M newParentM = parentM;
+				boolean stop = false;
+				
+				for (Iterator<M> itCur = current.iterator(); itCur.hasNext()
+				&& !stop;) {
 
-			for (Iterator<M> itCur = current.iterator(); itCur.hasNext()
-					&& canAdd;) {
+					M childM = itCur.next();
 
-				M childM = itCur.next();
-
-				if (!childM.overrides(parentM)) {
-					canAdd = true;
-				} else if (childM.mergesWith(parentM)) {
-					try {
-						parentM = (M) childM.merge(parentM);
-						canAdd = true;
-					} catch (MergeNotSupportedException e) {
-						e.printStackTrace();
-						canAdd = false;
+//					if (!childM.overrides(parentM)) {
+//						canAdd = true;
+//					} else 
+					if (childM.mergesWith(parentM)) {
+						try {
+							newParentM = (M) childM.merge(parentM);
+							stop = true;
+						} catch (MergeNotSupportedException e) {
+							e.printStackTrace();
+							throw new LookupException("Merge failed while it should be allowed according to mergesWith()");
+						}
+					} 
+					else if (childM.sameAs(parentM)) {
+						stop = true;
+						newParentM = null;
 					}
-				} else if (!childM.sameAs(parentM)) {
-					canAdd = true;
+				}
+
+				if (newParentM != null) {
+					toAdd.add(parentM);
 				}
 			}
 
-			if (canAdd)
-				toAdd.add(parentM);
+			current.addAll(toAdd);
 		}
-
-		current.addAll(toAdd);
 	}
 
 	/*

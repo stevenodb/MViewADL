@@ -306,7 +306,7 @@ connectorDeclaration returns [Connector element]
 			setKeyword($element,$conkw);
 			setLocation($element,$name,"__NAME");
 		} 
-		refinementDeclaration[$element]
+		refinementDeclaration[$element,Connector.class]
 		connectorBody[$element]
 	;
 
@@ -330,7 +330,7 @@ connectorAOCompositionDeclaration returns [AOComposition element]
 			setKeyword($element,$kw);
 			setLocation($element,$name,"__NAME");
 		}
-		refinementDeclaration[$element] 
+		refinementDeclaration[$element,AOComposition.class] 
 		connectorAOCompositionBody[$element]
 	;
 
@@ -532,9 +532,6 @@ componentBodyDeclaration[Component element]
 
 
 
-
-
-
 /* ***********
  * MODULE
  *********** */
@@ -561,7 +558,6 @@ moduleProvideDependencyDeclaration[Module element]
 			}
 		 }
 	;
-
 
 
 
@@ -601,7 +597,7 @@ applicationDeclaration returns [Application element]
 			setKeyword($element,$appkw);
    			setLocation($element,$name,"__NAME");
 		} 
-		refinementDeclaration[$element]
+		refinementDeclaration[$element,Application.class]
 		applicationBody[$element]
 	;
 
@@ -636,7 +632,7 @@ deploymentDeclaration returns [Deployment element]
 			setKeyword($element,$appkw);
    			setLocation($element,$name,"__NAME");
 		} 
-		refinementDeclaration[$element]
+		refinementDeclaration[$element,Application.class]
 		applicationBody[$element]
 	;
 
@@ -769,15 +765,15 @@ modulecontainerBody returns [List<SimpleReference> elements]
  * REFINEMENT
  *********** */
 
-refinementDeclaration[RefinableDeclaration element]
-	:	(rfkw=':' refinementRelationDeclarations[$element] {
+refinementDeclaration[RefinableDeclaration element, Class kind]
+	:	(rfkw=':' refinementRelationDeclarations[$element,$kind] {
 			setKeyword($element,$rfkw);
 		})?
 	;
 
-refinementRelationDeclarations[RefinableDeclaration element]
-	:	name=Identifier ( ',' refinementRelationDeclarations[$element] )? {
-			SimpleReference parentRef = new SimpleReference($name.text,$element.getClass());
+refinementRelationDeclarations[RefinableDeclaration element, Class kind]
+	:	name=Identifier ( ',' refinementRelationDeclarations[$element,$kind] )? {
+			SimpleReference parentRef = new SimpleReference($name.text,$kind);
 			RefinementRelation relation = new RefinementRelation(parentRef);
 			$element.addRefinementRelation(relation);
 			setLocation(parentRef,$name,$name);

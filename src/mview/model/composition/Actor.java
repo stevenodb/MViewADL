@@ -104,7 +104,7 @@ public class Actor extends NamespaceElementImpl<Actor, Element> implements
 	 * @see mview.model.refinement.MViewMember#sharesContext(mview.model.refinement.MViewMember)
 	 */
 	@Override
-	public boolean sharesContext(Actor other) {
+	public boolean sharesContext(MViewMember other) {
 		return new RefinementContext(this, other).verify(); 
 	}
 	
@@ -115,7 +115,7 @@ public class Actor extends NamespaceElementImpl<Actor, Element> implements
 	 * MViewMember)
 	 */
 	@Override
-	public boolean overrides(Actor other) {
+	public boolean overrides(MViewMember other) {
 		return false;
 	}
 
@@ -123,7 +123,7 @@ public class Actor extends NamespaceElementImpl<Actor, Element> implements
 	 * @see mview.model.refinement.MViewMember#canMergeWith()
 	 */
 	@Override
-	public boolean mergesWith(Actor other) {
+	public boolean mergesWith(MViewMember other) {
 		return sharesContext(other) && !overrides(other);
 	}
 		
@@ -135,14 +135,14 @@ public class Actor extends NamespaceElementImpl<Actor, Element> implements
 	 * )
 	 */
 	@Override
-	public Actor merge(Actor other) throws MergeNotSupportedException {
+	public Actor merge(MViewMember other) throws MergeNotSupportedException {
 		Actor merged = this.clone();
 		
 		if (mergesWith(other)) {
 			merged = new Actor();
 	
 			Actor child = this.clone();
-			Actor parent = other.clone();
+			Actor parent = (Actor) other.clone();
 	
 			// for all props
 			for (ActorProp childProp : child.props()) {

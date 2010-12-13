@@ -165,15 +165,15 @@ public class Advice extends ElementWithModifiersImpl<Advice, Element>
 	 * @see mview.model.refinement.MViewMember#sharesContext(mview.model.refinement.MViewMember)
 	 */
 	@Override
-	public boolean sharesContext(Advice other) {
-		return new RefinementContext<Advice>(this, other).verify();
+	public boolean sharesContext(MViewMember other) {
+		return new RefinementContext(this, other).verify();
 	}
 	
 	/* (non-Javadoc)
 	 * @see mview.model.refinement.MViewMember#overrides(mview.model.refinement.MViewMember)
 	 */
 	@Override
-	public boolean overrides(Advice other) {
+	public boolean overrides(MViewMember other) {
 		return false;
 	}
 
@@ -181,7 +181,7 @@ public class Advice extends ElementWithModifiersImpl<Advice, Element>
 	 * @see mview.model.refinement.MViewMember#mergesWith(mview.model.refinement.MViewMember)
 	 */
 	@Override
-	public boolean mergesWith(Advice other) {
+	public boolean mergesWith(MViewMember other) {
 		return sharesContext(other) && !overrides(other);
 	}
 
@@ -189,7 +189,7 @@ public class Advice extends ElementWithModifiersImpl<Advice, Element>
 	 * @see mview.model.refinement.MViewMember#merge(mview.model.refinement.MViewMember)
 	 */
 	@Override
-	public Advice merge(Advice other) throws MergeNotSupportedException {
+	public Advice merge(MViewMember other) throws MergeNotSupportedException {
 		
 		Advice merged;
 		
@@ -199,14 +199,14 @@ public class Advice extends ElementWithModifiersImpl<Advice, Element>
 					
 			if (this.service() != null) {
 				merged.setService(this.service().clone());
-			} else if (other.service() != null) {
-				merged.setService(other.service().clone());
+			} else if (((Advice)other).service() != null) {
+				merged.setService(((Advice)other).service().clone());
 			}
 			
 			if (this.type() != null) {
 				merged.addModifier(this.type());
-			} else if (other.type() != null) {
-				merged.addModifier(other.type().clone());
+			} else if (((Advice)other).type() != null) {
+				merged.addModifier(((Advice)other).type().clone());
 			}
 		} else {
 			merged = this.clone();

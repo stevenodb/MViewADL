@@ -1,4 +1,4 @@
-// $ANTLR 3.3 Nov 30, 2010 12:45:30 /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g 2010-12-09 11:31:49
+// $ANTLR 3.3 Nov 30, 2010 12:45:30 /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g 2010-12-13 18:05:29
 
 	package mview.parser;
 
@@ -1178,8 +1178,8 @@ public class MViewLexer extends Lexer {
         try {
             int _type = HexLiteral;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:953:12: ( '0' ( 'x' | 'X' ) ( HexDigit )+ ( IntegerTypeSuffix )? )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:953:14: '0' ( 'x' | 'X' ) ( HexDigit )+ ( IntegerTypeSuffix )?
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:949:12: ( '0' ( 'x' | 'X' ) ( HexDigit )+ ( IntegerTypeSuffix )? )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:949:14: '0' ( 'x' | 'X' ) ( HexDigit )+ ( IntegerTypeSuffix )?
             {
             match('0'); 
             if ( input.LA(1)=='X'||input.LA(1)=='x' ) {
@@ -1191,7 +1191,7 @@ public class MViewLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:953:28: ( HexDigit )+
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:949:28: ( HexDigit )+
             int cnt1=0;
             loop1:
             do {
@@ -1205,7 +1205,7 @@ public class MViewLexer extends Lexer {
 
                 switch (alt1) {
             	case 1 :
-            	    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:953:28: HexDigit
+            	    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:949:28: HexDigit
             	    {
             	    mHexDigit(); 
 
@@ -1221,7 +1221,7 @@ public class MViewLexer extends Lexer {
                 cnt1++;
             } while (true);
 
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:953:38: ( IntegerTypeSuffix )?
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:949:38: ( IntegerTypeSuffix )?
             int alt2=2;
             int LA2_0 = input.LA(1);
 
@@ -1230,7 +1230,7 @@ public class MViewLexer extends Lexer {
             }
             switch (alt2) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:953:38: IntegerTypeSuffix
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:949:38: IntegerTypeSuffix
                     {
                     mIntegerTypeSuffix(); 
 
@@ -1255,10 +1255,10 @@ public class MViewLexer extends Lexer {
         try {
             int _type = DecimalLiteral;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:955:16: ( ( '0' | '1' .. '9' ( '0' .. '9' )* ) ( IntegerTypeSuffix )? )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:955:18: ( '0' | '1' .. '9' ( '0' .. '9' )* ) ( IntegerTypeSuffix )?
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:951:16: ( ( '0' | '1' .. '9' ( '0' .. '9' )* ) ( IntegerTypeSuffix )? )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:951:18: ( '0' | '1' .. '9' ( '0' .. '9' )* ) ( IntegerTypeSuffix )?
             {
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:955:18: ( '0' | '1' .. '9' ( '0' .. '9' )* )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:951:18: ( '0' | '1' .. '9' ( '0' .. '9' )* )
             int alt4=2;
             int LA4_0 = input.LA(1);
 
@@ -1276,17 +1276,17 @@ public class MViewLexer extends Lexer {
             }
             switch (alt4) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:955:19: '0'
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:951:19: '0'
                     {
                     match('0'); 
 
                     }
                     break;
                 case 2 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:955:25: '1' .. '9' ( '0' .. '9' )*
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:951:25: '1' .. '9' ( '0' .. '9' )*
                     {
                     matchRange('1','9'); 
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:955:34: ( '0' .. '9' )*
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:951:34: ( '0' .. '9' )*
                     loop3:
                     do {
                         int alt3=2;
@@ -1299,7 +1299,7 @@ public class MViewLexer extends Lexer {
 
                         switch (alt3) {
                     	case 1 :
-                    	    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:955:34: '0' .. '9'
+                    	    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:951:34: '0' .. '9'
                     	    {
                     	    matchRange('0','9'); 
 
@@ -1317,7 +1317,7 @@ public class MViewLexer extends Lexer {
 
             }
 
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:955:45: ( IntegerTypeSuffix )?
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:951:45: ( IntegerTypeSuffix )?
             int alt5=2;
             int LA5_0 = input.LA(1);
 
@@ -1326,7 +1326,7 @@ public class MViewLexer extends Lexer {
             }
             switch (alt5) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:955:45: IntegerTypeSuffix
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:951:45: IntegerTypeSuffix
                     {
                     mIntegerTypeSuffix(); 
 
@@ -1351,11 +1351,11 @@ public class MViewLexer extends Lexer {
         try {
             int _type = OctalLiteral;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:957:14: ( '0' ( '0' .. '7' )+ ( IntegerTypeSuffix )? )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:957:16: '0' ( '0' .. '7' )+ ( IntegerTypeSuffix )?
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:953:14: ( '0' ( '0' .. '7' )+ ( IntegerTypeSuffix )? )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:953:16: '0' ( '0' .. '7' )+ ( IntegerTypeSuffix )?
             {
             match('0'); 
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:957:20: ( '0' .. '7' )+
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:953:20: ( '0' .. '7' )+
             int cnt6=0;
             loop6:
             do {
@@ -1369,7 +1369,7 @@ public class MViewLexer extends Lexer {
 
                 switch (alt6) {
             	case 1 :
-            	    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:957:21: '0' .. '7'
+            	    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:953:21: '0' .. '7'
             	    {
             	    matchRange('0','7'); 
 
@@ -1385,7 +1385,7 @@ public class MViewLexer extends Lexer {
                 cnt6++;
             } while (true);
 
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:957:32: ( IntegerTypeSuffix )?
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:953:32: ( IntegerTypeSuffix )?
             int alt7=2;
             int LA7_0 = input.LA(1);
 
@@ -1394,7 +1394,7 @@ public class MViewLexer extends Lexer {
             }
             switch (alt7) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:957:32: IntegerTypeSuffix
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:953:32: IntegerTypeSuffix
                     {
                     mIntegerTypeSuffix(); 
 
@@ -1417,8 +1417,8 @@ public class MViewLexer extends Lexer {
     // $ANTLR start "HexDigit"
     public final void mHexDigit() throws RecognitionException {
         try {
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:960:10: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:960:12: ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:956:10: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:956:12: ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )
             {
             if ( (input.LA(1)>='0' && input.LA(1)<='9')||(input.LA(1)>='A' && input.LA(1)<='F')||(input.LA(1)>='a' && input.LA(1)<='f') ) {
                 input.consume();
@@ -1441,8 +1441,8 @@ public class MViewLexer extends Lexer {
     // $ANTLR start "IntegerTypeSuffix"
     public final void mIntegerTypeSuffix() throws RecognitionException {
         try {
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:963:19: ( ( 'l' | 'L' ) )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:963:21: ( 'l' | 'L' )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:959:19: ( ( 'l' | 'L' ) )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:959:21: ( 'l' | 'L' )
             {
             if ( input.LA(1)=='L'||input.LA(1)=='l' ) {
                 input.consume();
@@ -1467,14 +1467,14 @@ public class MViewLexer extends Lexer {
         try {
             int _type = FloatingPointLiteral;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:966:5: ( ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( Exponent )? ( FloatTypeSuffix )? | '.' ( '0' .. '9' )+ ( Exponent )? ( FloatTypeSuffix )? | ( '0' .. '9' )+ Exponent ( FloatTypeSuffix )? | ( '0' .. '9' )+ FloatTypeSuffix )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:962:5: ( ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( Exponent )? ( FloatTypeSuffix )? | '.' ( '0' .. '9' )+ ( Exponent )? ( FloatTypeSuffix )? | ( '0' .. '9' )+ Exponent ( FloatTypeSuffix )? | ( '0' .. '9' )+ FloatTypeSuffix )
             int alt18=4;
             alt18 = dfa18.predict(input);
             switch (alt18) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:966:9: ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( Exponent )? ( FloatTypeSuffix )?
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:962:9: ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( Exponent )? ( FloatTypeSuffix )?
                     {
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:966:9: ( '0' .. '9' )+
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:962:9: ( '0' .. '9' )+
                     int cnt8=0;
                     loop8:
                     do {
@@ -1488,7 +1488,7 @@ public class MViewLexer extends Lexer {
 
                         switch (alt8) {
                     	case 1 :
-                    	    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:966:10: '0' .. '9'
+                    	    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:962:10: '0' .. '9'
                     	    {
                     	    matchRange('0','9'); 
 
@@ -1505,7 +1505,7 @@ public class MViewLexer extends Lexer {
                     } while (true);
 
                     match('.'); 
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:966:25: ( '0' .. '9' )*
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:962:25: ( '0' .. '9' )*
                     loop9:
                     do {
                         int alt9=2;
@@ -1518,7 +1518,7 @@ public class MViewLexer extends Lexer {
 
                         switch (alt9) {
                     	case 1 :
-                    	    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:966:26: '0' .. '9'
+                    	    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:962:26: '0' .. '9'
                     	    {
                     	    matchRange('0','9'); 
 
@@ -1530,7 +1530,7 @@ public class MViewLexer extends Lexer {
                         }
                     } while (true);
 
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:966:37: ( Exponent )?
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:962:37: ( Exponent )?
                     int alt10=2;
                     int LA10_0 = input.LA(1);
 
@@ -1539,7 +1539,7 @@ public class MViewLexer extends Lexer {
                     }
                     switch (alt10) {
                         case 1 :
-                            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:966:37: Exponent
+                            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:962:37: Exponent
                             {
                             mExponent(); 
 
@@ -1548,7 +1548,7 @@ public class MViewLexer extends Lexer {
 
                     }
 
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:966:47: ( FloatTypeSuffix )?
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:962:47: ( FloatTypeSuffix )?
                     int alt11=2;
                     int LA11_0 = input.LA(1);
 
@@ -1557,7 +1557,7 @@ public class MViewLexer extends Lexer {
                     }
                     switch (alt11) {
                         case 1 :
-                            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:966:47: FloatTypeSuffix
+                            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:962:47: FloatTypeSuffix
                             {
                             mFloatTypeSuffix(); 
 
@@ -1570,10 +1570,10 @@ public class MViewLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:967:9: '.' ( '0' .. '9' )+ ( Exponent )? ( FloatTypeSuffix )?
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:963:9: '.' ( '0' .. '9' )+ ( Exponent )? ( FloatTypeSuffix )?
                     {
                     match('.'); 
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:967:13: ( '0' .. '9' )+
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:963:13: ( '0' .. '9' )+
                     int cnt12=0;
                     loop12:
                     do {
@@ -1587,7 +1587,7 @@ public class MViewLexer extends Lexer {
 
                         switch (alt12) {
                     	case 1 :
-                    	    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:967:14: '0' .. '9'
+                    	    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:963:14: '0' .. '9'
                     	    {
                     	    matchRange('0','9'); 
 
@@ -1603,7 +1603,7 @@ public class MViewLexer extends Lexer {
                         cnt12++;
                     } while (true);
 
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:967:25: ( Exponent )?
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:963:25: ( Exponent )?
                     int alt13=2;
                     int LA13_0 = input.LA(1);
 
@@ -1612,7 +1612,7 @@ public class MViewLexer extends Lexer {
                     }
                     switch (alt13) {
                         case 1 :
-                            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:967:25: Exponent
+                            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:963:25: Exponent
                             {
                             mExponent(); 
 
@@ -1621,7 +1621,7 @@ public class MViewLexer extends Lexer {
 
                     }
 
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:967:35: ( FloatTypeSuffix )?
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:963:35: ( FloatTypeSuffix )?
                     int alt14=2;
                     int LA14_0 = input.LA(1);
 
@@ -1630,7 +1630,7 @@ public class MViewLexer extends Lexer {
                     }
                     switch (alt14) {
                         case 1 :
-                            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:967:35: FloatTypeSuffix
+                            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:963:35: FloatTypeSuffix
                             {
                             mFloatTypeSuffix(); 
 
@@ -1643,9 +1643,9 @@ public class MViewLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:968:9: ( '0' .. '9' )+ Exponent ( FloatTypeSuffix )?
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:964:9: ( '0' .. '9' )+ Exponent ( FloatTypeSuffix )?
                     {
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:968:9: ( '0' .. '9' )+
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:964:9: ( '0' .. '9' )+
                     int cnt15=0;
                     loop15:
                     do {
@@ -1659,7 +1659,7 @@ public class MViewLexer extends Lexer {
 
                         switch (alt15) {
                     	case 1 :
-                    	    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:968:10: '0' .. '9'
+                    	    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:964:10: '0' .. '9'
                     	    {
                     	    matchRange('0','9'); 
 
@@ -1676,7 +1676,7 @@ public class MViewLexer extends Lexer {
                     } while (true);
 
                     mExponent(); 
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:968:30: ( FloatTypeSuffix )?
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:964:30: ( FloatTypeSuffix )?
                     int alt16=2;
                     int LA16_0 = input.LA(1);
 
@@ -1685,7 +1685,7 @@ public class MViewLexer extends Lexer {
                     }
                     switch (alt16) {
                         case 1 :
-                            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:968:30: FloatTypeSuffix
+                            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:964:30: FloatTypeSuffix
                             {
                             mFloatTypeSuffix(); 
 
@@ -1698,9 +1698,9 @@ public class MViewLexer extends Lexer {
                     }
                     break;
                 case 4 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:969:9: ( '0' .. '9' )+ FloatTypeSuffix
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:965:9: ( '0' .. '9' )+ FloatTypeSuffix
                     {
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:969:9: ( '0' .. '9' )+
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:965:9: ( '0' .. '9' )+
                     int cnt17=0;
                     loop17:
                     do {
@@ -1714,7 +1714,7 @@ public class MViewLexer extends Lexer {
 
                         switch (alt17) {
                     	case 1 :
-                    	    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:969:10: '0' .. '9'
+                    	    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:965:10: '0' .. '9'
                     	    {
                     	    matchRange('0','9'); 
 
@@ -1747,8 +1747,8 @@ public class MViewLexer extends Lexer {
     // $ANTLR start "Exponent"
     public final void mExponent() throws RecognitionException {
         try {
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:973:10: ( ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+ )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:973:12: ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:969:10: ( ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+ )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:969:12: ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+
             {
             if ( input.LA(1)=='E'||input.LA(1)=='e' ) {
                 input.consume();
@@ -1759,7 +1759,7 @@ public class MViewLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:973:22: ( '+' | '-' )?
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:969:22: ( '+' | '-' )?
             int alt19=2;
             int LA19_0 = input.LA(1);
 
@@ -1785,7 +1785,7 @@ public class MViewLexer extends Lexer {
 
             }
 
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:973:33: ( '0' .. '9' )+
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:969:33: ( '0' .. '9' )+
             int cnt20=0;
             loop20:
             do {
@@ -1799,7 +1799,7 @@ public class MViewLexer extends Lexer {
 
                 switch (alt20) {
             	case 1 :
-            	    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:973:34: '0' .. '9'
+            	    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:969:34: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -1827,8 +1827,8 @@ public class MViewLexer extends Lexer {
     // $ANTLR start "FloatTypeSuffix"
     public final void mFloatTypeSuffix() throws RecognitionException {
         try {
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:976:17: ( ( 'f' | 'F' | 'd' | 'D' ) )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:976:19: ( 'f' | 'F' | 'd' | 'D' )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:972:17: ( ( 'f' | 'F' | 'd' | 'D' ) )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:972:19: ( 'f' | 'F' | 'd' | 'D' )
             {
             if ( input.LA(1)=='D'||input.LA(1)=='F'||input.LA(1)=='d'||input.LA(1)=='f' ) {
                 input.consume();
@@ -1853,11 +1853,11 @@ public class MViewLexer extends Lexer {
         try {
             int _type = CharacterLiteral;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:979:5: ( '\\'' ( EscapeSequence | ~ ( '\\'' | '\\\\' ) ) '\\'' )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:979:9: '\\'' ( EscapeSequence | ~ ( '\\'' | '\\\\' ) ) '\\''
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:975:5: ( '\\'' ( EscapeSequence | ~ ( '\\'' | '\\\\' ) ) '\\'' )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:975:9: '\\'' ( EscapeSequence | ~ ( '\\'' | '\\\\' ) ) '\\''
             {
             match('\''); 
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:979:14: ( EscapeSequence | ~ ( '\\'' | '\\\\' ) )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:975:14: ( EscapeSequence | ~ ( '\\'' | '\\\\' ) )
             int alt21=2;
             int LA21_0 = input.LA(1);
 
@@ -1875,14 +1875,14 @@ public class MViewLexer extends Lexer {
             }
             switch (alt21) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:979:16: EscapeSequence
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:975:16: EscapeSequence
                     {
                     mEscapeSequence(); 
 
                     }
                     break;
                 case 2 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:979:33: ~ ( '\\'' | '\\\\' )
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:975:33: ~ ( '\\'' | '\\\\' )
                     {
                     if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                         input.consume();
@@ -1916,11 +1916,11 @@ public class MViewLexer extends Lexer {
         try {
             int _type = StringLiteral;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:983:5: ( '\"' ( EscapeSequence | ~ ( '\\\\' | '\"' ) )* '\"' )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:983:8: '\"' ( EscapeSequence | ~ ( '\\\\' | '\"' ) )* '\"'
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:979:5: ( '\"' ( EscapeSequence | ~ ( '\\\\' | '\"' ) )* '\"' )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:979:8: '\"' ( EscapeSequence | ~ ( '\\\\' | '\"' ) )* '\"'
             {
             match('\"'); 
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:983:12: ( EscapeSequence | ~ ( '\\\\' | '\"' ) )*
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:979:12: ( EscapeSequence | ~ ( '\\\\' | '\"' ) )*
             loop22:
             do {
                 int alt22=3;
@@ -1936,14 +1936,14 @@ public class MViewLexer extends Lexer {
 
                 switch (alt22) {
             	case 1 :
-            	    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:983:14: EscapeSequence
+            	    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:979:14: EscapeSequence
             	    {
             	    mEscapeSequence(); 
 
             	    }
             	    break;
             	case 2 :
-            	    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:983:31: ~ ( '\\\\' | '\"' )
+            	    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:979:31: ~ ( '\\\\' | '\"' )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -1978,7 +1978,7 @@ public class MViewLexer extends Lexer {
     // $ANTLR start "EscapeSequence"
     public final void mEscapeSequence() throws RecognitionException {
         try {
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:988:5: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | UnicodeEscape | OctalEscape )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:984:5: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | UnicodeEscape | OctalEscape )
             int alt23=3;
             int LA23_0 = input.LA(1);
 
@@ -2029,7 +2029,7 @@ public class MViewLexer extends Lexer {
             }
             switch (alt23) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:988:9: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:984:9: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
                     {
                     match('\\'); 
                     if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||input.LA(1)=='t' ) {
@@ -2045,14 +2045,14 @@ public class MViewLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:989:9: UnicodeEscape
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:985:9: UnicodeEscape
                     {
                     mUnicodeEscape(); 
 
                     }
                     break;
                 case 3 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:990:9: OctalEscape
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:986:9: OctalEscape
                     {
                     mOctalEscape(); 
 
@@ -2069,7 +2069,7 @@ public class MViewLexer extends Lexer {
     // $ANTLR start "OctalEscape"
     public final void mOctalEscape() throws RecognitionException {
         try {
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:995:5: ( '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:991:5: ( '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) )
             int alt24=3;
             int LA24_0 = input.LA(1);
 
@@ -2115,25 +2115,25 @@ public class MViewLexer extends Lexer {
             }
             switch (alt24) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:995:9: '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' )
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:991:9: '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' )
                     {
                     match('\\'); 
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:995:14: ( '0' .. '3' )
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:995:15: '0' .. '3'
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:991:14: ( '0' .. '3' )
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:991:15: '0' .. '3'
                     {
                     matchRange('0','3'); 
 
                     }
 
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:995:25: ( '0' .. '7' )
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:995:26: '0' .. '7'
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:991:25: ( '0' .. '7' )
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:991:26: '0' .. '7'
                     {
                     matchRange('0','7'); 
 
                     }
 
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:995:36: ( '0' .. '7' )
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:995:37: '0' .. '7'
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:991:36: ( '0' .. '7' )
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:991:37: '0' .. '7'
                     {
                     matchRange('0','7'); 
 
@@ -2143,18 +2143,18 @@ public class MViewLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:996:9: '\\\\' ( '0' .. '7' ) ( '0' .. '7' )
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:992:9: '\\\\' ( '0' .. '7' ) ( '0' .. '7' )
                     {
                     match('\\'); 
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:996:14: ( '0' .. '7' )
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:996:15: '0' .. '7'
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:992:14: ( '0' .. '7' )
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:992:15: '0' .. '7'
                     {
                     matchRange('0','7'); 
 
                     }
 
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:996:25: ( '0' .. '7' )
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:996:26: '0' .. '7'
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:992:25: ( '0' .. '7' )
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:992:26: '0' .. '7'
                     {
                     matchRange('0','7'); 
 
@@ -2164,11 +2164,11 @@ public class MViewLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:997:9: '\\\\' ( '0' .. '7' )
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:993:9: '\\\\' ( '0' .. '7' )
                     {
                     match('\\'); 
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:997:14: ( '0' .. '7' )
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:997:15: '0' .. '7'
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:993:14: ( '0' .. '7' )
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:993:15: '0' .. '7'
                     {
                     matchRange('0','7'); 
 
@@ -2188,8 +2188,8 @@ public class MViewLexer extends Lexer {
     // $ANTLR start "UnicodeEscape"
     public final void mUnicodeEscape() throws RecognitionException {
         try {
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:1002:5: ( '\\\\' 'u' HexDigit HexDigit HexDigit HexDigit )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:1002:9: '\\\\' 'u' HexDigit HexDigit HexDigit HexDigit
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:998:5: ( '\\\\' 'u' HexDigit HexDigit HexDigit HexDigit )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:998:9: '\\\\' 'u' HexDigit HexDigit HexDigit HexDigit
             {
             match('\\'); 
             match('u'); 
@@ -2211,11 +2211,11 @@ public class MViewLexer extends Lexer {
         try {
             int _type = Identifier;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:1007:5: ( Letter ( Letter | JavaIDDigit | '*' )* )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:1007:9: Letter ( Letter | JavaIDDigit | '*' )*
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:1003:5: ( Letter ( Letter | JavaIDDigit | '*' )* )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:1003:9: Letter ( Letter | JavaIDDigit | '*' )*
             {
             mLetter(); 
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:1007:16: ( Letter | JavaIDDigit | '*' )*
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:1003:16: ( Letter | JavaIDDigit | '*' )*
             loop25:
             do {
                 int alt25=2;
@@ -2262,7 +2262,7 @@ public class MViewLexer extends Lexer {
     // $ANTLR start "Letter"
     public final void mLetter() throws RecognitionException {
         try {
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:1020:5: ( '\\u0024' | '\\u0041' .. '\\u005a' | '\\u005f' | '\\u0061' .. '\\u007a' | '\\u00c0' .. '\\u00d6' | '\\u00d8' .. '\\u00f6' | '\\u00f8' .. '\\u00ff' | '\\u0100' .. '\\u1fff' | '\\u3040' .. '\\u318f' | '\\u3300' .. '\\u337f' | '\\u3400' .. '\\u3d2d' | '\\u4e00' .. '\\u9fff' | '\\uf900' .. '\\ufaff' )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:1016:5: ( '\\u0024' | '\\u0041' .. '\\u005a' | '\\u005f' | '\\u0061' .. '\\u007a' | '\\u00c0' .. '\\u00d6' | '\\u00d8' .. '\\u00f6' | '\\u00f8' .. '\\u00ff' | '\\u0100' .. '\\u1fff' | '\\u3040' .. '\\u318f' | '\\u3300' .. '\\u337f' | '\\u3400' .. '\\u3d2d' | '\\u4e00' .. '\\u9fff' | '\\uf900' .. '\\ufaff' )
             // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:
             {
             if ( input.LA(1)=='$'||(input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z')||(input.LA(1)>='\u00C0' && input.LA(1)<='\u00D6')||(input.LA(1)>='\u00D8' && input.LA(1)<='\u00F6')||(input.LA(1)>='\u00F8' && input.LA(1)<='\u1FFF')||(input.LA(1)>='\u3040' && input.LA(1)<='\u318F')||(input.LA(1)>='\u3300' && input.LA(1)<='\u337F')||(input.LA(1)>='\u3400' && input.LA(1)<='\u3D2D')||(input.LA(1)>='\u4E00' && input.LA(1)<='\u9FFF')||(input.LA(1)>='\uF900' && input.LA(1)<='\uFAFF') ) {
@@ -2286,7 +2286,7 @@ public class MViewLexer extends Lexer {
     // $ANTLR start "JavaIDDigit"
     public final void mJavaIDDigit() throws RecognitionException {
         try {
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:1037:5: ( '\\u0030' .. '\\u0039' | '\\u0660' .. '\\u0669' | '\\u06f0' .. '\\u06f9' | '\\u0966' .. '\\u096f' | '\\u09e6' .. '\\u09ef' | '\\u0a66' .. '\\u0a6f' | '\\u0ae6' .. '\\u0aef' | '\\u0b66' .. '\\u0b6f' | '\\u0be7' .. '\\u0bef' | '\\u0c66' .. '\\u0c6f' | '\\u0ce6' .. '\\u0cef' | '\\u0d66' .. '\\u0d6f' | '\\u0e50' .. '\\u0e59' | '\\u0ed0' .. '\\u0ed9' | '\\u1040' .. '\\u1049' )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:1033:5: ( '\\u0030' .. '\\u0039' | '\\u0660' .. '\\u0669' | '\\u06f0' .. '\\u06f9' | '\\u0966' .. '\\u096f' | '\\u09e6' .. '\\u09ef' | '\\u0a66' .. '\\u0a6f' | '\\u0ae6' .. '\\u0aef' | '\\u0b66' .. '\\u0b6f' | '\\u0be7' .. '\\u0bef' | '\\u0c66' .. '\\u0c6f' | '\\u0ce6' .. '\\u0cef' | '\\u0d66' .. '\\u0d6f' | '\\u0e50' .. '\\u0e59' | '\\u0ed0' .. '\\u0ed9' | '\\u1040' .. '\\u1049' )
             // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:
             {
             if ( (input.LA(1)>='0' && input.LA(1)<='9')||(input.LA(1)>='\u0660' && input.LA(1)<='\u0669')||(input.LA(1)>='\u06F0' && input.LA(1)<='\u06F9')||(input.LA(1)>='\u0966' && input.LA(1)<='\u096F')||(input.LA(1)>='\u09E6' && input.LA(1)<='\u09EF')||(input.LA(1)>='\u0A66' && input.LA(1)<='\u0A6F')||(input.LA(1)>='\u0AE6' && input.LA(1)<='\u0AEF')||(input.LA(1)>='\u0B66' && input.LA(1)<='\u0B6F')||(input.LA(1)>='\u0BE7' && input.LA(1)<='\u0BEF')||(input.LA(1)>='\u0C66' && input.LA(1)<='\u0C6F')||(input.LA(1)>='\u0CE6' && input.LA(1)<='\u0CEF')||(input.LA(1)>='\u0D66' && input.LA(1)<='\u0D6F')||(input.LA(1)>='\u0E50' && input.LA(1)<='\u0E59')||(input.LA(1)>='\u0ED0' && input.LA(1)<='\u0ED9')||(input.LA(1)>='\u1040' && input.LA(1)<='\u1049') ) {
@@ -2312,8 +2312,8 @@ public class MViewLexer extends Lexer {
         try {
             int _type = WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:1054:5: ( ( ' ' | '\\r' | '\\t' | '\\u000C' | '\\n' ) )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:1054:8: ( ' ' | '\\r' | '\\t' | '\\u000C' | '\\n' )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:1050:5: ( ( ' ' | '\\r' | '\\t' | '\\u000C' | '\\n' ) )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:1050:8: ( ' ' | '\\r' | '\\t' | '\\u000C' | '\\n' )
             {
             if ( (input.LA(1)>='\t' && input.LA(1)<='\n')||(input.LA(1)>='\f' && input.LA(1)<='\r')||input.LA(1)==' ' ) {
                 input.consume();
@@ -2341,12 +2341,12 @@ public class MViewLexer extends Lexer {
         try {
             int _type = COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:1058:5: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:1058:9: '/*' ( options {greedy=false; } : . )* '*/'
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:1054:5: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:1054:9: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:1058:14: ( options {greedy=false; } : . )*
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:1054:14: ( options {greedy=false; } : . )*
             loop26:
             do {
                 int alt26=2;
@@ -2371,7 +2371,7 @@ public class MViewLexer extends Lexer {
 
                 switch (alt26) {
             	case 1 :
-            	    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:1058:42: .
+            	    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:1054:42: .
             	    {
             	    matchAny(); 
 
@@ -2402,12 +2402,12 @@ public class MViewLexer extends Lexer {
         try {
             int _type = LINE_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:1062:5: ( '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:1062:7: '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n'
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:1058:5: ( '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:1058:7: '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n'
             {
             match("//"); 
 
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:1062:12: (~ ( '\\n' | '\\r' ) )*
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:1058:12: (~ ( '\\n' | '\\r' ) )*
             loop27:
             do {
                 int alt27=2;
@@ -2420,7 +2420,7 @@ public class MViewLexer extends Lexer {
 
                 switch (alt27) {
             	case 1 :
-            	    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:1062:12: ~ ( '\\n' | '\\r' )
+            	    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:1058:12: ~ ( '\\n' | '\\r' )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -2440,7 +2440,7 @@ public class MViewLexer extends Lexer {
                 }
             } while (true);
 
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:1062:26: ( '\\r' )?
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:1058:26: ( '\\r' )?
             int alt28=2;
             int LA28_0 = input.LA(1);
 
@@ -2449,7 +2449,7 @@ public class MViewLexer extends Lexer {
             }
             switch (alt28) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:1062:26: '\\r'
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:1058:26: '\\r'
                     {
                     match('\r'); 
 
@@ -2969,7 +2969,7 @@ public class MViewLexer extends Lexer {
             this.transition = DFA18_transition;
         }
         public String getDescription() {
-            return "965:1: FloatingPointLiteral : ( ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( Exponent )? ( FloatTypeSuffix )? | '.' ( '0' .. '9' )+ ( Exponent )? ( FloatTypeSuffix )? | ( '0' .. '9' )+ Exponent ( FloatTypeSuffix )? | ( '0' .. '9' )+ FloatTypeSuffix );";
+            return "961:1: FloatingPointLiteral : ( ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( Exponent )? ( FloatTypeSuffix )? | '.' ( '0' .. '9' )+ ( Exponent )? ( FloatTypeSuffix )? | ( '0' .. '9' )+ Exponent ( FloatTypeSuffix )? | ( '0' .. '9' )+ FloatTypeSuffix );";
         }
     }
     static final String DFA29_eotS =

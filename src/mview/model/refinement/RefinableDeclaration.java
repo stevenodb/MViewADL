@@ -20,6 +20,7 @@ package mview.model.refinement;
 
 import java.util.List;
 
+import mview.model.namespace.MViewDeclaration;
 import chameleon.core.declaration.Declaration;
 import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.element.Element;
@@ -32,14 +33,14 @@ import chameleon.core.lookup.LookupException;
 public interface RefinableDeclaration<D extends RefinableDeclaration<D, P>, P extends Element>
 					extends Declaration<D, P, SimpleNameSignature, D> {
 
-	/**
-	 * Returns the List of all member declarations up to and including this
-	 * level of refinement. Overridden declarations are not retained.
-	 * 
-	 * @return a list of member declarations
-	 * @throws LookupException
-	 */
-	public List<Declaration> declarations() throws LookupException;
+	// /**
+	// * Returns the List of all member declarations up to and including this
+	// * level of refinement. Overridden declarations are not retained.
+	// *
+	// * @return a list of member declarations
+	// * @throws LookupException
+	// */
+	// public List<Declaration> declarations() throws LookupException;
 
 	/**
 	 * Returns the list of clones of all member elements up to and including
@@ -59,12 +60,34 @@ public interface RefinableDeclaration<D extends RefinableDeclaration<D, P>, P ex
 	public List<MViewMember> members() throws LookupException;
 
 	/**
+	 * @param <M>
+	 *            type M extending MViewMember
+	 * @param kind
+	 *            the kind of member to retain
+	 * @return a list of members of type <code>kind</code>
+	 * @throws LookupException
+	 */
+	public <M extends MViewMember> List<M> members(final Class<M> kind)
+			throws LookupException;
+
+	/**
 	 * Return the list of local members
 	 * 
 	 * @return the list of local members
 	 * @throws LookupException
 	 */
 	public List<MViewMember> localMembers() throws LookupException;
+
+	/**
+	 * @param <M>
+	 *            type M extending MViewMember
+	 * @param kind
+	 *            the kind of member to retain
+	 * @return list of local members of type <code>kind</code>
+	 * @throws LookupException
+	 */
+	public <M extends MViewMember> List<M> localMembers(Class<M> kind)
+			throws LookupException;
 
 	/**
 	 * Returns the list of all direct refinable parent declarations.
@@ -74,7 +97,7 @@ public interface RefinableDeclaration<D extends RefinableDeclaration<D, P>, P ex
 	public List<RefinableDeclaration> getDirectParents();
 
 	/**
-	 * Returns whether this refinable declaration is a refinement of 
+	 * Returns whether this refinable declaration is a refinement of
 	 * <code>other</code>. This method is recursive.
 	 * 
 	 * @param other

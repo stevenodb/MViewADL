@@ -234,8 +234,8 @@ public class ActorProp<D extends Declaration> extends
 	 * .MViewMember)
 	 */
 	@Override
-	public boolean sharesContext(ActorProp<D> other) {
-		return new RefinementContext<ActorProp<D>>(this, other).verify();
+	public boolean sharesContext(MViewMember other) {
+		return new RefinementContext(this, other).verify();
 	}
 
 	/*
@@ -245,9 +245,9 @@ public class ActorProp<D extends Declaration> extends
 	 * MViewMember)
 	 */
 	@Override
-	public boolean overrides(ActorProp<D> other) {
+	public boolean overrides(MViewMember other) {
 		boolean result = this.overridable();
-		result &= this.declarationType() == other.declarationType();
+		result &= this.declarationType() == ((ActorProp)other).declarationType();
 		result &= sharesContext(other);
 		return result;
 	}
@@ -260,10 +260,10 @@ public class ActorProp<D extends Declaration> extends
 	 * MViewMember)
 	 */
 	@Override
-	public boolean mergesWith(ActorProp<D> other) {
+	public boolean mergesWith(MViewMember other) {
 		return sharesContext(other) 
 			&& !overrides(other)
-			&& this.declarationType() == other.declarationType();
+			&& this.declarationType() == ((ActorProp)other).declarationType();
 	}
 
 	/*
@@ -274,7 +274,7 @@ public class ActorProp<D extends Declaration> extends
 	 * )
 	 */
 	@Override
-	public ActorProp<D> merge(ActorProp<D> other)
+	public ActorProp<D> merge(MViewMember other)
 			throws MergeNotSupportedException {
 
 //		if (!(this.declarationType() == other.declarationType())) {
@@ -285,7 +285,7 @@ public class ActorProp<D extends Declaration> extends
 		ActorProp<D> merged = this.clone();
 
 		if (mergesWith(other)) {
-			ActorProp<D> parent = other.clone();
+			ActorProp<D> parent = ((ActorProp)other).clone();
 			merged.addAllPropValues(parent.propValues());
 		}
 
