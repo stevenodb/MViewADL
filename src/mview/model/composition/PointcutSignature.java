@@ -164,7 +164,7 @@ public class PointcutSignature extends ElementWithModifiersImpl<PointcutSignatur
 	 */
 	@Override
 	public boolean sharesContext(MViewMember other) {
-		return new RefinementContext(this, other).verify();
+		return (new RefinementContext().verify(this, other));
 	}
 
 	/*

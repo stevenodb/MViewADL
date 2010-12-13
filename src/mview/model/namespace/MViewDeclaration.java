@@ -47,8 +47,7 @@ import chameleon.util.Util;
  */
 public abstract class MViewDeclaration<E extends MViewDeclaration<E, P>, P extends Element>
 		extends NamespaceElementImpl<E, P> 
-		implements Declaration<E, P, SimpleNameSignature, E> //, MViewMember<E,P>, 
-		{
+		implements Declaration<E, P, SimpleNameSignature, E> {
 
 	/**
 	 * Default constructor

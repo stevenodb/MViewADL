@@ -29,12 +29,10 @@ import mview.model.refinement.modifier.Overridable;
 import org.rejuse.association.OrderedMultiAssociation;
 
 import property.ActorProperty;
-
 import chameleon.core.declaration.Declaration;
 import chameleon.core.element.Element;
 import chameleon.core.lookup.LookupException;
 import chameleon.core.modifier.ElementWithModifiersImpl;
-import chameleon.core.property.StaticChameleonProperty;
 import chameleon.core.reference.SimpleReference;
 import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.Valid;
@@ -235,7 +233,7 @@ public class ActorProp<D extends Declaration> extends
 	 */
 	@Override
 	public boolean sharesContext(MViewMember other) {
-		return new RefinementContext(this, other).verify();
+		return (new RefinementContext().verify(this, other));
 	}
 
 	/*

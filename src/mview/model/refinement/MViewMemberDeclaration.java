@@ -21,12 +21,13 @@ package mview.model.refinement;
 import chameleon.core.declaration.Declaration;
 import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.element.Element;
-import mview.model.namespace.MViewDeclaration;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public interface MViewMemberDeclaration<M extends MViewMemberDeclaration<M, P>, P extends Element> extends Declaration<M, P, SimpleNameSignature, M> , MViewMember<M, P>{
-
-}
+public interface MViewMemberDeclaration<M extends MViewMemberDeclaration<M, P>, 
+										P extends Element> 
+	extends Declaration<M, P, SimpleNameSignature, M>, 
+			MViewMember<M, P> 
+	{}

@@ -40,11 +40,13 @@ import chameleon.core.validation.VerificationResult;
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  * 
  */
-public abstract class RefinableDeclarationImpl<D extends RefinableDeclarationImpl<D, P>, P extends Element>
+public abstract class RefinableDeclarationImpl<
+				D extends RefinableDeclarationImpl<D, P>, 
+				P extends Element>
 		extends MViewDeclaration<D, P>
-		implements RefinableDeclaration<D, P>,
-			TargetDeclaration<D, P, SimpleNameSignature, D>,
-			DeclarationContainer<D, P> {
+		implements	RefinableDeclaration<D, P>,
+					TargetDeclaration<D, P, SimpleNameSignature, D>,
+					DeclarationContainer<D, P> {
 
 	/**
 	 * default constructor

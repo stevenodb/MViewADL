@@ -18,58 +18,49 @@
  */
 package mview.model.refinement;
 
+import chameleon.core.declaration.Declaration;
 import chameleon.core.element.Element;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public class RefinementContext<M extends MViewMember<M, Element>> {
+public class RefinementContext {
 	
-	private final M _child, _parent;
-
-	/**
-	 * @param _child
-	 * @param _parent
-	 */
-	public RefinementContext(M child, M parent) {
-		super();
-		this._child = child;
-		this._parent = parent;
-	}
-
-	/**
-	 * @return the _child
-	 */
-	public M child() {
-		return _child;
-	}
-
-	/**
-	 * @return the _parent
-	 */
-	public M parent() {
-		return _parent;
-	}
+//	private final M _child, _parent;
+//
+//	/**
+//	 * @param _child
+//	 * @param _parent
+//	 */
+//	public RefinementContext(M child, M parent) {
+//		super();
+//		this._child = child;
+//		this._parent = parent;
+//	}
+//
+//	/**
+//	 * @return the _child
+//	 */
+//	public M child() {
+//		return _child;
+//	}
+//
+//	/**
+//	 * @return the _parent
+//	 */
+//	public M parent() {
+//		return _parent;
+//	}
 	
 	/**
 	 * @return
 	 */
-	public boolean verify() {
+	public <M extends MViewMember> boolean verify(M child, M parent) {
 		RefinableDeclaration childD, parentD;
 		
-/*		if ((child() instanceof RefinableDeclaration) 
-				&& (parent() instanceof RefinableDeclaration)) {
-		
-			childD = (RefinableDeclaration)child();
-			parentD = (RefinableDeclaration)parent();
-
-		} else {
-		
-		} */
-		
-		childD = child().nearestAncestor(RefinableDeclaration.class);
-		parentD = parent().nearestAncestor(RefinableDeclaration.class);
+		childD = (RefinableDeclaration) child.nearestAncestor(RefinableDeclaration.class);
+		parentD = (RefinableDeclaration) parent.nearestAncestor(RefinableDeclaration.class);
 
 		return childD.isRefinementOf(parentD);
 	}

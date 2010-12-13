@@ -28,8 +28,11 @@ import exception.MergeNotSupportedException;
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  * 
  */
-public abstract class MViewMemberDeclarationImpl<M extends MViewMemberDeclarationImpl<M, P>, P extends Element>
-		extends MViewDeclaration<M, P> implements MViewMemberDeclaration<M, P> {
+public abstract class MViewMemberDeclarationImpl<	
+						M extends MViewMemberDeclarationImpl<M, P>, 
+						P extends Element>
+		extends MViewDeclaration<M, P> 
+		implements MViewMemberDeclaration<M, P> {
 
 	/**
 	 * default constructor
@@ -54,7 +57,7 @@ public abstract class MViewMemberDeclarationImpl<M extends MViewMemberDeclaratio
 	 */
 	@Override
 	public boolean sharesContext(MViewMember other) {
-		return new RefinementContext(this, other).verify();
+		return (new RefinementContext()).verify(this, other);
 	}
 
 	/*

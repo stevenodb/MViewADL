@@ -20,7 +20,6 @@ package mview.model.refinement;
 
 import java.util.List;
 
-import mview.model.namespace.MViewDeclaration;
 import chameleon.core.declaration.Declaration;
 import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.element.Element;
@@ -30,8 +29,9 @@ import chameleon.core.lookup.LookupException;
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  * 
  */
-public interface RefinableDeclaration<D extends RefinableDeclaration<D, P>, P extends Element>
-					extends Declaration<D, P, SimpleNameSignature, D> {
+public interface RefinableDeclaration<	D extends RefinableDeclaration<D, P>, 
+										P extends Element>
+		extends Declaration<D, P, SimpleNameSignature, D> {
 
 	// /**
 	// * Returns the List of all member declarations up to and including this
@@ -67,8 +67,7 @@ public interface RefinableDeclaration<D extends RefinableDeclaration<D, P>, P ex
 	 * @return a list of members of type <code>kind</code>
 	 * @throws LookupException
 	 */
-	public <M extends MViewMember> List<M> members(final Class<M> kind)
-			throws LookupException;
+	public <M extends MViewMember> List<M> members(final Class<M> kind) throws LookupException;
 
 	/**
 	 * Return the list of local members
@@ -86,8 +85,7 @@ public interface RefinableDeclaration<D extends RefinableDeclaration<D, P>, P ex
 	 * @return list of local members of type <code>kind</code>
 	 * @throws LookupException
 	 */
-	public <M extends MViewMember> List<M> localMembers(Class<M> kind)
-			throws LookupException;
+	public <M extends MViewMember> List<M> localMembers(Class<M> kind) throws LookupException;
 
 	/**
 	 * Returns the list of all direct refinable parent declarations.
