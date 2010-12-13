@@ -688,6 +688,7 @@ instanceDeclaration returns [Instance element]
 	:	tpe=Identifier name=Identifier onkw='on' hst=Identifier ';' {
 	
 			$element = new Instance(new SimpleNameSignature($name.text));
+			setLocation($element,$name,"__NAME");
 
 			SimpleReference<Module> modRelation = new SimpleReference<Module>($tpe.text,Module.class);
 			if (modRelation != null) {
