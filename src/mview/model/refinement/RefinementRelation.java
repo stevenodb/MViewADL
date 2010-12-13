@@ -94,41 +94,40 @@ public class RefinementRelation
 	 * @throws LookupException
 	 */
 	public <M extends MViewMember> void gatherParentMembers(Class<M> kind, 
-			List<M> current)
-	throws LookupException {
+			List<M> current) throws LookupException {
+		
 		List<M> toAdd = new ArrayList<M>();
 		RefinableDeclaration pe = parentDeclarationEnd();
+		
 		if(pe != null) {
 			List<M> potential = pe.members(kind);
 
 			for (M parentM : potential) {
-				M newParentM = parentM;
+				M newM = parentM;
 				boolean stop = false;
 				
-				for (Iterator<M> itCur = current.iterator(); itCur.hasNext()
-				&& !stop;) {
+				for (Iterator<M> itCur = current.iterator(); itCur.hasNext() && !stop;) {
 
 					M childM = itCur.next();
 
-//					if (!childM.overrides(parentM)) {
-//						canAdd = true;
-//					} else 
 					if (childM.mergesWith(parentM)) {
 						try {
-							newParentM = (M) childM.merge(parentM);
+							newM = (M) childM.merge(parentM);
 							stop = true;
 						} catch (MergeNotSupportedException e) {
 							e.printStackTrace();
-							throw new LookupException("Merge failed while it should be allowed according to mergesWith()");
+							throw new LookupException("Merge failed while it " +
+									"should be allowed according to mergesWith()");
 						}
 					} 
-					else if (childM.sameAs(parentM)) {
-						stop = true;
-						newParentM = null;
-					}
+					else 
+						if (childM.sameAs(parentM)) {
+							stop = true;
+							newM = null;
+						}
 				}
 
-				if (newParentM != null) {
+				if (newM != null) {
 					toAdd.add(parentM);
 				}
 			}

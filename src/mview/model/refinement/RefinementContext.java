@@ -18,8 +18,6 @@
  */
 package mview.model.refinement;
 
-import chameleon.core.declaration.Declaration;
-import chameleon.core.element.Element;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
@@ -27,33 +25,10 @@ import chameleon.core.element.Element;
  */
 public class RefinementContext {
 	
-//	private final M _child, _parent;
-//
-//	/**
-//	 * @param _child
-//	 * @param _parent
-//	 */
-//	public RefinementContext(M child, M parent) {
-//		super();
-//		this._child = child;
-//		this._parent = parent;
-//	}
-//
-//	/**
-//	 * @return the _child
-//	 */
-//	public M child() {
-//		return _child;
-//	}
-//
-//	/**
-//	 * @return the _parent
-//	 */
-//	public M parent() {
-//		return _parent;
-//	}
-	
 	/**
+	 * @param <M>
+	 * @param child
+	 * @param parent
 	 * @return
 	 */
 	public <M extends MViewMember> boolean verify(M child, M parent) {
