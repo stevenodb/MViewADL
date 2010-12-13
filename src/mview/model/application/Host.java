@@ -27,7 +27,6 @@ import org.rejuse.association.SingleAssociation;
 
 import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.element.Element;
-import chameleon.core.reference.SimpleReference;
 import chameleon.core.validation.VerificationResult;
 
 /**
@@ -54,21 +53,21 @@ public class Host extends MViewMemberDeclarationImpl<Host, Element> {
 	/*
 	 * HOSTNAME
 	 */
-	private SingleAssociation<Host, SimpleReference<HostName>> _hostName =
-			new SingleAssociation<Host, SimpleReference<HostName>>(this);
+	private SingleAssociation<Host, HostName> _hostName =
+			new SingleAssociation<Host, HostName>(this);
 
 	/**
 	 * @param hostName
 	 *            the hostName to set
 	 */
-	public void setHostName(SimpleReference<HostName> hostName) {
+	public void setHostName(HostName hostName) {
 		_hostName.connectTo(hostName.parentLink());
 	}
 
 	/**
 	 * @return the hostName
 	 */
-	public SimpleReference<HostName> hostName() {
+	public HostName hostName() {
 		return _hostName.getOtherEnd();
 	}
 

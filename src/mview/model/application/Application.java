@@ -129,8 +129,8 @@ public class Application<A extends Application<A>>
 	/*
 	 * Modules
 	 */
-	private final OrderedMultiAssociation<Application, Module> _modules =
-			new OrderedMultiAssociation<Application, Module>(this);
+	private final OrderedMultiAssociation<Application<A>, Module> _modules =
+			new OrderedMultiAssociation<Application<A>, Module>(this);
 
 	/*
 	 * (non-Javadoc)
@@ -249,19 +249,21 @@ public class Application<A extends Application<A>>
 							"Application needs a host"));
 		}
 
-		for (Instance instance : this.instances()) {
-			try {
-				if (!this.hosts().contains(instance.host().getElement())) {
-					result =
-							result.and(new BasicProblem(this,
-									"Host undefined in this application: "
-											+ instance.host().name()));
+		
+		try {
+			List<Host> hostMembers = members(Host.class);
+		
+			for (Instance instance : this.instances()) {
+				if (!hostMembers.contains(instance.host().getElement())) {
+					result = result.and(new BasicProblem(this,
+								"Host undefined in this application: "
+										+ instance.host().name()));
 				}
-			} catch (LookupException e) {
-				result.and(new BasicProblem(this,
-						"Exception looking up instance's host."));
-				e.printStackTrace();
 			}
+		} catch (LookupException e) {
+			result.and(new BasicProblem(this,
+					"Exception looking up instance's host."));
+			e.printStackTrace();
 		}
 
 		// if ( !(this.modules() != null) ) {

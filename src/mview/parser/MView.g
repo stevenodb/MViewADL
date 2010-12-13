@@ -721,9 +721,9 @@ hostDeclaration returns [Host element]
 		} ( onkw='on' value=StringLiteral {
 			
 			HostName hostName = new HostName(new SimpleNameSignature($value.text));
-			SimpleReference<HostName> hostNameRelation = new SimpleReference<HostName>($value.text,HostName.class);
-			$element.setHostName(hostNameRelation);
-			setKeyword(hostNameRelation,$onkw);
+//			SimpleReference<HostName> hostNameRelation = new SimpleReference<HostName>($value.text,HostName.class);
+			$element.setHostName(hostName);
+			setKeyword(hostName,$onkw);
 			
 		} )? ';'
 	;

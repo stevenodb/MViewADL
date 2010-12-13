@@ -1,4 +1,4 @@
-// $ANTLR 3.3 Nov 30, 2010 12:45:30 /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g 2010-12-13 21:43:41
+// $ANTLR 3.3 Nov 30, 2010 12:45:30 /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g 2010-12-13 23:08:21
 
 package mview.parser;
 
@@ -4747,9 +4747,9 @@ public class MViewParser extends ChameleonParser {
 
                       			
                       			HostName hostName = new HostName(new SimpleNameSignature((value!=null?value.getText():null)));
-                      			SimpleReference<HostName> hostNameRelation = new SimpleReference<HostName>((value!=null?value.getText():null),HostName.class);
-                      			retval.element.setHostName(hostNameRelation);
-                      			setKeyword(hostNameRelation,onkw);
+                      //			SimpleReference<HostName> hostNameRelation = new SimpleReference<HostName>((value!=null?value.getText():null),HostName.class);
+                      			retval.element.setHostName(hostName);
+                      			setKeyword(hostName,onkw);
                       			
                       		
                     }
