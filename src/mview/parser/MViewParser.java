@@ -1,4 +1,4 @@
-// $ANTLR 3.3 Nov 30, 2010 12:45:30 /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g 2010-12-13 23:08:21
+// $ANTLR 3.3 Nov 30, 2010 12:45:30 /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g 2010-12-14 13:56:12
 
 package mview.parser;
 
@@ -5634,7 +5634,7 @@ public class MViewParser extends ChameleonParser {
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_classOrInterfaceType_in_type2007);
+                    pushFollow(FOLLOW_classOrInterfaceType_in_type2009);
                     cd=classOrInterfaceType();
 
                     state._fsp--;
@@ -5651,7 +5651,7 @@ public class MViewParser extends ChameleonParser {
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_primitiveType_in_type2016);
+                    pushFollow(FOLLOW_primitiveType_in_type2018);
                     pt=primitiveType();
 
                     state._fsp--;
@@ -5671,6 +5671,9 @@ public class MViewParser extends ChameleonParser {
 
             retval.tree = (Object)adaptor.rulePostProcessing(root_0);
             adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
+            }
+            if ( state.backtracking==0 ) {
+              setLocation(retval.value, ((Token)retval.start), ((Token)retval.stop));
             }
         }
         catch (RecognitionException re) {
@@ -5720,7 +5723,7 @@ public class MViewParser extends ChameleonParser {
             {
             root_0 = (Object)adaptor.nil();
 
-            name=(Token)match(input,Identifier,FOLLOW_Identifier_in_classOrInterfaceType2041); if (state.failed) return retval;
+            name=(Token)match(input,Identifier,FOLLOW_Identifier_in_classOrInterfaceType2043); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             name_tree = (Object)adaptor.create(name);
             adaptor.addChild(root_0, name_tree);
@@ -5742,7 +5745,7 @@ public class MViewParser extends ChameleonParser {
                 case 1 :
                     // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:0:0: typeArguments
                     {
-                    pushFollow(FOLLOW_typeArguments_in_classOrInterfaceType2060);
+                    pushFollow(FOLLOW_typeArguments_in_classOrInterfaceType2062);
                     typeArguments97=typeArguments();
 
                     state._fsp--;
@@ -5769,12 +5772,12 @@ public class MViewParser extends ChameleonParser {
             	case 1 :
             	    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:848:11: '.' namex= Identifier ( typeArguments )?
             	    {
-            	    char_literal98=(Token)match(input,58,FOLLOW_58_in_classOrInterfaceType2074); if (state.failed) return retval;
+            	    char_literal98=(Token)match(input,58,FOLLOW_58_in_classOrInterfaceType2076); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
             	    char_literal98_tree = (Object)adaptor.create(char_literal98);
             	    adaptor.addChild(root_0, char_literal98_tree);
             	    }
-            	    namex=(Token)match(input,Identifier,FOLLOW_Identifier_in_classOrInterfaceType2078); if (state.failed) return retval;
+            	    namex=(Token)match(input,Identifier,FOLLOW_Identifier_in_classOrInterfaceType2080); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
             	    namex_tree = (Object)adaptor.create(namex);
             	    adaptor.addChild(root_0, namex_tree);
@@ -5802,7 +5805,7 @@ public class MViewParser extends ChameleonParser {
             	        case 1 :
             	            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:0:0: typeArguments
             	            {
-            	            pushFollow(FOLLOW_typeArguments_in_classOrInterfaceType2105);
+            	            pushFollow(FOLLOW_typeArguments_in_classOrInterfaceType2107);
             	            typeArguments99=typeArguments();
 
             	            state._fsp--;
@@ -5938,7 +5941,7 @@ public class MViewParser extends ChameleonParser {
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    string_literal100=(Token)match(input,59,FOLLOW_59_in_primitiveType2130); if (state.failed) return retval;
+                    string_literal100=(Token)match(input,59,FOLLOW_59_in_primitiveType2132); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     string_literal100_tree = (Object)adaptor.create(string_literal100);
                     adaptor.addChild(root_0, string_literal100_tree);
@@ -5954,7 +5957,7 @@ public class MViewParser extends ChameleonParser {
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    string_literal101=(Token)match(input,60,FOLLOW_60_in_primitiveType2142); if (state.failed) return retval;
+                    string_literal101=(Token)match(input,60,FOLLOW_60_in_primitiveType2144); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     string_literal101_tree = (Object)adaptor.create(string_literal101);
                     adaptor.addChild(root_0, string_literal101_tree);
@@ -5970,7 +5973,7 @@ public class MViewParser extends ChameleonParser {
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    string_literal102=(Token)match(input,61,FOLLOW_61_in_primitiveType2154); if (state.failed) return retval;
+                    string_literal102=(Token)match(input,61,FOLLOW_61_in_primitiveType2156); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     string_literal102_tree = (Object)adaptor.create(string_literal102);
                     adaptor.addChild(root_0, string_literal102_tree);
@@ -5986,7 +5989,7 @@ public class MViewParser extends ChameleonParser {
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    string_literal103=(Token)match(input,62,FOLLOW_62_in_primitiveType2166); if (state.failed) return retval;
+                    string_literal103=(Token)match(input,62,FOLLOW_62_in_primitiveType2168); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     string_literal103_tree = (Object)adaptor.create(string_literal103);
                     adaptor.addChild(root_0, string_literal103_tree);
@@ -6002,7 +6005,7 @@ public class MViewParser extends ChameleonParser {
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    string_literal104=(Token)match(input,63,FOLLOW_63_in_primitiveType2178); if (state.failed) return retval;
+                    string_literal104=(Token)match(input,63,FOLLOW_63_in_primitiveType2180); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     string_literal104_tree = (Object)adaptor.create(string_literal104);
                     adaptor.addChild(root_0, string_literal104_tree);
@@ -6018,7 +6021,7 @@ public class MViewParser extends ChameleonParser {
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    string_literal105=(Token)match(input,64,FOLLOW_64_in_primitiveType2190); if (state.failed) return retval;
+                    string_literal105=(Token)match(input,64,FOLLOW_64_in_primitiveType2192); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     string_literal105_tree = (Object)adaptor.create(string_literal105);
                     adaptor.addChild(root_0, string_literal105_tree);
@@ -6034,7 +6037,7 @@ public class MViewParser extends ChameleonParser {
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    string_literal106=(Token)match(input,65,FOLLOW_65_in_primitiveType2202); if (state.failed) return retval;
+                    string_literal106=(Token)match(input,65,FOLLOW_65_in_primitiveType2204); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     string_literal106_tree = (Object)adaptor.create(string_literal106);
                     adaptor.addChild(root_0, string_literal106_tree);
@@ -6050,7 +6053,7 @@ public class MViewParser extends ChameleonParser {
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    string_literal107=(Token)match(input,66,FOLLOW_66_in_primitiveType2214); if (state.failed) return retval;
+                    string_literal107=(Token)match(input,66,FOLLOW_66_in_primitiveType2216); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     string_literal107_tree = (Object)adaptor.create(string_literal107);
                     adaptor.addChild(root_0, string_literal107_tree);
@@ -6116,12 +6119,12 @@ public class MViewParser extends ChameleonParser {
             {
             root_0 = (Object)adaptor.nil();
 
-            char_literal108=(Token)match(input,67,FOLLOW_67_in_typeArguments2237); if (state.failed) return retval;
+            char_literal108=(Token)match(input,67,FOLLOW_67_in_typeArguments2239); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal108_tree = (Object)adaptor.create(char_literal108);
             adaptor.addChild(root_0, char_literal108_tree);
             }
-            pushFollow(FOLLOW_typeArgument_in_typeArguments2239);
+            pushFollow(FOLLOW_typeArgument_in_typeArguments2241);
             typeArgument109=typeArgument();
 
             state._fsp--;
@@ -6142,12 +6145,12 @@ public class MViewParser extends ChameleonParser {
             	case 1 :
             	    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:877:28: ',' typeArgument
             	    {
-            	    char_literal110=(Token)match(input,29,FOLLOW_29_in_typeArguments2243); if (state.failed) return retval;
+            	    char_literal110=(Token)match(input,29,FOLLOW_29_in_typeArguments2245); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
             	    char_literal110_tree = (Object)adaptor.create(char_literal110);
             	    adaptor.addChild(root_0, char_literal110_tree);
             	    }
-            	    pushFollow(FOLLOW_typeArgument_in_typeArguments2245);
+            	    pushFollow(FOLLOW_typeArgument_in_typeArguments2247);
             	    typeArgument111=typeArgument();
 
             	    state._fsp--;
@@ -6162,7 +6165,7 @@ public class MViewParser extends ChameleonParser {
                 }
             } while (true);
 
-            char_literal112=(Token)match(input,68,FOLLOW_68_in_typeArguments2250); if (state.failed) return retval;
+            char_literal112=(Token)match(input,68,FOLLOW_68_in_typeArguments2252); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal112_tree = (Object)adaptor.create(char_literal112);
             adaptor.addChild(root_0, char_literal112_tree);
@@ -6237,7 +6240,7 @@ public class MViewParser extends ChameleonParser {
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_type_in_typeArgument2275);
+                    pushFollow(FOLLOW_type_in_typeArgument2277);
                     t=type();
 
                     state._fsp--;
@@ -6251,7 +6254,7 @@ public class MViewParser extends ChameleonParser {
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    char_literal113=(Token)match(input,69,FOLLOW_69_in_typeArgument2281); if (state.failed) return retval;
+                    char_literal113=(Token)match(input,69,FOLLOW_69_in_typeArgument2283); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     char_literal113_tree = (Object)adaptor.create(char_literal113);
                     adaptor.addChild(root_0, char_literal113_tree);
@@ -6279,7 +6282,7 @@ public class MViewParser extends ChameleonParser {
                                 throw mse;
                             }
 
-                            pushFollow(FOLLOW_type_in_typeArgument2296);
+                            pushFollow(FOLLOW_type_in_typeArgument2298);
                             t=type();
 
                             state._fsp--;
@@ -6357,7 +6360,7 @@ public class MViewParser extends ChameleonParser {
             	case 1 :
             	    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:0:0: annotation
             	    {
-            	    pushFollow(FOLLOW_annotation_in_annotations2326);
+            	    pushFollow(FOLLOW_annotation_in_annotations2328);
             	    annotation115=annotation();
 
             	    state._fsp--;
@@ -6435,12 +6438,12 @@ public class MViewParser extends ChameleonParser {
             {
             root_0 = (Object)adaptor.nil();
 
-            char_literal116=(Token)match(input,72,FOLLOW_72_in_annotation2346); if (state.failed) return retval;
+            char_literal116=(Token)match(input,72,FOLLOW_72_in_annotation2348); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal116_tree = (Object)adaptor.create(char_literal116);
             adaptor.addChild(root_0, char_literal116_tree);
             }
-            pushFollow(FOLLOW_annotationName_in_annotation2348);
+            pushFollow(FOLLOW_annotationName_in_annotation2350);
             annotationName117=annotationName();
 
             state._fsp--;
@@ -6457,7 +6460,7 @@ public class MViewParser extends ChameleonParser {
                 case 1 :
                     // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:893:30: '(' ( elementValuePairs | elementValue )? ')'
                     {
-                    char_literal118=(Token)match(input,27,FOLLOW_27_in_annotation2352); if (state.failed) return retval;
+                    char_literal118=(Token)match(input,27,FOLLOW_27_in_annotation2354); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     char_literal118_tree = (Object)adaptor.create(char_literal118);
                     adaptor.addChild(root_0, char_literal118_tree);
@@ -6476,7 +6479,7 @@ public class MViewParser extends ChameleonParser {
                         case 1 :
                             // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:893:36: elementValuePairs
                             {
-                            pushFollow(FOLLOW_elementValuePairs_in_annotation2356);
+                            pushFollow(FOLLOW_elementValuePairs_in_annotation2358);
                             elementValuePairs119=elementValuePairs();
 
                             state._fsp--;
@@ -6488,7 +6491,7 @@ public class MViewParser extends ChameleonParser {
                         case 2 :
                             // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:893:56: elementValue
                             {
-                            pushFollow(FOLLOW_elementValue_in_annotation2360);
+                            pushFollow(FOLLOW_elementValue_in_annotation2362);
                             elementValue120=elementValue();
 
                             state._fsp--;
@@ -6500,7 +6503,7 @@ public class MViewParser extends ChameleonParser {
 
                     }
 
-                    char_literal121=(Token)match(input,28,FOLLOW_28_in_annotation2365); if (state.failed) return retval;
+                    char_literal121=(Token)match(input,28,FOLLOW_28_in_annotation2367); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     char_literal121_tree = (Object)adaptor.create(char_literal121);
                     adaptor.addChild(root_0, char_literal121_tree);
@@ -6563,7 +6566,7 @@ public class MViewParser extends ChameleonParser {
             {
             root_0 = (Object)adaptor.nil();
 
-            Identifier122=(Token)match(input,Identifier,FOLLOW_Identifier_in_annotationName2389); if (state.failed) return retval;
+            Identifier122=(Token)match(input,Identifier,FOLLOW_Identifier_in_annotationName2391); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             Identifier122_tree = (Object)adaptor.create(Identifier122);
             adaptor.addChild(root_0, Identifier122_tree);
@@ -6583,12 +6586,12 @@ public class MViewParser extends ChameleonParser {
             	case 1 :
             	    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:897:19: '.' Identifier
             	    {
-            	    char_literal123=(Token)match(input,58,FOLLOW_58_in_annotationName2392); if (state.failed) return retval;
+            	    char_literal123=(Token)match(input,58,FOLLOW_58_in_annotationName2394); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
             	    char_literal123_tree = (Object)adaptor.create(char_literal123);
             	    adaptor.addChild(root_0, char_literal123_tree);
             	    }
-            	    Identifier124=(Token)match(input,Identifier,FOLLOW_Identifier_in_annotationName2394); if (state.failed) return retval;
+            	    Identifier124=(Token)match(input,Identifier,FOLLOW_Identifier_in_annotationName2396); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
             	    Identifier124_tree = (Object)adaptor.create(Identifier124);
             	    adaptor.addChild(root_0, Identifier124_tree);
@@ -6654,7 +6657,7 @@ public class MViewParser extends ChameleonParser {
             {
             root_0 = (Object)adaptor.nil();
 
-            pushFollow(FOLLOW_elementValuePair_in_elementValuePairs2415);
+            pushFollow(FOLLOW_elementValuePair_in_elementValuePairs2417);
             elementValuePair125=elementValuePair();
 
             state._fsp--;
@@ -6675,12 +6678,12 @@ public class MViewParser extends ChameleonParser {
             	case 1 :
             	    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:901:27: ',' elementValuePair
             	    {
-            	    char_literal126=(Token)match(input,29,FOLLOW_29_in_elementValuePairs2418); if (state.failed) return retval;
+            	    char_literal126=(Token)match(input,29,FOLLOW_29_in_elementValuePairs2420); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
             	    char_literal126_tree = (Object)adaptor.create(char_literal126);
             	    adaptor.addChild(root_0, char_literal126_tree);
             	    }
-            	    pushFollow(FOLLOW_elementValuePair_in_elementValuePairs2420);
+            	    pushFollow(FOLLOW_elementValuePair_in_elementValuePairs2422);
             	    elementValuePair127=elementValuePair();
 
             	    state._fsp--;
@@ -6747,17 +6750,17 @@ public class MViewParser extends ChameleonParser {
             {
             root_0 = (Object)adaptor.nil();
 
-            Identifier128=(Token)match(input,Identifier,FOLLOW_Identifier_in_elementValuePair2441); if (state.failed) return retval;
+            Identifier128=(Token)match(input,Identifier,FOLLOW_Identifier_in_elementValuePair2443); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             Identifier128_tree = (Object)adaptor.create(Identifier128);
             adaptor.addChild(root_0, Identifier128_tree);
             }
-            char_literal129=(Token)match(input,73,FOLLOW_73_in_elementValuePair2443); if (state.failed) return retval;
+            char_literal129=(Token)match(input,73,FOLLOW_73_in_elementValuePair2445); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal129_tree = (Object)adaptor.create(char_literal129);
             adaptor.addChild(root_0, char_literal129_tree);
             }
-            pushFollow(FOLLOW_elementValue_in_elementValuePair2445);
+            pushFollow(FOLLOW_elementValue_in_elementValuePair2447);
             elementValue130=elementValue();
 
             state._fsp--;
@@ -6831,7 +6834,7 @@ public class MViewParser extends ChameleonParser {
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_annotation_in_elementValue2468);
+                    pushFollow(FOLLOW_annotation_in_elementValue2470);
                     annotation131=annotation();
 
                     state._fsp--;
@@ -6845,7 +6848,7 @@ public class MViewParser extends ChameleonParser {
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_elementValueArrayInitializer_in_elementValue2478);
+                    pushFollow(FOLLOW_elementValueArrayInitializer_in_elementValue2480);
                     elementValueArrayInitializer132=elementValueArrayInitializer();
 
                     state._fsp--;
@@ -6911,7 +6914,7 @@ public class MViewParser extends ChameleonParser {
             {
             root_0 = (Object)adaptor.nil();
 
-            char_literal133=(Token)match(input,24,FOLLOW_24_in_elementValueArrayInitializer2501); if (state.failed) return retval;
+            char_literal133=(Token)match(input,24,FOLLOW_24_in_elementValueArrayInitializer2503); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal133_tree = (Object)adaptor.create(char_literal133);
             adaptor.addChild(root_0, char_literal133_tree);
@@ -6927,7 +6930,7 @@ public class MViewParser extends ChameleonParser {
                 case 1 :
                     // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:914:14: elementValue ( ',' elementValue )*
                     {
-                    pushFollow(FOLLOW_elementValue_in_elementValueArrayInitializer2504);
+                    pushFollow(FOLLOW_elementValue_in_elementValueArrayInitializer2506);
                     elementValue134=elementValue();
 
                     state._fsp--;
@@ -6954,12 +6957,12 @@ public class MViewParser extends ChameleonParser {
                     	case 1 :
                     	    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:914:28: ',' elementValue
                     	    {
-                    	    char_literal135=(Token)match(input,29,FOLLOW_29_in_elementValueArrayInitializer2507); if (state.failed) return retval;
+                    	    char_literal135=(Token)match(input,29,FOLLOW_29_in_elementValueArrayInitializer2509); if (state.failed) return retval;
                     	    if ( state.backtracking==0 ) {
                     	    char_literal135_tree = (Object)adaptor.create(char_literal135);
                     	    adaptor.addChild(root_0, char_literal135_tree);
                     	    }
-                    	    pushFollow(FOLLOW_elementValue_in_elementValueArrayInitializer2509);
+                    	    pushFollow(FOLLOW_elementValue_in_elementValueArrayInitializer2511);
                     	    elementValue136=elementValue();
 
                     	    state._fsp--;
@@ -6991,7 +6994,7 @@ public class MViewParser extends ChameleonParser {
                 case 1 :
                     // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:914:50: ','
                     {
-                    char_literal137=(Token)match(input,29,FOLLOW_29_in_elementValueArrayInitializer2516); if (state.failed) return retval;
+                    char_literal137=(Token)match(input,29,FOLLOW_29_in_elementValueArrayInitializer2518); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     char_literal137_tree = (Object)adaptor.create(char_literal137);
                     adaptor.addChild(root_0, char_literal137_tree);
@@ -7002,7 +7005,7 @@ public class MViewParser extends ChameleonParser {
 
             }
 
-            char_literal138=(Token)match(input,25,FOLLOW_25_in_elementValueArrayInitializer2520); if (state.failed) return retval;
+            char_literal138=(Token)match(input,25,FOLLOW_25_in_elementValueArrayInitializer2522); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal138_tree = (Object)adaptor.create(char_literal138);
             adaptor.addChild(root_0, char_literal138_tree);
@@ -7062,22 +7065,22 @@ public class MViewParser extends ChameleonParser {
             {
             root_0 = (Object)adaptor.nil();
 
-            char_literal139=(Token)match(input,72,FOLLOW_72_in_annotationTypeDeclaration2547); if (state.failed) return retval;
+            char_literal139=(Token)match(input,72,FOLLOW_72_in_annotationTypeDeclaration2549); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal139_tree = (Object)adaptor.create(char_literal139);
             adaptor.addChild(root_0, char_literal139_tree);
             }
-            string_literal140=(Token)match(input,23,FOLLOW_23_in_annotationTypeDeclaration2549); if (state.failed) return retval;
+            string_literal140=(Token)match(input,23,FOLLOW_23_in_annotationTypeDeclaration2551); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             string_literal140_tree = (Object)adaptor.create(string_literal140);
             adaptor.addChild(root_0, string_literal140_tree);
             }
-            name=(Token)match(input,Identifier,FOLLOW_Identifier_in_annotationTypeDeclaration2553); if (state.failed) return retval;
+            name=(Token)match(input,Identifier,FOLLOW_Identifier_in_annotationTypeDeclaration2555); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             name_tree = (Object)adaptor.create(name);
             adaptor.addChild(root_0, name_tree);
             }
-            pushFollow(FOLLOW_annotationTypeBody_in_annotationTypeDeclaration2555);
+            pushFollow(FOLLOW_annotationTypeBody_in_annotationTypeDeclaration2557);
             annotationTypeBody141=annotationTypeBody();
 
             state._fsp--;
@@ -7135,7 +7138,7 @@ public class MViewParser extends ChameleonParser {
             {
             root_0 = (Object)adaptor.nil();
 
-            char_literal142=(Token)match(input,24,FOLLOW_24_in_annotationTypeBody2578); if (state.failed) return retval;
+            char_literal142=(Token)match(input,24,FOLLOW_24_in_annotationTypeBody2580); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal142_tree = (Object)adaptor.create(char_literal142);
             adaptor.addChild(root_0, char_literal142_tree);
@@ -7155,7 +7158,7 @@ public class MViewParser extends ChameleonParser {
             	case 1 :
             	    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:922:14: annotationTypeElementDeclaration
             	    {
-            	    pushFollow(FOLLOW_annotationTypeElementDeclaration_in_annotationTypeBody2581);
+            	    pushFollow(FOLLOW_annotationTypeElementDeclaration_in_annotationTypeBody2583);
             	    annotationTypeElementDeclaration143=annotationTypeElementDeclaration();
 
             	    state._fsp--;
@@ -7170,7 +7173,7 @@ public class MViewParser extends ChameleonParser {
                 }
             } while (true);
 
-            char_literal144=(Token)match(input,25,FOLLOW_25_in_annotationTypeBody2585); if (state.failed) return retval;
+            char_literal144=(Token)match(input,25,FOLLOW_25_in_annotationTypeBody2587); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal144_tree = (Object)adaptor.create(char_literal144);
             adaptor.addChild(root_0, char_literal144_tree);
@@ -7223,7 +7226,7 @@ public class MViewParser extends ChameleonParser {
             {
             root_0 = (Object)adaptor.nil();
 
-            pushFollow(FOLLOW_annotationTypeElementRest_in_annotationTypeElementDeclaration2610);
+            pushFollow(FOLLOW_annotationTypeElementRest_in_annotationTypeElementDeclaration2612);
             annotationTypeElementRest145=annotationTypeElementRest();
 
             state._fsp--;
@@ -7303,19 +7306,19 @@ public class MViewParser extends ChameleonParser {
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_type_in_annotationTypeElementRest2633);
+                    pushFollow(FOLLOW_type_in_annotationTypeElementRest2635);
                     type146=type();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) adaptor.addChild(root_0, type146.getTree());
-                    pushFollow(FOLLOW_annotationMethodOrConstantRest_in_annotationTypeElementRest2635);
+                    pushFollow(FOLLOW_annotationMethodOrConstantRest_in_annotationTypeElementRest2637);
                     annotationMethodOrConstantRest147=annotationMethodOrConstantRest();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) adaptor.addChild(root_0, annotationMethodOrConstantRest147.getTree());
-                    char_literal148=(Token)match(input,26,FOLLOW_26_in_annotationTypeElementRest2637); if (state.failed) return retval;
+                    char_literal148=(Token)match(input,26,FOLLOW_26_in_annotationTypeElementRest2639); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     char_literal148_tree = (Object)adaptor.create(char_literal148);
                     adaptor.addChild(root_0, char_literal148_tree);
@@ -7328,7 +7331,7 @@ public class MViewParser extends ChameleonParser {
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_annotationTypeDeclaration_in_annotationTypeElementRest2647);
+                    pushFollow(FOLLOW_annotationTypeDeclaration_in_annotationTypeElementRest2649);
                     annotationTypeDeclaration149=annotationTypeDeclaration();
 
                     state._fsp--;
@@ -7345,7 +7348,7 @@ public class MViewParser extends ChameleonParser {
                         case 1 :
                             // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:0:0: ';'
                             {
-                            char_literal150=(Token)match(input,26,FOLLOW_26_in_annotationTypeElementRest2649); if (state.failed) return retval;
+                            char_literal150=(Token)match(input,26,FOLLOW_26_in_annotationTypeElementRest2651); if (state.failed) return retval;
                             if ( state.backtracking==0 ) {
                             char_literal150_tree = (Object)adaptor.create(char_literal150);
                             adaptor.addChild(root_0, char_literal150_tree);
@@ -7406,7 +7409,7 @@ public class MViewParser extends ChameleonParser {
             {
             root_0 = (Object)adaptor.nil();
 
-            pushFollow(FOLLOW_annotationMethodRest_in_annotationMethodOrConstantRest2673);
+            pushFollow(FOLLOW_annotationMethodRest_in_annotationMethodOrConstantRest2675);
             annotationMethodRest151=annotationMethodRest();
 
             state._fsp--;
@@ -7466,17 +7469,17 @@ public class MViewParser extends ChameleonParser {
             {
             root_0 = (Object)adaptor.nil();
 
-            Identifier152=(Token)match(input,Identifier,FOLLOW_Identifier_in_annotationMethodRest2696); if (state.failed) return retval;
+            Identifier152=(Token)match(input,Identifier,FOLLOW_Identifier_in_annotationMethodRest2698); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             Identifier152_tree = (Object)adaptor.create(Identifier152);
             adaptor.addChild(root_0, Identifier152_tree);
             }
-            char_literal153=(Token)match(input,27,FOLLOW_27_in_annotationMethodRest2698); if (state.failed) return retval;
+            char_literal153=(Token)match(input,27,FOLLOW_27_in_annotationMethodRest2700); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal153_tree = (Object)adaptor.create(char_literal153);
             adaptor.addChild(root_0, char_literal153_tree);
             }
-            char_literal154=(Token)match(input,28,FOLLOW_28_in_annotationMethodRest2700); if (state.failed) return retval;
+            char_literal154=(Token)match(input,28,FOLLOW_28_in_annotationMethodRest2702); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal154_tree = (Object)adaptor.create(char_literal154);
             adaptor.addChild(root_0, char_literal154_tree);
@@ -7492,7 +7495,7 @@ public class MViewParser extends ChameleonParser {
                 case 1 :
                     // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:0:0: defaultValue
                     {
-                    pushFollow(FOLLOW_defaultValue_in_annotationMethodRest2702);
+                    pushFollow(FOLLOW_defaultValue_in_annotationMethodRest2704);
                     defaultValue155=defaultValue();
 
                     state._fsp--;
@@ -7554,12 +7557,12 @@ public class MViewParser extends ChameleonParser {
             {
             root_0 = (Object)adaptor.nil();
 
-            string_literal156=(Token)match(input,74,FOLLOW_74_in_defaultValue2730); if (state.failed) return retval;
+            string_literal156=(Token)match(input,74,FOLLOW_74_in_defaultValue2732); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             string_literal156_tree = (Object)adaptor.create(string_literal156);
             adaptor.addChild(root_0, string_literal156_tree);
             }
-            pushFollow(FOLLOW_elementValue_in_defaultValue2732);
+            pushFollow(FOLLOW_elementValue_in_defaultValue2734);
             elementValue157=elementValue();
 
             state._fsp--;
@@ -7773,73 +7776,73 @@ public class MViewParser extends ChameleonParser {
     public static final BitSet FOLLOW_55_in_overrideOrExtend1942 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_56_in_voidType1964 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_57_in_wildcardType1985 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_classOrInterfaceType_in_type2007 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_primitiveType_in_type2016 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_Identifier_in_classOrInterfaceType2041 = new BitSet(new long[]{0x0400000000000002L,0x0000000000000008L});
-    public static final BitSet FOLLOW_typeArguments_in_classOrInterfaceType2060 = new BitSet(new long[]{0x0400000000000002L});
-    public static final BitSet FOLLOW_58_in_classOrInterfaceType2074 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_Identifier_in_classOrInterfaceType2078 = new BitSet(new long[]{0x0400000000000002L,0x0000000000000008L});
-    public static final BitSet FOLLOW_typeArguments_in_classOrInterfaceType2105 = new BitSet(new long[]{0x0400000000000002L});
-    public static final BitSet FOLLOW_59_in_primitiveType2130 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_60_in_primitiveType2142 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_61_in_primitiveType2154 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_62_in_primitiveType2166 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_63_in_primitiveType2178 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_64_in_primitiveType2190 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_65_in_primitiveType2202 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_66_in_primitiveType2214 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_67_in_typeArguments2237 = new BitSet(new long[]{0xF900000000000010L,0x0000000000000027L});
-    public static final BitSet FOLLOW_typeArgument_in_typeArguments2239 = new BitSet(new long[]{0x0000000020000000L,0x0000000000000010L});
-    public static final BitSet FOLLOW_29_in_typeArguments2243 = new BitSet(new long[]{0xF900000000000010L,0x0000000000000027L});
-    public static final BitSet FOLLOW_typeArgument_in_typeArguments2245 = new BitSet(new long[]{0x0000000020000000L,0x0000000000000010L});
-    public static final BitSet FOLLOW_68_in_typeArguments2250 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_type_in_typeArgument2275 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_69_in_typeArgument2281 = new BitSet(new long[]{0x0000000000000002L,0x00000000000000C0L});
-    public static final BitSet FOLLOW_set_in_typeArgument2286 = new BitSet(new long[]{0xF900000000000010L,0x0000000000000007L});
-    public static final BitSet FOLLOW_type_in_typeArgument2296 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_annotation_in_annotations2326 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000100L});
-    public static final BitSet FOLLOW_72_in_annotation2346 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_annotationName_in_annotation2348 = new BitSet(new long[]{0x0000000008000002L});
-    public static final BitSet FOLLOW_27_in_annotation2352 = new BitSet(new long[]{0x0000000011000010L,0x0000000000000100L});
-    public static final BitSet FOLLOW_elementValuePairs_in_annotation2356 = new BitSet(new long[]{0x0000000010000000L});
-    public static final BitSet FOLLOW_elementValue_in_annotation2360 = new BitSet(new long[]{0x0000000010000000L});
-    public static final BitSet FOLLOW_28_in_annotation2365 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_Identifier_in_annotationName2389 = new BitSet(new long[]{0x0400000000000002L});
-    public static final BitSet FOLLOW_58_in_annotationName2392 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_Identifier_in_annotationName2394 = new BitSet(new long[]{0x0400000000000002L});
-    public static final BitSet FOLLOW_elementValuePair_in_elementValuePairs2415 = new BitSet(new long[]{0x0000000020000002L});
-    public static final BitSet FOLLOW_29_in_elementValuePairs2418 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_elementValuePair_in_elementValuePairs2420 = new BitSet(new long[]{0x0000000020000002L});
-    public static final BitSet FOLLOW_Identifier_in_elementValuePair2441 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000200L});
-    public static final BitSet FOLLOW_73_in_elementValuePair2443 = new BitSet(new long[]{0x0000000001000000L,0x0000000000000100L});
-    public static final BitSet FOLLOW_elementValue_in_elementValuePair2445 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_annotation_in_elementValue2468 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_elementValueArrayInitializer_in_elementValue2478 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_24_in_elementValueArrayInitializer2501 = new BitSet(new long[]{0x0000000023000000L,0x0000000000000100L});
-    public static final BitSet FOLLOW_elementValue_in_elementValueArrayInitializer2504 = new BitSet(new long[]{0x0000000022000000L});
-    public static final BitSet FOLLOW_29_in_elementValueArrayInitializer2507 = new BitSet(new long[]{0x0000000001000000L,0x0000000000000100L});
-    public static final BitSet FOLLOW_elementValue_in_elementValueArrayInitializer2509 = new BitSet(new long[]{0x0000000022000000L});
-    public static final BitSet FOLLOW_29_in_elementValueArrayInitializer2516 = new BitSet(new long[]{0x0000000002000000L});
-    public static final BitSet FOLLOW_25_in_elementValueArrayInitializer2520 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_72_in_annotationTypeDeclaration2547 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_23_in_annotationTypeDeclaration2549 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_Identifier_in_annotationTypeDeclaration2553 = new BitSet(new long[]{0x0000000001000000L});
-    public static final BitSet FOLLOW_annotationTypeBody_in_annotationTypeDeclaration2555 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_24_in_annotationTypeBody2578 = new BitSet(new long[]{0xF900000002000010L,0x0000000000000107L});
-    public static final BitSet FOLLOW_annotationTypeElementDeclaration_in_annotationTypeBody2581 = new BitSet(new long[]{0xF900000002000010L,0x0000000000000107L});
-    public static final BitSet FOLLOW_25_in_annotationTypeBody2585 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_annotationTypeElementRest_in_annotationTypeElementDeclaration2610 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_type_in_annotationTypeElementRest2633 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_annotationMethodOrConstantRest_in_annotationTypeElementRest2635 = new BitSet(new long[]{0x0000000004000000L});
-    public static final BitSet FOLLOW_26_in_annotationTypeElementRest2637 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_annotationTypeDeclaration_in_annotationTypeElementRest2647 = new BitSet(new long[]{0x0000000004000002L});
-    public static final BitSet FOLLOW_26_in_annotationTypeElementRest2649 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_annotationMethodRest_in_annotationMethodOrConstantRest2673 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_Identifier_in_annotationMethodRest2696 = new BitSet(new long[]{0x0000000008000000L});
-    public static final BitSet FOLLOW_27_in_annotationMethodRest2698 = new BitSet(new long[]{0x0000000010000000L});
-    public static final BitSet FOLLOW_28_in_annotationMethodRest2700 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000400L});
-    public static final BitSet FOLLOW_defaultValue_in_annotationMethodRest2702 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_74_in_defaultValue2730 = new BitSet(new long[]{0x0000000001000000L,0x0000000000000100L});
-    public static final BitSet FOLLOW_elementValue_in_defaultValue2732 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_classOrInterfaceType_in_type2009 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_primitiveType_in_type2018 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_Identifier_in_classOrInterfaceType2043 = new BitSet(new long[]{0x0400000000000002L,0x0000000000000008L});
+    public static final BitSet FOLLOW_typeArguments_in_classOrInterfaceType2062 = new BitSet(new long[]{0x0400000000000002L});
+    public static final BitSet FOLLOW_58_in_classOrInterfaceType2076 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_Identifier_in_classOrInterfaceType2080 = new BitSet(new long[]{0x0400000000000002L,0x0000000000000008L});
+    public static final BitSet FOLLOW_typeArguments_in_classOrInterfaceType2107 = new BitSet(new long[]{0x0400000000000002L});
+    public static final BitSet FOLLOW_59_in_primitiveType2132 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_60_in_primitiveType2144 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_61_in_primitiveType2156 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_62_in_primitiveType2168 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_63_in_primitiveType2180 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_64_in_primitiveType2192 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_65_in_primitiveType2204 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_66_in_primitiveType2216 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_67_in_typeArguments2239 = new BitSet(new long[]{0xF900000000000010L,0x0000000000000027L});
+    public static final BitSet FOLLOW_typeArgument_in_typeArguments2241 = new BitSet(new long[]{0x0000000020000000L,0x0000000000000010L});
+    public static final BitSet FOLLOW_29_in_typeArguments2245 = new BitSet(new long[]{0xF900000000000010L,0x0000000000000027L});
+    public static final BitSet FOLLOW_typeArgument_in_typeArguments2247 = new BitSet(new long[]{0x0000000020000000L,0x0000000000000010L});
+    public static final BitSet FOLLOW_68_in_typeArguments2252 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_type_in_typeArgument2277 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_69_in_typeArgument2283 = new BitSet(new long[]{0x0000000000000002L,0x00000000000000C0L});
+    public static final BitSet FOLLOW_set_in_typeArgument2288 = new BitSet(new long[]{0xF900000000000010L,0x0000000000000007L});
+    public static final BitSet FOLLOW_type_in_typeArgument2298 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_annotation_in_annotations2328 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000100L});
+    public static final BitSet FOLLOW_72_in_annotation2348 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_annotationName_in_annotation2350 = new BitSet(new long[]{0x0000000008000002L});
+    public static final BitSet FOLLOW_27_in_annotation2354 = new BitSet(new long[]{0x0000000011000010L,0x0000000000000100L});
+    public static final BitSet FOLLOW_elementValuePairs_in_annotation2358 = new BitSet(new long[]{0x0000000010000000L});
+    public static final BitSet FOLLOW_elementValue_in_annotation2362 = new BitSet(new long[]{0x0000000010000000L});
+    public static final BitSet FOLLOW_28_in_annotation2367 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_Identifier_in_annotationName2391 = new BitSet(new long[]{0x0400000000000002L});
+    public static final BitSet FOLLOW_58_in_annotationName2394 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_Identifier_in_annotationName2396 = new BitSet(new long[]{0x0400000000000002L});
+    public static final BitSet FOLLOW_elementValuePair_in_elementValuePairs2417 = new BitSet(new long[]{0x0000000020000002L});
+    public static final BitSet FOLLOW_29_in_elementValuePairs2420 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_elementValuePair_in_elementValuePairs2422 = new BitSet(new long[]{0x0000000020000002L});
+    public static final BitSet FOLLOW_Identifier_in_elementValuePair2443 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000200L});
+    public static final BitSet FOLLOW_73_in_elementValuePair2445 = new BitSet(new long[]{0x0000000001000000L,0x0000000000000100L});
+    public static final BitSet FOLLOW_elementValue_in_elementValuePair2447 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_annotation_in_elementValue2470 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_elementValueArrayInitializer_in_elementValue2480 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_24_in_elementValueArrayInitializer2503 = new BitSet(new long[]{0x0000000023000000L,0x0000000000000100L});
+    public static final BitSet FOLLOW_elementValue_in_elementValueArrayInitializer2506 = new BitSet(new long[]{0x0000000022000000L});
+    public static final BitSet FOLLOW_29_in_elementValueArrayInitializer2509 = new BitSet(new long[]{0x0000000001000000L,0x0000000000000100L});
+    public static final BitSet FOLLOW_elementValue_in_elementValueArrayInitializer2511 = new BitSet(new long[]{0x0000000022000000L});
+    public static final BitSet FOLLOW_29_in_elementValueArrayInitializer2518 = new BitSet(new long[]{0x0000000002000000L});
+    public static final BitSet FOLLOW_25_in_elementValueArrayInitializer2522 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_72_in_annotationTypeDeclaration2549 = new BitSet(new long[]{0x0000000000800000L});
+    public static final BitSet FOLLOW_23_in_annotationTypeDeclaration2551 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_Identifier_in_annotationTypeDeclaration2555 = new BitSet(new long[]{0x0000000001000000L});
+    public static final BitSet FOLLOW_annotationTypeBody_in_annotationTypeDeclaration2557 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_24_in_annotationTypeBody2580 = new BitSet(new long[]{0xF900000002000010L,0x0000000000000107L});
+    public static final BitSet FOLLOW_annotationTypeElementDeclaration_in_annotationTypeBody2583 = new BitSet(new long[]{0xF900000002000010L,0x0000000000000107L});
+    public static final BitSet FOLLOW_25_in_annotationTypeBody2587 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_annotationTypeElementRest_in_annotationTypeElementDeclaration2612 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_type_in_annotationTypeElementRest2635 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_annotationMethodOrConstantRest_in_annotationTypeElementRest2637 = new BitSet(new long[]{0x0000000004000000L});
+    public static final BitSet FOLLOW_26_in_annotationTypeElementRest2639 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_annotationTypeDeclaration_in_annotationTypeElementRest2649 = new BitSet(new long[]{0x0000000004000002L});
+    public static final BitSet FOLLOW_26_in_annotationTypeElementRest2651 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_annotationMethodRest_in_annotationMethodOrConstantRest2675 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_Identifier_in_annotationMethodRest2698 = new BitSet(new long[]{0x0000000008000000L});
+    public static final BitSet FOLLOW_27_in_annotationMethodRest2700 = new BitSet(new long[]{0x0000000010000000L});
+    public static final BitSet FOLLOW_28_in_annotationMethodRest2702 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000400L});
+    public static final BitSet FOLLOW_defaultValue_in_annotationMethodRest2704 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_74_in_defaultValue2732 = new BitSet(new long[]{0x0000000001000000L,0x0000000000000100L});
+    public static final BitSet FOLLOW_elementValue_in_defaultValue2734 = new BitSet(new long[]{0x0000000000000002L});
 
 }

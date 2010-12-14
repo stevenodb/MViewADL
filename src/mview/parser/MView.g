@@ -831,7 +831,7 @@ wildcardType returns [TypeReference value]
 
 
 type returns [TypeReference value]
-/*@after{setLocation(retval.element, retval.start, retval.stop);}*/
+@after{setLocation($value, $start, $stop);}
 	:	cd=classOrInterfaceType {$value = $cd.element;}
 	|	pt=primitiveType {$value = $pt.value;}
 	;
