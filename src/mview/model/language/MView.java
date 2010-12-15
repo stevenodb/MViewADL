@@ -30,6 +30,8 @@ import mview.model.application.Instance;
 import mview.model.composition.ActorProp;
 import mview.model.composition.Advice;
 import mview.model.composition.Pointcut;
+import mview.model.composition.PointcutSignature;
+import mview.model.composition.PropValue;
 import mview.model.module.Component;
 import mview.model.module.Interface;
 import mview.model.refinement.MViewMember;
@@ -69,6 +71,8 @@ public class MView extends Language {
 	public final ActorProperty INSTANCE;
 	public final ActorProperty HOST;
 
+	public final StaticChameleonProperty NEGATE;
+	
 	public final StaticChameleonProperty OVERRIDABLE;
 	public final ChameleonProperty EXTENDABLE;
 
@@ -141,10 +145,14 @@ public class MView extends Language {
 		// overridable property
 		OVERRIDABLE =
 				new StaticChameleonProperty("Overridable", this,
-						MViewMember.class);
+						ActorProp.class);
+		OVERRIDABLE.addValidElementType(PointcutSignature.class);
 		
 		EXTENDABLE = OVERRIDABLE.inverse();
 		OVERRIDABLE.setName("Extendable");
+
+		// negate property
+		NEGATE = new StaticChameleonProperty("Negate", this, PropValue.class);
 	}
 
 //	/**

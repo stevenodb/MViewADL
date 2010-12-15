@@ -29,10 +29,12 @@ import mview.model.composition.modifier.Around;
 import mview.model.composition.modifier.Before;
 import mview.model.composition.modifier.Call;
 import mview.model.composition.modifier.Execution;
+import mview.model.composition.modifier.Negate;
 import mview.model.composition.modifier.PropModifier;
 import mview.model.composition.PatternSignature;
 import mview.model.composition.Pointcut;
 import mview.model.composition.PointcutSignature;
+import mview.model.composition.PropValue;
 import mview.model.composition.ServiceSignature;
 
 import mview.model.deployment.Deployment;
@@ -460,8 +462,9 @@ pointcutActorBodyDecls[Actor actor]
 
 
 pointcutActorPropDecls[ActorProp prop,Class<? extends Declaration> declClass]
-	: 	apdref=pointcutActorPropDecl[$declClass] ( ',' pointcutActorPropDecls[$prop,$declClass] )? {
-			$prop.addPropValue($apdref.relation);
+	: 	(negate=negation)? apdref=pointcutActorPropDecl[$declClass] ( ',' pointcutActorPropDecls[$prop,$declClass] )? {
+			PropValue propValue = new PropValue($apdref.relation,$negate.value);
+			$prop.addPropValue(propValue);
 		}
 	;
 
@@ -819,6 +822,10 @@ overrideOrExtend returns [Modifier value]
 	|	ekw='extend' {$value = new Extendable(); setKeyword($value,$ekw); }
 	;
 
+negation returns [Modifier value]
+	: 	'!' {$value = new Negate(); }
+	;
+
 voidType returns [TypeReference value]
 /*@after{setLocation(retval.element, (CommonToken)retval.start, (CommonToken)retval.stop, "__PRIMITIVE");}*/
     : 'void' {$value=new BasicTypeReference("void");}
@@ -1001,7 +1008,7 @@ UnicodeEscape
     
 Identifier 
 //    :   Letter (Letter|JavaIDDigit)*
-    :   Letter (Letter|JavaIDDigit|'*')*
+    :	Letter(Letter|JavaIDDigit|'*')*
     ;
     
 //WildCardIdentifier 

@@ -74,36 +74,36 @@ public class ActorProp<D extends Declaration> extends
 //	}
 
 	// list of prop values
-	private OrderedMultiAssociation<ActorProp<D>, SimpleReference<D>> _propValues =
-			new OrderedMultiAssociation<ActorProp<D>, SimpleReference<D>>(this);
+	private OrderedMultiAssociation<ActorProp<D>, PropValue<D>> _propValues =
+			new OrderedMultiAssociation<ActorProp<D>, PropValue<D>>(this);
 
 	/**
 	 * @return
 	 */
-	public List<SimpleReference<D>> propValues() {
+	public List<PropValue<D>> propValues() {
 		return _propValues.getOtherEnds();
 	}
 
 	/**
-	 * @param relation
+	 * @param propValue
 	 */
-	public void addPropValue(SimpleReference<D> relation) {
-		_propValues.add(relation.parentLink());
+	public void addPropValue(PropValue<D> propValue) {
+		_propValues.add(propValue.parentLink());
 	}
 
 	/**
-	 * @param relation
+	 * @param propValue
 	 */
-	public void removePropValue(SimpleReference<D> relation) {
-		_propValues.remove(relation.parentLink());
+	public void removePropValue(PropValue<D> propValue) {
+		_propValues.remove(propValue.parentLink());
 	}
 
 	/**
-	 * @param relations
+	 * @param propValues
 	 */
-	public void addAllPropValues(List<SimpleReference<D>> relations) {
-		for (SimpleReference<D> relation : relations) {
-			this.addPropValue(relation);
+	public void addAllPropValues(List<PropValue<D>> propValues) {
+		for (PropValue<D> propValue : propValues) {
+			this.addPropValue(propValue);
 		}
 	}
 
@@ -173,8 +173,8 @@ public class ActorProp<D extends Declaration> extends
 
 		clone.addModifiers(this.modifiers());
 
-		for (SimpleReference<D> reference : propValues()) {
-			clone.addPropValue(reference.clone());
+		for (PropValue<D> propValues : propValues()) {
+			clone.addPropValue(propValues.clone());
 		}
 
 		return clone;
@@ -194,7 +194,7 @@ public class ActorProp<D extends Declaration> extends
 		// result.and(new BasicProblem(this,
 		// "Must contain a single prop modifier"));
 		// }
-
+		
 		if (!(this.propValues().size() > 0)) {
 			result.and(new BasicProblem(this,
 					"Does not contain an actor property"));
@@ -205,17 +205,17 @@ public class ActorProp<D extends Declaration> extends
 					"Does not contain a target declaration type"));
 		}
 
-		for (SimpleReference<D> relation : propValues()) {
+		for (PropValue<D> propValue : propValues()) {
 			D declaration = null;
 
 			try {
-				declaration = relation.getElement();
+				declaration = propValue.value().getElement();
 			} catch (LookupException e) {
-				result.and(new BasicProblem(this,
-						"Invalid reference to declaration"));
+				// should be caught by PropValue verify.
 			}
 
-			if ((declaration != null) && (declaration.getClass() == declarationType())) {
+			if ((declaration != null) 
+					&& (declaration.getClass() == declarationType())) {
 				result.and(new BasicProblem(this,
 						"Contains declaration of invalid type: " + declaration));
 			}
@@ -290,21 +290,21 @@ public class ActorProp<D extends Declaration> extends
 		return merged;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#hashCode()
-	 */
-	@Override
-	public int hashCode() {
-		int result = 0;
-
-		for (SimpleReference<D> relation : propValues()) {
-			result = (result * 10) + relation.parentLink().hashCode();
-		}
-
-		return result;
-	}
+//	/*
+//	 * (non-Javadoc)
+//	 * 
+//	 * @see java.lang.Object#hashCode()
+//	 */
+//	@Override
+//	public int hashCode() {
+//		int result = 0;
+//
+//		for (PropValue<D> value : propValues()) {
+//			result = (result * 10) + value. .parentLink().hashCode();
+//		}
+//
+//		return result;
+//	}
 
 	/*
 	 * (non-Javadoc)
