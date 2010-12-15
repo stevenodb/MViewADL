@@ -17,13 +17,13 @@
  */
 package mview.model.module;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.rejuse.association.OrderedMultiAssociation;
 import org.rejuse.association.SingleAssociation;
 
 import chameleon.core.declaration.Signature;
-import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.element.Element;
 import chameleon.core.method.MethodHeader;
 import chameleon.core.reference.SimpleReference;
@@ -94,8 +94,8 @@ public class Service extends JoinPointElement<Service, Element> {
 	 * @see mview.model.namespace.MViewDeclaration#signature()
 	 */
 	@Override
-	public SimpleNameSignature signature() {
-		return new SimpleNameSignature(header().name());
+	public Signature signature() {
+		return header().signature();
 	}
 
 	/*
@@ -277,9 +277,13 @@ public class Service extends JoinPointElement<Service, Element> {
 	 */
 	@Override
 	public List<Element> children() {
-		final List<Element> result = super.children();
+		// The super method only adds the signature, but for a Service,
+		// the signature is generated, so we don't add it.
+		final List<Element> result = new ArrayList<Element>();
 
 		Util.addNonNull(this.header(), result);
+		Util.addNonNull(this.returnType(), result);
+		
 		result.addAll(attachedProperties());
 
 		return result;

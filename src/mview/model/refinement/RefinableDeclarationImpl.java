@@ -28,6 +28,7 @@ import org.rejuse.java.collections.TypeFilter;
 
 import chameleon.core.declaration.Declaration;
 import chameleon.core.declaration.DeclarationContainer;
+import chameleon.core.declaration.Signature;
 import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.declaration.TargetDeclaration;
 import chameleon.core.element.Element;
@@ -45,7 +46,7 @@ public abstract class RefinableDeclarationImpl<
 				P extends Element>
 		extends MViewDeclaration<D, P>
 		implements	RefinableDeclaration<D, P>,
-					TargetDeclaration<D, P, SimpleNameSignature, D>,
+					TargetDeclaration<D, P, Signature, D>,
 					DeclarationContainer<D, P> {
 
 	/**

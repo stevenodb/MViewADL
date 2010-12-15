@@ -47,7 +47,7 @@ import chameleon.util.Util;
  */
 public abstract class MViewDeclaration<E extends MViewDeclaration<E, P>, P extends Element>
 		extends NamespaceElementImpl<E, P> 
-		implements Declaration<E, P, SimpleNameSignature, E> {
+		implements Declaration<E, P, Signature, E> {
 
 	/**
 	 * Default constructor
@@ -70,7 +70,7 @@ public abstract class MViewDeclaration<E extends MViewDeclaration<E, P>, P exten
 		return new UniversalScope();
 	}
 
-	public Declaration<?, ?, SimpleNameSignature, E> selectionDeclaration()
+	public Declaration<?, ?, Signature, E> selectionDeclaration()
 			throws LookupException {
 		return this;
 	}
@@ -79,8 +79,8 @@ public abstract class MViewDeclaration<E extends MViewDeclaration<E, P>, P exten
 	 * SIGNATURE
 	 */
 
-	private final SingleAssociation<MViewDeclaration<E, P>, SimpleNameSignature> _signature =
-			new SingleAssociation<MViewDeclaration<E, P>, SimpleNameSignature>(
+	private final SingleAssociation<MViewDeclaration<E, P>, Signature> _signature =
+			new SingleAssociation<MViewDeclaration<E, P>, Signature>(
 					this);
 
 	/*
@@ -88,7 +88,7 @@ public abstract class MViewDeclaration<E extends MViewDeclaration<E, P>, P exten
 	 * 
 	 * @see chameleon.core.declaration.Declaration#signature()
 	 */
-	public SimpleNameSignature signature() {
+	public Signature signature() {
 		return _signature.getOtherEnd();
 	}
 

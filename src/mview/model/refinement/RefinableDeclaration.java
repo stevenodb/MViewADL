@@ -21,7 +21,7 @@ package mview.model.refinement;
 import java.util.List;
 
 import chameleon.core.declaration.Declaration;
-import chameleon.core.declaration.SimpleNameSignature;
+import chameleon.core.declaration.Signature;
 import chameleon.core.element.Element;
 import chameleon.core.lookup.LookupException;
 
@@ -31,7 +31,7 @@ import chameleon.core.lookup.LookupException;
  */
 public interface RefinableDeclaration<	D extends RefinableDeclaration<D, P>, 
 										P extends Element>
-		extends Declaration<D, P, SimpleNameSignature, D> {
+		extends Declaration<D, P, Signature, D> {
 
 	// /**
 	// * Returns the List of all member declarations up to and including this
