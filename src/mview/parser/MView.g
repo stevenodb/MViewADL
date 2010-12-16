@@ -52,6 +52,7 @@ import mview.model.module.Module;
 import mview.model.module.ModuleContainer;
 import mview.model.module.Property;
 import mview.model.module.Service;
+import mview.model.module.MViewBasicTypeReference;
 
 import mview.model.namespace.MViewDeclaration;
 
@@ -92,7 +93,6 @@ import chameleon.support.input.ChameleonParser;
 }
 
 
-
 // starting point for parsing
 compilationUnit returns [CompilationUnit element] 
 @init{ 
@@ -104,8 +104,6 @@ compilationUnit returns [CompilationUnit element]
 			ifd=interfaceDeclaration {npp.add($ifd.element);}
 		|
 			cod=componentDeclaration {npp.add($cod.element);}
-//		|		
-//			cmd=compositeDeclaration {npp.add($cmd.element);}
 		|
 			cnd=connectorDeclaration {npp.add($cnd.element);}
 		|
@@ -144,7 +142,6 @@ interfaceBodyDeclaration[Interface element]
 	;
 
 
-
 /* ***********
  * SERVICE -- REFERENCE 
  *********** */
@@ -152,11 +149,11 @@ interfaceBodyDeclaration[Interface element]
 
 serviceReferenceDeclaration returns [SimpleReference<Service> relation]
 	:	name=Identifier params=actualParameters {
-			String signature = $name.text;
-			$relation = new SimpleReference<Service>(signature, Service.class);
+			$relation = new SimpleReference<Service>($name.text, Service.class);
 			setLocation($relation,$name,$name);
 		}
 	;
+	
 
 actualParameters returns [List<String> lst]
 @init{$lst = new ArrayList<String>();} // create empty one, in case there are no parameters
@@ -181,20 +178,23 @@ actualParameterDecls returns [List<String> lst]
 
 
 serviceDeclaration returns [Service element]
-	: result=serviceHeaderDeclaration {
-			Signature signature = new SimpleNameSignature($result.signature);
-			$element= new Service(signature,$result.returnType,$result.parLst); //TODO: add properties
+	: res=serviceHeaderDeclaration {
+			//Signature signature = new SimpleNameSignature($result.signature);
+			//$element= new Service(signature,$result.returnType,$result.parLst); //TODO: add properties
+			//setLocation($element,
+			$element = $res.element;
 		}
 	;
 
 
-serviceHeaderDeclaration returns [String signature, TypeReference returnType, List<FormalParameter> parLst]
+serviceHeaderDeclaration returns [Service element] //returns [String signature, TypeReference returnType, List<FormalParameter> parLst]
 	:	rtype=serviceReturnType name=Identifier params=formalParameters {
-			$signature = $name.text;
-			$returnType = $rtype.value;
-			$parLst = $params.lst;
+			Signature signature = new SimpleNameSignature($name.text);
+			$element = new Service(signature,$rtype.value,$params.lst); //TODO: add properties
+			setLocation($element,$name,$name);			
 		}
 	;
+
 
 serviceReturnType returns [TypeReference value]
 	:	( 
@@ -204,10 +204,12 @@ serviceReturnType returns [TypeReference value]
 		)
 	;
 
+
 formalParameters returns [List<FormalParameter> lst]
 @init{$lst = new ArrayList<FormalParameter>();} // create empty one, in case there are no parameters
     :   '(' (pars=formalParameterDecls {$lst=$pars.lst;})? ')'
     ;
+
 
 formalParameterDecls returns [List<FormalParameter> lst]
     :   t=type name=Identifier (',' decls=formalParameterDecls { $lst=decls.lst; })?
@@ -226,24 +228,26 @@ formalParameterDecls returns [List<FormalParameter> lst]
 
 
 
-
 /* *******************
  * POINTCUT SIGNATURE
  ********************* */
+ 
 
 pointcutServiceSignatureDecl returns [ServiceSignature element]
-	:	rtype=Identifier sig=Identifier pars=pointcutServiceSignatureParameters {
+	:	rtype=(Identifier|'*') sig=(Identifier|'*') pars=pointcutServiceSignatureParameters {
 			$element = new PatternSignature($rtype.text,$sig.text,$pars.lst);
 		}
 	;
+	
 
 pointcutServiceSignatureParameters returns [List<Pair<String,String>> lst]
 @init{$lst = new ArrayList<Pair<String,String>>();}
 	: '(' (pointcutServiceSignatureParameterDecls[$lst] )? ')'
 	;
 
+
 pointcutServiceSignatureParameterDecls[List<Pair<String,String>> lst]
-	: t=Identifier name=Identifier (',' pointcutServiceSignatureParameterDecls[$lst])?
+	: t=(Identifier|'*') (name=Identifier)? (',' pointcutServiceSignatureParameterDecls[$lst])?
 	 {
 	 	Pair pair = new Pair($t.text,$name.text);
 	 	$lst.add(0,pair);
@@ -251,56 +255,10 @@ pointcutServiceSignatureParameterDecls[List<Pair<String,String>> lst]
 	;
 
 
-//joinPointDeclaration returns [PointcutSignature element]
-//	:	rtype=jointPointReturnType
-//		(name=Identifier) 
-//		params=formalJoinPointParameters {
-//			Signature signature = new SimpleNameSignature($name.text);
-//			Service service = new Service(signature,$rtype.value,$params.element,null);
-//			$element = new NamedJoinPoint(service);
-//		}
-//	;
-
-
-//jointPointReturnType returns [TypeReference value]
-//	:	(
-//			rt=serviceReturnType { $value = $rt.value; }
-//		|
-//			wt=wildcardType { $value = wt.value; }
-//		)
-//	;
-	
-
-//formalJoinPointParameters returns [List<FormalParameter> element]
-//@init{$element = new ArrayList<FormalParameter>();}
-//    :   '(' (pars=formalJoinPointParameterDecls {$element=$pars.element;})? ')'
-//    ;
-    
-
-//formalJoinPointParameterDecls returns [List<FormalParameter> element]
-//    :   t=type name=Identifier (',' decls=formalJoinPointParameterDecls { $element=decls.element; })? 
-//    	{
-//    		if($element == null) {
-//         		$element=new ArrayList<FormalParameter>();
-//         	}
-//			
-//			FormalParameter param = 
-//				new FormalParameter(
-//					new SimpleNameSignature($name.text),$t.value);
-//			
-//			$element.add(0,param);
-//         }
-//	|
-//		'..' {
-//			System.err.println("TODO: implement '..' ");
-//		}
-//	;
-
-
-
 /* ***********
  * CONNECTOR
  *********** */
+ 
 
 connectorDeclaration returns [Connector element]
 	:	conkw='connector' name=Identifier {
@@ -417,6 +375,7 @@ pointcutActorDeclaration[Pointcut pointcut]
 //	:	'callee'
 //	;
 
+
 pointcutActorBody returns [Actor element]
 @init {
 	$element = new Actor();
@@ -483,15 +442,18 @@ adviceDeclaration returns [Advice advice]
 			setKeyword($advice,$avkw);
 		} adviceBody[$advice]
 	;
+	
 
 adviceBody[Advice advice]
 	:	'{' adviceBodyDeclaration[$advice]* '}'
 	;
 	
+	
 adviceBodyDeclaration[Advice advice]
 	:	adviceServiceDeclaration[$advice]
 	|	adviceTypeDeclaration[$advice]
 	;
+	
 	
 adviceServiceDeclaration[Advice advice]
 	:	svkw='service' ':' service=serviceReferenceDeclaration ';' {
@@ -499,6 +461,7 @@ adviceServiceDeclaration[Advice advice]
 			setKeyword($service.relation,$svkw);
 		}
 	;
+	
 	
 adviceTypeDeclaration[Advice advice]
 	:	tpkw='type' ':' avtype=adviceType ';' {
@@ -639,48 +602,6 @@ deploymentDeclaration returns [Deployment element]
 		applicationBody[$element]
 	;
 
-/*
-
-deploymentDeclaration returns [Deployment element]
-	: depkw='deployment' name=Identifier { 
-			$element = new Deployment(new SimpleNameSignature($name.text)); 
-			setKeyword($element,$depkw);
-   			setLocation($element,$name,"__NAME");
-		} deploymentBody[$element]
-	;
-
-deploymentBody[Deployment element]
-	: '{' deploymentBodyDeclaration[$element]* '}'
-	;
-
-
-deploymentBodyDeclaration[Deployment element]
-	: appcontainDeclaration[$element]
-	| hostMapDeclaration[$element]
-	;
-	
-	
-appcontainDeclaration[Deployment element]
-	:	ctkw='contain' conts=appcontainBody {
-
-			for(SimpleReference<Application> app : $conts.elements) {
-				$element.addApplication(app);
-			}
-		}
-	;
-	
-
-appcontainBody returns [List<SimpleReference> elements]
-@init{ $elements = new ArrayList<SimpleReference>(); }
-	:	'{' (decls=commaSeparatedBodyDecls[Application.class] {$elements=$decls.elements;} )? '}'
-	;
-
-	
-hostMapDeclaration[Deployment element]
-	: mappingDeclaration[$element, AbstractHost.class, PhysicalHost.class]
-	;
-
-*/
 
 /* ********************
  * INSTANCE DECLARATION
@@ -774,6 +695,7 @@ refinementDeclaration[RefinableDeclaration element, Class kind]
 			setKeyword($element,$rfkw);
 		})?
 	;
+	
 
 refinementRelationDeclarations[RefinableDeclaration element, Class kind]
 	:	name=Identifier ( ',' refinementRelationDeclarations[$element,$kind] )? {
@@ -788,7 +710,8 @@ refinementRelationDeclarations[RefinableDeclaration element, Class kind]
 /* ***********
  * MISC
  *********** */
- 
+
+
 commaSeparatedBodyDecls[Class targetType] returns [List<SimpleReference> elements]
 @init{ $elements = new ArrayList<SimpleReference>(); }
 	:	id=Identifier (',' decls=commaSeparatedBodyDecls[$targetType] {$elements=$decls.elements;})? {
@@ -798,9 +721,8 @@ commaSeparatedBodyDecls[Class targetType] returns [List<SimpleReference> element
 			setLocation(relation, $id, $id);
 		}
 	;
-	
 
-	
+
 /* ***********
  * TYPING, etc.
  *********** */
@@ -811,20 +733,24 @@ adviceType returns [Modifier value]
 	|	'after' {$value = new After();}
 	|	'around' {$value = new Around();}
 	;
+	
  
 joinPointKind returns [Modifier value]
 	:	'execution'	{$value = new Execution();}
 	|	'call' {$value = new Call();}
 	;
+	
  
 overrideOrExtend returns [Modifier value]
 	:	okw='override' {$value = new Overridable(); setKeyword($value,$okw); }
 	|	ekw='extend' {$value = new Extendable(); setKeyword($value,$ekw); }
 	;
+	
 
 negation returns [Modifier value]
 	: 	'!' {$value = new Negate(); }
 	;
+	
 
 voidType returns [TypeReference value]
 /*@after{setLocation(retval.element, (CommonToken)retval.start, (CommonToken)retval.stop, "__PRIMITIVE");}*/
@@ -832,9 +758,9 @@ voidType returns [TypeReference value]
     ;
 
 
-wildcardType returns [TypeReference value]
-	: '*' { $value = new BasicTypeReference("wildcard"); }
-	;
+//wildcardType returns [TypeReference value]
+//	: '*' { $value = new BasicTypeReference("wildcard"); }
+//	;
 
 
 type returns [TypeReference value]
@@ -848,19 +774,20 @@ classOrInterfaceType returns [TypeReference element]
 @init{NamespaceOrTypeReference target = null;}
 	:	name=Identifier 
 	          {
-	           $element = new BasicTypeReference($name.text); 
-	           target =  new NamespaceOrTypeReference($name.text); 
+	           $element = new MViewBasicTypeReference($name.text);
+	           target =  new NamespaceOrTypeReference($name.text);
+//	           setLocation($element,$name,$name); 
 	          }
 			typeArguments? 
 	        ('.' namex=Identifier 
 	          {
 	           if(target != null) {
-	             $element = new BasicTypeReference(target,$namex.text);
+	             $element = new MViewBasicTypeReference(target,$namex.text);
 	             // We must clone the target here, or else it will be removed from the
 	             // type reference we just created.
 	             target = new NamespaceOrTypeReference(target.clone(),$namex.text);
 	           } else {
-	             $element = new BasicTypeReference($element,$namex.text);
+	             $element = new MViewBasicTypeReference($element,$namex.text);
 	           }
 	          } 
 	         typeArguments? )*
@@ -868,14 +795,14 @@ classOrInterfaceType returns [TypeReference element]
 
 
 primitiveType returns [TypeReference value]
-    :   'boolean' {$value = new BasicTypeReference("boolean");}
-    |   'char' {$value = new BasicTypeReference("char");}
-    |   'byte' {$value = new BasicTypeReference("byte");}
-    |   'short' {$value = new BasicTypeReference("short");}
-    |   'int' {$value = new BasicTypeReference("int");}
-    |   'long' {$value = new BasicTypeReference("long");}
-    |   'float' {$value = new BasicTypeReference("float");}
-    |   'double' {$value = new BasicTypeReference("double");}
+    :   'boolean' {$value = new MViewBasicTypeReference("boolean");}
+    |   'char' {$value = new MViewBasicTypeReference("char");}
+    |   'byte' {$value = new MViewBasicTypeReference("byte");}
+    |   'short' {$value = new MViewBasicTypeReference("short");}
+    |   'int' {$value = new MViewBasicTypeReference("int");}
+    |   'long' {$value = new MViewBasicTypeReference("long");}
+    |   'float' {$value = new MViewBasicTypeReference("float");}
+    |   'double' {$value = new MViewBasicTypeReference("double");}
     ;
 
 // GENERICS
@@ -1007,15 +934,9 @@ UnicodeEscape
     ;
     
 Identifier 
-//    :   Letter (Letter|JavaIDDigit)*
-    :	Letter(Letter|JavaIDDigit|'*')*
+    :   Letter(Letter|JavaIDDigit)*
     ;
     
-//WildCardIdentifier 
-//    :   Letter (Letter|JavaIDDigit|'..'|'*')*
-//    ;
-
-
 /**I found this char range in JavaCC's grammar, but Letter and Digit overlap.
    Still works, but...
  */
@@ -1033,7 +954,8 @@ Letter
        '\u3300'..'\u337f' |
        '\u3400'..'\u3d2d' |
        '\u4e00'..'\u9fff' |
-       '\uf900'..'\ufaff'
+       '\uf900'..'\ufaff' |
+       '*'
     ;
 
 fragment
