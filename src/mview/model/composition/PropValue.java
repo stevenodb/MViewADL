@@ -33,6 +33,7 @@ import chameleon.core.reference.SimpleReference;
 import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.Valid;
 import chameleon.core.validation.VerificationResult;
+import chameleon.util.Util;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
@@ -114,7 +115,7 @@ public class PropValue<D extends Declaration>
 	public List<Element> children() {
 		List<Element> result = super.children();
 
-		result.add(value());
+		Util.addNonNull(value(),result);
 
 		return result;
 	}
@@ -128,9 +129,15 @@ public class PropValue<D extends Declaration>
 	public VerificationResult verifySelf() {
 		final VerificationResult result = Valid.create();
 
-		result.and(new BasicProblem(this, "nothing to see, carry on"));
+//		result.and(new BasicProblem(this, "nothing to see, carry on"));
 
 		try {
+			
+			if ( !(value() == null ) ) {
+				result.and(new BasicProblem(this,
+				"PropValue has null value"));
+			}
+			
 			if (!(value().getElement() == null)) {
 				result.and(new BasicProblem(this,
 							"Invalid reference to declaration"));

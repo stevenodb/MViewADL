@@ -30,6 +30,7 @@ import chameleon.core.reference.SimpleReference;
 import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.Valid;
 import chameleon.core.validation.VerificationResult;
+import chameleon.util.Util;
 import exception.MergeNotSupportedException;
 
 /**
@@ -143,11 +144,12 @@ public class RefinementRelation
 	 */
 	@Override
 	public List<SimpleReference<RefinableDeclaration>> children() {
+		
 		List<SimpleReference<RefinableDeclaration>> result =
 				new ArrayList<SimpleReference<RefinableDeclaration>>();
 
-		result.add(parentDeclaration());
-
+		Util.addNonNull(parentDeclaration(), result);
+		
 		return result;
 	}
 

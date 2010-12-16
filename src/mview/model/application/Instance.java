@@ -30,6 +30,7 @@ import chameleon.core.element.Element;
 import chameleon.core.reference.SimpleReference;
 import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.VerificationResult;
+import chameleon.util.Util;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
@@ -115,8 +116,10 @@ public class Instance extends MViewMemberDeclarationImpl<Instance,Element> {
 	@Override
 	public List<Element> children() {
 		final List<Element> result = super.children();
-		result.add(host());
-		result.add(type());
+		
+		Util.addNonNull(host(), result);
+		Util.addNonNull(type(), result);
+		
 		return result;
 	}
 

@@ -32,6 +32,7 @@ import chameleon.core.modifier.Modifier;
 import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.Valid;
 import chameleon.core.validation.VerificationResult;
+import chameleon.util.Util;
 import exception.MergeNotSupportedException;
 
 /**
@@ -216,17 +217,10 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element>
 	public List<Element> children() {
 		List<Element> result = super.children();
 
-		if (this.pointcutSignature() != null) {
-			result.add(this.pointcutSignature());
-		}
+		Util.addNonNull(pointcutSignature(), result);
+		Util.addNonNull(caller(), result);
+		Util.addNonNull(callee(), result);
 		
-		if (this.caller() != null) {
-			result.add(this.caller());
-		}
-		if (this.callee() != null) {
-			result.add(this.callee());
-		}
-
 		return result;
 	}
 	

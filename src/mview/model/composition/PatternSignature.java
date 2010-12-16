@@ -346,13 +346,9 @@ public class PatternSignature extends
 	 */
 	public List<Element> children() {
 		final List<Element> result = super.children();
-
-		// Util.addNonNull(this.rawPattern(), result);
-//		try {
-//			result.addAll(this.services());
-//		} catch (LookupException e) {
-//		}
-
+		
+		// do not add generated stuff
+		
 		return result;
 	}
 }

@@ -28,6 +28,7 @@ import org.rejuse.association.SingleAssociation;
 import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.element.Element;
 import chameleon.core.validation.VerificationResult;
+import chameleon.util.Util;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
@@ -101,9 +102,9 @@ public class Host extends MViewMemberDeclarationImpl<Host, Element> {
 	@Override
 	public List<Element> children() {
 		final List<Element> result = super.children();
-		if (hostName() != null) {
-			result.add(hostName());
-		}
+		
+		Util.addNonNull(hostName(), result);
+		
 		return result;
 	}
 
