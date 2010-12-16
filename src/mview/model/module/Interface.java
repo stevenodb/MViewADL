@@ -23,12 +23,22 @@ import mview.model.namespace.MViewDeclaration;
 
 import org.rejuse.association.OrderedMultiAssociation;
 
+import chameleon.core.declaration.Declaration;
+import chameleon.core.declaration.DeclarationContainer;
+import chameleon.core.declaration.Signature;
 import chameleon.core.declaration.SimpleNameSignature;
+import chameleon.core.declaration.TargetDeclaration;
 import chameleon.core.element.Element;
+import chameleon.core.lookup.DeclarationSelector;
+import chameleon.core.lookup.LookupException;
+import chameleon.core.lookup.LookupStrategy;
 import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.VerificationResult;
 
-public class Interface extends MViewDeclaration<Interface, Element> {
+public class Interface extends MViewDeclaration<Interface, Element> 
+	/*implements 
+		TargetDeclaration<Interface, Element, Signature, Interface>,
+		DeclarationContainer<Interface, Element>*/{
 	
 	/**
 	 * Default constructor 
@@ -49,6 +59,9 @@ public class Interface extends MViewDeclaration<Interface, Element> {
 	private OrderedMultiAssociation<Interface, Service> _services = 
 		new OrderedMultiAssociation<Interface, Service>(this);
 	
+	/**
+	 * @param service
+	 */
 	public void removeService(Service service) {
 		if (service != null) {
 			_services.remove(service.parentLink());
@@ -122,5 +135,59 @@ public class Interface extends MViewDeclaration<Interface, Element> {
 		return result;
 		
 	}
+
+//	/* (non-Javadoc)
+//	 * @see chameleon.core.declaration.DeclarationContainer#declarations()
+//	 */
+//	@Override
+//	public List<? extends Declaration> declarations() throws LookupException {
+//		return locallyDeclaredDeclarations();
+//	}
+//
+//	/* (non-Javadoc)
+//	 * @see chameleon.core.declaration.DeclarationContainer#locallyDeclaredDeclarations()
+//	 */
+//	@Override
+//	public List<? extends Declaration> locallyDeclaredDeclarations()
+//			throws LookupException {
+//		
+//		return services();
+//	}
+//
+//	/* (non-Javadoc)
+//	 * @see chameleon.core.declaration.DeclarationContainer#declarations(chameleon.core.lookup.DeclarationSelector)
+//	 */
+//	@Override
+//	public <D extends Declaration> List<D> declarations(
+//			DeclarationSelector<D> selector) throws LookupException {
+//		return selector.selection(declarations());
+//	}
+//
+//	/* (non-Javadoc)
+//	 * @see chameleon.core.declaration.TargetDeclaration#targetContext()
+//	 */
+//	@Override
+//	public LookupStrategy targetContext() {
+//		return language().lookupFactory().createTargetLookupStrategy(this);
+//	}
+//
+//	/* (non-Javadoc)
+//	 * @see chameleon.core.element.ElementImpl#lexicalLookupStrategy(chameleon.core.element.Element)
+//	 */
+//	@Override
+//	public LookupStrategy lexicalLookupStrategy(Element child)
+//			throws LookupException {
+//		return lexicalMembersLookupStrategy();
+//	}
+//	
+//	private LookupStrategy lexicalMembersLookupStrategy() {
+//		if(_lus == null) {
+//			_lus = language().lookupFactory().createLexicalLookupStrategy(
+//					targetContext(), this);
+//		}
+//		return _lus;
+//	}
+//	
+//	private LookupStrategy _lus;
 
 }
