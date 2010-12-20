@@ -73,7 +73,7 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element>
 	/**
 	 * @return
 	 */
-	public PointcutSignature pointcutSignature() {
+	public PointcutSignature signature() {
 		return _pointcutSignature.getOtherEnd();
 	}
 	
@@ -169,7 +169,7 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element>
 		clone.addModifiers(this.modifiers());
 
 		// signature
-		clone.setSignature(this.pointcutSignature());
+		clone.setSignature(this.signature());
 
 		if (this.callee() != null) {
 			clone.setCallee(this.callee().clone());
@@ -217,7 +217,7 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element>
 	public List<Element> children() {
 		List<Element> result = super.children();
 
-		Util.addNonNull(pointcutSignature(), result);
+		Util.addNonNull(signature(), result);
 		Util.addNonNull(caller(), result);
 		Util.addNonNull(callee(), result);
 		
@@ -272,7 +272,7 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element>
 			merged = new Pointcut(child.modifiers().get(0));
 			
 			// 2. signature
-			merged.setSignature(child.pointcutSignature().merge(parent.pointcutSignature()));
+			merged.setSignature(child.signature().merge(parent.signature()));
 			
 			// 3. CallerProps
 			merged.setCaller(child.caller().merge(parent.caller()));
