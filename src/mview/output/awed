@@ -1,0 +1,65 @@
+aspect ServiceUsageConnector {
+	pointcut serviceUsage:	
+ 		(execution(ContentItem fetchArticle(ContentItemId))
+ 		|| execution(Collection listForTag(Tag))
+ 		|| execution(Collection getSubCategories(Category))
+ 		|| execution(Pair listForCategory(Category)))
+ 		&& target(NewsRemote);
+ 
+}
+
+///SECURITY
+
+aspect ServiceSecurityConnector {
+	pointcut ServiceAuthorization: 
+		ServiceUsageConnector.ServiceUsage;
+}
+
+
+aspect NewspaperSecurityConnector {
+ 	pointcut NewspaperAuthorization: 
+ 		ServiceSecurityConnector.ServiceAuthorization
+ 			&& !cflow(execution(* NewsDesk+.*));
+ 			&& host("PublishingServer")
+  			
+ }
+
+aspect LocNewspaperSecurityConnector {  			
+	pointcut LocNewspaperAuthorization:			
+ 		NewspaperSecurityConnector.NewspaperAuthorization
+ 			&& ! host("IntranetServers");
+ }
+ 
+aspect LocNewspaperSecurityBindingConnector {
+
+	SecurityContext getSecurityContext() {
+		// retrieve security context component instance
+	}
+
+	around(): LocNewspaperAuthorization {
+		getSecurityContext().checkSecurityContext();
+	}
+}
+
+///ACCOUNTING
+
+aspect ServiceAccountingConnector {
+	pointcut ServiceAccounting:
+		ServiceUsageConnector.ServiceUsage;
+}
+
+aspect NewspaperAccountingConnector {
+	pointcut NewspaperAccounting:
+		ServiceAccountingConnector.ServiceAccounting
+			&& host("PublishingServer");
+}
+
+aspect AccountNewspaperBindingConnector {
+	AccountingRemote getAccountingComponent() {
+		// retrieve accounting component instance
+	}
+
+	after(): NewspaperAccountingConnector.NewspaperAccounting {
+		getAccountingComponent().chargeForService();
+	}			
+}

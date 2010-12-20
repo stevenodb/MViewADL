@@ -1,0 +1,52 @@
+//package com.mypackage;
+//
+//   import org.jboss.aop.PointcutDef;
+//   import org.jboss.aop.pointcut.Pointcut;
+//
+//   @Aspect (scope = Scope.PER_VM)
+//   public class MyAspect
+//   {
+//      @PointcutDef ("(execution(* org.blah.Foo->someMethod()) OR \
+//	      execution(* org.blah.Foo->otherMethod()))")
+//      public static Pointcut fooMethods;
+//
+//      public Object myAdvice(Invocation invocation)
+//      {
+//        return invocation.invokeNext();
+//      }
+//   }
+   
+   
+package org.example.jbossaop;
+
+import org.jboss.aop.AdviceType;
+import org.jboss.aop.Aspect;
+import org.jboss.aop.Bind;
+import org.jboss.aop.PointcutDef;
+import org.jboss.aop.advice.annotation.Arg;
+import org.jboss.aop.advice.annotation.JoinPoint;
+import org.jboss.aop.advice.annotation.Return;
+import org.jboss.aop.joinpoint.JoinPointBean;
+import org.jboss.aop.pointcut.Pointcut;
+
+@Aspect  
+public abstract class ServiceUsageConnector {
+
+	@PointcutDef("execution(ContentItem fetchArticle(ContentItemId)) " +
+			"|| execution(Collection listForTag(Tag)) " +
+			"|| execution(Collection getSubCategories(Category)) " +
+			"|| execution(Pair listForCategory(Category))) " +
+			"&& target(NewsRemote);)")
+	public static Pointcut serviceUsage;
+
+}
+
+@Aspect
+public abstract class ServiceAccounting extends ServiceUsage {
+	
+}
+
+@Aspect
+public abstract class NewspaperAccountingConnector extends ServiceAccounting {
+	
+}
