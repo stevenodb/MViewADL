@@ -71,8 +71,9 @@ public abstract class RefinableDeclarationImpl<
 
 	/**
 	 * @return the list of refinement relations
+	 * TODO: make this protected again!!!!
 	 */
-	protected List<RefinementRelation> refinementRelations() {
+	public List<RefinementRelation> refinementRelations() {
 		return _refinementRelations.getOtherEnds();
 	}
 
@@ -164,9 +165,9 @@ public abstract class RefinableDeclarationImpl<
 	 * chameleon.core.element.ElementImpl#lexicalLookupStrategy(chameleon.core
 	 * .element.Element)
 	 */
+	@Override
 	public LookupStrategy lexicalLookupStrategy(Element element)
 			throws LookupException {
-		
     	if(refinementRelations().contains(element)) {
     		Element parent = parent();
     		if(parent != null) {
@@ -194,6 +195,7 @@ public abstract class RefinableDeclarationImpl<
 	 * 
 	 * @see chameleon.core.declaration.TargetDeclaration#targetContext()
 	 */
+	@Override
 	public LookupStrategy targetContext() {
 		return language().lookupFactory().createTargetLookupStrategy(this);
 	}

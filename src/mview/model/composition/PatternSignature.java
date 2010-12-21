@@ -101,7 +101,7 @@ public class PatternSignature extends
 	/**
 	 * @return the returnTypePattern
 	 */
-	private String returnTypePattern() {
+	public String returnTypePattern() {
 		return _returnTypePattern;
 	}
 
@@ -116,7 +116,7 @@ public class PatternSignature extends
 	/**
 	 * @return the signaturePattern
 	 */
-	private String signaturePattern() {
+	public String signaturePattern() {
 		return _signaturePattern;
 	}
 
@@ -156,7 +156,7 @@ public class PatternSignature extends
 	/**
 	 * @return the formalParametersPattern
 	 */
-	private List<Pair<String, String>> formalParametersPattern() {
+	public List<Pair<String, String>> formalParametersPattern() {
 		return _formalParametersPattern;
 	}
 

@@ -192,4 +192,5 @@ public abstract class Module<E extends Module<E>>
 		
 		return result;
 	}
+
 }
