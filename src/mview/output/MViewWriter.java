@@ -21,10 +21,10 @@ package mview.output;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.lang.reflect.Method;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import mview.model.application.Instance;
 import mview.model.composition.AOComposition;
@@ -32,10 +32,11 @@ import mview.model.deployment.Deployment;
 import mview.model.module.Component;
 import mview.model.module.Connector;
 import mview.model.namespace.MViewDeclaration;
-
+import chameleon.core.compilationunit.CompilationUnit;
 import chameleon.core.declaration.Declaration;
 import chameleon.core.element.Element;
 import chameleon.core.lookup.LookupException;
+import chameleon.core.namespacepart.NamespacePart;
 import chameleon.exception.ModelException;
 import chameleon.output.Syntax;
 
@@ -80,12 +81,13 @@ public abstract class MViewWriter extends Syntax {
 	protected StringBuffer preamble(Class<? extends Element> key) {
 		return _preambles.get(key);
 	}
-	
+
 	/**
 	 * @param key
 	 * @param preamble
 	 */
-	protected void addPreamble(Class<? extends Element> key, StringBuffer preamble) {
+	protected void addPreamble(Class<? extends Element> key,
+			StringBuffer preamble) {
 		_preambles.put(key, preamble);
 	}
 
@@ -133,31 +135,33 @@ public abstract class MViewWriter extends Syntax {
 		}
 		return result;
 	}
-	
+
 	/**
 	 * @param text
 	 * @return start text on a new line
 	 */
 	public String startNewLine(String text) {
-		return '\n'+startLine().toString()+text;
+		return '\n' + startLine().toString() + text;
 	}
-	
+
 	/**
 	 * @param args
-	 * @param declaration
+	 * @param element
 	 * @param code
 	 * @throws IOException
 	 */
 	protected void writeCode(WriterArguments args,
-			MViewDeclaration declaration, String code) throws IOException {
+			Element element, String code) throws IOException {
 
-		if (args.allowedOutput(declaration)) {
+		if (args.allowedOutput(element.getClass())) {
+			MViewDeclaration declaration = (MViewDeclaration) element;
 			String fileName = declaration.signature().name() + ".java";
 			String packageFQN =
-					declaration.getNamespace().getFullyQualifiedName();
+				declaration.getNamespace().getFullyQualifiedName();
 			String relDirName = packageFQN.replace('.', File.separatorChar);
 			File out =
-					new File(args.outputDir() + File.separatorChar + relDirName
+					new File(args.outputDir().getAbsolutePath()
+							+ File.separatorChar + relDirName
 							+ File.separatorChar + fileName);
 
 			System.out.println("Writing: " + out.getAbsolutePath());
@@ -167,15 +171,28 @@ public abstract class MViewWriter extends Syntax {
 			out.createNewFile();
 			FileWriter fw = new FileWriter(out);
 
-			//preamble
-			fw.write(preamble(declaration.getClass()).toString());
-			//body
+			// preamble
+			fw.write(preamble(element.getClass()).toString());
+			// body
 			fw.write(code);
-			
+
 			fw.close();
+		} else {
+			System.out.println("Skipping: " + element.getClass());
 		}
 	}
 
+//	/**
+//	 * @param args
+//	 * @param element
+//	 * @param code
+//	 * @throws IOException
+//	 */
+//	protected void writeCode(WriterArguments args,
+//			Element element, String code) throws IOException {
+//		System.out.println("Skipping: " + element.getClass());
+//	}
+	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -193,26 +210,91 @@ public abstract class MViewWriter extends Syntax {
 		} else if (isInstance(element)) {
 			result = toCodeInstance((Instance) element);
 		} else if (isAOComposition(element)) {
-			result = toCodeAOComposition((AOComposition)element);
-			
-		} else if(element == null) {
-		      result = "";
-	    }
-	    else {
-	      throw new IllegalArgumentException(
-	    		  "The given element is not know by MView syntax: "
-	    		  +element.getClass().getName());
-	    }
-		
+			result = toCodeAOComposition((AOComposition) element);
+		} else if (isCompilationUnit(element)) {
+			result = toCodeCompilationUnit((CompilationUnit) element);
+		} else if(isNamespacePart(element)) {
+			result = toCodeNamespacePart((NamespacePart) element);
+		} 
+
+		else if (element == null) {
+			result = "";
+		} else {
+			throw new IllegalArgumentException(
+					"The given element is not know by MView syntax: "
+							+ element.getClass().getName());
+		}
+
 		try {
-			
 			writeCode(writerArguments(), element, result);
-		
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		return result;
+	}
+
+	/**
+	 * @param element
+	 * @return
+	 */
+	protected boolean isNamespacePart(Element element) {
+		return element instanceof NamespacePart;
+	}
+
+	/**
+	 * @param part
+	 * @return
+	 * @throws ModelException 
+	 */
+	protected String toCodeNamespacePart(NamespacePart part)
+			throws ModelException {
+		StringBuffer result = new StringBuffer();
+		result.append("package " + part.namespace().getFullyQualifiedName()
+				+ ";\n\n");
+
+//		for (Import imp : part.imports()) {
+//			if (imp instanceof TypeImport) {
+//				result.append("import "
+//						+ toCode(((TypeImport) imp).getTypeReference()) + ";\n");
+//			} else if (imp instanceof DemandImport) {
+//				result.append("import "
+//						+ toCode(((DemandImport) imp).namespaceReference())
+//						+ ".*;\n");
+//			}
+//		}
+
+		result.append("\n");
+		List<Declaration> decls = part.declarations();
+		Iterator iter = decls.iterator();
+		while (iter.hasNext()) {
+			result.append(toCode((Element) iter.next()));
+			if (iter.hasNext()) {
+				result.append("\n\n");
+			}
+		}
+		return result.toString();
+	}
+
+	/**
+	 * @param element
+	 * @return
+	 */
+	protected boolean isCompilationUnit(Element element) {
+		return (element instanceof CompilationUnit);
+	}
+
+	/**
+	 * @param element
+	 * @return
+	 * @throws ModelException 
+	 */
+	protected String toCodeCompilationUnit(CompilationUnit element) throws ModelException {
+		StringBuffer result = new StringBuffer();
+		for (NamespacePart part : element.namespaceParts()) {
+			result.append(toCodeNamespacePart(part));
+		}
+		return result.toString();
 	}
 
 	/**
@@ -240,9 +322,10 @@ public abstract class MViewWriter extends Syntax {
 	/**
 	 * @param element
 	 * @return
-	 * @throws ModelException 
+	 * @throws ModelException
 	 */
-	protected abstract String toCodeInstance(Instance element) throws ModelException;
+	protected abstract String toCodeInstance(Instance element)
+			throws ModelException;
 
 	/**
 	 * @param element
@@ -255,19 +338,10 @@ public abstract class MViewWriter extends Syntax {
 	/**
 	 * @param element
 	 * @return
+	 * @throws ModelException
 	 */
-	protected abstract String toCodeAOComposition(AOComposition element);
-
-	/**
-	 * @param args
-	 * @param element
-	 * @param code
-	 * @throws IOException
-	 */
-	protected void writeCode(WriterArguments args,
-			Element element, String code) throws IOException {
-		System.out.println("Skipping: " + element.getClass());
-	}
+	protected abstract String toCodeAOComposition(AOComposition element)
+			throws ModelException;
 
 	/**
 	 * @param element
@@ -279,7 +353,7 @@ public abstract class MViewWriter extends Syntax {
 
 	/**
 	 * @param element
-	 * @throws ModelException 
+	 * @throws ModelException
 	 */
 	protected abstract String toCodeDeployment(Deployment element)
 			throws ModelException;

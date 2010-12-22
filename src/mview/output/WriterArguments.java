@@ -18,12 +18,11 @@
  */
 package mview.output;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 import chameleon.core.element.Element;
-
-import mview.model.namespace.MViewDeclaration;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
@@ -31,17 +30,18 @@ import mview.model.namespace.MViewDeclaration;
  */
 public class WriterArguments {
 
-	private final String _defaultNamespace, _outputDir;
-	private final List<Element> _elementsAllowedOutput =
-		new ArrayList<Element>();
+	private final String _defaultNamespace;
+	private final File _outputDir;
+	private final List<Class<? extends Element>> _elementsAllowedOutput =
+		new ArrayList<Class<? extends Element>>();
 
 	/**
 	 * @param defaultNameSpace
 	 * @param outputDir
 	 * @param declAllowedOutput
 	 */
-	public WriterArguments(String defaultNameSpace, String outputDir,
-			List<MViewDeclaration> elementsAllowedOutput) {
+	public WriterArguments(String defaultNameSpace, File outputDir,
+			List<Class<? extends Element>> elementsAllowedOutput) {
 		_defaultNamespace = defaultNameSpace;
 		_outputDir = outputDir;
 		_elementsAllowedOutput.addAll(elementsAllowedOutput);
@@ -51,11 +51,11 @@ public class WriterArguments {
 		return _defaultNamespace;
 	}
 
-	public String outputDir() {
+	public File outputDir() {
 		return _outputDir;
 	}
 	
-	public boolean allowedOutput(Element declaration) {
+	public boolean allowedOutput(Class<? extends Element> declaration) {
 		return _elementsAllowedOutput.contains(declaration);
 	}
 }

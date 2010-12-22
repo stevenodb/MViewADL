@@ -18,13 +18,12 @@
  */
 package mview.output;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 
 import mview.model.application.Instance;
 import mview.model.composition.AOComposition;
@@ -32,16 +31,19 @@ import mview.model.composition.Advice;
 import mview.model.composition.PatternSignature;
 import mview.model.composition.Pointcut;
 import mview.model.composition.ServiceSignature;
+import mview.model.composition.modifier.After;
+import mview.model.composition.modifier.Around;
+import mview.model.composition.modifier.Before;
+import mview.model.composition.modifier.Execution;
 import mview.model.deployment.Deployment;
+import mview.model.module.Component;
 import mview.model.module.Connector;
 import mview.model.module.Interface;
-import mview.model.module.Module;
-import mview.model.namespace.MViewDeclaration;
-import mview.model.refinement.RefinementRelation;
+import mview.model.module.Module.RequiredInterfaceDependency;
 
 import org.rejuse.java.collections.RobustVisitor;
-import org.rejuse.java.collections.Visitor;
 
+import chameleon.core.element.Element;
 import chameleon.core.reference.SimpleReference;
 import chameleon.exception.ModelException;
 import chameleon.util.Pair;
@@ -81,19 +83,19 @@ public class JBossAOPWriter extends MViewWriter {
 	 * @throws IOException
 	 * @throws ModelException
 	 */
-	public static void writeCode(Set<MViewDeclaration> declarations,
-			String defaultNamespace, String outputDir,
-			List<MViewDeclaration> declsAllowedOutput)
+	public static void writeCode(Element decl,
+			String defaultNamespace, File outputDir,
+			List<Class<? extends Element>> elemsAllowedOutput)
 				throws IOException, ModelException {
 
 		WriterArguments wArgs = new WriterArguments(defaultNamespace,
-				outputDir, declsAllowedOutput);
+				outputDir, elemsAllowedOutput);
 
 		MViewWriter writer = new JBossAOPWriter(wArgs);
 
-		for (MViewDeclaration decl : declarations) {
+//		for (MViewDeclaration decl : declarations) {
 			writer.toCode(decl);
-		}
+//		}
 	}
 
 	/*
@@ -163,26 +165,26 @@ public class JBossAOPWriter extends MViewWriter {
 		return toCode(element.type().getElement());
 	}
 
-	/**
-	 * @param module
-	 * @return
-	 * NOTE: should be replaced by decent refinement support for required/provided
-	 * interfaces.
-	 */
-	protected List<SimpleReference<Interface>> gatherRequiredInterfaces(Module module) {
-		List<SimpleReference<Interface>> result = 
-			new ArrayList<SimpleReference<Interface>>();
-		
-		result.addAll(module.requiredInterfaces());
-		
-		List<RefinementRelation> refinements = module.refinementRelations();
-		for (RefinementRelation refinementRelation : refinements) {
-			Module parent = (Module)refinementRelation.parentDeclarationEnd();
-			result.addAll(0, this.gatherRequiredInterfaces(parent));
-		}
-		
-		return result;
-	}
+//	/**
+//	 * @param module
+//	 * @return
+//	 * NOTE: should be replaced by decent refinement support for required/provided
+//	 * interfaces.
+//	 */
+//	protected List<SimpleReference<Interface>> gatherRequiredInterfaces(Module module) {
+//		List<SimpleReference<Interface>> result = 
+//			new ArrayList<SimpleReference<Interface>>();
+//		
+//		result.addAll(module.requiredInterfaces());
+//		
+//		List<RefinementRelation> refinements = module.refinementRelations();
+//		for (RefinementRelation refinementRelation : refinements) {
+//			Module parent = (Module)refinementRelation.parentDeclarationEnd();
+//			result.addAll(0, this.gatherRequiredInterfaces(parent));
+//		}
+//		
+//		return result;
+//	}
 	
 	/*
 	 * (non-Javadoc)
@@ -195,6 +197,7 @@ public class JBossAOPWriter extends MViewWriter {
 
 		final StringBuffer result = startLine();
 
+		result.append("\n");
 		result.append(startNewLine("@Aspect"));
 		result.append(startNewLine("public class "));
 		result.append(element.signature().name());
@@ -205,8 +208,15 @@ public class JBossAOPWriter extends MViewWriter {
 
 		{
 			// required interfaces => define injections
-			List<SimpleReference<Interface>> required = 
-				this.gatherRequiredInterfaces(element);
+			List<RequiredInterfaceDependency> dep =
+				element.members(RequiredInterfaceDependency.class);
+//				this.gatherRequiredInterfaces(element);
+			
+			List<SimpleReference<Interface>> required =
+				new ArrayList<SimpleReference<Interface>>();
+			if (dep.size() != 0) {
+				required.addAll(dep.get(0).dependencies());
+			}
 			
 			Iterator<SimpleReference<Interface>> it = required.iterator();
 			
@@ -223,6 +233,7 @@ public class JBossAOPWriter extends MViewWriter {
 					appendix = ""+n;
 				}
 				
+				result.append("\n");
 				result.append(startNewLine("@EJB"));
 				result.append(startNewLine("private "));
 				result.append(ifaceName);
@@ -310,7 +321,7 @@ public class JBossAOPWriter extends MViewWriter {
 	 * AOComposition)
 	 */
 	@Override
-	protected String toCodeAOComposition(AOComposition element) {
+	protected String toCodeAOComposition(AOComposition element) throws ModelException {
 		StringBuffer result = new StringBuffer();
 		
 		//pointcut
@@ -322,8 +333,16 @@ public class JBossAOPWriter extends MViewWriter {
 		if ((pointcuts.size() == 1) && (advices.size() == 1)) {
 			Pointcut pc = pointcuts.get(0);
 			Advice adv = advices.get(0);
-			
+
+			/* pointcut */
+			result.append("\n");
 			result.append(startNewLine("@PointcutDef(\""));
+			
+			String kind = "call";
+			if (pc.hasModifier(new Execution())) {
+				kind = "execution";
+			}
+			result.append(kind+"("); //kind
 			
 			Iterator<ServiceSignature> it = pc.signature().signatures().iterator();
 			
@@ -346,27 +365,65 @@ public class JBossAOPWriter extends MViewWriter {
 					result.append(")");
 				}
 
-				result.append("\"");
 				
 				if (it.hasNext()) {
+					result.append("\"");
 					result.append(" + ");
 					result.append(startNewLine("\"OR "));
+				} else {
+					result.append(")"); //kind
+					result.append("\"");
 				}
 			}
 			result.append(")");
 			
 			result.append(startNewLine("public static Pointcut "
 					+element.signature().name()+";"));
+	
+			// caller/callee
+			// interface/component -> "Class->method"
+			// instance
+			// host
+			// application
+			
+			result.append("\n");
+			result.append(startNewLine("@Bind(\""));
+			result.append("pointcut="+element.signature().name());
+			result.append(",");
+			result.append("type=");
+			
+			String type = "AdviceType.";
+			if (adv.hasModifier(new After())) {
+				type += "AFTER";
+			} else if (adv.hasModifier(new Around())) {
+				type += "AROUND";
+			} else {
+				type += "BEFORE";
+			}
+			
+			result.append(")");
+			
+			result.append(startNewLine("public void "
+					+element.signature().name()+"() {"));
+			
+			/* advice */
 			
 			
-		} else {
+			
+		} /*else {
 			throw new ModelException("AOComposition only allows one pointcut " +
 					"and one advice, something went horribly wrong.");
-		}
+		}*/
 	
-		Advice advice = element.advice();
-		
-		return 
+		return result.toString(); 
+	}
+
+	/* (non-Javadoc)
+	 * @see mview.output.MViewWriter#toCodeComponent(mview.model.module.Component)
+	 */
+	@Override
+	protected String toCodeComponent(Component element) {
+		return "";
 	}
 
 }

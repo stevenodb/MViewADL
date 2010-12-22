@@ -58,7 +58,7 @@ public abstract class MViewDeclaration<E extends MViewDeclaration<E, P>, P exten
 	/**
 	 * @param signature
 	 */
-	protected MViewDeclaration(SimpleNameSignature signature) {
+	protected MViewDeclaration(Signature signature) {
 		setSignature(signature);
 	}
 
@@ -174,7 +174,7 @@ public abstract class MViewDeclaration<E extends MViewDeclaration<E, P>, P exten
 	 */
 	@Override
 	public boolean uniSameAs(Element other) throws LookupException {
-		return (other != null) && (signature().equals(other));
+		return (other != null) && ((signature().equals(other)) || other == this);
 	}
 
 }

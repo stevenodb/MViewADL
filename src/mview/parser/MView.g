@@ -179,15 +179,12 @@ actualParameterDecls returns [List<String> lst]
 
 serviceDeclaration returns [Service element]
 	: res=serviceHeaderDeclaration {
-			//Signature signature = new SimpleNameSignature($result.signature);
-			//$element= new Service(signature,$result.returnType,$result.parLst); //TODO: add properties
-			//setLocation($element,
 			$element = $res.element;
 		}
 	;
 
 
-serviceHeaderDeclaration returns [Service element] //returns [String signature, TypeReference returnType, List<FormalParameter> parLst]
+serviceHeaderDeclaration returns [Service element]
 	:	rtype=serviceReturnType name=Identifier params=formalParameters {
 			Signature signature = new SimpleNameSignature($name.text);
 			$element = new Service(signature,$rtype.value,$params.lst); //TODO: add properties
@@ -387,7 +384,7 @@ pointcutActorBody returns [Actor element]
 pointcutActorBodyDecls[Actor actor]
 @init{
 	ActorProp prop = null;
-	Class<? extends MViewDeclaration> declClass = null;
+	Class<? extends Declaration> declClass = null;
 }
 	: (override=overrideOrExtend)?
 	(
@@ -409,7 +406,7 @@ pointcutActorBodyDecls[Actor actor]
 	|
 		'host' ':' {
 			declClass = Host.class;
-		} 
+		}
 	) {
 		prop = new ActorProp(new PropModifier(declClass));
 		actor.addProp(prop);
@@ -776,7 +773,7 @@ classOrInterfaceType returns [TypeReference element]
 	          {
 	           $element = new MViewBasicTypeReference($name.text);
 	           target =  new NamespaceOrTypeReference($name.text);
-//	           setLocation($element,$name,$name); 
+	           setLocation($element,$name,$name); 
 	          }
 			typeArguments? 
 	        ('.' namex=Identifier 
