@@ -259,7 +259,8 @@ public class ActorProp<D extends Declaration> extends
 	 */
 	@Override
 	public boolean mergesWith(MViewMember other) {
-		return sharesContext(other) 
+		return (other != null) 
+			&& sharesContext(other) 
 			&& !overrides(other)
 			&& this.declarationType() == ((ActorProp)other).declarationType();
 	}

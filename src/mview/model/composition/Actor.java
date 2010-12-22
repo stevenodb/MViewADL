@@ -124,7 +124,7 @@ public class Actor extends NamespaceElementImpl<Actor, Element> implements
 	 */
 	@Override
 	public boolean mergesWith(MViewMember other) {
-		return sharesContext(other) && !overrides(other);
+		return (other != null) && sharesContext(other) && !overrides(other);
 	}
 		
 	/*

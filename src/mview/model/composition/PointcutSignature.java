@@ -183,7 +183,7 @@ public class PointcutSignature extends ElementWithModifiersImpl<PointcutSignatur
 	 */
 	@Override
 	public boolean mergesWith(MViewMember other) {
-		return sharesContext(other) && !overridable();
+		return (other != null) && sharesContext(other) && !overridable();
 	}
 
 	/*

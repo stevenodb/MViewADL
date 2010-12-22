@@ -182,7 +182,7 @@ public class Advice extends ElementWithModifiersImpl<Advice, Element>
 	 */
 	@Override
 	public boolean mergesWith(MViewMember other) {
-		return sharesContext(other) && !overrides(other);
+		return (other != null) && sharesContext(other) && !overrides(other);
 	}
 
 	/* (non-Javadoc)

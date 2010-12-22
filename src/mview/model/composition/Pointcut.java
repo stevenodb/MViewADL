@@ -81,7 +81,8 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element>
 	 * @param pointcutSignature
 	 */
 	public void setSignature(PointcutSignature pointcutSignature) {
-		_pointcutSignature.connectTo(pointcutSignature.parentLink());
+		if (pointcutSignature != null)
+			_pointcutSignature.connectTo(pointcutSignature.parentLink());
 	}
 	
 	/**
@@ -107,7 +108,8 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element>
 	 * @param actor
 	 */
 	public void setCaller(Actor actor) {
-		_caller.connectTo(actor.parentLink());
+		if (actor != null)
+			_caller.connectTo(actor.parentLink());
 	}
 	
 	/**
@@ -137,7 +139,8 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element>
 	 * @param actor
 	 */
 	public void setCallee(Actor actor) {
-		_callee.connectTo(actor.parentLink());
+		if (actor != null)
+			_callee.connectTo(actor.parentLink());
 	}
 	
 	/**
@@ -169,7 +172,9 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element>
 		clone.addModifiers(this.modifiers());
 
 		// signature
-		clone.setSignature(this.signature());
+		if (this.signature() != null) {
+			clone.setSignature(this.signature());
+		}
 
 		if (this.callee() != null) {
 			clone.setCallee(this.callee().clone());
@@ -201,7 +206,7 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element>
 					"Has more than one kind modifier"));
 		}
 
-//		if (! (this.pointcutSignature() != null)) {
+//		if (! (this.signature() != null)) {
 //			result = result.and(new BasicProblem(this,
 //					"Does not have a signature"));
 //		}
@@ -248,7 +253,7 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element>
 	 */
 	@Override
 	public boolean mergesWith(MViewMember other) {
-		return sharesContext(other) && !overrides(other);
+		return (other != null) && sharesContext(other) && !overrides(other);
 	}
 
 	/*
@@ -267,22 +272,36 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element>
 			
 			Pointcut child = this.clone();
 			Pointcut parent = (Pointcut) other.clone();
+
+			merged = new Pointcut();
 			
 			// 1. kind modifier: override with child's kind
-			merged = new Pointcut(child.modifiers().get(0));
+			merged.addModifiers(child.modifiers());
 			
 			// 2. signature
-			merged.setSignature(child.signature().merge(parent.signature()));
+			if (child.signature() != null) {
+				merged.setSignature(child.signature().merge(parent.signature()));
+			} else {
+				merged.setSignature(parent.signature());
+			}
 			
 			// 3. CallerProps
-			merged.setCaller(child.caller().merge(parent.caller()));
+			if (child.caller() != null) {
+				merged.setCaller(child.caller().merge(parent.caller()));
+			} else {
+				merged.setCaller(parent.caller());
+			}
 			
 			// 4. CalleeProps
-			merged.setCallee(child.callee().merge(parent.callee()));
+			if (child.callee() != null) {
+				merged.setCallee(child.callee().merge(parent.callee()));
+			} else {
+				merged.setCallee(parent.callee());
+			}
+			
 		} else {
 			merged = this.clone();
 		}
-		
 
 		return merged;
 	}

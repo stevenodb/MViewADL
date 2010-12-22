@@ -37,7 +37,7 @@ public class RefinementContext {
 		childD = (RefinableDeclaration) child.nearestAncestor(RefinableDeclaration.class);
 		parentD = (RefinableDeclaration) parent.nearestAncestor(RefinableDeclaration.class);
 
-		return childD.isRefinementOf(parentD);
+		return /*(childD != null) && (parentD != null) &&*/ childD.isRefinementOf(parentD);
 	}
 	
 }
