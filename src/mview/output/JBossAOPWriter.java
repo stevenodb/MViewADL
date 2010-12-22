@@ -30,6 +30,7 @@ import mview.model.composition.AOComposition;
 import mview.model.composition.Advice;
 import mview.model.composition.PatternSignature;
 import mview.model.composition.Pointcut;
+import mview.model.composition.PointcutSignature;
 import mview.model.composition.ServiceSignature;
 import mview.model.composition.modifier.After;
 import mview.model.composition.modifier.Around;
@@ -343,8 +344,11 @@ public class JBossAOPWriter extends MViewWriter {
 				kind = "execution";
 			}
 			result.append(kind+"("); //kind
-			
-			Iterator<ServiceSignature> it = pc.signature().signatures().iterator();
+			PointcutSignature sig = pc.signature();
+			if(sig == null) {
+				System.out.println("debug");
+			}
+			Iterator<ServiceSignature> it = sig.signatures().iterator();
 			
 			while (it.hasNext()) {
 				PatternSignature pSig =
@@ -401,10 +405,14 @@ public class JBossAOPWriter extends MViewWriter {
 				type += "BEFORE";
 			}
 			
-			result.append(")");
+			result.append(type+")");
+			
+			result.append("\")");
 			
 			result.append(startNewLine("public void "
 					+element.signature().name()+"() {"));
+			
+			
 			
 			/* advice */
 			
