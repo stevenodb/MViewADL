@@ -77,7 +77,7 @@ public class Component<E extends Component<E>> extends Module<E> {
 	 */
 	@Override
 	public List<MViewMember> localMembers() throws LookupException {
-		return new ArrayList<MViewMember>();
+		return super.localMembers();
 	}
 
 }
