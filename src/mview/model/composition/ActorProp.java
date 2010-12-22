@@ -33,6 +33,7 @@ import chameleon.core.declaration.Declaration;
 import chameleon.core.element.Element;
 import chameleon.core.lookup.LookupException;
 import chameleon.core.modifier.ElementWithModifiersImpl;
+import chameleon.core.modifier.Modifier;
 import chameleon.core.reference.SimpleReference;
 import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.Valid;
@@ -132,9 +133,10 @@ public class ActorProp<D extends Declaration> extends
 
 	/**
 	 * @return
+	 * @throws LookupException 
 	 */
-	public Class<D> declarationType() {
-		Class<D> result = null;
+	public Class<D> declarationType() throws LookupException {
+		Class<D> result;
 
 		try {
 			result =
@@ -142,7 +144,7 @@ public class ActorProp<D extends Declaration> extends
 							this.property(language(MView.class).ACTOR_MUTEX))
 									.targetDeclarationType();
 		} catch (ModelException e) {
-			return null;
+			throw new LookupException("Property not found");
 		}
 
 		return result;
@@ -171,8 +173,9 @@ public class ActorProp<D extends Declaration> extends
 	public ActorProp<D> clone() {
 		final ActorProp<D> clone = new ActorProp<D>();
 
-		clone.addModifiers(this.modifiers());
-
+		for(Modifier mod: modifiers()) {
+			clone.addModifier(mod.clone());
+		}
 		for (PropValue<D> propValues : propValues()) {
 			clone.addPropValue(propValues.clone());
 		}
@@ -200,9 +203,13 @@ public class ActorProp<D extends Declaration> extends
 					"Does not contain an actor property"));
 		}
 
-		if (!(this.declarationType() != null)) {
-			result.and(new BasicProblem(this,
-					"Does not contain a target declaration type"));
+		try {
+			if (!(this.declarationType() != null)) {
+				result.and(new BasicProblem(this,
+						"Does not contain a target declaration type"));
+			}
+		} catch (LookupException e1) {
+			result.and(new BasicProblem(this, "Lookup failed for declarationType"));
 		}
 
 		for (PropValue<D> propValue : propValues()) {
@@ -214,10 +221,14 @@ public class ActorProp<D extends Declaration> extends
 				// should be caught by PropValue verify.
 			}
 
-			if ((declaration != null) 
-					&& (declaration.getClass() == declarationType())) {
-				result.and(new BasicProblem(this,
-						"Contains declaration of invalid type: " + declaration));
+			try {
+				if ((declaration != null) 
+						&& (declaration.getClass() == declarationType())) {
+					result.and(new BasicProblem(this,
+							"Contains declaration of invalid type: " + declaration));
+				}
+			} catch (LookupException e) {
+				result.and(new BasicProblem(this, "Lookup failed for declarationType"));
 			}
 		}
 
@@ -243,7 +254,7 @@ public class ActorProp<D extends Declaration> extends
 	 * MViewMember)
 	 */
 	@Override
-	public boolean overrides(MViewMember other) {
+	public boolean overrides(MViewMember other) throws LookupException {
 		boolean result = this.overridable();
 		result &= this.declarationType() == ((ActorProp)other).declarationType();
 		result &= sharesContext(other);
@@ -258,7 +269,7 @@ public class ActorProp<D extends Declaration> extends
 	 * MViewMember)
 	 */
 	@Override
-	public boolean mergesWith(MViewMember other) {
+	public boolean mergesWith(MViewMember other) throws LookupException {
 		return (other != null) 
 			&& sharesContext(other) 
 			&& !overrides(other)
@@ -274,7 +285,7 @@ public class ActorProp<D extends Declaration> extends
 	 */
 	@Override
 	public ActorProp<D> merge(MViewMember other)
-			throws MergeNotSupportedException {
+			throws MergeNotSupportedException, LookupException {
 
 //		if (!(this.declarationType() == other.declarationType())) {
 //			throw new MergeNotSupportedException("Actors are of different" +
@@ -282,6 +293,7 @@ public class ActorProp<D extends Declaration> extends
 //		}
 
 		ActorProp<D> merged = this.clone();
+		merged.setUniParent(parent());
 
 		if (mergesWith(other)) {
 			ActorProp<D> parent = ((ActorProp)other).clone();

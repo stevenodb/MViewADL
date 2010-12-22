@@ -117,16 +117,19 @@ public abstract class Dependency<E extends Dependency<E, T>, T extends Declarati
 	@Override
 	public E merge(MViewMember other)
 			throws MergeNotSupportedException {
-		E merged = this.clone();
+		E merged;
 		
 		if (mergesWith(other)) {
-			
+			merged = this.clone();
+			merged.setUniParent(parent());
 			E parent = (E) other;
 			for(SimpleReference<T> dep : parent.dependencies()) {
 				if (!merged.dependencies().contains(dep)) {
 					merged.addDependency(dep);
 				}
 			}
+		} else {
+			merged = (E) this;
 		}
 		
 		return merged;

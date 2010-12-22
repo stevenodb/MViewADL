@@ -196,10 +196,14 @@ public class PointcutSignature extends ElementWithModifiersImpl<PointcutSignatur
 	@Override
 	public PointcutSignature merge(MViewMember other) throws MergeNotSupportedException {
 		
-		PointcutSignature merged = this.clone();
+		PointcutSignature merged;
 		
 		if (mergesWith(other) ) {
+			merged = this.clone();
+			merged.setUniParent(parent());
 			merged.addAllSignatures(((PointcutSignature)other).signatures());
+		} else {
+			merged = this;
 		}
 		
 		return merged;

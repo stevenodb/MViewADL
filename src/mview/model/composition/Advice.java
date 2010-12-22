@@ -196,6 +196,7 @@ public class Advice extends ElementWithModifiersImpl<Advice, Element>
 		if (mergesWith(other)) {
 			
 			merged = new Advice();
+			merged.setUniParent(parent());
 					
 			if (this.service() != null) {
 				merged.setService(this.service().clone());
@@ -209,9 +210,9 @@ public class Advice extends ElementWithModifiersImpl<Advice, Element>
 				merged.addModifier(((Advice)other).type().clone());
 			}
 		} else {
-			merged = this.clone();
+			merged = this;
 		}
-		
+
 		return merged;
 	}
 

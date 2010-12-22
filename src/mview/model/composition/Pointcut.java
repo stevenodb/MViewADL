@@ -27,6 +27,7 @@ import mview.model.refinement.RefinementContext;
 import org.rejuse.association.SingleAssociation;
 
 import chameleon.core.element.Element;
+import chameleon.core.lookup.LookupException;
 import chameleon.core.modifier.ElementWithModifiersImpl;
 import chameleon.core.modifier.Modifier;
 import chameleon.core.validation.BasicProblem;
@@ -108,8 +109,9 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element>
 	 * @param actor
 	 */
 	public void setCaller(Actor actor) {
-		if (actor != null)
+		if (actor != null) {
 			_caller.connectTo(actor.parentLink());
+		}
 	}
 	
 	/**
@@ -139,8 +141,9 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element>
 	 * @param actor
 	 */
 	public void setCallee(Actor actor) {
-		if (actor != null)
+		if (actor != null) {
 			_callee.connectTo(actor.parentLink());
+		}
 	}
 	
 	/**
@@ -173,7 +176,7 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element>
 
 		// signature
 		if (this.signature() != null) {
-			clone.setSignature(this.signature());
+			clone.setSignature(this.signature().clone());
 		}
 
 		if (this.callee() != null) {
@@ -264,45 +267,55 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element>
 	 * )
 	 */
 	@Override
-	public Pointcut merge(MViewMember other) throws MergeNotSupportedException {
+	public Pointcut merge(MViewMember other) throws MergeNotSupportedException, LookupException {
 
 		Pointcut merged;
 		
 		if (mergesWith(other)) {
 			
 			Pointcut child = this.clone();
+//			Pointcut child = this;
 			Pointcut parent = (Pointcut) other.clone();
+//			Pointcut parent = (Pointcut) other;
+			child.setUniParent(parent());
+			parent.setUniParent(other.parent());
 
 			merged = new Pointcut();
+			merged.setUniParent(parent());
 			
 			// 1. kind modifier: override with child's kind
 			merged.addModifiers(child.modifiers());
 			
 			// 2. signature
 			if (child.signature() != null) {
-				merged.setSignature(child.signature().merge(parent.signature()));
+				PointcutSignature newSignature = child.signature().merge(parent.signature());
+				newSignature.setUniParent(null);
+				merged.setSignature(newSignature);
 			} else {
 				merged.setSignature(parent.signature());
 			}
 			
 			// 3. CallerProps
 			if (child.caller() != null) {
-				merged.setCaller(child.caller().merge(parent.caller()));
+				Actor newCaller = child.caller().merge(parent.caller());
+				newCaller.setUniParent(null);
+				merged.setCaller(newCaller);
 			} else {
 				merged.setCaller(parent.caller());
 			}
 			
 			// 4. CalleeProps
 			if (child.callee() != null) {
-				merged.setCallee(child.callee().merge(parent.callee()));
+				Actor newCallee = child.callee().merge(parent.callee());
+				newCallee.setUniParent(null);
+				merged.setCallee(newCallee);
 			} else {
 				merged.setCallee(parent.callee());
 			}
 			
 		} else {
-			merged = this.clone();
+			merged = this;
 		}
-
 		return merged;
 	}
 }

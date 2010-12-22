@@ -28,6 +28,7 @@ import org.rejuse.association.OrderedMultiAssociation;
 
 import chameleon.core.declaration.Declaration;
 import chameleon.core.element.Element;
+import chameleon.core.lookup.LookupException;
 import chameleon.core.namespace.NamespaceElementImpl;
 import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.Valid;
@@ -88,8 +89,9 @@ public class Actor extends NamespaceElementImpl<Actor, Element> implements
 	 * @param <D>
 	 * @param declarationType
 	 * @return
+	 * @throws LookupException 
 	 */
-	public <D extends Declaration> ActorProp<D> prop(Class<D> declarationType) {
+	public <D extends Declaration> ActorProp<D> prop(Class<D> declarationType) throws LookupException {
 		ActorProp<D> result = null;
 
 		for (ActorProp<D> actorProp : props()) {
@@ -135,14 +137,17 @@ public class Actor extends NamespaceElementImpl<Actor, Element> implements
 	 * )
 	 */
 	@Override
-	public Actor merge(MViewMember other) throws MergeNotSupportedException {
-		Actor merged = this.clone();
+	public Actor merge(MViewMember other) throws MergeNotSupportedException, LookupException {
+		Actor merged;
 		
 		if (mergesWith(other)) {
 			merged = new Actor();
+			merged.setUniParent(parent());
 	
 			Actor child = this.clone();
 			Actor parent = (Actor) other.clone();
+			child.setUniParent(parent());
+			parent.setUniParent(other.parent());
 	
 			// for all props
 			for (ActorProp childProp : child.props()) {
@@ -156,6 +161,7 @@ public class Actor extends NamespaceElementImpl<Actor, Element> implements
 				if (parentProp != null) {
 	
 					ActorProp mergedProp = childProp.merge(parentProp);
+					mergedProp.setUniParent(null);
 					merged.addProp(mergedProp);
 	
 					// remove callerprop from the parent, we are done with it
@@ -165,6 +171,8 @@ public class Actor extends NamespaceElementImpl<Actor, Element> implements
 	
 			// add remaining parent props that haven't been refined here
 			merged.addAllProps(parent.props());
+		} else {
+			merged = this;
 		}
 
 		return merged;

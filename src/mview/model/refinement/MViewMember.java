@@ -19,6 +19,7 @@
 package mview.model.refinement;
 
 import chameleon.core.element.Element;
+import chameleon.core.lookup.LookupException;
 import exception.MergeNotSupportedException;
 
 
@@ -39,14 +40,16 @@ public interface MViewMember<M extends MViewMember<M,P>, P extends Element> exte
 	 * Check whether this member overrides the given member
 	 * @param other the member to check with
 	 * @return
+	 * @throws LookupException 
 	 */
-	public boolean overrides(MViewMember other);
+	public boolean overrides(MViewMember other) throws LookupException;
 
 	/**
 	 * Check whether this member can be merged with the given member
 	 * @return	other the member to check with
+	 * @throws LookupException 
 	 */
-	public boolean mergesWith(MViewMember other);
+	public boolean mergesWith(MViewMember other) throws LookupException;
 	
 	/**
 	 * If {@link #mergesWith(MViewMember)} is true, returns merged result of 
@@ -60,8 +63,9 @@ public interface MViewMember<M extends MViewMember<M,P>, P extends Element> exte
 	 * @param other the member to merge with
 	 * @return the merged member
 	 * @throws MergeNotSupportedException when merge is not supported 
+	 * @throws LookupException 
 	 */
-	public M merge(MViewMember other) throws MergeNotSupportedException;
+	public M merge(MViewMember other) throws MergeNotSupportedException, LookupException;
 	
 	/*
 	 * Override vs. Merge
