@@ -21,6 +21,8 @@ package mview.model.refinement;
 import java.util.ArrayList;
 import java.util.List;
 
+import mview.model.module.Interface;
+import mview.model.module.Module.RequiredInterfaceDependency;
 import mview.model.namespace.MViewDeclaration;
 
 import org.rejuse.association.MultiAssociation;
@@ -33,19 +35,21 @@ import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.declaration.TargetDeclaration;
 import chameleon.core.element.Element;
 import chameleon.core.lookup.DeclarationSelector;
+import chameleon.core.lookup.LocalLookupStrategy;
 import chameleon.core.lookup.LookupException;
 import chameleon.core.lookup.LookupStrategy;
+import chameleon.core.lookup.LookupStrategySelector;
+import chameleon.core.reference.SimpleReference;
 import chameleon.core.validation.VerificationResult;
+import chameleon.oo.type.Type;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  * 
  */
-public abstract class RefinableDeclarationImpl<
-				D extends RefinableDeclarationImpl<D, P>, 
-				P extends Element>
+public abstract class RefinableDeclarationImpl<D extends RefinableDeclarationImpl<D, P>, P extends Element>
 		extends MViewDeclaration<D, P>
-		implements	RefinableDeclaration<D, P>,
+		implements RefinableDeclaration<D, P>,
 					TargetDeclaration<D, P, Signature, D>,
 					DeclarationContainer<D, P> {
 
@@ -70,8 +74,8 @@ public abstract class RefinableDeclarationImpl<
 			new MultiAssociation<RefinableDeclaration, RefinementRelation>(this);
 
 	/**
-	 * @return the list of refinement relations
-	 * TODO: make this protected again!!!!
+	 * @return the list of refinement relations TODO: make this protected
+	 *         again!!!!
 	 */
 	public List<RefinementRelation> refinementRelations() {
 		return _refinementRelations.getOtherEnds();
@@ -154,7 +158,7 @@ public abstract class RefinableDeclarationImpl<
 	@Override
 	public <D extends Declaration> List<D> declarations(
 			DeclarationSelector<D> selector) throws LookupException {
-		
+
 		return selector.selection(declarations());
 	}
 
@@ -168,28 +172,72 @@ public abstract class RefinableDeclarationImpl<
 	@Override
 	public LookupStrategy lexicalLookupStrategy(Element element)
 			throws LookupException {
-    	if(refinementRelations().contains(element)) {
-    		Element parent = parent();
-    		if(parent != null) {
-    			return parent().lexicalLookupStrategy(this);
-    		} else {
-    			throw new LookupException("Parent of type is null when looking for the parent context of a type.");
-    		}
-    	} else {
-    	  return lexicalMembersLookupStrategy();
-    	}
+		if (refinementRelations().contains(element)) {
+			Element parent = parent();
+			if (parent != null) {
+				return parent().lexicalLookupStrategy(this);
+			} else {
+				throw new LookupException(
+						"Parent of type is null when looking for the parent context of a type.");
+			}
+		} else {
+			return lexicalMembersLookupStrategy();
+		}
 	}
 
 	private LookupStrategy lexicalMembersLookupStrategy() {
-		if(_lus == null) {
+		if (_lus == null) {
 			_lus = language().lookupFactory().createLexicalLookupStrategy(
-					targetContext(), this);
+//					targetContext(), this, new RequiredStrategySelector());
+					 targetContext(), this);
+
 		}
 		return _lus;
 	}
-	
+
 	private LookupStrategy _lus;
-	
+
+	protected class RequiredStrategySelector implements LookupStrategySelector {
+		@Override
+		public LookupStrategy strategy() throws LookupException {
+			return requiredLookupStrategy();
+		}
+	}
+
+	private LookupStrategy _requiredLookupStrategy;
+
+	private LookupStrategy requiredLookupStrategy() {
+		if (_requiredLookupStrategy == null) {
+			_requiredLookupStrategy =
+					language().lookupFactory().createLexicalLookupStrategy(
+							new RequiredLocalStrategy(this), this);
+		}
+		return _requiredLookupStrategy;
+	}
+
+	protected class RequiredLocalStrategy extends
+			LocalLookupStrategy<RefinableDeclarationImpl> {
+		public RequiredLocalStrategy(RefinableDeclarationImpl element) {
+			super(element);
+		}
+
+		@Override
+		public <D extends Declaration> List<D> declarations(
+				DeclarationSelector<D> selector) throws LookupException {
+			List<D> result = new ArrayList<D>();
+			List<RequiredInterfaceDependency> requires =
+					members(RequiredInterfaceDependency.class);
+			if (requires.size() > 0) {
+				RequiredInterfaceDependency dep = requires.get(0);
+				List<SimpleReference<Interface>> intfaces = dep.dependencies();
+				for (SimpleReference<Interface> intface : intfaces) {
+					result.add(intface.getElement().targetContext().lookUp(selector));
+				}
+			}
+			return result;
+		}
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * 
