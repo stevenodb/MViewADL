@@ -121,7 +121,7 @@ public class Connector<E extends Connector<E>> extends Module<E> {
 	 */
 	@Override
 	public List<MViewMember> localMembers() throws LookupException {
-		List<MViewMember> result = new ArrayList<MViewMember>();
+		List<MViewMember> result = super.localMembers();
 		result.addAll(compositions());
 		return result;
 	}

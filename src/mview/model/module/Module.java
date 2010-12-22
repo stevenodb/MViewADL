@@ -16,11 +16,15 @@
  * If not, see <http://www.gnu.org/licenses/>.
  */
 package mview.model.module;
+
+import java.util.ArrayList;
 import java.util.List;
 
+import mview.model.refinement.MViewMember;
 import mview.model.refinement.RefinableMemberDeclarationImpl;
 
 import org.rejuse.association.OrderedMultiAssociation;
+import org.rejuse.association.SingleAssociation;
 
 import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.element.Element;
@@ -28,20 +32,42 @@ import chameleon.core.lookup.LookupException;
 import chameleon.core.reference.SimpleReference;
 import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.VerificationResult;
+import chameleon.util.Util;
 
 /**
  * Class representing the Module concept.
+ * 
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
- *
+ * 
  * @param <E>
  */
 public abstract class Module<E extends Module<E>>
 			extends RefinableMemberDeclarationImpl<E, Element> {
-	
+
+	public class RequiredInterfaceDependency extends
+			Dependency<RequiredInterfaceDependency, Interface> {
+
+		@Override
+		protected RequiredInterfaceDependency cloneThis() {
+			return new RequiredInterfaceDependency();
+		}
+	}
+
+	public class ProvidedInterfaceDependency extends
+			Dependency<ProvidedInterfaceDependency, Interface> {
+
+		@Override
+		protected ProvidedInterfaceDependency cloneThis() {
+			return new ProvidedInterfaceDependency();
+		}
+	}
+
 	/**
 	 * Default constructor
 	 */
 	protected Module() {
+//		_providedInterfaces.connectTo((new ProvidedInterfaceDependency()).parentLink());
+//		_requiredInterfaces.connectTo((new RequiredInterfaceDependency()).parentLink());
 	}
 
 	/**
@@ -50,146 +76,212 @@ public abstract class Module<E extends Module<E>>
 	protected Module(SimpleNameSignature signature) {
 		super(signature);
 	}
-	
 
 	/*
 	 * Provided Interfaces association
 	 */
-	private final OrderedMultiAssociation<Module<E>, SimpleReference<Interface>> _providedInterfaces = 
-		new OrderedMultiAssociation<Module<E>, SimpleReference<Interface>>(this);
+	private final SingleAssociation<Module<E>, ProvidedInterfaceDependency> _providedInterfaces = (
+			new SingleAssociation<Module<E>, ProvidedInterfaceDependency>(this));
+
+	/**
+	 * @return
+	 */
+	private ProvidedInterfaceDependency providedInterfaceDependency() {
+		return _providedInterfaces.getOtherEnd();
+	}
 
 	/**
 	 * @return
 	 */
 	public List<SimpleReference<Interface>> providedInterfaces() {
-		return _providedInterfaces.getOtherEnds();
+		if (providedInterfaceDependency() == null) {
+			_providedInterfaces.connectTo(new ProvidedInterfaceDependency().parentLink());
+		}
+		return providedInterfaceDependency().dependencies();
 	}
-	
+
 	/**
 	 * @param relation
 	 */
 	public void addProvidedInterface(SimpleReference<Interface> relation) {
-		if (relation != null)
-			_providedInterfaces.add(relation.parentLink());
+		if (relation != null) {
+			if (providedInterfaceDependency() == null) {
+				_providedInterfaces.connectTo(new ProvidedInterfaceDependency().parentLink());
+			}
+			providedInterfaceDependency().addDependency(relation);
+		}
 	}
-	
+
 	/**
 	 * @param relation
 	 */
 	public void removeProvidedInterface(SimpleReference<Interface> relation) {
-		if (relation != null)
-			_providedInterfaces.remove(relation.parentLink());
+		if (relation != null) {
+			if (providedInterfaceDependency() == null) {
+				_providedInterfaces.connectTo(new ProvidedInterfaceDependency().parentLink());
+			}
+			providedInterfaceDependency().removeDependency(relation);
+		}
 	}
 
-	
-	
 	/*
 	 * Required Interfaces association
 	 */
-	private final OrderedMultiAssociation<Module<E>, SimpleReference<Interface>> 
-		_requiredInterfaces = 
-		new OrderedMultiAssociation<Module<E>, SimpleReference<Interface>>(this);
-	
+	private final SingleAssociation<Module<E>, RequiredInterfaceDependency> _requiredInterfaces =
+			new SingleAssociation<Module<E>, RequiredInterfaceDependency>(this);
+
+	/**
+	 * @return
+	 */
+	private RequiredInterfaceDependency requiredInterfaceDependency() {
+		return _requiredInterfaces.getOtherEnd();
+	}
+
 	/**
 	 * @return
 	 */
 	public List<SimpleReference<Interface>> requiredInterfaces() {
-		return _requiredInterfaces.getOtherEnds();
+		if (requiredInterfaceDependency() == null) {
+			_requiredInterfaces.connectTo(new RequiredInterfaceDependency().parentLink());
+		}
+		return requiredInterfaceDependency().dependencies();
 	}
-	
+
 	/**
 	 * @param relation
 	 */
 	public void addRequiredInterface(SimpleReference<Interface> relation) {
-		if (relation != null)
-			_requiredInterfaces.add(relation.parentLink());
+		if (relation != null) {
+			if (requiredInterfaceDependency() == null) {
+				_requiredInterfaces.connectTo(new RequiredInterfaceDependency().parentLink());
+			}
+			
+			requiredInterfaceDependency().addDependency(relation);
+		}
 	}
-	
+
 	/**
 	 * @param relation
 	 */
 	public void removeRequiredInterface(SimpleReference<Interface> relation) {
-		if (relation != null)
-			_requiredInterfaces.remove(relation.parentLink());
+		if (relation != null) {
+			if (requiredInterfaceDependency() == null) {
+				_requiredInterfaces.connectTo(new RequiredInterfaceDependency().parentLink());
+			}
+
+			requiredInterfaceDependency().removeDependency(relation);
+		}
 	}
 
-		
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see chameleon.core.element.ElementImpl#clone()
 	 */
 	@Override
 	public E clone() {
 		final E clone = super.clone();
-		
-		//moved to MViewDeclaration
-		//clone.setSignature(signature().clone());		
-		
-		for (SimpleReference<Interface> simpleReference : this.providedInterfaces()) {
-			SimpleReference<Interface> localClone = simpleReference.clone();
-			
-			clone.addProvidedInterface(localClone);
-		}
-		for (SimpleReference<Interface> simpleReference : this.requiredInterfaces()) {
-			SimpleReference<Interface> localClone = simpleReference.clone();
-			
-			clone.addRequiredInterface(localClone);
-		}
-		
+
+		// moved to MViewDeclaration
+		// clone.setSignature(signature().clone());
+
+		// TODO: setter
+		clone._providedInterfaces.connectTo(providedInterfaceDependency()
+				.clone().parentLink());
+
+		clone._requiredInterfaces.connectTo(requiredInterfaceDependency()
+				.clone().parentLink());
+
+		// for (SimpleReference<Interface> simpleReference :
+		// this.providedInterfaces()) {
+		// SimpleReference<Interface> localClone = simpleReference.clone();
+		//
+		// clone.addProvidedInterface(localClone);
+		// }
+		// for (SimpleReference<Interface> simpleReference :
+		// this.requiredInterfaces()) {
+		// SimpleReference<Interface> localClone = simpleReference.clone();
+		//
+		// clone.addRequiredInterface(localClone);
+		// }
+
 		return clone;
 	}
 
-
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see chameleon.core.element.ElementImpl#verifySelf()
 	 */
 	@Override
 	public VerificationResult verifySelf() {
 		VerificationResult result = super.verifySelf();
-		
-		if ( ! (signature() != null) ) {
+
+		if (!(signature() != null)) {
 			result = result.and(new BasicProblem(this, "No valid signature"));
 		}
-		
-		
+
 		{ // check provided and required interface overlap
 			boolean containsAny = false;
-			
+
 			try {
-				
-				for (SimpleReference<Interface> provided : this.providedInterfaces()) {
-					for (SimpleReference<Interface> required : this.requiredInterfaces()) {
-							if(provided.getElement().sameAs(required.getElement())) {
-								containsAny = true;
-							}
-						if (containsAny) break;
+
+				for (SimpleReference<Interface> provided : this
+						.providedInterfaces()) {
+					for (SimpleReference<Interface> required : this
+							.requiredInterfaces()) {
+						if (provided.getElement().sameAs(required.getElement())) {
+							containsAny = true;
+						}
+						if (containsAny)
+							break;
 					}
-					if (containsAny) break;
+					if (containsAny)
+						break;
 				}
-				
+
 			} catch (LookupException e) {
 				e.printStackTrace();
 			}
-	
-			
+
 			if (containsAny) {
-				result = result.and(new BasicProblem(this, "Provided and required " +
-						"interfaces should not overlap."));
+				result =
+						result.and(new BasicProblem(this,
+								"Provided and required " +
+										"interfaces should not overlap."));
 			}
 		}
-		
+
 		return result;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see mview.model.namespace.MViewDeclaration#children()
 	 */
 	@Override
 	public List<Element> children() {
 		final List<Element> result = super.children();
-		
-		result.addAll(providedInterfaces());
-		result.addAll(requiredInterfaces());
-		
+
+		Util.addNonNull(requiredInterfaceDependency(), result);
+		Util.addNonNull(providedInterfaceDependency(), result);
+
+		return result;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see mview.model.refinement.RefinableDeclaration#localMembers()
+	 */
+	@Override
+	public List<MViewMember> localMembers() throws LookupException {
+		List<MViewMember> result = new ArrayList<MViewMember>();
+
+		Util.addNonNull(requiredInterfaceDependency(), result);
+		Util.addNonNull(providedInterfaceDependency(), result);
+
 		return result;
 	}
 
