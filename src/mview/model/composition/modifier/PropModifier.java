@@ -22,10 +22,10 @@ import java.util.HashSet;
 import java.util.Set;
 
 import mview.model.language.MView;
+import mview.model.property.ActorProperty;
 
 import org.rejuse.property.PropertySet;
 
-import property.ActorProperty;
 
 import chameleon.core.declaration.Declaration;
 import chameleon.core.element.Element;

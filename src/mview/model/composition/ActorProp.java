@@ -22,13 +22,13 @@ import java.util.List;
 
 import mview.model.composition.modifier.PropModifier;
 import mview.model.language.MView;
+import mview.model.property.ActorProperty;
 import mview.model.refinement.MViewMember;
 import mview.model.refinement.RefinementContext;
 import mview.model.refinement.modifier.Overridable;
 
 import org.rejuse.association.OrderedMultiAssociation;
 
-import property.ActorProperty;
 import chameleon.core.declaration.Declaration;
 import chameleon.core.element.Element;
 import chameleon.core.lookup.LookupException;

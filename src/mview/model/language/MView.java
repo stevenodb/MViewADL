@@ -34,11 +34,11 @@ import mview.model.composition.PointcutSignature;
 import mview.model.composition.PropValue;
 import mview.model.module.Component;
 import mview.model.module.Interface;
+import mview.model.property.ActorProperty;
 import mview.model.refinement.MViewMember;
 
 import org.rejuse.property.PropertyMutex;
 
-import property.ActorProperty;
 
 import chameleon.core.declaration.Declaration;
 import chameleon.core.declaration.SimpleNameSignature;

@@ -16,7 +16,7 @@
  * You should have received a copy of the GNU General Public License. 
  * If not, see <http://www.gnu.org/licenses/>.
  */
-package property;
+package mview.model.property;
 
 import org.rejuse.property.PropertyMutex;
 import org.rejuse.property.PropertyUniverse;
