@@ -21,6 +21,7 @@ package mview.model.composition;
 import java.util.ArrayList;
 import java.util.List;
 
+import mview.exception.MergeNotSupportedException;
 import mview.model.refinement.MViewMember;
 import mview.model.refinement.RefinementContext;
 
@@ -33,7 +34,6 @@ import chameleon.core.namespace.NamespaceElementImpl;
 import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.Valid;
 import chameleon.core.validation.VerificationResult;
-import exception.MergeNotSupportedException;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>

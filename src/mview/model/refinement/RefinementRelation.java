@@ -22,6 +22,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import mview.exception.MergeNotSupportedException;
+
 import org.rejuse.association.SingleAssociation;
 
 import chameleon.core.element.ElementImpl;
@@ -31,7 +33,6 @@ import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.Valid;
 import chameleon.core.validation.VerificationResult;
 import chameleon.util.Util;
-import exception.MergeNotSupportedException;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>

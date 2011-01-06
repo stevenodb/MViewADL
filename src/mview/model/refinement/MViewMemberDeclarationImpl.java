@@ -18,11 +18,11 @@
  */
 package mview.model.refinement;
 
+import mview.exception.MergeNotSupportedException;
 import mview.model.namespace.MViewDeclaration;
 import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.element.Element;
 import chameleon.core.lookup.LookupException;
-import exception.MergeNotSupportedException;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>

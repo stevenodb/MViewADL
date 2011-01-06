@@ -18,9 +18,9 @@
  */
 package mview.model.refinement;
 
+import mview.exception.MergeNotSupportedException;
 import chameleon.core.element.Element;
 import chameleon.core.lookup.LookupException;
-import exception.MergeNotSupportedException;
 
 
 /**

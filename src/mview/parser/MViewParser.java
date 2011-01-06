@@ -2,7 +2,7 @@
 
 package mview.parser;
 
-import exception.MergeNotSupportedException;
+import mview.exception.MergeNotSupportedException;
 import mview.model.application.Application;
 import mview.model.application.Host;
 import mview.model.application.Instance;
