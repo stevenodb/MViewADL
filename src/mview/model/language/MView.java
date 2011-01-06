@@ -20,8 +20,6 @@ package mview.model.language;
 
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.LinkedHashMap;
-import java.util.Map;
 import java.util.Set;
 
 import mview.model.application.Application;
@@ -35,12 +33,10 @@ import mview.model.composition.PropValue;
 import mview.model.module.Component;
 import mview.model.module.Interface;
 import mview.model.property.ActorProperty;
-import mview.model.refinement.MViewMember;
+import mview.model.refinement.RefinableDeclaration;
 
 import org.rejuse.property.PropertyMutex;
 
-
-import chameleon.core.declaration.Declaration;
 import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.language.Language;
 import chameleon.core.namespace.RootNamespace;
@@ -72,9 +68,11 @@ public class MView extends Language {
 	public final ActorProperty HOST;
 
 	public final StaticChameleonProperty NEGATE;
-	
+
 	public final StaticChameleonProperty OVERRIDABLE;
 	public final ChameleonProperty EXTENDABLE;
+
+	public final StaticChameleonProperty ABSTRACT;
 
 	public final Set<ActorProperty> ACTOR_PROPERTIES;
 
@@ -111,23 +109,21 @@ public class MView extends Language {
 		// ActorProp
 		ACTOR_MUTEX = new PropertyMutex<ChameleonProperty>();
 
-		
 		INTERFACE = new ActorProperty(Interface.class, this, ACTOR_MUTEX,
 				ActorProp.class);
 
 		COMPONENT = new ActorProperty(Component.class, this, ACTOR_MUTEX,
 				ActorProp.class);
-				
+
 		INSTANCE = new ActorProperty(Instance.class, this, ACTOR_MUTEX,
 				ActorProp.class);
-		
+
 		APPLICATION =
 				new ActorProperty(Application.class, this, ACTOR_MUTEX,
 						ActorProp.class);
 
 		HOST = new ActorProperty(Host.class, this, ACTOR_MUTEX,
 				ActorProp.class);
-		
 
 		final ActorProperty[] ACTOR_PROPERTIES_DECL =
 			{
@@ -138,8 +134,7 @@ public class MView extends Language {
 					HOST
 			};
 
-
-		 ACTOR_PROPERTIES = new HashSet<ActorProperty>(
+		ACTOR_PROPERTIES = new HashSet<ActorProperty>(
 				Arrays.asList(ACTOR_PROPERTIES_DECL));
 
 		// overridable property
@@ -147,31 +142,35 @@ public class MView extends Language {
 				new StaticChameleonProperty("Overridable", this,
 						ActorProp.class);
 		OVERRIDABLE.addValidElementType(PointcutSignature.class);
-		
+
 		EXTENDABLE = OVERRIDABLE.inverse();
 		OVERRIDABLE.setName("Extendable");
 
 		// negate property
 		NEGATE = new StaticChameleonProperty("Negate", this, PropValue.class);
+
+		// abstract property
+		ABSTRACT =
+				new StaticChameleonProperty("Abstract", this,
+						RefinableDeclaration.class);
 	}
 
-//	/**
-//	 * @param declaration
-//	 * @return A PropertySet of actor properties for the given declaration
-//	 */
-//	public <D extends Declaration> Set<ChameleonProperty> actorProperties(
-//			Class<D> declaration) {
-//		Set<ChameleonProperty> result = new HashSet<ChameleonProperty>();
-//
-//		for (ActorProperty property : ACTOR_PROPERTIES) {
-//			if (property.targetDeclarationType().equals(declaration)) {
-//				result.add(property);
-//			}
-//		}
-//		
-//		return result;
-//	}
-
+	// /**
+	// * @param declaration
+	// * @return A PropertySet of actor properties for the given declaration
+	// */
+	// public <D extends Declaration> Set<ChameleonProperty> actorProperties(
+	// Class<D> declaration) {
+	// Set<ChameleonProperty> result = new HashSet<ChameleonProperty>();
+	//
+	// for (ActorProperty property : ACTOR_PROPERTIES) {
+	// if (property.targetDeclarationType().equals(declaration)) {
+	// result.add(property);
+	// }
+	// }
+	//
+	// return result;
+	// }
 
 	@Override
 	protected void initializePropertyRules() {
