@@ -22,6 +22,7 @@ package mview.model.application;
 import java.util.ArrayList;
 import java.util.List;
 
+import mview.model.composition.Advice;
 import mview.model.module.Module;
 import mview.model.module.ModuleContainer;
 import mview.model.refinement.MViewMember;
@@ -237,18 +238,24 @@ public class Application<A extends Application<A>>
 	public VerificationResult verifySelf() {
 		VerificationResult result = super.verifySelf();
 
-		if (!(this.instances() != null)) {
-			result =
-					result.and(new BasicProblem(this,
-							"Application needs an instance"));
+		if ( !isAbstract() ) {
+		
+			try {
+				if (!(this.members(Instance.class).size() > 0)) {
+					result =
+							result.and(new BasicProblem(this,
+									"Application needs an instance"));
+				}
+			} catch (LookupException e) {
+				e.printStackTrace();
+			}
+	
+			if (!(this.hosts() != null)) {
+				result =
+						result.and(new BasicProblem(this,
+								"Application needs a host"));
+			}
 		}
-
-		if (!(this.hosts() != null)) {
-			result =
-					result.and(new BasicProblem(this,
-							"Application needs a host"));
-		}
-
 		
 		try {
 			List<Host> hostMembers = members(Host.class);
@@ -279,8 +286,7 @@ public class Application<A extends Application<A>>
 	 * @see mview.model.refinement.RefinableDeclaration#localMembers()
 	 */
 	@Override
-	public List<MViewMember> localMembers()
-			throws LookupException {
+	public List<MViewMember> localMembers() {
 		List<MViewMember> result = new ArrayList<MViewMember>();
 
 		result.addAll(hosts());

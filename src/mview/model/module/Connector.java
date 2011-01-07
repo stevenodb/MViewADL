@@ -120,7 +120,7 @@ public class Connector<E extends Connector<E>> extends Module<E> {
 	 * @see mview.model.refinement.RefinableDeclaration#localMembers()
 	 */
 	@Override
-	public List<MViewMember> localMembers() throws LookupException {
+	public List<MViewMember> localMembers() {
 		List<MViewMember> result = super.localMembers();
 		result.addAll(compositions());
 		return result;

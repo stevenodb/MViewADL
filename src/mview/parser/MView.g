@@ -15,7 +15,7 @@ scope TargetScope {
 @parser::header {
 package mview.parser;
 
-import exception.MergeNotSupportedException;
+import mview.exception.MergeNotSupportedException;
 import mview.model.application.Application;
 import mview.model.application.Host;
 import mview.model.application.Instance;
@@ -59,6 +59,7 @@ import mview.model.namespace.MViewDeclaration;
 import mview.model.refinement.AbstractElement;
 import mview.model.refinement.modifier.Overridable;
 import mview.model.refinement.modifier.Extendable;
+import mview.model.refinement.modifier.Abstract;
 import mview.model.refinement.MViewMember;
 import mview.model.refinement.MViewMemberDeclarationImpl;
 import mview.model.refinement.RefinableDeclaration;
@@ -258,8 +259,13 @@ pointcutServiceSignatureParameterDecls[List<Pair<String,String>> lst]
  
 
 connectorDeclaration returns [Connector element]
-	:	conkw='connector' name=Identifier {
+	:	(abs=abstractModifier)? conkw='connector' name=Identifier {
 			$element = new Connector(new SimpleNameSignature($name.text));
+			
+			if ($abs.value != null) {
+				$element.addModifier($abs.value);
+			}
+			
 			setKeyword($element,$conkw);
 			setLocation($element,$name,"__NAME");
 		} 
@@ -282,8 +288,13 @@ connectorBodyDeclaration[Connector element]
 	
 
 connectorAOCompositionDeclaration returns [AOComposition element]
-	:	kw='ao-composition' name=Identifier  {
+	:	(abs=abstractModifier)? kw='ao-composition' name=Identifier  {
 			$element = new AOComposition(new SimpleNameSignature($name.text));
+			
+			if ($abs.value != null) {
+				$element.addModifier($abs.value);
+			}
+			
 			setKeyword($element,$kw);
 			setLocation($element,$name,"__NAME");
 		}
@@ -418,8 +429,13 @@ pointcutActorBodyDecls[Actor actor]
 
 
 pointcutActorPropDecls[ActorProp prop,Class<? extends Declaration> declClass]
-	: 	(negate=negation)? apdref=pointcutActorPropDecl[$declClass] ( ',' pointcutActorPropDecls[$prop,$declClass] )? {
-			PropValue propValue = new PropValue($apdref.relation,$negate.value);
+	: 	(negate=negationModifier)? apdref=pointcutActorPropDecl[$declClass] ( ',' pointcutActorPropDecls[$prop,$declClass] )? {
+			PropValue propValue = new PropValue($apdref.relation);
+			
+			if ($negate.value != null) {
+				propValue.addModifier($negate.value);
+			}
+
 			$prop.addPropValue(propValue);
 		}
 	;
@@ -555,8 +571,13 @@ compositeBodyDeclaration[Composite element]
  *********** */
 
 applicationDeclaration returns [Application element]
-	:	appkw='application' name=Identifier {
+	:	(abs=abstractModifier)? appkw='application' name=Identifier {
 			$element = new Application(new SimpleNameSignature($name.text));
+			
+			if ($abs.value != null) {
+				$element.addModifier($abs.value);
+			}
+
 			setKeyword($element,$appkw);
    			setLocation($element,$name,"__NAME");
 		} 
@@ -699,6 +720,7 @@ refinementRelationDeclarations[RefinableDeclaration element, Class kind]
 			SimpleReference parentRef = new SimpleReference($name.text,$kind);
 			RefinementRelation relation = new RefinementRelation(parentRef);
 			$element.addRefinementRelation(relation);
+			
 			setLocation(parentRef,$name,$name);
 		}
 	;
@@ -744,11 +766,14 @@ overrideOrExtend returns [Modifier value]
 	;
 	
 
-negation returns [Modifier value]
+negationModifier returns [Modifier value]
 	: 	'!' {$value = new Negate(); }
 	;
 	
-
+abstractModifier returns [Modifier value]
+	:	akw='abstract' {$value = new Abstract(); setKeyword($value,$akw); }
+	;
+	
 voidType returns [TypeReference value]
 /*@after{setLocation(retval.element, (CommonToken)retval.start, (CommonToken)retval.stop, "__PRIMITIVE");}*/
     : 'void' {$value=new BasicTypeReference("void");}

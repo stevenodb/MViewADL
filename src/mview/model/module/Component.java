@@ -65,8 +65,11 @@ public class Component<E extends Component<E>> extends Module<E> {
 	public VerificationResult verifySelf() {
 		VerificationResult result = super.verifySelf();
 		
-		if ( ! (this.providedInterfaces().size() >= 1) ) {
-			result = result.and(new BasicProblem(this, "Missing provided interface"));
+		if ( ! isAbstract() ) {
+		
+			if ( ! (this.providedInterfaces().size() >= 1) ) {
+				result = result.and(new BasicProblem(this, "Missing provided interface"));
+			}
 		}
 		
 		return result;
@@ -76,7 +79,7 @@ public class Component<E extends Component<E>> extends Module<E> {
 	 * @see mview.model.refinement.RefinableDeclaration#localMembers()
 	 */
 	@Override
-	public List<MViewMember> localMembers() throws LookupException {
+	public List<MViewMember> localMembers() {
 		return super.localMembers();
 	}
 

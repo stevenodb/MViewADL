@@ -32,17 +32,11 @@ import chameleon.core.property.ChameleonProperty;
  */
 public class Extendable extends ModifierImpl<Extendable, Element> {
 
-	/* (non-Javadoc)
-	 * @see chameleon.core.modifier.Modifier#impliedProperties()
-	 */
 	@Override
 	public PropertySet<Element, ChameleonProperty> impliedProperties() {
 		return createSet(language(MView.class).EXTENDABLE);
 	}
 
-	/* (non-Javadoc)
-	 * @see chameleon.core.modifier.ModifierImpl#clone()
-	 */
 	@Override
 	public Extendable clone() {
 		return new Extendable();

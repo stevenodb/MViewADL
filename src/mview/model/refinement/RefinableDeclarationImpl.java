@@ -21,9 +21,11 @@ package mview.model.refinement;
 import java.util.ArrayList;
 import java.util.List;
 
+import mview.model.language.MView;
 import mview.model.module.Interface;
 import mview.model.module.Module.RequiredInterfaceDependency;
 import mview.model.namespace.MViewDeclaration;
+import mview.model.refinement.modifier.Abstract;
 
 import org.rejuse.association.MultiAssociation;
 import org.rejuse.java.collections.TypeFilter;
@@ -60,6 +62,7 @@ public abstract class RefinableDeclarationImpl<D extends RefinableDeclarationImp
 		super();
 	}
 
+
 	/**
 	 * @param signature
 	 */
@@ -73,6 +76,7 @@ public abstract class RefinableDeclarationImpl<D extends RefinableDeclarationImp
 	private MultiAssociation<RefinableDeclaration, RefinementRelation> _refinementRelations =
 			new MultiAssociation<RefinableDeclaration, RefinementRelation>(this);
 
+
 	/**
 	 * @return the list of refinement relations TODO: make this protected
 	 *         again!!!!
@@ -81,20 +85,24 @@ public abstract class RefinableDeclarationImpl<D extends RefinableDeclarationImp
 		return _refinementRelations.getOtherEnds();
 	}
 
+
 	@Override
 	public void addRefinementRelation(RefinementRelation relation) {
 		_refinementRelations.add(relation.parentLink());
 	}
+
 
 	@Override
 	public void removeRefinemtRelation(RefinementRelation relation) {
 		_refinementRelations.remove(relation.parentLink());
 	}
 
+
 	@Override
 	public void removeAllRefinementRelations() {
 		_refinementRelations.clear();
 	}
+
 
 	// @Override
 	// public List<Declaration> declarations() throws LookupException {
@@ -122,11 +130,7 @@ public abstract class RefinableDeclarationImpl<D extends RefinableDeclarationImp
 		return result;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see chameleon.core.declaration.DeclarationContainer#declarations()
-	 */
+
 	@Override
 	public List<? extends MViewMemberDeclaration> declarations()
 			throws LookupException {
@@ -134,13 +138,7 @@ public abstract class RefinableDeclarationImpl<D extends RefinableDeclarationImp
 		return members(MViewMemberDeclaration.class);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * chameleon.core.declaration.DeclarationContainer#locallyDeclaredDeclarations
-	 * ()
-	 */
+
 	@Override
 	public List<? extends MViewDeclaration> locallyDeclaredDeclarations()
 			throws LookupException {
@@ -148,13 +146,7 @@ public abstract class RefinableDeclarationImpl<D extends RefinableDeclarationImp
 				new TypeFilter(MViewDeclaration.class).retain(localMembers()));
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * chameleon.core.declaration.DeclarationContainer#declarations(chameleon
-	 * .core.lookup.DeclarationSelector)
-	 */
+
 	@Override
 	public <D extends Declaration> List<D> declarations(
 			DeclarationSelector<D> selector) throws LookupException {
@@ -162,13 +154,7 @@ public abstract class RefinableDeclarationImpl<D extends RefinableDeclarationImp
 		return selector.selection(declarations());
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * chameleon.core.element.ElementImpl#lexicalLookupStrategy(chameleon.core
-	 * .element.Element)
-	 */
+
 	@Override
 	public LookupStrategy lexicalLookupStrategy(Element element)
 			throws LookupException {
@@ -185,11 +171,12 @@ public abstract class RefinableDeclarationImpl<D extends RefinableDeclarationImp
 		}
 	}
 
+
 	private LookupStrategy lexicalMembersLookupStrategy() {
 		if (_lus == null) {
 			_lus = language().lookupFactory().createLexicalLookupStrategy(
-//					targetContext(), this, new RequiredStrategySelector());
-					 targetContext(), this);
+					// targetContext(), this, new RequiredStrategySelector());
+					targetContext(), this);
 
 		}
 		return _lus;
@@ -206,6 +193,7 @@ public abstract class RefinableDeclarationImpl<D extends RefinableDeclarationImp
 
 	private LookupStrategy _requiredLookupStrategy;
 
+
 	private LookupStrategy requiredLookupStrategy() {
 		if (_requiredLookupStrategy == null) {
 			_requiredLookupStrategy =
@@ -221,6 +209,7 @@ public abstract class RefinableDeclarationImpl<D extends RefinableDeclarationImp
 			super(element);
 		}
 
+
 		@Override
 		public <D extends Declaration> List<D> declarations(
 				DeclarationSelector<D> selector) throws LookupException {
@@ -231,38 +220,27 @@ public abstract class RefinableDeclarationImpl<D extends RefinableDeclarationImp
 				RequiredInterfaceDependency dep = requires.get(0);
 				List<SimpleReference<Interface>> intfaces = dep.dependencies();
 				for (SimpleReference<Interface> intface : intfaces) {
-					result.add(intface.getElement().targetContext().lookUp(selector));
+					result.add(intface.getElement().targetContext()
+							.lookUp(selector));
 				}
 			}
 			return result;
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see chameleon.core.declaration.TargetDeclaration#targetContext()
-	 */
+
 	@Override
 	public LookupStrategy targetContext() {
 		return language().lookupFactory().createTargetLookupStrategy(this);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see mview.model.refinement.RefinableDeclaration#members()
-	 */
+
 	@Override
 	public List<MViewMember> members() throws LookupException {
 		return members(MViewMember.class);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see mview.model.refinement.RefinableDeclaration#members(java.lang.Class)
-	 */
+
 	@Override
 	public <M extends MViewMember> List<M> members(Class<M> kind)
 			throws LookupException {
@@ -280,23 +258,13 @@ public abstract class RefinableDeclarationImpl<D extends RefinableDeclarationImp
 		return result;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * mview.model.refinement.RefinableDeclaration#localMembers(java.lang.Class)
-	 */
+
 	@Override
-	public <M extends MViewMember> List<M> localMembers(Class<M> kind)
-			throws LookupException {
+	public <M extends MViewMember> List<M> localMembers(Class<M> kind) {
 		return (List<M>) new TypeFilter(kind).retain(localMembers());
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see mview.model.refinement.RefinableDeclaration#getDirectParents()
-	 */
+
 	@Override
 	public List<RefinableDeclaration> getDirectParents() {
 		List<RefinableDeclaration> result =
@@ -309,13 +277,7 @@ public abstract class RefinableDeclarationImpl<D extends RefinableDeclarationImp
 		return result;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * mview.model.refinement.RefinableDeclaration#isRefinementOf(mview.model
-	 * .refinement.RefinableDeclaration)
-	 */
+
 	@Override
 	public boolean isRefinementOf(RefinableDeclaration other) {
 		List<RefinableDeclaration> parents = getDirectParents();
@@ -333,11 +295,7 @@ public abstract class RefinableDeclarationImpl<D extends RefinableDeclarationImp
 		return result;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see mview.model.namespace.MViewDeclaration#clone()
-	 */
+
 	@Override
 	public D clone() {
 		D clone = super.clone();
@@ -349,11 +307,7 @@ public abstract class RefinableDeclarationImpl<D extends RefinableDeclarationImp
 		return clone;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see mview.model.namespace.MViewDeclaration#children()
-	 */
+
 	@Override
 	public List<Element> children() {
 		List<Element> result = super.children();
@@ -363,15 +317,16 @@ public abstract class RefinableDeclarationImpl<D extends RefinableDeclarationImp
 		return result;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see mview.model.namespace.MViewDeclaration#verifySelf()
-	 */
+
 	@Override
 	public VerificationResult verifySelf() {
 		VerificationResult result = super.verifySelf();
 		return result;
 	}
 
+
+	@Override
+	public boolean isAbstract() {
+		return this.isTrue(language(MView.class).ABSTRACT);
+	}
 }

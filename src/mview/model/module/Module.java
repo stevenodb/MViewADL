@@ -276,7 +276,7 @@ public abstract class Module<E extends Module<E>>
 	 * @see mview.model.refinement.RefinableDeclaration#localMembers()
 	 */
 	@Override
-	public List<MViewMember> localMembers() throws LookupException {
+	public List<MViewMember> localMembers() {
 		List<MViewMember> result = new ArrayList<MViewMember>();
 
 		Util.addNonNull(requiredInterfaceDependency(), result);

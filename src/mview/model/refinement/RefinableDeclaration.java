@@ -73,19 +73,18 @@ public interface RefinableDeclaration<	D extends RefinableDeclaration<D, P>,
 	 * Return the list of local members
 	 * 
 	 * @return the list of local members
-	 * @throws LookupException
 	 */
-	public List<MViewMember> localMembers() throws LookupException;
+	public List<MViewMember> localMembers();
 
 	/**
+	 * Return the list of local members of type <code>kind</code>.
 	 * @param <M>
 	 *            type M extending MViewMember
 	 * @param kind
 	 *            the kind of member to retain
 	 * @return list of local members of type <code>kind</code>
-	 * @throws LookupException
 	 */
-	public <M extends MViewMember> List<M> localMembers(Class<M> kind) throws LookupException;
+	public <M extends MViewMember> List<M> localMembers(Class<M> kind);
 
 	/**
 	 * Returns the list of all direct refinable parent declarations.
@@ -93,6 +92,12 @@ public interface RefinableDeclaration<	D extends RefinableDeclaration<D, P>,
 	 * @return the list of all direct refinable parent declarations.
 	 */
 	public List<RefinableDeclaration> getDirectParents();
+	
+	/**
+	 * Returns whether this declaration is abstract
+	 * @return true if this declaration is abstract
+	 */
+	public boolean isAbstract();
 
 	/**
 	 * Returns whether this refinable declaration is a refinement of

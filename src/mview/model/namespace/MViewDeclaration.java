@@ -28,6 +28,7 @@ import chameleon.core.declaration.Signature;
 import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.element.Element;
 import chameleon.core.lookup.LookupException;
+import chameleon.core.modifier.ElementWithModifiersImpl;
 import chameleon.core.namespace.NamespaceElementImpl;
 import chameleon.core.scope.Scope;
 import chameleon.core.scope.UniversalScope;
@@ -46,7 +47,8 @@ import chameleon.util.Util;
  *            Parent Element
  */
 public abstract class MViewDeclaration<E extends MViewDeclaration<E, P>, P extends Element>
-		extends NamespaceElementImpl<E, P> 
+		//extends NamespaceElementImpl<E, P>
+		extends ElementWithModifiersImpl<E, P>
 		implements Declaration<E, P, Signature, E> {
 
 	/**
