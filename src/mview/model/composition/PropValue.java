@@ -53,12 +53,9 @@ public class PropValue<D extends Declaration>
 	 * @param value
 	 * @param negate
 	 */
-	public PropValue(SimpleReference<D> value, Modifier negate) {
+	public PropValue(SimpleReference<D> value) {
 		this();
 		setValue(value);
-		if (negate != null) {
-			addModifier(negate);
-		}
 	}
 
 	// VALUE
