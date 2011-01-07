@@ -37,6 +37,7 @@ import mview.model.composition.modifier.Around;
 import mview.model.composition.modifier.Before;
 import mview.model.composition.modifier.Execution;
 import mview.model.deployment.Deployment;
+import mview.model.language.MView;
 import mview.model.module.Component;
 import mview.model.module.Connector;
 import mview.model.module.Interface;
@@ -340,7 +341,8 @@ public class JBossAOPWriter extends MViewWriter {
 			result.append(startNewLine("@PointcutDef(\""));
 			
 			String kind = "call";
-			if (pc.hasModifier(new Execution())) {
+			//if (pc.hasModifier(new Execution())) {
+			if (pc.isTrue(pc.language(MView.class).EXECUTION)) {
 				kind = "execution";
 			}
 			result.append(kind+"("); //kind
