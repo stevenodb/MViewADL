@@ -32,20 +32,13 @@ import chameleon.core.property.ChameleonProperty;
  */
 public class Overridable extends ModifierImpl<Overridable, Element> {
 
-	/* (non-Javadoc)
-	 * @see chameleon.core.modifier.Modifier#impliedProperties()
-	 */
 	@Override
 	public PropertySet<Element, ChameleonProperty> impliedProperties() {
 		return createSet(language(MView.class).OVERRIDABLE);
 	}
 
-	/* (non-Javadoc)
-	 * @see chameleon.core.modifier.ModifierImpl#clone()
-	 */
 	@Override
 	public Overridable clone() {
 		return new Overridable();
 	}
-
 }
