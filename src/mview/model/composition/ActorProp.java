@@ -116,7 +116,8 @@ public class ActorProp<D extends Declaration> extends
 	 * @return true if overridable
 	 */
 	public boolean overridable() {
-		return this.hasModifier(new Overridable());
+		return this.isTrue(language(MView.class).OVERRIDABLE);
+		//return this.hasModifier(new Overridable());
 	}
 
 //	/**
