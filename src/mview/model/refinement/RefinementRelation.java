@@ -32,6 +32,7 @@ import chameleon.core.reference.SimpleReference;
 import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.Valid;
 import chameleon.core.validation.VerificationResult;
+import chameleon.exception.ModelException;
 import chameleon.util.Util;
 
 /**
@@ -96,7 +97,7 @@ public class RefinementRelation
 	 * @throws LookupException
 	 */
 	public <M extends MViewMember> void gatherParentMembers(Class<M> kind, 
-			List<M> current) throws LookupException {
+			List<M> current) throws ModelException {
 		
 		List<M> toAdd = new ArrayList<M>();
 		RefinableDeclaration pe = parentDeclarationEnd();

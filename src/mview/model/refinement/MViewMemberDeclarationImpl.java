@@ -23,6 +23,7 @@ import mview.model.namespace.MViewDeclaration;
 import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.element.Element;
 import chameleon.core.lookup.LookupException;
+import chameleon.exception.ModelException;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
@@ -67,7 +68,7 @@ public abstract class MViewMemberDeclarationImpl<
 	 * MViewMember)
 	 */
 	@Override
-	public boolean overrides(MViewMember other) {
+	public boolean overrides(MViewMember other) throws ModelException {
 		boolean result = false;
 		try {
 			result = this.sameAs(other) && sharesContext(other);
@@ -82,7 +83,7 @@ public abstract class MViewMemberDeclarationImpl<
 	 * @see mview.model.refinement.MViewMember#mergesWith(mview.model.refinement.MViewMember)
 	 */
 	@Override
-	public boolean mergesWith(MViewMember other) {
+	public boolean mergesWith(MViewMember other) throws ModelException {
 		return false;
 	}
 
@@ -94,7 +95,7 @@ public abstract class MViewMemberDeclarationImpl<
 	 * )
 	 */
 	@Override
-	public M merge(MViewMember other) throws MergeNotSupportedException {
+	public M merge(MViewMember other) throws MergeNotSupportedException, ModelException {
 		throw new MergeNotSupportedException(this + " doesn't support merge.");
 	}
 

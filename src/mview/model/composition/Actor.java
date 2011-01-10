@@ -26,6 +26,7 @@ import mview.model.refinement.MViewMember;
 import mview.model.refinement.RefinementContext;
 
 import org.rejuse.association.OrderedMultiAssociation;
+import org.rejuse.property.Property;
 
 import chameleon.core.declaration.Declaration;
 import chameleon.core.element.Element;
@@ -34,6 +35,7 @@ import chameleon.core.namespace.NamespaceElementImpl;
 import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.Valid;
 import chameleon.core.validation.VerificationResult;
+import chameleon.exception.ModelException;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
@@ -91,11 +93,11 @@ public class Actor extends NamespaceElementImpl<Actor, Element> implements
 	 * @return
 	 * @throws LookupException 
 	 */
-	public <D extends Declaration> ActorProp<D> prop(Class<D> declarationType) throws LookupException {
+	public <D extends Declaration> ActorProp<D> prop(Property property) throws ModelException {
 		ActorProp<D> result = null;
 
 		for (ActorProp<D> actorProp : props()) {
-			if (actorProp.declarationType().equals(declarationType)) {
+			if (actorProp.actorProperty().equals(property)) {
 				result = actorProp;
 			}
 		}
@@ -117,7 +119,7 @@ public class Actor extends NamespaceElementImpl<Actor, Element> implements
 	 * MViewMember)
 	 */
 	@Override
-	public boolean overrides(MViewMember other) {
+	public boolean overrides(MViewMember other) throws ModelException {
 		return false;
 	}
 
@@ -125,7 +127,7 @@ public class Actor extends NamespaceElementImpl<Actor, Element> implements
 	 * @see mview.model.refinement.MViewMember#canMergeWith()
 	 */
 	@Override
-	public boolean mergesWith(MViewMember other) {
+	public boolean mergesWith(MViewMember other) throws ModelException {
 		return (other != null) && sharesContext(other) && !overrides(other);
 	}
 		
@@ -137,7 +139,7 @@ public class Actor extends NamespaceElementImpl<Actor, Element> implements
 	 * )
 	 */
 	@Override
-	public Actor merge(MViewMember other) throws MergeNotSupportedException, LookupException {
+	public Actor merge(MViewMember other) throws MergeNotSupportedException, ModelException {
 		Actor merged;
 		
 		if (mergesWith(other)) {
@@ -156,7 +158,7 @@ public class Actor extends NamespaceElementImpl<Actor, Element> implements
 				// in which case, this one's a refinement (merge/overidde) of
 				// the parent's
 				ActorProp parentProp =
-						parent.prop(childProp.declarationType());
+						parent.prop(childProp.actorProperty());
 	
 				if (parentProp != null) {
 	

@@ -32,6 +32,7 @@ import chameleon.core.modifier.ElementWithModifiersImpl;
 import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.Valid;
 import chameleon.core.validation.VerificationResult;
+import chameleon.exception.ModelException;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
@@ -174,7 +175,7 @@ public class PointcutSignature extends ElementWithModifiersImpl<PointcutSignatur
 	 * MViewMember)
 	 */
 	@Override
-	public boolean overrides(MViewMember other) {
+	public boolean overrides(MViewMember other) throws ModelException {
 		return this.overridable() && this.sharesContext(other);
 	}
 
@@ -182,7 +183,7 @@ public class PointcutSignature extends ElementWithModifiersImpl<PointcutSignatur
 	 * @see mview.model.refinement.MViewMember#mergesWith(mview.model.refinement.MViewMember)
 	 */
 	@Override
-	public boolean mergesWith(MViewMember other) {
+	public boolean mergesWith(MViewMember other) throws ModelException {
 		return (other != null) && sharesContext(other) && !overridable();
 	}
 
@@ -194,7 +195,7 @@ public class PointcutSignature extends ElementWithModifiersImpl<PointcutSignatur
 	 * )
 	 */
 	@Override
-	public PointcutSignature merge(MViewMember other) throws MergeNotSupportedException {
+	public PointcutSignature merge(MViewMember other) throws MergeNotSupportedException, ModelException {
 		
 		PointcutSignature merged;
 		

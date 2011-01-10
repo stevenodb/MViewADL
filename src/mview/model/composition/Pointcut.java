@@ -22,18 +22,19 @@ package mview.model.composition;
 import java.util.List;
 
 import mview.exception.MergeNotSupportedException;
+import mview.model.language.MView;
 import mview.model.refinement.MViewMember;
 import mview.model.refinement.RefinementContext;
 
 import org.rejuse.association.SingleAssociation;
 
 import chameleon.core.element.Element;
-import chameleon.core.lookup.LookupException;
 import chameleon.core.modifier.ElementWithModifiersImpl;
 import chameleon.core.modifier.Modifier;
 import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.Valid;
 import chameleon.core.validation.VerificationResult;
+import chameleon.exception.ModelException;
 import chameleon.util.Util;
 
 /**
@@ -198,16 +199,22 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element>
 	@Override
 	public VerificationResult verifySelf() {
 		VerificationResult result = Valid.create();
+		
+		if (! (this.isTrue(language(MView.class).CALL)
+			|| this.isTrue(language(MView.class).EXTENDABLE))) {
+			result = result.and(new BasicProblem(this,
+					"Pointcut: Kind not set."));
+		}
 
 //		if (!(this.modifiers().size() > 0)) {
 //			result = result.and(new BasicProblem(this,
 //					"Does not have a kind modifier"));
 //		}
 
-		if (!(this.modifiers().size() < 2)) {
-			result = result.and(new BasicProblem(this,
-					"Has more than one kind modifier"));
-		}
+//		if (!(this.modifiers().size() < 2)) {
+//			result = result.and(new BasicProblem(this,
+//					"Has more than one kind modifier"));
+//		}
 
 //		if (! (this.signature() != null)) {
 //			result = result.and(new BasicProblem(this,
@@ -247,7 +254,7 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element>
 	 * MViewMember)
 	 */
 	@Override
-	public boolean overrides(MViewMember member) {
+	public boolean overrides(MViewMember member) throws ModelException {
 		return false;
 	}
 
@@ -255,7 +262,7 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element>
 	 * @see mview.model.refinement.MViewMember#mergesWith(mview.model.refinement.MViewMember)
 	 */
 	@Override
-	public boolean mergesWith(MViewMember other) {
+	public boolean mergesWith(MViewMember other) throws ModelException {
 		return (other != null) && sharesContext(other) && !overrides(other);
 	}
 
@@ -267,7 +274,7 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element>
 	 * )
 	 */
 	@Override
-	public Pointcut merge(MViewMember other) throws MergeNotSupportedException, LookupException {
+	public Pointcut merge(MViewMember other) throws MergeNotSupportedException, ModelException {
 
 		Pointcut merged;
 		

@@ -67,9 +67,16 @@ public class PropModifier<D extends Declaration>
 //		Set<ChameleonProperty> propSet = 
 //			(language(MView.class)).actorProperties(
 //				targetDeclarationType());
+		
 
+//		for (ActorProperty property : language(MView.class).ACTOR_PROPERTIES) {
+//			if (property.validElementTypes().contains(_targetDeclarationType)) {
+//				result.add(property);
+//			}
+//		}
+		
 		for (ActorProperty property : language(MView.class).ACTOR_PROPERTIES) {
-			if (property.targetDeclarationType().equals(_targetDeclarationType)) {
+			if (property.hasDeclarationType(_targetDeclarationType)) {
 				result.add(property);
 			}
 		}

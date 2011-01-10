@@ -25,7 +25,6 @@ import mview.model.language.MView;
 import mview.model.module.Interface;
 import mview.model.module.Module.RequiredInterfaceDependency;
 import mview.model.namespace.MViewDeclaration;
-import mview.model.refinement.modifier.Abstract;
 
 import org.rejuse.association.MultiAssociation;
 import org.rejuse.java.collections.TypeFilter;
@@ -43,7 +42,7 @@ import chameleon.core.lookup.LookupStrategy;
 import chameleon.core.lookup.LookupStrategySelector;
 import chameleon.core.reference.SimpleReference;
 import chameleon.core.validation.VerificationResult;
-import chameleon.oo.type.Type;
+import chameleon.exception.ModelException;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
@@ -120,7 +119,7 @@ public abstract class RefinableDeclarationImpl<D extends RefinableDeclarationImp
 	// }
 
 	@Override
-	public List<Element> flatten() throws LookupException {
+	public List<Element> flatten() throws ModelException {
 		List<Element> result = new ArrayList<Element>();
 
 		for (Element element : members()) {
@@ -236,7 +235,7 @@ public abstract class RefinableDeclarationImpl<D extends RefinableDeclarationImp
 
 
 	@Override
-	public List<MViewMember> members() throws LookupException {
+	public List<MViewMember> members() throws ModelException {
 		return members(MViewMember.class);
 	}
 
@@ -252,7 +251,11 @@ public abstract class RefinableDeclarationImpl<D extends RefinableDeclarationImp
 
 		// 2. fetch all parent members
 		for (RefinementRelation relation : refinementRelations()) {
-			relation.gatherParentMembers(kind, result);
+			try {
+				relation.gatherParentMembers(kind, result);
+			} catch (ModelException e) {
+				throw new LookupException("gatherParentMembers failed with ModelException");
+			}
 		}
 
 		return result;

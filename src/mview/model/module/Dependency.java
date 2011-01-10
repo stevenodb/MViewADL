@@ -33,6 +33,7 @@ import chameleon.core.namespace.NamespaceElementImpl;
 import chameleon.core.reference.SimpleReference;
 import chameleon.core.validation.Valid;
 import chameleon.core.validation.VerificationResult;
+import chameleon.exception.ModelException;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
@@ -105,18 +106,18 @@ public abstract class Dependency<E extends Dependency<E, T>, T extends Declarati
 	}
 
 	@Override
-	public boolean overrides(MViewMember other) {
+	public boolean overrides(MViewMember other) throws ModelException {
 		return false;
 	}
 
 	@Override
-	public boolean mergesWith(MViewMember other) {
+	public boolean mergesWith(MViewMember other) throws ModelException {
 		return (other != null) && sharesContext(other) && !overrides(other);
 	}
 
 	@Override
 	public E merge(MViewMember other)
-			throws MergeNotSupportedException {
+			throws MergeNotSupportedException, ModelException {
 		E merged;
 		
 		if (mergesWith(other)) {

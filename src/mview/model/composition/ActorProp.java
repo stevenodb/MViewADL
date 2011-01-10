@@ -26,7 +26,6 @@ import mview.model.language.MView;
 import mview.model.property.ActorProperty;
 import mview.model.refinement.MViewMember;
 import mview.model.refinement.RefinementContext;
-import mview.model.refinement.modifier.Overridable;
 
 import org.rejuse.association.OrderedMultiAssociation;
 
@@ -35,7 +34,6 @@ import chameleon.core.element.Element;
 import chameleon.core.lookup.LookupException;
 import chameleon.core.modifier.ElementWithModifiersImpl;
 import chameleon.core.modifier.Modifier;
-import chameleon.core.reference.SimpleReference;
 import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.Valid;
 import chameleon.core.validation.VerificationResult;
@@ -117,7 +115,6 @@ public class ActorProp<D extends Declaration> extends
 	 */
 	public boolean overridable() {
 		return this.isTrue(language(MView.class).OVERRIDABLE);
-		//return this.hasModifier(new Overridable());
 	}
 
 //	/**
@@ -132,23 +129,35 @@ public class ActorProp<D extends Declaration> extends
 //		}
 //	}
 
+//	/**
+//	 * @return
+//	 * @throws LookupException 
+//	 */
+//	public Class<D> declarationType() throws LookupException {
+//		Class<D> result;
+//
+//		try {
+//			result =
+//					(Class<D>) ((ActorProperty)
+//							this.property(language(MView.class).ACTOR_MUTEX))
+//									.targetDeclarationType();
+//		} catch (ModelException e) {
+//			throw new LookupException("Property not found");
+//		}
+//
+//		return result;
+//	}
+	
 	/**
 	 * @return
-	 * @throws LookupException 
+	 * @throws ModelException
 	 */
-	public Class<D> declarationType() throws LookupException {
-		Class<D> result;
-
+	public ActorProperty actorProperty() throws LookupException {
 		try {
-			result =
-					(Class<D>) ((ActorProperty)
-							this.property(language(MView.class).ACTOR_MUTEX))
-									.targetDeclarationType();
+			return (ActorProperty) this.property(language(MView.class).ACTOR_MUTEX);
 		} catch (ModelException e) {
-			throw new LookupException("Property not found");
+			throw new LookupException("Property lookup failed with ModelException");
 		}
-
-		return result;
 	}
 
 	/*
@@ -205,12 +214,12 @@ public class ActorProp<D extends Declaration> extends
 		}
 
 		try {
-			if (!(this.declarationType() != null)) {
+			if (!(this.actorProperty() != null)) {
 				result.and(new BasicProblem(this,
 						"Does not contain a target declaration type"));
 			}
-		} catch (LookupException e1) {
-			result.and(new BasicProblem(this, "Lookup failed for declarationType"));
+		} catch (ModelException e1) {
+			result.and(new BasicProblem(this, "Model exception for actorProperty"));
 		}
 
 		for (PropValue<D> propValue : propValues()) {
@@ -224,12 +233,13 @@ public class ActorProp<D extends Declaration> extends
 
 			try {
 				if ((declaration != null) 
-						&& (declaration.getClass() == declarationType())) {
+//						&& (declaration.getClass() == declarationType())) {
+						&& (actorProperty().hasDeclarationType(declaration.getClass()))) {
 					result.and(new BasicProblem(this,
 							"Contains declaration of invalid type: " + declaration));
 				}
-			} catch (LookupException e) {
-				result.and(new BasicProblem(this, "Lookup failed for declarationType"));
+			} catch (ModelException e) {
+				result.and(new BasicProblem(this, "Model exception for declarationType"));
 			}
 		}
 
@@ -255,9 +265,10 @@ public class ActorProp<D extends Declaration> extends
 	 * MViewMember)
 	 */
 	@Override
-	public boolean overrides(MViewMember other) throws LookupException {
+	public boolean overrides(MViewMember other) throws ModelException {
 		boolean result = this.overridable();
-		result &= this.declarationType() == ((ActorProp)other).declarationType();
+//		result &= this.declarationType() == ((ActorProp)other).declarationType();
+		result &= this.actorProperty() == ((ActorProp)other).actorProperty();
 		result &= sharesContext(other);
 		return result;
 	}
@@ -270,11 +281,12 @@ public class ActorProp<D extends Declaration> extends
 	 * MViewMember)
 	 */
 	@Override
-	public boolean mergesWith(MViewMember other) throws LookupException {
+	public boolean mergesWith(MViewMember other) throws ModelException {
 		return (other != null) 
 			&& sharesContext(other) 
 			&& !overrides(other)
-			&& this.declarationType() == ((ActorProp)other).declarationType();
+			&& this.actorProperty() == ((ActorProp)other).actorProperty();
+//			&& this.declarationType() == ((ActorProp)other).declarationType();
 	}
 
 	/*
@@ -286,7 +298,7 @@ public class ActorProp<D extends Declaration> extends
 	 */
 	@Override
 	public ActorProp<D> merge(MViewMember other)
-			throws MergeNotSupportedException, LookupException {
+			throws MergeNotSupportedException, ModelException {
 
 //		if (!(this.declarationType() == other.declarationType())) {
 //			throw new MergeNotSupportedException("Actors are of different" +
@@ -331,7 +343,6 @@ public class ActorProp<D extends Declaration> extends
 	public boolean uniSameAs(Element other) throws LookupException {
 		return (other instanceof ActorProp)
 				&& (this.overridable() == ((ActorProp) other).overridable()) &&
-				this.declarationType() == ((ActorProp) other).declarationType();
-
+				this.actorProperty() == ((ActorProp) other).actorProperty();
 	}
 }

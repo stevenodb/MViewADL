@@ -24,6 +24,7 @@ import chameleon.core.declaration.Declaration;
 import chameleon.core.declaration.Signature;
 import chameleon.core.element.Element;
 import chameleon.core.lookup.LookupException;
+import chameleon.exception.ModelException;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
@@ -49,7 +50,7 @@ public interface RefinableDeclaration<	D extends RefinableDeclaration<D, P>,
 	 * @return
 	 * @throws LookupException
 	 */
-	public List<Element> flatten() throws LookupException;
+	public List<Element> flatten() throws ModelException;
 
 	/**
 	 * Return the list of all members, including those of parent declarations.
@@ -57,7 +58,7 @@ public interface RefinableDeclaration<	D extends RefinableDeclaration<D, P>,
 	 * @return the list of members
 	 * @throws LookupException
 	 */
-	public List<MViewMember> members() throws LookupException;
+	public List<MViewMember> members() throws ModelException;
 
 	/**
 	 * @param <M>
@@ -67,7 +68,7 @@ public interface RefinableDeclaration<	D extends RefinableDeclaration<D, P>,
 	 * @return a list of members of type <code>kind</code>
 	 * @throws LookupException
 	 */
-	public <M extends MViewMember> List<M> members(final Class<M> kind) throws LookupException;
+	public <M extends MViewMember> List<M> members(final Class<M> kind) throws ModelException;
 
 	/**
 	 * Return the list of local members

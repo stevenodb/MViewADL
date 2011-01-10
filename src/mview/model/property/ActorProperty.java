@@ -51,11 +51,20 @@ public class ActorProperty extends StaticChameleonProperty {
 		_targetDeclarationType = targetDeclarationType;
 	}
 
+//	/**
+//	 * @return the targetDeclarationType
+//	 */
+//	private Class<? extends Declaration> targetDeclarationType() {
+//		return _targetDeclarationType;
+//	}
+	
 	/**
-	 * @return the targetDeclarationType
+	 * @param declationType
+	 * @return
 	 */
-	public Class<? extends Declaration> targetDeclarationType() {
-		return _targetDeclarationType;
+	public boolean hasDeclarationType(Class<? extends Declaration> declationType) {
+		return (declationType != null) 
+				&& _targetDeclarationType.equals(declationType);
 	}
 
 }
