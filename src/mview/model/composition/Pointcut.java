@@ -200,25 +200,15 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element>
 	public VerificationResult verifySelf() {
 		VerificationResult result = Valid.create();
 		
-		if (! (this.isTrue(language(MView.class).CALL)
-			|| this.isTrue(language(MView.class).EXTENDABLE))) {
-			result = result.and(new BasicProblem(this,
-					"Pointcut: Kind not set."));
-		}
-
-//		if (!(this.modifiers().size() > 0)) {
+//		if (! (this.isTrue(language(MView.class).CALL)
+//			|| this.isTrue(language(MView.class).EXTENDABLE))) {
 //			result = result.and(new BasicProblem(this,
-//					"Does not have a kind modifier"));
+//					"Pointcut: Kind not set."));
 //		}
-
-//		if (!(this.modifiers().size() < 2)) {
-//			result = result.and(new BasicProblem(this,
-//					"Has more than one kind modifier"));
-//		}
-
+//
 //		if (! (this.signature() != null)) {
 //			result = result.and(new BasicProblem(this,
-//					"Does not have a signature"));
+//					"Pointcut: Signature not set."));
 //		}
 
 		return result;

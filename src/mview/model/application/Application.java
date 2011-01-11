@@ -34,6 +34,7 @@ import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.element.Element;
 import chameleon.core.lookup.LookupException;
 import chameleon.core.validation.BasicProblem;
+import chameleon.core.validation.Valid;
 import chameleon.core.validation.VerificationResult;
 
 /**
@@ -228,6 +229,24 @@ public class Application<A extends Application<A>>
 		result.addAll(hosts());
 		return result;
 	}
+	
+	/**
+	 * @return
+	 */
+	protected VerificationResult verifyHosts() {
+		VerificationResult result = Valid.create();
+		
+		for (Host host : hosts()) {
+			if ( ! (host.hostName() == null )) {
+				result = result.and(
+						new BasicProblem(this, 
+								"Application "+ signature().name() +": " +
+								"Host "+host.signature().name()+ " cannot define a hostname."));
+			}
+		}
+		
+		return result;
+	}
 
 	/*
 	 * (non-Javadoc)
@@ -244,7 +263,7 @@ public class Application<A extends Application<A>>
 				if (!(this.members(Instance.class).size() > 0)) {
 					result =
 							result.and(new BasicProblem(this,
-									"Application needs an instance"));
+									"Application "+ signature().name() +": Instance required."));
 				}
 			} catch (LookupException e) {
 				e.printStackTrace();
@@ -253,7 +272,7 @@ public class Application<A extends Application<A>>
 			if (!(this.hosts() != null)) {
 				result =
 						result.and(new BasicProblem(this,
-								"Application needs a host"));
+								"Application "+ signature().name() +": Host required."));
 			}
 		}
 		
@@ -263,19 +282,19 @@ public class Application<A extends Application<A>>
 			for (Instance instance : this.instances()) {
 				if (!hostMembers.contains(instance.host().getElement())) {
 					result = result.and(new BasicProblem(this,
-								"Host undefined in this application: "
+							"Application "+ signature().name() +": Host undefined in this application: "
 										+ instance.host().name()));
 				}
 			}
 		} catch (LookupException e) {
 			result.and(new BasicProblem(this,
-					"Exception looking up instance's host."));
+					"Application "+ signature().name() +": Exception looking up instance's host."));
 			e.printStackTrace();
 		}
-
-		// if ( !(this.modules() != null) ) {
-		// result = result.and(new BasicProblem(this, "Modules is null"));
-		// }
+		
+		
+		// verify hosts
+		result = result.and(verifyHosts());
 
 		return result;
 	}

@@ -209,17 +209,21 @@ public class ActorProp<D extends Declaration> extends
 		// }
 		
 		if (!(this.propValues().size() > 0)) {
-			result.and(new BasicProblem(this,
-					"Does not contain an actor property"));
+			try {
+				result.and(new BasicProblem(this, "ActorProp " 
+					+ actorProperty().name() + " Contains no actor properties."));
+			} catch (LookupException e) {
+			}
 		}
 
 		try {
 			if (!(this.actorProperty() != null)) {
-				result.and(new BasicProblem(this,
-						"Does not contain a target declaration type"));
+				result.and(new BasicProblem(this,"ActorProp " 
+						+ actorProperty().name() + " Property type not set."));
 			}
 		} catch (ModelException e1) {
-			result.and(new BasicProblem(this, "Model exception for actorProperty"));
+			result.and(new BasicProblem(this, 
+					"Error in Model: ActorProp Exception getting property type"));
 		}
 
 		for (PropValue<D> propValue : propValues()) {
@@ -235,11 +239,13 @@ public class ActorProp<D extends Declaration> extends
 				if ((declaration != null) 
 //						&& (declaration.getClass() == declarationType())) {
 						&& (actorProperty().hasDeclarationType(declaration.getClass()))) {
-					result.and(new BasicProblem(this,
+					result.and(new BasicProblem(this, "ActorProp " 
+							+ actorProperty().name() +
 							"Contains declaration of invalid type: " + declaration));
 				}
 			} catch (ModelException e) {
-				result.and(new BasicProblem(this, "Model exception for declarationType"));
+				result.and(new BasicProblem(this, 
+						"Error in Model: ActorProp Exception getting property type"));
 			}
 		}
 

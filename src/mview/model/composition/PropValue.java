@@ -124,24 +124,22 @@ public class PropValue<D extends Declaration>
 	 */
 	@Override
 	public VerificationResult verifySelf() {
-		final VerificationResult result = Valid.create();
-
-//		result.and(new BasicProblem(this, "nothing to see, carry on"));
+		VerificationResult result = Valid.create();
 
 		try {
 			
 			if ( !(value() == null ) ) {
-				result.and(new BasicProblem(this,
-				"PropValue has null value"));
+				result = result.and(new BasicProblem(this,
+				"PropValue: PropValue is null."));
 			}
 			
 			if (!(value().getElement() == null)) {
 				result.and(new BasicProblem(this,
-							"Invalid reference to declaration"));
+				"PropValue: Invalid reference to declaration."));
 			}
 		} catch (LookupException e) {
 			result.and(new BasicProblem(this,
-					"LookupException when resolving reference to declaration"));
+				"PropValue: LookupException when resolving reference."));
 		}
 
 		return result;

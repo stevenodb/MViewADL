@@ -29,6 +29,7 @@ import org.rejuse.association.OrderedMultiAssociation;
 import org.rejuse.property.Property;
 
 import chameleon.core.declaration.Declaration;
+import chameleon.core.declaration.Signature;
 import chameleon.core.element.Element;
 import chameleon.core.lookup.LookupException;
 import chameleon.core.namespace.NamespaceElementImpl;
@@ -220,7 +221,7 @@ public class Actor extends NamespaceElementImpl<Actor, Element> implements
 		VerificationResult result = Valid.create();
 
 		if (!(props() != null)) {
-			result.and(new BasicProblem(this, "actor props is null"));
+			result.and(new BasicProblem(this, "Actor: actor props is null"));
 		}
 
 		return result;

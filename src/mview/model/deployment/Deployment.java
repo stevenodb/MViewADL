@@ -24,6 +24,8 @@ import java.util.List;
 import mview.model.application.Application;
 import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.element.Element;
+import chameleon.core.validation.BasicProblem;
+import chameleon.core.validation.Valid;
 import chameleon.core.validation.VerificationResult;
 
 /**
@@ -63,6 +65,11 @@ public class Deployment extends Application<Deployment> {
 		return result;
 	}
 
+	@Override
+	protected VerificationResult verifyHosts() {
+		return Valid.create();
+	}
+	
 	/* (non-Javadoc)
 	 * @see mview.model.application.HostMapper#verifySelf()
 	 */

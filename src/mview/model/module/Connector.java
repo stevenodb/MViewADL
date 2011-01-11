@@ -98,7 +98,8 @@ public class Connector<E extends Connector<E>> extends Module<E> {
 		VerificationResult result = super.verifySelf();
 		
 		if ( ! (compositions() != null) ) {
-			result = result.and(new BasicProblem(this, "Compositions is null"));
+			result = result.and(new BasicProblem(this, 
+					this.signature().name() + ": Compositions is null"));
 		}
 		
 		return result;

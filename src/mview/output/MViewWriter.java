@@ -26,6 +26,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import mview.model.application.Application;
 import mview.model.application.Instance;
 import mview.model.composition.AOComposition;
 import mview.model.deployment.Deployment;
@@ -215,7 +216,8 @@ public abstract class MViewWriter extends Syntax {
 			result = toCodeCompilationUnit((CompilationUnit) element);
 		} else if(isNamespacePart(element)) {
 			result = toCodeNamespacePart((NamespacePart) element);
-		} 
+		} else if(isApplication(element)) {
+		}
 
 		else if (element == null) {
 			result = "";
@@ -232,6 +234,14 @@ public abstract class MViewWriter extends Syntax {
 		}
 
 		return result;
+	}
+
+	/**
+	 * @param element
+	 * @return
+	 */
+	private boolean isApplication(Element element) {
+		return element instanceof Application;
 	}
 
 	/**

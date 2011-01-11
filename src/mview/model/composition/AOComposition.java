@@ -162,7 +162,7 @@ public class AOComposition extends
 			try {
 				if (!(this.members(Advice.class).size() > 0)) {
 					result = result.and(new BasicProblem(this,
-									"Composition needs an advice."));
+									"Composition "+ signature().name() +": Needs an advice."));
 				}
 			} catch (LookupException e) {
 				result = result.and(new BasicProblem(this,
@@ -173,7 +173,7 @@ public class AOComposition extends
 				if (!(this.members(Pointcut.class).size() > 0)) {
 					result =
 							result.and(new BasicProblem(this,
-									"Composition needs a pointcut."));
+									"Composition "+ signature().name() +": Needs a pointcut."));
 				}
 			} catch (LookupException e) {
 			}

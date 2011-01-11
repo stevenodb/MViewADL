@@ -43,6 +43,7 @@ public class Service extends JoinPointElement<Service, Element> {
 	protected Service() {
 	}
 
+
 	/**
 	 * @param signature
 	 * @param returnType
@@ -50,9 +51,10 @@ public class Service extends JoinPointElement<Service, Element> {
 	 */
 	public Service(Signature signature, TypeReference returnType,
 			List<FormalParameter> formalParameters) {
-		this(signature,returnType,formalParameters,null);
+		this(signature, returnType, formalParameters, null);
 	}
-	
+
+
 	/**
 	 * @param signature
 	 * @param returnType
@@ -88,6 +90,7 @@ public class Service extends JoinPointElement<Service, Element> {
 		}
 	}
 
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -97,6 +100,7 @@ public class Service extends JoinPointElement<Service, Element> {
 	public Signature signature() {
 		return header().signature();
 	}
+
 
 	/*
 	 * (non-Javadoc)
@@ -111,6 +115,7 @@ public class Service extends JoinPointElement<Service, Element> {
 	public void addFormalParameter(FormalParameter arg) {
 		header().addFormalParameter(arg);
 	}
+
 
 	/*
 	 * (non-Javadoc)
@@ -130,12 +135,14 @@ public class Service extends JoinPointElement<Service, Element> {
 	private final SingleAssociation<Service, TypeReference> _returnType =
 			new SingleAssociation<Service, TypeReference>(this);
 
+
 	/**
 	 * @return the service's return type
 	 */
 	public TypeReference returnType() {
 		return _returnType.getOtherEnd();
 	}
+
 
 	/**
 	 * @param returnType
@@ -152,12 +159,14 @@ public class Service extends JoinPointElement<Service, Element> {
 	private final SingleAssociation<Service, MethodHeader> _header =
 			new SingleAssociation<Service, MethodHeader>(this);
 
+
 	/**
 	 * @return the service's header
 	 */
 	public MethodHeader header() {
 		return _header.getOtherEnd();
 	}
+
 
 	/**
 	 * @param header
@@ -176,12 +185,14 @@ public class Service extends JoinPointElement<Service, Element> {
 			new OrderedMultiAssociation<Service, SimpleReference<Property>>(
 					this);
 
+
 	/**
 	 * @return the attached properties
 	 */
 	public List<SimpleReference<Property>> attachedProperties() {
 		return _attachedProperties.getOtherEnds();
 	}
+
 
 	/**
 	 * @param relation
@@ -191,6 +202,7 @@ public class Service extends JoinPointElement<Service, Element> {
 		_attachedProperties.add(relation.parentLink());
 	}
 
+
 	/**
 	 * @param relation
 	 *            the service to remove from the aggregation
@@ -198,6 +210,7 @@ public class Service extends JoinPointElement<Service, Element> {
 	public void removeProperty(SimpleReference<Property> relation) {
 		_attachedProperties.remove(relation.parentLink());
 	}
+
 
 	// /* (non-Javadoc)
 	// * @see mview.model.namespace.MViewDeclaration#cloneThis()
@@ -217,6 +230,7 @@ public class Service extends JoinPointElement<Service, Element> {
 	protected Service cloneThis() {
 		return new Service();
 	}
+
 
 	/*
 	 * (non-Javadoc)
@@ -244,6 +258,7 @@ public class Service extends JoinPointElement<Service, Element> {
 		return clone;
 	}
 
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -254,21 +269,23 @@ public class Service extends JoinPointElement<Service, Element> {
 		VerificationResult result = Valid.create();
 
 		if (!(this.header() != null)) {
-			result = result.and(new BasicProblem(this, "Missing header"));
+			result = result.and(new BasicProblem(this,
+					this.signature().name() + ": Missing header"));
 		}
 
 		if (!(this.returnType() != null)) {
-			result = result.and(new BasicProblem(this, "ReturnType is null"));
+			result = result.and(new BasicProblem(this,
+					this.signature().name() + ": ReturnType is null"));
 		}
 
 		if (!(this.attachedProperties() != null)) {
-			result =
-					result.and(new BasicProblem(this,
-							"AttachedProperties is null"));
+			result = result.and(new BasicProblem(this,
+					this.signature().name() + ": AttachedProperties is null"));
 		}
 
 		return result;
 	}
+
 
 	/*
 	 * (non-Javadoc)
@@ -283,7 +300,7 @@ public class Service extends JoinPointElement<Service, Element> {
 
 		Util.addNonNull(this.header(), result);
 		Util.addNonNull(this.returnType(), result);
-		
+
 		result.addAll(attachedProperties());
 
 		return result;

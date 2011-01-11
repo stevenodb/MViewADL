@@ -20,6 +20,7 @@ package mview.model.application;
 
 import java.util.List;
 
+import mview.model.deployment.Deployment;
 import mview.model.deployment.HostName;
 import mview.model.refinement.MViewMemberDeclarationImpl;
 
@@ -116,9 +117,6 @@ public class Host extends MViewMemberDeclarationImpl<Host, Element> {
 	@Override
 	public VerificationResult verifySelf() {
 		final VerificationResult result = super.verifySelf();
-		
-		// check whether part of application or deployment?
-		
 		return result;
 	}
 

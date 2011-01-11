@@ -15,8 +15,8 @@
         <javaElement handleIdentifier="=mview-lang/src&lt;mview.model.module"/>
         <file path="/mview-lang/.antlr-eclipse"/>
         <folder path="/mview-lang/lib"/>
-        <javaElement handleIdentifier="=mview-lang/src&lt;mview.model.namespace"/>
         <javaElement handleIdentifier="=mview-lang/src&lt;mview.model.application"/>
+        <javaElement handleIdentifier="=mview-lang/src&lt;mview.model.namespace"/>
         <javaElement handleIdentifier="=mview-lang/src&lt;mview.parser.classes"/>
         <file path="/mview-lang/deploy-in-editor.jardesc"/>
         <javaElement handleIdentifier="=mview-lang/src&lt;mview.model.refinement.modifier"/>

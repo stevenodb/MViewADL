@@ -321,19 +321,19 @@ public class PatternSignature extends
 		if (!(this.returnTypePattern() != null)) {
 			result =
 					result.and(new BasicProblem(this,
-							"returnType patterns is null"));
+							"Signature: returnType patterns is null."));
 		}
 
 		if (!(this.signaturePattern() != null)) {
 			result =
 					result.and(new BasicProblem(this,
-							"signature patterns is null"));
+							"Signature: signature patterns is null."));
 		}
 		
 		if (!(this.formalParametersPattern() != null)) {
 			result =
 					result.and(new BasicProblem(this,
-							"returnType patterns is null"));
+							"Signature: returnType patterns is null."));
 		}
 
 		return result;

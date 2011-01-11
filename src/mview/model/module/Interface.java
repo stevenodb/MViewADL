@@ -91,7 +91,8 @@ public class Interface extends RegularType {
 		VerificationResult result = super.verifySelf();
 
 		if (!(services() != null)) {
-			result = result.and(new BasicProblem(this, "Services is null"));
+			result = result.and(new BasicProblem(this, 
+					this.signature().name() + ": Services is null."));
 		}
 
 		return result;

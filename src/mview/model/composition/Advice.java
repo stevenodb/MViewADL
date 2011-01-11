@@ -127,25 +127,25 @@ public class Advice extends ElementWithModifiersImpl<Advice, Element>
 	public VerificationResult verifySelf() {
 		VerificationResult result = Valid.create();
 		
-		int n = 0;
-		try {
-			if (this.property(language(MView.class).ADVICE_MUTEX) != null) {
-				n++;
-			}
-		} catch (ModelException e) {
-			result = result.and(new BasicProblem(this, "Something wrong in the " +
-					"model with type modifier."));
-		}
+//		int n = 0;
+//		try {
+//			if (this.property(language(MView.class).ADVICE_MUTEX) != null) {
+//				n++;
+//			}
+//		} catch (ModelException e) {
+//			result = result.and(new BasicProblem(this, 
+//					"Advice: Error in model: Advice type invalid."));
+//		}
 		
-		if (! (n == 1) ) {
-			result = result.and(new BasicProblem(this, "Type is not correctly " +
-					"set. ("+n+")"));
-		}
-		
-		if (! (this.service() != null)) {
-			result = result.and(new BasicProblem(this, "Does not have a service " +
-					"set"));
-		}
+//		if (! (n == 1) ) {
+//			result = result.and(new BasicProblem(this, 
+//					"Advice: Type not set. ("+n+")"));
+//		}
+//		
+//		if (! (this.service() != null)) {
+//			result = result.and(new BasicProblem(this, 
+//					"Advice: Service not set."));
+//		}
 		
 		return result;
 	}
@@ -173,7 +173,7 @@ public class Advice extends ElementWithModifiersImpl<Advice, Element>
 	 * @see mview.model.refinement.MViewMember#overrides(mview.model.refinement.MViewMember)
 	 */
 	@Override
-	public boolean overrides(MViewMember other) {
+	public boolean overrides(MViewMember other) throws ModelException {
 		return false;
 	}
 
@@ -181,7 +181,7 @@ public class Advice extends ElementWithModifiersImpl<Advice, Element>
 	 * @see mview.model.refinement.MViewMember#mergesWith(mview.model.refinement.MViewMember)
 	 */
 	@Override
-	public boolean mergesWith(MViewMember other) {
+	public boolean mergesWith(MViewMember other) throws ModelException {
 		return (other != null) && sharesContext(other) && !overrides(other);
 	}
 
@@ -189,7 +189,7 @@ public class Advice extends ElementWithModifiersImpl<Advice, Element>
 	 * @see mview.model.refinement.MViewMember#merge(mview.model.refinement.MViewMember)
 	 */
 	@Override
-	public Advice merge(MViewMember other) throws MergeNotSupportedException {
+	public Advice merge(MViewMember other) throws MergeNotSupportedException, ModelException {
 		
 		Advice merged;
 		

@@ -68,7 +68,8 @@ public class Component<E extends Component<E>> extends Module<E> {
 		if ( ! isAbstract() ) {
 		
 			if ( ! (this.providedInterfaces().size() >= 1) ) {
-				result = result.and(new BasicProblem(this, "Missing provided interface"));
+				result = result.and(new BasicProblem(this, 
+					this.signature().name() + ": Missing provided interface."));
 			}
 		}
 		

@@ -44,6 +44,10 @@ import chameleon.util.Util;
 public abstract class Module<E extends Module<E>>
 			extends RefinableMemberDeclarationImpl<E, Element> {
 
+	/**
+	 * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
+	 *
+	 */
 	public class RequiredInterfaceDependency extends
 			Dependency<RequiredInterfaceDependency, Interface> {
 
@@ -53,6 +57,10 @@ public abstract class Module<E extends Module<E>>
 		}
 	}
 
+	/**
+	 * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
+	 *
+	 */
 	public class ProvidedInterfaceDependency extends
 			Dependency<ProvidedInterfaceDependency, Interface> {
 
@@ -218,7 +226,7 @@ public abstract class Module<E extends Module<E>>
 		VerificationResult result = super.verifySelf();
 
 		if (!(signature() != null)) {
-			result = result.and(new BasicProblem(this, "No valid signature"));
+			result = result.and(new BasicProblem(this, "Signature invalid."));
 		}
 
 		{ // check provided and required interface overlap
@@ -246,9 +254,8 @@ public abstract class Module<E extends Module<E>>
 
 			if (containsAny) {
 				result =
-						result.and(new BasicProblem(this,
-								"Provided and required " +
-										"interfaces should not overlap."));
+					result.and(new BasicProblem(this, this.signature().name()
+						+ "Provided and required interfaces should not overlap."));
 			}
 		}
 
