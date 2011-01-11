@@ -3,3 +3,7 @@ syntax: glob
 .DS_Store
 *~
 bin/
+syntax: regexp
+^src/mview/model/test/composition/OverloadTest\.java$
+syntax: regexp
+^src/mview/model/test/composition/CompositionScenarioTest\.java$
