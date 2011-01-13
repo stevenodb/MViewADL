@@ -26,7 +26,7 @@ import mview.model.module.Interface;
 import mview.model.module.Module.RequiredInterfaceDependency;
 import mview.model.namespace.MViewDeclaration;
 
-import org.rejuse.association.MultiAssociation;
+import org.rejuse.association.OrderedMultiAssociation;
 import org.rejuse.java.collections.TypeFilter;
 
 import chameleon.core.declaration.Declaration;
@@ -72,8 +72,8 @@ public abstract class RefinableDeclarationImpl<D extends RefinableDeclarationImp
 	/*
 	 * Parent declarations
 	 */
-	private MultiAssociation<RefinableDeclaration, RefinementRelation> _refinementRelations =
-			new MultiAssociation<RefinableDeclaration, RefinementRelation>(this);
+	private OrderedMultiAssociation<RefinableDeclaration, RefinementRelation> _refinementRelations =
+			new OrderedMultiAssociation<RefinableDeclaration, RefinementRelation>(this); 
 
 
 	/**
