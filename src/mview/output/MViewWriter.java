@@ -40,6 +40,7 @@ import chameleon.core.lookup.LookupException;
 import chameleon.core.namespacepart.NamespacePart;
 import chameleon.exception.ModelException;
 import chameleon.output.Syntax;
+import chameleon.tool.ConnectorImpl;
 
 //import chameleon.tool.Connector;
 
@@ -47,7 +48,7 @@ import chameleon.output.Syntax;
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  * 
  */
-public abstract class MViewWriter extends Syntax {
+public abstract class MViewWriter extends ConnectorImpl {
 
 	/**
 	 * @param wArguments
@@ -60,20 +61,21 @@ public abstract class MViewWriter extends Syntax {
 	/*
 	 * WriterArguments
 	 */
-	private final WriterArguments _wArguments;
+	 private final WriterArguments _wArguments;
 
-	/**
+	 /**
 	 * @return the wArguments
 	 */
-	public WriterArguments writerArguments() {
-		return _wArguments;
-	}
+	 public WriterArguments writerArguments() {
+		 return _wArguments.clone();
+	 }
 
 	/*
 	 * Preamble
 	 */
 	Map<Class<? extends Element>, StringBuffer> _preambles =
 			new HashMap<Class<? extends Element>, StringBuffer>();
+
 
 	/**
 	 * @param key
@@ -82,6 +84,7 @@ public abstract class MViewWriter extends Syntax {
 	protected StringBuffer preamble(Class<? extends Element> key) {
 		return _preambles.get(key);
 	}
+
 
 	/**
 	 * @param key
@@ -92,12 +95,14 @@ public abstract class MViewWriter extends Syntax {
 		_preambles.put(key, preamble);
 	}
 
+
 	/**
 	 * @param key
 	 */
 	protected void removePreamble(Class<? extends Element> key) {
 		_preambles.remove(key);
 	}
+
 
 	/**
 	 * Initialize the preambles
@@ -110,6 +115,7 @@ public abstract class MViewWriter extends Syntax {
 	private int _indent;
 	private final int _tabSize = 4;
 
+
 	/**
 	 * @return the indent
 	 */
@@ -117,13 +123,16 @@ public abstract class MViewWriter extends Syntax {
 		return _indent;
 	}
 
+
 	protected void indent() {
 		_indent += _tabSize;
 	}
 
+
 	protected void undent() {
 		_indent -= _tabSize;
 	}
+
 
 	/**
 	 * @return
@@ -137,6 +146,7 @@ public abstract class MViewWriter extends Syntax {
 		return result;
 	}
 
+
 	/**
 	 * @param text
 	 * @return start text on a new line
@@ -146,77 +156,48 @@ public abstract class MViewWriter extends Syntax {
 	}
 
 	/**
+	 * @param element
+	 * @throws IOException
+	 * @throws ModelException
+	 */
+	abstract public void writeCode(Element element) throws IOException, ModelException;
+
+	/**
 	 * @param args
 	 * @param element
-	 * @param code
 	 * @throws IOException
+	 * @throws ModelException
 	 */
-	protected void writeCode(WriterArguments args,
-			Element element, String code) throws IOException {
+	abstract protected void writeCode(Element element, WriterArguments args)
+			throws IOException, ModelException;
 
-		if (args.allowedOutput(element.getClass())) {
-			MViewDeclaration declaration = (MViewDeclaration) element;
-			String fileName = declaration.signature().name() + ".java";
-			String packageFQN =
-				declaration.getNamespace().getFullyQualifiedName();
-			String relDirName = packageFQN.replace('.', File.separatorChar);
-			File out =
-					new File(args.outputDir().getAbsolutePath()
-							+ File.separatorChar + relDirName
-							+ File.separatorChar + fileName);
 
-			System.out.println("Writing: " + out.getAbsolutePath());
-
-			File parent = out.getParentFile();
-			parent.mkdirs();
-			out.createNewFile();
-			FileWriter fw = new FileWriter(out);
-
-			// preamble
-			fw.write(preamble(element.getClass()).toString());
-			// body
-			fw.write(code);
-
-			fw.close();
-		} else {
-			System.out.println("Skipping: " + element.getClass());
-		}
-	}
-
-//	/**
-//	 * @param args
-//	 * @param element
-//	 * @param code
-//	 * @throws IOException
-//	 */
-//	protected void writeCode(WriterArguments args,
-//			Element element, String code) throws IOException {
-//		System.out.println("Skipping: " + element.getClass());
-//	}
-	
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see chameleon.output.Syntax#toCode(chameleon.core.element.Element)
+	/**
+	 * @param element
+	 * @param wArgs
+	 * @return
+	 * @throws ModelException
 	 */
-	@Override
-	public String toCode(Element element) throws ModelException {
+	public String toCode(Element element, WriterArguments wArgs)
+			throws ModelException {
+
 		String result = null;
+
 		if (isConnector(element)) {
-			result = toCodeConnector((Connector) element);
+			result = toCodeConnector((Connector) element, wArgs);
 		} else if (isComponent(element)) {
-			result = toCodeComponent((Component) element);
+			result = toCodeComponent((Component) element, wArgs);
 		} else if (isDeployment(element)) {
-			result = toCodeDeployment((Deployment) element);
+			result = toCodeDeployment((Deployment) element, wArgs);
 		} else if (isInstance(element)) {
-			result = toCodeInstance((Instance) element);
+			result = toCodeInstance((Instance) element, wArgs);
 		} else if (isAOComposition(element)) {
-			result = toCodeAOComposition((AOComposition) element);
+			result = toCodeAOComposition((AOComposition) element, wArgs);
 		} else if (isCompilationUnit(element)) {
-			result = toCodeCompilationUnit((CompilationUnit) element);
-		} else if(isNamespacePart(element)) {
-			result = toCodeNamespacePart((NamespacePart) element);
-		} else if(isApplication(element)) {
+			result = toCodeCompilationUnit((CompilationUnit) element, wArgs);
+		} else if (isNamespacePart(element)) {
+			result = toCodeNamespacePart((NamespacePart) element, wArgs);
+		} else if (isApplication(element)) {
 		}
 
 		else if (element == null) {
@@ -227,14 +208,9 @@ public abstract class MViewWriter extends Syntax {
 							+ element.getClass().getName());
 		}
 
-		try {
-			writeCode(writerArguments(), element, result);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
 		return result;
 	}
+
 
 	/**
 	 * @param element
@@ -244,6 +220,7 @@ public abstract class MViewWriter extends Syntax {
 		return element instanceof Application;
 	}
 
+
 	/**
 	 * @param element
 	 * @return
@@ -252,39 +229,42 @@ public abstract class MViewWriter extends Syntax {
 		return element instanceof NamespacePart;
 	}
 
+
 	/**
 	 * @param part
 	 * @return
-	 * @throws ModelException 
+	 * @throws ModelException
 	 */
-	protected String toCodeNamespacePart(NamespacePart part)
+	protected String toCodeNamespacePart(NamespacePart part,
+			WriterArguments wArgs)
 			throws ModelException {
 		StringBuffer result = new StringBuffer();
 		result.append("package " + part.namespace().getFullyQualifiedName()
 				+ ";\n\n");
 
-//		for (Import imp : part.imports()) {
-//			if (imp instanceof TypeImport) {
-//				result.append("import "
-//						+ toCode(((TypeImport) imp).getTypeReference()) + ";\n");
-//			} else if (imp instanceof DemandImport) {
-//				result.append("import "
-//						+ toCode(((DemandImport) imp).namespaceReference())
-//						+ ".*;\n");
-//			}
-//		}
+		// for (Import imp : part.imports()) {
+		// if (imp instanceof TypeImport) {
+		// result.append("import "
+		// + toCode(((TypeImport) imp).getTypeReference()) + ";\n");
+		// } else if (imp instanceof DemandImport) {
+		// result.append("import "
+		// + toCode(((DemandImport) imp).namespaceReference())
+		// + ".*;\n");
+		// }
+		// }
 
 		result.append("\n");
 		List<Declaration> decls = part.declarations();
 		Iterator iter = decls.iterator();
 		while (iter.hasNext()) {
-			result.append(toCode((Element) iter.next()));
+			result.append(toCode((Element) iter.next(), wArgs));
 			if (iter.hasNext()) {
 				result.append("\n\n");
 			}
 		}
 		return result.toString();
 	}
+
 
 	/**
 	 * @param element
@@ -294,18 +274,22 @@ public abstract class MViewWriter extends Syntax {
 		return (element instanceof CompilationUnit);
 	}
 
+
 	/**
 	 * @param element
+	 * @param wArgs
 	 * @return
-	 * @throws ModelException 
+	 * @throws ModelException
 	 */
-	protected String toCodeCompilationUnit(CompilationUnit element) throws ModelException {
+	protected String toCodeCompilationUnit(CompilationUnit element,
+			WriterArguments wArgs) throws ModelException {
 		StringBuffer result = new StringBuffer();
 		for (NamespacePart part : element.namespaceParts()) {
-			result.append(toCodeNamespacePart(part));
+			result.append(toCodeNamespacePart(part, wArgs));
 		}
 		return result.toString();
 	}
+
 
 	/**
 	 * @param element
@@ -315,11 +299,15 @@ public abstract class MViewWriter extends Syntax {
 		return (element instanceof Component);
 	}
 
+
 	/**
 	 * @param element
+	 * @param wArgs
 	 * @return
 	 */
-	protected abstract String toCodeComponent(Component element);
+	protected abstract String toCodeComponent(Component element,
+			WriterArguments wArgs);
+
 
 	/**
 	 * @param element
@@ -329,13 +317,17 @@ public abstract class MViewWriter extends Syntax {
 		return (element instanceof Instance);
 	}
 
+
 	/**
 	 * @param element
+	 * @param wArgs
 	 * @return
 	 * @throws ModelException
 	 */
-	protected abstract String toCodeInstance(Instance element)
+	protected abstract String toCodeInstance(Instance element,
+			WriterArguments wArgs)
 			throws ModelException;
+
 
 	/**
 	 * @param element
@@ -345,13 +337,17 @@ public abstract class MViewWriter extends Syntax {
 		return (element instanceof AOComposition);
 	}
 
+
 	/**
 	 * @param element
+	 * @param wArgs
 	 * @return
 	 * @throws ModelException
 	 */
-	protected abstract String toCodeAOComposition(AOComposition element)
+	protected abstract String toCodeAOComposition(AOComposition element,
+			WriterArguments wArgs)
 			throws ModelException;
+
 
 	/**
 	 * @param element
@@ -361,12 +357,16 @@ public abstract class MViewWriter extends Syntax {
 		return (element instanceof Deployment);
 	}
 
+
 	/**
 	 * @param element
+	 * @param wArgs
 	 * @throws ModelException
 	 */
-	protected abstract String toCodeDeployment(Deployment element)
+	protected abstract String toCodeDeployment(Deployment element,
+			WriterArguments wArgs)
 			throws ModelException;
+
 
 	/**
 	 * @param element
@@ -376,12 +376,15 @@ public abstract class MViewWriter extends Syntax {
 		return (element instanceof mview.model.module.Connector);
 	}
 
+
 	/**
 	 * @param element
+	 * @param wArgs
 	 * @throws ModelException
 	 * @throws IOException
 	 */
-	protected abstract String toCodeConnector(Connector element)
+	protected abstract String toCodeConnector(Connector element,
+			WriterArguments wArgs)
 			throws ModelException;
 
 }

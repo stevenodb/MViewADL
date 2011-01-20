@@ -22,7 +22,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import chameleon.core.element.Element;
+import mview.model.namespace.MViewDeclaration;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
@@ -32,19 +32,19 @@ public class WriterArguments {
 
 	private final String _defaultNamespace;
 	private final File _outputDir;
-	private final List<Class<? extends Element>> _elementsAllowedOutput =
-		new ArrayList<Class<? extends Element>>();
+
+	private List<MViewDeclaration> _declarations;
+	private boolean _canOutput;
 
 	/**
 	 * @param defaultNameSpace
 	 * @param outputDir
 	 * @param declAllowedOutput
 	 */
-	public WriterArguments(String defaultNameSpace, File outputDir,
-			List<Class<? extends Element>> elementsAllowedOutput) {
+	public WriterArguments(String defaultNameSpace, File outputDir) {
 		_defaultNamespace = defaultNameSpace;
 		_outputDir = outputDir;
-		_elementsAllowedOutput.addAll(elementsAllowedOutput);
+		_canOutput = false;
 	}
 
 	public String defaultNamespace() {
@@ -54,8 +54,52 @@ public class WriterArguments {
 	public File outputDir() {
 		return _outputDir;
 	}
+
+	/**
+	 * @param declaration the declaration to set
+	 */
+	public void addDeclaration(MViewDeclaration declaration) {
+		this._declarations.add(declaration);
+	}
+
+	/**
+	 * @return the declarations
+	 */
+	public List<MViewDeclaration> declarations() {
+		return _declarations;
+	}
+
+	/**
+	 * @param decls
+	 */
+	protected void setDeclarations(List<MViewDeclaration> decls) {
+		_declarations = decls;
+	}
 	
-	public boolean allowedOutput(Class<? extends Element> declaration) {
-		return _elementsAllowedOutput.contains(declaration);
+	/**
+	 * @param canOutput the canOutput to set
+	 */
+	public void setCanOutput(boolean canOutput) {
+		this._canOutput = canOutput;
+	}
+
+	/**
+	 * @return the canOutput
+	 */
+	public boolean canOutput() {
+		return _canOutput;
+	}
+
+	/**
+	 *
+	 */
+	public WriterArguments clone() {
+		WriterArguments clone = 
+			new WriterArguments(this.defaultNamespace(), this.outputDir());
+		
+		clone.setCanOutput(this.canOutput());
+		clone.setDeclarations(new ArrayList<MViewDeclaration>(this.declarations()));
+		
+		return clone;
 	}
 }
