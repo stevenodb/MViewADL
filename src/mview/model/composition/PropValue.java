@@ -127,13 +127,12 @@ public class PropValue<D extends Declaration>
 		VerificationResult result = Valid.create();
 
 		try {
-			
-			if ( !(value() == null ) ) {
+			if ( !(value() != null ) ) {
 				result = result.and(new BasicProblem(this,
 				"PropValue: PropValue is null."));
-			}
-			
-			if (!(value().getElement() == null)) {
+			} else 
+				
+				if (!(value().getElement() != null)) {
 				result.and(new BasicProblem(this,
 				"PropValue: Invalid reference to declaration."));
 			}
