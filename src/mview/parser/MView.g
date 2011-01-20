@@ -298,7 +298,7 @@ connectorAOCompositionDeclaration returns [AOComposition element]
 			setKeyword($element,$kw);
 			setLocation($element,$name,"__NAME");
 		}
-		refinementDeclaration[$element,AOComposition.class] 
+		refinementDeclarationSingle[$element,AOComposition.class] 
 		connectorAOCompositionBody[$element]
 	;
 
@@ -611,8 +611,13 @@ applicationBodyDeclaration[Application element]
  *********** */
 
 deploymentDeclaration returns [Deployment element]
-	:	appkw='deployment' name=Identifier {
+	:	(abs=abstractModifier)? appkw='deployment' name=Identifier {
 			$element = new Deployment(new SimpleNameSignature($name.text));
+
+			if ($abs.value != null) {
+				$element.addModifier($abs.value);
+			}
+
 			setKeyword($element,$appkw);
    			setLocation($element,$name,"__NAME");
 		} 
@@ -713,7 +718,6 @@ refinementDeclaration[RefinableDeclaration element, Class kind]
 			setKeyword($element,$rfkw);
 		})?
 	;
-	
 
 refinementRelationDeclarations[RefinableDeclaration element, Class kind]
 	:	name=Identifier ( ',' refinementRelationDeclarations[$element,$kind] )? {
@@ -725,6 +729,21 @@ refinementRelationDeclarations[RefinableDeclaration element, Class kind]
 		}
 	;
 
+refinementDeclarationSingle[RefinableDeclaration element, Class kind]
+	:	(rfkw=':' refinementRelationDeclaration[$element,$kind] {
+			setKeyword($element,$rfkw);
+		})?
+	;	
+
+refinementRelationDeclaration[RefinableDeclaration element, Class kind]
+	:	name=Identifier {
+			SimpleReference parentRef = new SimpleReference($name.text,$kind);
+			RefinementRelation relation = new RefinementRelation(parentRef);
+			$element.addRefinementRelation(relation);
+			
+			setLocation(parentRef,$name,$name);
+		}
+	;
 
 /* ***********
  * MISC
