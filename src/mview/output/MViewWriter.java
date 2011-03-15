@@ -285,7 +285,7 @@ public abstract class MViewWriter extends ConnectorImpl {
 			WriterArguments wArgs) throws ModelException {
 		StringBuffer result = new StringBuffer();
 		for (NamespacePart part : element.namespaceParts()) {
-			result.append(toCodeNamespacePart(part, wArgs));
+			result.append(toCode(part, wArgs));
 		}
 		return result.toString();
 	}
