@@ -16,7 +16,7 @@
  * You should have received a copy of the GNU General Public License. 
  * If not, see <http://www.gnu.org/licenses/>.
  */
-package mview.output;
+package mview.output.jboss;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -42,6 +42,8 @@ import mview.model.module.Connector;
 import mview.model.module.Interface;
 import mview.model.module.Module.RequiredInterfaceDependency;
 import mview.model.namespace.MViewDeclaration;
+import mview.output.MViewWriter;
+import mview.output.WriterArguments;
 
 import org.rejuse.java.collections.RobustVisitor;
 
@@ -54,9 +56,9 @@ import chameleon.util.Pair;
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  * 
  */
-public class JBossAOPWriter extends MViewWriter {
+public class JBossWriter extends MViewWriter {
 
-	 private JBossAOPWriter(WriterArguments wArguments) {
+	 private JBossWriter(WriterArguments wArguments) {
 		 super(wArguments);
 	 }
 
@@ -77,7 +79,6 @@ public class JBossAOPWriter extends MViewWriter {
 		addPreamble(Connector.class, connPA);
 	}
 
-
 	/**
 	 * @param declarations
 	 * @param defaultNamespace
@@ -92,7 +93,7 @@ public class JBossAOPWriter extends MViewWriter {
 		WriterArguments wArgs = new WriterArguments(defaultNamespace,
 				outputDir);
 
-		MViewWriter writer = new JBossAOPWriter(wArgs);
+		MViewWriter writer = new JBossWriter(wArgs);
 		writer.writeCode(decl);
 	}
 
@@ -159,7 +160,7 @@ public class JBossAOPWriter extends MViewWriter {
 	 */
 	@Override
 	public MViewWriter clone() {
-		return new JBossAOPWriter(this.writerArguments());
+		return new JBossWriter(this.writerArguments());
 	}
 
 
