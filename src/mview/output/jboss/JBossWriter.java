@@ -1,7 +1,7 @@
 /**
  * author:   Steven Op de beeck <steven /at/ opdebeeck /./ org>
- * filename: JBossAOPWriter.java
- * created:  Dec 15, 2010, 5:03:21 PM
+ * filename: JBossWriter.java
+ * created:  Mar 17, 2011, 4:23:23 PM
  * license:
  * The code contained in this file is free software: you can redistribute 
  * it and/or modify it under the terms of the GNU General Public License
@@ -22,54 +22,112 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+
+import org.rejuse.java.collections.RobustVisitor;
 
 import mview.model.application.Instance;
 import mview.model.composition.AOComposition;
 import mview.model.composition.Advice;
-import mview.model.composition.PatternSignature;
 import mview.model.composition.Pointcut;
-import mview.model.composition.PointcutSignature;
-import mview.model.composition.ServiceSignature;
-import mview.model.composition.modifier.After;
-import mview.model.composition.modifier.Around;
 import mview.model.deployment.Deployment;
-import mview.model.language.MView;
 import mview.model.module.Component;
 import mview.model.module.Connector;
 import mview.model.module.Interface;
 import mview.model.module.Module.RequiredInterfaceDependency;
 import mview.model.namespace.MViewDeclaration;
-import mview.output.MViewWriter;
 import mview.output.WriterArguments;
-
-import org.rejuse.java.collections.RobustVisitor;
-
+import chameleon.core.compilationunit.CompilationUnit;
+import chameleon.core.declaration.Declaration;
 import chameleon.core.element.Element;
+import chameleon.core.lookup.LookupException;
+import chameleon.core.namespacepart.NamespacePart;
 import chameleon.core.reference.SimpleReference;
 import chameleon.exception.ModelException;
-import chameleon.util.Pair;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  * 
  */
-public class JBossWriter extends MViewWriter {
+public class JBossWriter {
 
-	 private JBossWriter(WriterArguments wArguments) {
-		 super(wArguments);
-	 }
+	/**
+	 * @param wArguments
+	 */
+	private JBossWriter(WriterArguments wArguments) {
+		_wArguments = wArguments;
+	}
 
 	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see mview.output.MViewWriter#initPreambles()
+	 * List of transformed declarations
 	 */
-	@Override
+	private final List<JBDeclaration>	_transformedDecls	=
+																					new ArrayList<JBDeclaration>();
+
+
+	/**
+	 * @param decl
+	 */
+	protected void addTransformedDecl(JBDeclaration decl) {
+		_transformedDecls.add(decl);
+	}
+
+	/*
+	 * WriterArguments
+	 */
+	private final WriterArguments	_wArguments;
+
+
+	/**
+	 * @return the wArguments
+	 */
+	public WriterArguments writerArguments() {
+		return _wArguments.clone();
+	}
+
+	/*
+	 * Preamble
+	 */
+	Map<Class<? extends Element>, StringBuffer>	_preambles	=
+																						new HashMap<Class<? extends Element>, StringBuffer>();
+
+
+	/**
+	 * @param key
+	 * @return
+	 */
+	protected StringBuffer preamble(Class<? extends Element> key) {
+		return _preambles.get(key);
+	}
+
+
+	/**
+	 * @param key
+	 * @param preamble
+	 */
+	protected void addPreamble(Class<? extends Element> key,
+			StringBuffer preamble) {
+		_preambles.put(key, preamble);
+	}
+
+
+	/**
+	 * @param key
+	 */
+	protected void removePreamble(Class<? extends Element> key) {
+		_preambles.remove(key);
+	}
+
+
+	/**
+	 * 
+	 */
 	protected void initPreambles() {
-		String imports ="import javax.ejb.EJB;\n" +
+		String imports = "import javax.ejb.EJB;\n" +
 						"import org.jboss.aop.AdviceType;\n" +
 						"import org.jboss.aop.Aspect;\n" +
 						"import org.jboss.aop.Bind;\n" +
@@ -78,6 +136,7 @@ public class JBossWriter extends MViewWriter {
 		StringBuffer connPA = new StringBuffer(imports);
 		addPreamble(Connector.class, connPA);
 	}
+
 
 	/**
 	 * @param declarations
@@ -93,9 +152,10 @@ public class JBossWriter extends MViewWriter {
 		WriterArguments wArgs = new WriterArguments(defaultNamespace,
 				outputDir);
 
-		MViewWriter writer = new JBossWriter(wArgs);
+		JBossWriter writer = new JBossWriter(wArgs);
 		writer.writeCode(decl);
 	}
+
 
 	/**
 	 * @param element
@@ -103,267 +163,310 @@ public class JBossWriter extends MViewWriter {
 	 * @throws ModelException
 	 */
 	public void writeCode(Element element) throws IOException, ModelException {
-		writeCode(element, this.writerArguments());
+		List<JBDeclaration> declaration = transform(element);
+		
+		for (JBDeclaration jbDeclaration : declaration) {
+			System.out.println("Writing "+jbDeclaration);
+		}
+		
+//		MViewDeclaration declaration = args.declarations().get(0);
+//		String fileName = declaration.signature().name() + ".java";
+//
+//		String packageFQN =
+//				declaration.getNamespace().getFullyQualifiedName();
+//
+//		if (packageFQN.equals("")) {
+//			packageFQN = args.defaultNamespace();
+//		}
+//
+//		String relDirName = packageFQN.replace('.', File.separatorChar);
+//		File out =
+//				new File(args.outputDir().getAbsolutePath()
+//						+ File.separatorChar + relDirName
+//						+ File.separatorChar + fileName);
+//
+//		System.out.println("Writing: " + out.getAbsolutePath());
+//
+//		File parent = out.getParentFile();
+//		parent.mkdirs();
+//		out.createNewFile();
+//		FileWriter fw = new FileWriter(out);
+//
+//		// preamble
+//		fw.write(preamble(element.getClass()).toString());
+//
+//		// body
+//		fw.write(code);
+//
+//		fw.close();
 	}
 
-	/**
-	 * @param args
-	 * @param element
-	 * @param code
-	 * @throws IOException
-	 * @throws ModelException
-	 */
-	@Override
-	protected void writeCode(Element element, WriterArguments args)
-			throws IOException, ModelException {
 
-		String code = toCode(element, args);
+	// /**
+	// * @param element
+	// * @param writerArguments
+	// */
+	// private void writeCode(Element element, WriterArguments writerArguments)
+	// {
+	// // TODO Auto-generated method stub
+	// }
 
-		// File stuff
-		MViewDeclaration declaration = args.declarations().get(0);
-		String fileName = declaration.signature().name() + ".java";
+	public List<JBDeclaration> transform(Element src)
+			throws ModelException {
 
-		String packageFQN =
-				declaration.getNamespace().getFullyQualifiedName();
+		List<JBDeclaration> result = null;
 
-		if (packageFQN.equals("")) {
-			packageFQN = args.defaultNamespace();
+		if (isCompilationUnit(src)) {
+			result = transformCompilationUnit((CompilationUnit) src);
+		} else if (isNamespacePart(src)) {
+			result = transformNamespacePart((NamespacePart) src);
+		}
+		if (isInstance(src)) {
+			result = transformInstance((Instance) src);
+		} else if (isComponent(src)) {
+			result = transformComponent((Component) src);
+		} else if (isConnector(src)) {
+			result = transformConnector((Connector) src);
+		} else if (isAOComposition(src)) {
+			result = transformAOComposition((AOComposition) src);
+		} else if (isDeployment(src)) {
+			result = transformDeployment((Deployment) src);
 		}
 
-		String relDirName = packageFQN.replace('.', File.separatorChar);
-		File out =
-				new File(args.outputDir().getAbsolutePath()
-						+ File.separatorChar + relDirName
-						+ File.separatorChar + fileName);
+		else if (src == null) {
+		} else {
+			throw new IllegalArgumentException(
+					"The given element is not know by MView syntax: "
+							+ src.getClass().getName());
+		}
 
-		System.out.println("Writing: " + out.getAbsolutePath());
-
-		File parent = out.getParentFile();
-		parent.mkdirs();
-		out.createNewFile();
-		FileWriter fw = new FileWriter(out);
-
-		// preamble
-		fw.write(preamble(element.getClass()).toString());
-
-		// body
-		fw.write(code);
-
-		fw.close();
-	}
-
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see chameleon.tool.ConnectorImpl#clone()
-	 */
-	@Override
-	public MViewWriter clone() {
-		return new JBossWriter(this.writerArguments());
+		return result;
 	}
 
 
 	/**
-	 * @param typeName
+	 * @param src
 	 * @return
 	 */
-	public String typeToInstanceName(String typeName) {
-		final StringBuffer result = new StringBuffer();
-		result.append(typeName.substring(0, 1).toLowerCase());
-		result.append(typeName.substring(1));
-		return result.toString();
+	private boolean isAOComposition(Element element) {
+		return (element instanceof AOComposition);
 	}
 
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * mview.output.MViewWriter#toCodeDeployment(mview.model.deployment.Deployment
-	 * )
+	/**
+	 * @param src
+	 * @return
 	 */
-	@Override
-	protected String toCodeDeployment(Deployment element,
-			final WriterArguments wArgs)
+	private List<JBDeclaration> transformAOComposition(AOComposition src)
 			throws ModelException {
-		
-		final StringBuffer result = startLine();
 
-		List<Instance> instances = element.members(Instance.class);
+		JBAOComposition jbAOC = new JBAOComposition(src);
+
+		// pointcut
+		List<Pointcut> pointcuts = src.members(Pointcut.class);
+
+		// advice
+		List<Advice> advices = src.members(Advice.class);
+
+		if ((pointcuts.size() != 1) || (advices.size() != 1)) {
+			throw new ModelException("AOComposition is allowed one pointcut " +
+					"and one advice, something went horribly wrong.");
+
+		} else {
+			Pointcut pc = pointcuts.get(0);
+			Advice adv = advices.get(0);
+
+			JBPointcut jbPC = new JBPointcut(src, pc);
+			JBAdvice jbAdv = new JBAdvice(src, adv);
+		}
+
+		List<JBDeclaration> result = new ArrayList<JBDeclaration>();
+		result.add(jbAOC);
+
+		return result;
+	}
+
+
+	/**
+	 * @param element
+	 * @return
+	 */
+	private boolean isInstance(Element element) {
+		return (element instanceof Instance);
+	}
+
+
+	/**
+	 * @param element
+	 * @return
+	 */
+	private List<JBDeclaration> transformInstance(Instance element)
+			throws ModelException {
+
+		return transform(element.type().getElement());
+	}
+
+
+	/**
+	 * @param element
+	 * @return
+	 */
+	protected boolean isComponent(Element element) {
+		return (element instanceof Component);
+	}
+
+
+	/**
+	 * @param src
+	 * @return
+	 */
+	private List<JBDeclaration> transformComponent(Component src) {
+		List<JBDeclaration> result = new ArrayList<JBDeclaration>();
+
+		// JBComponent jbc = new JBComponent();
+
+		// src.
+
+		return result;
+	}
+
+
+	/**
+	 * @return
+	 */
+	private boolean isNamespacePart(Element element) {
+		return (element instanceof NamespacePart);
+	}
+
+
+	/**
+	 * @param src
+	 * @return
+	 * @throws ModelException
+	 */
+	private List<JBDeclaration> transformNamespacePart(
+			NamespacePart src) throws ModelException {
+
+		List<JBDeclaration> result = new ArrayList<JBDeclaration>();
+
+		List<Declaration> decls = src.declarations();
+		Iterator iter = decls.iterator();
+		while (iter.hasNext()) {
+			result.addAll(transform((Element) iter.next()));
+		}
+
+		return result;
+	}
+
+
+	/**
+	 * @param element
+	 * @return
+	 */
+	private boolean isDeployment(Element element) {
+		return (element instanceof Deployment);
+	}
+
+
+	/**
+	 * @param src
+	 * @return
+	 * @throws ModelException
+	 */
+	private List<JBDeclaration> transformDeployment(Deployment src)
+			throws ModelException {
+
+		final List<JBDeclaration> result = new ArrayList<JBDeclaration>();
+
+		List<Instance> instances = src.members(Instance.class);
+		final ArrayList<JBModule> jbModules = new ArrayList<JBModule>();
 
 		try {
 			new RobustVisitor<Instance>() {
-				@Override
 				public Object visit(Instance element) throws ModelException {
-					toCode(element, wArgs);
+					jbModules
+							.addAll((Collection<? extends JBModule>) transformInstance(element));
 					return null;
 				}
 
-				@Override
+
 				public void unvisit(Instance element, Object unvisitData) {
-					// NOP
 				}
 			}.applyTo(instances);
+
 		} catch (ModelException e) {
 			throw e;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		return result.toString();
-	}
+		JBDeployment jbd = new JBDeployment(src);
 
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * mview.output.MViewWriter#toCodeInstance(mview.model.application.Instance)
-	 */
-	@Override
-	protected String toCodeInstance(Instance element, WriterArguments wArgs)
-			throws ModelException {
-		return toCode(element.type().getElement(), wArgs);
-	}
-
-
-	// /**
-	// * @param module
-	// * @return
-	// * NOTE: should be replaced by decent refinement support for
-	// required/provided
-	// * interfaces.
-	// */
-	// protected List<SimpleReference<Interface>>
-	// gatherRequiredInterfaces(Module module) {
-	// List<SimpleReference<Interface>> result =
-	// new ArrayList<SimpleReference<Interface>>();
-	//
-	// result.addAll(module.requiredInterfaces());
-	//
-	// List<RefinementRelation> refinements = module.refinementRelations();
-	// for (RefinementRelation refinementRelation : refinements) {
-	// Module parent = (Module)refinementRelation.parentDeclarationEnd();
-	// result.addAll(0, this.gatherRequiredInterfaces(parent));
-	// }
-	//
-	// return result;
-	// }
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see mview.output.MViewWriter#toCodeConnector(chameleon.tool.Connector)
-	 */
-	@Override
-	protected String toCodeConnector(Connector element,
-			final WriterArguments wArgs) throws
-			ModelException {
-
-		final StringBuffer result = startLine();
-
-		result.append("\n");
-		result.append(startNewLine("@Aspect"));
-		result.append(startNewLine("public class "));
-		result.append(element.signature().name());
-
-		result.append(" {");
-
-		indent();
-
-		{
-			// required interfaces => define injections
-			List<RequiredInterfaceDependency> dep =
-					element.members(RequiredInterfaceDependency.class);
-
-			List<SimpleReference<Interface>> required =
-					new ArrayList<SimpleReference<Interface>>();
-			if (dep.size() != 0) {
-				required.addAll(dep.get(0).dependencies());
-			}
-
-			Iterator<SimpleReference<Interface>> it = required.iterator();
-
-			while (it.hasNext()) {
-				SimpleReference<mview.model.module.Interface> ifaceRef =
-						(SimpleReference<mview.model.module.Interface>) it
-								.next();
-
-				Interface iface = ifaceRef.getElement();
-				String ifaceName = iface.signature().name();
-
-				String appendix = "";
-				int n = Collections.frequency(required, ifaceRef);
-				if (n > 1) {
-					appendix = "" + n;
-				}
-
-				result.append("\n");
-				result.append(startNewLine("@EJB"));
-				result.append(startNewLine("private "));
-				result.append(ifaceName);
-				result.append(" ");
-				result.append(typeToInstanceName(ifaceName) + appendix);
-				result.append(';');
-
-				it.remove();
-
-			}
+		for (JBModule jbModule : jbModules) {
+			jbd.addModule(jbModule);
 		}
 
-		// try {
-		// new RobustVisitor<SimpleReference<Interface>>() {
-		//
-		// @Override
-		// public Object visit(SimpleReference<Interface> element)
-		// throws Exception {
-		//
-		// Interface iface = element.getElement();
-		// String ifaceName = iface.signature().name();
-		//
-		//
-		//
-		// result.append(startNewLine("@EJB"));
-		// result.append(startNewLine("private "));
-		// result.append(ifaceName);
-		// result.append(" ");
-		// result.append(typeToInstanceName(ifaceName));
-		// result.append(';');
-		//
-		// return null;
-		// }
-		//
-		// @Override
-		// public void unvisit(SimpleReference<Interface> element,
-		// Object unvisitData) {
-		// // NOP
-		// }
-		// }.applyTo(required);
-		// } catch (ModelException e1) {
-		// throw e1;
-		// } catch (Exception e1) {
-		// e1.printStackTrace();
-		// }
+		return result;
+	}
 
-		// handle AOCompositions
-		List<AOComposition> compositions = element.members(AOComposition.class);
+
+	/**
+	 * @param element
+	 * @return
+	 */
+	protected boolean isConnector(Element element) {
+		return (element instanceof mview.model.module.Connector);
+	}
+
+
+	/**
+	 * @param element
+	 * @param wArgs
+	 * @throws ModelException
+	 */
+	private List<JBDeclaration> transformConnector(Connector element)
+			throws ModelException {
+
+		final List<JBDeclaration> result = new ArrayList<JBDeclaration>();
+
+		// 1. connector's name.
+
+		final JBConnector jbc = new JBConnector(element);
+
+		result.add(jbc);
+
+		// 2. required interfaces (injections)
+
+		final List<RequiredInterfaceDependency> deps =
+				element.members(RequiredInterfaceDependency.class);
+
+		final List<SimpleReference<Interface>> required = null;
+
+		for (RequiredInterfaceDependency ifaceDep : deps) {
+			required.addAll(ifaceDep.dependencies());
+		}
+
+		jbc.addRequiredInterfaces(required);
+
+		// 3. ao-compositions; pass on, process results
+
+		final List<JBAOComposition> jbAOC = new ArrayList<JBAOComposition>();
+		final List<AOComposition> compositions =
+				element.members(AOComposition.class);
 
 		try {
-
 			new RobustVisitor<AOComposition>() {
+
 				@Override
-				public Object visit(AOComposition element)
-						throws ModelException {
-					result.append(toCode(element, wArgs));
+				public Object visit(AOComposition element) throws ModelException {
+					jbAOC.addAll((Collection<? extends JBAOComposition>) transformAOComposition(element));
 					return null;
 				}
 
-
 				@Override
 				public void unvisit(AOComposition element, Object unvisitData) {
-					// NOP
 				}
+
 			}.applyTo(compositions);
 
 		} catch (ModelException e) {
@@ -372,135 +475,40 @@ public class JBossWriter extends MViewWriter {
 			e.printStackTrace();
 		}
 
-		undent();
+		for (JBAOComposition jbaoc : jbAOC) {
+			jbc.addPointcut(jbaoc.pointcut());
+			jbc.addAdvice(jbaoc.advice());
+		}
 
-		result.append(startNewLine("}"));
-
-		return result.toString();
+		return result;
 	}
 
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * mview.output.MViewWriter#toCodeAOComposition(mview.model.composition.
-	 * AOComposition)
+	/**
+	 * @param element
+	 * @return
 	 */
-	@Override
-	protected String toCodeAOComposition(AOComposition element,
-			WriterArguments wArgs) throws ModelException {
-		StringBuffer result = new StringBuffer();
-
-		// pointcut
-		List<Pointcut> pointcuts = element.members(Pointcut.class);
-
-		// advice
-		List<Advice> advices = element.members(Advice.class);
-
-		if ((pointcuts.size() == 1) && (advices.size() == 1)) {
-			Pointcut pc = pointcuts.get(0);
-			Advice adv = advices.get(0);
-
-			/* pointcut */
-			result.append("\n");
-			result.append(startNewLine("@PointcutDef(\""));
-
-			String kind = "call";
-			// if (pc.hasModifier(new Execution())) {
-			if (pc.isTrue(pc.language(MView.class).EXECUTION)) {
-				kind = "execution";
-			}
-			result.append(kind + "("); // kind
-			PointcutSignature sig = pc.signature();
-			if (sig == null) {
-				System.out.println("debug");
-			}
-			Iterator<ServiceSignature> it = sig.signatures().iterator();
-
-			while (it.hasNext()) {
-				PatternSignature pSig =
-						(PatternSignature) it.next();
-
-				result.append(pSig.returnTypePattern() + " ");
-				result.append(pSig.signaturePattern() + " (");
-
-				for (Pair<String, String> param : pSig
-						.formalParametersPattern()) {
-
-					result.append(param.first() + " ");
-				}
-
-				if (result.charAt(result.length() - 1) == ' ') {
-					result.replace(result.length() - 1, result.length() - 1,
-							")");
-				} else {
-					result.append(")");
-				}
-
-				if (it.hasNext()) {
-					result.append("\"");
-					result.append(" + ");
-					result.append(startNewLine("\"OR "));
-				} else {
-					result.append(")"); // kind
-					result.append("\"");
-				}
-			}
-			result.append(")");
-
-			result.append(startNewLine("public static Pointcut "
-					+ element.signature().name() + ";"));
-
-			// caller/callee
-			// interface/component -> "Class->method"
-			// instance
-			// host
-			// application
-
-			result.append("\n");
-			result.append(startNewLine("@Bind(\""));
-			result.append("pointcut=" + element.signature().name());
-			result.append(",");
-			result.append("type=");
-
-			String type = "AdviceType.";
-			if (adv.hasModifier(new After())) {
-				type += "AFTER";
-			} else if (adv.hasModifier(new Around())) {
-				type += "AROUND";
-			} else {
-				type += "BEFORE";
-			}
-
-			result.append(type + ")");
-
-			result.append("\")");
-
-			result.append(startNewLine("public void "
-					+ element.signature().name() + "() {"));
-
-			/* advice */
-
-		} /*
-		 * else { throw new
-		 * ModelException("AOComposition only allows one pointcut " +
-		 * "and one advice, something went horribly wrong."); }
-		 */
-
-		return result.toString();
+	protected boolean isCompilationUnit(Element element) {
+		return (element instanceof CompilationUnit);
 	}
 
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * mview.output.MViewWriter#toCodeComponent(mview.model.module.Component)
+	/**
+	 * @param element
+	 * @param wArgs
+	 * @return
+	 * @throws ModelException
 	 */
-	@Override
-	protected String toCodeComponent(Component element, WriterArguments wArgs) {
-		return "";
+	protected List<JBDeclaration> transformCompilationUnit(
+			CompilationUnit element) throws ModelException {
+
+		List<JBDeclaration> result = new ArrayList<JBDeclaration>();
+
+		for (NamespacePart part : element.namespaceParts()) {
+			result.addAll(transform(part));
+		}
+
+		return result;
 	}
 
 }
