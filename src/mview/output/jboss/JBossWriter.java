@@ -65,8 +65,7 @@ public class JBossWriter {
 	/*
 	 * List of transformed declarations
 	 */
-	private final List<JBDeclaration>	_transformedDecls	=
-																					new ArrayList<JBDeclaration>();
+	private final List<JBDeclaration> _transformedDecls = new ArrayList<JBDeclaration>();
 
 
 	/**
@@ -79,7 +78,7 @@ public class JBossWriter {
 	/*
 	 * WriterArguments
 	 */
-	private final WriterArguments	_wArguments;
+	private final WriterArguments _wArguments;
 
 
 	/**
@@ -92,8 +91,8 @@ public class JBossWriter {
 	/*
 	 * Preamble
 	 */
-	Map<Class<? extends Element>, StringBuffer>	_preambles	=
-																						new HashMap<Class<? extends Element>, StringBuffer>();
+	Map<Class<? extends Element>, StringBuffer> _preambles =
+			new HashMap<Class<? extends Element>, StringBuffer>();
 
 
 	/**
@@ -164,41 +163,41 @@ public class JBossWriter {
 	 */
 	public void writeCode(Element element) throws IOException, ModelException {
 		List<JBDeclaration> declaration = transform(element);
-		
+
 		for (JBDeclaration jbDeclaration : declaration) {
-			System.out.println("Writing "+jbDeclaration);
+			System.out.println("Writing " + jbDeclaration);
 		}
-		
-//		MViewDeclaration declaration = args.declarations().get(0);
-//		String fileName = declaration.signature().name() + ".java";
-//
-//		String packageFQN =
-//				declaration.getNamespace().getFullyQualifiedName();
-//
-//		if (packageFQN.equals("")) {
-//			packageFQN = args.defaultNamespace();
-//		}
-//
-//		String relDirName = packageFQN.replace('.', File.separatorChar);
-//		File out =
-//				new File(args.outputDir().getAbsolutePath()
-//						+ File.separatorChar + relDirName
-//						+ File.separatorChar + fileName);
-//
-//		System.out.println("Writing: " + out.getAbsolutePath());
-//
-//		File parent = out.getParentFile();
-//		parent.mkdirs();
-//		out.createNewFile();
-//		FileWriter fw = new FileWriter(out);
-//
-//		// preamble
-//		fw.write(preamble(element.getClass()).toString());
-//
-//		// body
-//		fw.write(code);
-//
-//		fw.close();
+
+		// MViewDeclaration declaration = args.declarations().get(0);
+		// String fileName = declaration.signature().name() + ".java";
+		//
+		// String packageFQN =
+		// declaration.getNamespace().getFullyQualifiedName();
+		//
+		// if (packageFQN.equals("")) {
+		// packageFQN = args.defaultNamespace();
+		// }
+		//
+		// String relDirName = packageFQN.replace('.', File.separatorChar);
+		// File out =
+		// new File(args.outputDir().getAbsolutePath()
+		// + File.separatorChar + relDirName
+		// + File.separatorChar + fileName);
+		//
+		// System.out.println("Writing: " + out.getAbsolutePath());
+		//
+		// File parent = out.getParentFile();
+		// parent.mkdirs();
+		// out.createNewFile();
+		// FileWriter fw = new FileWriter(out);
+		//
+		// // preamble
+		// fw.write(preamble(element.getClass()).toString());
+		//
+		// // body
+		// fw.write(code);
+		//
+		// fw.close();
 	}
 
 
@@ -270,7 +269,8 @@ public class JBossWriter {
 
 		if ((pointcuts.size() != 1) || (advices.size() != 1)) {
 			throw new ModelException("AOComposition is allowed one pointcut " +
-					"and one advice, something went horribly wrong.");
+					"and one advice, something went horribly wrong. " +
+					"(" + src.signature().name() + ")");
 
 		} else {
 			Pointcut pc = pointcuts.get(0);
@@ -440,7 +440,8 @@ public class JBossWriter {
 		final List<RequiredInterfaceDependency> deps =
 				element.members(RequiredInterfaceDependency.class);
 
-		final List<SimpleReference<Interface>> required = null;
+		final List<SimpleReference<Interface>> required =
+				new ArrayList<SimpleReference<Interface>>();
 
 		for (RequiredInterfaceDependency ifaceDep : deps) {
 			required.addAll(ifaceDep.dependencies());
@@ -462,6 +463,7 @@ public class JBossWriter {
 					jbAOC.addAll((Collection<? extends JBAOComposition>) transformAOComposition(element));
 					return null;
 				}
+
 
 				@Override
 				public void unvisit(AOComposition element, Object unvisitData) {
