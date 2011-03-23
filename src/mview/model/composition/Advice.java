@@ -182,7 +182,8 @@ public class Advice extends ElementWithModifiersImpl<Advice, Element>
 	 */
 	@Override
 	public boolean mergesWith(MViewMember other) throws ModelException {
-		return (other != null) && sharesContext(other) && !overrides(other);
+		return (other != null) && (this.getClass().equals(other.getClass())) 
+			&& sharesContext(other) && !overrides(other);
 	}
 
 	/* (non-Javadoc)
@@ -222,6 +223,11 @@ public class Advice extends ElementWithModifiersImpl<Advice, Element>
 	@Override
 	public boolean isAbstract() {
 		return false;
+	}
+
+	@Override
+	public String toString() {
+		return service() != null ? service().toString() : super.toString();
 	}
 	
 }

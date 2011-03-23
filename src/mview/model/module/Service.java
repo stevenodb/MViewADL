@@ -306,4 +306,10 @@ public class Service extends JoinPointElement<Service, Element> {
 		return result;
 	}
 
+
+	@Override
+	public String toString() {
+		return signature() != null ? signature().toString() : super.toString(); 
+	}
+
 }

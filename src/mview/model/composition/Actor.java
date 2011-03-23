@@ -105,40 +105,21 @@ public class Actor extends NamespaceElementImpl<Actor, Element> implements
 		return result;
 	}
 
-	/* (non-Javadoc)
-	 * @see mview.model.refinement.MViewMember#sharesContext(mview.model.refinement.MViewMember)
-	 */
 	@Override
 	public boolean sharesContext(MViewMember other) {
 		return (new RefinementContext().verify(this, other)); 
 	}
 	
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see mview.model.refinement.MViewMember#overrides(mview.model.refinement.
-	 * MViewMember)
-	 */
 	@Override
 	public boolean overrides(MViewMember other) throws ModelException {
 		return false;
 	}
 
-	/* (non-Javadoc)
-	 * @see mview.model.refinement.MViewMember#canMergeWith()
-	 */
 	@Override
 	public boolean mergesWith(MViewMember other) throws ModelException {
-		return (other != null) && sharesContext(other) && !overrides(other);
+		return (other != null) && (this.getClass().equals(other.getClass())) && sharesContext(other) && !overrides(other);
 	}
 		
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * mview.model.refinement.MViewMember#merge(mview.model.refinement.MViewMember
-	 * )
-	 */
 	@Override
 	public Actor merge(MViewMember other) throws MergeNotSupportedException, ModelException {
 		Actor merged;

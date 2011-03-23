@@ -160,40 +160,22 @@ public class PointcutSignature extends ElementWithModifiersImpl<PointcutSignatur
 		return result;
 	}
 	
-	/* (non-Javadoc)
-	 * @see mview.model.refinement.MViewMember#sharesContext(mview.model.refinement.MViewMember)
-	 */
 	@Override
 	public boolean sharesContext(MViewMember other) {
 		return new RefinementContext().verify(this, other);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see mview.model.refinement.MViewMember#overrides(mview.model.refinement.
-	 * MViewMember)
-	 */
 	@Override
 	public boolean overrides(MViewMember other) throws ModelException {
 		return this.overridable() && this.sharesContext(other);
 	}
 
-	/* (non-Javadoc)
-	 * @see mview.model.refinement.MViewMember#mergesWith(mview.model.refinement.MViewMember)
-	 */
 	@Override
 	public boolean mergesWith(MViewMember other) throws ModelException {
-		return (other != null) && sharesContext(other) && !overridable();
+		return (other != null) && (this.getClass().equals(other.getClass()))
+			&& sharesContext(other) && !overridable();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * mview.model.refinement.MViewMember#merge(mview.model.refinement.MViewMember
-	 * )
-	 */
 	@Override
 	public PointcutSignature merge(MViewMember other) throws MergeNotSupportedException, ModelException {
 		
@@ -208,5 +190,14 @@ public class PointcutSignature extends ElementWithModifiersImpl<PointcutSignatur
 		}
 		
 		return merged;
+	}
+
+	@Override
+	public String toString() {
+		StringBuffer result = new StringBuffer();
+		for (ServiceSignature sig : signatures()) {
+			result.append(sig.toString());
+		}
+		return result.toString();
 	}
 }

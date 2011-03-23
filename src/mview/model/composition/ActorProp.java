@@ -252,40 +252,21 @@ public class ActorProp<D extends Declaration> extends
 		return result;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * mview.model.refinement.MViewMember#sharesContext(mview.model.refinement
-	 * .MViewMember)
-	 */
 	@Override
 	public boolean sharesContext(MViewMember other) {
 		return (new RefinementContext().verify(this, other));
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see mview.model.refinement.MViewMember#overrides(mview.model.refinement.
-	 * MViewMember)
-	 */
 	@Override
 	public boolean overrides(MViewMember other) throws ModelException {
 		boolean result = this.overridable();
+		result &= this.getClass().equals(other.getClass());
 //		result &= this.declarationType() == ((ActorProp)other).declarationType();
 		result &= this.actorProperty() == ((ActorProp)other).actorProperty();
 		result &= sharesContext(other);
 		return result;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * mview.model.refinement.MViewMember#mergesWith(mview.model.refinement.
-	 * MViewMember)
-	 */
 	@Override
 	public boolean mergesWith(MViewMember other) throws ModelException {
 		return (other != null) 
@@ -295,13 +276,6 @@ public class ActorProp<D extends Declaration> extends
 //			&& this.declarationType() == ((ActorProp)other).declarationType();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * mview.model.refinement.MViewMember#merge(mview.model.refinement.MViewMember
-	 * )
-	 */
 	@Override
 	public ActorProp<D> merge(MViewMember other)
 			throws MergeNotSupportedException, ModelException {

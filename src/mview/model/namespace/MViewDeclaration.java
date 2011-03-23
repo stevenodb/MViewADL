@@ -179,4 +179,9 @@ public abstract class MViewDeclaration<E extends MViewDeclaration<E, P>, P exten
 		return (other != null) && ((signature().equals(other)) || other == this);
 	}
 
+	@Override
+	public String toString() {
+		return this.getClass().getSimpleName() + "@" + signature().toString();
+	}
+
 }

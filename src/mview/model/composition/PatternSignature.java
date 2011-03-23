@@ -351,4 +351,9 @@ public class PatternSignature extends
 		
 		return result;
 	}
+
+	@Override
+	public String toString() {
+		return signaturePattern();
+	}
 }

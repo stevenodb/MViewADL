@@ -52,9 +52,10 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element>
 		super();
 	}
 
+
 	/**
 	 * @param kind
-	 *            the kind of pointcut modifier
+	 *           the kind of pointcut modifier
 	 */
 	public Pointcut(Modifier kind) {
 		this();
@@ -65,20 +66,22 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element>
 	 * KIND is realized through modifier
 	 */
 
-
 	/*
 	 * SIGNATURE
 	 */
 	private SingleAssociation<Pointcut, PointcutSignature> _pointcutSignature =
-		new SingleAssociation<Pointcut, PointcutSignature>(this);
-	
+			new SingleAssociation<Pointcut, PointcutSignature>(
+																															this);
+
+
 	/**
 	 * @return
 	 */
 	public PointcutSignature signature() {
 		return _pointcutSignature.getOtherEnd();
 	}
-	
+
+
 	/**
 	 * @param pointcutSignature
 	 */
@@ -86,27 +89,29 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element>
 		if (pointcutSignature != null)
 			_pointcutSignature.connectTo(pointcutSignature.parentLink());
 	}
-	
+
+
 	/**
 	 * Clears the signature
 	 */
 	public void clearSignature() {
 		_pointcutSignature.clear();
 	}
-	
+
 	/*
 	 * ACTORS
 	 */
 
 	/*
-	 * CALLER 
+	 * CALLER
 	 */
 	private SingleAssociation<Pointcut, Actor> _caller =
-		new SingleAssociation<Pointcut, Actor>(this);
+			new SingleAssociation<Pointcut, Actor>(this);
 
-	
+
 	/**
 	 * Add Caller actor
+	 * 
 	 * @param actor
 	 */
 	public void setCaller(Actor actor) {
@@ -114,15 +119,18 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element>
 			_caller.connectTo(actor.parentLink());
 		}
 	}
-	
+
+
 	/**
 	 * Clear Caller actor
+	 * 
 	 * @param actor
 	 */
 	public void clearCaller() {
 		_caller.clear();
 	}
-	
+
+
 	/**
 	 * @return the Caller actor
 	 */
@@ -130,15 +138,16 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element>
 		return _caller.getOtherEnd();
 	}
 
-
 	/*
-	 * CALLEE 
+	 * CALLEE
 	 */
 	private SingleAssociation<Pointcut, Actor> _callee =
-		new SingleAssociation<Pointcut, Actor>(this);
+			new SingleAssociation<Pointcut, Actor>(this);
+
 
 	/**
 	 * Add Callee actor
+	 * 
 	 * @param actor
 	 */
 	public void setCallee(Actor actor) {
@@ -146,15 +155,18 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element>
 			_callee.connectTo(actor.parentLink());
 		}
 	}
-	
+
+
 	/**
 	 * Clear Callee actor
+	 * 
 	 * @param actor
 	 */
 	public void clearCallee() {
 		_callee.clear();
 	}
-	
+
+
 	/**
 	 * @return the Callee actor
 	 */
@@ -162,7 +174,7 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element>
 		return _callee.getOtherEnd();
 	}
 
-	
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -183,13 +195,14 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element>
 		if (this.callee() != null) {
 			clone.setCallee(this.callee().clone());
 		}
-		
+
 		if (this.caller() != null) {
 			clone.setCaller(this.caller().clone());
 		}
 
 		return clone;
 	}
+
 
 	/*
 	 * (non-Javadoc)
@@ -199,20 +212,21 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element>
 	@Override
 	public VerificationResult verifySelf() {
 		VerificationResult result = Valid.create();
-		
-//		if (! (this.isTrue(language(MView.class).CALL)
-//			|| this.isTrue(language(MView.class).EXTENDABLE))) {
-//			result = result.and(new BasicProblem(this,
-//					"Pointcut: Kind not set."));
-//		}
-//
-//		if (! (this.signature() != null)) {
-//			result = result.and(new BasicProblem(this,
-//					"Pointcut: Signature not set."));
-//		}
+
+		// if (! (this.isTrue(language(MView.class).CALL)
+		// || this.isTrue(language(MView.class).EXTENDABLE))) {
+		// result = result.and(new BasicProblem(this,
+		// "Pointcut: Kind not set."));
+		// }
+		//
+		// if (! (this.signature() != null)) {
+		// result = result.and(new BasicProblem(this,
+		// "Pointcut: Signature not set."));
+		// }
 
 		return result;
 	}
+
 
 	/*
 	 * (non-Javadoc)
@@ -225,73 +239,61 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element>
 		Util.addNonNull(signature(), result);
 		Util.addNonNull(caller(), result);
 		Util.addNonNull(callee(), result);
-		
+
 		return result;
 	}
-	
-	/* (non-Javadoc)
-	 * @see mview.model.refinement.MViewMember#sharesContext(mview.model.refinement.MViewMember)
-	 */
+
+
 	@Override
 	public boolean sharesContext(MViewMember other) {
 		return (new RefinementContext().verify(this, other));
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see mview.model.refinement.MViewMember#overrides(mview.model.refinement.
-	 * MViewMember)
-	 */
+
 	@Override
 	public boolean overrides(MViewMember member) throws ModelException {
 		return false;
 	}
 
-	/* (non-Javadoc)
-	 * @see mview.model.refinement.MViewMember#mergesWith(mview.model.refinement.MViewMember)
-	 */
+
 	@Override
 	public boolean mergesWith(MViewMember other) throws ModelException {
-		return (other != null) && sharesContext(other) && !overrides(other);
+		return (other != null) && (this.getClass().equals(other.getClass()))
+				&& sharesContext(other) && !overrides(other);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * mview.model.refinement.MViewMember#merge(mview.model.refinement.MViewMember
-	 * )
-	 */
+
 	@Override
-	public Pointcut merge(MViewMember other) throws MergeNotSupportedException, ModelException {
+	public Pointcut merge(MViewMember other) throws MergeNotSupportedException,
+			ModelException {
 
 		Pointcut merged;
-		
+
 		if (mergesWith(other)) {
-			
+
 			Pointcut child = this.clone();
-//			Pointcut child = this;
+			// Pointcut child = this;
 			Pointcut parent = (Pointcut) other.clone();
-//			Pointcut parent = (Pointcut) other;
+			// Pointcut parent = (Pointcut) other;
 			child.setUniParent(parent());
 			parent.setUniParent(other.parent());
 
 			merged = new Pointcut();
 			merged.setUniParent(parent());
-			
+
 			// 1. kind modifier: override with child's kind
 			merged.addModifiers(child.modifiers());
-			
+
 			// 2. signature
 			if (child.signature() != null) {
-				PointcutSignature newSignature = child.signature().merge(parent.signature());
+				PointcutSignature newSignature =
+						child.signature().merge(parent.signature());
 				newSignature.setUniParent(null);
 				merged.setSignature(newSignature);
 			} else {
 				merged.setSignature(parent.signature());
 			}
-			
+
 			// 3. CallerProps
 			if (child.caller() != null) {
 				Actor newCaller = child.caller().merge(parent.caller());
@@ -300,7 +302,7 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element>
 			} else {
 				merged.setCaller(parent.caller());
 			}
-			
+
 			// 4. CalleeProps
 			if (child.callee() != null) {
 				Actor newCallee = child.callee().merge(parent.callee());
@@ -309,10 +311,16 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element>
 			} else {
 				merged.setCallee(parent.callee());
 			}
-			
+
 		} else {
 			merged = this;
 		}
 		return merged;
+	}
+
+
+	@Override
+	public String toString() {
+		return signature() != null ? signature().toString() : super.toString();
 	}
 }
