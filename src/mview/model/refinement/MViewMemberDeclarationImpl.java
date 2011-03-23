@@ -49,24 +49,11 @@ public abstract class MViewMemberDeclarationImpl<
 		super(signature);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * mview.model.refinement.MViewMember#sharesContext(mview.model.refinement
-	 * .MViewMember)
-	 */
 	@Override
 	public boolean sharesContext(MViewMember other) {
 		return (new RefinementContext()).verify(this, other);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see mview.model.refinement.MViewMember#overrides(mview.model.refinement.
-	 * MViewMember)
-	 */
 	@Override
 	public boolean overrides(MViewMember other) throws ModelException {
 		boolean result = false;
@@ -79,21 +66,11 @@ public abstract class MViewMemberDeclarationImpl<
 		return result;
 	}
 
-	/* (non-Javadoc)
-	 * @see mview.model.refinement.MViewMember#mergesWith(mview.model.refinement.MViewMember)
-	 */
 	@Override
 	public boolean mergesWith(MViewMember other) throws ModelException {
 		return false;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * mview.model.refinement.MViewMember#merge(mview.model.refinement.MViewMember
-	 * )
-	 */
 	@Override
 	public M merge(MViewMember other) throws MergeNotSupportedException, ModelException {
 		throw new MergeNotSupportedException(this + " doesn't support merge.");
