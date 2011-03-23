@@ -40,7 +40,7 @@ import chameleon.util.Util;
  * 
  */
 public class RefinementRelation
-		extends ElementImpl<RefinementRelation, RefinableDeclaration> {//NameSpaceElementImpl
+		extends ElementImpl<RefinementRelation, RefinableDeclaration> {// NameSpaceElementImpl
 
 	/**
 	 * default
@@ -49,9 +49,10 @@ public class RefinementRelation
 		super();
 	}
 
+
 	/**
 	 * @param parentRef
-	 *            reference to parent declaration
+	 *           reference to parent declaration
 	 */
 	public RefinementRelation(SimpleReference<RefinableDeclaration> parentRef) {
 		this();
@@ -65,6 +66,7 @@ public class RefinementRelation
 			new SingleAssociation<RefinementRelation,
 			SimpleReference<RefinableDeclaration>>(this);
 
+
 	/**
 	 * @return the parent declaration
 	 */
@@ -76,12 +78,14 @@ public class RefinementRelation
 		}
 	}
 
+
 	/**
 	 * @return a SimpleReference to the parent declaration
 	 */
 	public SimpleReference<RefinableDeclaration> parentDeclaration() {
 		return _parentDeclaration.getOtherEnd();
 	}
+
 
 	/**
 	 * @param relation
@@ -91,53 +95,60 @@ public class RefinementRelation
 		_parentDeclaration.connectTo(relation.parentLink());
 	}
 
+
 	/**
 	 * @param current
 	 * @return
 	 * @throws LookupException
 	 */
-	public <M extends MViewMember> void gatherParentMembers(Class<M> kind, 
+	public <M extends MViewMember> void gatherParentMembers(Class<M> kind,
 			List<M> current) throws ModelException {
-		
+
 		List<M> toAdd = new ArrayList<M>();
 		RefinableDeclaration pe = parentDeclarationEnd();
-		
-		if(pe != null) {
+
+		if (pe != null) {
 			List<M> potential = pe.members(kind);
 
 			for (M parentM : potential) {
-				M newM = parentM;
+				
 				boolean stop = false;
+				M newM = parentM;
 				
 				for (Iterator<M> itCur = current.iterator(); itCur.hasNext() && !stop;) {
 
 					M childM = itCur.next();
 
+					System.out.print(childM + " -- " + parentM
+							+ ": ");
+
 					if (childM.mergesWith(parentM)) {
 						try {
 							newM = (M) childM.merge(parentM);
+							System.out.println("Merged. "+newM);
+							itCur.remove();
 							stop = true;
 						} catch (MergeNotSupportedException e) {
 							e.printStackTrace();
 							throw new LookupException("Merge failed while it " +
 									"should be allowed according to mergesWith()");
 						}
-					} 
-					else 
-						if (childM.sameAs(parentM)) {
-							stop = true;
-							newM = null;
-						}
-				}
+					} else if (childM.sameAs(parentM)) {
+						System.out.println("Override.");
+						stop = true;
+						newM = null;
+					}
+				} // for-loop
 
 				if (newM != null) {
-					toAdd.add(parentM);
+					toAdd.add(newM);
 				}
 			}
 
 			current.addAll(toAdd);
 		}
 	}
+
 
 	/*
 	 * (non-Javadoc)
@@ -146,14 +157,15 @@ public class RefinementRelation
 	 */
 	@Override
 	public List<SimpleReference<RefinableDeclaration>> children() {
-		
+
 		List<SimpleReference<RefinableDeclaration>> result =
 				new ArrayList<SimpleReference<RefinableDeclaration>>();
 
 		Util.addNonNull(parentDeclaration(), result);
-		
+
 		return result;
 	}
+
 
 	/*
 	 * (non-Javadoc)
@@ -166,6 +178,7 @@ public class RefinementRelation
 		clone.setParentDeclaration(parentDeclaration().clone());
 		return clone;
 	}
+
 
 	/*
 	 * (non-Javadoc)
