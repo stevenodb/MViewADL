@@ -30,15 +30,20 @@ import mview.model.composition.Advice;
 import mview.model.composition.Pointcut;
 import mview.model.composition.PointcutSignature;
 import mview.model.composition.PropValue;
+import mview.model.composition.modifier.After;
+import mview.model.composition.modifier.Around;
+import mview.model.composition.modifier.Before;
 import mview.model.module.Component;
 import mview.model.module.Interface;
 import mview.model.property.ActorProperty;
 import mview.model.refinement.RefinableDeclaration;
 
+import org.rejuse.property.Property;
 import org.rejuse.property.PropertyMutex;
 
 import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.language.Language;
+import chameleon.core.modifier.Modifier;
 import chameleon.core.namespace.RootNamespace;
 import chameleon.core.property.ChameleonProperty;
 import chameleon.core.property.StaticChameleonProperty;
@@ -155,6 +160,27 @@ public class MView extends Language {
 						RefinableDeclaration.class);
 	}
 
+	/**
+	 * Return AdviceType Modifier for given Property <code>type</code>.
+	 * @param type
+	 * @return
+	 */
+	public Modifier adviceModifierForProperty(Property type) {
+		
+		Modifier result = null;
+		
+		if (type == BEFORE) {
+			result = new Before();			
+		} else if (type == AROUND) {
+			result = new Around();
+		} else if (type == AFTER) {
+			result = new After();
+		}
+		
+		return result;
+		
+	}
+	
 	// /**
 	// * @param declaration
 	// * @return A PropertySet of actor properties for the given declaration
@@ -194,5 +220,10 @@ public class MView extends Language {
 	protected Language cloneThis() {
 		throw new RuntimeException("unimplemented");
 	}
+
+//	@Override
+//	public RootNamespace defaultNamespace() {
+//		super.defaultNamespace();
+//	}
 
 }
