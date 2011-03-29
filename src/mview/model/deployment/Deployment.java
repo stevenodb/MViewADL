@@ -22,6 +22,7 @@ package mview.model.deployment;
 import java.util.List;
 
 import mview.model.application.Application;
+import mview.model.application.Host;
 import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.element.Element;
 import chameleon.core.validation.BasicProblem;
@@ -67,7 +68,19 @@ public class Deployment extends Application<Deployment> {
 
 	@Override
 	protected VerificationResult verifyHosts() {
-		return Valid.create();
+		VerificationResult result = Valid.create();
+
+		for (Host host : hosts()) {
+			if ( (host.hostName() == null )) {
+				result = result.and(
+						new BasicProblem(this, 
+								"Application "+ signature().name() +": " +
+								"Host "+host.signature().name()+ " should define a hostname."));
+			}
+		}
+
+		return result;
+//		return Valid.create();
 	}
 	
 	/* (non-Javadoc)
