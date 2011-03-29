@@ -189,12 +189,12 @@ serviceHeaderDeclaration returns [Service element]
 	:	rtype=serviceReturnType name=Identifier params=formalParameters {
 			Signature signature = new SimpleNameSignature($name.text);
 			$element = new Service(signature,$rtype.value,$params.lst); //TODO: add properties
-			setLocation($element,$name,$name);			
+			setLocation($element,$name,$name);
 		}
 	;
 
 
-serviceReturnType returns [TypeReference value]
+serviceReturnType returns [BasicTypeReference value]
 	:	( 
 			vt=voidType { $value=$vt.value; }
 		| 
@@ -793,7 +793,7 @@ abstractModifier returns [Modifier value]
 	:	akw='abstract' {$value = new Abstract(); setKeyword($value,$akw); }
 	;
 	
-voidType returns [TypeReference value]
+voidType returns [BasicTypeReference value]
 /*@after{setLocation(retval.element, (CommonToken)retval.start, (CommonToken)retval.stop, "__PRIMITIVE");}*/
     : 'void' {$value=new BasicTypeReference("void");}
     ;
@@ -804,14 +804,14 @@ voidType returns [TypeReference value]
 //	;
 
 
-type returns [TypeReference value]
+type returns [BasicTypeReference value]
 @after{setLocation($value, $start, $stop);}
 	:	cd=classOrInterfaceType {$value = $cd.element;}
 	|	pt=primitiveType {$value = $pt.value;}
 	;
 	
 
-classOrInterfaceType returns [TypeReference element]
+classOrInterfaceType returns [BasicTypeReference element]
 @init{NamespaceOrTypeReference target = null;}
 	:	name=Identifier 
 	          {
@@ -835,7 +835,7 @@ classOrInterfaceType returns [TypeReference element]
 	;
 
 
-primitiveType returns [TypeReference value]
+primitiveType returns [BasicTypeReference value]
     :   'boolean' {$value = new MViewBasicTypeReference("boolean");}
     |   'char' {$value = new MViewBasicTypeReference("char");}
     |   'byte' {$value = new MViewBasicTypeReference("byte");}

@@ -1,4 +1,4 @@
-// $ANTLR 3.3 Nov 30, 2010 12:45:30 /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g 2011-01-18 16:29:40
+// $ANTLR 3.3 Nov 30, 2010 12:45:30 /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g 2011-03-25 14:03:56
 
 package mview.parser;
 
@@ -1031,13 +1031,13 @@ public class MViewParser extends ChameleonParser {
     // $ANTLR end "serviceHeaderDeclaration"
 
     public static class serviceReturnType_return extends ParserRuleReturnScope {
-        public TypeReference value;
+        public BasicTypeReference value;
         Object tree;
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "serviceReturnType"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:197:1: serviceReturnType returns [TypeReference value] : (vt= voidType | tp= type ) ;
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:197:1: serviceReturnType returns [BasicTypeReference value] : (vt= voidType | tp= type ) ;
     public final MViewParser.serviceReturnType_return serviceReturnType() throws RecognitionException {
         MViewParser.serviceReturnType_return retval = new MViewParser.serviceReturnType_return();
         retval.start = input.LT(1);
@@ -5951,13 +5951,13 @@ public class MViewParser extends ChameleonParser {
     // $ANTLR end "abstractModifier"
 
     public static class voidType_return extends ParserRuleReturnScope {
-        public TypeReference value;
+        public BasicTypeReference value;
         Object tree;
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "voidType"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:796:1: voidType returns [TypeReference value] : 'void' ;
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:796:1: voidType returns [BasicTypeReference value] : 'void' ;
     public final MViewParser.voidType_return voidType() throws RecognitionException {
         MViewParser.voidType_return retval = new MViewParser.voidType_return();
         retval.start = input.LT(1);
@@ -6008,13 +6008,13 @@ public class MViewParser extends ChameleonParser {
     // $ANTLR end "voidType"
 
     public static class type_return extends ParserRuleReturnScope {
-        public TypeReference value;
+        public BasicTypeReference value;
         Object tree;
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "type"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:807:1: type returns [TypeReference value] : (cd= classOrInterfaceType | pt= primitiveType );
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:807:1: type returns [BasicTypeReference value] : (cd= classOrInterfaceType | pt= primitiveType );
     public final MViewParser.type_return type() throws RecognitionException {
         MViewParser.type_return retval = new MViewParser.type_return();
         retval.start = input.LT(1);
@@ -6108,13 +6108,13 @@ public class MViewParser extends ChameleonParser {
     // $ANTLR end "type"
 
     public static class classOrInterfaceType_return extends ParserRuleReturnScope {
-        public TypeReference element;
+        public BasicTypeReference element;
         Object tree;
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "classOrInterfaceType"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:814:1: classOrInterfaceType returns [TypeReference element] : name= Identifier ( typeArguments )? ( '.' namex= Identifier ( typeArguments )? )* ;
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:814:1: classOrInterfaceType returns [BasicTypeReference element] : name= Identifier ( typeArguments )? ( '.' namex= Identifier ( typeArguments )? )* ;
     public final MViewParser.classOrInterfaceType_return classOrInterfaceType() throws RecognitionException {
         MViewParser.classOrInterfaceType_return retval = new MViewParser.classOrInterfaceType_return();
         retval.start = input.LT(1);
@@ -6270,13 +6270,13 @@ public class MViewParser extends ChameleonParser {
     // $ANTLR end "classOrInterfaceType"
 
     public static class primitiveType_return extends ParserRuleReturnScope {
-        public TypeReference value;
+        public BasicTypeReference value;
         Object tree;
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "primitiveType"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:838:1: primitiveType returns [TypeReference value] : ( 'boolean' | 'char' | 'byte' | 'short' | 'int' | 'long' | 'float' | 'double' );
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:838:1: primitiveType returns [BasicTypeReference value] : ( 'boolean' | 'char' | 'byte' | 'short' | 'int' | 'long' | 'float' | 'double' );
     public final MViewParser.primitiveType_return primitiveType() throws RecognitionException {
         MViewParser.primitiveType_return retval = new MViewParser.primitiveType_return();
         retval.start = input.LT(1);
