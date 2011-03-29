@@ -11,42 +11,30 @@
         </sealing>
     </manifest>
     <selectedElements exportClassFiles="true" exportJavaFiles="true" exportOutputFolder="false">
-        <javaElement handleIdentifier="=mview-lang/src&lt;mview.output.jboss{JBAOComposition.java"/>
-        <javaElement handleIdentifier="=mview-lang/src&lt;mview.output.jboss{JBCompilationUnit.java"/>
         <javaElement handleIdentifier="=mview-lang/src&lt;mview.model.language"/>
-        <javaElement handleIdentifier="=mview-lang/src&lt;mview.model.application"/>
         <javaElement handleIdentifier="=mview-lang/src&lt;mview.model.namespace"/>
+        <javaElement handleIdentifier="=mview-lang/src&lt;mview.model.application"/>
         <javaElement handleIdentifier="=mview-lang/src&lt;mview.parser.classes"/>
         <javaElement handleIdentifier="=mview-lang/src&lt;mview.output{WriterArguments.java"/>
-        <javaElement handleIdentifier="=mview-lang/src&lt;mview.output.jboss{JBossWriter.java"/>
-        <javaElement handleIdentifier="=mview-lang/src&lt;mview.output.jboss{JBDeclaration.java"/>
         <javaElement handleIdentifier="=mview-lang/src&lt;mview.model"/>
         <javaElement handleIdentifier="=mview-lang/src&lt;mview.exception"/>
         <javaElement handleIdentifier="=mview-lang/src&lt;mview.model.composition"/>
         <file path="/mview-lang/src/.DS_Store"/>
-        <javaElement handleIdentifier="=mview-lang/src&lt;mview.output.jboss{JBAdvice.java"/>
         <javaElement handleIdentifier="=mview-lang/src&lt;mview.parser"/>
         <javaElement handleIdentifier="=mview-lang/src&lt;mview.model.property"/>
         <javaElement handleIdentifier="=mview-lang/src&lt;mview.model.deployment"/>
-        <javaElement handleIdentifier="=mview-lang/src&lt;mview.output.jboss{JBInterface.java"/>
         <javaElement handleIdentifier="=mview-lang/src&lt;mview.model.module"/>
         <folder path="/mview-lang/lib"/>
         <file path="/mview-lang/.antlr-eclipse"/>
-        <javaElement handleIdentifier="=mview-lang/src&lt;mview.output.jboss{JBInstance.java"/>
+        <javaElement handleIdentifier="=mview-lang/src&lt;mview.output.jboss"/>
         <file path="/mview-lang/deploy-in-editor.jardesc"/>
         <javaElement handleIdentifier="=mview-lang/src&lt;mview.model.refinement.modifier"/>
-        <javaElement handleIdentifier="=mview-lang/src&lt;mview.output.jboss{JBPointcut.java"/>
         <javaElement handleIdentifier="=mview-lang/src&lt;mview"/>
         <file path="/mview-lang/.classpath"/>
-        <javaElement handleIdentifier="=mview-lang/src&lt;mview.output.jboss{JBDeclarationImpl.java"/>
         <file path="/mview-lang/.project"/>
-        <javaElement handleIdentifier="=mview-lang/src&lt;mview.output.jboss{JBDeployment.java"/>
         <file path="/mview-lang/.DS_Store"/>
-        <javaElement handleIdentifier="=mview-lang/src&lt;mview.output.jboss{JBModule.java"/>
         <javaElement handleIdentifier="=mview-lang/src&lt;mview.model.composition.modifier"/>
-        <javaElement handleIdentifier="=mview-lang/src&lt;mview.output.jboss{JBComponent.java"/>
         <file path="/mview-lang/.hgignore"/>
-        <javaElement handleIdentifier="=mview-lang/src&lt;mview.output.jboss{JBConnector.java"/>
         <javaElement handleIdentifier="=mview-lang/src&lt;mview.model.refinement"/>
     </selectedElements>
 </jardesc>
