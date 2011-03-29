@@ -35,7 +35,9 @@ import chameleon.core.lookup.LookupStrategy;
 import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.VerificationResult;
 
-public class Interface extends MViewDeclaration<Interface, Element> implements TargetDeclaration<Interface,Element,Signature,Interface>, DeclarationContainer<Interface,Element>{
+public class Interface extends MViewDeclaration<Interface, Element> implements
+		TargetDeclaration<Interface, Element, Signature, Interface>,
+		DeclarationContainer<Interface, Element> {
 
 	/**
 	 * @param signature
@@ -50,6 +52,7 @@ public class Interface extends MViewDeclaration<Interface, Element> implements T
 	private OrderedMultiAssociation<Interface, Service> _services =
 			new OrderedMultiAssociation<Interface, Service>(this);
 
+
 	/**
 	 * @param service
 	 */
@@ -59,12 +62,14 @@ public class Interface extends MViewDeclaration<Interface, Element> implements T
 		}
 	}
 
+
 	/**
 	 * @return
 	 */
 	public List<Service> services() {
 		return _services.getOtherEnds();
 	}
+
 
 	/**
 	 * @param service
@@ -75,10 +80,12 @@ public class Interface extends MViewDeclaration<Interface, Element> implements T
 		}
 	}
 
+
 	@Override
 	protected Interface cloneThis() {
 		return new Interface((SimpleNameSignature) this.signature());
 	}
+
 
 	@Override
 	public Interface clone() {
@@ -92,17 +99,19 @@ public class Interface extends MViewDeclaration<Interface, Element> implements T
 		return clone;
 	}
 
+
 	@Override
 	public VerificationResult verifySelf() {
 		VerificationResult result = super.verifySelf();
 
 		if (!(services() != null)) {
-			result = result.and(new BasicProblem(this, 
+			result = result.and(new BasicProblem(this,
 					this.signature().name() + ": Services is null."));
 		}
 
 		return result;
 	}
+
 
 	@Override
 	public List<Element> children() {
@@ -114,21 +123,25 @@ public class Interface extends MViewDeclaration<Interface, Element> implements T
 
 	}
 
+
 	@Override
 	public LookupStrategy targetContext() throws LookupException {
 		return language().lookupFactory().createTargetLookupStrategy(this);
 	}
+
 
 	@Override
 	public List<? extends Declaration> declarations() throws LookupException {
 		return services();
 	}
 
+
 	@Override
 	public List<? extends Declaration> locallyDeclaredDeclarations()
 			throws LookupException {
 		return declarations();
 	}
+
 
 	@Override
 	public <D extends Declaration> List<D> declarations(DeclarationSelector<D> selector)
