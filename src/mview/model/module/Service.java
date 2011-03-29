@@ -24,6 +24,7 @@ import org.rejuse.association.OrderedMultiAssociation;
 import org.rejuse.association.SingleAssociation;
 
 import chameleon.core.declaration.Signature;
+import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.element.Element;
 import chameleon.core.method.MethodHeader;
 import chameleon.core.reference.SimpleReference;
@@ -31,7 +32,7 @@ import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.Valid;
 import chameleon.core.validation.VerificationResult;
 import chameleon.core.variable.FormalParameter;
-import chameleon.oo.type.TypeReference;
+import chameleon.oo.type.BasicTypeReference;
 import chameleon.support.member.simplename.SimpleNameMethodHeader;
 import chameleon.util.Util;
 
@@ -49,7 +50,7 @@ public class Service extends JoinPointElement<Service, Element> {
 	 * @param returnType
 	 * @param formalParameters
 	 */
-	public Service(Signature signature, TypeReference returnType,
+	public Service(Signature signature, BasicTypeReference returnType,
 			List<FormalParameter> formalParameters) {
 		this(signature, returnType, formalParameters, null);
 	}
@@ -61,7 +62,7 @@ public class Service extends JoinPointElement<Service, Element> {
 	 * @param formalParameters
 	 * @param properties
 	 */
-	public Service(Signature signature, TypeReference returnType,
+	public Service(Signature signature, BasicTypeReference returnType,
 			List<FormalParameter> formalParameters,
 			List<SimpleReference<Property>> properties) {
 
@@ -98,7 +99,10 @@ public class Service extends JoinPointElement<Service, Element> {
 	 */
 	@Override
 	public Signature signature() {
-		return header().signature();
+		//return header().signature();
+		Signature result = new SimpleNameSignature(header().name());
+		result.setUniParent(this);
+		return result;
 	}
 
 
@@ -132,14 +136,14 @@ public class Service extends JoinPointElement<Service, Element> {
 	/*
 	 * Association to the return type
 	 */
-	private final SingleAssociation<Service, TypeReference> _returnType =
-			new SingleAssociation<Service, TypeReference>(this);
+	private final SingleAssociation<Service, BasicTypeReference> _returnType =
+			new SingleAssociation<Service, BasicTypeReference>(this);
 
 
 	/**
 	 * @return the service's return type
 	 */
-	public TypeReference returnType() {
+	public BasicTypeReference returnType() {
 		return _returnType.getOtherEnd();
 	}
 
@@ -147,7 +151,7 @@ public class Service extends JoinPointElement<Service, Element> {
 	/**
 	 * @param returnType
 	 */
-	public void setReturnType(TypeReference returnType) {
+	public void setReturnType(BasicTypeReference returnType) {
 		if (returnType != null) {
 			_returnType.connectTo(returnType.parentLink());
 		}
