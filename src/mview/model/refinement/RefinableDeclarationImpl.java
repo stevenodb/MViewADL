@@ -43,6 +43,7 @@ import chameleon.core.lookup.LookupStrategySelector;
 import chameleon.core.reference.SimpleReference;
 import chameleon.core.validation.VerificationResult;
 import chameleon.exception.ModelException;
+import chameleon.util.Util;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
@@ -50,9 +51,8 @@ import chameleon.exception.ModelException;
  */
 public abstract class RefinableDeclarationImpl<D extends RefinableDeclarationImpl<D, P>, P extends Element>
 		extends MViewDeclaration<D, P>
-		implements RefinableDeclaration<D, P>,
-					TargetDeclaration<D, P, Signature, D>,
-					DeclarationContainer<D, P> {
+		implements RefinableDeclaration<D, P>, TargetDeclaration<D, P, Signature, D>,
+			DeclarationContainer<D, P> {
 
 	/**
 	 * default constructor
@@ -77,10 +77,10 @@ public abstract class RefinableDeclarationImpl<D extends RefinableDeclarationImp
 
 
 	/**
-	 * @return the list of refinement relations TODO: make this protected
-	 *         again!!!!
+	 * @return the list of refinement relations 
+	 * TODO: make this protected again!!!!
 	 */
-	public List<RefinementRelation> refinementRelations() {
+	protected List<RefinementRelation> refinementRelations() {
 		return _refinementRelations.getOtherEnds();
 	}
 
@@ -155,15 +155,15 @@ public abstract class RefinableDeclarationImpl<D extends RefinableDeclarationImp
 
 
 	@Override
-	public LookupStrategy lexicalLookupStrategy(Element element)
-			throws LookupException {
-		if (refinementRelations().contains(element)) {
+	public LookupStrategy lexicalLookupStrategy(Element element) throws LookupException {
+		
+		if (refinementRelations().contains(element) || element.isDerived()) {
 			Element parent = parent();
 			if (parent != null) {
 				return parent().lexicalLookupStrategy(this);
 			} else {
-				throw new LookupException(
-						"Parent of type is null when looking for the parent context of a type.");
+				throw new LookupException("Parent of type is null when looking " +
+						"for the parent context of a type.");
 			}
 		} else {
 			return lexicalMembersLookupStrategy();
@@ -174,8 +174,8 @@ public abstract class RefinableDeclarationImpl<D extends RefinableDeclarationImp
 	private LookupStrategy lexicalMembersLookupStrategy() {
 		if (_lus == null) {
 			_lus = language().lookupFactory().createLexicalLookupStrategy(
-					// targetContext(), this, new RequiredStrategySelector());
-					targetContext(), this);
+					 targetContext(), this, new RequiredStrategySelector());
+//					targetContext(), this);
 
 		}
 		return _lus;
@@ -212,16 +212,15 @@ public abstract class RefinableDeclarationImpl<D extends RefinableDeclarationImp
 		@Override
 		public <D extends Declaration> List<D> declarations(
 				DeclarationSelector<D> selector) throws LookupException {
+			
 			List<D> result = new ArrayList<D>();
+			
 			List<RequiredInterfaceDependency> requires =
 					members(RequiredInterfaceDependency.class);
+	
 			if (requires.size() > 0) {
-				RequiredInterfaceDependency dep = requires.get(0);
-				List<SimpleReference<Interface>> intfaces = dep.dependencies();
-				for (SimpleReference<Interface> intface : intfaces) {
-					result.add(intface.getElement().targetContext()
-							.lookUp(selector));
-				}
+				RequiredInterfaceDependency dependency = requires.get(0);
+				result.addAll(dependency.declarations(selector));
 			}
 			return result;
 		}
