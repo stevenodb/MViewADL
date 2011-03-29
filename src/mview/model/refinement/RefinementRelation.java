@@ -119,13 +119,12 @@ public class RefinementRelation
 
 					M childM = itCur.next();
 
-					System.out.print(childM + " -- " + parentM
-							+ ": ");
+//					System.out.print(childM + " -- " + parentM + ": ");
 
 					if (childM.mergesWith(parentM)) {
 						try {
 							newM = (M) childM.merge(parentM);
-							System.out.println("Merged. "+newM);
+//							System.out.println("Merged. "+newM);
 							itCur.remove();
 							stop = true;
 						} catch (MergeNotSupportedException e) {
@@ -134,9 +133,12 @@ public class RefinementRelation
 									"should be allowed according to mergesWith()");
 						}
 					} else if (childM.sameAs(parentM)) {
-						System.out.println("Override.");
+//						System.out.println("Override.");
 						stop = true;
 						newM = null;
+					} else {
+//						System.out.println("New.");
+						newM = parentM;
 					}
 				} // for-loop
 
