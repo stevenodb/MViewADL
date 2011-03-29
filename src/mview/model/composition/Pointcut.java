@@ -27,6 +27,7 @@ import mview.model.refinement.MViewMember;
 import mview.model.refinement.RefinementContext;
 
 import org.rejuse.association.SingleAssociation;
+import org.rejuse.property.Property;
 
 import chameleon.core.element.Element;
 import chameleon.core.modifier.ElementWithModifiersImpl;
@@ -66,6 +67,26 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element>
 	 * KIND is realized through modifier
 	 */
 
+	
+	/**
+	 * Return the kind of advice.
+	 * @return
+	 */
+	public Property kind() {
+
+		Property kind;
+		
+		if (isTrue(language(MView.class).CALL)) {
+			kind = language(MView.class).CALL;
+		} else if (isTrue(language(MView.class).EXECUTION)) {
+			kind = language(MView.class).EXECUTION;
+		} else {
+			kind = null;
+		}
+		
+		return kind;
+	}
+	
 	/*
 	 * SIGNATURE
 	 */

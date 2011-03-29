@@ -29,6 +29,7 @@ import mview.model.refinement.MViewMember;
 import mview.model.refinement.RefinementContext;
 
 import org.rejuse.association.SingleAssociation;
+import org.rejuse.property.Property;
 
 import chameleon.core.element.Element;
 import chameleon.core.modifier.ElementWithModifiersImpl;
@@ -86,23 +87,38 @@ public class Advice extends ElementWithModifiersImpl<Advice, Element>
 //	 */
 //	public boolean hasTypeModifier() {
 //	}
-	
-	public Modifier type() {
-		Modifier result = null;
-		for (Modifier modifier : this.modifiers()) {
-			try {
-				if (modifier.property(language(MView.class).ADVICE_MUTEX) != null) {
-					if (result == null) {
-						result = modifier;
-					}
-				}
-			} catch (ModelException e) {
-				e.printStackTrace();
-			}
-		}
 
-		return null;
+	public Property type() {
+
+		Property type;
+		try {
+			type = this.property(language(MView.class).ADVICE_MUTEX);
+		} catch (ModelException e) {
+			type = null; //this.language(MView.class).BEFORE;
+		}
+		
+		return type;
 	}
+	
+//	/**
+//	 * @return	the type modifier for the advice
+//	 */
+//	public Modifier type() {
+//		Modifier result = null;
+//		for (Modifier modifier : this.modifiers()) {
+//			try {
+//				if (modifier.property(language(MView.class).ADVICE_MUTEX) != null) {
+//					if (result == null) {
+//						result = modifier;
+//					}
+//				}
+//			} catch (ModelException e) {
+//				e.printStackTrace();
+//			}
+//		}
+//
+//		return null;
+//	}
 	
 	/* (non-Javadoc)
 	 * @see chameleon.core.element.ElementImpl#clone()
@@ -206,9 +222,16 @@ public class Advice extends ElementWithModifiersImpl<Advice, Element>
 			}
 			
 			if (this.type() != null) {
-				merged.addModifier(this.type());
+				Modifier adviceType = 
+					this.language(MView.class).adviceModifierForProperty(this.type());
+				
+				merged.addModifier(adviceType);
 			} else if (((Advice)other).type() != null) {
-				merged.addModifier(((Advice)other).type().clone());
+				Modifier adviceType = 
+					this.language(MView.class).adviceModifierForProperty(
+							((Advice)other).type());
+				
+				merged.addModifier(adviceType);
 			}
 		} else {
 			merged = this;
