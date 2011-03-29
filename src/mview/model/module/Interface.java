@@ -19,16 +19,23 @@ package mview.model.module;
 
 import java.util.List;
 
+import mview.model.namespace.MViewDeclaration;
+
 import org.rejuse.association.OrderedMultiAssociation;
 
+import chameleon.core.declaration.Declaration;
+import chameleon.core.declaration.DeclarationContainer;
+import chameleon.core.declaration.Signature;
 import chameleon.core.declaration.SimpleNameSignature;
+import chameleon.core.declaration.TargetDeclaration;
 import chameleon.core.element.Element;
+import chameleon.core.lookup.DeclarationSelector;
+import chameleon.core.lookup.LookupException;
+import chameleon.core.lookup.LookupStrategy;
 import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.VerificationResult;
-import chameleon.oo.type.RegularType;
 
-public class Interface extends RegularType {
-	// MViewDeclaration<Interface, Element> {
+public class Interface extends MViewDeclaration<Interface, Element> implements TargetDeclaration<Interface,Element,Signature,Interface>, DeclarationContainer<Interface,Element>{
 
 	/**
 	 * @param signature
@@ -70,7 +77,7 @@ public class Interface extends RegularType {
 
 	@Override
 	protected Interface cloneThis() {
-		return new Interface(this.signature());
+		return new Interface((SimpleNameSignature) this.signature());
 	}
 
 	@Override
@@ -79,7 +86,6 @@ public class Interface extends RegularType {
 
 		for (Service service : services()) {
 			Service localClone = service.clone();
-
 			clone.addService(localClone);
 		}
 
@@ -106,5 +112,27 @@ public class Interface extends RegularType {
 
 		return result;
 
+	}
+
+	@Override
+	public LookupStrategy targetContext() throws LookupException {
+		return language().lookupFactory().createTargetLookupStrategy(this);
+	}
+
+	@Override
+	public List<? extends Declaration> declarations() throws LookupException {
+		return services();
+	}
+
+	@Override
+	public List<? extends Declaration> locallyDeclaredDeclarations()
+			throws LookupException {
+		return declarations();
+	}
+
+	@Override
+	public <D extends Declaration> List<D> declarations(DeclarationSelector<D> selector)
+			throws LookupException {
+		return selector.selection(declarations());
 	}
 }

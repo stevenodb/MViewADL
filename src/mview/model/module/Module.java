@@ -29,6 +29,7 @@ import org.rejuse.association.SingleAssociation;
 import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.element.Element;
 import chameleon.core.lookup.LookupException;
+import chameleon.core.lookup.LookupStrategy;
 import chameleon.core.reference.SimpleReference;
 import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.VerificationResult;
@@ -50,7 +51,7 @@ public abstract class Module<E extends Module<E>>
 	 */
 	public class RequiredInterfaceDependency extends
 			Dependency<RequiredInterfaceDependency, Interface> {
-
+		
 		@Override
 		protected RequiredInterfaceDependency cloneThis() {
 			return new RequiredInterfaceDependency();
@@ -290,6 +291,21 @@ public abstract class Module<E extends Module<E>>
 		Util.addNonNull(providedInterfaceDependency(), result);
 
 		return result;
+	}
+
+	@Override
+	public LookupStrategy lexicalLookupStrategy(Element element) throws LookupException {
+		if (element == requiredInterfaceDependency()) {
+			Element parent = parent();
+			if (parent != null) {
+				return parent().lexicalLookupStrategy(this);
+			} else {
+				throw new LookupException("Parent of type is null when looking " +
+						"for the parent context of a type.");
+			}
+		} else {
+			return super.lexicalLookupStrategy(element);
+		}
 	}
 
 }

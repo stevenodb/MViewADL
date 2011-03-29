@@ -28,25 +28,30 @@ import mview.model.refinement.RefinementContext;
 import org.rejuse.association.OrderedMultiAssociation;
 
 import chameleon.core.declaration.Declaration;
+import chameleon.core.declaration.TargetDeclaration;
 import chameleon.core.element.Element;
+import chameleon.core.lookup.DeclarationSelector;
+import chameleon.core.lookup.LookupException;
+import chameleon.core.lookup.LookupStrategy;
 import chameleon.core.namespace.NamespaceElementImpl;
 import chameleon.core.reference.SimpleReference;
 import chameleon.core.validation.Valid;
 import chameleon.core.validation.VerificationResult;
 import chameleon.exception.ModelException;
+import chameleon.util.Util;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  * 
  */
-public abstract class Dependency<E extends Dependency<E, T>, T extends Declaration>
+public abstract class Dependency<E extends Dependency<E, T>, T extends TargetDeclaration>
 		extends	NamespaceElementImpl<E, Element> implements MViewMember<E, Element> {
 
 	private final OrderedMultiAssociation<Dependency<E,T>, SimpleReference<T>> _dependencies =
 			new OrderedMultiAssociation<Dependency<E,T>, SimpleReference<T>>(this);
 
 	/**
-	 * @return
+	 * @return	a list of SimpleReferences to dependencies
 	 */
 	public List<SimpleReference<T>> dependencies() {
 		return _dependencies.getOtherEnds();
@@ -98,6 +103,27 @@ public abstract class Dependency<E extends Dependency<E, T>, T extends Declarati
 	@Override
 	public VerificationResult verifySelf() {
 		return Valid.create();
+	}
+	
+	/**
+	 * @param selector
+	 * @return
+	 * @throws LookupException
+	 */
+	public List<T> declarations(DeclarationSelector<T> selector) throws LookupException {
+		
+		List<T> result = new ArrayList<T>();
+		
+		List<SimpleReference<T>> deps = this.dependencies();
+		
+		for (SimpleReference<T> reference : deps) {
+			T element = reference.getElement();
+			LookupStrategy targetContext = element.targetContext();
+			Declaration declaration = targetContext.lookUp(selector);
+			Util.addNonNull(declaration, result);
+		}
+
+		return (List<T>) selector.declarators(result);
 	}
 
 	@Override
