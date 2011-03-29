@@ -18,37 +18,56 @@
  */
 package mview.output.jboss;
 
+import java.util.List;
+
 import mview.model.composition.AOComposition;
 import mview.model.composition.Pointcut;
+import mview.model.module.Service;
+import mview.output.jboss.JBPointcutElement.PointcutKind;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public class JBPointcut extends JBDeclarationImpl<JBPointcut,Pointcut> {
+public class JBPointcutElement {
+	
+	/**
+	 * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
+	 *
+	 */
+	public enum PointcutKind {
+		EXECUTION, CALL;
+	}
+	
+	/**
+	 * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
+	 *
+	 */
+	public enum ActorType {
+		INTERFACE, COMPONENT, INSTANCE, APPLICATION, HOST;
+	}
 
-	private AOComposition	_id;
+	private List<Service> _joinPoints;
+	private PointcutKind _kind;
 
 	/**
 	 * @param sourceElement
 	 */
-	protected JBPointcut(AOComposition id, Pointcut sourceElement) {
-		super(sourceElement);
-		_id = id;
+	protected JBPointcutElement(Pointcut sourceElement) {
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param joinpoints
 	 */
-	private void setID(AOComposition id) {
-		this._id = id;
+	public void addServices(List<Service> joinpoints) {
+		_joinPoints = joinpoints;
 	}
 
 	/**
-	 * @return the id
+	 * @param pcKi
 	 */
-	public AOComposition getID() {
-		return _id;
+	public void addKind(PointcutKind pcKind) {
+		_kind = pcKind;
 	}
 
 }

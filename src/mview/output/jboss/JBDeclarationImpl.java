@@ -18,26 +18,32 @@
  */
 package mview.output.jboss;
 
-import chameleon.core.element.Element;
+import chameleon.core.declaration.Declaration;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  * 
  */
-public abstract class JBDeclarationImpl<D extends JBDeclarationImpl, E extends Element>
+public abstract class JBDeclarationImpl<D extends JBDeclarationImpl, E extends Declaration>
 		implements JBDeclaration<D> {
 
 	private final E	_sourceElement;
 
-
 	protected JBDeclarationImpl(E sourceElement) {
 		_sourceElement = sourceElement;
 	}
-
 
 	@Override
 	public E sourceElement() {
 		return _sourceElement;
 	}
 
+	public String getName() {
+		return sourceElement().signature().name(); 
+	}
+	
+	@Override
+	public String toString() {
+		return getName();
+	}
 }

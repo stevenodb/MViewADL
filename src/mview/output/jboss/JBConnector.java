@@ -24,6 +24,7 @@ import java.util.List;
 import mview.model.module.Connector;
 import mview.model.module.Interface;
 import chameleon.core.reference.SimpleReference;
+import chameleon.oo.type.TypeWithBody;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
@@ -31,8 +32,11 @@ import chameleon.core.reference.SimpleReference;
  */
 public class JBConnector extends JBModule<JBConnector,Connector> {
 
-	private List<SimpleReference<Interface>> _requiredInterfaces = 
-		new ArrayList<SimpleReference<Interface>>();
+	private List<JBInterface> _requiredInterfaces = 
+		new ArrayList<JBInterface>();
+	
+	private List<JBAOComposition> _aocompositions =
+		new ArrayList<JBAOComposition>();
 
 	/**
 	 * @param name
@@ -44,22 +48,8 @@ public class JBConnector extends JBModule<JBConnector,Connector> {
 	/**
 	 * @param required
 	 */
-	public void addRequiredInterfaces(List<SimpleReference<Interface>> required) {
-		_requiredInterfaces.addAll(required);
-	}
-
-	/**
-	 * @param pointcut
-	 */
-	public void addPointcut(JBPointcut pointcut) {
-		// TODO Auto-generated method stub
-	}
-
-	/**
-	 * @param advice
-	 */
-	public void addAdvice(Object advice) {
-		// TODO Auto-generated method stub
+	public void addRequiredInterface(JBInterface required) {
+		_requiredInterfaces.add(required);
 	}
 	
 	/**
@@ -67,6 +57,13 @@ public class JBConnector extends JBModule<JBConnector,Connector> {
 	 */
 	public String name() {
 		return sourceElement().signature().name();
+	}
+
+	/**
+	 * @param jbAOC
+	 */
+	public void addComposition(JBAOComposition aoc) {
+		_aocompositions.add(aoc);
 	}
 
 }

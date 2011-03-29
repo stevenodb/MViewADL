@@ -26,8 +26,8 @@ import mview.model.composition.AOComposition;
  */
 public class JBAOComposition extends JBDeclarationImpl<JBAOComposition,AOComposition> {
 
-	private JBPointcut	_jbPointcut;
-	private JBAdvice		_jbAdvice;
+	private JBPointcutElement	_jbPointcut;
+	private JBAdviceElement		_jbAdvice;
 
 
 	/**
@@ -41,7 +41,7 @@ public class JBAOComposition extends JBDeclarationImpl<JBAOComposition,AOComposi
 	/**
 	 * @return
 	 */
-	public JBPointcut pointcut() {
+	public JBPointcutElement pointcut() {
 		return _jbPointcut;
 	}
 	
@@ -49,8 +49,24 @@ public class JBAOComposition extends JBDeclarationImpl<JBAOComposition,AOComposi
 	/**
 	 * @return
 	 */
-	public JBAdvice advice() {
+	public JBAdviceElement advice() {
 		return _jbAdvice;
+	}
+
+
+	/**
+	 * @param jbPC
+	 */
+	public void addPointcut(JBPointcutElement jbPC) {
+		// TODO Auto-generated method stub
+	}
+
+
+	/**
+	 * @param jbAdv
+	 */
+	public void addAdvice(JBAdviceElement jbAdv) {
+		// TODO Auto-generated method stub
 	}
 
 }

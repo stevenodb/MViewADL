@@ -18,6 +18,7 @@
  */
 package mview.output.jboss;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import mview.model.deployment.Deployment;
@@ -29,7 +30,7 @@ import mview.model.deployment.Deployment;
 public class JBDeployment extends JBDeclarationImpl<JBDeployment,Deployment> {
 
 
-	private List<JBModule>	_modules;
+	private List<JBModule>	_modules = new ArrayList<JBModule>();
 
 	/**
 	 * @param sourceElement

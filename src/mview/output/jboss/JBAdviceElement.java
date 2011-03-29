@@ -1,7 +1,7 @@
 /**
  * author:   Steven Op de beeck <steven /at/ opdebeeck /./ org>
- * filename: JBCompilationUnit.java
- * created:  Mar 18, 2011, 4:20:12 PM
+ * filename: JBAdvice.java
+ * created:  Mar 21, 2011, 3:31:33 PM
  * license:
  * The code contained in this file is free software: you can redistribute 
  * it and/or modify it under the terms of the GNU General Public License
@@ -18,19 +18,52 @@
  */
 package mview.output.jboss;
 
-import chameleon.core.compilationunit.CompilationUnit;
+import mview.model.composition.AOComposition;
+import mview.model.composition.Advice;
+import mview.output.jboss.JBAdviceElement.AdviceType;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public class JBCompilationUnit extends JBDeclarationImpl<JBCompilationUnit,CompilationUnit> {
+public class JBAdviceElement {
+	
+	/**
+	 * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
+	 *
+	 */
+	public enum AdviceType {
+		BEFORE, AROUND, AFTER
+	}
+
+	private AdviceType _adviceType;
+	private String _adviceReturnType;
+	private String _adviceSignature;
 
 	/**
 	 * @param sourceElement
 	 */
-	protected JBCompilationUnit(CompilationUnit sourceElement) {
-		super(sourceElement);
+	protected JBAdviceElement(Advice sourceElement) {
 	}
 
+	/**
+	 * @param adviceType
+	 */
+	public void setAdviceType(AdviceType adviceType) {
+		_adviceType = adviceType;
+	}
+
+	/**
+	 * @param name
+	 */
+	public void addSericeReturnType(String returnType) {
+		_adviceReturnType = returnType;
+	}
+
+	/**
+	 * @param name
+	 */
+	public void addServiceSignature(String signature) {
+		_adviceSignature = signature;
+	}
 }

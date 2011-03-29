@@ -18,6 +18,7 @@
  */
 package mview.output.jboss;
 
+import chameleon.core.declaration.SimpleNameSignature;
 import mview.model.module.Interface;
 
 /**
@@ -31,6 +32,28 @@ public class JBInterface extends JBDeclarationImpl<JBInterface, Interface> {
 	 */
 	protected JBInterface(Interface sourceElement) {
 		super(sourceElement);
+	}
+
+	/**
+	 * @param signature
+	 */
+	public void addReturnType(String signature) {
+		// TODO Auto-generated method stub
+	}
+
+	/**
+	 * @param string
+	 */
+	public void addSignature(String signature) {
+		// TODO Auto-generated method stub
+	}
+
+	/**
+	 * @param signature
+	 * @param type
+	 */
+	public void addFormalParameter(String signature, String type) {
+		// TODO Auto-generated method stub
 	}
 
 }
