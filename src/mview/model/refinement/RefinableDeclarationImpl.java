@@ -170,19 +170,24 @@ public abstract class RefinableDeclarationImpl<D extends RefinableDeclarationImp
 		}
 	}
 
-
+	private LookupStrategy _lus;
+	
+	/**
+	 * @return
+	 */
 	private LookupStrategy lexicalMembersLookupStrategy() {
 		if (_lus == null) {
 			_lus = language().lookupFactory().createLexicalLookupStrategy(
-					 targetContext(), this, new RequiredStrategySelector());
+					targetContext(), this, new RequiredStrategySelector());
 //					targetContext(), this);
-
 		}
 		return _lus;
 	}
 
-	private LookupStrategy _lus;
-
+	/**
+	 * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
+	 *
+	 */
 	protected class RequiredStrategySelector implements LookupStrategySelector {
 		@Override
 		public LookupStrategy strategy() throws LookupException {
@@ -192,7 +197,9 @@ public abstract class RefinableDeclarationImpl<D extends RefinableDeclarationImp
 
 	private LookupStrategy _requiredLookupStrategy;
 
-
+	/**
+	 * @return
+	 */
 	private LookupStrategy requiredLookupStrategy() {
 		if (_requiredLookupStrategy == null) {
 			_requiredLookupStrategy =
@@ -202,12 +209,19 @@ public abstract class RefinableDeclarationImpl<D extends RefinableDeclarationImp
 		return _requiredLookupStrategy;
 	}
 
+	/**
+	 * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
+	 *
+	 */
 	protected class RequiredLocalStrategy extends
 			LocalLookupStrategy<RefinableDeclarationImpl> {
+		
+		/**
+		 * @param element
+		 */
 		public RequiredLocalStrategy(RefinableDeclarationImpl element) {
 			super(element);
 		}
-
 
 		@Override
 		public <D extends Declaration> List<D> declarations(
