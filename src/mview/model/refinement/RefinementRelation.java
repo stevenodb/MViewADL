@@ -132,7 +132,8 @@ public class RefinementRelation
 							throw new LookupException("Merge failed while it " +
 									"should be allowed according to mergesWith()");
 						}
-					} else if (childM.sameAs(parentM)) {
+//					} else if (childM.sameAs(parentM)) {
+					} else if (childM.sameMemberAs(parentM)) {
 //						System.out.println("Override.");
 						stop = true;
 						newM = null;
