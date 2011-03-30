@@ -172,8 +172,9 @@ public class PointcutSignature extends ElementWithModifiersImpl<PointcutSignatur
 
 	@Override
 	public boolean mergesWith(MViewMember other) throws ModelException {
-		return (other != null) && (this.getClass().equals(other.getClass()))
-			&& sharesContext(other) && !overridable();
+		return sameMemberAs(other)
+			&& sharesContext(other) 
+			&& !overridable();
 	}
 
 	@Override
@@ -199,5 +200,11 @@ public class PointcutSignature extends ElementWithModifiersImpl<PointcutSignatur
 			result.append(sig.toString());
 		}
 		return result.toString();
+	}
+
+	@Override
+	public boolean sameMemberAs(MViewMember other) throws ModelException {
+		return other != null
+			&& other instanceof PointcutSignature;
 	}
 }

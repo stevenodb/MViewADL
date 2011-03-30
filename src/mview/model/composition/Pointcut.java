@@ -279,8 +279,9 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element>
 
 	@Override
 	public boolean mergesWith(MViewMember other) throws ModelException {
-		return (other != null) && (this.getClass().equals(other.getClass()))
-				&& sharesContext(other) && !overrides(other);
+		return sameMemberAs(other)
+			&& sharesContext(other) 
+			&& !overrides(other);
 	}
 
 
@@ -343,5 +344,12 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element>
 	@Override
 	public String toString() {
 		return signature() != null ? signature().toString() : super.toString();
+	}
+
+
+	@Override
+	public boolean sameMemberAs(MViewMember other) throws ModelException {
+		return other != null
+			&& other instanceof Pointcut;
 	}
 }

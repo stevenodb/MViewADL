@@ -37,7 +37,7 @@ public interface MViewMember<M extends MViewMember<M,P>, P extends Element> exte
 	public boolean sharesContext(MViewMember other);
 	
 	/**
-	 * Check whether this member overrides the given member
+	 * Checks whether this member overrides the given member
 	 * @param other the member to check with
 	 * @return
 	 * @throws ModelException
@@ -45,7 +45,7 @@ public interface MViewMember<M extends MViewMember<M,P>, P extends Element> exte
 	public boolean overrides(MViewMember other) throws ModelException;
 
 	/**
-	 * Check whether this member can be merged with the given member
+	 * Checks whether this member can be merged with the given member
 	 * @return	other the member to check with
 	 * @throws ModelException
 	 */
@@ -66,6 +66,14 @@ public interface MViewMember<M extends MViewMember<M,P>, P extends Element> exte
 	 * @throws ModelException 
 	 */
 	public M merge(MViewMember other) throws MergeNotSupportedException, ModelException;
+	
+	/**
+	 * Checks whether this member is the same type of member as other.
+	 * @param other	the member to check against
+	 * @return	true if both members are of the same type; false otherwise
+	 * @throws ModelException
+	 */
+	public boolean sameMemberAs(MViewMember other) throws ModelException;
 	
 	/*
 	 * Override vs. Merge

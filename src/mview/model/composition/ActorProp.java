@@ -259,21 +259,16 @@ public class ActorProp<D extends Declaration> extends
 
 	@Override
 	public boolean overrides(MViewMember other) throws ModelException {
-		boolean result = this.overridable();
-		result &= this.getClass().equals(other.getClass());
-//		result &= this.declarationType() == ((ActorProp)other).declarationType();
-		result &= this.actorProperty() == ((ActorProp)other).actorProperty();
-		result &= sharesContext(other);
-		return result;
+		return overridable()
+			&& sameMemberAs(other)
+			&& sharesContext(other);
 	}
 
 	@Override
 	public boolean mergesWith(MViewMember other) throws ModelException {
-		return (other != null) 
-			&& sharesContext(other) 
-			&& !overrides(other)
-			&& this.actorProperty() == ((ActorProp)other).actorProperty();
-//			&& this.declarationType() == ((ActorProp)other).declarationType();
+		return !overrides(other)
+			&& sameMemberAs(other)
+			&& sharesContext(other);
 	}
 
 	@Override
@@ -319,10 +314,17 @@ public class ActorProp<D extends Declaration> extends
 	 * chameleon.core.element.ElementImpl#uniSameAs(chameleon.core.element.Element
 	 * )
 	 */
+//	@Override
+//	public boolean uniSameAs(Element other) throws LookupException {
+//		return (other instanceof ActorProp)
+//				&& (this.overridable() == ((ActorProp) other).overridable()) &&
+//				this.actorProperty() == ((ActorProp) other).actorProperty();
+//	}
+
 	@Override
-	public boolean uniSameAs(Element other) throws LookupException {
-		return (other instanceof ActorProp)
-				&& (this.overridable() == ((ActorProp) other).overridable()) &&
-				this.actorProperty() == ((ActorProp) other).actorProperty();
+	public boolean sameMemberAs(MViewMember other) throws ModelException {
+		return other != null
+			&& other instanceof ActorProp
+			&& actorProperty() == ((ActorProp)other).actorProperty();
 	}
 }

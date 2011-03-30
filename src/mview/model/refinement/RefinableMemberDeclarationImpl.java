@@ -55,11 +55,17 @@ public abstract class RefinableMemberDeclarationImpl<
 	public boolean overrides(MViewMember other) throws ModelException {
 		boolean result = false;
 		
-		try {
-			result = this.sameAs(other) && this.sharesContext(other);
-		} catch (LookupException e) {
-			e.printStackTrace();
-		}
+//		try {
+//			result = this.sameAs(other) && this.sharesContext(other);
+//		} catch (LookupException e) {
+//			e.printStackTrace();
+//		}
+		
+		result = /*other != null 
+			&& other instanceof RefinableMemberDeclarationImpl 
+			&& this.signature().equals(((RefinableMemberDeclarationImpl) other).signature())*/
+			sameMemberAs(other)
+			&& this.sharesContext(other);
 		
 		return result;
 	}
@@ -72,6 +78,13 @@ public abstract class RefinableMemberDeclarationImpl<
 	@Override
 	public D merge(MViewMember other) throws MergeNotSupportedException, ModelException {
 		throw new MergeNotSupportedException(this + " doesn't support merge.");
+	}
+
+	@Override
+	public boolean sameMemberAs(MViewMember other) {
+		return (other != null)
+			&& other instanceof RefinableMemberDeclarationImpl
+			&& this.signature().equals(((RefinableMemberDeclarationImpl)other).signature());
 	}
 
 }

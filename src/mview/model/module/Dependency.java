@@ -138,7 +138,9 @@ public abstract class Dependency<E extends Dependency<E, T>, T extends TargetDec
 
 	@Override
 	public boolean mergesWith(MViewMember other) throws ModelException {
-		return (other != null) && (this.getClass().equals(other.getClass())) && sharesContext(other) && !overrides(other);
+		return sameMemberAs(other) 
+			&& sharesContext(other) 
+			&& !overrides(other);
 	}
 
 	@Override
@@ -160,6 +162,12 @@ public abstract class Dependency<E extends Dependency<E, T>, T extends TargetDec
 		}
 		
 		return merged;
+	}
+
+	@Override
+	public boolean sameMemberAs(MViewMember other) throws ModelException {
+		return other != null
+			&& other instanceof Dependency;
 	}
 
 }

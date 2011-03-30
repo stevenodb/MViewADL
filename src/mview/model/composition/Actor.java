@@ -117,7 +117,8 @@ public class Actor extends NamespaceElementImpl<Actor, Element> implements
 
 	@Override
 	public boolean mergesWith(MViewMember other) throws ModelException {
-		return (other != null) && (this.getClass().equals(other.getClass())) && sharesContext(other) && !overrides(other);
+		return /*(other != null) && (this.getClass().equals(other.getClass()))*/
+			sameMemberAs(other) && sharesContext(other) && !overrides(other);
 	}
 		
 	@Override
@@ -206,6 +207,11 @@ public class Actor extends NamespaceElementImpl<Actor, Element> implements
 		}
 
 		return result;
+	}
+
+	@Override
+	public boolean sameMemberAs(MViewMember other) {
+		return (other != null) && (this.getClass().equals(other.getClass()));
 	}
 
 }

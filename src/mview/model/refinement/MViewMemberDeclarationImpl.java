@@ -57,11 +57,17 @@ public abstract class MViewMemberDeclarationImpl<
 	@Override
 	public boolean overrides(MViewMember other) throws ModelException {
 		boolean result = false;
-		try {
-			result = this.sameAs(other) && sharesContext(other);
-		} catch (LookupException e) {
-			e.printStackTrace();
-		}
+//		try {
+//			result = this.sameAs(other) && sharesContext(other);
+//		} catch (LookupException e) {
+//			e.printStackTrace();
+//		}
+
+		result = /*(other != null)
+			&& other instanceof MViewMemberDeclarationImpl
+			&& this.signature().equals(((MViewMemberDeclarationImpl)other).signature())*/
+			sameMemberAs(other)
+			&& sharesContext(other);
 		
 		return result;
 	}
@@ -74,6 +80,13 @@ public abstract class MViewMemberDeclarationImpl<
 	@Override
 	public M merge(MViewMember other) throws MergeNotSupportedException, ModelException {
 		throw new MergeNotSupportedException(this + " doesn't support merge.");
+	}
+
+	@Override
+	public boolean sameMemberAs(MViewMember other) {
+		return (other != null)
+			&& other instanceof MViewMemberDeclarationImpl
+			&& this.signature().equals(((MViewMemberDeclarationImpl)other).signature());
 	}
 
 }

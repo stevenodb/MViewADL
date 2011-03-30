@@ -174,10 +174,10 @@ public abstract class MViewDeclaration<E extends MViewDeclaration<E, P>, P exten
 	/* (non-Javadoc)
 	 * @see chameleon.core.element.ElementImpl#uniSameAs(chameleon.core.element.Element)
 	 */
-	@Override
-	public boolean uniSameAs(Element other) throws LookupException {
-		return (other != null) && ((signature().equals(other)) || other == this);
-	}
+//	@Override
+//	public boolean uniSameAs(Element other) throws LookupException {
+//		return (other instanceof MViewDeclaration) && ((signature().equals(other)) || other == this);
+//	}
 
 	@Override
 	public String toString() {
