@@ -33,6 +33,8 @@ import mview.model.composition.PropValue;
 import mview.model.composition.modifier.After;
 import mview.model.composition.modifier.Around;
 import mview.model.composition.modifier.Before;
+import mview.model.composition.modifier.Call;
+import mview.model.composition.modifier.Execution;
 import mview.model.module.Component;
 import mview.model.module.Interface;
 import mview.model.property.ActorProperty;
@@ -111,7 +113,7 @@ public class MView extends Language {
 						ADVICE_MUTEX,
 						Advice.class);
 
-		// ActorProp
+		// ActorProperties
 		ACTOR_MUTEX = new PropertyMutex<ChameleonProperty>();
 
 		INTERFACE = new ActorProperty(Interface.class, this, ACTOR_MUTEX,
@@ -159,13 +161,31 @@ public class MView extends Language {
 				new StaticChameleonProperty("Abstract", this,
 						RefinableDeclaration.class);
 	}
+	
+	/**
+	 * Return Pointcut Kind modifier for given property <code>kind</code>.
+	 * @param kind
+	 * @return
+	 */
+	public Modifier pointcutKindModifierForProperty(Property kind) {
+		
+		Modifier result = null;
+		
+		if (kind == EXECUTION) {
+			result = new Execution();
+		} else if (kind == CALL) {
+			result = new Call();
+		}
+		
+		return result;
+	}
 
 	/**
-	 * Return AdviceType Modifier for given Property <code>type</code>.
+	 * Return Advice Type modifier for given Property <code>type</code>.
 	 * @param type
 	 * @return
 	 */
-	public Modifier adviceModifierForProperty(Property type) {
+	public Modifier adviceTypeModifierForProperty(Property type) {
 		
 		Modifier result = null;
 		
