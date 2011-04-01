@@ -18,6 +18,9 @@
  */
 package mview.output.jboss;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import chameleon.core.declaration.SimpleNameSignature;
 import mview.model.module.Interface;
 
@@ -27,6 +30,8 @@ import mview.model.module.Interface;
  */
 public class JBInterface extends JBDeclarationImpl<JBInterface, Interface> {
 
+	List<JBService> _services = new ArrayList<JBService>();
+	
 	/**
 	 * @param sourceElement
 	 */
@@ -35,25 +40,11 @@ public class JBInterface extends JBDeclarationImpl<JBInterface, Interface> {
 	}
 
 	/**
-	 * @param signature
+	 * @param jbSrv
 	 */
-	public void addReturnType(String signature) {
-		// TODO Auto-generated method stub
+	public void addService(JBService jbSrv) {
+		_services.add(jbSrv);
 	}
 
-	/**
-	 * @param string
-	 */
-	public void addSignature(String signature) {
-		// TODO Auto-generated method stub
-	}
-
-	/**
-	 * @param signature
-	 * @param type
-	 */
-	public void addFormalParameter(String signature, String type) {
-		// TODO Auto-generated method stub
-	}
-
+	
 }

@@ -21,19 +21,23 @@ package mview.output.jboss;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ThreadPoolExecutor.CallerRunsPolicy;
 
+import mview.model.application.Application;
 import mview.model.application.Instance;
 import mview.model.composition.AOComposition;
 import mview.model.composition.Actor;
 import mview.model.composition.ActorProp;
 import mview.model.composition.Advice;
+import mview.model.composition.PatternSignature;
 import mview.model.composition.Pointcut;
 import mview.model.composition.PointcutSignature;
+import mview.model.composition.PropValue;
 import mview.model.composition.ServiceSignature;
 import mview.model.deployment.Deployment;
 import mview.model.language.MView;
@@ -225,7 +229,8 @@ public class JBossWriter {
 	// // TODO Auto-generated method stub
 	// }
 
-	public void transform(Element src, JBDeclaration parentTarget, final List<JBDeclaration> result)
+	public void transform(Element src, JBDeclaration parentTarget,
+			final List<JBDeclaration> result)
 			throws ModelException {
 
 		if (isCompilationUnit(src)) {
@@ -248,11 +253,15 @@ public class JBossWriter {
 
 		} else if (isPointcut(src)) {
 			transformPointcut((Pointcut) src, parentTarget, result);
-		
+
 		} else if (isAdvice(src)) {
 			tranformAdvice((Advice) src, parentTarget, result);
-			
-		} else if (isDeployment(src)) {
+
+		} else if (isApplication(src)) {
+			transformApplication((Application)src, parentTarget, result);
+		}
+		
+		else if (isDeployment(src)) {
 			transformDeployment((Deployment) src, parentTarget, result);
 
 		} else if (isInterface(src)) {
@@ -273,6 +282,50 @@ public class JBossWriter {
 	 * @param src
 	 * @return
 	 */
+	private boolean isApplication(Element src) {
+		return src instanceof Application;
+	}
+
+
+	/**
+	 * @param src
+	 * @param parentTarget
+	 * @param result
+	 */
+	private void transformApplication(Application src, final JBDeclaration parentTarget,
+			List<JBDeclaration> result) throws ModelException {
+		
+		List<Instance> instances = src.members(Instance.class);
+		final List<JBDeclaration> jbDecl = new ArrayList<JBDeclaration>();
+
+		try {
+			new RobustVisitor<Instance>() {
+				public Object visit(Instance element) throws ModelException {
+
+					transform(element, parentTarget, jbDecl);
+					return null;
+				}
+
+
+				public void unvisit(Instance element, Object unvisitData) {
+				}
+			}.applyTo(instances);
+
+		} catch (ModelException e) {
+			throw e;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		result.addAll(jbDecl);
+
+	}
+
+
+	/**
+	 * @param src
+	 * @return
+	 */
 	private boolean isAdvice(Element element) {
 		return (element instanceof Advice);
 	}
@@ -282,51 +335,57 @@ public class JBossWriter {
 	 * @param src
 	 * @param parentTarget
 	 * @param result
-	 * @throws ModelException 
+	 * @throws ModelException
 	 */
 	private void tranformAdvice(Advice src, JBDeclaration parentTarget,
 			List<JBDeclaration> result) throws ModelException {
-		
+
 		JBAdviceElement adviceElement = new JBAdviceElement(src);
-		
+
 		// advice type
 		MView mview = src.language(MView.class);
 		Property adviceProperty = src.type();
-		
-		JBAdviceElement.AdviceType adviceType = null; 
+
+		JBAdviceElement.AdviceType adviceType =
+				adviceTypeForProperty(mview, adviceProperty);
+
+		adviceElement.setAdviceType(adviceType);
+
+		// service
+		Service service = src.service().getElement();
+		adviceElement.addSericeReturnType(service.returnType().signature().name());
+		adviceElement.addServiceSignature(service.signature().name());
+
+		List<Pair<String, String>> parameters = new ArrayList<Pair<String, String>>();
+		for (FormalParameter param : service.formalParameters()) {
+			String name = param.signature().name();
+			String type = "Type";/*param.getType().signature().name(); TODO: fix types */
+
+			parameters.add(new Pair<String, String>(name, type));
+		}
+
+		((JBAOComposition) parentTarget).addAdvice(adviceElement);
+	}
+
+
+	/**
+	 * @param mview
+	 * @param adviceProperty
+	 * @return
+	 */
+	public JBAdviceElement.AdviceType adviceTypeForProperty(MView mview,
+			Property adviceProperty) {
+		JBAdviceElement.AdviceType adviceType = null;
 		if (adviceProperty == mview.BEFORE) {
 			adviceType = JBAdviceElement.AdviceType.BEFORE;
-			
+
 		} else if (adviceProperty == mview.AFTER) {
 			adviceType = JBAdviceElement.AdviceType.AFTER;
-			
+
 		} else if (adviceProperty == mview.AROUND) {
 			adviceType = JBAdviceElement.AdviceType.AROUND;
 		}
-		
-		adviceElement.setAdviceType(adviceType);
-		
-		
-		// service
-		try { // TODO: FIX! then remove try catch
-			Service service = src.service().getElement();
-			adviceElement.addSericeReturnType(service.returnType().signature().name());
-			adviceElement.addServiceSignature(service.signature().name());
-			
-			List<Pair<String, String>> parameters = new ArrayList<Pair<String,String>>();
-			for (FormalParameter param : service.formalParameters()) {
-				String name = param.signature().name();
-				String type = param.getType().signature().name();
-				
-				parameters.add(new Pair<String, String>(name, type));
-			}
-			
-		} catch (LookupException e) {
-			e.printStackTrace();
-			System.err.println("FIX; REMOVE TRY CATCH");
-		}
-		
-		((JBAOComposition) parentTarget).addAdvice(adviceElement);
+		return adviceType;
 	}
 
 
@@ -343,58 +402,127 @@ public class JBossWriter {
 	 * @param src
 	 * @param parentTarget
 	 * @param result
-	 * @throws LookupException 
+	 * @throws LookupException
 	 */
 	private void transformPointcut(Pointcut src, JBDeclaration parentTarget,
 			List<JBDeclaration> result) throws LookupException {
 
 		JBPointcutElement pointcutElement = new JBPointcutElement(src);
-		
+
 		// signature
 		List<Service> joinpoints = new ArrayList<Service>();
-				
+
 		PointcutSignature pcSig = src.signature();
-		
+
 		List<ServiceSignature> serviceSigs = pcSig.signatures();
-		
+
 		for (ServiceSignature serviceSignature : serviceSigs) {
-			try { // TODO: fix, then remove try catch
-				joinpoints.addAll(serviceSignature.services());
-			} catch (LookupException e) {
-				System.err.println(e.getMessage());
-				System.err.println("FIX; REMOVE TRY CATCH");
-			}
+			PatternSignature patternSig = (PatternSignature) serviceSignature;
+			pointcutElement.addPatternSignature(patternSig.clone());
 		}
-		
-		pointcutElement.addServices(joinpoints);
 		
 		// pointcut kind
 		MView mview = src.language(MView.class);
 		Property pcProperty = src.kind();
+
+		PointcutKind pcKind = pointcutKindForProperty(mview, pcProperty);
+
+		pointcutElement.addKind(pcKind);
+
+		// caller
+		Map<ActorType, List<JBActorPropValue>> callerMap =
+				new EnumMap<ActorType, List<JBActorPropValue>>(ActorType.class);
+
+		if (src.caller() != null) {
+			callerMap = transformActor(src.caller());
+		}
 		
+		pointcutElement.addCaller(callerMap);
+
+		// callee
+		
+		Map<ActorType, List<JBActorPropValue>> calleeMap =
+			new EnumMap<ActorType, List<JBActorPropValue>>(ActorType.class);
+
+		if (src.callee() !=  null) {
+			calleeMap = transformActor(src.callee());
+		}
+
+		pointcutElement.addCallee(calleeMap);
+
+		((JBAOComposition) parentTarget).addPointcut(pointcutElement);
+	}
+
+
+	/**
+	 * @param src
+	 * @param result
+	 * @throws LookupException
+	 */
+	private Map<ActorType, List<JBActorPropValue>> transformActor(Actor src) 
+			throws LookupException {
+		
+		Map<ActorType, List<JBActorPropValue>> result =
+			new EnumMap<ActorType, List<JBActorPropValue>>(ActorType.class);
+		
+		for (ActorProp actorProp : src.props()) {
+			ActorProperty actorProperty = actorProp.actorProperty();
+
+			ActorType acType = actorTypeForProperty(src.language(MView.class), actorProperty);
+			
+			List<PropValue<Declaration>> propValues = actorProp.propValues();
+			
+			List<JBActorPropValue> actorPropValues = new ArrayList<JBActorPropValue>();
+			for (PropValue<Declaration> propValue : propValues) {
+				JBActorPropValue jba = new JBActorPropValue();
+				
+				jba.setNegated(propValue.isNegated());
+				jba.setValue(propValue.value().getElement().signature().name());
+				
+				actorPropValues.add(jba);
+			}
+			
+			result.put(acType, actorPropValues);
+		}
+		
+		return result;
+	}
+
+
+	/**
+	 * @param mview
+	 * @param pcProperty
+	 * @return
+	 */
+	public PointcutKind pointcutKindForProperty(MView mview, Property pcProperty) {
 		PointcutKind pcKind = null;
 		if (pcProperty == mview.CALL) {
 			pcKind = PointcutKind.CALL;
 		} else if (pcProperty == mview.EXECUTION) {
 			pcKind = PointcutKind.EXECUTION;
 		}
+		return pcKind;
+	}
 
-		pointcutElement.addKind(pcKind);
-		
-		// caller
-		
-		 Actor caller = src.caller();
-		 
-//		 Map<ActorType,List<String>> actorMap = 
-		 
-//		 for (ActorProp actorProp : caller.props()) {
-//			ActorProperty actorProperty = actorProp.actorProperty();
-//			actorProperty.
-//		 }
-		
-		// callee
-		
-		((JBAOComposition) parentTarget).addPointcut(pointcutElement);
+
+	/**
+	 * @param mview
+	 * @param actorProperty
+	 */
+	public ActorType actorTypeForProperty(MView mview, ActorProperty actorProperty) {
+		ActorType acType = null;
+		 if (actorProperty == mview.APPLICATION) {
+			 acType = ActorType.APPLICATION;
+		 } else if (actorProperty == mview.COMPONENT) {
+			 acType = ActorType.COMPONENT;
+		 } else if (actorProperty == mview.HOST) {
+			 acType = ActorType.HOST;
+		 } else if (actorProperty == mview.INSTANCE) {
+			 acType = ActorType.INSTANCE;
+		 } else if (actorProperty == mview.INTERFACE) {
+			 acType = ActorType.INTERFACE;
+		 }
+		 return acType;
 	}
 
 
@@ -411,20 +539,22 @@ public class JBossWriter {
 	 * @param src
 	 * @param result
 	 */
-	private void transformInterface(Interface src, JBDeclaration parentTarget, 
+	private void transformInterface(Interface src, JBDeclaration parentTarget,
 			final List<JBDeclaration> result) throws ModelException {
 
 		JBInterface iface = new JBInterface(src);
 		if (parentTarget != null) {
-			((JBConnector)parentTarget).addRequiredInterface(iface);
+			((JBConnector) parentTarget).addRequiredInterface(iface);
 		}
 		result.add(iface);
 
 		List<Service> services = src.services();
 
 		for (Service service : services) {
-			iface.addReturnType(service.returnType().signature().name());
-			iface.addSignature(service.signature().toString());
+			JBService jbSrv = new JBService(service);
+			
+			jbSrv.addReturnType(service.returnType().signature().name());
+			jbSrv.addSignature(service.signature().toString());
 
 			final List<FormalParameter> params = service.formalParameters();
 
@@ -434,8 +564,10 @@ public class JBossWriter {
 								.signature().name();
 				String signature = formalParameter.signature().name();
 
-				iface.addFormalParameter(signature, type);
+				jbSrv.addFormalParameter(signature, type);
 			}
+			
+			iface.addService(jbSrv);
 		}
 	}
 
@@ -453,7 +585,7 @@ public class JBossWriter {
 	 * @param src
 	 * @return
 	 */
-	private void transformAOComposition(AOComposition src, JBDeclaration parentTarget, 
+	private void transformAOComposition(AOComposition src, JBDeclaration parentTarget,
 			final List<JBDeclaration> result)
 			throws ModelException {
 
@@ -469,23 +601,23 @@ public class JBossWriter {
 			Pointcut pc = pointcuts.get(0);
 			Advice adv = advices.get(0);
 
-//			JBPointcutElement jbPC = new JBPointcutElement(pc);
-//			JBAdviceElement jbAdv = new JBAdviceElement(adv);
-			
+			// JBPointcutElement jbPC = new JBPointcutElement(pc);
+			// JBAdviceElement jbAdv = new JBAdviceElement(adv);
+
 			transform(pc, jbAOC, result);
 			transform(adv, jbAOC, result);
-			
-//			jbAOC.addPointcut(jbPC);
-//			jbAOC.addAdvice(jbAdv);
 
-			((JBConnector)parentTarget).addComposition(jbAOC);
+			// jbAOC.addPointcut(jbPC);
+			// jbAOC.addAdvice(jbAdv);
+
+			((JBConnector) parentTarget).addComposition(jbAOC);
 		}
-//		else {
-			// throw new ModelException("AOComposition is allowed one pointcut "
-			// +
-			// "and one advice, something went horribly wrong. " +
-			// "(" + src.signature().name() + ")");
-//		}
+		// else {
+		// throw new ModelException("AOComposition is allowed one pointcut "
+		// +
+		// "and one advice, something went horribly wrong. " +
+		// "(" + src.signature().name() + ")");
+		// }
 
 	}
 
@@ -523,7 +655,7 @@ public class JBossWriter {
 	 * @param src
 	 * @return
 	 */
-	private void transformComponent(Component src, JBDeclaration parentTarget, 
+	private void transformComponent(Component src, JBDeclaration parentTarget,
 			final List<JBDeclaration> result) {
 		// JBComponent jbc = new JBComponent();
 		// src.
@@ -595,12 +727,12 @@ public class JBossWriter {
 
 		result.addAll(jbDecl);
 
-//		JBDeployment jbd = new JBDeployment(src);
-//		result.add(jbd);
-//
-//		for (JBDeclaration jbModule : jbDecl) {
-//			jbd.addModule((JBModule) jbModule);
-//		}
+		// JBDeployment jbd = new JBDeployment(src);
+		// result.add(jbd);
+		//
+		// for (JBDeclaration jbModule : jbDecl) {
+		// jbd.addModule((JBModule) jbModule);
+		// }
 	}
 
 
@@ -619,7 +751,7 @@ public class JBossWriter {
 	 * @throws ModelException
 	 */
 	@SuppressWarnings("unchecked")
-	private void transformConnector(Connector element, JBDeclaration parentTarget, 
+	private void transformConnector(Connector element, JBDeclaration parentTarget,
 			final List<JBDeclaration> result) throws ModelException {
 
 		// 1. connector's name.
@@ -674,10 +806,10 @@ public class JBossWriter {
 			e.printStackTrace();
 		}
 
-//		for (JBDeclaration jbaoc : jbAOC) {
-//			jbc.addPointcut(((JBAOComposition) jbaoc).pointcut());
-//			jbc.addAdvice(((JBAOComposition) jbaoc).advice());
-//		}
+		// for (JBDeclaration jbaoc : jbAOC) {
+		// jbc.addPointcut(((JBAOComposition) jbaoc).pointcut());
+		// jbc.addAdvice(((JBAOComposition) jbaoc).advice());
+		// }
 	}
 
 
@@ -697,7 +829,7 @@ public class JBossWriter {
 	 * @throws ModelException
 	 */
 	protected void transformCompilationUnit(CompilationUnit element,
-			JBDeclaration parentTarget, 
+			JBDeclaration parentTarget,
 			final List<JBDeclaration> result) throws ModelException {
 
 		for (NamespacePart part : element.namespaceParts()) {

@@ -1,7 +1,7 @@
 /**
  * author:   Steven Op de beeck <steven /at/ opdebeeck /./ org>
- * filename: JBAOComposition.java
- * created:  Mar 21, 2011, 2:21:27 PM
+ * filename: JBActorProp.java
+ * created:  Mar 31, 2011, 1:56:20 PM
  * license:
  * The code contained in this file is free software: you can redistribute 
  * it and/or modify it under the terms of the GNU General Public License
@@ -18,55 +18,27 @@
  */
 package mview.output.jboss;
 
-import mview.model.composition.AOComposition;
-
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
- * 
+ *
  */
-public class JBAOComposition extends JBDeclarationImpl<JBAOComposition,AOComposition> {
+public class JBActorPropValue {
 
-	private JBPointcutElement	_jbPointcut;
-	private JBAdviceElement		_jbAdvice;
-
+	private boolean _negated;
+	private String _value;
 
 	/**
-	 * @param sourceElement
+	 * @param negated
 	 */
-	protected JBAOComposition(AOComposition sourceElement) {
-		super(sourceElement);
+	public void setNegated(boolean negated) {
+		_negated = negated;
 	}
 
-
 	/**
-	 * @return
+	 * @param name
 	 */
-	public JBPointcutElement pointcut() {
-		return _jbPointcut;
-	}
-	
-
-	/**
-	 * @return
-	 */
-	public JBAdviceElement advice() {
-		return _jbAdvice;
-	}
-
-
-	/**
-	 * @param jbPC
-	 */
-	public void addPointcut(JBPointcutElement jbPC) {
-		_jbPointcut = jbPC;
-	}
-
-
-	/**
-	 * @param jbAdv
-	 */
-	public void addAdvice(JBAdviceElement jbAdv) {
-		_jbAdvice = jbAdv;
+	public void setValue(String name) {
+		_value = name;
 	}
 
 }

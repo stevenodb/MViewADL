@@ -1,7 +1,7 @@
 /**
  * author:   Steven Op de beeck <steven /at/ opdebeeck /./ org>
- * filename: JBAOComposition.java
- * created:  Mar 21, 2011, 2:21:27 PM
+ * filename: JBService.java
+ * created:  Apr 1, 2011, 9:08:52 AM
  * license:
  * The code contained in this file is free software: you can redistribute 
  * it and/or modify it under the terms of the GNU General Public License
@@ -18,55 +18,48 @@
  */
 package mview.output.jboss;
 
-import mview.model.composition.AOComposition;
+import chameleon.core.declaration.Declaration;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
- * 
+ *
  */
-public class JBAOComposition extends JBDeclarationImpl<JBAOComposition,AOComposition> {
-
-	private JBPointcutElement	_jbPointcut;
-	private JBAdviceElement		_jbAdvice;
-
+public class JBService extends JBDeclarationImpl {
 
 	/**
 	 * @param sourceElement
 	 */
-	protected JBAOComposition(AOComposition sourceElement) {
+	protected JBService(Declaration sourceElement) {
 		super(sourceElement);
 	}
 
+	private String _returnType;
+	private String _signature;
+	private String _paramSignature;
+	private String _paramType;
 
 	/**
-	 * @return
+	 * @param signature
 	 */
-	public JBPointcutElement pointcut() {
-		return _jbPointcut;
+	public void addReturnType(String signature) {
+		_returnType = signature;
 	}
+
+	/**
+	 * @param string
+	 */
+	public void addSignature(String signature) {
+		_signature = signature;
+	}
+
+	/**
+	 * @param signature
+	 * @param type
+	 */
+	public void addFormalParameter(String signature, String type) {
+		_paramSignature = signature;
+		_paramType = type;
+	}
+
 	
-
-	/**
-	 * @return
-	 */
-	public JBAdviceElement advice() {
-		return _jbAdvice;
-	}
-
-
-	/**
-	 * @param jbPC
-	 */
-	public void addPointcut(JBPointcutElement jbPC) {
-		_jbPointcut = jbPC;
-	}
-
-
-	/**
-	 * @param jbAdv
-	 */
-	public void addAdvice(JBAdviceElement jbAdv) {
-		_jbAdvice = jbAdv;
-	}
-
 }

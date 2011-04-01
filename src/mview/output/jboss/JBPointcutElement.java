@@ -18,11 +18,16 @@
  */
 package mview.output.jboss;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import mview.model.composition.AOComposition;
+import mview.model.composition.PatternSignature;
 import mview.model.composition.Pointcut;
+import mview.model.composition.ServiceSignature;
 import mview.model.module.Service;
+import mview.output.jboss.JBPointcutElement.ActorType;
 import mview.output.jboss.JBPointcutElement.PointcutKind;
 
 /**
@@ -47,20 +52,16 @@ public class JBPointcutElement {
 		INTERFACE, COMPONENT, INSTANCE, APPLICATION, HOST;
 	}
 
-	private List<Service> _joinPoints;
 	private PointcutKind _kind;
+	private List<PatternSignature> _patternSignatures =
+		new ArrayList<PatternSignature>();
+	private Map<ActorType, List<JBActorPropValue>> _callerMap;
+	private Map<ActorType, List<JBActorPropValue>> _calleeMap;
 
 	/**
 	 * @param sourceElement
 	 */
 	protected JBPointcutElement(Pointcut sourceElement) {
-	}
-
-	/**
-	 * @param joinpoints
-	 */
-	public void addServices(List<Service> joinpoints) {
-		_joinPoints = joinpoints;
 	}
 
 	/**
@@ -70,4 +71,24 @@ public class JBPointcutElement {
 		_kind = pcKind;
 	}
 
+	/**
+	 * @param clone
+	 */
+	public void addPatternSignature(PatternSignature signature) {
+		_patternSignatures.add(signature);
+	}
+
+	/**
+	 * @param callerMap
+	 */
+	public void addCaller(Map<ActorType, List<JBActorPropValue>> callerMap) {
+		_callerMap = callerMap;
+	}
+
+	/**
+	 * @param calleeMap
+	 */
+	public void addCallee(Map<ActorType, List<JBActorPropValue>> calleeMap) {
+		_calleeMap = calleeMap;
+	}
 }
