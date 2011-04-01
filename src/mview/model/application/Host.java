@@ -91,7 +91,7 @@ public class Host extends MViewMemberDeclarationImpl<Host, Element> {
 	@Override
 	public Host clone() {
 		final Host clone = super.clone();
-		clone.setHostName(hostName());
+		clone.setHostName(hostName().clone());
 		return clone;
 	}
 

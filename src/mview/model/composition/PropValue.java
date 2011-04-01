@@ -21,6 +21,7 @@ package mview.model.composition;
 import java.util.List;
 
 import mview.model.composition.modifier.Negate;
+import mview.model.language.MView;
 
 import org.rejuse.association.SingleAssociation;
 
@@ -84,8 +85,8 @@ public class PropValue<D extends Declaration>
 	/**
 	 * @return
 	 */
-	public boolean negation() {
-		return modifiers().contains(new Negate());
+	public boolean isNegated() {
+		return isTrue(language(MView.class).NEGATE);
 	}
 
 	/*
@@ -97,7 +98,10 @@ public class PropValue<D extends Declaration>
 	public PropValue<D> clone() {
 		final PropValue<D> result = new PropValue<D>();
 
-		result.addModifiers(this.modifiers());
+		for(Modifier modifier : this.modifiers()) {
+			result.addModifier(modifier.clone());
+		}
+
 		result.setValue(this.value().clone());
 
 		return result;

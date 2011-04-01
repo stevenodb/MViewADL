@@ -200,8 +200,7 @@ public class Application<A extends Application<A>>
 		}
 
 		for (Module module : this.modules()) {
-			Module localClone = module.clone();
-			clone.addModule(localClone);
+			clone.addModule(module.clone());
 		}
 
 		return clone;

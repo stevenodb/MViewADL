@@ -29,6 +29,7 @@ import org.rejuse.association.OrderedMultiAssociation;
 
 import chameleon.core.element.Element;
 import chameleon.core.modifier.ElementWithModifiersImpl;
+import chameleon.core.modifier.Modifier;
 import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.Valid;
 import chameleon.core.validation.VerificationResult;
@@ -134,8 +135,10 @@ public class PointcutSignature extends ElementWithModifiersImpl<PointcutSignatur
 	public PointcutSignature clone() {
 		final PointcutSignature clone = new PointcutSignature();
 
-		clone.addModifiers(this.modifiers());
-
+		for(Modifier modifier : this.modifiers()) {
+			clone.addModifier(modifier);
+		}
+		
 		for (ServiceSignature sig : signatures()) {
 			clone.addSignature(sig.clone());
 		}

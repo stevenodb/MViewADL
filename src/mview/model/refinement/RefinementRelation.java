@@ -106,6 +106,7 @@ public class RefinementRelation
 
 		List<M> toAdd = new ArrayList<M>();
 		RefinableDeclaration pe = parentDeclarationEnd();
+//		System.out.println(pe.signature().name());
 
 		if (pe != null) {
 			List<M> potential = pe.members(kind);
@@ -118,7 +119,7 @@ public class RefinementRelation
 				for (Iterator<M> itCur = current.iterator(); itCur.hasNext() && !stop;) {
 
 					M childM = itCur.next();
-
+					
 //					System.out.print(childM + " -- " + parentM + ": ");
 
 					if (childM.mergesWith(parentM)) {
@@ -132,7 +133,6 @@ public class RefinementRelation
 							throw new LookupException("Merge failed while it " +
 									"should be allowed according to mergesWith()");
 						}
-//					} else if (childM.sameAs(parentM)) {
 					} else if (childM.sameMemberAs(parentM)) {
 //						System.out.println("Override.");
 						stop = true;

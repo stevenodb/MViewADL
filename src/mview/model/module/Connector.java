@@ -85,9 +85,7 @@ public class Connector<E extends Connector<E>> extends Module<E> {
 		final E clone = super.clone();
 		
 		for (AOComposition composition : compositions()) {
-			AOComposition localClone = composition.clone();
-			
-			clone.addComposition(localClone);
+			clone.addComposition(composition.clone());
 		}
 		
 		return clone;

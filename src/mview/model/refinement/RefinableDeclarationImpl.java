@@ -78,7 +78,6 @@ public abstract class RefinableDeclarationImpl<D extends RefinableDeclarationImp
 
 	/**
 	 * @return the list of refinement relations 
-	 * TODO: make this protected again!!!!
 	 */
 	protected List<RefinementRelation> refinementRelations() {
 		return _refinementRelations.getOtherEnds();
@@ -296,6 +295,7 @@ public abstract class RefinableDeclarationImpl<D extends RefinableDeclarationImp
 
 	@Override
 	public boolean isRefinementOf(RefinableDeclaration other) {
+		
 		List<RefinableDeclaration> parents = getDirectParents();
 
 		// breadth first search
@@ -304,8 +304,7 @@ public abstract class RefinableDeclarationImpl<D extends RefinableDeclarationImp
 		if (!result) {
 			for (RefinableDeclaration declaration : parents) {
 				result = declaration.isRefinementOf(other);
-				if (result)
-					break;
+				if (result)	break;
 			}
 		}
 		return result;
@@ -317,7 +316,7 @@ public abstract class RefinableDeclarationImpl<D extends RefinableDeclarationImp
 		D clone = super.clone();
 
 		for (RefinementRelation relation : refinementRelations()) {
-			clone.addRefinementRelation(relation);
+			clone.addRefinementRelation(relation.clone());
 		}
 
 		return clone;

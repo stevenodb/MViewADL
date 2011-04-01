@@ -254,9 +254,7 @@ public class Service extends JoinPointElement<Service, Element> {
 				);
 
 		for (SimpleReference<Property> property : attachedProperties()) {
-			SimpleReference<Property> localClone = property.clone();
-
-			clone.addProperty(localClone);
+			clone.addProperty(property.clone());
 		}
 
 		return clone;

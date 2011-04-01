@@ -145,7 +145,7 @@ public abstract class Module<E extends Module<E>>
 	private RequiredInterfaceDependency requiredInterfaceDependency() {
 		return _requiredInterfaces.getOtherEnd();
 	}
-
+	
 	/**
 	 * @return
 	 */
@@ -195,6 +195,7 @@ public abstract class Module<E extends Module<E>>
 		// clone.setSignature(signature().clone());
 
 		// TODO: setter
+		
 		clone._providedInterfaces.connectTo(providedInterfaceDependency()
 				.clone().parentLink());
 

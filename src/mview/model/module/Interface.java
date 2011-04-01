@@ -92,8 +92,7 @@ public class Interface extends MViewDeclaration<Interface, Element> implements
 		final Interface clone = (Interface) super.clone();
 
 		for (Service service : services()) {
-			Service localClone = service.clone();
-			clone.addService(localClone);
+			clone.addService(service.clone());
 		}
 
 		return clone;

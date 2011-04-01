@@ -29,6 +29,7 @@ import mview.model.refinement.RefinementContext;
 import org.rejuse.association.SingleAssociation;
 import org.rejuse.property.Property;
 
+import chameleon.core.declaration.Declaration;
 import chameleon.core.element.Element;
 import chameleon.core.modifier.ElementWithModifiersImpl;
 import chameleon.core.modifier.Modifier;
@@ -74,7 +75,7 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element>
 	 */
 	public Property kind() {
 
-		Property kind;
+		Property kind = null;
 		
 		if (isTrue(language(MView.class).CALL)) {
 			kind = language(MView.class).CALL;
@@ -206,7 +207,9 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element>
 		final Pointcut clone = new Pointcut();
 
 		// modifiers
-		clone.addModifiers(this.modifiers());
+		for (Modifier modifier : this.modifiers()) {
+			clone.addModifier(modifier.clone());
+		}
 
 		// signature
 		if (this.signature() != null) {
@@ -234,16 +237,16 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element>
 	public VerificationResult verifySelf() {
 		VerificationResult result = Valid.create();
 
-		// if (! (this.isTrue(language(MView.class).CALL)
-		// || this.isTrue(language(MView.class).EXTENDABLE))) {
-		// result = result.and(new BasicProblem(this,
-		// "Pointcut: Kind not set."));
-		// }
-		//
-		// if (! (this.signature() != null)) {
-		// result = result.and(new BasicProblem(this,
-		// "Pointcut: Signature not set."));
-		// }
+//		 if (! (this.isTrue(language(MView.class).CALL)
+//		 || this.isTrue(language(MView.class).EXTENDABLE))) {
+//		 result = result.and(new BasicProblem(this,
+//		 "Pointcut: Kind not set."));
+//		 }
+//		
+//		 if (! (this.signature() != null)) {
+//		 result = result.and(new BasicProblem(this,
+//		 "Pointcut: Signature not set."));
+//		 }
 
 		return result;
 	}
@@ -304,7 +307,17 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element>
 			merged.setUniParent(parent());
 
 			// 1. kind modifier: override with child's kind
-			merged.addModifiers(child.modifiers());
+			Modifier pointcutKind = null;
+			if (child.kind() != null) {
+				pointcutKind = 
+					(language(MView.class).pointcutKindModifierForProperty(child.kind()));
+			} else if (parent.kind() != null) {
+				pointcutKind =
+					(language(MView.class).pointcutKindModifierForProperty(parent.kind()));
+			}
+			if (pointcutKind != null) {
+				merged.addModifier(pointcutKind);
+			}
 
 			// 2. signature
 			if (child.signature() != null) {
@@ -337,13 +350,14 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element>
 		} else {
 			merged = this;
 		}
+		
 		return merged;
 	}
 
 
 	@Override
 	public String toString() {
-		return signature() != null ? signature().toString() : super.toString();
+		return "pointcut of " + nearestAncestor(Declaration.class).signature().name();
 	}
 
 

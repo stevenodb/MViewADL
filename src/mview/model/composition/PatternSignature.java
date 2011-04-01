@@ -304,7 +304,7 @@ public class PatternSignature extends
 
 		clone.setReturnTypePattern(returnTypePattern());
 		clone.setSignaturePattern(signaturePattern());
-		clone.setFormalParametersPattern(formalParametersPattern());
+		clone.setFormalParametersPattern(new ArrayList(formalParametersPattern()));
 		
 		return clone;
 	}

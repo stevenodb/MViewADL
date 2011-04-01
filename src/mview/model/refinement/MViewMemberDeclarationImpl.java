@@ -56,20 +56,7 @@ public abstract class MViewMemberDeclarationImpl<
 
 	@Override
 	public boolean overrides(MViewMember other) throws ModelException {
-		boolean result = false;
-//		try {
-//			result = this.sameAs(other) && sharesContext(other);
-//		} catch (LookupException e) {
-//			e.printStackTrace();
-//		}
-
-		result = /*(other != null)
-			&& other instanceof MViewMemberDeclarationImpl
-			&& this.signature().equals(((MViewMemberDeclarationImpl)other).signature())*/
-			sameMemberAs(other)
-			&& sharesContext(other);
-		
-		return result;
+		return sameMemberAs(other) && sharesContext(other);
 	}
 
 	@Override

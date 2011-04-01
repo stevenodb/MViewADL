@@ -31,11 +31,11 @@ import mview.model.refinement.RefinementContext;
 import org.rejuse.association.SingleAssociation;
 import org.rejuse.property.Property;
 
+import chameleon.core.declaration.Declaration;
 import chameleon.core.element.Element;
 import chameleon.core.modifier.ElementWithModifiersImpl;
 import chameleon.core.modifier.Modifier;
 import chameleon.core.reference.SimpleReference;
-import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.Valid;
 import chameleon.core.validation.VerificationResult;
 import chameleon.exception.ModelException;
@@ -127,7 +127,9 @@ public class Advice extends ElementWithModifiersImpl<Advice, Element>
 	public Advice clone() {
 		final Advice clone = new Advice();
 		
-		clone.addModifiers(this.modifiers());
+		for(Modifier modifier : this.modifiers()) {
+			clone.addModifier(modifier.clone());
+		}
 		
 		clone.setService(
 				this.service().clone()
@@ -222,18 +224,19 @@ public class Advice extends ElementWithModifiersImpl<Advice, Element>
 				merged.setService(((Advice)other).service().clone());
 			}
 			
+			Modifier adviceType = null;
 			if (this.type() != null) {
-				Modifier adviceType = 
-					this.language(MView.class).adviceModifierForProperty(this.type());
-				
-				merged.addModifier(adviceType);
+				adviceType =
+					this.language(MView.class).adviceTypeModifierForProperty(this.type());
 			} else if (((Advice)other).type() != null) {
-				Modifier adviceType = 
-					this.language(MView.class).adviceModifierForProperty(
+				adviceType = 
+					this.language(MView.class).adviceTypeModifierForProperty(
 							((Advice)other).type());
-				
+			}
+			if (adviceType != null) {
 				merged.addModifier(adviceType);
 			}
+			
 		} else {
 			merged = this;
 		}
@@ -249,15 +252,18 @@ public class Advice extends ElementWithModifiersImpl<Advice, Element>
 		return false;
 	}
 
-	@Override
-	public String toString() {
-		return service() != null ? service().toString() : super.toString();
-	}
 
 	@Override
 	public boolean sameMemberAs(MViewMember other) throws ModelException {
 		return other != null 
 			&& other instanceof Advice;
 	}
+	
+
+	@Override
+	public String toString() {
+		return "advice of " + nearestAncestor(Declaration.class).signature().name();
+	}
+
 	
 }
