@@ -259,10 +259,8 @@ public class JBossWriter {
 
 		} else if (isApplication(src)) {
 			transformApplication((Application)src, parentTarget, result);
-		}
-		
-		else if (isDeployment(src)) {
-			transformDeployment((Deployment) src, parentTarget, result);
+//		} else if (isDeployment(src)) {
+//			transformDeployment((Deployment) src, parentTarget, result);
 
 		} else if (isInterface(src)) {
 			transformInterface((Interface) src, parentTarget, result);
@@ -293,19 +291,17 @@ public class JBossWriter {
 	 * @param result
 	 */
 	private void transformApplication(Application src, final JBDeclaration parentTarget,
-			List<JBDeclaration> result) throws ModelException {
+			final List<JBDeclaration> result) throws ModelException {
 		
 		List<Instance> instances = src.members(Instance.class);
-		final List<JBDeclaration> jbDecl = new ArrayList<JBDeclaration>();
-
+		
 		try {
 			new RobustVisitor<Instance>() {
 				public Object visit(Instance element) throws ModelException {
 
-					transform(element, parentTarget, jbDecl);
+					transform(element, parentTarget, result);
 					return null;
 				}
-
 
 				public void unvisit(Instance element, Object unvisitData) {
 				}
@@ -316,9 +312,6 @@ public class JBossWriter {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
-		result.addAll(jbDecl);
-
 	}
 
 
@@ -340,7 +333,7 @@ public class JBossWriter {
 	private void tranformAdvice(Advice src, JBDeclaration parentTarget,
 			List<JBDeclaration> result) throws ModelException {
 
-		JBAdviceElement adviceElement = new JBAdviceElement(src);
+		JBAdviceElement adviceElement = new JBAdviceElement(null);
 
 		// advice type
 		MView mview = src.language(MView.class);
@@ -407,7 +400,7 @@ public class JBossWriter {
 	private void transformPointcut(Pointcut src, JBDeclaration parentTarget,
 			List<JBDeclaration> result) throws LookupException {
 
-		JBPointcutElement pointcutElement = new JBPointcutElement(src);
+		JBPointcutElement pointcutElement = new JBPointcutElement(null);
 
 		// signature
 		List<Service> joinpoints = new ArrayList<Service>();
@@ -418,7 +411,7 @@ public class JBossWriter {
 
 		for (ServiceSignature serviceSignature : serviceSigs) {
 			PatternSignature patternSig = (PatternSignature) serviceSignature;
-			pointcutElement.addPatternSignature(patternSig.clone());
+			pointcutElement.addPatternSignature(patternSig); // TODO: clone?
 		}
 		
 		// pointcut kind
@@ -542,16 +535,18 @@ public class JBossWriter {
 	private void transformInterface(Interface src, JBDeclaration parentTarget,
 			final List<JBDeclaration> result) throws ModelException {
 
-		JBInterface iface = new JBInterface(src);
+		JBInterface iface = new JBInterface(null);
+		result.add(iface);
+		
 		if (parentTarget != null) {
 			((JBConnector) parentTarget).addRequiredInterface(iface);
 		}
-		result.add(iface);
 
 		List<Service> services = src.services();
 
 		for (Service service : services) {
-			JBService jbSrv = new JBService(service);
+			JBService jbSrv = new JBService(null);
+			iface.addService(jbSrv);
 			
 			jbSrv.addReturnType(service.returnType().signature().name());
 			jbSrv.addSignature(service.signature().toString());
@@ -566,8 +561,6 @@ public class JBossWriter {
 
 				jbSrv.addFormalParameter(signature, type);
 			}
-			
-			iface.addService(jbSrv);
 		}
 	}
 
@@ -589,7 +582,8 @@ public class JBossWriter {
 			final List<JBDeclaration> result)
 			throws ModelException {
 
-		JBAOComposition jbAOC = new JBAOComposition(src);
+		JBAOComposition jbAOC = new JBAOComposition(null);
+		((JBConnector) parentTarget).addComposition(jbAOC);
 
 		// pointcut
 		List<Pointcut> pointcuts = src.members(Pointcut.class);
@@ -597,28 +591,24 @@ public class JBossWriter {
 		// advice
 		List<Advice> advices = src.members(Advice.class);
 
-		if ((pointcuts.size() == 1) && (advices.size() == 1)) {
-			Pointcut pc = pointcuts.get(0);
-			Advice adv = advices.get(0);
+		 if (pointcuts.size() > 1 || advices.size() > 1) {
+			 throw new ModelException("AOComposition is allowed one pointcut " +
+			 		"and one advice, something went horribly wrong. " +
+					 "(" + src.signature().name() + ")");
+		 }
 
-			// JBPointcutElement jbPC = new JBPointcutElement(pc);
-			// JBAdviceElement jbAdv = new JBAdviceElement(adv);
+		
+		if (pointcuts.size() == 1) {
+			Pointcut pc = pointcuts.get(0);
 
 			transform(pc, jbAOC, result);
-			transform(adv, jbAOC, result);
-
-			// jbAOC.addPointcut(jbPC);
-			// jbAOC.addAdvice(jbAdv);
-
-			((JBConnector) parentTarget).addComposition(jbAOC);
 		}
-		// else {
-		// throw new ModelException("AOComposition is allowed one pointcut "
-		// +
-		// "and one advice, something went horribly wrong. " +
-		// "(" + src.signature().name() + ")");
-		// }
 
+		if (advices.size() == 1) {
+			Advice adv = advices.get(0);
+
+			transform(adv, jbAOC, result);
+		}
 	}
 
 
@@ -632,13 +622,13 @@ public class JBossWriter {
 
 
 	/**
-	 * @param element
+	 * @param src
 	 * @return
 	 */
-	private void transformInstance(Instance element, JBDeclaration parentTarget,
+	private void transformInstance(Instance src, JBDeclaration parentTarget,
 			final List<JBDeclaration> result) throws ModelException {
 
-		transform(element.type().getElement(), parentTarget, result);
+		transform(src.type().getElement(), parentTarget, result);
 	}
 
 
@@ -703,36 +693,31 @@ public class JBossWriter {
 	private void transformDeployment(Deployment src, final JBDeclaration parentTarget,
 			final List<JBDeclaration> result) throws ModelException {
 
-		List<Instance> instances = src.members(Instance.class);
-		final List<JBDeclaration> jbDecl = new ArrayList<JBDeclaration>();
-
-		try {
-			new RobustVisitor<Instance>() {
-				public Object visit(Instance element) throws ModelException {
-
-					transform(element, parentTarget, jbDecl);
-					return null;
-				}
-
-
-				public void unvisit(Instance element, Object unvisitData) {
-				}
-			}.applyTo(instances);
-
-		} catch (ModelException e) {
-			throw e;
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		result.addAll(jbDecl);
-
-		// JBDeployment jbd = new JBDeployment(src);
-		// result.add(jbd);
-		//
-		// for (JBDeclaration jbModule : jbDecl) {
-		// jbd.addModule((JBModule) jbModule);
-		// }
+		System.out.println("JBossWriter.transformDeployment()");
+		
+//		List<Instance> instances = src.members(Instance.class);
+//		final List<JBDeclaration> jbDecl = new ArrayList<JBDeclaration>();
+//
+//		try {
+//			new RobustVisitor<Instance>() {
+//				public Object visit(Instance element) throws ModelException {
+//
+//					transform(element, parentTarget, jbDecl);
+//					return null;
+//				}
+//
+//
+//				public void unvisit(Instance element, Object unvisitData) {
+//				}
+//			}.applyTo(instances);
+//
+//		} catch (ModelException e) {
+//			throw e;
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//
+//		result.addAll(jbDecl);
 	}
 
 
@@ -746,34 +731,31 @@ public class JBossWriter {
 
 
 	/**
-	 * @param element
+	 * @param src
 	 * @param wArgs
 	 * @throws ModelException
 	 */
 	@SuppressWarnings("unchecked")
-	private void transformConnector(Connector element, JBDeclaration parentTarget,
+	private void transformConnector(Connector src, JBDeclaration parentTarget,
 			final List<JBDeclaration> result) throws ModelException {
 
 		// 1. connector's name.
 
-		final JBConnector jbc = new JBConnector(element);
+		final JBConnector jbc = new JBConnector(null);
 		result.add(jbc);
 
 		// 2. required interfaces (injections)
 
 		final List<RequiredInterfaceDependency> deps =
-				element.members(RequiredInterfaceDependency.class);
+				src.members(RequiredInterfaceDependency.class);
 
 		for (RequiredInterfaceDependency ifaceDep : deps) {
 
 			List<SimpleReference<Interface>> ifaceRefs =
 					(List<SimpleReference<Interface>>) ifaceDep.dependencies();
 
-			List<JBDeclaration> ifLst = new ArrayList<JBDeclaration>();
-
 			for (SimpleReference<Interface> ifaceRef : ifaceRefs) {
-				transform(ifaceRef.getElement(), jbc, ifLst);
-				result.addAll(ifLst);
+				transform(ifaceRef.getElement(), jbc, result);
 			}
 		}
 
@@ -783,7 +765,7 @@ public class JBossWriter {
 
 		final List<JBDeclaration> jbAOC = new ArrayList<JBDeclaration>();
 		final List<AOComposition> compositions =
-				element.members(AOComposition.class);
+				src.members(AOComposition.class);
 
 		try {
 			new RobustVisitor<AOComposition>() {
@@ -823,16 +805,16 @@ public class JBossWriter {
 
 
 	/**
-	 * @param element
+	 * @param src
 	 * @param wArgs
 	 * @return
 	 * @throws ModelException
 	 */
-	protected void transformCompilationUnit(CompilationUnit element,
+	protected void transformCompilationUnit(CompilationUnit src,
 			JBDeclaration parentTarget,
 			final List<JBDeclaration> result) throws ModelException {
 
-		for (NamespacePart part : element.namespaceParts()) {
+		for (NamespacePart part : src.namespaceParts()) {
 			transform(part, parentTarget, result);
 		}
 	}

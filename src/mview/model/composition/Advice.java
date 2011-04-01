@@ -214,24 +214,31 @@ public class Advice extends ElementWithModifiersImpl<Advice, Element>
 		Advice merged;
 		
 		if (mergesWith(other)) {
+
+			Advice child = this.clone();
+			child.setUniParent(parent());
+			
+			Advice parent = ((Advice) other).clone();
+			parent.setUniParent(other.parent());
 			
 			merged = new Advice();
 			merged.setUniParent(parent());
-					
-			if (this.service() != null) {
-				merged.setService(this.service().clone());
-			} else if (((Advice)other).service() != null) {
-				merged.setService(((Advice)other).service().clone());
+			
+			if (child.service() != null) {
+				merged.setService(child.service());
+			} else if (parent.service() != null) {
+				merged.setService(parent.service());
 			}
 			
 			Modifier adviceType = null;
-			if (this.type() != null) {
+			if (child.type() != null) {
 				adviceType =
-					this.language(MView.class).adviceTypeModifierForProperty(this.type());
-			} else if (((Advice)other).type() != null) {
+					language(MView.class)
+						.adviceTypeModifierForProperty(child.type());
+			} else if (parent.type() != null) {
 				adviceType = 
-					this.language(MView.class).adviceTypeModifierForProperty(
-							((Advice)other).type());
+					language(MView.class)
+						.adviceTypeModifierForProperty(parent.type());
 			}
 			if (adviceType != null) {
 				merged.addModifier(adviceType);

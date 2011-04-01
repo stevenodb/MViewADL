@@ -298,7 +298,7 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element>
 
 			Pointcut child = this.clone();
 			// Pointcut child = this;
-			Pointcut parent = (Pointcut) other.clone();
+			Pointcut parent = ((Pointcut) other).clone();
 			// Pointcut parent = (Pointcut) other;
 			child.setUniParent(parent());
 			parent.setUniParent(other.parent());

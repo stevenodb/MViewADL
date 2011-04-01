@@ -149,11 +149,28 @@ public abstract class Dependency<E extends Dependency<E, T>, T extends TargetDec
 		E merged;
 		
 		if (mergesWith(other)) {
-			merged = this.clone();
+			
+			E child = this.clone();
+			child.setUniParent(parent());
+			
+			E parent = (E) other.clone();
+			parent.setUniParent(other.parent());
+			
+			merged = cloneThis();
 			merged.setUniParent(parent());
-			E parent = (E) other;
+			
+			for(SimpleReference<T> dep : child.dependencies()) {
+				merged.addDependency(dep);
+			}
+			
 			for(SimpleReference<T> dep : parent.dependencies()) {
-				if (!merged.dependencies().contains(dep)) {
+				if (merged.dependencies().size() > 0) {
+					for(SimpleReference<T> existing : merged.dependencies()) {
+						if (existing.getElement() != dep.getElement()) {
+							merged.addDependency(dep);
+						}
+					}
+				} else {
 					merged.addDependency(dep);
 				}
 			}
