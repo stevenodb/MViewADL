@@ -117,8 +117,7 @@ public class Actor extends NamespaceElementImpl<Actor, Element> implements
 
 	@Override
 	public boolean mergesWith(MViewMember other) throws ModelException {
-		return /*(other != null) && (this.getClass().equals(other.getClass()))*/
-			sameMemberAs(other) && sharesContext(other) && !overrides(other);
+		return sameMemberAs(other) && sharesContext(other) && !overrides(other);
 	}
 		
 	@Override
@@ -134,8 +133,10 @@ public class Actor extends NamespaceElementImpl<Actor, Element> implements
 			child.setUniParent(parent());
 			parent.setUniParent(other.parent());
 	
+			List<ActorProp> childProps = child.props();
+			
 			// for all props
-			for (ActorProp childProp : child.props()) {
+			for (ActorProp childProp : childProps) {
 	
 				// get the respective prop of the parent, if it has one
 				// in which case, this one's a refinement (merge/overidde) of
@@ -151,6 +152,8 @@ public class Actor extends NamespaceElementImpl<Actor, Element> implements
 	
 					// remove callerprop from the parent, we are done with it
 					parent.removeProp(parentProp);
+				} else {
+					merged.addProp(childProp);
 				}
 			}
 	
@@ -163,11 +166,6 @@ public class Actor extends NamespaceElementImpl<Actor, Element> implements
 		return merged;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see chameleon.core.element.Element#children()
-	 */
 	@Override
 	public List<Element> children() {
 		List<Element> result = new ArrayList<Element>();
@@ -177,11 +175,6 @@ public class Actor extends NamespaceElementImpl<Actor, Element> implements
 		return result;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see chameleon.core.element.ElementImpl#clone()
-	 */
 	@Override
 	public Actor clone() {
 		final Actor clone = new Actor();
@@ -193,11 +186,6 @@ public class Actor extends NamespaceElementImpl<Actor, Element> implements
 		return clone;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see chameleon.core.element.ElementImpl#verifySelf()
-	 */
 	@Override
 	public VerificationResult verifySelf() {
 		VerificationResult result = Valid.create();
@@ -211,7 +199,7 @@ public class Actor extends NamespaceElementImpl<Actor, Element> implements
 
 	@Override
 	public boolean sameMemberAs(MViewMember other) {
-		return (other != null) && (this.getClass().equals(other.getClass()));
+		return (other != null) && (other instanceof Actor);
 	}
 
 }
