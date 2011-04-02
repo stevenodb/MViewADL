@@ -162,12 +162,20 @@ public abstract class Dependency<E extends Dependency<E, T>, T extends TargetDec
 			for(SimpleReference<T> dep : child.dependencies()) {
 				merged.addDependency(dep);
 			}
+
+			List<SimpleReference<T>> parentDependencies = parent.dependencies();
+			List<SimpleReference<T>> existingDependencies = merged.dependencies();
 			
-			for(SimpleReference<T> dep : parent.dependencies()) {
+			for(SimpleReference<T> dep : parentDependencies) {
 				if (merged.dependencies().size() > 0) {
-					for(SimpleReference<T> existing : merged.dependencies()) {
-						if (existing.getElement() != dep.getElement()) {
-							merged.addDependency(dep);
+					for(SimpleReference<T> existing : existingDependencies) {
+						try {
+							if (!existing.getElement().sameAs(dep.getElement())) {
+								merged.addDependency(dep);
+							}
+						} catch (LookupException e) {
+							System.out.println("lookup failed!");
+							throw e;
 						}
 					}
 				} else {
@@ -187,4 +195,19 @@ public abstract class Dependency<E extends Dependency<E, T>, T extends TargetDec
 			&& other instanceof Dependency;
 	}
 
+	@Override
+	public String toString() {
+		StringBuffer s = new StringBuffer(parent().toString() + " dependency: ");
+		for (SimpleReference<T> ref : dependencies()) {
+			try {
+				s.append(ref.getElement().signature().name());
+			} catch (LookupException e) {
+				e.printStackTrace();
+			}
+			s.append(", ");
+		}
+		return s.toString();
+	}
+
+	
 }
