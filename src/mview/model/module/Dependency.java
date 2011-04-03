@@ -159,7 +159,9 @@ public abstract class Dependency<E extends Dependency<E, T>, T extends TargetDec
 			merged = cloneThis();
 			merged.setUniParent(parent());
 			
-			for(SimpleReference<T> dep : child.dependencies()) {
+			List<SimpleReference<T>> childDependencies = child.dependencies();
+			
+			for(SimpleReference<T> dep : childDependencies) {
 				merged.addDependency(dep);
 			}
 
@@ -169,13 +171,8 @@ public abstract class Dependency<E extends Dependency<E, T>, T extends TargetDec
 			for(SimpleReference<T> dep : parentDependencies) {
 				if (merged.dependencies().size() > 0) {
 					for(SimpleReference<T> existing : existingDependencies) {
-						try {
-							if (!existing.getElement().sameAs(dep.getElement())) {
-								merged.addDependency(dep);
-							}
-						} catch (LookupException e) {
-							System.out.println("lookup failed!");
-							throw e;
+						if (!existing.getElement().sameAs(dep.getElement())) {
+							merged.addDependency(dep);
 						}
 					}
 				} else {

@@ -186,7 +186,9 @@ public class JBossWriter {
 		for (JBDeclaration jbDeclaration : declarations) {
 			System.out.println("Writing " + jbDeclaration);
 		}
-
+		
+		System.out.println("done.");
+		
 		// MViewDeclaration declaration = args.declarations().get(0);
 		// String fileName = declaration.signature().name() + ".java";
 		//
@@ -333,7 +335,7 @@ public class JBossWriter {
 	private void tranformAdvice(Advice src, JBDeclaration parentTarget,
 			List<JBDeclaration> result) throws ModelException {
 
-		JBAdviceElement adviceElement = new JBAdviceElement(null);
+		JBAdviceElement adviceElement = new JBAdviceElement(src);
 
 		// advice type
 		MView mview = src.language(MView.class);
@@ -400,7 +402,7 @@ public class JBossWriter {
 	private void transformPointcut(Pointcut src, JBDeclaration parentTarget,
 			List<JBDeclaration> result) throws LookupException {
 
-		JBPointcutElement pointcutElement = new JBPointcutElement(null);
+		JBPointcutElement pointcutElement = new JBPointcutElement(src);
 
 		// signature
 		List<Service> joinpoints = new ArrayList<Service>();
@@ -535,7 +537,7 @@ public class JBossWriter {
 	private void transformInterface(Interface src, JBDeclaration parentTarget,
 			final List<JBDeclaration> result) throws ModelException {
 
-		JBInterface iface = new JBInterface(null);
+		JBInterface iface = new JBInterface(src);
 		result.add(iface);
 		
 		if (parentTarget != null) {
@@ -545,7 +547,7 @@ public class JBossWriter {
 		List<Service> services = src.services();
 
 		for (Service service : services) {
-			JBService jbSrv = new JBService(null);
+			JBService jbSrv = new JBService(service);
 			iface.addService(jbSrv);
 			
 			jbSrv.addReturnType(service.returnType().signature().name());
@@ -582,7 +584,7 @@ public class JBossWriter {
 			final List<JBDeclaration> result)
 			throws ModelException {
 
-		JBAOComposition jbAOC = new JBAOComposition(null);
+		JBAOComposition jbAOC = new JBAOComposition(src);
 		((JBConnector) parentTarget).addComposition(jbAOC);
 
 		// pointcut
@@ -741,7 +743,7 @@ public class JBossWriter {
 
 		// 1. connector's name.
 
-		final JBConnector jbc = new JBConnector(null);
+		final JBConnector jbc = new JBConnector(src);
 		result.add(jbc);
 
 		// 2. required interfaces (injections)

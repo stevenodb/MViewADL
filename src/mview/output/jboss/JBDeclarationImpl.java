@@ -39,7 +39,7 @@ public abstract class JBDeclarationImpl<D extends JBDeclarationImpl, E extends D
 	}
 
 	public String getName() {
-		return "";//sourceElement().signature().name(); 
+		return sourceElement().signature().name(); 
 	}
 	
 	@Override
