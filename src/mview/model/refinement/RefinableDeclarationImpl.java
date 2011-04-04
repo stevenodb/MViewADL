@@ -19,7 +19,10 @@
 package mview.model.refinement;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import mview.model.language.MView;
 import mview.model.module.Interface;
@@ -270,6 +273,10 @@ public abstract class RefinableDeclarationImpl<D extends RefinableDeclarationImp
 			}
 		}
 
+//		Set<M> noDoubles = new HashSet<M>(result);
+//		if (noDoubles.size() != result.size()) {
+//			System.err.println("Contains doubles.");
+//		}
 		return result;
 	}
 
