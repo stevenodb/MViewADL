@@ -123,23 +123,17 @@ public class RefinementRelation
 //					System.out.print(childM + " -- " + parentM + ": ");
 
 					if (childM.mergesWith(parentM)) {
-						try {
-							newM = (M) childM.merge(parentM);
-//							System.out.println("Merged. "+newM);
-							itCur.remove();
-							stop = true;
-						} catch (MergeNotSupportedException e) {
-							e.printStackTrace();
-							throw new LookupException("Merge failed while it " +
-									"should be allowed according to mergesWith()");
-						}
-					} else if (childM.sameMemberAs(parentM)) {
-//						System.out.println("Override.");
+						newM = (M) childM.merge(parentM);
+						itCur.remove();
+						stop = true;
+//						System.out.println("Merged. "+newM);
+					} else if (childM.overrides(parentM)) {
 						stop = true;
 						newM = null;
+//						System.out.println("Override.");
 					} else {
-//						System.out.println("New.");
 						newM = parentM;
+//						System.out.println("New.");
 					}
 				} // for-loop
 

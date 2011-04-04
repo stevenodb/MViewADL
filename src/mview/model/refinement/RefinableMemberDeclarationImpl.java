@@ -55,16 +55,7 @@ public abstract class RefinableMemberDeclarationImpl<
 	public boolean overrides(MViewMember other) throws ModelException {
 		boolean result = false;
 		
-//		try {
-//			result = this.sameAs(other) && this.sharesContext(other);
-//		} catch (LookupException e) {
-//			e.printStackTrace();
-//		}
-		
-		result = /*other != null 
-			&& other instanceof RefinableMemberDeclarationImpl 
-			&& this.signature().equals(((RefinableMemberDeclarationImpl) other).signature())*/
-			sameMemberAs(other)
+		result = sameMemberAs(other)
 			&& this.sharesContext(other);
 		
 		return result;
