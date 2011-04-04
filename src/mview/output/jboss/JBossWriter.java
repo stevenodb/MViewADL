@@ -23,12 +23,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ThreadPoolExecutor.CallerRunsPolicy;
 
 import mview.model.application.Application;
+import mview.model.application.Host;
 import mview.model.application.Instance;
 import mview.model.composition.AOComposition;
 import mview.model.composition.Actor;
@@ -43,7 +46,9 @@ import mview.model.deployment.Deployment;
 import mview.model.language.MView;
 import mview.model.module.Component;
 import mview.model.module.Connector;
+import mview.model.module.Dependency;
 import mview.model.module.Interface;
+import mview.model.module.Module.ProvidedInterfaceDependency;
 import mview.model.module.Module.RequiredInterfaceDependency;
 import mview.model.module.Service;
 import mview.model.property.ActorProperty;
@@ -182,13 +187,15 @@ public class JBossWriter {
 		List<JBDeclaration> declarations = new ArrayList<JBDeclaration>();
 
 		transform(element, null, declarations);
+		
+		Set<JBDeclaration> uniqDeclarations = new HashSet<JBDeclaration>(declarations);
 
-		for (JBDeclaration jbDeclaration : declarations) {
+		for (JBDeclaration jbDeclaration : uniqDeclarations) {
 			System.out.println("Writing " + jbDeclaration);
 		}
-		
+
 		System.out.println("done.");
-		
+
 		// MViewDeclaration declaration = args.declarations().get(0);
 		// String fileName = declaration.signature().name() + ".java";
 		//
@@ -260,12 +267,15 @@ public class JBossWriter {
 			tranformAdvice((Advice) src, parentTarget, result);
 
 		} else if (isApplication(src)) {
-			transformApplication((Application)src, parentTarget, result);
-//		} else if (isDeployment(src)) {
-//			transformDeployment((Deployment) src, parentTarget, result);
+			transformApplication((Application) src, parentTarget, result);
+			// } else if (isDeployment(src)) {
+			// transformDeployment((Deployment) src, parentTarget, result);
 
 		} else if (isInterface(src)) {
 			transformInterface((Interface) src, parentTarget, result);
+			
+		} else if (isHost(src)) {
+			transforHost((Host) src, parentTarget, result);
 		}
 
 		else if (src == null) {
@@ -275,6 +285,27 @@ public class JBossWriter {
 					"The given element is not know by MView syntax: "
 							+ src.getClass().getName());
 		}
+	}
+
+
+	/**
+	 * @param src
+	 * @return
+	 */
+	private boolean isHost(Element src) {
+		return src instanceof Host;
+	}
+
+
+	/**
+	 * @param src
+	 * @param parentTarget
+	 * @param result
+	 */
+	private void transforHost(Host src, JBDeclaration parentTarget,
+			List<JBDeclaration> result) {
+
+		// NOOP
 	}
 
 
@@ -294,9 +325,9 @@ public class JBossWriter {
 	 */
 	private void transformApplication(Application src, final JBDeclaration parentTarget,
 			final List<JBDeclaration> result) throws ModelException {
-		
+
 		List<Instance> instances = src.members(Instance.class);
-		
+
 		try {
 			new RobustVisitor<Instance>() {
 				public Object visit(Instance element) throws ModelException {
@@ -304,6 +335,7 @@ public class JBossWriter {
 					transform(element, parentTarget, result);
 					return null;
 				}
+
 
 				public void unvisit(Instance element, Object unvisitData) {
 				}
@@ -354,7 +386,10 @@ public class JBossWriter {
 		List<Pair<String, String>> parameters = new ArrayList<Pair<String, String>>();
 		for (FormalParameter param : service.formalParameters()) {
 			String name = param.signature().name();
-			String type = "Type";/*param.getType().signature().name(); TODO: fix types */
+			String type = "Type";/*
+								 * param.getType().signature().name(); TODO: fix
+								 * types
+								 */
 
 			parameters.add(new Pair<String, String>(name, type));
 		}
@@ -397,10 +432,10 @@ public class JBossWriter {
 	 * @param src
 	 * @param parentTarget
 	 * @param result
-	 * @throws LookupException
+	 * @throws ModelException
 	 */
 	private void transformPointcut(Pointcut src, JBDeclaration parentTarget,
-			List<JBDeclaration> result) throws LookupException {
+			List<JBDeclaration> result) throws ModelException {
 
 		JBPointcutElement pointcutElement = new JBPointcutElement(src);
 
@@ -415,7 +450,7 @@ public class JBossWriter {
 			PatternSignature patternSig = (PatternSignature) serviceSignature;
 			pointcutElement.addPatternSignature(patternSig); // TODO: clone?
 		}
-		
+
 		// pointcut kind
 		MView mview = src.language(MView.class);
 		Property pcProperty = src.kind();
@@ -429,18 +464,18 @@ public class JBossWriter {
 				new EnumMap<ActorType, List<JBActorPropValue>>(ActorType.class);
 
 		if (src.caller() != null) {
-			callerMap = transformActor(src.caller());
+			callerMap = transformActor(src.caller(),result);
 		}
-		
+
 		pointcutElement.addCaller(callerMap);
 
 		// callee
-		
-		Map<ActorType, List<JBActorPropValue>> calleeMap =
-			new EnumMap<ActorType, List<JBActorPropValue>>(ActorType.class);
 
-		if (src.callee() !=  null) {
-			calleeMap = transformActor(src.callee());
+		Map<ActorType, List<JBActorPropValue>> calleeMap =
+				new EnumMap<ActorType, List<JBActorPropValue>>(ActorType.class);
+
+		if (src.callee() != null) {
+			calleeMap = transformActor(src.callee(),result);
 		}
 
 		pointcutElement.addCallee(calleeMap);
@@ -452,34 +487,36 @@ public class JBossWriter {
 	/**
 	 * @param src
 	 * @param result
-	 * @throws LookupException
+	 * @throws ModelException
 	 */
-	private Map<ActorType, List<JBActorPropValue>> transformActor(Actor src) 
-			throws LookupException {
-		
+	private Map<ActorType, List<JBActorPropValue>> transformActor(Actor src, 
+			List<JBDeclaration> jbDcls)	throws ModelException {
+
 		Map<ActorType, List<JBActorPropValue>> result =
-			new EnumMap<ActorType, List<JBActorPropValue>>(ActorType.class);
-		
+				new EnumMap<ActorType, List<JBActorPropValue>>(ActorType.class);
+
 		for (ActorProp actorProp : src.props()) {
 			ActorProperty actorProperty = actorProp.actorProperty();
 
-			ActorType acType = actorTypeForProperty(src.language(MView.class), actorProperty);
-			
+			ActorType acType =
+					actorTypeForProperty(src.language(MView.class), actorProperty);
+
 			List<PropValue<Declaration>> propValues = actorProp.propValues();
-			
+
 			List<JBActorPropValue> actorPropValues = new ArrayList<JBActorPropValue>();
 			for (PropValue<Declaration> propValue : propValues) {
 				JBActorPropValue jba = new JBActorPropValue();
-				
+
 				jba.setNegated(propValue.isNegated());
 				jba.setValue(propValue.value().getElement().signature().name());
-				
+				transform(propValue.value().getElement(), null, jbDcls);
+
 				actorPropValues.add(jba);
 			}
-			
+
 			result.put(acType, actorPropValues);
 		}
-		
+
 		return result;
 	}
 
@@ -506,18 +543,18 @@ public class JBossWriter {
 	 */
 	public ActorType actorTypeForProperty(MView mview, ActorProperty actorProperty) {
 		ActorType acType = null;
-		 if (actorProperty == mview.APPLICATION) {
-			 acType = ActorType.APPLICATION;
-		 } else if (actorProperty == mview.COMPONENT) {
-			 acType = ActorType.COMPONENT;
-		 } else if (actorProperty == mview.HOST) {
-			 acType = ActorType.HOST;
-		 } else if (actorProperty == mview.INSTANCE) {
-			 acType = ActorType.INSTANCE;
-		 } else if (actorProperty == mview.INTERFACE) {
-			 acType = ActorType.INTERFACE;
-		 }
-		 return acType;
+		if (actorProperty == mview.APPLICATION) {
+			acType = ActorType.APPLICATION;
+		} else if (actorProperty == mview.COMPONENT) {
+			acType = ActorType.COMPONENT;
+		} else if (actorProperty == mview.HOST) {
+			acType = ActorType.HOST;
+		} else if (actorProperty == mview.INSTANCE) {
+			acType = ActorType.INSTANCE;
+		} else if (actorProperty == mview.INTERFACE) {
+			acType = ActorType.INTERFACE;
+		}
+		return acType;
 	}
 
 
@@ -539,17 +576,17 @@ public class JBossWriter {
 
 		JBInterface iface = new JBInterface(src);
 		result.add(iface);
-		
-		if (parentTarget != null) {
-			((JBConnector) parentTarget).addRequiredInterface(iface);
-		}
+
+//		if (parentTarget != null) {
+//			((JBConnector) parentTarget).addRequiredInterface(iface);
+//		}
 
 		List<Service> services = src.services();
 
 		for (Service service : services) {
 			JBService jbSrv = new JBService(service);
 			iface.addService(jbSrv);
-			
+
 			jbSrv.addReturnType(service.returnType().signature().name());
 			jbSrv.addSignature(service.signature().toString());
 
@@ -593,13 +630,12 @@ public class JBossWriter {
 		// advice
 		List<Advice> advices = src.members(Advice.class);
 
-		 if (pointcuts.size() > 1 || advices.size() > 1) {
-			 throw new ModelException("AOComposition is allowed one pointcut " +
-			 		"and one advice, something went horribly wrong. " +
-					 "(" + src.signature().name() + ")");
-		 }
+		if (pointcuts.size() > 1 || advices.size() > 1) {
+			throw new ModelException("AOComposition is allowed one pointcut " +
+					"and one advice, something went horribly wrong. " +
+						"(" + src.signature().name() + ")");
+		}
 
-		
 		if (pointcuts.size() == 1) {
 			Pointcut pc = pointcuts.get(0);
 
@@ -646,11 +682,71 @@ public class JBossWriter {
 	/**
 	 * @param src
 	 * @return
+	 * @throws ModelException
 	 */
 	private void transformComponent(Component src, JBDeclaration parentTarget,
-			final List<JBDeclaration> result) {
-		// JBComponent jbc = new JBComponent();
-		// src.
+			final List<JBDeclaration> result) throws ModelException {
+
+		JBComponent jbc = new JBComponent(src);
+		result.add(jbc);
+
+		//required interfaces (injections)
+
+		{
+		
+			final List<JBDeclaration> jbReqs = transformModuleInterfaces(jbc, 
+					src.members(RequiredInterfaceDependency.class));
+			
+			for (JBDeclaration jbDeclaration : jbReqs) {
+				jbc.addRequiredInterface((JBInterface) jbDeclaration);
+			}
+			
+			result.addAll(jbReqs);
+		
+		}
+		
+		//provided interfaces (implements)
+		
+		{
+			
+			final List<JBDeclaration> jbProvs = transformModuleInterfaces(jbc, 
+					src.members(ProvidedInterfaceDependency.class));
+	
+			
+			for (JBDeclaration jbDeclaration : jbProvs) {
+				jbc.addProvidedInterface((JBInterface) jbDeclaration);
+			}
+			
+			result.addAll(jbProvs);
+
+		}		
+	}
+
+
+	/**
+	 * @param jbc
+	 * @param dependencies
+	 * @return
+	 * @throws ModelException
+	 * @throws LookupException
+	 */
+	private List<JBDeclaration> transformModuleInterfaces(JBComponent jbc,
+			final List<Dependency> dependencies) throws ModelException,
+			LookupException {
+		
+		final List<JBDeclaration> jbInterfaces = new ArrayList<JBDeclaration>();
+		
+		for (Dependency ifaceDep : dependencies) {
+
+			List<SimpleReference<Interface>> ifaceRefs =
+					(List<SimpleReference<Interface>>) ifaceDep.dependencies();
+
+			for (SimpleReference<Interface> ifaceRef : ifaceRefs) {
+				transform(ifaceRef.getElement(), jbc, jbInterfaces);
+			}
+			
+		}
+		return jbInterfaces;
 	}
 
 
@@ -696,30 +792,30 @@ public class JBossWriter {
 			final List<JBDeclaration> result) throws ModelException {
 
 		System.out.println("JBossWriter.transformDeployment()");
-		
-//		List<Instance> instances = src.members(Instance.class);
-//		final List<JBDeclaration> jbDecl = new ArrayList<JBDeclaration>();
-//
-//		try {
-//			new RobustVisitor<Instance>() {
-//				public Object visit(Instance element) throws ModelException {
-//
-//					transform(element, parentTarget, jbDecl);
-//					return null;
-//				}
-//
-//
-//				public void unvisit(Instance element, Object unvisitData) {
-//				}
-//			}.applyTo(instances);
-//
-//		} catch (ModelException e) {
-//			throw e;
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//
-//		result.addAll(jbDecl);
+
+		// List<Instance> instances = src.members(Instance.class);
+		// final List<JBDeclaration> jbDecl = new ArrayList<JBDeclaration>();
+		//
+		// try {
+		// new RobustVisitor<Instance>() {
+		// public Object visit(Instance element) throws ModelException {
+		//
+		// transform(element, parentTarget, jbDecl);
+		// return null;
+		// }
+		//
+		//
+		// public void unvisit(Instance element, Object unvisitData) {
+		// }
+		// }.applyTo(instances);
+		//
+		// } catch (ModelException e) {
+		// throw e;
+		// } catch (Exception e) {
+		// e.printStackTrace();
+		// }
+		//
+		// result.addAll(jbDecl);
 	}
 
 
@@ -765,7 +861,7 @@ public class JBossWriter {
 
 		// 3. ao-compositions; pass on, process results
 
-		final List<JBDeclaration> jbAOC = new ArrayList<JBDeclaration>();
+//		final List<JBDeclaration> jbAOC = new ArrayList<JBDeclaration>();
 		final List<AOComposition> compositions =
 				src.members(AOComposition.class);
 
@@ -773,7 +869,7 @@ public class JBossWriter {
 			new RobustVisitor<AOComposition>() {
 				@Override
 				public Object visit(AOComposition element) throws ModelException {
-					transform(element, jbc, jbAOC);
+					transform(element, jbc, result);
 					return null;
 				}
 

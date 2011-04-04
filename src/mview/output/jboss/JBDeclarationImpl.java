@@ -19,6 +19,7 @@
 package mview.output.jboss;
 
 import chameleon.core.declaration.Declaration;
+import chameleon.core.lookup.LookupException;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
@@ -45,5 +46,22 @@ public abstract class JBDeclarationImpl<D extends JBDeclarationImpl, E extends D
 	@Override
 	public String toString() {
 		return getName();
+	}
+	
+	@Override
+	public boolean equals(Object other) {
+		try {
+			return (other != null) 
+				&& (other instanceof JBDeclaration) 
+				&& (this.sourceElement().sameAs(((JBDeclaration)other).sourceElement()));
+		} catch (LookupException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	@Override
+	public int hashCode() {
+		return this.sourceElement().hashCode();
 	}
 }
