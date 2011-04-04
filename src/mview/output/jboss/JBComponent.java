@@ -18,6 +18,9 @@
  */
 package mview.output.jboss;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import mview.model.module.Component;
 
 /**
@@ -29,7 +32,7 @@ public class JBComponent extends JBModule<JBComponent,Component> {
 	/**
 	 * @param sourceElement
 	 */
-	protected JBComponent(Component sourceElement) {
+	public JBComponent(Component sourceElement) {
 		super(sourceElement);
 	}
 

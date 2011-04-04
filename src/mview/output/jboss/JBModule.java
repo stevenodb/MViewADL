@@ -18,6 +18,9 @@
  */
 package mview.output.jboss;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import mview.model.module.Module;
 
 /**
@@ -27,10 +30,44 @@ import mview.model.module.Module;
 public abstract class JBModule<D extends JBModule, E extends Module>
 		extends JBDeclarationImpl<D,E> {
 
+	private List<JBInterface> _requiredInterfaces = 
+		new ArrayList<JBInterface>();
+	
+	private List<JBInterface> _providedInterfaces = 
+		new ArrayList<JBInterface>();
+	
 	/**
 	 * @param sourceElement
 	 */
 	protected JBModule(E sourceElement) {
 		super(sourceElement);
+	}
+	
+	/**
+	 * @param required
+	 */
+	public void addRequiredInterface(JBInterface required) {
+		_requiredInterfaces.add(required);
+	}
+
+	/**
+	 * @param provided
+	 */
+	public void addProvidedInterface(JBInterface provided) {
+		_providedInterfaces.add(provided);
+	}
+	
+	/**
+	 * @return
+	 */
+	public List<JBInterface> requiredInterfaces() {
+		return new ArrayList<JBInterface>(_requiredInterfaces);
+	}
+	
+	/**
+	 * @return
+	 */
+	public List<JBInterface> providedInterfaces() {
+		return new ArrayList<JBInterface>(_providedInterfaces);
 	}
 }

@@ -31,9 +31,6 @@ import chameleon.oo.type.TypeWithBody;
  *
  */
 public class JBConnector extends JBModule<JBConnector,Connector> {
-
-	private List<JBInterface> _requiredInterfaces = 
-		new ArrayList<JBInterface>();
 	
 	private List<JBAOComposition> _aocompositions =
 		new ArrayList<JBAOComposition>();
@@ -43,13 +40,6 @@ public class JBConnector extends JBModule<JBConnector,Connector> {
 	 */
 	public JBConnector(Connector sourceElement) {
 		super(sourceElement);
-	}
-
-	/**
-	 * @param required
-	 */
-	public void addRequiredInterface(JBInterface required) {
-		_requiredInterfaces.add(required);
 	}
 	
 	/**
