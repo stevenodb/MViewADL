@@ -23,7 +23,7 @@ package mview.exception;
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public class MergeNotSupportedException extends Exception {
+public class MergeNotSupportedException extends RuntimeException {
 	
 	/**
 	 * 
