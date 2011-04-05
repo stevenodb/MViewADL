@@ -18,6 +18,7 @@
  */
 package mview.output.jboss;
 
+import mview.output.WriterArguments;
 import chameleon.core.element.Element;
 
 /**
@@ -27,7 +28,7 @@ import chameleon.core.element.Element;
 public interface JBDeclaration<Declaration extends JBDeclaration> {
 	
 	public Element sourceElement();
-	
 	public String getName();
+	public void writeCode(WriterArguments args);
 
 }

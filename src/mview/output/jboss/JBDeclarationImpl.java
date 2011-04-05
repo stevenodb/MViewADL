@@ -18,6 +18,12 @@
  */
 package mview.output.jboss;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
+import mview.model.namespace.MViewDeclaration;
+import mview.output.WriterArguments;
 import chameleon.core.declaration.Declaration;
 import chameleon.core.lookup.LookupException;
 
@@ -29,6 +35,7 @@ public abstract class JBDeclarationImpl<D extends JBDeclarationImpl, E extends D
 		implements JBDeclaration<D> {
 
 	private final E	_sourceElement;
+	private String _packageName;
 
 	protected JBDeclarationImpl(E sourceElement) {
 		_sourceElement = sourceElement;
@@ -48,6 +55,54 @@ public abstract class JBDeclarationImpl<D extends JBDeclarationImpl, E extends D
 		return getName();
 	}
 	
+	@Override
+	public void writeCode(WriterArguments args) {
+		String fileName = this.getName() + ".java";
+
+		String packageFQN = packageName();
+
+		if (packageFQN.equals("")) {
+			packageFQN = args.defaultNamespace();
+		}
+
+		String relDirName = packageFQN.replace('.', File.separatorChar);
+		File out =
+				new File(args.outputDir().getAbsolutePath()
+						+ File.separatorChar + relDirName
+						+ File.separatorChar + fileName);
+
+		System.out.println("Writing: " + out.getAbsolutePath());
+
+		File parent = out.getParentFile();
+		parent.mkdirs();
+		
+		try {
+			out.createNewFile();
+			FileWriter fw = new FileWriter(out);
+	
+			// preamble
+	//		fw.write(preamble(element.getClass()).toString());
+	
+			// body
+	//		fw.write(code);
+	
+			fw.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * @return
+	 */
+	public String packageName() {
+		return _packageName;
+	}
+	
+	public void setPackageName(String fqn) {
+		_packageName = fqn;
+	}
+
 	@Override
 	public boolean equals(Object other) {
 		try {
