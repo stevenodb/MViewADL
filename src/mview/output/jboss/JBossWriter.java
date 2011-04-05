@@ -694,11 +694,11 @@ public class JBossWriter {
 
 		{
 		
-			final List<JBDeclaration> jbReqs = transformModuleInterfaces(jbc, 
+			final List<JBInterface> jbReqs = transformModuleInterfaces(jbc, 
 					src.members(RequiredInterfaceDependency.class));
 			
-			for (JBDeclaration jbDeclaration : jbReqs) {
-				jbc.addRequiredInterface((JBInterface) jbDeclaration);
+			for (JBInterface jbInterface : jbReqs) {
+				jbc.addRequiredInterface(jbInterface);
 			}
 			
 			result.addAll(jbReqs);
@@ -709,12 +709,12 @@ public class JBossWriter {
 		
 		{
 			
-			final List<JBDeclaration> jbProvs = transformModuleInterfaces(jbc, 
+			final List<JBInterface> jbProvs = transformModuleInterfaces(jbc, 
 					src.members(ProvidedInterfaceDependency.class));
 	
 			
-			for (JBDeclaration jbDeclaration : jbProvs) {
-				jbc.addProvidedInterface((JBInterface) jbDeclaration);
+			for (JBInterface jbInterface : jbProvs) {
+				jbc.addProvidedInterface(jbInterface);
 			}
 			
 			result.addAll(jbProvs);
@@ -728,25 +728,31 @@ public class JBossWriter {
 	 * @param dependencies
 	 * @return
 	 * @throws ModelException
-	 * @throws LookupException
 	 */
-	private List<JBDeclaration> transformModuleInterfaces(JBComponent jbc,
-			final List<Dependency> dependencies) throws ModelException,
-			LookupException {
+	private List<JBInterface> transformModuleInterfaces(JBModule jbc,
+			final List<Dependency> dependencies) throws ModelException {
 		
-		final List<JBDeclaration> jbInterfaces = new ArrayList<JBDeclaration>();
+		final List<JBInterface> result = new ArrayList<JBInterface>();
+		final List<JBDeclaration> jbDeclarations = new ArrayList<JBDeclaration>();
 		
 		for (Dependency ifaceDep : dependencies) {
 
 			List<SimpleReference<Interface>> ifaceRefs =
 					(List<SimpleReference<Interface>>) ifaceDep.dependencies();
 
+			//transform each Interface
 			for (SimpleReference<Interface> ifaceRef : ifaceRefs) {
-				transform(ifaceRef.getElement(), jbc, jbInterfaces);
+				transform(ifaceRef.getElement(), jbc, jbDeclarations);
 			}
-			
+
+			//cast items to JBInterface
+			for (JBDeclaration decl : jbDeclarations) {
+				if (decl instanceof JBInterface) {
+					result.add((JBInterface)decl);
+				}
+			}
 		}
-		return jbInterfaces;
+		return result;
 	}
 
 
@@ -843,19 +849,26 @@ public class JBossWriter {
 		result.add(jbc);
 
 		// 2. required interfaces (injections)
+		
+		final List<JBInterface> reqs = transformModuleInterfaces(jbc, 
+				src.members(RequiredInterfaceDependency.class));
 
-		final List<RequiredInterfaceDependency> deps =
-				src.members(RequiredInterfaceDependency.class);
-
-		for (RequiredInterfaceDependency ifaceDep : deps) {
-
-			List<SimpleReference<Interface>> ifaceRefs =
-					(List<SimpleReference<Interface>>) ifaceDep.dependencies();
-
-			for (SimpleReference<Interface> ifaceRef : ifaceRefs) {
-				transform(ifaceRef.getElement(), jbc, result);
-			}
+		for (JBInterface jbInterface : reqs) {
+			jbc.addRequiredInterface(jbInterface);
 		}
+		
+//		final List<RequiredInterfaceDependency> deps =
+//				src.members(RequiredInterfaceDependency.class);
+//
+//		for (RequiredInterfaceDependency ifaceDep : deps) {
+//
+//			List<SimpleReference<Interface>> ifaceRefs =
+//					(List<SimpleReference<Interface>>) ifaceDep.dependencies();
+//
+//			for (SimpleReference<Interface> ifaceRef : ifaceRefs) {
+//				transform(ifaceRef.getElement(), jbc, result);
+//			}
+//		}
 
 		// jbc.addRequiredInterfaces(required);
 
