@@ -37,7 +37,8 @@ public class RefinementContext {
 		childD = (RefinableDeclaration) child.nearestAncestor(RefinableDeclaration.class);
 		parentD = (RefinableDeclaration) parent.nearestAncestor(RefinableDeclaration.class);
 
-		return /*(childD != null) && (parentD != null) &&*/ childD.isRefinementOf(parentD);
+		return (childD == parentD) || (childD.isRefinementOf(parentD)); 
+		// TODO: ASK MARKO: multiple refinement paths?
 	}
 	
 }
