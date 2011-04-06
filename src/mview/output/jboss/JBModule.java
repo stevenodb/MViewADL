@@ -19,7 +19,11 @@
 package mview.output.jboss;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
+
+import com.sun.codemodel.internal.JJavaName;
 
 import mview.model.module.Module;
 
@@ -69,5 +73,38 @@ public abstract class JBModule<D extends JBModule, E extends Module>
 	 */
 	public List<JBInterface> providedInterfaces() {
 		return new ArrayList<JBInterface>(_providedInterfaces);
+	}
+	
+	@Override
+	protected String toCode(JBDeclaration parent) {
+		final StringBuffer sb = startLine();
+		
+		List<JBInterface> reqList = requiredInterfaces();
+		Iterator<JBInterface> reqIter = reqList.iterator();
+		
+		while (reqIter.hasNext()) {
+			JBInterface reqItem = reqIter.next();
+			String iName = reqItem.getName();
+			
+			String appendix = "";
+			int n = Collections.frequency(reqList, reqItem);
+			if (n > 1) {
+				appendix = "" + n;
+			}
+
+			startNewLine(sb, "@EJB");
+			startNewLine(sb, "private "+iName)
+				.append(" ")
+				.append(typeToInstanceName(iName) + appendix)
+				.append(';');
+			
+			reqIter.remove();
+			
+			if (reqIter.hasNext()) {
+				newLine(sb);
+			}
+		}
+
+		return sb.toString();
 	}
 }

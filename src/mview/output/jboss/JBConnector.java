@@ -19,10 +19,13 @@
 package mview.output.jboss;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 import mview.model.module.Connector;
 import mview.model.module.Interface;
+import mview.output.WriterArguments;
 import chameleon.core.reference.SimpleReference;
 import chameleon.oo.type.TypeWithBody;
 
@@ -43,17 +46,42 @@ public class JBConnector extends JBModule<JBConnector,Connector> {
 	}
 	
 	/**
-	 * @return
-	 */
-	public String name() {
-		return sourceElement().signature().name();
-	}
-
-	/**
 	 * @param jbAOC
 	 */
 	public void addComposition(JBAOComposition aoc) {
 		_aocompositions.add(aoc);
 	}
 
+	public List<JBAOComposition> aocompositions() {
+		return new ArrayList<JBAOComposition>(_aocompositions);
+	}
+	
+	@Override
+	protected String toCode(JBDeclaration parent) {
+		
+		final StringBuffer sb = startLine();
+
+//		newLine(sb);
+		startNewLine(sb,"@Aspect");
+		startNewLine(sb,"public class "+getName()+ " {");
+		newLine(sb);
+
+		indent();
+
+		// Module does required interfaces
+		sb.append(super.toCode(this));
+		
+		newLine(sb);
+		
+		// AOComp does Pointcut and Advice
+		for(JBAOComposition aoc : aocompositions()) {
+			identCode(sb,aoc.toCode(this));
+		}
+		
+		undent();
+		
+		startNewLine(sb, "}");
+		
+		return sb.toString();
+	}
 }

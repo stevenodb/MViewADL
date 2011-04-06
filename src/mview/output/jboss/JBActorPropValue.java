@@ -28,12 +28,26 @@ public class JBActorPropValue {
 	private String _value;
 
 	/**
+	 * @return
+	 */
+	public boolean isNegated() {
+		return _negated;
+	}
+	
+	/**
 	 * @param negated
 	 */
 	public void setNegated(boolean negated) {
 		_negated = negated;
 	}
 
+	/**
+	 * @return
+	 */
+	public String value() {
+		return _value;
+	}
+	
 	/**
 	 * @param name
 	 */

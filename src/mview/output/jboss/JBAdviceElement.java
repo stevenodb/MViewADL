@@ -28,17 +28,27 @@ import mview.output.jboss.JBAdviceElement.AdviceType;
  */
 public class JBAdviceElement {
 	
-	/**
-	 * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
-	 *
-	 */
 	public enum AdviceType {
-		BEFORE, AROUND, AFTER
+		BEFORE("AdviceType.BEFORE"), 
+		AROUND("AdviceType.AROUND"), 
+		AFTER("AdviceType.AFTER");
+				
+		private String _name;
+
+		AdviceType(String name) {
+			_name = name;
+		}
+		
+		@Override
+		public String toString() {
+			return _name;
+		}
 	}
 
 	private AdviceType _adviceType;
-	private String _adviceReturnType;
-	private String _adviceSignature;
+	private String _serviceReturnType;
+	private String _serviceSignature;
+	private String _serviceInterface;
 
 	/**
 	 * @param sourceElement
@@ -47,23 +57,52 @@ public class JBAdviceElement {
 	}
 
 	/**
+	 * @return
+	 */
+	public AdviceType type() {
+		return _adviceType;
+	}
+	
+	/**
 	 * @param adviceType
 	 */
-	public void setAdviceType(AdviceType adviceType) {
+	public void setType(AdviceType adviceType) {
 		_adviceType = adviceType;
 	}
 
 	/**
+	 * @return
+	 */
+	public String serviceReturnType() {
+		return _serviceReturnType;
+	}
+	
+	/**
 	 * @param name
 	 */
-	public void addSericeReturnType(String returnType) {
-		_adviceReturnType = returnType;
+	public void setServiceReturnType(String returnType) {
+		_serviceReturnType = returnType;
+	}
+	
+	public String serviceSignature() {
+		return _serviceSignature;
 	}
 
 	/**
 	 * @param name
 	 */
-	public void addServiceSignature(String signature) {
-		_adviceSignature = signature;
+	public void setServiceSignature(String signature) {
+		_serviceSignature = signature;
+	}
+	
+	public String serviceInterface() {
+		return _serviceInterface;
+	}
+
+	/**
+	 * @param name
+	 */
+	public void setServiceInterface(String name) {
+		_serviceInterface = name;
 	}
 }

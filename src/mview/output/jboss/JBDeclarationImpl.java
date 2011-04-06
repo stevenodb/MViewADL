@@ -54,14 +54,107 @@ public abstract class JBDeclarationImpl<D extends JBDeclarationImpl, E extends D
 	public String toString() {
 		return getName();
 	}
+
+	private int _indent;
+	private final int _tabSize = 4;
+
+
+	/**
+	 * @return the indent
+	 */
+	public int getIndent() {
+		return _indent;
+	}
+
+
+	protected void indent() {
+		_indent += _tabSize;
+	}
+
+
+	protected void undent() {
+		_indent -= _tabSize;
+	}
+
+
+	/**
+	 * @return
+	 */
+	protected StringBuffer startLine() {
+		final StringBuffer sb = new StringBuffer(); 
+		int indent = getIndent();
+		for (int i = 0; i < indent; i++) {
+			sb.append(' ');
+		}
+		
+		return sb;
+	}
 	
-	@Override
+	private StringBuffer newLine() {
+		return newLine(new StringBuffer());
+	}
+
+	protected StringBuffer newLine(StringBuffer sb) {
+		return sb.append("\n");
+	}
+
+	/**
+	 * @param text
+	 * @return start text on a new line
+	 */
+	public StringBuffer startNewLine(StringBuffer sb, String text) {
+		return sb.append(newLine().toString() + startLine().toString() + text);
+	}
+	
+	/**
+	 * @param sb
+	 * @param term
+	 * @return
+	 */
+	public StringBuffer appendTerm(StringBuffer sb, String term) {
+		return appendTermStrict(sb, term+" ");
+	}
+	
+	/**
+	 * @param sb
+	 * @param term
+	 * @return
+	 */
+	public StringBuffer appendTermStrict(StringBuffer sb, String term) {
+		return sb.append(term);
+	}
+	
+	/**
+	 * @param code
+	 */
+	public StringBuffer identCode(StringBuffer sb, String code) {
+		return sb.append(code.replaceAll("\\n", "\n"+startLine().toString()));
+	}
+
+
+	/**
+	 * @param typeName
+	 * @return
+	 */
+	public String typeToInstanceName(String typeName) {
+		final StringBuffer result = new StringBuffer();
+		result.append(typeName.substring(0, 1).toLowerCase());
+		result.append(typeName.substring(1));
+		return result.toString();
+	}
+
+	protected String toCode(JBDeclaration parent) { return ""; }; // TODO: make abstract
+	
+	/**
+	 * @param args
+	 * @param code
+	 */
 	public void writeCode(WriterArguments args) {
 		String fileName = this.getName() + ".java";
 
 		String packageFQN = packageName();
 
-		if (packageFQN.equals("")) {
+		if (packageFQN == null || packageFQN.equals("")) {
 			packageFQN = args.defaultNamespace();
 		}
 
@@ -84,7 +177,7 @@ public abstract class JBDeclarationImpl<D extends JBDeclarationImpl, E extends D
 	//		fw.write(preamble(element.getClass()).toString());
 	
 			// body
-	//		fw.write(code);
+			fw.write(toCode(this));
 	
 			fw.close();
 		} catch (IOException e) {

@@ -29,6 +29,6 @@ public interface JBDeclaration<Declaration extends JBDeclaration> {
 	
 	public Element sourceElement();
 	public String getName();
-	public void writeCode(WriterArguments args);
+	public void writeCode(WriterArguments arg);
 
 }

@@ -19,6 +19,7 @@
 package mview.output.jboss;
 
 import java.util.ArrayList;
+import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 
@@ -41,7 +42,18 @@ public class JBPointcutElement {
 	 *
 	 */
 	public enum PointcutKind {
-		EXECUTION, CALL;
+		EXECUTION("Execution"), CALL("Call");
+		
+		private String _name;
+
+		private PointcutKind(String name) {
+			_name = name;
+		}
+		
+		@Override
+		public String toString() {
+			return _name;
+		}
 	}
 	
 	/**
@@ -62,13 +74,28 @@ public class JBPointcutElement {
 	 * @param sourceElement
 	 */
 	protected JBPointcutElement(Pointcut sourceElement) {
-	}
+		
+	}	
 
+	/**
+	 * @return
+	 */
+	public PointcutKind kind() {
+		return _kind;
+	}
+	
 	/**
 	 * @param pcKi
 	 */
-	public void addKind(PointcutKind pcKind) {
+	public void setKind(PointcutKind pcKind) {
 		_kind = pcKind;
+	}
+	
+	/**
+	 * @return
+	 */
+	public List<PatternSignature> patternSignature() {
+		return _patternSignatures;
 	}
 
 	/**
@@ -79,10 +106,24 @@ public class JBPointcutElement {
 	}
 
 	/**
+	 * @return
+	 */
+	public Map<ActorType, List<JBActorPropValue>> callerMap() {
+		return new EnumMap<ActorType, List<JBActorPropValue>>(_callerMap);
+	}
+	
+	/**
 	 * @param callerMap
 	 */
 	public void addCaller(Map<ActorType, List<JBActorPropValue>> callerMap) {
 		_callerMap = callerMap;
+	}
+
+	/**
+	 * @return
+	 */
+	public Map<ActorType, List<JBActorPropValue>> calleeMap() {
+		return new EnumMap<ActorType, List<JBActorPropValue>>(_calleeMap);
 	}
 
 	/**
