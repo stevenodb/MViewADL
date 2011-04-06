@@ -72,7 +72,7 @@ public abstract class MViewMemberDeclarationImpl<
 	@Override
 	public boolean sameMemberAs(MViewMember other) {
 		return (other != null)
-			&& other instanceof MViewMemberDeclarationImpl
+			&& this.getClass() == other.getClass()
 			&& this.signature().equals(((MViewMemberDeclarationImpl)other).signature());
 	}
 
