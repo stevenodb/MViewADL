@@ -38,6 +38,49 @@ public class JBService extends JBDeclarationImpl {
 	private String _paramSignature;
 	private String _paramType;
 
+
+	@Override
+	protected String toCode(JBDeclaration parent) {
+		final StringBuffer sb = new StringBuffer();
+		
+		startNewLine(sb, "");
+		appendTerm(sb, returnType());
+		appendTerm(sb, signature());
+		appendTermStrict(sb, "(");
+		appendTerm(sb, paramType());
+		appendTermStrict(sb, paramSignature());
+		appendTermStrict(sb, ");");
+		
+		return sb.toString();
+	}
+
+	/**
+	 * @return the returnType
+	 */
+	public String returnType() {
+		return this._returnType;
+	}
+
+	/**
+	 * @return the signature
+	 */
+	public String signature() {
+		return this._signature;
+	}
+
+	/**
+	 * @return the paramSignature
+	 */
+	public String paramSignature() {
+		return this._paramSignature;
+	}
+
+	/**
+	 * @return the paramType
+	 */
+	public String paramType() {
+		return this._paramType;
+	}
 	/**
 	 * @param signature
 	 */

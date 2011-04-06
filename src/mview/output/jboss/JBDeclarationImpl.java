@@ -142,8 +142,6 @@ public abstract class JBDeclarationImpl<D extends JBDeclarationImpl, E extends D
 		result.append(typeName.substring(1));
 		return result.toString();
 	}
-
-	protected String toCode(JBDeclaration parent) { return ""; }; // TODO: make abstract
 	
 	/**
 	 * @param args
@@ -212,4 +210,10 @@ public abstract class JBDeclarationImpl<D extends JBDeclarationImpl, E extends D
 	public int hashCode() {
 		return this.sourceElement().hashCode();
 	}
+	
+	/**
+	 * @param parent
+	 * @return
+	 */
+	abstract protected String toCode(JBDeclaration parent);
 }

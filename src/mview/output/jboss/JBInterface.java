@@ -19,6 +19,7 @@
 package mview.output.jboss;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import chameleon.core.declaration.SimpleNameSignature;
@@ -40,10 +41,38 @@ public class JBInterface extends JBDeclarationImpl<JBInterface, Interface> {
 	}
 
 	/**
+	 * @return
+	 */
+	public List<JBService> services() {
+		return _services;
+	}
+	
+	/**
 	 * @param jbSrv
 	 */
 	public void addService(JBService jbSrv) {
 		_services.add(jbSrv);
+	}
+
+	@Override
+	protected String toCode(JBDeclaration parent) {
+		final StringBuffer sb = startLine();
+
+		startNewLine(sb,"@Remote");
+		startNewLine(sb,"public interface "+getName()+" {");
+		
+		indent();
+		
+		for(Iterator<JBService> it = services().iterator(); it.hasNext();) {
+			JBService srv = it.next();
+			identCode(sb, srv.toCode(parent)); 
+		}
+		
+		undent();
+		
+		startNewLine(sb, "}");
+
+		return sb.toString();
 	}
 
 	

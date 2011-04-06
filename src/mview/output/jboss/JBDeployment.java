@@ -50,4 +50,9 @@ public class JBDeployment extends JBDeclarationImpl<JBDeployment,Deployment> {
 		return _modules;
 	}
 
+	@Override
+	protected String toCode(JBDeclaration parent) {
+		return "";
+	}
+
 }
