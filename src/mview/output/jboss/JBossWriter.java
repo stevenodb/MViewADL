@@ -191,41 +191,11 @@ public class JBossWriter {
 		Set<JBDeclaration> uniqDeclarations = new HashSet<JBDeclaration>(declarations);
 
 		for (JBDeclaration jbDeclaration : uniqDeclarations) {
-			System.out.println("Writing " + jbDeclaration);
+//			System.out.println("Writing " + jbDeclaration);
+			jbDeclaration.writeCode(writerArguments());
 		}
 
-		System.out.println("done.");
-
-		// MViewDeclaration declaration = args.declarations().get(0);
-		// String fileName = declaration.signature().name() + ".java";
-		//
-		// String packageFQN =
-		// declaration.getNamespace().getFullyQualifiedName();
-		//
-		// if (packageFQN.equals("")) {
-		// packageFQN = args.defaultNamespace();
-		// }
-		//
-		// String relDirName = packageFQN.replace('.', File.separatorChar);
-		// File out =
-		// new File(args.outputDir().getAbsolutePath()
-		// + File.separatorChar + relDirName
-		// + File.separatorChar + fileName);
-		//
-		// System.out.println("Writing: " + out.getAbsolutePath());
-		//
-		// File parent = out.getParentFile();
-		// parent.mkdirs();
-		// out.createNewFile();
-		// FileWriter fw = new FileWriter(out);
-		//
-		// // preamble
-		// fw.write(preamble(element.getClass()).toString());
-		//
-		// // body
-		// fw.write(code);
-		//
-		// fw.close();
+		System.out.println("done, "+uniqDeclarations.size()+" objects written.");
 	}
 
 
@@ -376,12 +346,13 @@ public class JBossWriter {
 		JBAdviceElement.AdviceType adviceType =
 				adviceTypeForProperty(mview, adviceProperty);
 
-		adviceElement.setAdviceType(adviceType);
+		adviceElement.setType(adviceType);
 
 		// service
 		Service service = src.service().getElement();
-		adviceElement.addSericeReturnType(service.returnType().signature().name());
-		adviceElement.addServiceSignature(service.signature().name());
+		adviceElement.setServiceReturnType(service.returnType().signature().name());
+		adviceElement.setServiceSignature(service.signature().name());
+		adviceElement.setServiceInterface(((Declaration)service.parent()).signature().name());
 
 		List<Pair<String, String>> parameters = new ArrayList<Pair<String, String>>();
 		for (FormalParameter param : service.formalParameters()) {
@@ -444,11 +415,13 @@ public class JBossWriter {
 
 		PointcutSignature pcSig = src.signature();
 
-		List<ServiceSignature> serviceSigs = pcSig.signatures();
-
-		for (ServiceSignature serviceSignature : serviceSigs) {
-			PatternSignature patternSig = (PatternSignature) serviceSignature;
-			pointcutElement.addPatternSignature(patternSig); // TODO: clone?
+		if (pcSig != null) {
+			List<ServiceSignature> serviceSigs = pcSig.signatures();
+	
+			for (ServiceSignature serviceSignature : serviceSigs) {
+				PatternSignature patternSig = (PatternSignature) serviceSignature;
+				pointcutElement.addPatternSignature(patternSig.clone()); // TODO: clone?
+			}
 		}
 
 		// pointcut kind
@@ -457,14 +430,14 @@ public class JBossWriter {
 
 		PointcutKind pcKind = pointcutKindForProperty(mview, pcProperty);
 
-		pointcutElement.addKind(pcKind);
+		pointcutElement.setKind(pcKind);
 
 		// caller
 		Map<ActorType, List<JBActorPropValue>> callerMap =
 				new EnumMap<ActorType, List<JBActorPropValue>>(ActorType.class);
 
 		if (src.caller() != null) {
-			callerMap = transformActor(src.caller(),result);
+			callerMap.putAll(transformActor(src.caller(),result));
 		}
 
 		pointcutElement.addCaller(callerMap);
@@ -475,7 +448,7 @@ public class JBossWriter {
 				new EnumMap<ActorType, List<JBActorPropValue>>(ActorType.class);
 
 		if (src.callee() != null) {
-			calleeMap = transformActor(src.callee(),result);
+			calleeMap.putAll(transformActor(src.callee(),result));
 		}
 
 		pointcutElement.addCallee(calleeMap);
@@ -857,21 +830,6 @@ public class JBossWriter {
 			jbc.addRequiredInterface(jbInterface);
 		}
 		
-//		final List<RequiredInterfaceDependency> deps =
-//				src.members(RequiredInterfaceDependency.class);
-//
-//		for (RequiredInterfaceDependency ifaceDep : deps) {
-//
-//			List<SimpleReference<Interface>> ifaceRefs =
-//					(List<SimpleReference<Interface>>) ifaceDep.dependencies();
-//
-//			for (SimpleReference<Interface> ifaceRef : ifaceRefs) {
-//				transform(ifaceRef.getElement(), jbc, result);
-//			}
-//		}
-
-		// jbc.addRequiredInterfaces(required);
-
 		// 3. ao-compositions; pass on, process results
 
 //		final List<JBDeclaration> jbAOC = new ArrayList<JBDeclaration>();
@@ -882,7 +840,9 @@ public class JBossWriter {
 			new RobustVisitor<AOComposition>() {
 				@Override
 				public Object visit(AOComposition element) throws ModelException {
-					transform(element, jbc, result);
+					if (!element.isAbstract()) { 
+						transform(element, jbc, result);
+					}
 					return null;
 				}
 
