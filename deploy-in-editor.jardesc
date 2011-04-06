@@ -13,8 +13,8 @@
     <selectedElements exportClassFiles="true" exportJavaFiles="true" exportOutputFolder="false">
         <javaElement handleIdentifier="=mview-lang/src&lt;mview.output.jboss{JBAOComposition.java"/>
         <javaElement handleIdentifier="=mview-lang/src&lt;mview.model.language"/>
-        <javaElement handleIdentifier="=mview-lang/src&lt;mview.model.namespace"/>
         <javaElement handleIdentifier="=mview-lang/src&lt;mview.model.application"/>
+        <javaElement handleIdentifier="=mview-lang/src&lt;mview.model.namespace"/>
         <javaElement handleIdentifier="=mview-lang/src&lt;mview.parser.classes"/>
         <javaElement handleIdentifier="=mview-lang/src&lt;mview.output.jboss{JBAdviceElement.java"/>
         <javaElement handleIdentifier="=mview-lang/src&lt;mview.output{WriterArguments.java"/>
