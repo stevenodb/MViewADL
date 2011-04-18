@@ -170,7 +170,7 @@ public class JBAOComposition extends JBDeclarationImpl<JBAOComposition,AOComposi
 						}
 					}
 					
-					appendTermStrict(sb,"\"");
+					appendTermStrict(sb,"\")");
 					
 					if (itSig.hasNext()) {
 						appendTermStrict(sb, " +");
