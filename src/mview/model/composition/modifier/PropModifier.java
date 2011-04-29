@@ -39,7 +39,7 @@ import chameleon.core.property.StaticChameleonProperty;
  *
  */
 public class PropModifier<D extends Declaration> 
-					extends ModifierImpl<PropModifier,D> {
+					extends ModifierImpl<PropModifier> {
 	
 	private final Class<D> _targetDeclarationType;
 	

@@ -30,14 +30,15 @@ import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.declaration.TargetDeclaration;
 import chameleon.core.element.Element;
 import chameleon.core.lookup.DeclarationSelector;
+import chameleon.core.lookup.LocalLookupStrategy;
 import chameleon.core.lookup.LookupException;
 import chameleon.core.lookup.LookupStrategy;
 import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.VerificationResult;
 
-public class Interface extends MViewDeclaration<Interface, Element> implements
-		TargetDeclaration<Interface, Element, Signature, Interface>,
-		DeclarationContainer<Interface, Element> {
+public class Interface extends MViewDeclaration<Interface> implements
+		TargetDeclaration<Interface, Signature, Interface>,
+		DeclarationContainer<Interface> {
 
 	/**
 	 * @param signature
@@ -124,7 +125,7 @@ public class Interface extends MViewDeclaration<Interface, Element> implements
 
 
 	@Override
-	public LookupStrategy targetContext() throws LookupException {
+	public LocalLookupStrategy<?> targetContext() throws LookupException {
 		return language().lookupFactory().createTargetLookupStrategy(this);
 	}
 

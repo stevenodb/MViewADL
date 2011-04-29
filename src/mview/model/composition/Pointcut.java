@@ -44,8 +44,8 @@ import chameleon.util.Util;
  * @param <E>
  * 
  */
-public class Pointcut extends ElementWithModifiersImpl<Pointcut, Element>
-		implements MViewMember<Pointcut, Element> {
+public class Pointcut extends ElementWithModifiersImpl<Pointcut>
+		implements MViewMember<Pointcut> {
 
 	/**
 	 * Default constructor

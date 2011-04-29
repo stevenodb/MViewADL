@@ -41,7 +41,7 @@ import chameleon.util.Util;
  * 
  */
 public class PropValue<D extends Declaration>
-		extends ElementWithModifiersImpl<PropValue<D>, Element> {
+		extends ElementWithModifiersImpl<PropValue<D>> {
 
 	/**
 	 * 

@@ -52,10 +52,10 @@ import chameleon.util.Util;
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  * 
  */
-public abstract class RefinableDeclarationImpl<D extends RefinableDeclarationImpl<D, P>, P extends Element>
-		extends MViewDeclaration<D, P>
-		implements RefinableDeclaration<D, P>, TargetDeclaration<D, P, Signature, D>,
-			DeclarationContainer<D, P> {
+public abstract class RefinableDeclarationImpl<D extends RefinableDeclarationImpl<D>>
+		extends MViewDeclaration<D>
+		implements RefinableDeclaration<D>, TargetDeclaration<D, Signature, D>,
+			DeclarationContainer<D> {
 
 	/**
 	 * default constructor
@@ -244,7 +244,7 @@ public abstract class RefinableDeclarationImpl<D extends RefinableDeclarationImp
 
 
 	@Override
-	public LookupStrategy targetContext() {
+	public LocalLookupStrategy targetContext() {
 		return language().lookupFactory().createTargetLookupStrategy(this);
 	}
 

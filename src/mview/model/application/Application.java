@@ -47,7 +47,7 @@ import chameleon.core.validation.VerificationResult;
  * @param <A>
  */
 public class Application<A extends Application<A>>
-		extends RefinableDeclarationImpl<A, Element>
+		extends RefinableDeclarationImpl<A>
 		implements ModuleContainer {
 
 	// extends HostMapper<Application,AbstractHost,Locate>

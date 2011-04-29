@@ -42,8 +42,8 @@ import chameleon.exception.ModelException;
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  * 
  */
-public class Actor extends NamespaceElementImpl<Actor, Element> implements
-		MViewMember<Actor, Element> {
+public class Actor extends NamespaceElementImpl<Actor> implements
+		MViewMember<Actor> {
 
 	/*
 	 * Props

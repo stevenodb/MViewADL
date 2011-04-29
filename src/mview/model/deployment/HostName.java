@@ -26,7 +26,7 @@ import mview.model.namespace.MViewDeclaration;
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public class HostName extends MViewDeclaration<HostName,Element> {
+public class HostName extends MViewDeclaration<HostName> {
 	
 	/**
 	 * default 

@@ -39,7 +39,7 @@ import chameleon.util.Util;
  * 
  */
 public class AOComposition extends
-		RefinableMemberDeclarationImpl<AOComposition, Element> {
+		RefinableMemberDeclarationImpl<AOComposition> {
 
 	/**
 	 * 

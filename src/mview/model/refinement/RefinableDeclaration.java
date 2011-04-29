@@ -30,9 +30,8 @@ import chameleon.exception.ModelException;
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  * 
  */
-public interface RefinableDeclaration<	D extends RefinableDeclaration<D, P>, 
-										P extends Element>
-		extends Declaration<D, P, Signature, D> {
+public interface RefinableDeclaration<	D extends RefinableDeclaration<D>>
+		extends Declaration<D, Signature, D> {
 
 	// /**
 	// * Returns the List of all member declarations up to and including this

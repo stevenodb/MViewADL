@@ -30,7 +30,7 @@ import chameleon.core.property.ChameleonProperty;
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public class Call extends ModifierImpl<Call,Element> {
+public class Call extends ModifierImpl<Call> {
 
 	/* (non-Javadoc)
 	 * @see chameleon.core.modifier.Modifier#impliedProperties()

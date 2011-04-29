@@ -17,7 +17,6 @@
  */
 package mview.model.module;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import mview.model.composition.AOComposition;
@@ -27,7 +26,6 @@ import org.rejuse.association.OrderedMultiAssociation;
 
 import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.element.Element;
-import chameleon.core.lookup.LookupException;
 import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.VerificationResult;
 

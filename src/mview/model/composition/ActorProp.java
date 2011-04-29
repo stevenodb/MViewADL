@@ -44,8 +44,8 @@ import chameleon.exception.ModelException;
  * 
  */
 public class ActorProp<D extends Declaration> extends
-		ElementWithModifiersImpl<ActorProp<D>, Element>
-		implements MViewMember<ActorProp<D>, Element> {
+		ElementWithModifiersImpl<ActorProp<D>>
+		implements MViewMember<ActorProp<D>> {
 
 	/**
 	 * default

@@ -30,7 +30,7 @@ import chameleon.core.property.ChameleonProperty;
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public class Execution extends ModifierImpl<Execution,Element> {
+public class Execution extends ModifierImpl<Execution> {
 
 	/* (non-Javadoc)
 	 * @see chameleon.core.modifier.Modifier#impliedProperties()

@@ -35,7 +35,7 @@ import chameleon.core.validation.VerificationResult;
  * 
  */
 public abstract class ServiceSignature<E extends ServiceSignature<E, JPE>, JPE extends JoinPointElement>
-			extends NamespaceElementImpl<E, Element> {
+			extends NamespaceElementImpl<E> {
 
 	/**
 	 * default constructor

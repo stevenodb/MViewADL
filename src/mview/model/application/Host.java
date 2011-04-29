@@ -36,7 +36,7 @@ import chameleon.util.Util;
  * 
  * @param <E>
  */
-public class Host extends MViewMemberDeclarationImpl<Host, Element> {
+public class Host extends MViewMemberDeclarationImpl<Host> {
 
 	/**
 	 * default

@@ -1,4 +1,4 @@
-// $ANTLR 3.3 Nov 30, 2010 12:45:30 /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g 2011-03-25 14:03:56
+// $ANTLR 3.3 Nov 30, 2010 12:45:30 /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g 2011-04-28 14:35:48
 
 package mview.parser;
 
@@ -1003,7 +1003,7 @@ public class MViewParser extends ChameleonParser {
 
               			Signature signature = new SimpleNameSignature((name!=null?name.getText():null));
               			retval.element = new Service(signature,(rtype!=null?rtype.value:null),(params!=null?params.lst:null)); //TODO: add properties
-              			setLocation(retval.element,name,name);			
+              			setLocation(retval.element,name,name);
               		
             }
 

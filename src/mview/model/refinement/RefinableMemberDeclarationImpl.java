@@ -29,8 +29,8 @@ import chameleon.exception.ModelException;
  * 
  */
 public abstract class RefinableMemberDeclarationImpl<
-			D extends RefinableMemberDeclarationImpl<D, P>, P extends Element>
-		extends RefinableDeclarationImpl<D, P> implements MViewMemberDeclaration<D, P> {
+			D extends RefinableMemberDeclarationImpl<D>>
+		extends RefinableDeclarationImpl<D> implements MViewMemberDeclaration<D> {
 
 	/**
 	 * default

@@ -39,8 +39,8 @@ import chameleon.exception.ModelException;
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  * 
  */
-public class PointcutSignature extends ElementWithModifiersImpl<PointcutSignature, Element>
-		implements MViewMember<PointcutSignature, Element> {
+public class PointcutSignature extends ElementWithModifiersImpl<PointcutSignature>
+		implements MViewMember<PointcutSignature> {
 
 	/**
 	 * default constructor

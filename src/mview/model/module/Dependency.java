@@ -45,7 +45,7 @@ import chameleon.util.Util;
  * 
  */
 public abstract class Dependency<E extends Dependency<E, T>, T extends TargetDeclaration>
-		extends	NamespaceElementImpl<E, Element> implements MViewMember<E, Element> {
+		extends	NamespaceElementImpl<E> implements MViewMember<E> {
 
 	private final OrderedMultiAssociation<Dependency<E,T>, SimpleReference<T>> _dependencies =
 			new OrderedMultiAssociation<Dependency<E,T>, SimpleReference<T>>(this);

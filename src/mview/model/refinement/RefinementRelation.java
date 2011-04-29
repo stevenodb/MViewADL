@@ -40,7 +40,7 @@ import chameleon.util.Util;
  * 
  */
 public class RefinementRelation
-		extends ElementImpl<RefinementRelation, RefinableDeclaration> {// NameSpaceElementImpl
+		extends ElementImpl<RefinementRelation> {// NameSpaceElementImpl
 
 	/**
 	 * default

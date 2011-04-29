@@ -23,7 +23,6 @@ import java.util.List;
 import mview.model.refinement.MViewMember;
 import mview.model.refinement.RefinableMemberDeclarationImpl;
 
-import org.rejuse.association.OrderedMultiAssociation;
 import org.rejuse.association.SingleAssociation;
 
 import chameleon.core.declaration.SimpleNameSignature;
@@ -43,7 +42,7 @@ import chameleon.util.Util;
  * @param <E>
  */
 public abstract class Module<E extends Module<E>>
-			extends RefinableMemberDeclarationImpl<E, Element> {
+			extends RefinableMemberDeclarationImpl<E> {
 
 	/**
 	 * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>

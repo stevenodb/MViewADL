@@ -73,7 +73,7 @@ public class MViewModelFactory extends ModelFactoryUsingANTLR {
 	 * @see chameleon.support.input.ModelFactoryUsingANTLR#parse(chameleon.core.element.Element, java.lang.String)
 	 */
 	@Override
-	protected <P extends Element> Element parse(Element<?, P> element,
+	protected <P extends Element> Element parse(Element<?> element,
 			String text) throws ParseException {
 //  		try {
     		  InputStream inputStream = new StringBufferInputStream(text);

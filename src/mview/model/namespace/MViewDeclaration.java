@@ -46,10 +46,9 @@ import chameleon.util.Util;
  * @param <P>
  *            Parent Element
  */
-public abstract class MViewDeclaration<E extends MViewDeclaration<E, P>, P extends Element>
-		//extends NamespaceElementImpl<E, P>
-		extends ElementWithModifiersImpl<E, P>
-		implements Declaration<E, P, Signature, E> {
+public abstract class MViewDeclaration<E extends MViewDeclaration<E>>
+		extends ElementWithModifiersImpl<E>
+		implements Declaration<E, Signature, E> {
 
 	/**
 	 * Default constructor
@@ -72,7 +71,7 @@ public abstract class MViewDeclaration<E extends MViewDeclaration<E, P>, P exten
 		return new UniversalScope();
 	}
 
-	public Declaration<?, ?, Signature, E> selectionDeclaration()
+	public Declaration<?, Signature, E> selectionDeclaration()
 			throws LookupException {
 		return this;
 	}
@@ -81,8 +80,8 @@ public abstract class MViewDeclaration<E extends MViewDeclaration<E, P>, P exten
 	 * SIGNATURE
 	 */
 
-	private final SingleAssociation<MViewDeclaration<E, P>, Signature> _signature =
-			new SingleAssociation<MViewDeclaration<E, P>, Signature>(
+	private final SingleAssociation<MViewDeclaration<E>, Signature> _signature =
+			new SingleAssociation<MViewDeclaration<E>, Signature>(
 					this);
 
 	/*

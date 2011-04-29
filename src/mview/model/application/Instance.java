@@ -36,7 +36,7 @@ import chameleon.util.Util;
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public class Instance extends MViewMemberDeclarationImpl<Instance,Element> {
+public class Instance extends MViewMemberDeclarationImpl<Instance> {
 	
 	/**
 	 * Default 

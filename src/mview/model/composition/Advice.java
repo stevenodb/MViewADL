@@ -45,8 +45,8 @@ import chameleon.util.Util;
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public class Advice extends ElementWithModifiersImpl<Advice, Element> 
-		implements MViewMember<Advice, Element>, AbstractElement { 
+public class Advice extends ElementWithModifiersImpl<Advice> 
+		implements MViewMember<Advice>, AbstractElement { 
 	//extends NamespaceElementImpl<Advice, Element> {
 	
 	/**

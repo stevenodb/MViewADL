@@ -31,7 +31,7 @@ import chameleon.core.property.ChameleonProperty;
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public class After extends ModifierImpl<After,Element> {
+public class After extends ModifierImpl<After> {
 
 	/* (non-Javadoc)
 	 * @see chameleon.core.modifier.Modifier#impliedProperties()

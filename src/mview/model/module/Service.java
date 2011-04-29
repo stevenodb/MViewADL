@@ -23,20 +23,22 @@ import java.util.List;
 import org.rejuse.association.OrderedMultiAssociation;
 import org.rejuse.association.SingleAssociation;
 
+import chameleon.core.declaration.DeclarationWithParametersHeader;
 import chameleon.core.declaration.Signature;
+import chameleon.core.declaration.SimpleNameDeclarationWithParametersHeader;
 import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.element.Element;
-import chameleon.core.method.MethodHeader;
+import chameleon.core.method.Method;
 import chameleon.core.reference.SimpleReference;
 import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.Valid;
 import chameleon.core.validation.VerificationResult;
 import chameleon.core.variable.FormalParameter;
 import chameleon.oo.type.BasicTypeReference;
-import chameleon.support.member.simplename.SimpleNameMethodHeader;
+import chameleon.support.member.simplename.method.NormalMethod;
 import chameleon.util.Util;
 
-public class Service extends JoinPointElement<Service, Element> {
+public class Service extends JoinPointElement<Service> {
 
 	/**
 	 * Default constructor
@@ -68,20 +70,19 @@ public class Service extends JoinPointElement<Service, Element> {
 
 		super();
 
-		// return type
-		if (returnType != null) {
-			setReturnType(returnType);
-		}
-
-		// signature (+formal parameters)
-		MethodHeader header = new SimpleNameMethodHeader(signature.toString());
+		// returnType, signature, formal parameters
+		
+		Method method = new NormalMethod(
+				new SimpleNameDeclarationWithParametersHeader(signature.name()), 
+				returnType);
 
 		if (formalParameters != null) {
 			for (FormalParameter formalParameter : formalParameters) {
-				header.addFormalParameter(formalParameter);
+				method.header().addFormalParameter(formalParameter);
 			}
 		}
-		setHeader(header);
+		
+		this.setMethod(method);
 
 		// properties
 		if (properties != null) {
@@ -100,7 +101,7 @@ public class Service extends JoinPointElement<Service, Element> {
 	@Override
 	public Signature signature() {
 		//return header().signature();
-		Signature result = new SimpleNameSignature(header().name());
+		Signature result = new SimpleNameSignature(method().name());
 		result.setUniParent(this);
 		return result;
 	}
@@ -117,7 +118,7 @@ public class Service extends JoinPointElement<Service, Element> {
 	 * @param arg
 	 */
 	public void addFormalParameter(FormalParameter arg) {
-		header().addFormalParameter(arg);
+		method().header().addFormalParameter(arg);
 	}
 
 
@@ -130,21 +131,21 @@ public class Service extends JoinPointElement<Service, Element> {
 	 * @return a List of FormalParameter objects
 	 */
 	public List<FormalParameter> formalParameters() {
-		return header().formalParameters();
+		return method().formalParameters();
 	}
 
-	/*
-	 * Association to the return type
-	 */
-	private final SingleAssociation<Service, BasicTypeReference> _returnType =
-			new SingleAssociation<Service, BasicTypeReference>(this);
+//	/*
+//	 * Association to the return type
+//	 */
+//	private final SingleAssociation<Service, BasicTypeReference> _returnType =
+//			new SingleAssociation<Service, BasicTypeReference>(this);
 
 
 	/**
 	 * @return the service's return type
 	 */
 	public BasicTypeReference returnType() {
-		return _returnType.getOtherEnd();
+		return (BasicTypeReference) method().returnTypeReference();
 	}
 
 
@@ -153,32 +154,32 @@ public class Service extends JoinPointElement<Service, Element> {
 	 */
 	public void setReturnType(BasicTypeReference returnType) {
 		if (returnType != null) {
-			_returnType.connectTo(returnType.parentLink());
+			method().setReturnTypeReference(returnType);
 		}
 	}
 
 	/*
 	 * Association to the Service
 	 */
-	private final SingleAssociation<Service, MethodHeader> _header =
-			new SingleAssociation<Service, MethodHeader>(this);
+	private final SingleAssociation<Service, Method> _method =
+			new SingleAssociation<Service, Method>(this);
 
 
 	/**
 	 * @return the service's header
 	 */
-	public MethodHeader header() {
-		return _header.getOtherEnd();
+	public Method method() {
+		return _method.getOtherEnd();
 	}
 
 
 	/**
-	 * @param header
+	 * @param method
 	 *            the header to set
 	 */
-	public void setHeader(MethodHeader header) {
-		if (header != null) {
-			_header.connectTo(header.parentLink());
+	public void setMethod(Method method) {
+		if (method != null) {
+			_method.connectTo(method.parentLink());
 		}
 	}
 
@@ -245,8 +246,8 @@ public class Service extends JoinPointElement<Service, Element> {
 	public Service clone() {
 		final Service clone = super.clone();
 
-		clone.setHeader(
-				this.header().clone()
+		clone.setMethod(
+				this.method().clone()
 				);
 
 		clone.setReturnType(
@@ -270,7 +271,7 @@ public class Service extends JoinPointElement<Service, Element> {
 	public VerificationResult verifySelf() {
 		VerificationResult result = Valid.create();
 
-		if (!(this.header() != null)) {
+		if (!(this.method() != null)) {
 			result = result.and(new BasicProblem(this,
 					this.signature().name() + ": Missing header"));
 		}
@@ -300,7 +301,7 @@ public class Service extends JoinPointElement<Service, Element> {
 		// the signature is generated, so we don't add it.
 		final List<Element> result = new ArrayList<Element>();
 
-		Util.addNonNull(this.header(), result);
+		Util.addNonNull(this.method(), result);
 		Util.addNonNull(this.returnType(), result);
 
 		result.addAll(attachedProperties());

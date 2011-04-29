@@ -30,10 +30,9 @@ import chameleon.exception.ModelException;
  * 
  */
 public abstract class MViewMemberDeclarationImpl<	
-						M extends MViewMemberDeclarationImpl<M, P>, 
-						P extends Element>
-		extends MViewDeclaration<M, P> 
-		implements MViewMemberDeclaration<M, P> {
+						M extends MViewMemberDeclarationImpl<M>>
+		extends MViewDeclaration<M> 
+		implements MViewMemberDeclaration<M> {
 
 	/**
 	 * default constructor

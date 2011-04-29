@@ -27,8 +27,8 @@ import chameleon.core.element.Element;
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public abstract class JoinPointElement<E extends JoinPointElement<E,P>,P extends Element> 
-					extends MViewDeclaration<E,P> {
+public abstract class JoinPointElement<E extends JoinPointElement<E>> 
+					extends MViewDeclaration<E> {
 
 	/* (non-Javadoc)
 	 * @see mview.model.namespace.MViewDeclaration#clone()

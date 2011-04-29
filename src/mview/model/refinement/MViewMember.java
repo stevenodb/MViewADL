@@ -27,7 +27,7 @@ import chameleon.exception.ModelException;
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public interface MViewMember<M extends MViewMember<M,P>, P extends Element> extends Element<M, P> {
+public interface MViewMember<M extends MViewMember<M>> extends Element<M> {
 
 	/**
 	 * Checks whether this member and other share the same context
