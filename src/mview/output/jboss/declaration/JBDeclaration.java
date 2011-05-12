@@ -1,7 +1,7 @@
 /**
  * author:   Steven Op de beeck <steven /at/ opdebeeck /./ org>
- * filename: JBDeployment.java
- * created:  Mar 20, 2011, 12:28:31 PM
+ * filename: JBDeclaration.java
+ * created:  Mar 15, 2011, 4:43:26 PM
  * license:
  * The code contained in this file is free software: you can redistribute 
  * it and/or modify it under the terms of the GNU General Public License
@@ -16,43 +16,19 @@
  * You should have received a copy of the GNU General Public License. 
  * If not, see <http://www.gnu.org/licenses/>.
  */
-package mview.output.jboss;
+package mview.output.jboss.declaration;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import mview.model.deployment.Deployment;
+import mview.output.WriterArguments;
+import chameleon.core.element.Element;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public class JBDeployment extends JBDeclarationImpl<JBDeployment,Deployment> {
-
-
-	private List<JBModule>	_modules = new ArrayList<JBModule>();
-
-	/**
-	 * @param sourceElement
-	 */
-	protected JBDeployment(Deployment sourceElement) {
-		super(sourceElement);
-	}
-
-	/**
-	 * @param jbModule
-	 */
-	public void addModule(JBModule jbModule) {
-		_modules.add(jbModule);
-	}
+public interface JBDeclaration<Declaration extends JBDeclaration> {
 	
-	public List<JBModule> modules() {
-		return _modules;
-	}
-
-	@Override
-	protected String toCode(JBDeclaration parent) {
-		return "";
-	}
+	public Element sourceElement();
+	public String getName();
+	public void writeCode(WriterArguments arg);
 
 }

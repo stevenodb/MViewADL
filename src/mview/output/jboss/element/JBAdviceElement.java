@@ -16,11 +16,11 @@
  * You should have received a copy of the GNU General Public License. 
  * If not, see <http://www.gnu.org/licenses/>.
  */
-package mview.output.jboss;
+package mview.output.jboss.element;
 
 import mview.model.composition.AOComposition;
 import mview.model.composition.Advice;
-import mview.output.jboss.JBAdviceElement.AdviceType;
+import mview.output.jboss.element.JBAdviceElement.AdviceType;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
@@ -53,7 +53,7 @@ public class JBAdviceElement {
 	/**
 	 * @param sourceElement
 	 */
-	protected JBAdviceElement(Advice sourceElement) {
+	public JBAdviceElement(Advice sourceElement) {
 	}
 
 	/**

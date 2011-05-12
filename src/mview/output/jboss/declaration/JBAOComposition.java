@@ -16,7 +16,7 @@
  * You should have received a copy of the GNU General Public License. 
  * If not, see <http://www.gnu.org/licenses/>.
  */
-package mview.output.jboss;
+package mview.output.jboss.declaration;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -27,7 +27,10 @@ import chameleon.util.Pair;
 import mview.model.composition.AOComposition;
 import mview.model.composition.PatternSignature;
 import mview.output.WriterArguments;
-import mview.output.jboss.JBPointcutElement.ActorType;
+import mview.output.jboss.element.JBActorPropValue;
+import mview.output.jboss.element.JBAdviceElement;
+import mview.output.jboss.element.JBPointcutElement;
+import mview.output.jboss.element.JBPointcutElement.ActorType;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
@@ -66,7 +69,7 @@ public class JBAOComposition extends JBDeclarationImpl<JBAOComposition,AOComposi
 	/**
 	 * @param sourceElement
 	 */
-	protected JBAOComposition(AOComposition sourceElement) {
+	public JBAOComposition(AOComposition sourceElement) {
 		super(sourceElement);
 	}
 

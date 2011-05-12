@@ -1,7 +1,7 @@
 /**
  * author:   Steven Op de beeck <steven /at/ opdebeeck /./ org>
- * filename: JBInterface.java
- * created:  Mar 15, 2011, 4:43:12 PM
+ * filename: JBDeployment.java
+ * created:  Mar 20, 2011, 12:28:31 PM
  * license:
  * The code contained in this file is free software: you can redistribute 
  * it and/or modify it under the terms of the GNU General Public License
@@ -16,64 +16,43 @@
  * You should have received a copy of the GNU General Public License. 
  * If not, see <http://www.gnu.org/licenses/>.
  */
-package mview.output.jboss;
+package mview.output.jboss.declaration;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
-import chameleon.core.declaration.SimpleNameSignature;
-import mview.model.module.Interface;
+import mview.model.deployment.Deployment;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public class JBInterface extends JBDeclarationImpl<JBInterface, Interface> {
+public class JBDeployment extends JBDeclarationImpl<JBDeployment,Deployment> {
 
-	List<JBService> _services = new ArrayList<JBService>();
-	
+
+	private List<JBModule>	_modules = new ArrayList<JBModule>();
+
 	/**
 	 * @param sourceElement
 	 */
-	protected JBInterface(Interface sourceElement) {
+	protected JBDeployment(Deployment sourceElement) {
 		super(sourceElement);
 	}
 
 	/**
-	 * @return
+	 * @param jbModule
 	 */
-	public List<JBService> services() {
-		return _services;
+	public void addModule(JBModule jbModule) {
+		_modules.add(jbModule);
 	}
 	
-	/**
-	 * @param jbSrv
-	 */
-	public void addService(JBService jbSrv) {
-		_services.add(jbSrv);
+	public List<JBModule> modules() {
+		return _modules;
 	}
 
 	@Override
 	protected String toCode(JBDeclaration parent) {
-		final StringBuffer sb = startLine();
-
-		startNewLine(sb,"@Remote");
-		startNewLine(sb,"public interface "+getName()+" {");
-		
-		indent();
-		
-		for(Iterator<JBService> it = services().iterator(); it.hasNext();) {
-			JBService srv = it.next();
-			identCode(sb, srv.toCode(parent)); 
-		}
-		
-		undent();
-		
-		startNewLine(sb, "}");
-
-		return sb.toString();
+		return "";
 	}
 
-	
 }

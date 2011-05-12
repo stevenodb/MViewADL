@@ -1,7 +1,7 @@
 /**
  * author:   Steven Op de beeck <steven /at/ opdebeeck /./ org>
- * filename: JBComponent.java
- * created:  Mar 15, 2011, 4:42:51 PM
+ * filename: JBConnector.java
+ * created:  Mar 15, 2011, 4:42:59 PM
  * license:
  * The code contained in this file is free software: you can redistribute 
  * it and/or modify it under the terms of the GNU General Public License
@@ -16,55 +16,54 @@
  * You should have received a copy of the GNU General Public License. 
  * If not, see <http://www.gnu.org/licenses/>.
  */
-package mview.output.jboss;
+package mview.output.jboss.declaration;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-import mview.model.module.Component;
+import mview.model.module.Connector;
+import mview.model.module.Interface;
+import mview.output.WriterArguments;
+import chameleon.core.reference.SimpleReference;
+import chameleon.oo.type.TypeWithBody;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public class JBComponent extends JBModule<JBComponent,Component> {
+public class JBConnector extends JBModule<JBConnector,Connector> {
+	
+	private List<JBAOComposition> _aocompositions =
+		new ArrayList<JBAOComposition>();
 
 	/**
-	 * @param sourceElement
+	 * @param name
 	 */
-	public JBComponent(Component sourceElement) {
+	public JBConnector(Connector sourceElement) {
 		super(sourceElement);
 	}
+	
+	/**
+	 * @param jbAOC
+	 */
+	public void addComposition(JBAOComposition aoc) {
+		_aocompositions.add(aoc);
+	}
 
+	public List<JBAOComposition> aocompositions() {
+		return new ArrayList<JBAOComposition>(_aocompositions);
+	}
+	
 	@Override
 	protected String toCode(JBDeclaration parent) {
+		
 		final StringBuffer sb = startLine();
 
 //		newLine(sb);
-		startNewLine(sb,"@Stateless");
-		startNewLine(sb,"public class "+getName()+" "); 
-		
-		if (providedInterfaces().size() > 0) {
-			appendTerm(sb, "implements");
-			
-			List<JBInterface> provList = providedInterfaces();
-			Iterator<JBInterface> provIter = provList.iterator();
-			
-			while (provIter.hasNext()) {
-				JBInterface provItem = provIter.next();
-				String iName = provItem.getName();
-				
-				appendTermStrict(sb, iName);
-				
-				if (provIter.hasNext()) {
-					appendTermStrict(sb, ", ");
-				}
-			}
-		}
-		
-		appendTermStrict(sb," {");
+		startNewLine(sb,"@Aspect");
+		startNewLine(sb,"public class "+getName()+ " {");
 		newLine(sb);
 
 		indent();
@@ -74,11 +73,15 @@ public class JBComponent extends JBModule<JBComponent,Component> {
 		
 		newLine(sb);
 		
+		// AOComp does Pointcut and Advice
+		for(JBAOComposition aoc : aocompositions()) {
+			identCode(sb,aoc.toCode(this));
+		}
+		
 		undent();
 		
 		startNewLine(sb, "}");
 		
 		return sb.toString();
 	}
-	
 }

@@ -16,7 +16,7 @@
  * You should have received a copy of the GNU General Public License. 
  * If not, see <http://www.gnu.org/licenses/>.
  */
-package mview.output.jboss;
+package mview.output.jboss.element;
 
 import java.util.ArrayList;
 import java.util.EnumMap;
@@ -28,8 +28,8 @@ import mview.model.composition.PatternSignature;
 import mview.model.composition.Pointcut;
 import mview.model.composition.ServiceSignature;
 import mview.model.module.Service;
-import mview.output.jboss.JBPointcutElement.ActorType;
-import mview.output.jboss.JBPointcutElement.PointcutKind;
+import mview.output.jboss.element.JBPointcutElement.ActorType;
+import mview.output.jboss.element.JBPointcutElement.PointcutKind;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
@@ -73,7 +73,7 @@ public class JBPointcutElement {
 	/**
 	 * @param sourceElement
 	 */
-	protected JBPointcutElement(Pointcut sourceElement) {
+	public JBPointcutElement(Pointcut sourceElement) {
 		
 	}	
 
