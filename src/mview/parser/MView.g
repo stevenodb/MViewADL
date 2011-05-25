@@ -80,8 +80,10 @@ import chameleon.oo.type.generics.ActualTypeArgument;
 import chameleon.oo.type.BasicTypeReference;
 import chameleon.oo.type.Type;
 import chameleon.core.namespace.NamespaceOrTypeReference;
+import chameleon.core.namespace.NamespaceReference;
 import chameleon.core.namespacepart.NamespacePart;
 import chameleon.core.reference.SimpleReference;
+import chameleon.core.reference.ElementReference;
 import chameleon.core.variable.FormalParameter;
 import chameleon.core.modifier.Modifier;
 import chameleon.util.Pair;
@@ -269,7 +271,7 @@ connectorDeclaration returns [Connector element]
 			setKeyword($element,$conkw);
 			setLocation($element,$name,"__NAME");
 		} 
-		refinementDeclaration[$element,Connector.class]
+		(refinementDeclaration[$element,Connector.class])?
 		connectorBody[$element]
 	;
 
@@ -298,7 +300,7 @@ connectorAOCompositionDeclaration returns [AOComposition element]
 			setKeyword($element,$kw);
 			setLocation($element,$name,"__NAME");
 		}
-		refinementDeclarationSingle[$element,AOComposition.class] 
+		(refinementDeclarationSingle[$element,AOComposition.class])?
 		connectorAOCompositionBody[$element]
 	;
 
@@ -581,7 +583,7 @@ applicationDeclaration returns [Application element]
 			setKeyword($element,$appkw);
    			setLocation($element,$name,"__NAME");
 		} 
-		refinementDeclaration[$element,Application.class]
+		(refinementDeclaration[$element,Application.class])?
 		applicationBody[$element]
 	;
 
@@ -593,15 +595,15 @@ applicationBody[Application element]
 
 applicationBodyDeclaration[Application element]
 	:	mod=moduleContainerDeclarations {
-			$element.addModule(mod.element);
+			$element.addModule($mod.element);
 		}
 	|
 		hod=hostDeclaration {
-			$element.addHost(hod.element);
+			$element.addHost($hod.element);
 		}
 	|	
 		ind=instanceDeclaration {
-			$element.addInstance(ind.element); 
+			$element.addInstance($ind.element); 
 		}
 	;
 	
@@ -621,7 +623,7 @@ deploymentDeclaration returns [Deployment element]
 			setKeyword($element,$appkw);
    			setLocation($element,$name,"__NAME");
 		} 
-		refinementDeclaration[$element,Application.class]
+		(refinementDeclaration[$element,Application.class])?
 		applicationBody[$element]
 	;
 
@@ -713,36 +715,54 @@ modulecontainerBody returns [List<SimpleReference> elements]
  * REFINEMENT
  *********** */
 
-refinementDeclaration[RefinableDeclaration element, Class kind]
-	:	(rfkw=':' refinementRelationDeclarations[$element,$kind] {
-			setKeyword($element,$rfkw);
-		})?
-	;
-
-refinementRelationDeclarations[RefinableDeclaration element, Class kind]
-	:	name=Identifier ( ',' refinementRelationDeclarations[$element,$kind] )? {
-			SimpleReference parentRef = new SimpleReference($name.text,$kind);
-			RefinementRelation relation = new RefinementRelation(parentRef);
-			$element.addRefinementRelation(relation);
-			
-			setLocation(parentRef,$name,$name);
-		}
-	;
-
+// single
 refinementDeclarationSingle[RefinableDeclaration element, Class kind]
-	:	(rfkw=':' refinementRelationDeclaration[$element,$kind] {
+	:	rfkw=':' refinementDeclarationBody[$element,$kind] {
 			setKeyword($element,$rfkw);
-		})?
+		}
 	;	
 
-refinementRelationDeclaration[RefinableDeclaration element, Class kind]
-	:	name=Identifier {
-			SimpleReference parentRef = new SimpleReference($name.text,$kind);
-			RefinementRelation relation = new RefinementRelation(parentRef);
+// multiple
+refinementDeclaration[RefinableDeclaration element, Class kind]
+	:	refinementDeclarationSingle[$element,$kind] ( ',' refinementDeclarationBody[$element,$kind] )*
+	;
+	
+	
+refinementDeclarationBody[RefinableDeclaration element, Class kind]
+	:	parent=refinementParentDeclaration[$kind] {
+			RefinementRelation relation = new RefinementRelation($parent.reference);
 			$element.addRefinementRelation(relation);
-			
-			setLocation(parentRef,$name,$name);
 		}
+	;
+
+
+refinementParentDeclaration[Class kind] returns [SimpleReference reference]
+@init{Token start = null; 
+      Token end = null;
+      SimpleReference target = null;}
+@after{
+  check_null($reference);
+  setLocation($reference, start, end);
+}
+	:	name=Identifier {
+			$reference = new SimpleReference($name.text,$kind);
+			target = new SimpleReference($name.text,RefinableDeclaration.class);
+			start = $name;
+			end = $name;
+		}
+		('.' namex=Identifier {
+				if (target != null) {
+//					setLocation($
+					$reference = new SimpleReference(target,$namex.text,RefinableDeclaration.class);
+					target = new SimpleReference(target.clone(),$namex.text,RefinableDeclaration.class);
+
+				} else {
+					$reference = new SimpleReference($name.text,$kind);
+				}
+				start = $namex;
+				end = $namex;
+			} 
+		)*
 	;
 
 /* ***********
@@ -820,7 +840,7 @@ classOrInterfaceType returns [BasicTypeReference element]
 	           setLocation($element,$name,$name); 
 	          }
 			typeArguments? 
-	        ('.' namex=Identifier 
+	        ('.' namex=Identifier
 	          {
 	           if(target != null) {
 	             $element = new MViewBasicTypeReference(target,$namex.text);
