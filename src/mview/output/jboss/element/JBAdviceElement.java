@@ -20,13 +20,14 @@ package mview.output.jboss.element;
 
 import mview.model.composition.AOComposition;
 import mview.model.composition.Advice;
+import mview.output.WriterArguments;
 import mview.output.jboss.element.JBAdviceElement.AdviceType;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public class JBAdviceElement {
+public class JBAdviceElement extends JBElementImpl {
 	
 	public enum AdviceType {
 		BEFORE("AdviceType.BEFORE"), 
@@ -54,6 +55,7 @@ public class JBAdviceElement {
 	 * @param sourceElement
 	 */
 	public JBAdviceElement(Advice sourceElement) {
+		super(sourceElement);
 	}
 
 	/**
@@ -104,5 +106,10 @@ public class JBAdviceElement {
 	 */
 	public void setServiceInterface(String name) {
 		_serviceInterface = name;
+	}
+
+	@Override
+	public void writeCode(WriterArguments arg) {
+		// TODO Auto-generated method stub
 	}
 }

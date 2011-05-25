@@ -1,7 +1,7 @@
 /**
  * author:   Steven Op de beeck <steven /at/ opdebeeck /./ org>
- * filename: JBDeclaration.java
- * created:  Mar 15, 2011, 4:43:26 PM
+ * filename: TransformableElement.java
+ * created:  May 23, 2011, 5:17:29 PM
  * license:
  * The code contained in this file is free software: you can redistribute 
  * it and/or modify it under the terms of the GNU General Public License
@@ -16,18 +16,24 @@
  * You should have received a copy of the GNU General Public License. 
  * If not, see <http://www.gnu.org/licenses/>.
  */
-package mview.output.jboss.declaration;
+package mview.output;
 
-import mview.output.TransformableElement;
-import mview.output.WriterArguments;
+import java.util.List;
+
+import mview.output.jboss.declaration.JBDeclaration;
+import chameleon.core.compilationunit.CompilationUnit;
 import chameleon.core.element.Element;
+import chameleon.exception.ModelException;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public interface JBDeclaration<Declaration extends JBDeclaration> extends TransformableElement {
+public interface TransformableElement {
 	
-	public String getName();
-
+//	public void transform(Element src, JBDeclaration parentTarget,
+//			final List<JBDeclaration> result) throws ModelException;
+	public Element sourceElement();
+	public void writeCode(WriterArguments arg);
+	
 }

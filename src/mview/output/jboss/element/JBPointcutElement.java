@@ -28,6 +28,7 @@ import mview.model.composition.PatternSignature;
 import mview.model.composition.Pointcut;
 import mview.model.composition.ServiceSignature;
 import mview.model.module.Service;
+import mview.output.WriterArguments;
 import mview.output.jboss.element.JBPointcutElement.ActorType;
 import mview.output.jboss.element.JBPointcutElement.PointcutKind;
 
@@ -35,7 +36,7 @@ import mview.output.jboss.element.JBPointcutElement.PointcutKind;
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public class JBPointcutElement {
+public class JBPointcutElement extends JBElementImpl {
 	
 	/**
 	 * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
@@ -74,7 +75,7 @@ public class JBPointcutElement {
 	 * @param sourceElement
 	 */
 	public JBPointcutElement(Pointcut sourceElement) {
-		
+		super(sourceElement);
 	}	
 
 	/**
@@ -131,5 +132,10 @@ public class JBPointcutElement {
 	 */
 	public void addCallee(Map<ActorType, List<JBActorPropValue>> calleeMap) {
 		_calleeMap = calleeMap;
+	}
+
+	@Override
+	public void writeCode(WriterArguments arg) {
+		// TODO Auto-generated method stub
 	}
 }

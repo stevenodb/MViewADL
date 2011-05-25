@@ -1,7 +1,7 @@
 /**
  * author:   Steven Op de beeck <steven /at/ opdebeeck /./ org>
- * filename: JBDeclaration.java
- * created:  Mar 15, 2011, 4:43:26 PM
+ * filename: JBElementImpl.java
+ * created:  May 23, 2011, 5:22:55 PM
  * license:
  * The code contained in this file is free software: you can redistribute 
  * it and/or modify it under the terms of the GNU General Public License
@@ -16,18 +16,30 @@
  * You should have received a copy of the GNU General Public License. 
  * If not, see <http://www.gnu.org/licenses/>.
  */
-package mview.output.jboss.declaration;
+package mview.output.jboss.element;
 
+import chameleon.core.element.Element;
 import mview.output.TransformableElement;
 import mview.output.WriterArguments;
-import chameleon.core.element.Element;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public interface JBDeclaration<Declaration extends JBDeclaration> extends TransformableElement {
+public abstract class JBElementImpl implements TransformableElement {
 	
-	public String getName();
+	private Element sourceElement;
+
+	/**
+	 * 
+	 */
+	public JBElementImpl(Element sourceElement) {
+		this.sourceElement = sourceElement;		
+	}
+
+	@Override
+	public Element sourceElement() {
+		return sourceElement;
+	}
 
 }

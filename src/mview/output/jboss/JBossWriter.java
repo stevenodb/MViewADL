@@ -314,7 +314,6 @@ public class JBossWriter {
 					return null;
 				}
 
-
 				public void unvisit(Instance element, Object unvisitData) {
 				}
 			}.applyTo(instances);

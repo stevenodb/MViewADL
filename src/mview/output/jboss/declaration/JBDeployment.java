@@ -21,6 +21,12 @@ package mview.output.jboss.declaration;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.rejuse.java.collections.RobustVisitor;
+
+import chameleon.core.element.Element;
+import chameleon.exception.ModelException;
+
+import mview.model.application.Instance;
 import mview.model.deployment.Deployment;
 
 /**
@@ -54,5 +60,30 @@ public class JBDeployment extends JBDeclarationImpl<JBDeployment,Deployment> {
 	protected String toCode(JBDeclaration parent) {
 		return "";
 	}
+
+//	@Override
+//	public void transform(Element src, JBDeclaration parentTarget,
+//			List<JBDeclaration> result) throws ModelException {
+//		List<Instance> instances = src.members(Instance.class);
+//
+//		try {
+//			new RobustVisitor<Instance>() {
+//				public Object visit(Instance element) throws ModelException {
+//
+//					transform(element, parentTarget, result);
+//					return null;
+//				}
+//
+//				public void unvisit(Instance element, Object unvisitData) {
+//				}
+//			}.applyTo(instances);
+//
+//		} catch (ModelException e) {
+//			throw e;
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//
+//	}
 
 }
