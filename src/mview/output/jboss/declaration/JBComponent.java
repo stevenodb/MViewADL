@@ -38,9 +38,23 @@ public class JBComponent extends JBModule<JBComponent,Component> {
 		super(sourceElement);
 	}
 
+	/**
+	 * @return
+	 */
+	protected String getPreamble() {
+		String preamble = 
+			"import javax.ejb.EJB;\n" +
+			"import javax.ejb.Stateless;"; 
+		return preamble;
+	}
+	
+
 	@Override
 	protected String toCode(JBDeclaration parent) {
 		final StringBuffer sb = startLine();
+		
+		startNewLine(sb, getPreamble());
+		newLine(sb);
 
 //		newLine(sb);
 		startNewLine(sb,"@Stateless");

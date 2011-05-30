@@ -91,18 +91,18 @@ public class JBossWriter {
 		_wArguments = wArguments;
 	}
 
-	/*
-	 * List of transformed declarations
-	 */
-	private final List<JBDeclaration> _transformedDecls = new ArrayList<JBDeclaration>();
-
-
-	/**
-	 * @param decl
-	 */
-	protected void addTransformedDecl(JBDeclaration decl) {
-		_transformedDecls.add(decl);
-	}
+//	/*
+//	 * List of transformed declarations
+//	 */
+//	private final List<JBDeclaration> _transformedDecls = new ArrayList<JBDeclaration>();
+//
+//
+//	/**
+//	 * @param decl
+//	 */
+//	protected void addTransformedDecl(JBDeclaration decl) {
+//		_transformedDecls.add(decl);
+//	}
 
 	/*
 	 * WriterArguments
@@ -124,46 +124,53 @@ public class JBossWriter {
 			new HashMap<Class<? extends Element>, StringBuffer>();
 
 
-	/**
-	 * @param key
-	 * @return
-	 */
-	protected StringBuffer preamble(Class<? extends Element> key) {
-		return _preambles.get(key);
-	}
-
-
-	/**
-	 * @param key
-	 * @param preamble
-	 */
-	protected void addPreamble(Class<? extends Element> key,
-			StringBuffer preamble) {
-		_preambles.put(key, preamble);
-	}
-
-
-	/**
-	 * @param key
-	 */
-	protected void removePreamble(Class<? extends Element> key) {
-		_preambles.remove(key);
-	}
-
-
-	/**
-	 * 
-	 */
-	protected void initPreambles() {
-		String imports = "import javax.ejb.EJB;\n" +
-						"import org.jboss.aop.AdviceType;\n" +
-						"import org.jboss.aop.Aspect;\n" +
-						"import org.jboss.aop.Bind;\n" +
-						"import org.jboss.aop.PointcutDef;\n" +
-						"import org.jboss.aop.pointcut.Pointcut;\n";
-		StringBuffer connPA = new StringBuffer(imports);
-		addPreamble(Connector.class, connPA);
-	}
+//	/**
+//	 * @param key
+//	 * @return
+//	 */
+//	protected StringBuffer preamble(Class<? extends Element> key) {
+//		return _preambles.get(key);
+//	}
+//
+//
+//	/**
+//	 * @param key
+//	 * @param preamble
+//	 */
+//	protected void addPreamble(Class<? extends Element> key,
+//			StringBuffer preamble) {
+//		_preambles.put(key, preamble);
+//	}
+//
+//
+//	/**
+//	 * @param key
+//	 */
+//	protected void removePreamble(Class<? extends Element> key) {
+//		_preambles.remove(key);
+//	}
+//
+//
+//	protected void initPreambles() {
+//		String connector = 
+//			"import java.net.InetAddress;" +
+//			"import java.net.UnknownHostException;" +
+//			"import java.util.Arrays;" +
+//			"import java.util.List;" +
+//			"import javax.ejb.EJB;" +
+//			"import org.jboss.aop.AdviceType;" +
+//			"import org.jboss.aop.Aspect;" +
+//			"import org.jboss.aop.Bind;" +
+//			"import org.jboss.aop.DynamicCFlowDef;" +
+//			"import org.jboss.aop.PointcutDef;" +
+//			"import org.jboss.aop.advice.annotation.Args;" +
+//			"import org.jboss.aop.joinpoint.Invocation;" +
+//			"import org.jboss.aop.pointcut.DynamicCFlow;" +
+//			"import org.jboss.aop.pointcut.Pointcut;"; 
+//			
+//		StringBuffer connPA = new StringBuffer(connector);
+//		addPreamble(Connector.class, connPA);
+//	}
 
 
 	/**

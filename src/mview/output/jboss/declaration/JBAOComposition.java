@@ -173,10 +173,10 @@ public class JBAOComposition extends JBDeclarationImpl<JBAOComposition,AOComposi
 						}
 					}
 					
-					appendTermStrict(sb,"\")");
+//					appendTermStrict(sb,"\")");
 					
 					if (itSig.hasNext()) {
-						appendTermStrict(sb, " +");
+						appendTermStrict(sb, "\" +");
 						startNewLine(sb, "\"OR ");
 					}
 				}
@@ -186,7 +186,7 @@ public class JBAOComposition extends JBDeclarationImpl<JBAOComposition,AOComposi
 				final List<JBActorPropValue> propValList = 
 					pc.calleeMap().get(ActorType.INTERFACE);
 				
-				appendTermStrict(sb, " +");
+				appendTermStrict(sb, "\" +");
 				startNewLine(sb,"\"AND ");
 				for (Iterator iterator = propValList.iterator(); iterator.hasNext();) {
 					JBActorPropValue propValue = (JBActorPropValue) iterator.next();

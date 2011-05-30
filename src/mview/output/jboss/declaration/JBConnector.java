@@ -44,6 +44,28 @@ public class JBConnector extends JBModule<JBConnector,Connector> {
 	public JBConnector(Connector sourceElement) {
 		super(sourceElement);
 	}
+		
+	/**
+	 * @return
+	 */
+	protected String getPreamble() {
+		String preamble = 
+			"import java.net.InetAddress;\n" +
+			"import java.net.UnknownHostException;\n" +
+			"import java.util.Arrays;\n" +
+			"import java.util.List;\n" +
+			"import javax.ejb.EJB;\n" +
+			"import org.jboss.aop.AdviceType;\n" +
+			"import org.jboss.aop.Aspect;\n" +
+			"import org.jboss.aop.Bind;\n" +
+			"import org.jboss.aop.DynamicCFlowDef;\n" +
+			"import org.jboss.aop.PointcutDef;\n" +
+			"import org.jboss.aop.advice.annotation.Args;\n" +
+			"import org.jboss.aop.joinpoint.Invocation;\n" +
+			"import org.jboss.aop.pointcut.DynamicCFlow;\n" +
+			"import org.jboss.aop.pointcut.Pointcut;"; 
+		return preamble;
+	}
 	
 	/**
 	 * @param jbAOC
@@ -60,6 +82,9 @@ public class JBConnector extends JBModule<JBConnector,Connector> {
 	protected String toCode(JBDeclaration parent) {
 		
 		final StringBuffer sb = startLine();
+		
+		startNewLine(sb, getPreamble());
+		newLine(sb);
 
 //		newLine(sb);
 		startNewLine(sb,"@Aspect");

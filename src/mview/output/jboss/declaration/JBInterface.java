@@ -43,6 +43,15 @@ public class JBInterface extends JBDeclarationImpl<JBInterface, Interface> {
 	/**
 	 * @return
 	 */
+	protected String getPreamble() {
+		String preamble = 
+			"import javax.ejb.Remote;"; 
+		return preamble;
+	}
+	
+	/**
+	 * @return
+	 */
 	public List<JBService> services() {
 		return _services;
 	}
@@ -57,6 +66,9 @@ public class JBInterface extends JBDeclarationImpl<JBInterface, Interface> {
 	@Override
 	protected String toCode(JBDeclaration parent) {
 		final StringBuffer sb = startLine();
+		
+		startNewLine(sb, getPreamble());
+		newLine(sb);
 
 		startNewLine(sb,"@Remote");
 		startNewLine(sb,"public interface "+getName()+" {");
