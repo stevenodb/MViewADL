@@ -35,5 +35,4 @@ public interface TransformableElement {
 //			final List<JBDeclaration> result) throws ModelException;
 	public Element sourceElement();
 	public void writeCode(WriterArguments arg);
-	
 }
