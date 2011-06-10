@@ -56,6 +56,8 @@ import mview.output.jboss.declaration.JBAOComposition;
 import mview.output.jboss.declaration.JBComponent;
 import mview.output.jboss.declaration.JBConnector;
 import mview.output.jboss.declaration.JBDeclaration;
+import mview.output.jboss.declaration.JBApplication;
+import mview.output.jboss.declaration.JBHost;
 import mview.output.jboss.declaration.JBInterface;
 import mview.output.jboss.declaration.JBModule;
 import mview.output.jboss.declaration.JBService;
@@ -67,6 +69,8 @@ import mview.output.jboss.element.JBPointcutElement.PointcutKind;
 
 import org.rejuse.java.collections.RobustVisitor;
 import org.rejuse.property.Property;
+
+import sun.security.krb5.internal.PAEncTSEnc;
 
 import chameleon.core.compilationunit.CompilationUnit;
 import chameleon.core.declaration.Declaration;
@@ -260,7 +264,7 @@ public class JBossWriter {
 			transformInterface((Interface) src, parentTarget, result);
 			
 		} else if (isHost(src)) {
-			transforHost((Host) src, parentTarget, result);
+			transformHost((Host) src, parentTarget, result);
 		}
 
 		else if (src == null) {
@@ -287,10 +291,13 @@ public class JBossWriter {
 	 * @param parentTarget
 	 * @param result
 	 */
-	private void transforHost(Host src, JBDeclaration parentTarget,
+	private void transformHost(Host src, JBDeclaration parentTarget,
 			List<JBDeclaration> result) {
 
-		// NOOP
+		if (parentTarget != null && parentTarget instanceof JBApplication) {
+			JBHost host = new JBHost(src,parentTarget);
+			((JBApplication) parentTarget).addHost(host);
+		}
 	}
 
 
@@ -311,13 +318,35 @@ public class JBossWriter {
 	private void transformApplication(Application src, final JBDeclaration parentTarget,
 			final List<JBDeclaration> result) throws ModelException {
 
+		final JBApplication jbApp = new JBApplication(src,parentTarget);
+		
+		List<Host> hosts = src.members(Host.class);
+		
+		try {
+			new RobustVisitor<Host>() {
+				public Object visit(Host element) throws ModelException {
+
+					transform(element, jbApp, result);
+					return null;
+				}
+
+				public void unvisit(Host element, Object unvisitData) {
+				}
+			}.applyTo(hosts);
+
+		} catch (ModelException e) {
+			throw e;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		List<Instance> instances = src.members(Instance.class);
 
 		try {
 			new RobustVisitor<Instance>() {
 				public Object visit(Instance element) throws ModelException {
 
-					transform(element, parentTarget, result);
+					transform(element, jbApp, result);
 					return null;
 				}
 
@@ -561,7 +590,7 @@ public class JBossWriter {
 	private void transformInterface(Interface src, JBDeclaration parentTarget,
 			final List<JBDeclaration> result) throws ModelException {
 
-		JBInterface iface = new JBInterface(src);
+		JBInterface iface = new JBInterface(src,parentTarget);
 		result.add(iface);
 
 //		if (parentTarget != null) {
@@ -571,7 +600,7 @@ public class JBossWriter {
 		List<Service> services = src.services();
 
 		for (Service service : services) {
-			JBService jbSrv = new JBService(service);
+			JBService jbSrv = new JBService(service,parentTarget);
 			iface.addService(jbSrv);
 
 			jbSrv.addReturnType(service.returnType().signature().name());
@@ -608,7 +637,7 @@ public class JBossWriter {
 			final List<JBDeclaration> result)
 			throws ModelException {
 
-		JBAOComposition jbAOC = new JBAOComposition(src);
+		JBAOComposition jbAOC = new JBAOComposition(src,parentTarget);
 		((JBConnector) parentTarget).addComposition(jbAOC);
 
 		// pointcut
@@ -674,7 +703,7 @@ public class JBossWriter {
 	private void transformComponent(Component src, JBDeclaration parentTarget,
 			final List<JBDeclaration> result) throws ModelException {
 
-		JBComponent jbc = new JBComponent(src);
+		JBComponent jbc = new JBComponent(src,parentTarget);
 		result.add(jbc);
 
 		//required interfaces (injections)
@@ -832,7 +861,7 @@ public class JBossWriter {
 
 		// 1. connector's name.
 
-		final JBConnector jbc = new JBConnector(src);
+		final JBConnector jbc = new JBConnector(src,parentTarget);
 		result.add(jbc);
 
 		// 2. required interfaces (injections)
