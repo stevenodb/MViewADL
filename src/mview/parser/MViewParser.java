@@ -1,4 +1,4 @@
-// $ANTLR 3.3 Nov 30, 2010 12:45:30 /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g 2011-05-25 20:47:58
+// $ANTLR 3.3 Nov 30, 2010 12:45:30 /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g 2011-06-10 11:55:40
 
 package mview.parser;
 
@@ -206,7 +206,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "compilationUnit"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:100:1: compilationUnit returns [CompilationUnit element] : (ifd= interfaceDeclaration | cod= componentDeclaration | cnd= connectorDeclaration | apd= applicationDeclaration | dpd= deploymentDeclaration )* ;
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:113:1: compilationUnit returns [CompilationUnit element] : (ifd= interfaceDeclaration | cod= componentDeclaration | cnd= connectorDeclaration | apd= applicationDeclaration | dpd= deploymentDeclaration )* ;
     public final MViewParser.compilationUnit_return compilationUnit() throws RecognitionException {
         MViewParser.compilationUnit_return retval = new MViewParser.compilationUnit_return();
         retval.start = input.LT(1);
@@ -232,12 +232,12 @@ public class MViewParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 1) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:106:2: ( (ifd= interfaceDeclaration | cod= componentDeclaration | cnd= connectorDeclaration | apd= applicationDeclaration | dpd= deploymentDeclaration )* )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:106:4: (ifd= interfaceDeclaration | cod= componentDeclaration | cnd= connectorDeclaration | apd= applicationDeclaration | dpd= deploymentDeclaration )*
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:119:2: ( (ifd= interfaceDeclaration | cod= componentDeclaration | cnd= connectorDeclaration | apd= applicationDeclaration | dpd= deploymentDeclaration )* )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:119:4: (ifd= interfaceDeclaration | cod= componentDeclaration | cnd= connectorDeclaration | apd= applicationDeclaration | dpd= deploymentDeclaration )*
             {
             root_0 = (Object)adaptor.nil();
 
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:106:4: (ifd= interfaceDeclaration | cod= componentDeclaration | cnd= connectorDeclaration | apd= applicationDeclaration | dpd= deploymentDeclaration )*
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:119:4: (ifd= interfaceDeclaration | cod= componentDeclaration | cnd= connectorDeclaration | apd= applicationDeclaration | dpd= deploymentDeclaration )*
             loop1:
             do {
                 int alt1=6;
@@ -295,9 +295,9 @@ public class MViewParser extends ChameleonParser {
 
                 switch (alt1) {
             	case 1 :
-            	    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:107:4: ifd= interfaceDeclaration
+            	    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:120:4: ifd= interfaceDeclaration
             	    {
-            	    pushFollow(FOLLOW_interfaceDeclaration_in_compilationUnit88);
+            	    pushFollow(FOLLOW_interfaceDeclaration_in_compilationUnit101);
             	    ifd=interfaceDeclaration();
 
             	    state._fsp--;
@@ -310,9 +310,9 @@ public class MViewParser extends ChameleonParser {
             	    }
             	    break;
             	case 2 :
-            	    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:109:4: cod= componentDeclaration
+            	    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:122:4: cod= componentDeclaration
             	    {
-            	    pushFollow(FOLLOW_componentDeclaration_in_compilationUnit101);
+            	    pushFollow(FOLLOW_componentDeclaration_in_compilationUnit114);
             	    cod=componentDeclaration();
 
             	    state._fsp--;
@@ -325,9 +325,9 @@ public class MViewParser extends ChameleonParser {
             	    }
             	    break;
             	case 3 :
-            	    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:111:4: cnd= connectorDeclaration
+            	    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:124:4: cnd= connectorDeclaration
             	    {
-            	    pushFollow(FOLLOW_connectorDeclaration_in_compilationUnit114);
+            	    pushFollow(FOLLOW_connectorDeclaration_in_compilationUnit127);
             	    cnd=connectorDeclaration();
 
             	    state._fsp--;
@@ -340,9 +340,9 @@ public class MViewParser extends ChameleonParser {
             	    }
             	    break;
             	case 4 :
-            	    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:113:4: apd= applicationDeclaration
+            	    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:126:4: apd= applicationDeclaration
             	    {
-            	    pushFollow(FOLLOW_applicationDeclaration_in_compilationUnit127);
+            	    pushFollow(FOLLOW_applicationDeclaration_in_compilationUnit140);
             	    apd=applicationDeclaration();
 
             	    state._fsp--;
@@ -355,9 +355,9 @@ public class MViewParser extends ChameleonParser {
             	    }
             	    break;
             	case 5 :
-            	    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:115:4: dpd= deploymentDeclaration
+            	    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:128:4: dpd= deploymentDeclaration
             	    {
-            	    pushFollow(FOLLOW_deploymentDeclaration_in_compilationUnit140);
+            	    pushFollow(FOLLOW_deploymentDeclaration_in_compilationUnit153);
             	    dpd=deploymentDeclaration();
 
             	    state._fsp--;
@@ -406,7 +406,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "interfaceDeclaration"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:126:1: interfaceDeclaration returns [Interface element] : intkw= 'interface' name= Identifier interfaceBody[$element] ;
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:139:1: interfaceDeclaration returns [Interface element] : intkw= 'interface' name= Identifier interfaceBody[$element] ;
     public final MViewParser.interfaceDeclaration_return interfaceDeclaration() throws RecognitionException {
         MViewParser.interfaceDeclaration_return retval = new MViewParser.interfaceDeclaration_return();
         retval.start = input.LT(1);
@@ -423,17 +423,17 @@ public class MViewParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 2) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:127:2: (intkw= 'interface' name= Identifier interfaceBody[$element] )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:127:4: intkw= 'interface' name= Identifier interfaceBody[$element]
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:140:2: (intkw= 'interface' name= Identifier interfaceBody[$element] )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:140:4: intkw= 'interface' name= Identifier interfaceBody[$element]
             {
             root_0 = (Object)adaptor.nil();
 
-            intkw=(Token)match(input,23,FOLLOW_23_in_interfaceDeclaration170); if (state.failed) return retval;
+            intkw=(Token)match(input,23,FOLLOW_23_in_interfaceDeclaration183); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             intkw_tree = (Object)adaptor.create(intkw);
             adaptor.addChild(root_0, intkw_tree);
             }
-            name=(Token)match(input,Identifier,FOLLOW_Identifier_in_interfaceDeclaration174); if (state.failed) return retval;
+            name=(Token)match(input,Identifier,FOLLOW_Identifier_in_interfaceDeclaration187); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             name_tree = (Object)adaptor.create(name);
             adaptor.addChild(root_0, name_tree);
@@ -445,7 +445,7 @@ public class MViewParser extends ChameleonParser {
               			setLocation(retval.element,name,"__NAME");
               		
             }
-            pushFollow(FOLLOW_interfaceBody_in_interfaceDeclaration180);
+            pushFollow(FOLLOW_interfaceBody_in_interfaceDeclaration193);
             interfaceBody1=interfaceBody(retval.element);
 
             state._fsp--;
@@ -481,7 +481,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "interfaceBody"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:136:1: interfaceBody[Interface element] : '{' ( interfaceBodyDeclaration[$element] )* '}' ;
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:149:1: interfaceBody[Interface element] : '{' ( interfaceBodyDeclaration[$element] )* '}' ;
     public final MViewParser.interfaceBody_return interfaceBody(Interface element) throws RecognitionException {
         MViewParser.interfaceBody_return retval = new MViewParser.interfaceBody_return();
         retval.start = input.LT(1);
@@ -498,17 +498,17 @@ public class MViewParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 3) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:137:2: ( '{' ( interfaceBodyDeclaration[$element] )* '}' )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:137:4: '{' ( interfaceBodyDeclaration[$element] )* '}'
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:150:2: ( '{' ( interfaceBodyDeclaration[$element] )* '}' )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:150:4: '{' ( interfaceBodyDeclaration[$element] )* '}'
             {
             root_0 = (Object)adaptor.nil();
 
-            char_literal2=(Token)match(input,24,FOLLOW_24_in_interfaceBody194); if (state.failed) return retval;
+            char_literal2=(Token)match(input,24,FOLLOW_24_in_interfaceBody207); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal2_tree = (Object)adaptor.create(char_literal2);
             adaptor.addChild(root_0, char_literal2_tree);
             }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:137:8: ( interfaceBodyDeclaration[$element] )*
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:150:8: ( interfaceBodyDeclaration[$element] )*
             loop2:
             do {
                 int alt2=2;
@@ -523,7 +523,7 @@ public class MViewParser extends ChameleonParser {
             	case 1 :
             	    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:0:0: interfaceBodyDeclaration[$element]
             	    {
-            	    pushFollow(FOLLOW_interfaceBodyDeclaration_in_interfaceBody196);
+            	    pushFollow(FOLLOW_interfaceBodyDeclaration_in_interfaceBody209);
             	    interfaceBodyDeclaration3=interfaceBodyDeclaration(element);
 
             	    state._fsp--;
@@ -538,7 +538,7 @@ public class MViewParser extends ChameleonParser {
                 }
             } while (true);
 
-            char_literal4=(Token)match(input,25,FOLLOW_25_in_interfaceBody200); if (state.failed) return retval;
+            char_literal4=(Token)match(input,25,FOLLOW_25_in_interfaceBody213); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal4_tree = (Object)adaptor.create(char_literal4);
             adaptor.addChild(root_0, char_literal4_tree);
@@ -573,7 +573,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "interfaceBodyDeclaration"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:141:1: interfaceBodyDeclaration[Interface element] : (service= serviceDeclaration ';' ) ;
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:154:1: interfaceBodyDeclaration[Interface element] : (service= serviceDeclaration ';' ) ;
     public final MViewParser.interfaceBodyDeclaration_return interfaceBodyDeclaration(Interface element) throws RecognitionException {
         MViewParser.interfaceBodyDeclaration_return retval = new MViewParser.interfaceBodyDeclaration_return();
         retval.start = input.LT(1);
@@ -588,21 +588,21 @@ public class MViewParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 4) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:142:2: ( (service= serviceDeclaration ';' ) )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:142:4: (service= serviceDeclaration ';' )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:155:2: ( (service= serviceDeclaration ';' ) )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:155:4: (service= serviceDeclaration ';' )
             {
             root_0 = (Object)adaptor.nil();
 
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:142:4: (service= serviceDeclaration ';' )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:142:5: service= serviceDeclaration ';'
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:155:4: (service= serviceDeclaration ';' )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:155:5: service= serviceDeclaration ';'
             {
-            pushFollow(FOLLOW_serviceDeclaration_in_interfaceBodyDeclaration216);
+            pushFollow(FOLLOW_serviceDeclaration_in_interfaceBodyDeclaration229);
             service=serviceDeclaration();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, service.getTree());
-            char_literal5=(Token)match(input,26,FOLLOW_26_in_interfaceBodyDeclaration218); if (state.failed) return retval;
+            char_literal5=(Token)match(input,26,FOLLOW_26_in_interfaceBodyDeclaration231); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal5_tree = (Object)adaptor.create(char_literal5);
             adaptor.addChild(root_0, char_literal5_tree);
@@ -646,7 +646,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "serviceReferenceDeclaration"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:153:1: serviceReferenceDeclaration returns [SimpleReference<Service> relation] : name= Identifier params= actualParameters ;
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:166:1: serviceReferenceDeclaration returns [SimpleReference<Service> relation] : name= Identifier params= actualParameters ;
     public final MViewParser.serviceReferenceDeclaration_return serviceReferenceDeclaration() throws RecognitionException {
         MViewParser.serviceReferenceDeclaration_return retval = new MViewParser.serviceReferenceDeclaration_return();
         retval.start = input.LT(1);
@@ -661,17 +661,17 @@ public class MViewParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 5) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:154:2: (name= Identifier params= actualParameters )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:154:4: name= Identifier params= actualParameters
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:167:2: (name= Identifier params= actualParameters )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:167:4: name= Identifier params= actualParameters
             {
             root_0 = (Object)adaptor.nil();
 
-            name=(Token)match(input,Identifier,FOLLOW_Identifier_in_serviceReferenceDeclaration243); if (state.failed) return retval;
+            name=(Token)match(input,Identifier,FOLLOW_Identifier_in_serviceReferenceDeclaration256); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             name_tree = (Object)adaptor.create(name);
             adaptor.addChild(root_0, name_tree);
             }
-            pushFollow(FOLLOW_actualParameters_in_serviceReferenceDeclaration247);
+            pushFollow(FOLLOW_actualParameters_in_serviceReferenceDeclaration260);
             params=actualParameters();
 
             state._fsp--;
@@ -714,7 +714,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "actualParameters"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:161:1: actualParameters returns [List<String> lst] : '(' (pars= actualParameterDecls )? ')' ;
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:174:1: actualParameters returns [List<String> lst] : '(' (pars= actualParameterDecls )? ')' ;
     public final MViewParser.actualParameters_return actualParameters() throws RecognitionException {
         MViewParser.actualParameters_return retval = new MViewParser.actualParameters_return();
         retval.start = input.LT(1);
@@ -732,17 +732,17 @@ public class MViewParser extends ChameleonParser {
         retval.lst = new ArrayList<String>();
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 6) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:163:5: ( '(' (pars= actualParameterDecls )? ')' )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:163:9: '(' (pars= actualParameterDecls )? ')'
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:176:5: ( '(' (pars= actualParameterDecls )? ')' )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:176:9: '(' (pars= actualParameterDecls )? ')'
             {
             root_0 = (Object)adaptor.nil();
 
-            char_literal6=(Token)match(input,27,FOLLOW_27_in_actualParameters276); if (state.failed) return retval;
+            char_literal6=(Token)match(input,27,FOLLOW_27_in_actualParameters289); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal6_tree = (Object)adaptor.create(char_literal6);
             adaptor.addChild(root_0, char_literal6_tree);
             }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:163:13: (pars= actualParameterDecls )?
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:176:13: (pars= actualParameterDecls )?
             int alt3=2;
             int LA3_0 = input.LA(1);
 
@@ -751,9 +751,9 @@ public class MViewParser extends ChameleonParser {
             }
             switch (alt3) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:163:14: pars= actualParameterDecls
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:176:14: pars= actualParameterDecls
                     {
-                    pushFollow(FOLLOW_actualParameterDecls_in_actualParameters281);
+                    pushFollow(FOLLOW_actualParameterDecls_in_actualParameters294);
                     pars=actualParameterDecls();
 
                     state._fsp--;
@@ -768,7 +768,7 @@ public class MViewParser extends ChameleonParser {
 
             }
 
-            char_literal7=(Token)match(input,28,FOLLOW_28_in_actualParameters287); if (state.failed) return retval;
+            char_literal7=(Token)match(input,28,FOLLOW_28_in_actualParameters300); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal7_tree = (Object)adaptor.create(char_literal7);
             adaptor.addChild(root_0, char_literal7_tree);
@@ -804,7 +804,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "actualParameterDecls"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:166:1: actualParameterDecls returns [List<String> lst] : name= Identifier ( ',' decls= actualParameterDecls )? ;
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:179:1: actualParameterDecls returns [List<String> lst] : name= Identifier ( ',' decls= actualParameterDecls )? ;
     public final MViewParser.actualParameterDecls_return actualParameterDecls() throws RecognitionException {
         MViewParser.actualParameterDecls_return retval = new MViewParser.actualParameterDecls_return();
         retval.start = input.LT(1);
@@ -821,17 +821,17 @@ public class MViewParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 7) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:167:5: (name= Identifier ( ',' decls= actualParameterDecls )? )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:167:9: name= Identifier ( ',' decls= actualParameterDecls )?
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:180:5: (name= Identifier ( ',' decls= actualParameterDecls )? )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:180:9: name= Identifier ( ',' decls= actualParameterDecls )?
             {
             root_0 = (Object)adaptor.nil();
 
-            name=(Token)match(input,Identifier,FOLLOW_Identifier_in_actualParameterDecls312); if (state.failed) return retval;
+            name=(Token)match(input,Identifier,FOLLOW_Identifier_in_actualParameterDecls325); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             name_tree = (Object)adaptor.create(name);
             adaptor.addChild(root_0, name_tree);
             }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:167:25: ( ',' decls= actualParameterDecls )?
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:180:25: ( ',' decls= actualParameterDecls )?
             int alt4=2;
             int LA4_0 = input.LA(1);
 
@@ -840,14 +840,14 @@ public class MViewParser extends ChameleonParser {
             }
             switch (alt4) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:167:26: ',' decls= actualParameterDecls
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:180:26: ',' decls= actualParameterDecls
                     {
-                    char_literal8=(Token)match(input,29,FOLLOW_29_in_actualParameterDecls315); if (state.failed) return retval;
+                    char_literal8=(Token)match(input,29,FOLLOW_29_in_actualParameterDecls328); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     char_literal8_tree = (Object)adaptor.create(char_literal8);
                     adaptor.addChild(root_0, char_literal8_tree);
                     }
-                    pushFollow(FOLLOW_actualParameterDecls_in_actualParameterDecls319);
+                    pushFollow(FOLLOW_actualParameterDecls_in_actualParameterDecls332);
                     decls=actualParameterDecls();
 
                     state._fsp--;
@@ -902,7 +902,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "serviceDeclaration"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:183:1: serviceDeclaration returns [Service element] : res= serviceHeaderDeclaration ;
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:196:1: serviceDeclaration returns [Service element] : res= serviceHeaderDeclaration ;
     public final MViewParser.serviceDeclaration_return serviceDeclaration() throws RecognitionException {
         MViewParser.serviceDeclaration_return retval = new MViewParser.serviceDeclaration_return();
         retval.start = input.LT(1);
@@ -915,12 +915,12 @@ public class MViewParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 8) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:184:2: (res= serviceHeaderDeclaration )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:184:4: res= serviceHeaderDeclaration
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:197:2: (res= serviceHeaderDeclaration )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:197:4: res= serviceHeaderDeclaration
             {
             root_0 = (Object)adaptor.nil();
 
-            pushFollow(FOLLOW_serviceHeaderDeclaration_in_serviceDeclaration352);
+            pushFollow(FOLLOW_serviceHeaderDeclaration_in_serviceDeclaration365);
             res=serviceHeaderDeclaration();
 
             state._fsp--;
@@ -962,7 +962,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "serviceHeaderDeclaration"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:190:1: serviceHeaderDeclaration returns [Service element] : rtype= serviceReturnType name= Identifier params= formalParameters ;
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:203:1: serviceHeaderDeclaration returns [Service element] : rtype= serviceReturnType name= Identifier params= formalParameters ;
     public final MViewParser.serviceHeaderDeclaration_return serviceHeaderDeclaration() throws RecognitionException {
         MViewParser.serviceHeaderDeclaration_return retval = new MViewParser.serviceHeaderDeclaration_return();
         retval.start = input.LT(1);
@@ -979,23 +979,23 @@ public class MViewParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 9) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:191:2: (rtype= serviceReturnType name= Identifier params= formalParameters )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:191:4: rtype= serviceReturnType name= Identifier params= formalParameters
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:204:2: (rtype= serviceReturnType name= Identifier params= formalParameters )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:204:4: rtype= serviceReturnType name= Identifier params= formalParameters
             {
             root_0 = (Object)adaptor.nil();
 
-            pushFollow(FOLLOW_serviceReturnType_in_serviceHeaderDeclaration372);
+            pushFollow(FOLLOW_serviceReturnType_in_serviceHeaderDeclaration385);
             rtype=serviceReturnType();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, rtype.getTree());
-            name=(Token)match(input,Identifier,FOLLOW_Identifier_in_serviceHeaderDeclaration376); if (state.failed) return retval;
+            name=(Token)match(input,Identifier,FOLLOW_Identifier_in_serviceHeaderDeclaration389); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             name_tree = (Object)adaptor.create(name);
             adaptor.addChild(root_0, name_tree);
             }
-            pushFollow(FOLLOW_formalParameters_in_serviceHeaderDeclaration380);
+            pushFollow(FOLLOW_formalParameters_in_serviceHeaderDeclaration393);
             params=formalParameters();
 
             state._fsp--;
@@ -1039,7 +1039,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "serviceReturnType"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:199:1: serviceReturnType returns [BasicTypeReference value] : (vt= voidType | tp= type ) ;
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:212:1: serviceReturnType returns [BasicTypeReference value] : (vt= voidType | tp= type ) ;
     public final MViewParser.serviceReturnType_return serviceReturnType() throws RecognitionException {
         MViewParser.serviceReturnType_return retval = new MViewParser.serviceReturnType_return();
         retval.start = input.LT(1);
@@ -1054,12 +1054,12 @@ public class MViewParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 10) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:200:2: ( (vt= voidType | tp= type ) )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:200:4: (vt= voidType | tp= type )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:213:2: ( (vt= voidType | tp= type ) )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:213:4: (vt= voidType | tp= type )
             {
             root_0 = (Object)adaptor.nil();
 
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:200:4: (vt= voidType | tp= type )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:213:4: (vt= voidType | tp= type )
             int alt5=2;
             int LA5_0 = input.LA(1);
 
@@ -1078,9 +1078,9 @@ public class MViewParser extends ChameleonParser {
             }
             switch (alt5) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:201:4: vt= voidType
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:214:4: vt= voidType
                     {
-                    pushFollow(FOLLOW_voidType_in_serviceReturnType406);
+                    pushFollow(FOLLOW_voidType_in_serviceReturnType419);
                     vt=voidType();
 
                     state._fsp--;
@@ -1093,9 +1093,9 @@ public class MViewParser extends ChameleonParser {
                     }
                     break;
                 case 2 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:203:4: tp= type
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:216:4: tp= type
                     {
-                    pushFollow(FOLLOW_type_in_serviceReturnType420);
+                    pushFollow(FOLLOW_type_in_serviceReturnType433);
                     tp=type();
 
                     state._fsp--;
@@ -1141,7 +1141,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "formalParameters"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:208:1: formalParameters returns [List<FormalParameter> lst] : '(' (pars= formalParameterDecls )? ')' ;
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:221:1: formalParameters returns [List<FormalParameter> lst] : '(' (pars= formalParameterDecls )? ')' ;
     public final MViewParser.formalParameters_return formalParameters() throws RecognitionException {
         MViewParser.formalParameters_return retval = new MViewParser.formalParameters_return();
         retval.start = input.LT(1);
@@ -1159,17 +1159,17 @@ public class MViewParser extends ChameleonParser {
         retval.lst = new ArrayList<FormalParameter>();
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 11) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:210:5: ( '(' (pars= formalParameterDecls )? ')' )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:210:9: '(' (pars= formalParameterDecls )? ')'
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:223:5: ( '(' (pars= formalParameterDecls )? ')' )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:223:9: '(' (pars= formalParameterDecls )? ')'
             {
             root_0 = (Object)adaptor.nil();
 
-            char_literal9=(Token)match(input,27,FOLLOW_27_in_formalParameters452); if (state.failed) return retval;
+            char_literal9=(Token)match(input,27,FOLLOW_27_in_formalParameters465); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal9_tree = (Object)adaptor.create(char_literal9);
             adaptor.addChild(root_0, char_literal9_tree);
             }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:210:13: (pars= formalParameterDecls )?
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:223:13: (pars= formalParameterDecls )?
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -1178,9 +1178,9 @@ public class MViewParser extends ChameleonParser {
             }
             switch (alt6) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:210:14: pars= formalParameterDecls
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:223:14: pars= formalParameterDecls
                     {
-                    pushFollow(FOLLOW_formalParameterDecls_in_formalParameters457);
+                    pushFollow(FOLLOW_formalParameterDecls_in_formalParameters470);
                     pars=formalParameterDecls();
 
                     state._fsp--;
@@ -1195,7 +1195,7 @@ public class MViewParser extends ChameleonParser {
 
             }
 
-            char_literal10=(Token)match(input,28,FOLLOW_28_in_formalParameters463); if (state.failed) return retval;
+            char_literal10=(Token)match(input,28,FOLLOW_28_in_formalParameters476); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal10_tree = (Object)adaptor.create(char_literal10);
             adaptor.addChild(root_0, char_literal10_tree);
@@ -1231,7 +1231,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "formalParameterDecls"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:214:1: formalParameterDecls returns [List<FormalParameter> lst] : t= type name= Identifier ( ',' decls= formalParameterDecls )? ;
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:227:1: formalParameterDecls returns [List<FormalParameter> lst] : t= type name= Identifier ( ',' decls= formalParameterDecls )? ;
     public final MViewParser.formalParameterDecls_return formalParameterDecls() throws RecognitionException {
         MViewParser.formalParameterDecls_return retval = new MViewParser.formalParameterDecls_return();
         retval.start = input.LT(1);
@@ -1250,23 +1250,23 @@ public class MViewParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 12) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:215:5: (t= type name= Identifier ( ',' decls= formalParameterDecls )? )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:215:9: t= type name= Identifier ( ',' decls= formalParameterDecls )?
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:228:5: (t= type name= Identifier ( ',' decls= formalParameterDecls )? )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:228:9: t= type name= Identifier ( ',' decls= formalParameterDecls )?
             {
             root_0 = (Object)adaptor.nil();
 
-            pushFollow(FOLLOW_type_in_formalParameterDecls489);
+            pushFollow(FOLLOW_type_in_formalParameterDecls502);
             t=type();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, t.getTree());
-            name=(Token)match(input,Identifier,FOLLOW_Identifier_in_formalParameterDecls493); if (state.failed) return retval;
+            name=(Token)match(input,Identifier,FOLLOW_Identifier_in_formalParameterDecls506); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             name_tree = (Object)adaptor.create(name);
             adaptor.addChild(root_0, name_tree);
             }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:215:32: ( ',' decls= formalParameterDecls )?
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:228:32: ( ',' decls= formalParameterDecls )?
             int alt7=2;
             int LA7_0 = input.LA(1);
 
@@ -1275,14 +1275,14 @@ public class MViewParser extends ChameleonParser {
             }
             switch (alt7) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:215:33: ',' decls= formalParameterDecls
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:228:33: ',' decls= formalParameterDecls
                     {
-                    char_literal11=(Token)match(input,29,FOLLOW_29_in_formalParameterDecls496); if (state.failed) return retval;
+                    char_literal11=(Token)match(input,29,FOLLOW_29_in_formalParameterDecls509); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     char_literal11_tree = (Object)adaptor.create(char_literal11);
                     adaptor.addChild(root_0, char_literal11_tree);
                     }
-                    pushFollow(FOLLOW_formalParameterDecls_in_formalParameterDecls500);
+                    pushFollow(FOLLOW_formalParameterDecls_in_formalParameterDecls513);
                     decls=formalParameterDecls();
 
                     state._fsp--;
@@ -1341,7 +1341,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "pointcutServiceSignatureDecl"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:236:1: pointcutServiceSignatureDecl returns [ServiceSignature element] : rtype= ( Identifier | '*' ) sig= ( Identifier | '*' ) pars= pointcutServiceSignatureParameters ;
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:249:1: pointcutServiceSignatureDecl returns [ServiceSignature element] : rtype= ( Identifier | '*' ) sig= ( Identifier | '*' ) pars= pointcutServiceSignatureParameters ;
     public final MViewParser.pointcutServiceSignatureDecl_return pointcutServiceSignatureDecl() throws RecognitionException {
         MViewParser.pointcutServiceSignatureDecl_return retval = new MViewParser.pointcutServiceSignatureDecl_return();
         retval.start = input.LT(1);
@@ -1358,8 +1358,8 @@ public class MViewParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 13) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:237:2: (rtype= ( Identifier | '*' ) sig= ( Identifier | '*' ) pars= pointcutServiceSignatureParameters )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:237:4: rtype= ( Identifier | '*' ) sig= ( Identifier | '*' ) pars= pointcutServiceSignatureParameters
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:250:2: (rtype= ( Identifier | '*' ) sig= ( Identifier | '*' ) pars= pointcutServiceSignatureParameters )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:250:4: rtype= ( Identifier | '*' ) sig= ( Identifier | '*' ) pars= pointcutServiceSignatureParameters
             {
             root_0 = (Object)adaptor.nil();
 
@@ -1387,7 +1387,7 @@ public class MViewParser extends ChameleonParser {
                 throw mse;
             }
 
-            pushFollow(FOLLOW_pointcutServiceSignatureParameters_in_pointcutServiceSignatureDecl551);
+            pushFollow(FOLLOW_pointcutServiceSignatureParameters_in_pointcutServiceSignatureDecl564);
             pars=pointcutServiceSignatureParameters();
 
             state._fsp--;
@@ -1429,7 +1429,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "pointcutServiceSignatureParameters"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:243:1: pointcutServiceSignatureParameters returns [List<Pair<String,String>> lst] : '(' ( pointcutServiceSignatureParameterDecls[$lst] )? ')' ;
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:256:1: pointcutServiceSignatureParameters returns [List<Pair<String,String>> lst] : '(' ( pointcutServiceSignatureParameterDecls[$lst] )? ')' ;
     public final MViewParser.pointcutServiceSignatureParameters_return pointcutServiceSignatureParameters() throws RecognitionException {
         MViewParser.pointcutServiceSignatureParameters_return retval = new MViewParser.pointcutServiceSignatureParameters_return();
         retval.start = input.LT(1);
@@ -1447,17 +1447,17 @@ public class MViewParser extends ChameleonParser {
         retval.lst = new ArrayList<Pair<String,String>>();
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 14) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:245:2: ( '(' ( pointcutServiceSignatureParameterDecls[$lst] )? ')' )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:245:4: '(' ( pointcutServiceSignatureParameterDecls[$lst] )? ')'
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:258:2: ( '(' ( pointcutServiceSignatureParameterDecls[$lst] )? ')' )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:258:4: '(' ( pointcutServiceSignatureParameterDecls[$lst] )? ')'
             {
             root_0 = (Object)adaptor.nil();
 
-            char_literal12=(Token)match(input,27,FOLLOW_27_in_pointcutServiceSignatureParameters574); if (state.failed) return retval;
+            char_literal12=(Token)match(input,27,FOLLOW_27_in_pointcutServiceSignatureParameters587); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal12_tree = (Object)adaptor.create(char_literal12);
             adaptor.addChild(root_0, char_literal12_tree);
             }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:245:8: ( pointcutServiceSignatureParameterDecls[$lst] )?
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:258:8: ( pointcutServiceSignatureParameterDecls[$lst] )?
             int alt8=2;
             int LA8_0 = input.LA(1);
 
@@ -1466,9 +1466,9 @@ public class MViewParser extends ChameleonParser {
             }
             switch (alt8) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:245:9: pointcutServiceSignatureParameterDecls[$lst]
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:258:9: pointcutServiceSignatureParameterDecls[$lst]
                     {
-                    pushFollow(FOLLOW_pointcutServiceSignatureParameterDecls_in_pointcutServiceSignatureParameters577);
+                    pushFollow(FOLLOW_pointcutServiceSignatureParameterDecls_in_pointcutServiceSignatureParameters590);
                     pointcutServiceSignatureParameterDecls13=pointcutServiceSignatureParameterDecls(retval.lst);
 
                     state._fsp--;
@@ -1480,7 +1480,7 @@ public class MViewParser extends ChameleonParser {
 
             }
 
-            char_literal14=(Token)match(input,28,FOLLOW_28_in_pointcutServiceSignatureParameters583); if (state.failed) return retval;
+            char_literal14=(Token)match(input,28,FOLLOW_28_in_pointcutServiceSignatureParameters596); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal14_tree = (Object)adaptor.create(char_literal14);
             adaptor.addChild(root_0, char_literal14_tree);
@@ -1515,7 +1515,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "pointcutServiceSignatureParameterDecls"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:249:1: pointcutServiceSignatureParameterDecls[List<Pair<String,String>> lst] : t= ( Identifier | '*' ) (name= Identifier )? ( ',' pointcutServiceSignatureParameterDecls[$lst] )? ;
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:262:1: pointcutServiceSignatureParameterDecls[List<Pair<String,String>> lst] : t= ( Identifier | '*' ) (name= Identifier )? ( ',' pointcutServiceSignatureParameterDecls[$lst] )? ;
     public final MViewParser.pointcutServiceSignatureParameterDecls_return pointcutServiceSignatureParameterDecls(List<Pair<String,String>> lst) throws RecognitionException {
         MViewParser.pointcutServiceSignatureParameterDecls_return retval = new MViewParser.pointcutServiceSignatureParameterDecls_return();
         retval.start = input.LT(1);
@@ -1534,8 +1534,8 @@ public class MViewParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 15) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:250:2: (t= ( Identifier | '*' ) (name= Identifier )? ( ',' pointcutServiceSignatureParameterDecls[$lst] )? )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:250:4: t= ( Identifier | '*' ) (name= Identifier )? ( ',' pointcutServiceSignatureParameterDecls[$lst] )?
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:263:2: (t= ( Identifier | '*' ) (name= Identifier )? ( ',' pointcutServiceSignatureParameterDecls[$lst] )? )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:263:4: t= ( Identifier | '*' ) (name= Identifier )? ( ',' pointcutServiceSignatureParameterDecls[$lst] )?
             {
             root_0 = (Object)adaptor.nil();
 
@@ -1551,7 +1551,7 @@ public class MViewParser extends ChameleonParser {
                 throw mse;
             }
 
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:250:23: (name= Identifier )?
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:263:23: (name= Identifier )?
             int alt9=2;
             int LA9_0 = input.LA(1);
 
@@ -1560,9 +1560,9 @@ public class MViewParser extends ChameleonParser {
             }
             switch (alt9) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:250:24: name= Identifier
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:263:24: name= Identifier
                     {
-                    name=(Token)match(input,Identifier,FOLLOW_Identifier_in_pointcutServiceSignatureParameterDecls607); if (state.failed) return retval;
+                    name=(Token)match(input,Identifier,FOLLOW_Identifier_in_pointcutServiceSignatureParameterDecls620); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     name_tree = (Object)adaptor.create(name);
                     adaptor.addChild(root_0, name_tree);
@@ -1573,7 +1573,7 @@ public class MViewParser extends ChameleonParser {
 
             }
 
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:250:42: ( ',' pointcutServiceSignatureParameterDecls[$lst] )?
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:263:42: ( ',' pointcutServiceSignatureParameterDecls[$lst] )?
             int alt10=2;
             int LA10_0 = input.LA(1);
 
@@ -1582,14 +1582,14 @@ public class MViewParser extends ChameleonParser {
             }
             switch (alt10) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:250:43: ',' pointcutServiceSignatureParameterDecls[$lst]
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:263:43: ',' pointcutServiceSignatureParameterDecls[$lst]
                     {
-                    char_literal15=(Token)match(input,29,FOLLOW_29_in_pointcutServiceSignatureParameterDecls612); if (state.failed) return retval;
+                    char_literal15=(Token)match(input,29,FOLLOW_29_in_pointcutServiceSignatureParameterDecls625); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     char_literal15_tree = (Object)adaptor.create(char_literal15);
                     adaptor.addChild(root_0, char_literal15_tree);
                     }
-                    pushFollow(FOLLOW_pointcutServiceSignatureParameterDecls_in_pointcutServiceSignatureParameterDecls614);
+                    pushFollow(FOLLOW_pointcutServiceSignatureParameterDecls_in_pointcutServiceSignatureParameterDecls627);
                     pointcutServiceSignatureParameterDecls16=pointcutServiceSignatureParameterDecls(lst);
 
                     state._fsp--;
@@ -1638,7 +1638,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "connectorDeclaration"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:263:1: connectorDeclaration returns [Connector element] : (abs= abstractModifier )? conkw= 'connector' name= Identifier ( refinementDeclaration[$element,Connector.class] )? connectorBody[$element] ;
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:276:1: connectorDeclaration returns [Connector element] : (abs= abstractModifier )? conkw= 'connector' name= Identifier ( refinementDeclaration[$element,Connector.class] )? connectorBody[$element] ;
     public final MViewParser.connectorDeclaration_return connectorDeclaration() throws RecognitionException {
         MViewParser.connectorDeclaration_return retval = new MViewParser.connectorDeclaration_return();
         retval.start = input.LT(1);
@@ -1659,12 +1659,12 @@ public class MViewParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 16) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:264:2: ( (abs= abstractModifier )? conkw= 'connector' name= Identifier ( refinementDeclaration[$element,Connector.class] )? connectorBody[$element] )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:264:4: (abs= abstractModifier )? conkw= 'connector' name= Identifier ( refinementDeclaration[$element,Connector.class] )? connectorBody[$element]
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:277:2: ( (abs= abstractModifier )? conkw= 'connector' name= Identifier ( refinementDeclaration[$element,Connector.class] )? connectorBody[$element] )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:277:4: (abs= abstractModifier )? conkw= 'connector' name= Identifier ( refinementDeclaration[$element,Connector.class] )? connectorBody[$element]
             {
             root_0 = (Object)adaptor.nil();
 
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:264:4: (abs= abstractModifier )?
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:277:4: (abs= abstractModifier )?
             int alt11=2;
             int LA11_0 = input.LA(1);
 
@@ -1673,9 +1673,9 @@ public class MViewParser extends ChameleonParser {
             }
             switch (alt11) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:264:5: abs= abstractModifier
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:277:5: abs= abstractModifier
                     {
-                    pushFollow(FOLLOW_abstractModifier_in_connectorDeclaration645);
+                    pushFollow(FOLLOW_abstractModifier_in_connectorDeclaration658);
                     abs=abstractModifier();
 
                     state._fsp--;
@@ -1687,12 +1687,12 @@ public class MViewParser extends ChameleonParser {
 
             }
 
-            conkw=(Token)match(input,31,FOLLOW_31_in_connectorDeclaration651); if (state.failed) return retval;
+            conkw=(Token)match(input,31,FOLLOW_31_in_connectorDeclaration664); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             conkw_tree = (Object)adaptor.create(conkw);
             adaptor.addChild(root_0, conkw_tree);
             }
-            name=(Token)match(input,Identifier,FOLLOW_Identifier_in_connectorDeclaration655); if (state.failed) return retval;
+            name=(Token)match(input,Identifier,FOLLOW_Identifier_in_connectorDeclaration668); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             name_tree = (Object)adaptor.create(name);
             adaptor.addChild(root_0, name_tree);
@@ -1709,7 +1709,7 @@ public class MViewParser extends ChameleonParser {
               			setLocation(retval.element,name,"__NAME");
               		
             }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:274:3: ( refinementDeclaration[$element,Connector.class] )?
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:287:3: ( refinementDeclaration[$element,Connector.class] )?
             int alt12=2;
             int LA12_0 = input.LA(1);
 
@@ -1718,9 +1718,9 @@ public class MViewParser extends ChameleonParser {
             }
             switch (alt12) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:274:4: refinementDeclaration[$element,Connector.class]
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:287:4: refinementDeclaration[$element,Connector.class]
                     {
-                    pushFollow(FOLLOW_refinementDeclaration_in_connectorDeclaration663);
+                    pushFollow(FOLLOW_refinementDeclaration_in_connectorDeclaration676);
                     refinementDeclaration17=refinementDeclaration(retval.element, Connector.class);
 
                     state._fsp--;
@@ -1732,7 +1732,7 @@ public class MViewParser extends ChameleonParser {
 
             }
 
-            pushFollow(FOLLOW_connectorBody_in_connectorDeclaration670);
+            pushFollow(FOLLOW_connectorBody_in_connectorDeclaration683);
             connectorBody18=connectorBody(retval.element);
 
             state._fsp--;
@@ -1768,7 +1768,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "connectorBody"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:279:1: connectorBody[Connector element] : '{' ( connectorBodyDeclaration[$element] )* '}' ;
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:292:1: connectorBody[Connector element] : '{' ( connectorBodyDeclaration[$element] )* '}' ;
     public final MViewParser.connectorBody_return connectorBody(Connector element) throws RecognitionException {
         MViewParser.connectorBody_return retval = new MViewParser.connectorBody_return();
         retval.start = input.LT(1);
@@ -1785,17 +1785,17 @@ public class MViewParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 17) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:280:2: ( '{' ( connectorBodyDeclaration[$element] )* '}' )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:280:4: '{' ( connectorBodyDeclaration[$element] )* '}'
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:293:2: ( '{' ( connectorBodyDeclaration[$element] )* '}' )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:293:4: '{' ( connectorBodyDeclaration[$element] )* '}'
             {
             root_0 = (Object)adaptor.nil();
 
-            char_literal19=(Token)match(input,24,FOLLOW_24_in_connectorBody684); if (state.failed) return retval;
+            char_literal19=(Token)match(input,24,FOLLOW_24_in_connectorBody697); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal19_tree = (Object)adaptor.create(char_literal19);
             adaptor.addChild(root_0, char_literal19_tree);
             }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:280:8: ( connectorBodyDeclaration[$element] )*
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:293:8: ( connectorBodyDeclaration[$element] )*
             loop13:
             do {
                 int alt13=2;
@@ -1810,7 +1810,7 @@ public class MViewParser extends ChameleonParser {
             	case 1 :
             	    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:0:0: connectorBodyDeclaration[$element]
             	    {
-            	    pushFollow(FOLLOW_connectorBodyDeclaration_in_connectorBody686);
+            	    pushFollow(FOLLOW_connectorBodyDeclaration_in_connectorBody699);
             	    connectorBodyDeclaration20=connectorBodyDeclaration(element);
 
             	    state._fsp--;
@@ -1825,7 +1825,7 @@ public class MViewParser extends ChameleonParser {
                 }
             } while (true);
 
-            char_literal21=(Token)match(input,25,FOLLOW_25_in_connectorBody690); if (state.failed) return retval;
+            char_literal21=(Token)match(input,25,FOLLOW_25_in_connectorBody703); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal21_tree = (Object)adaptor.create(char_literal21);
             adaptor.addChild(root_0, char_literal21_tree);
@@ -1860,7 +1860,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "connectorBodyDeclaration"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:284:1: connectorBodyDeclaration[Connector element] : (aoc= connectorAOCompositionDeclaration | moduleRequireDependencyDeclaration[$element] );
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:297:1: connectorBodyDeclaration[Connector element] : (aoc= connectorAOCompositionDeclaration | moduleRequireDependencyDeclaration[$element] );
     public final MViewParser.connectorBodyDeclaration_return connectorBodyDeclaration(Connector element) throws RecognitionException {
         MViewParser.connectorBodyDeclaration_return retval = new MViewParser.connectorBodyDeclaration_return();
         retval.start = input.LT(1);
@@ -1875,7 +1875,7 @@ public class MViewParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 18) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:285:2: (aoc= connectorAOCompositionDeclaration | moduleRequireDependencyDeclaration[$element] )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:298:2: (aoc= connectorAOCompositionDeclaration | moduleRequireDependencyDeclaration[$element] )
             int alt14=2;
             int LA14_0 = input.LA(1);
 
@@ -1894,11 +1894,11 @@ public class MViewParser extends ChameleonParser {
             }
             switch (alt14) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:285:4: aoc= connectorAOCompositionDeclaration
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:298:4: aoc= connectorAOCompositionDeclaration
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_connectorAOCompositionDeclaration_in_connectorBodyDeclaration705);
+                    pushFollow(FOLLOW_connectorAOCompositionDeclaration_in_connectorBodyDeclaration718);
                     aoc=connectorAOCompositionDeclaration();
 
                     state._fsp--;
@@ -1913,11 +1913,11 @@ public class MViewParser extends ChameleonParser {
                     }
                     break;
                 case 2 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:288:4: moduleRequireDependencyDeclaration[$element]
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:301:4: moduleRequireDependencyDeclaration[$element]
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_moduleRequireDependencyDeclaration_in_connectorBodyDeclaration712);
+                    pushFollow(FOLLOW_moduleRequireDependencyDeclaration_in_connectorBodyDeclaration725);
                     moduleRequireDependencyDeclaration22=moduleRequireDependencyDeclaration(element);
 
                     state._fsp--;
@@ -1956,7 +1956,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "connectorAOCompositionDeclaration"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:292:1: connectorAOCompositionDeclaration returns [AOComposition element] : (abs= abstractModifier )? kw= 'ao-composition' name= Identifier ( refinementDeclarationSingle[$element,AOComposition.class] )? connectorAOCompositionBody[$element] ;
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:305:1: connectorAOCompositionDeclaration returns [AOComposition element] : (abs= abstractModifier )? kw= 'ao-composition' name= Identifier ( refinementDeclarationSingle[$element,AOComposition.class] )? connectorAOCompositionBody[$element] ;
     public final MViewParser.connectorAOCompositionDeclaration_return connectorAOCompositionDeclaration() throws RecognitionException {
         MViewParser.connectorAOCompositionDeclaration_return retval = new MViewParser.connectorAOCompositionDeclaration_return();
         retval.start = input.LT(1);
@@ -1977,12 +1977,12 @@ public class MViewParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 19) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:293:2: ( (abs= abstractModifier )? kw= 'ao-composition' name= Identifier ( refinementDeclarationSingle[$element,AOComposition.class] )? connectorAOCompositionBody[$element] )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:293:4: (abs= abstractModifier )? kw= 'ao-composition' name= Identifier ( refinementDeclarationSingle[$element,AOComposition.class] )? connectorAOCompositionBody[$element]
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:306:2: ( (abs= abstractModifier )? kw= 'ao-composition' name= Identifier ( refinementDeclarationSingle[$element,AOComposition.class] )? connectorAOCompositionBody[$element] )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:306:4: (abs= abstractModifier )? kw= 'ao-composition' name= Identifier ( refinementDeclarationSingle[$element,AOComposition.class] )? connectorAOCompositionBody[$element]
             {
             root_0 = (Object)adaptor.nil();
 
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:293:4: (abs= abstractModifier )?
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:306:4: (abs= abstractModifier )?
             int alt15=2;
             int LA15_0 = input.LA(1);
 
@@ -1991,9 +1991,9 @@ public class MViewParser extends ChameleonParser {
             }
             switch (alt15) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:293:5: abs= abstractModifier
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:306:5: abs= abstractModifier
                     {
-                    pushFollow(FOLLOW_abstractModifier_in_connectorAOCompositionDeclaration734);
+                    pushFollow(FOLLOW_abstractModifier_in_connectorAOCompositionDeclaration747);
                     abs=abstractModifier();
 
                     state._fsp--;
@@ -2005,12 +2005,12 @@ public class MViewParser extends ChameleonParser {
 
             }
 
-            kw=(Token)match(input,32,FOLLOW_32_in_connectorAOCompositionDeclaration740); if (state.failed) return retval;
+            kw=(Token)match(input,32,FOLLOW_32_in_connectorAOCompositionDeclaration753); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             kw_tree = (Object)adaptor.create(kw);
             adaptor.addChild(root_0, kw_tree);
             }
-            name=(Token)match(input,Identifier,FOLLOW_Identifier_in_connectorAOCompositionDeclaration744); if (state.failed) return retval;
+            name=(Token)match(input,Identifier,FOLLOW_Identifier_in_connectorAOCompositionDeclaration757); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             name_tree = (Object)adaptor.create(name);
             adaptor.addChild(root_0, name_tree);
@@ -2027,7 +2027,7 @@ public class MViewParser extends ChameleonParser {
               			setLocation(retval.element,name,"__NAME");
               		
             }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:303:3: ( refinementDeclarationSingle[$element,AOComposition.class] )?
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:316:3: ( refinementDeclarationSingle[$element,AOComposition.class] )?
             int alt16=2;
             int LA16_0 = input.LA(1);
 
@@ -2036,9 +2036,9 @@ public class MViewParser extends ChameleonParser {
             }
             switch (alt16) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:303:4: refinementDeclarationSingle[$element,AOComposition.class]
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:316:4: refinementDeclarationSingle[$element,AOComposition.class]
                     {
-                    pushFollow(FOLLOW_refinementDeclarationSingle_in_connectorAOCompositionDeclaration752);
+                    pushFollow(FOLLOW_refinementDeclarationSingle_in_connectorAOCompositionDeclaration765);
                     refinementDeclarationSingle23=refinementDeclarationSingle(retval.element, AOComposition.class);
 
                     state._fsp--;
@@ -2050,7 +2050,7 @@ public class MViewParser extends ChameleonParser {
 
             }
 
-            pushFollow(FOLLOW_connectorAOCompositionBody_in_connectorAOCompositionDeclaration759);
+            pushFollow(FOLLOW_connectorAOCompositionBody_in_connectorAOCompositionDeclaration772);
             connectorAOCompositionBody24=connectorAOCompositionBody(retval.element);
 
             state._fsp--;
@@ -2086,7 +2086,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "connectorAOCompositionBody"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:308:1: connectorAOCompositionBody[AOComposition element] : '{' (pc= pointcutDeclaration )? (adv= adviceDeclaration )? '}' ;
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:321:1: connectorAOCompositionBody[AOComposition element] : '{' (pc= pointcutDeclaration )? (adv= adviceDeclaration )? '}' ;
     public final MViewParser.connectorAOCompositionBody_return connectorAOCompositionBody(AOComposition element) throws RecognitionException {
         MViewParser.connectorAOCompositionBody_return retval = new MViewParser.connectorAOCompositionBody_return();
         retval.start = input.LT(1);
@@ -2105,17 +2105,17 @@ public class MViewParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 20) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:309:2: ( '{' (pc= pointcutDeclaration )? (adv= adviceDeclaration )? '}' )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:309:4: '{' (pc= pointcutDeclaration )? (adv= adviceDeclaration )? '}'
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:322:2: ( '{' (pc= pointcutDeclaration )? (adv= adviceDeclaration )? '}' )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:322:4: '{' (pc= pointcutDeclaration )? (adv= adviceDeclaration )? '}'
             {
             root_0 = (Object)adaptor.nil();
 
-            char_literal25=(Token)match(input,24,FOLLOW_24_in_connectorAOCompositionBody773); if (state.failed) return retval;
+            char_literal25=(Token)match(input,24,FOLLOW_24_in_connectorAOCompositionBody786); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal25_tree = (Object)adaptor.create(char_literal25);
             adaptor.addChild(root_0, char_literal25_tree);
             }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:310:5: (pc= pointcutDeclaration )?
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:323:5: (pc= pointcutDeclaration )?
             int alt17=2;
             int LA17_0 = input.LA(1);
 
@@ -2126,7 +2126,7 @@ public class MViewParser extends ChameleonParser {
                 case 1 :
                     // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:0:0: pc= pointcutDeclaration
                     {
-                    pushFollow(FOLLOW_pointcutDeclaration_in_connectorAOCompositionBody780);
+                    pushFollow(FOLLOW_pointcutDeclaration_in_connectorAOCompositionBody793);
                     pc=pointcutDeclaration();
 
                     state._fsp--;
@@ -2143,7 +2143,7 @@ public class MViewParser extends ChameleonParser {
               			element.setPointcut((pc!=null?pc.pointcut:null));
               		
             }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:313:6: (adv= adviceDeclaration )?
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:326:6: (adv= adviceDeclaration )?
             int alt18=2;
             int LA18_0 = input.LA(1);
 
@@ -2154,7 +2154,7 @@ public class MViewParser extends ChameleonParser {
                 case 1 :
                     // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:0:0: adv= adviceDeclaration
                     {
-                    pushFollow(FOLLOW_adviceDeclaration_in_connectorAOCompositionBody789);
+                    pushFollow(FOLLOW_adviceDeclaration_in_connectorAOCompositionBody802);
                     adv=adviceDeclaration();
 
                     state._fsp--;
@@ -2171,7 +2171,7 @@ public class MViewParser extends ChameleonParser {
               			element.setAdvice((adv!=null?adv.advice:null));
               		
             }
-            char_literal26=(Token)match(input,25,FOLLOW_25_in_connectorAOCompositionBody796); if (state.failed) return retval;
+            char_literal26=(Token)match(input,25,FOLLOW_25_in_connectorAOCompositionBody809); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal26_tree = (Object)adaptor.create(char_literal26);
             adaptor.addChild(root_0, char_literal26_tree);
@@ -2207,7 +2207,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "pointcutDeclaration"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:319:1: pointcutDeclaration returns [Pointcut pointcut] : pckw= 'pointcut' pointcutBody[$pointcut] ;
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:332:1: pointcutDeclaration returns [Pointcut pointcut] : pckw= 'pointcut' pointcutBody[$pointcut] ;
     public final MViewParser.pointcutDeclaration_return pointcutDeclaration() throws RecognitionException {
         MViewParser.pointcutDeclaration_return retval = new MViewParser.pointcutDeclaration_return();
         retval.start = input.LT(1);
@@ -2222,12 +2222,12 @@ public class MViewParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 21) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:320:2: (pckw= 'pointcut' pointcutBody[$pointcut] )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:320:4: pckw= 'pointcut' pointcutBody[$pointcut]
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:333:2: (pckw= 'pointcut' pointcutBody[$pointcut] )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:333:4: pckw= 'pointcut' pointcutBody[$pointcut]
             {
             root_0 = (Object)adaptor.nil();
 
-            pckw=(Token)match(input,33,FOLLOW_33_in_pointcutDeclaration813); if (state.failed) return retval;
+            pckw=(Token)match(input,33,FOLLOW_33_in_pointcutDeclaration826); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             pckw_tree = (Object)adaptor.create(pckw);
             adaptor.addChild(root_0, pckw_tree);
@@ -2238,7 +2238,7 @@ public class MViewParser extends ChameleonParser {
               				setKeyword(retval.pointcut,pckw);
               			
             }
-            pushFollow(FOLLOW_pointcutBody_in_pointcutDeclaration817);
+            pushFollow(FOLLOW_pointcutBody_in_pointcutDeclaration830);
             pointcutBody27=pointcutBody(retval.pointcut);
 
             state._fsp--;
@@ -2274,7 +2274,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "pointcutBody"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:327:1: pointcutBody[Pointcut pointcut] : '{' ( pointcutBodyDeclaration[$pointcut] )* '}' ;
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:340:1: pointcutBody[Pointcut pointcut] : '{' ( pointcutBodyDeclaration[$pointcut] )* '}' ;
     public final MViewParser.pointcutBody_return pointcutBody(Pointcut pointcut) throws RecognitionException {
         MViewParser.pointcutBody_return retval = new MViewParser.pointcutBody_return();
         retval.start = input.LT(1);
@@ -2291,17 +2291,17 @@ public class MViewParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 22) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:328:2: ( '{' ( pointcutBodyDeclaration[$pointcut] )* '}' )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:328:4: '{' ( pointcutBodyDeclaration[$pointcut] )* '}'
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:341:2: ( '{' ( pointcutBodyDeclaration[$pointcut] )* '}' )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:341:4: '{' ( pointcutBodyDeclaration[$pointcut] )* '}'
             {
             root_0 = (Object)adaptor.nil();
 
-            char_literal28=(Token)match(input,24,FOLLOW_24_in_pointcutBody833); if (state.failed) return retval;
+            char_literal28=(Token)match(input,24,FOLLOW_24_in_pointcutBody846); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal28_tree = (Object)adaptor.create(char_literal28);
             adaptor.addChild(root_0, char_literal28_tree);
             }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:328:8: ( pointcutBodyDeclaration[$pointcut] )*
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:341:8: ( pointcutBodyDeclaration[$pointcut] )*
             loop19:
             do {
                 int alt19=2;
@@ -2316,7 +2316,7 @@ public class MViewParser extends ChameleonParser {
             	case 1 :
             	    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:0:0: pointcutBodyDeclaration[$pointcut]
             	    {
-            	    pushFollow(FOLLOW_pointcutBodyDeclaration_in_pointcutBody835);
+            	    pushFollow(FOLLOW_pointcutBodyDeclaration_in_pointcutBody848);
             	    pointcutBodyDeclaration29=pointcutBodyDeclaration(pointcut);
 
             	    state._fsp--;
@@ -2331,7 +2331,7 @@ public class MViewParser extends ChameleonParser {
                 }
             } while (true);
 
-            char_literal30=(Token)match(input,25,FOLLOW_25_in_pointcutBody839); if (state.failed) return retval;
+            char_literal30=(Token)match(input,25,FOLLOW_25_in_pointcutBody852); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal30_tree = (Object)adaptor.create(char_literal30);
             adaptor.addChild(root_0, char_literal30_tree);
@@ -2366,7 +2366,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "pointcutBodyDeclaration"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:332:1: pointcutBodyDeclaration[Pointcut pointcut] : ( pointcutKindDeclaration[$pointcut] | pointcutSignatureDeclaration[$pointcut] | pointcutActorDeclaration[$pointcut] );
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:345:1: pointcutBodyDeclaration[Pointcut pointcut] : ( pointcutKindDeclaration[$pointcut] | pointcutSignatureDeclaration[$pointcut] | pointcutActorDeclaration[$pointcut] );
     public final MViewParser.pointcutBodyDeclaration_return pointcutBodyDeclaration(Pointcut pointcut) throws RecognitionException {
         MViewParser.pointcutBodyDeclaration_return retval = new MViewParser.pointcutBodyDeclaration_return();
         retval.start = input.LT(1);
@@ -2383,7 +2383,7 @@ public class MViewParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 23) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:333:2: ( pointcutKindDeclaration[$pointcut] | pointcutSignatureDeclaration[$pointcut] | pointcutActorDeclaration[$pointcut] )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:346:2: ( pointcutKindDeclaration[$pointcut] | pointcutSignatureDeclaration[$pointcut] | pointcutActorDeclaration[$pointcut] )
             int alt20=3;
             switch ( input.LA(1) ) {
             case 34:
@@ -2414,11 +2414,11 @@ public class MViewParser extends ChameleonParser {
 
             switch (alt20) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:333:4: pointcutKindDeclaration[$pointcut]
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:346:4: pointcutKindDeclaration[$pointcut]
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_pointcutKindDeclaration_in_pointcutBodyDeclaration853);
+                    pushFollow(FOLLOW_pointcutKindDeclaration_in_pointcutBodyDeclaration866);
                     pointcutKindDeclaration31=pointcutKindDeclaration(pointcut);
 
                     state._fsp--;
@@ -2428,11 +2428,11 @@ public class MViewParser extends ChameleonParser {
                     }
                     break;
                 case 2 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:334:4: pointcutSignatureDeclaration[$pointcut]
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:347:4: pointcutSignatureDeclaration[$pointcut]
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_pointcutSignatureDeclaration_in_pointcutBodyDeclaration859);
+                    pushFollow(FOLLOW_pointcutSignatureDeclaration_in_pointcutBodyDeclaration872);
                     pointcutSignatureDeclaration32=pointcutSignatureDeclaration(pointcut);
 
                     state._fsp--;
@@ -2442,11 +2442,11 @@ public class MViewParser extends ChameleonParser {
                     }
                     break;
                 case 3 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:335:4: pointcutActorDeclaration[$pointcut]
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:348:4: pointcutActorDeclaration[$pointcut]
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_pointcutActorDeclaration_in_pointcutBodyDeclaration865);
+                    pushFollow(FOLLOW_pointcutActorDeclaration_in_pointcutBodyDeclaration878);
                     pointcutActorDeclaration33=pointcutActorDeclaration(pointcut);
 
                     state._fsp--;
@@ -2484,7 +2484,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "pointcutKindDeclaration"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:339:1: pointcutKindDeclaration[Pointcut pointcut] : kikw= 'kind' ':' kind= joinPointKind ';' ;
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:352:1: pointcutKindDeclaration[Pointcut pointcut] : kikw= 'kind' ':' kind= joinPointKind ';' ;
     public final MViewParser.pointcutKindDeclaration_return pointcutKindDeclaration(Pointcut pointcut) throws RecognitionException {
         MViewParser.pointcutKindDeclaration_return retval = new MViewParser.pointcutKindDeclaration_return();
         retval.start = input.LT(1);
@@ -2503,28 +2503,28 @@ public class MViewParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 24) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:340:2: (kikw= 'kind' ':' kind= joinPointKind ';' )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:340:4: kikw= 'kind' ':' kind= joinPointKind ';'
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:353:2: (kikw= 'kind' ':' kind= joinPointKind ';' )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:353:4: kikw= 'kind' ':' kind= joinPointKind ';'
             {
             root_0 = (Object)adaptor.nil();
 
-            kikw=(Token)match(input,34,FOLLOW_34_in_pointcutKindDeclaration882); if (state.failed) return retval;
+            kikw=(Token)match(input,34,FOLLOW_34_in_pointcutKindDeclaration895); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             kikw_tree = (Object)adaptor.create(kikw);
             adaptor.addChild(root_0, kikw_tree);
             }
-            char_literal34=(Token)match(input,35,FOLLOW_35_in_pointcutKindDeclaration884); if (state.failed) return retval;
+            char_literal34=(Token)match(input,35,FOLLOW_35_in_pointcutKindDeclaration897); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal34_tree = (Object)adaptor.create(char_literal34);
             adaptor.addChild(root_0, char_literal34_tree);
             }
-            pushFollow(FOLLOW_joinPointKind_in_pointcutKindDeclaration888);
+            pushFollow(FOLLOW_joinPointKind_in_pointcutKindDeclaration901);
             kind=joinPointKind();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, kind.getTree());
-            char_literal35=(Token)match(input,26,FOLLOW_26_in_pointcutKindDeclaration890); if (state.failed) return retval;
+            char_literal35=(Token)match(input,26,FOLLOW_26_in_pointcutKindDeclaration903); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal35_tree = (Object)adaptor.create(char_literal35);
             adaptor.addChild(root_0, char_literal35_tree);
@@ -2565,7 +2565,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "pointcutSignatureDeclaration"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:347:1: pointcutSignatureDeclaration[Pointcut element] : (override= overrideOrExtend )? sikw= 'signature' ':' ps= pointcutSignatureBody ';' ;
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:360:1: pointcutSignatureDeclaration[Pointcut element] : (override= overrideOrExtend )? sikw= 'signature' ':' ps= pointcutSignatureBody ';' ;
     public final MViewParser.pointcutSignatureDeclaration_return pointcutSignatureDeclaration(Pointcut element) throws RecognitionException {
         MViewParser.pointcutSignatureDeclaration_return retval = new MViewParser.pointcutSignatureDeclaration_return();
         retval.start = input.LT(1);
@@ -2586,12 +2586,12 @@ public class MViewParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 25) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:348:2: ( (override= overrideOrExtend )? sikw= 'signature' ':' ps= pointcutSignatureBody ';' )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:348:4: (override= overrideOrExtend )? sikw= 'signature' ':' ps= pointcutSignatureBody ';'
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:361:2: ( (override= overrideOrExtend )? sikw= 'signature' ':' ps= pointcutSignatureBody ';' )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:361:4: (override= overrideOrExtend )? sikw= 'signature' ':' ps= pointcutSignatureBody ';'
             {
             root_0 = (Object)adaptor.nil();
 
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:348:4: (override= overrideOrExtend )?
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:361:4: (override= overrideOrExtend )?
             int alt21=2;
             int LA21_0 = input.LA(1);
 
@@ -2600,9 +2600,9 @@ public class MViewParser extends ChameleonParser {
             }
             switch (alt21) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:348:5: override= overrideOrExtend
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:361:5: override= overrideOrExtend
                     {
-                    pushFollow(FOLLOW_overrideOrExtend_in_pointcutSignatureDeclaration909);
+                    pushFollow(FOLLOW_overrideOrExtend_in_pointcutSignatureDeclaration922);
                     override=overrideOrExtend();
 
                     state._fsp--;
@@ -2614,17 +2614,17 @@ public class MViewParser extends ChameleonParser {
 
             }
 
-            sikw=(Token)match(input,36,FOLLOW_36_in_pointcutSignatureDeclaration915); if (state.failed) return retval;
+            sikw=(Token)match(input,36,FOLLOW_36_in_pointcutSignatureDeclaration928); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             sikw_tree = (Object)adaptor.create(sikw);
             adaptor.addChild(root_0, sikw_tree);
             }
-            char_literal36=(Token)match(input,35,FOLLOW_35_in_pointcutSignatureDeclaration917); if (state.failed) return retval;
+            char_literal36=(Token)match(input,35,FOLLOW_35_in_pointcutSignatureDeclaration930); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal36_tree = (Object)adaptor.create(char_literal36);
             adaptor.addChild(root_0, char_literal36_tree);
             }
-            pushFollow(FOLLOW_pointcutSignatureBody_in_pointcutSignatureDeclaration921);
+            pushFollow(FOLLOW_pointcutSignatureBody_in_pointcutSignatureDeclaration934);
             ps=pointcutSignatureBody();
 
             state._fsp--;
@@ -2641,7 +2641,7 @@ public class MViewParser extends ChameleonParser {
               			setKeyword(pcsig,sikw);
               		
             }
-            char_literal37=(Token)match(input,26,FOLLOW_26_in_pointcutSignatureDeclaration925); if (state.failed) return retval;
+            char_literal37=(Token)match(input,26,FOLLOW_26_in_pointcutSignatureDeclaration938); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal37_tree = (Object)adaptor.create(char_literal37);
             adaptor.addChild(root_0, char_literal37_tree);
@@ -2677,7 +2677,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "pointcutSignatureBody"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:359:1: pointcutSignatureBody returns [PointcutSignature element] : pointcutSignatureBodyDecls[$element] ;
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:372:1: pointcutSignatureBody returns [PointcutSignature element] : pointcutSignatureBodyDecls[$element] ;
     public final MViewParser.pointcutSignatureBody_return pointcutSignatureBody() throws RecognitionException {
         MViewParser.pointcutSignatureBody_return retval = new MViewParser.pointcutSignatureBody_return();
         retval.start = input.LT(1);
@@ -2691,12 +2691,12 @@ public class MViewParser extends ChameleonParser {
          retval.element = new PointcutSignature(); 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 26) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:361:2: ( pointcutSignatureBodyDecls[$element] )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:361:4: pointcutSignatureBodyDecls[$element]
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:374:2: ( pointcutSignatureBodyDecls[$element] )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:374:4: pointcutSignatureBodyDecls[$element]
             {
             root_0 = (Object)adaptor.nil();
 
-            pushFollow(FOLLOW_pointcutSignatureBodyDecls_in_pointcutSignatureBody944);
+            pushFollow(FOLLOW_pointcutSignatureBodyDecls_in_pointcutSignatureBody957);
             pointcutSignatureBodyDecls38=pointcutSignatureBodyDecls(retval.element);
 
             state._fsp--;
@@ -2732,7 +2732,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "pointcutSignatureBodyDecls"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:365:1: pointcutSignatureBodyDecls[PointcutSignature element] : pss= pointcutServiceSignatureDecl ( ',' pointcutSignatureBodyDecls[$element] )? ;
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:378:1: pointcutSignatureBodyDecls[PointcutSignature element] : pss= pointcutServiceSignatureDecl ( ',' pointcutSignatureBodyDecls[$element] )? ;
     public final MViewParser.pointcutSignatureBodyDecls_return pointcutSignatureBodyDecls(PointcutSignature element) throws RecognitionException {
         MViewParser.pointcutSignatureBodyDecls_return retval = new MViewParser.pointcutSignatureBodyDecls_return();
         retval.start = input.LT(1);
@@ -2749,18 +2749,18 @@ public class MViewParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 27) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:366:2: (pss= pointcutServiceSignatureDecl ( ',' pointcutSignatureBodyDecls[$element] )? )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:366:4: pss= pointcutServiceSignatureDecl ( ',' pointcutSignatureBodyDecls[$element] )?
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:379:2: (pss= pointcutServiceSignatureDecl ( ',' pointcutSignatureBodyDecls[$element] )? )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:379:4: pss= pointcutServiceSignatureDecl ( ',' pointcutSignatureBodyDecls[$element] )?
             {
             root_0 = (Object)adaptor.nil();
 
-            pushFollow(FOLLOW_pointcutServiceSignatureDecl_in_pointcutSignatureBodyDecls961);
+            pushFollow(FOLLOW_pointcutServiceSignatureDecl_in_pointcutSignatureBodyDecls974);
             pss=pointcutServiceSignatureDecl();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, pss.getTree());
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:366:37: ( ',' pointcutSignatureBodyDecls[$element] )?
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:379:37: ( ',' pointcutSignatureBodyDecls[$element] )?
             int alt22=2;
             int LA22_0 = input.LA(1);
 
@@ -2769,14 +2769,14 @@ public class MViewParser extends ChameleonParser {
             }
             switch (alt22) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:366:39: ',' pointcutSignatureBodyDecls[$element]
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:379:39: ',' pointcutSignatureBodyDecls[$element]
                     {
-                    char_literal39=(Token)match(input,29,FOLLOW_29_in_pointcutSignatureBodyDecls965); if (state.failed) return retval;
+                    char_literal39=(Token)match(input,29,FOLLOW_29_in_pointcutSignatureBodyDecls978); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     char_literal39_tree = (Object)adaptor.create(char_literal39);
                     adaptor.addChild(root_0, char_literal39_tree);
                     }
-                    pushFollow(FOLLOW_pointcutSignatureBodyDecls_in_pointcutSignatureBodyDecls967);
+                    pushFollow(FOLLOW_pointcutSignatureBodyDecls_in_pointcutSignatureBodyDecls980);
                     pointcutSignatureBodyDecls40=pointcutSignatureBodyDecls(element);
 
                     state._fsp--;
@@ -2823,7 +2823,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "pointcutActorDeclaration"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:372:1: pointcutActorDeclaration[Pointcut pointcut] : (clkw= 'caller' actor= pointcutActorBody | clkw= 'callee' actor= pointcutActorBody );
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:385:1: pointcutActorDeclaration[Pointcut pointcut] : (clkw= 'caller' actor= pointcutActorBody | clkw= 'callee' actor= pointcutActorBody );
     public final MViewParser.pointcutActorDeclaration_return pointcutActorDeclaration(Pointcut pointcut) throws RecognitionException {
         MViewParser.pointcutActorDeclaration_return retval = new MViewParser.pointcutActorDeclaration_return();
         retval.start = input.LT(1);
@@ -2838,7 +2838,7 @@ public class MViewParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 28) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:373:2: (clkw= 'caller' actor= pointcutActorBody | clkw= 'callee' actor= pointcutActorBody )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:386:2: (clkw= 'caller' actor= pointcutActorBody | clkw= 'callee' actor= pointcutActorBody )
             int alt23=2;
             int LA23_0 = input.LA(1);
 
@@ -2857,16 +2857,16 @@ public class MViewParser extends ChameleonParser {
             }
             switch (alt23) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:373:4: clkw= 'caller' actor= pointcutActorBody
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:386:4: clkw= 'caller' actor= pointcutActorBody
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    clkw=(Token)match(input,37,FOLLOW_37_in_pointcutActorDeclaration989); if (state.failed) return retval;
+                    clkw=(Token)match(input,37,FOLLOW_37_in_pointcutActorDeclaration1002); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     clkw_tree = (Object)adaptor.create(clkw);
                     adaptor.addChild(root_0, clkw_tree);
                     }
-                    pushFollow(FOLLOW_pointcutActorBody_in_pointcutActorDeclaration993);
+                    pushFollow(FOLLOW_pointcutActorBody_in_pointcutActorDeclaration1006);
                     actor=pointcutActorBody();
 
                     state._fsp--;
@@ -2882,16 +2882,16 @@ public class MViewParser extends ChameleonParser {
                     }
                     break;
                 case 2 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:378:3: clkw= 'callee' actor= pointcutActorBody
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:391:3: clkw= 'callee' actor= pointcutActorBody
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    clkw=(Token)match(input,38,FOLLOW_38_in_pointcutActorDeclaration1004); if (state.failed) return retval;
+                    clkw=(Token)match(input,38,FOLLOW_38_in_pointcutActorDeclaration1017); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     clkw_tree = (Object)adaptor.create(clkw);
                     adaptor.addChild(root_0, clkw_tree);
                     }
-                    pushFollow(FOLLOW_pointcutActorBody_in_pointcutActorDeclaration1008);
+                    pushFollow(FOLLOW_pointcutActorBody_in_pointcutActorDeclaration1021);
                     actor=pointcutActorBody();
 
                     state._fsp--;
@@ -2936,7 +2936,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "pointcutActorBody"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:389:1: pointcutActorBody returns [Actor element] : '{' ( pointcutActorBodyDecls[$element] )* '}' ;
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:402:1: pointcutActorBody returns [Actor element] : '{' ( pointcutActorBodyDecls[$element] )* '}' ;
     public final MViewParser.pointcutActorBody_return pointcutActorBody() throws RecognitionException {
         MViewParser.pointcutActorBody_return retval = new MViewParser.pointcutActorBody_return();
         retval.start = input.LT(1);
@@ -2956,17 +2956,17 @@ public class MViewParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 29) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:393:2: ( '{' ( pointcutActorBodyDecls[$element] )* '}' )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:393:4: '{' ( pointcutActorBodyDecls[$element] )* '}'
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:406:2: ( '{' ( pointcutActorBodyDecls[$element] )* '}' )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:406:4: '{' ( pointcutActorBodyDecls[$element] )* '}'
             {
             root_0 = (Object)adaptor.nil();
 
-            char_literal41=(Token)match(input,24,FOLLOW_24_in_pointcutActorBody1036); if (state.failed) return retval;
+            char_literal41=(Token)match(input,24,FOLLOW_24_in_pointcutActorBody1049); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal41_tree = (Object)adaptor.create(char_literal41);
             adaptor.addChild(root_0, char_literal41_tree);
             }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:393:8: ( pointcutActorBodyDecls[$element] )*
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:406:8: ( pointcutActorBodyDecls[$element] )*
             loop24:
             do {
                 int alt24=2;
@@ -2981,7 +2981,7 @@ public class MViewParser extends ChameleonParser {
             	case 1 :
             	    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:0:0: pointcutActorBodyDecls[$element]
             	    {
-            	    pushFollow(FOLLOW_pointcutActorBodyDecls_in_pointcutActorBody1038);
+            	    pushFollow(FOLLOW_pointcutActorBodyDecls_in_pointcutActorBody1051);
             	    pointcutActorBodyDecls42=pointcutActorBodyDecls(retval.element);
 
             	    state._fsp--;
@@ -2996,7 +2996,7 @@ public class MViewParser extends ChameleonParser {
                 }
             } while (true);
 
-            char_literal43=(Token)match(input,25,FOLLOW_25_in_pointcutActorBody1042); if (state.failed) return retval;
+            char_literal43=(Token)match(input,25,FOLLOW_25_in_pointcutActorBody1055); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal43_tree = (Object)adaptor.create(char_literal43);
             adaptor.addChild(root_0, char_literal43_tree);
@@ -3031,7 +3031,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "pointcutActorBodyDecls"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:397:1: pointcutActorBodyDecls[Actor actor] : (override= overrideOrExtend )? ( 'interface' ':' | 'component' ':' | 'application' ':' | 'instance' ':' | 'host' ':' ) pointcutActorPropDecls[prop,declClass] ';' ;
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:410:1: pointcutActorBodyDecls[Actor actor] : (override= overrideOrExtend )? ( 'interface' ':' | 'component' ':' | 'application' ':' | 'instance' ':' | 'host' ':' ) pointcutActorPropDecls[prop,declClass] ';' ;
     public final MViewParser.pointcutActorBodyDecls_return pointcutActorBodyDecls(Actor actor) throws RecognitionException {
         MViewParser.pointcutActorBodyDecls_return retval = new MViewParser.pointcutActorBodyDecls_return();
         retval.start = input.LT(1);
@@ -3072,12 +3072,12 @@ public class MViewParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 30) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:402:2: ( (override= overrideOrExtend )? ( 'interface' ':' | 'component' ':' | 'application' ':' | 'instance' ':' | 'host' ':' ) pointcutActorPropDecls[prop,declClass] ';' )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:402:4: (override= overrideOrExtend )? ( 'interface' ':' | 'component' ':' | 'application' ':' | 'instance' ':' | 'host' ':' ) pointcutActorPropDecls[prop,declClass] ';'
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:415:2: ( (override= overrideOrExtend )? ( 'interface' ':' | 'component' ':' | 'application' ':' | 'instance' ':' | 'host' ':' ) pointcutActorPropDecls[prop,declClass] ';' )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:415:4: (override= overrideOrExtend )? ( 'interface' ':' | 'component' ':' | 'application' ':' | 'instance' ':' | 'host' ':' ) pointcutActorPropDecls[prop,declClass] ';'
             {
             root_0 = (Object)adaptor.nil();
 
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:402:4: (override= overrideOrExtend )?
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:415:4: (override= overrideOrExtend )?
             int alt25=2;
             int LA25_0 = input.LA(1);
 
@@ -3086,9 +3086,9 @@ public class MViewParser extends ChameleonParser {
             }
             switch (alt25) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:402:5: override= overrideOrExtend
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:415:5: override= overrideOrExtend
                     {
-                    pushFollow(FOLLOW_overrideOrExtend_in_pointcutActorBodyDecls1063);
+                    pushFollow(FOLLOW_overrideOrExtend_in_pointcutActorBodyDecls1076);
                     override=overrideOrExtend();
 
                     state._fsp--;
@@ -3100,7 +3100,7 @@ public class MViewParser extends ChameleonParser {
 
             }
 
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:403:2: ( 'interface' ':' | 'component' ':' | 'application' ':' | 'instance' ':' | 'host' ':' )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:416:2: ( 'interface' ':' | 'component' ':' | 'application' ':' | 'instance' ':' | 'host' ':' )
             int alt26=5;
             switch ( input.LA(1) ) {
             case 23:
@@ -3138,14 +3138,14 @@ public class MViewParser extends ChameleonParser {
 
             switch (alt26) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:404:3: 'interface' ':'
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:417:3: 'interface' ':'
                     {
-                    string_literal44=(Token)match(input,23,FOLLOW_23_in_pointcutActorBodyDecls1072); if (state.failed) return retval;
+                    string_literal44=(Token)match(input,23,FOLLOW_23_in_pointcutActorBodyDecls1085); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     string_literal44_tree = (Object)adaptor.create(string_literal44);
                     adaptor.addChild(root_0, string_literal44_tree);
                     }
-                    char_literal45=(Token)match(input,35,FOLLOW_35_in_pointcutActorBodyDecls1074); if (state.failed) return retval;
+                    char_literal45=(Token)match(input,35,FOLLOW_35_in_pointcutActorBodyDecls1087); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     char_literal45_tree = (Object)adaptor.create(char_literal45);
                     adaptor.addChild(root_0, char_literal45_tree);
@@ -3159,14 +3159,14 @@ public class MViewParser extends ChameleonParser {
                     }
                     break;
                 case 2 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:408:3: 'component' ':'
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:421:3: 'component' ':'
                     {
-                    string_literal46=(Token)match(input,39,FOLLOW_39_in_pointcutActorBodyDecls1084); if (state.failed) return retval;
+                    string_literal46=(Token)match(input,39,FOLLOW_39_in_pointcutActorBodyDecls1097); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     string_literal46_tree = (Object)adaptor.create(string_literal46);
                     adaptor.addChild(root_0, string_literal46_tree);
                     }
-                    char_literal47=(Token)match(input,35,FOLLOW_35_in_pointcutActorBodyDecls1086); if (state.failed) return retval;
+                    char_literal47=(Token)match(input,35,FOLLOW_35_in_pointcutActorBodyDecls1099); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     char_literal47_tree = (Object)adaptor.create(char_literal47);
                     adaptor.addChild(root_0, char_literal47_tree);
@@ -3180,14 +3180,14 @@ public class MViewParser extends ChameleonParser {
                     }
                     break;
                 case 3 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:412:3: 'application' ':'
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:425:3: 'application' ':'
                     {
-                    string_literal48=(Token)match(input,40,FOLLOW_40_in_pointcutActorBodyDecls1095); if (state.failed) return retval;
+                    string_literal48=(Token)match(input,40,FOLLOW_40_in_pointcutActorBodyDecls1108); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     string_literal48_tree = (Object)adaptor.create(string_literal48);
                     adaptor.addChild(root_0, string_literal48_tree);
                     }
-                    char_literal49=(Token)match(input,35,FOLLOW_35_in_pointcutActorBodyDecls1097); if (state.failed) return retval;
+                    char_literal49=(Token)match(input,35,FOLLOW_35_in_pointcutActorBodyDecls1110); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     char_literal49_tree = (Object)adaptor.create(char_literal49);
                     adaptor.addChild(root_0, char_literal49_tree);
@@ -3201,14 +3201,14 @@ public class MViewParser extends ChameleonParser {
                     }
                     break;
                 case 4 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:416:3: 'instance' ':'
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:429:3: 'instance' ':'
                     {
-                    string_literal50=(Token)match(input,41,FOLLOW_41_in_pointcutActorBodyDecls1106); if (state.failed) return retval;
+                    string_literal50=(Token)match(input,41,FOLLOW_41_in_pointcutActorBodyDecls1119); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     string_literal50_tree = (Object)adaptor.create(string_literal50);
                     adaptor.addChild(root_0, string_literal50_tree);
                     }
-                    char_literal51=(Token)match(input,35,FOLLOW_35_in_pointcutActorBodyDecls1108); if (state.failed) return retval;
+                    char_literal51=(Token)match(input,35,FOLLOW_35_in_pointcutActorBodyDecls1121); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     char_literal51_tree = (Object)adaptor.create(char_literal51);
                     adaptor.addChild(root_0, char_literal51_tree);
@@ -3222,14 +3222,14 @@ public class MViewParser extends ChameleonParser {
                     }
                     break;
                 case 5 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:420:3: 'host' ':'
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:433:3: 'host' ':'
                     {
-                    string_literal52=(Token)match(input,42,FOLLOW_42_in_pointcutActorBodyDecls1117); if (state.failed) return retval;
+                    string_literal52=(Token)match(input,42,FOLLOW_42_in_pointcutActorBodyDecls1130); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     string_literal52_tree = (Object)adaptor.create(string_literal52);
                     adaptor.addChild(root_0, string_literal52_tree);
                     }
-                    char_literal53=(Token)match(input,35,FOLLOW_35_in_pointcutActorBodyDecls1119); if (state.failed) return retval;
+                    char_literal53=(Token)match(input,35,FOLLOW_35_in_pointcutActorBodyDecls1132); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     char_literal53_tree = (Object)adaptor.create(char_literal53);
                     adaptor.addChild(root_0, char_literal53_tree);
@@ -3254,13 +3254,13 @@ public class MViewParser extends ChameleonParser {
               		}
               	
             }
-            pushFollow(FOLLOW_pointcutActorPropDecls_in_pointcutActorBodyDecls1128);
+            pushFollow(FOLLOW_pointcutActorPropDecls_in_pointcutActorBodyDecls1141);
             pointcutActorPropDecls54=pointcutActorPropDecls(prop, declClass);
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, pointcutActorPropDecls54.getTree());
-            char_literal55=(Token)match(input,26,FOLLOW_26_in_pointcutActorBodyDecls1131); if (state.failed) return retval;
+            char_literal55=(Token)match(input,26,FOLLOW_26_in_pointcutActorBodyDecls1144); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal55_tree = (Object)adaptor.create(char_literal55);
             adaptor.addChild(root_0, char_literal55_tree);
@@ -3295,7 +3295,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "pointcutActorPropDecls"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:433:1: pointcutActorPropDecls[ActorProp prop,Class<? extends Declaration> declClass] : (negate= negationModifier )? apdref= pointcutActorPropDecl[$declClass] ( ',' pointcutActorPropDecls[$prop,$declClass] )? ;
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:446:1: pointcutActorPropDecls[ActorProp prop,Class<? extends Declaration> declClass] : (negate= negationModifier )? apdref= pointcutActorPropDecl[$declClass] ( ',' pointcutActorPropDecls[$prop,$declClass] )? ;
     public final MViewParser.pointcutActorPropDecls_return pointcutActorPropDecls(ActorProp prop, Class<? extends Declaration> declClass) throws RecognitionException {
         MViewParser.pointcutActorPropDecls_return retval = new MViewParser.pointcutActorPropDecls_return();
         retval.start = input.LT(1);
@@ -3314,12 +3314,12 @@ public class MViewParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 31) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:434:2: ( (negate= negationModifier )? apdref= pointcutActorPropDecl[$declClass] ( ',' pointcutActorPropDecls[$prop,$declClass] )? )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:434:5: (negate= negationModifier )? apdref= pointcutActorPropDecl[$declClass] ( ',' pointcutActorPropDecls[$prop,$declClass] )?
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:447:2: ( (negate= negationModifier )? apdref= pointcutActorPropDecl[$declClass] ( ',' pointcutActorPropDecls[$prop,$declClass] )? )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:447:5: (negate= negationModifier )? apdref= pointcutActorPropDecl[$declClass] ( ',' pointcutActorPropDecls[$prop,$declClass] )?
             {
             root_0 = (Object)adaptor.nil();
 
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:434:5: (negate= negationModifier )?
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:447:5: (negate= negationModifier )?
             int alt27=2;
             int LA27_0 = input.LA(1);
 
@@ -3328,9 +3328,9 @@ public class MViewParser extends ChameleonParser {
             }
             switch (alt27) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:434:6: negate= negationModifier
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:447:6: negate= negationModifier
                     {
-                    pushFollow(FOLLOW_negationModifier_in_pointcutActorPropDecls1148);
+                    pushFollow(FOLLOW_negationModifier_in_pointcutActorPropDecls1161);
                     negate=negationModifier();
 
                     state._fsp--;
@@ -3342,13 +3342,13 @@ public class MViewParser extends ChameleonParser {
 
             }
 
-            pushFollow(FOLLOW_pointcutActorPropDecl_in_pointcutActorPropDecls1154);
+            pushFollow(FOLLOW_pointcutActorPropDecl_in_pointcutActorPropDecls1167);
             apdref=pointcutActorPropDecl(declClass);
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, apdref.getTree());
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:434:73: ( ',' pointcutActorPropDecls[$prop,$declClass] )?
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:447:73: ( ',' pointcutActorPropDecls[$prop,$declClass] )?
             int alt28=2;
             int LA28_0 = input.LA(1);
 
@@ -3357,14 +3357,14 @@ public class MViewParser extends ChameleonParser {
             }
             switch (alt28) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:434:75: ',' pointcutActorPropDecls[$prop,$declClass]
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:447:75: ',' pointcutActorPropDecls[$prop,$declClass]
                     {
-                    char_literal56=(Token)match(input,29,FOLLOW_29_in_pointcutActorPropDecls1159); if (state.failed) return retval;
+                    char_literal56=(Token)match(input,29,FOLLOW_29_in_pointcutActorPropDecls1172); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     char_literal56_tree = (Object)adaptor.create(char_literal56);
                     adaptor.addChild(root_0, char_literal56_tree);
                     }
-                    pushFollow(FOLLOW_pointcutActorPropDecls_in_pointcutActorPropDecls1161);
+                    pushFollow(FOLLOW_pointcutActorPropDecls_in_pointcutActorPropDecls1174);
                     pointcutActorPropDecls57=pointcutActorPropDecls(prop, declClass);
 
                     state._fsp--;
@@ -3418,7 +3418,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "pointcutActorPropDecl"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:445:1: pointcutActorPropDecl[Class<? extends Declaration> declClass] returns [SimpleReference<? extends Declaration> relation] : name= Identifier ;
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:458:1: pointcutActorPropDecl[Class<? extends Declaration> declClass] returns [SimpleReference<? extends Declaration> relation] : name= Identifier ;
     public final MViewParser.pointcutActorPropDecl_return pointcutActorPropDecl(Class<? extends Declaration> declClass) throws RecognitionException {
         MViewParser.pointcutActorPropDecl_return retval = new MViewParser.pointcutActorPropDecl_return();
         retval.start = input.LT(1);
@@ -3431,12 +3431,12 @@ public class MViewParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 32) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:446:2: (name= Identifier )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:446:5: name= Identifier
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:459:2: (name= Identifier )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:459:5: name= Identifier
             {
             root_0 = (Object)adaptor.nil();
 
-            name=(Token)match(input,Identifier,FOLLOW_Identifier_in_pointcutActorPropDecl1186); if (state.failed) return retval;
+            name=(Token)match(input,Identifier,FOLLOW_Identifier_in_pointcutActorPropDecl1199); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             name_tree = (Object)adaptor.create(name);
             adaptor.addChild(root_0, name_tree);
@@ -3478,7 +3478,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "adviceDeclaration"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:454:1: adviceDeclaration returns [Advice advice] : avkw= 'advice' adviceBody[$advice] ;
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:467:1: adviceDeclaration returns [Advice advice] : avkw= 'advice' adviceBody[$advice] ;
     public final MViewParser.adviceDeclaration_return adviceDeclaration() throws RecognitionException {
         MViewParser.adviceDeclaration_return retval = new MViewParser.adviceDeclaration_return();
         retval.start = input.LT(1);
@@ -3493,12 +3493,12 @@ public class MViewParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 33) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:455:2: (avkw= 'advice' adviceBody[$advice] )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:455:4: avkw= 'advice' adviceBody[$advice]
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:468:2: (avkw= 'advice' adviceBody[$advice] )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:468:4: avkw= 'advice' adviceBody[$advice]
             {
             root_0 = (Object)adaptor.nil();
 
-            avkw=(Token)match(input,43,FOLLOW_43_in_adviceDeclaration1209); if (state.failed) return retval;
+            avkw=(Token)match(input,43,FOLLOW_43_in_adviceDeclaration1222); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             avkw_tree = (Object)adaptor.create(avkw);
             adaptor.addChild(root_0, avkw_tree);
@@ -3509,7 +3509,7 @@ public class MViewParser extends ChameleonParser {
               			setKeyword(retval.advice,avkw);
               		
             }
-            pushFollow(FOLLOW_adviceBody_in_adviceDeclaration1213);
+            pushFollow(FOLLOW_adviceBody_in_adviceDeclaration1226);
             adviceBody58=adviceBody(retval.advice);
 
             state._fsp--;
@@ -3545,7 +3545,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "adviceBody"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:462:1: adviceBody[Advice advice] : '{' ( adviceBodyDeclaration[$advice] )* '}' ;
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:475:1: adviceBody[Advice advice] : '{' ( adviceBodyDeclaration[$advice] )* '}' ;
     public final MViewParser.adviceBody_return adviceBody(Advice advice) throws RecognitionException {
         MViewParser.adviceBody_return retval = new MViewParser.adviceBody_return();
         retval.start = input.LT(1);
@@ -3562,17 +3562,17 @@ public class MViewParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 34) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:463:2: ( '{' ( adviceBodyDeclaration[$advice] )* '}' )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:463:4: '{' ( adviceBodyDeclaration[$advice] )* '}'
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:476:2: ( '{' ( adviceBodyDeclaration[$advice] )* '}' )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:476:4: '{' ( adviceBodyDeclaration[$advice] )* '}'
             {
             root_0 = (Object)adaptor.nil();
 
-            char_literal59=(Token)match(input,24,FOLLOW_24_in_adviceBody1228); if (state.failed) return retval;
+            char_literal59=(Token)match(input,24,FOLLOW_24_in_adviceBody1241); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal59_tree = (Object)adaptor.create(char_literal59);
             adaptor.addChild(root_0, char_literal59_tree);
             }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:463:8: ( adviceBodyDeclaration[$advice] )*
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:476:8: ( adviceBodyDeclaration[$advice] )*
             loop29:
             do {
                 int alt29=2;
@@ -3587,7 +3587,7 @@ public class MViewParser extends ChameleonParser {
             	case 1 :
             	    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:0:0: adviceBodyDeclaration[$advice]
             	    {
-            	    pushFollow(FOLLOW_adviceBodyDeclaration_in_adviceBody1230);
+            	    pushFollow(FOLLOW_adviceBodyDeclaration_in_adviceBody1243);
             	    adviceBodyDeclaration60=adviceBodyDeclaration(advice);
 
             	    state._fsp--;
@@ -3602,7 +3602,7 @@ public class MViewParser extends ChameleonParser {
                 }
             } while (true);
 
-            char_literal61=(Token)match(input,25,FOLLOW_25_in_adviceBody1234); if (state.failed) return retval;
+            char_literal61=(Token)match(input,25,FOLLOW_25_in_adviceBody1247); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal61_tree = (Object)adaptor.create(char_literal61);
             adaptor.addChild(root_0, char_literal61_tree);
@@ -3637,7 +3637,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "adviceBodyDeclaration"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:467:1: adviceBodyDeclaration[Advice advice] : ( adviceServiceDeclaration[$advice] | adviceTypeDeclaration[$advice] );
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:480:1: adviceBodyDeclaration[Advice advice] : ( adviceServiceDeclaration[$advice] | adviceTypeDeclaration[$advice] );
     public final MViewParser.adviceBodyDeclaration_return adviceBodyDeclaration(Advice advice) throws RecognitionException {
         MViewParser.adviceBodyDeclaration_return retval = new MViewParser.adviceBodyDeclaration_return();
         retval.start = input.LT(1);
@@ -3652,7 +3652,7 @@ public class MViewParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 35) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:468:2: ( adviceServiceDeclaration[$advice] | adviceTypeDeclaration[$advice] )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:481:2: ( adviceServiceDeclaration[$advice] | adviceTypeDeclaration[$advice] )
             int alt30=2;
             int LA30_0 = input.LA(1);
 
@@ -3671,11 +3671,11 @@ public class MViewParser extends ChameleonParser {
             }
             switch (alt30) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:468:4: adviceServiceDeclaration[$advice]
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:481:4: adviceServiceDeclaration[$advice]
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_adviceServiceDeclaration_in_adviceBodyDeclaration1249);
+                    pushFollow(FOLLOW_adviceServiceDeclaration_in_adviceBodyDeclaration1262);
                     adviceServiceDeclaration62=adviceServiceDeclaration(advice);
 
                     state._fsp--;
@@ -3685,11 +3685,11 @@ public class MViewParser extends ChameleonParser {
                     }
                     break;
                 case 2 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:469:4: adviceTypeDeclaration[$advice]
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:482:4: adviceTypeDeclaration[$advice]
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_adviceTypeDeclaration_in_adviceBodyDeclaration1255);
+                    pushFollow(FOLLOW_adviceTypeDeclaration_in_adviceBodyDeclaration1268);
                     adviceTypeDeclaration63=adviceTypeDeclaration(advice);
 
                     state._fsp--;
@@ -3727,7 +3727,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "adviceServiceDeclaration"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:473:1: adviceServiceDeclaration[Advice advice] : svkw= 'service' ':' service= serviceReferenceDeclaration ';' ;
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:486:1: adviceServiceDeclaration[Advice advice] : svkw= 'service' ':' service= serviceReferenceDeclaration ';' ;
     public final MViewParser.adviceServiceDeclaration_return adviceServiceDeclaration(Advice advice) throws RecognitionException {
         MViewParser.adviceServiceDeclaration_return retval = new MViewParser.adviceServiceDeclaration_return();
         retval.start = input.LT(1);
@@ -3746,28 +3746,28 @@ public class MViewParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 36) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:474:2: (svkw= 'service' ':' service= serviceReferenceDeclaration ';' )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:474:4: svkw= 'service' ':' service= serviceReferenceDeclaration ';'
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:487:2: (svkw= 'service' ':' service= serviceReferenceDeclaration ';' )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:487:4: svkw= 'service' ':' service= serviceReferenceDeclaration ';'
             {
             root_0 = (Object)adaptor.nil();
 
-            svkw=(Token)match(input,44,FOLLOW_44_in_adviceServiceDeclaration1273); if (state.failed) return retval;
+            svkw=(Token)match(input,44,FOLLOW_44_in_adviceServiceDeclaration1286); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             svkw_tree = (Object)adaptor.create(svkw);
             adaptor.addChild(root_0, svkw_tree);
             }
-            char_literal64=(Token)match(input,35,FOLLOW_35_in_adviceServiceDeclaration1275); if (state.failed) return retval;
+            char_literal64=(Token)match(input,35,FOLLOW_35_in_adviceServiceDeclaration1288); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal64_tree = (Object)adaptor.create(char_literal64);
             adaptor.addChild(root_0, char_literal64_tree);
             }
-            pushFollow(FOLLOW_serviceReferenceDeclaration_in_adviceServiceDeclaration1279);
+            pushFollow(FOLLOW_serviceReferenceDeclaration_in_adviceServiceDeclaration1292);
             service=serviceReferenceDeclaration();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, service.getTree());
-            char_literal65=(Token)match(input,26,FOLLOW_26_in_adviceServiceDeclaration1281); if (state.failed) return retval;
+            char_literal65=(Token)match(input,26,FOLLOW_26_in_adviceServiceDeclaration1294); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal65_tree = (Object)adaptor.create(char_literal65);
             adaptor.addChild(root_0, char_literal65_tree);
@@ -3808,7 +3808,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "adviceTypeDeclaration"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:481:1: adviceTypeDeclaration[Advice advice] : tpkw= 'type' ':' avtype= adviceType ';' ;
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:494:1: adviceTypeDeclaration[Advice advice] : tpkw= 'type' ':' avtype= adviceType ';' ;
     public final MViewParser.adviceTypeDeclaration_return adviceTypeDeclaration(Advice advice) throws RecognitionException {
         MViewParser.adviceTypeDeclaration_return retval = new MViewParser.adviceTypeDeclaration_return();
         retval.start = input.LT(1);
@@ -3827,28 +3827,28 @@ public class MViewParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 37) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:482:2: (tpkw= 'type' ':' avtype= adviceType ';' )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:482:4: tpkw= 'type' ':' avtype= adviceType ';'
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:495:2: (tpkw= 'type' ':' avtype= adviceType ';' )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:495:4: tpkw= 'type' ':' avtype= adviceType ';'
             {
             root_0 = (Object)adaptor.nil();
 
-            tpkw=(Token)match(input,45,FOLLOW_45_in_adviceTypeDeclaration1300); if (state.failed) return retval;
+            tpkw=(Token)match(input,45,FOLLOW_45_in_adviceTypeDeclaration1313); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             tpkw_tree = (Object)adaptor.create(tpkw);
             adaptor.addChild(root_0, tpkw_tree);
             }
-            char_literal66=(Token)match(input,35,FOLLOW_35_in_adviceTypeDeclaration1302); if (state.failed) return retval;
+            char_literal66=(Token)match(input,35,FOLLOW_35_in_adviceTypeDeclaration1315); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal66_tree = (Object)adaptor.create(char_literal66);
             adaptor.addChild(root_0, char_literal66_tree);
             }
-            pushFollow(FOLLOW_adviceType_in_adviceTypeDeclaration1306);
+            pushFollow(FOLLOW_adviceType_in_adviceTypeDeclaration1319);
             avtype=adviceType();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, avtype.getTree());
-            char_literal67=(Token)match(input,26,FOLLOW_26_in_adviceTypeDeclaration1308); if (state.failed) return retval;
+            char_literal67=(Token)match(input,26,FOLLOW_26_in_adviceTypeDeclaration1321); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal67_tree = (Object)adaptor.create(char_literal67);
             adaptor.addChild(root_0, char_literal67_tree);
@@ -3890,7 +3890,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "componentDeclaration"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:494:1: componentDeclaration returns [Component element] : compkw= 'component' name= Identifier componentBody[$element] ;
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:507:1: componentDeclaration returns [Component element] : compkw= 'component' name= Identifier componentBody[$element] ;
     public final MViewParser.componentDeclaration_return componentDeclaration() throws RecognitionException {
         MViewParser.componentDeclaration_return retval = new MViewParser.componentDeclaration_return();
         retval.start = input.LT(1);
@@ -3907,17 +3907,17 @@ public class MViewParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 38) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:495:2: (compkw= 'component' name= Identifier componentBody[$element] )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:495:5: compkw= 'component' name= Identifier componentBody[$element]
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:508:2: (compkw= 'component' name= Identifier componentBody[$element] )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:508:5: compkw= 'component' name= Identifier componentBody[$element]
             {
             root_0 = (Object)adaptor.nil();
 
-            compkw=(Token)match(input,39,FOLLOW_39_in_componentDeclaration1335); if (state.failed) return retval;
+            compkw=(Token)match(input,39,FOLLOW_39_in_componentDeclaration1348); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             compkw_tree = (Object)adaptor.create(compkw);
             adaptor.addChild(root_0, compkw_tree);
             }
-            name=(Token)match(input,Identifier,FOLLOW_Identifier_in_componentDeclaration1339); if (state.failed) return retval;
+            name=(Token)match(input,Identifier,FOLLOW_Identifier_in_componentDeclaration1352); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             name_tree = (Object)adaptor.create(name);
             adaptor.addChild(root_0, name_tree);
@@ -3929,7 +3929,7 @@ public class MViewParser extends ChameleonParser {
                  			setLocation(retval.element,name,"__NAME");
               		
             }
-            pushFollow(FOLLOW_componentBody_in_componentDeclaration1343);
+            pushFollow(FOLLOW_componentBody_in_componentDeclaration1356);
             componentBody68=componentBody(retval.element);
 
             state._fsp--;
@@ -3965,7 +3965,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "componentBody"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:503:1: componentBody[Component element] : '{' ( componentBodyDeclaration[$element] )* '}' ;
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:516:1: componentBody[Component element] : '{' ( componentBodyDeclaration[$element] )* '}' ;
     public final MViewParser.componentBody_return componentBody(Component element) throws RecognitionException {
         MViewParser.componentBody_return retval = new MViewParser.componentBody_return();
         retval.start = input.LT(1);
@@ -3982,17 +3982,17 @@ public class MViewParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 39) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:504:2: ( '{' ( componentBodyDeclaration[$element] )* '}' )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:504:4: '{' ( componentBodyDeclaration[$element] )* '}'
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:517:2: ( '{' ( componentBodyDeclaration[$element] )* '}' )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:517:4: '{' ( componentBodyDeclaration[$element] )* '}'
             {
             root_0 = (Object)adaptor.nil();
 
-            char_literal69=(Token)match(input,24,FOLLOW_24_in_componentBody1365); if (state.failed) return retval;
+            char_literal69=(Token)match(input,24,FOLLOW_24_in_componentBody1378); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal69_tree = (Object)adaptor.create(char_literal69);
             adaptor.addChild(root_0, char_literal69_tree);
             }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:504:8: ( componentBodyDeclaration[$element] )*
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:517:8: ( componentBodyDeclaration[$element] )*
             loop31:
             do {
                 int alt31=2;
@@ -4007,7 +4007,7 @@ public class MViewParser extends ChameleonParser {
             	case 1 :
             	    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:0:0: componentBodyDeclaration[$element]
             	    {
-            	    pushFollow(FOLLOW_componentBodyDeclaration_in_componentBody1367);
+            	    pushFollow(FOLLOW_componentBodyDeclaration_in_componentBody1380);
             	    componentBodyDeclaration70=componentBodyDeclaration(element);
 
             	    state._fsp--;
@@ -4022,7 +4022,7 @@ public class MViewParser extends ChameleonParser {
                 }
             } while (true);
 
-            char_literal71=(Token)match(input,25,FOLLOW_25_in_componentBody1371); if (state.failed) return retval;
+            char_literal71=(Token)match(input,25,FOLLOW_25_in_componentBody1384); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal71_tree = (Object)adaptor.create(char_literal71);
             adaptor.addChild(root_0, char_literal71_tree);
@@ -4057,7 +4057,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "componentBodyDeclaration"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:508:1: componentBodyDeclaration[Component element] : ( moduleRequireDependencyDeclaration[$element] | moduleProvideDependencyDeclaration[$element] );
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:521:1: componentBodyDeclaration[Component element] : ( moduleRequireDependencyDeclaration[$element] | moduleProvideDependencyDeclaration[$element] );
     public final MViewParser.componentBodyDeclaration_return componentBodyDeclaration(Component element) throws RecognitionException {
         MViewParser.componentBodyDeclaration_return retval = new MViewParser.componentBodyDeclaration_return();
         retval.start = input.LT(1);
@@ -4072,7 +4072,7 @@ public class MViewParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 40) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:509:2: ( moduleRequireDependencyDeclaration[$element] | moduleProvideDependencyDeclaration[$element] )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:522:2: ( moduleRequireDependencyDeclaration[$element] | moduleProvideDependencyDeclaration[$element] )
             int alt32=2;
             int LA32_0 = input.LA(1);
 
@@ -4091,11 +4091,11 @@ public class MViewParser extends ChameleonParser {
             }
             switch (alt32) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:509:4: moduleRequireDependencyDeclaration[$element]
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:522:4: moduleRequireDependencyDeclaration[$element]
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_moduleRequireDependencyDeclaration_in_componentBodyDeclaration1389);
+                    pushFollow(FOLLOW_moduleRequireDependencyDeclaration_in_componentBodyDeclaration1402);
                     moduleRequireDependencyDeclaration72=moduleRequireDependencyDeclaration(element);
 
                     state._fsp--;
@@ -4105,11 +4105,11 @@ public class MViewParser extends ChameleonParser {
                     }
                     break;
                 case 2 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:510:4: moduleProvideDependencyDeclaration[$element]
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:523:4: moduleProvideDependencyDeclaration[$element]
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_moduleProvideDependencyDeclaration_in_componentBodyDeclaration1395);
+                    pushFollow(FOLLOW_moduleProvideDependencyDeclaration_in_componentBodyDeclaration1408);
                     moduleProvideDependencyDeclaration73=moduleProvideDependencyDeclaration(element);
 
                     state._fsp--;
@@ -4148,7 +4148,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "moduleDependencyBody"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:520:1: moduleDependencyBody returns [List<SimpleReference> elements] : '{' (decls= commaSeparatedBodyDecls[Interface.class] )? '}' ;
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:533:1: moduleDependencyBody returns [List<SimpleReference> elements] : '{' (decls= commaSeparatedBodyDecls[Interface.class] )? '}' ;
     public final MViewParser.moduleDependencyBody_return moduleDependencyBody() throws RecognitionException {
         MViewParser.moduleDependencyBody_return retval = new MViewParser.moduleDependencyBody_return();
         retval.start = input.LT(1);
@@ -4166,17 +4166,17 @@ public class MViewParser extends ChameleonParser {
          retval.elements = new ArrayList<SimpleReference>(); 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 41) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:522:2: ( '{' (decls= commaSeparatedBodyDecls[Interface.class] )? '}' )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:522:4: '{' (decls= commaSeparatedBodyDecls[Interface.class] )? '}'
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:535:2: ( '{' (decls= commaSeparatedBodyDecls[Interface.class] )? '}' )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:535:4: '{' (decls= commaSeparatedBodyDecls[Interface.class] )? '}'
             {
             root_0 = (Object)adaptor.nil();
 
-            char_literal74=(Token)match(input,24,FOLLOW_24_in_moduleDependencyBody1423); if (state.failed) return retval;
+            char_literal74=(Token)match(input,24,FOLLOW_24_in_moduleDependencyBody1436); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal74_tree = (Object)adaptor.create(char_literal74);
             adaptor.addChild(root_0, char_literal74_tree);
             }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:522:8: (decls= commaSeparatedBodyDecls[Interface.class] )?
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:535:8: (decls= commaSeparatedBodyDecls[Interface.class] )?
             int alt33=2;
             int LA33_0 = input.LA(1);
 
@@ -4185,9 +4185,9 @@ public class MViewParser extends ChameleonParser {
             }
             switch (alt33) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:522:9: decls= commaSeparatedBodyDecls[Interface.class]
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:535:9: decls= commaSeparatedBodyDecls[Interface.class]
                     {
-                    pushFollow(FOLLOW_commaSeparatedBodyDecls_in_moduleDependencyBody1428);
+                    pushFollow(FOLLOW_commaSeparatedBodyDecls_in_moduleDependencyBody1441);
                     decls=commaSeparatedBodyDecls(Interface.class);
 
                     state._fsp--;
@@ -4202,7 +4202,7 @@ public class MViewParser extends ChameleonParser {
 
             }
 
-            char_literal75=(Token)match(input,25,FOLLOW_25_in_moduleDependencyBody1436); if (state.failed) return retval;
+            char_literal75=(Token)match(input,25,FOLLOW_25_in_moduleDependencyBody1449); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal75_tree = (Object)adaptor.create(char_literal75);
             adaptor.addChild(root_0, char_literal75_tree);
@@ -4237,7 +4237,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "moduleRequireDependencyDeclaration"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:526:1: moduleRequireDependencyDeclaration[Module element] : rekw= 'require' rd= moduleDependencyBody ;
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:539:1: moduleRequireDependencyDeclaration[Module element] : rekw= 'require' rd= moduleDependencyBody ;
     public final MViewParser.moduleRequireDependencyDeclaration_return moduleRequireDependencyDeclaration(Module element) throws RecognitionException {
         MViewParser.moduleRequireDependencyDeclaration_return retval = new MViewParser.moduleRequireDependencyDeclaration_return();
         retval.start = input.LT(1);
@@ -4252,17 +4252,17 @@ public class MViewParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 42) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:527:2: (rekw= 'require' rd= moduleDependencyBody )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:527:4: rekw= 'require' rd= moduleDependencyBody
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:540:2: (rekw= 'require' rd= moduleDependencyBody )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:540:4: rekw= 'require' rd= moduleDependencyBody
             {
             root_0 = (Object)adaptor.nil();
 
-            rekw=(Token)match(input,46,FOLLOW_46_in_moduleRequireDependencyDeclaration1453); if (state.failed) return retval;
+            rekw=(Token)match(input,46,FOLLOW_46_in_moduleRequireDependencyDeclaration1466); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             rekw_tree = (Object)adaptor.create(rekw);
             adaptor.addChild(root_0, rekw_tree);
             }
-            pushFollow(FOLLOW_moduleDependencyBody_in_moduleRequireDependencyDeclaration1457);
+            pushFollow(FOLLOW_moduleDependencyBody_in_moduleRequireDependencyDeclaration1470);
             rd=moduleDependencyBody();
 
             state._fsp--;
@@ -4305,7 +4305,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "moduleProvideDependencyDeclaration"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:535:1: moduleProvideDependencyDeclaration[Module element] : 'provide' rd= moduleDependencyBody ;
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:548:1: moduleProvideDependencyDeclaration[Module element] : 'provide' rd= moduleDependencyBody ;
     public final MViewParser.moduleProvideDependencyDeclaration_return moduleProvideDependencyDeclaration(Module element) throws RecognitionException {
         MViewParser.moduleProvideDependencyDeclaration_return retval = new MViewParser.moduleProvideDependencyDeclaration_return();
         retval.start = input.LT(1);
@@ -4320,17 +4320,17 @@ public class MViewParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 43) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:536:2: ( 'provide' rd= moduleDependencyBody )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:536:4: 'provide' rd= moduleDependencyBody
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:549:2: ( 'provide' rd= moduleDependencyBody )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:549:4: 'provide' rd= moduleDependencyBody
             {
             root_0 = (Object)adaptor.nil();
 
-            string_literal76=(Token)match(input,47,FOLLOW_47_in_moduleProvideDependencyDeclaration1472); if (state.failed) return retval;
+            string_literal76=(Token)match(input,47,FOLLOW_47_in_moduleProvideDependencyDeclaration1485); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             string_literal76_tree = (Object)adaptor.create(string_literal76);
             adaptor.addChild(root_0, string_literal76_tree);
             }
-            pushFollow(FOLLOW_moduleDependencyBody_in_moduleProvideDependencyDeclaration1476);
+            pushFollow(FOLLOW_moduleDependencyBody_in_moduleProvideDependencyDeclaration1489);
             rd=moduleDependencyBody();
 
             state._fsp--;
@@ -4374,7 +4374,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "applicationDeclaration"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:575:1: applicationDeclaration returns [Application element] : (abs= abstractModifier )? appkw= 'application' name= Identifier ( refinementDeclaration[$element,Application.class] )? applicationBody[$element] ;
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:588:1: applicationDeclaration returns [Application element] : (abs= abstractModifier )? appkw= 'application' name= Identifier ( refinementDeclaration[$element,Application.class] )? applicationBody[$element] ;
     public final MViewParser.applicationDeclaration_return applicationDeclaration() throws RecognitionException {
         MViewParser.applicationDeclaration_return retval = new MViewParser.applicationDeclaration_return();
         retval.start = input.LT(1);
@@ -4395,12 +4395,12 @@ public class MViewParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 44) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:576:2: ( (abs= abstractModifier )? appkw= 'application' name= Identifier ( refinementDeclaration[$element,Application.class] )? applicationBody[$element] )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:576:4: (abs= abstractModifier )? appkw= 'application' name= Identifier ( refinementDeclaration[$element,Application.class] )? applicationBody[$element]
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:589:2: ( (abs= abstractModifier )? appkw= 'application' name= Identifier ( refinementDeclaration[$element,Application.class] )? applicationBody[$element] )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:589:4: (abs= abstractModifier )? appkw= 'application' name= Identifier ( refinementDeclaration[$element,Application.class] )? applicationBody[$element]
             {
             root_0 = (Object)adaptor.nil();
 
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:576:4: (abs= abstractModifier )?
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:589:4: (abs= abstractModifier )?
             int alt34=2;
             int LA34_0 = input.LA(1);
 
@@ -4409,9 +4409,9 @@ public class MViewParser extends ChameleonParser {
             }
             switch (alt34) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:576:5: abs= abstractModifier
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:589:5: abs= abstractModifier
                     {
-                    pushFollow(FOLLOW_abstractModifier_in_applicationDeclaration1509);
+                    pushFollow(FOLLOW_abstractModifier_in_applicationDeclaration1522);
                     abs=abstractModifier();
 
                     state._fsp--;
@@ -4423,12 +4423,12 @@ public class MViewParser extends ChameleonParser {
 
             }
 
-            appkw=(Token)match(input,40,FOLLOW_40_in_applicationDeclaration1515); if (state.failed) return retval;
+            appkw=(Token)match(input,40,FOLLOW_40_in_applicationDeclaration1528); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             appkw_tree = (Object)adaptor.create(appkw);
             adaptor.addChild(root_0, appkw_tree);
             }
-            name=(Token)match(input,Identifier,FOLLOW_Identifier_in_applicationDeclaration1519); if (state.failed) return retval;
+            name=(Token)match(input,Identifier,FOLLOW_Identifier_in_applicationDeclaration1532); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             name_tree = (Object)adaptor.create(name);
             adaptor.addChild(root_0, name_tree);
@@ -4445,7 +4445,7 @@ public class MViewParser extends ChameleonParser {
                  			setLocation(retval.element,name,"__NAME");
               		
             }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:586:3: ( refinementDeclaration[$element,Application.class] )?
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:599:3: ( refinementDeclaration[$element,Application.class] )?
             int alt35=2;
             int LA35_0 = input.LA(1);
 
@@ -4454,9 +4454,9 @@ public class MViewParser extends ChameleonParser {
             }
             switch (alt35) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:586:4: refinementDeclaration[$element,Application.class]
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:599:4: refinementDeclaration[$element,Application.class]
                     {
-                    pushFollow(FOLLOW_refinementDeclaration_in_applicationDeclaration1527);
+                    pushFollow(FOLLOW_refinementDeclaration_in_applicationDeclaration1540);
                     refinementDeclaration77=refinementDeclaration(retval.element, Application.class);
 
                     state._fsp--;
@@ -4468,7 +4468,7 @@ public class MViewParser extends ChameleonParser {
 
             }
 
-            pushFollow(FOLLOW_applicationBody_in_applicationDeclaration1534);
+            pushFollow(FOLLOW_applicationBody_in_applicationDeclaration1547);
             applicationBody78=applicationBody(retval.element);
 
             state._fsp--;
@@ -4504,7 +4504,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "applicationBody"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:591:1: applicationBody[Application element] : '{' ( applicationBodyDeclaration[$element] )* '}' ;
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:604:1: applicationBody[Application element] : '{' ( applicationBodyDeclaration[$element] )* '}' ;
     public final MViewParser.applicationBody_return applicationBody(Application element) throws RecognitionException {
         MViewParser.applicationBody_return retval = new MViewParser.applicationBody_return();
         retval.start = input.LT(1);
@@ -4521,17 +4521,17 @@ public class MViewParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 45) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:592:2: ( '{' ( applicationBodyDeclaration[$element] )* '}' )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:592:4: '{' ( applicationBodyDeclaration[$element] )* '}'
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:605:2: ( '{' ( applicationBodyDeclaration[$element] )* '}' )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:605:4: '{' ( applicationBodyDeclaration[$element] )* '}'
             {
             root_0 = (Object)adaptor.nil();
 
-            char_literal79=(Token)match(input,24,FOLLOW_24_in_applicationBody1548); if (state.failed) return retval;
+            char_literal79=(Token)match(input,24,FOLLOW_24_in_applicationBody1561); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal79_tree = (Object)adaptor.create(char_literal79);
             adaptor.addChild(root_0, char_literal79_tree);
             }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:592:8: ( applicationBodyDeclaration[$element] )*
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:605:8: ( applicationBodyDeclaration[$element] )*
             loop36:
             do {
                 int alt36=2;
@@ -4544,9 +4544,9 @@ public class MViewParser extends ChameleonParser {
 
                 switch (alt36) {
             	case 1 :
-            	    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:592:10: applicationBodyDeclaration[$element]
+            	    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:605:10: applicationBodyDeclaration[$element]
             	    {
-            	    pushFollow(FOLLOW_applicationBodyDeclaration_in_applicationBody1552);
+            	    pushFollow(FOLLOW_applicationBodyDeclaration_in_applicationBody1565);
             	    applicationBodyDeclaration80=applicationBodyDeclaration(element);
 
             	    state._fsp--;
@@ -4561,7 +4561,7 @@ public class MViewParser extends ChameleonParser {
                 }
             } while (true);
 
-            char_literal81=(Token)match(input,25,FOLLOW_25_in_applicationBody1558); if (state.failed) return retval;
+            char_literal81=(Token)match(input,25,FOLLOW_25_in_applicationBody1571); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal81_tree = (Object)adaptor.create(char_literal81);
             adaptor.addChild(root_0, char_literal81_tree);
@@ -4596,7 +4596,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "applicationBodyDeclaration"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:596:1: applicationBodyDeclaration[Application element] : (mod= moduleContainerDeclarations | hod= hostDeclaration | ind= instanceDeclaration );
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:609:1: applicationBodyDeclaration[Application element] : (mod= moduleContainerDeclarations | hod= hostDeclaration | ind= instanceDeclaration );
     public final MViewParser.applicationBodyDeclaration_return applicationBodyDeclaration(Application element) throws RecognitionException {
         MViewParser.applicationBodyDeclaration_return retval = new MViewParser.applicationBodyDeclaration_return();
         retval.start = input.LT(1);
@@ -4613,7 +4613,7 @@ public class MViewParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 46) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:597:2: (mod= moduleContainerDeclarations | hod= hostDeclaration | ind= instanceDeclaration )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:610:2: (mod= moduleContainerDeclarations | hod= hostDeclaration | ind= instanceDeclaration )
             int alt37=3;
             switch ( input.LA(1) ) {
             case 31:
@@ -4643,11 +4643,11 @@ public class MViewParser extends ChameleonParser {
 
             switch (alt37) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:597:4: mod= moduleContainerDeclarations
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:610:4: mod= moduleContainerDeclarations
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_moduleContainerDeclarations_in_applicationBodyDeclaration1574);
+                    pushFollow(FOLLOW_moduleContainerDeclarations_in_applicationBodyDeclaration1587);
                     mod=moduleContainerDeclarations();
 
                     state._fsp--;
@@ -4662,11 +4662,11 @@ public class MViewParser extends ChameleonParser {
                     }
                     break;
                 case 2 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:601:3: hod= hostDeclaration
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:614:3: hod= hostDeclaration
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_hostDeclaration_in_applicationBodyDeclaration1585);
+                    pushFollow(FOLLOW_hostDeclaration_in_applicationBodyDeclaration1598);
                     hod=hostDeclaration();
 
                     state._fsp--;
@@ -4681,11 +4681,11 @@ public class MViewParser extends ChameleonParser {
                     }
                     break;
                 case 3 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:605:3: ind= instanceDeclaration
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:618:3: ind= instanceDeclaration
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_instanceDeclaration_in_applicationBodyDeclaration1597);
+                    pushFollow(FOLLOW_instanceDeclaration_in_applicationBodyDeclaration1610);
                     ind=instanceDeclaration();
 
                     state._fsp--;
@@ -4729,7 +4729,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "deploymentDeclaration"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:615:1: deploymentDeclaration returns [Deployment element] : (abs= abstractModifier )? appkw= 'deployment' name= Identifier ( refinementDeclaration[$element,Application.class] )? applicationBody[$element] ;
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:628:1: deploymentDeclaration returns [Deployment element] : (abs= abstractModifier )? appkw= 'deployment' name= Identifier ( refinementDeclaration[$element,Application.class] )? applicationBody[$element] ;
     public final MViewParser.deploymentDeclaration_return deploymentDeclaration() throws RecognitionException {
         MViewParser.deploymentDeclaration_return retval = new MViewParser.deploymentDeclaration_return();
         retval.start = input.LT(1);
@@ -4750,12 +4750,12 @@ public class MViewParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 47) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:616:2: ( (abs= abstractModifier )? appkw= 'deployment' name= Identifier ( refinementDeclaration[$element,Application.class] )? applicationBody[$element] )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:616:4: (abs= abstractModifier )? appkw= 'deployment' name= Identifier ( refinementDeclaration[$element,Application.class] )? applicationBody[$element]
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:629:2: ( (abs= abstractModifier )? appkw= 'deployment' name= Identifier ( refinementDeclaration[$element,Application.class] )? applicationBody[$element] )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:629:4: (abs= abstractModifier )? appkw= 'deployment' name= Identifier ( refinementDeclaration[$element,Application.class] )? applicationBody[$element]
             {
             root_0 = (Object)adaptor.nil();
 
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:616:4: (abs= abstractModifier )?
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:629:4: (abs= abstractModifier )?
             int alt38=2;
             int LA38_0 = input.LA(1);
 
@@ -4764,9 +4764,9 @@ public class MViewParser extends ChameleonParser {
             }
             switch (alt38) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:616:5: abs= abstractModifier
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:629:5: abs= abstractModifier
                     {
-                    pushFollow(FOLLOW_abstractModifier_in_deploymentDeclaration1623);
+                    pushFollow(FOLLOW_abstractModifier_in_deploymentDeclaration1636);
                     abs=abstractModifier();
 
                     state._fsp--;
@@ -4778,12 +4778,12 @@ public class MViewParser extends ChameleonParser {
 
             }
 
-            appkw=(Token)match(input,48,FOLLOW_48_in_deploymentDeclaration1629); if (state.failed) return retval;
+            appkw=(Token)match(input,48,FOLLOW_48_in_deploymentDeclaration1642); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             appkw_tree = (Object)adaptor.create(appkw);
             adaptor.addChild(root_0, appkw_tree);
             }
-            name=(Token)match(input,Identifier,FOLLOW_Identifier_in_deploymentDeclaration1633); if (state.failed) return retval;
+            name=(Token)match(input,Identifier,FOLLOW_Identifier_in_deploymentDeclaration1646); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             name_tree = (Object)adaptor.create(name);
             adaptor.addChild(root_0, name_tree);
@@ -4800,7 +4800,7 @@ public class MViewParser extends ChameleonParser {
                  			setLocation(retval.element,name,"__NAME");
               		
             }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:626:3: ( refinementDeclaration[$element,Application.class] )?
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:639:3: ( refinementDeclaration[$element,Application.class] )?
             int alt39=2;
             int LA39_0 = input.LA(1);
 
@@ -4809,9 +4809,9 @@ public class MViewParser extends ChameleonParser {
             }
             switch (alt39) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:626:4: refinementDeclaration[$element,Application.class]
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:639:4: refinementDeclaration[$element,Application.class]
                     {
-                    pushFollow(FOLLOW_refinementDeclaration_in_deploymentDeclaration1641);
+                    pushFollow(FOLLOW_refinementDeclaration_in_deploymentDeclaration1654);
                     refinementDeclaration82=refinementDeclaration(retval.element, Application.class);
 
                     state._fsp--;
@@ -4823,7 +4823,7 @@ public class MViewParser extends ChameleonParser {
 
             }
 
-            pushFollow(FOLLOW_applicationBody_in_deploymentDeclaration1648);
+            pushFollow(FOLLOW_applicationBody_in_deploymentDeclaration1661);
             applicationBody83=applicationBody(retval.element);
 
             state._fsp--;
@@ -4860,7 +4860,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "instanceDeclaration"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:636:1: instanceDeclaration returns [Instance element] : tpe= Identifier name= Identifier onkw= 'on' hst= Identifier ';' ;
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:649:1: instanceDeclaration returns [Instance element] : tpe= Identifier name= Identifier onkw= 'on' hst= Identifier ';' ;
     public final MViewParser.instanceDeclaration_return instanceDeclaration() throws RecognitionException {
         MViewParser.instanceDeclaration_return retval = new MViewParser.instanceDeclaration_return();
         retval.start = input.LT(1);
@@ -4881,32 +4881,32 @@ public class MViewParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 48) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:637:2: (tpe= Identifier name= Identifier onkw= 'on' hst= Identifier ';' )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:637:4: tpe= Identifier name= Identifier onkw= 'on' hst= Identifier ';'
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:650:2: (tpe= Identifier name= Identifier onkw= 'on' hst= Identifier ';' )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:650:4: tpe= Identifier name= Identifier onkw= 'on' hst= Identifier ';'
             {
             root_0 = (Object)adaptor.nil();
 
-            tpe=(Token)match(input,Identifier,FOLLOW_Identifier_in_instanceDeclaration1671); if (state.failed) return retval;
+            tpe=(Token)match(input,Identifier,FOLLOW_Identifier_in_instanceDeclaration1684); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             tpe_tree = (Object)adaptor.create(tpe);
             adaptor.addChild(root_0, tpe_tree);
             }
-            name=(Token)match(input,Identifier,FOLLOW_Identifier_in_instanceDeclaration1675); if (state.failed) return retval;
+            name=(Token)match(input,Identifier,FOLLOW_Identifier_in_instanceDeclaration1688); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             name_tree = (Object)adaptor.create(name);
             adaptor.addChild(root_0, name_tree);
             }
-            onkw=(Token)match(input,49,FOLLOW_49_in_instanceDeclaration1679); if (state.failed) return retval;
+            onkw=(Token)match(input,49,FOLLOW_49_in_instanceDeclaration1692); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             onkw_tree = (Object)adaptor.create(onkw);
             adaptor.addChild(root_0, onkw_tree);
             }
-            hst=(Token)match(input,Identifier,FOLLOW_Identifier_in_instanceDeclaration1683); if (state.failed) return retval;
+            hst=(Token)match(input,Identifier,FOLLOW_Identifier_in_instanceDeclaration1696); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             hst_tree = (Object)adaptor.create(hst);
             adaptor.addChild(root_0, hst_tree);
             }
-            char_literal84=(Token)match(input,26,FOLLOW_26_in_instanceDeclaration1685); if (state.failed) return retval;
+            char_literal84=(Token)match(input,26,FOLLOW_26_in_instanceDeclaration1698); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal84_tree = (Object)adaptor.create(char_literal84);
             adaptor.addChild(root_0, char_literal84_tree);
@@ -4962,7 +4962,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "hostDeclaration"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:663:1: hostDeclaration returns [Host element] : hkw= 'host' name= Identifier (onkw= 'on' value= StringLiteral )? ';' ;
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:676:1: hostDeclaration returns [Host element] : hkw= 'host' name= Identifier (onkw= 'on' value= StringLiteral )? ';' ;
     public final MViewParser.hostDeclaration_return hostDeclaration() throws RecognitionException {
         MViewParser.hostDeclaration_return retval = new MViewParser.hostDeclaration_return();
         retval.start = input.LT(1);
@@ -4983,17 +4983,17 @@ public class MViewParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 49) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:664:2: (hkw= 'host' name= Identifier (onkw= 'on' value= StringLiteral )? ';' )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:664:5: hkw= 'host' name= Identifier (onkw= 'on' value= StringLiteral )? ';'
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:677:2: (hkw= 'host' name= Identifier (onkw= 'on' value= StringLiteral )? ';' )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:677:5: hkw= 'host' name= Identifier (onkw= 'on' value= StringLiteral )? ';'
             {
             root_0 = (Object)adaptor.nil();
 
-            hkw=(Token)match(input,42,FOLLOW_42_in_hostDeclaration1712); if (state.failed) return retval;
+            hkw=(Token)match(input,42,FOLLOW_42_in_hostDeclaration1725); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             hkw_tree = (Object)adaptor.create(hkw);
             adaptor.addChild(root_0, hkw_tree);
             }
-            name=(Token)match(input,Identifier,FOLLOW_Identifier_in_hostDeclaration1716); if (state.failed) return retval;
+            name=(Token)match(input,Identifier,FOLLOW_Identifier_in_hostDeclaration1729); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             name_tree = (Object)adaptor.create(name);
             adaptor.addChild(root_0, name_tree);
@@ -5007,7 +5007,7 @@ public class MViewParser extends ChameleonParser {
               			
               		
             }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:670:5: (onkw= 'on' value= StringLiteral )?
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:683:5: (onkw= 'on' value= StringLiteral )?
             int alt40=2;
             int LA40_0 = input.LA(1);
 
@@ -5016,14 +5016,14 @@ public class MViewParser extends ChameleonParser {
             }
             switch (alt40) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:670:7: onkw= 'on' value= StringLiteral
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:683:7: onkw= 'on' value= StringLiteral
                     {
-                    onkw=(Token)match(input,49,FOLLOW_49_in_hostDeclaration1724); if (state.failed) return retval;
+                    onkw=(Token)match(input,49,FOLLOW_49_in_hostDeclaration1737); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     onkw_tree = (Object)adaptor.create(onkw);
                     adaptor.addChild(root_0, onkw_tree);
                     }
-                    value=(Token)match(input,StringLiteral,FOLLOW_StringLiteral_in_hostDeclaration1728); if (state.failed) return retval;
+                    value=(Token)match(input,StringLiteral,FOLLOW_StringLiteral_in_hostDeclaration1741); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     value_tree = (Object)adaptor.create(value);
                     adaptor.addChild(root_0, value_tree);
@@ -5032,7 +5032,6 @@ public class MViewParser extends ChameleonParser {
 
                       			
                       			HostName hostName = new HostName(new SimpleNameSignature((value!=null?value.getText():null)));
-                      //			SimpleReference<HostName> hostNameRelation = new SimpleReference<HostName>((value!=null?value.getText():null),HostName.class);
                       			retval.element.setHostName(hostName);
                       			setKeyword(hostName,onkw);
                       			
@@ -5044,7 +5043,7 @@ public class MViewParser extends ChameleonParser {
 
             }
 
-            char_literal85=(Token)match(input,26,FOLLOW_26_in_hostDeclaration1735); if (state.failed) return retval;
+            char_literal85=(Token)match(input,26,FOLLOW_26_in_hostDeclaration1748); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal85_tree = (Object)adaptor.create(char_literal85);
             adaptor.addChild(root_0, char_literal85_tree);
@@ -5080,7 +5079,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "moduleContainerDeclarations"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:686:1: moduleContainerDeclarations returns [Module element] : (cod= componentDeclaration | cnd= connectorDeclaration );
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:698:1: moduleContainerDeclarations returns [Module element] : (cod= componentDeclaration | cnd= connectorDeclaration );
     public final MViewParser.moduleContainerDeclarations_return moduleContainerDeclarations() throws RecognitionException {
         MViewParser.moduleContainerDeclarations_return retval = new MViewParser.moduleContainerDeclarations_return();
         retval.start = input.LT(1);
@@ -5095,7 +5094,7 @@ public class MViewParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 50) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:687:2: (cod= componentDeclaration | cnd= connectorDeclaration )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:699:2: (cod= componentDeclaration | cnd= connectorDeclaration )
             int alt41=2;
             int LA41_0 = input.LA(1);
 
@@ -5114,11 +5113,11 @@ public class MViewParser extends ChameleonParser {
             }
             switch (alt41) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:688:3: cod= componentDeclaration
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:700:3: cod= componentDeclaration
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_componentDeclaration_in_moduleContainerDeclarations1761);
+                    pushFollow(FOLLOW_componentDeclaration_in_moduleContainerDeclarations1774);
                     cod=componentDeclaration();
 
                     state._fsp--;
@@ -5133,11 +5132,11 @@ public class MViewParser extends ChameleonParser {
                     }
                     break;
                 case 2 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:692:3: cnd= connectorDeclaration
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:704:3: cnd= connectorDeclaration
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_connectorDeclaration_in_moduleContainerDeclarations1772);
+                    pushFollow(FOLLOW_connectorDeclaration_in_moduleContainerDeclarations1785);
                     cnd=connectorDeclaration();
 
                     state._fsp--;
@@ -5180,7 +5179,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "refinementDeclarationSingle"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:719:1: refinementDeclarationSingle[RefinableDeclaration element, Class kind] : rfkw= ':' refinementDeclarationBody[$element,$kind] ;
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:731:1: refinementDeclarationSingle[RefinableDeclaration element, Class kind] : rfkw= ':' refinementDeclarationBody[$element,$kind] ;
     public final MViewParser.refinementDeclarationSingle_return refinementDeclarationSingle(RefinableDeclaration element, Class kind) throws RecognitionException {
         MViewParser.refinementDeclarationSingle_return retval = new MViewParser.refinementDeclarationSingle_return();
         retval.start = input.LT(1);
@@ -5195,17 +5194,17 @@ public class MViewParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 51) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:720:2: (rfkw= ':' refinementDeclarationBody[$element,$kind] )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:720:4: rfkw= ':' refinementDeclarationBody[$element,$kind]
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:732:2: (rfkw= ':' refinementDeclarationBody[$element,$kind] )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:732:4: rfkw= ':' refinementDeclarationBody[$element,$kind]
             {
             root_0 = (Object)adaptor.nil();
 
-            rfkw=(Token)match(input,35,FOLLOW_35_in_refinementDeclarationSingle1797); if (state.failed) return retval;
+            rfkw=(Token)match(input,35,FOLLOW_35_in_refinementDeclarationSingle1810); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             rfkw_tree = (Object)adaptor.create(rfkw);
             adaptor.addChild(root_0, rfkw_tree);
             }
-            pushFollow(FOLLOW_refinementDeclarationBody_in_refinementDeclarationSingle1799);
+            pushFollow(FOLLOW_refinementDeclarationBody_in_refinementDeclarationSingle1812);
             refinementDeclarationBody86=refinementDeclarationBody(element, kind);
 
             state._fsp--;
@@ -5246,7 +5245,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "refinementDeclaration"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:726:1: refinementDeclaration[RefinableDeclaration element, Class kind] : refinementDeclarationSingle[$element,$kind] ( ',' refinementDeclarationBody[$element,$kind] )* ;
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:738:1: refinementDeclaration[RefinableDeclaration element, Class kind] : refinementDeclarationSingle[$element,$kind] ( ',' refinementDeclarationBody[$element,$kind] )* ;
     public final MViewParser.refinementDeclaration_return refinementDeclaration(RefinableDeclaration element, Class kind) throws RecognitionException {
         MViewParser.refinementDeclaration_return retval = new MViewParser.refinementDeclaration_return();
         retval.start = input.LT(1);
@@ -5263,18 +5262,18 @@ public class MViewParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 52) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:727:2: ( refinementDeclarationSingle[$element,$kind] ( ',' refinementDeclarationBody[$element,$kind] )* )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:727:4: refinementDeclarationSingle[$element,$kind] ( ',' refinementDeclarationBody[$element,$kind] )*
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:739:2: ( refinementDeclarationSingle[$element,$kind] ( ',' refinementDeclarationBody[$element,$kind] )* )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:739:4: refinementDeclarationSingle[$element,$kind] ( ',' refinementDeclarationBody[$element,$kind] )*
             {
             root_0 = (Object)adaptor.nil();
 
-            pushFollow(FOLLOW_refinementDeclarationSingle_in_refinementDeclaration1816);
+            pushFollow(FOLLOW_refinementDeclarationSingle_in_refinementDeclaration1829);
             refinementDeclarationSingle87=refinementDeclarationSingle(element, kind);
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, refinementDeclarationSingle87.getTree());
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:727:48: ( ',' refinementDeclarationBody[$element,$kind] )*
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:739:48: ( ',' refinementDeclarationBody[$element,$kind] )*
             loop42:
             do {
                 int alt42=2;
@@ -5287,14 +5286,14 @@ public class MViewParser extends ChameleonParser {
 
                 switch (alt42) {
             	case 1 :
-            	    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:727:50: ',' refinementDeclarationBody[$element,$kind]
+            	    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:739:50: ',' refinementDeclarationBody[$element,$kind]
             	    {
-            	    char_literal88=(Token)match(input,29,FOLLOW_29_in_refinementDeclaration1821); if (state.failed) return retval;
+            	    char_literal88=(Token)match(input,29,FOLLOW_29_in_refinementDeclaration1834); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
             	    char_literal88_tree = (Object)adaptor.create(char_literal88);
             	    adaptor.addChild(root_0, char_literal88_tree);
             	    }
-            	    pushFollow(FOLLOW_refinementDeclarationBody_in_refinementDeclaration1823);
+            	    pushFollow(FOLLOW_refinementDeclarationBody_in_refinementDeclaration1836);
             	    refinementDeclarationBody89=refinementDeclarationBody(element, kind);
 
             	    state._fsp--;
@@ -5339,7 +5338,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "refinementDeclarationBody"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:731:1: refinementDeclarationBody[RefinableDeclaration element, Class kind] : parent= refinementParentDeclaration[$kind] ;
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:743:1: refinementDeclarationBody[RefinableDeclaration element, Class kind] : parent= refinementParentDeclaration[$kind] ;
     public final MViewParser.refinementDeclarationBody_return refinementDeclarationBody(RefinableDeclaration element, Class kind) throws RecognitionException {
         MViewParser.refinementDeclarationBody_return retval = new MViewParser.refinementDeclarationBody_return();
         retval.start = input.LT(1);
@@ -5352,12 +5351,12 @@ public class MViewParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 53) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:732:2: (parent= refinementParentDeclaration[$kind] )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:732:4: parent= refinementParentDeclaration[$kind]
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:744:2: (parent= refinementParentDeclaration[$kind] )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:744:4: parent= refinementParentDeclaration[$kind]
             {
             root_0 = (Object)adaptor.nil();
 
-            pushFollow(FOLLOW_refinementParentDeclaration_in_refinementDeclarationBody1844);
+            pushFollow(FOLLOW_refinementParentDeclaration_in_refinementDeclarationBody1857);
             parent=refinementParentDeclaration(kind);
 
             state._fsp--;
@@ -5400,7 +5399,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "refinementParentDeclaration"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:739:1: refinementParentDeclaration[Class kind] returns [SimpleReference reference] : name= Identifier ( '.' namex= Identifier )* ;
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:751:1: refinementParentDeclaration[Class kind] returns [SimpleReference reference] : name= Identifier ( '.' namex= Identifier )* ;
     public final MViewParser.refinementParentDeclaration_return refinementParentDeclaration(Class kind) throws RecognitionException {
         MViewParser.refinementParentDeclaration_return retval = new MViewParser.refinementParentDeclaration_return();
         retval.start = input.LT(1);
@@ -5420,12 +5419,12 @@ public class MViewParser extends ChameleonParser {
               SimpleReference target = null;
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 54) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:747:2: (name= Identifier ( '.' namex= Identifier )* )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:747:4: name= Identifier ( '.' namex= Identifier )*
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:759:2: (name= Identifier ( '.' namex= Identifier )* )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:759:4: name= Identifier ( '.' namex= Identifier )*
             {
             root_0 = (Object)adaptor.nil();
 
-            name=(Token)match(input,Identifier,FOLLOW_Identifier_in_refinementParentDeclaration1874); if (state.failed) return retval;
+            name=(Token)match(input,Identifier,FOLLOW_Identifier_in_refinementParentDeclaration1887); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             name_tree = (Object)adaptor.create(name);
             adaptor.addChild(root_0, name_tree);
@@ -5438,7 +5437,7 @@ public class MViewParser extends ChameleonParser {
               			end = name;
               		
             }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:753:3: ( '.' namex= Identifier )*
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:765:3: ( '.' namex= Identifier )*
             loop43:
             do {
                 int alt43=2;
@@ -5451,14 +5450,14 @@ public class MViewParser extends ChameleonParser {
 
                 switch (alt43) {
             	case 1 :
-            	    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:753:4: '.' namex= Identifier
+            	    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:765:4: '.' namex= Identifier
             	    {
-            	    char_literal90=(Token)match(input,50,FOLLOW_50_in_refinementParentDeclaration1881); if (state.failed) return retval;
+            	    char_literal90=(Token)match(input,50,FOLLOW_50_in_refinementParentDeclaration1894); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
             	    char_literal90_tree = (Object)adaptor.create(char_literal90);
             	    adaptor.addChild(root_0, char_literal90_tree);
             	    }
-            	    namex=(Token)match(input,Identifier,FOLLOW_Identifier_in_refinementParentDeclaration1885); if (state.failed) return retval;
+            	    namex=(Token)match(input,Identifier,FOLLOW_Identifier_in_refinementParentDeclaration1898); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
             	    namex_tree = (Object)adaptor.create(namex);
             	    adaptor.addChild(root_0, namex_tree);
@@ -5523,7 +5522,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "commaSeparatedBodyDecls"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:773:1: commaSeparatedBodyDecls[Class targetType] returns [List<SimpleReference> elements] : id= Identifier ( ',' decls= commaSeparatedBodyDecls[$targetType] )? ;
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:785:1: commaSeparatedBodyDecls[Class targetType] returns [List<SimpleReference> elements] : id= Identifier ( ',' decls= commaSeparatedBodyDecls[$targetType] )? ;
     public final MViewParser.commaSeparatedBodyDecls_return commaSeparatedBodyDecls(Class targetType) throws RecognitionException {
         MViewParser.commaSeparatedBodyDecls_return retval = new MViewParser.commaSeparatedBodyDecls_return();
         retval.start = input.LT(1);
@@ -5541,17 +5540,17 @@ public class MViewParser extends ChameleonParser {
          retval.elements = new ArrayList<SimpleReference>(); 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 55) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:775:2: (id= Identifier ( ',' decls= commaSeparatedBodyDecls[$targetType] )? )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:775:4: id= Identifier ( ',' decls= commaSeparatedBodyDecls[$targetType] )?
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:787:2: (id= Identifier ( ',' decls= commaSeparatedBodyDecls[$targetType] )? )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:787:4: id= Identifier ( ',' decls= commaSeparatedBodyDecls[$targetType] )?
             {
             root_0 = (Object)adaptor.nil();
 
-            id=(Token)match(input,Identifier,FOLLOW_Identifier_in_commaSeparatedBodyDecls1919); if (state.failed) return retval;
+            id=(Token)match(input,Identifier,FOLLOW_Identifier_in_commaSeparatedBodyDecls1932); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             id_tree = (Object)adaptor.create(id);
             adaptor.addChild(root_0, id_tree);
             }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:775:18: ( ',' decls= commaSeparatedBodyDecls[$targetType] )?
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:787:18: ( ',' decls= commaSeparatedBodyDecls[$targetType] )?
             int alt44=2;
             int LA44_0 = input.LA(1);
 
@@ -5560,14 +5559,14 @@ public class MViewParser extends ChameleonParser {
             }
             switch (alt44) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:775:19: ',' decls= commaSeparatedBodyDecls[$targetType]
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:787:19: ',' decls= commaSeparatedBodyDecls[$targetType]
                     {
-                    char_literal91=(Token)match(input,29,FOLLOW_29_in_commaSeparatedBodyDecls1922); if (state.failed) return retval;
+                    char_literal91=(Token)match(input,29,FOLLOW_29_in_commaSeparatedBodyDecls1935); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     char_literal91_tree = (Object)adaptor.create(char_literal91);
                     adaptor.addChild(root_0, char_literal91_tree);
                     }
-                    pushFollow(FOLLOW_commaSeparatedBodyDecls_in_commaSeparatedBodyDecls1926);
+                    pushFollow(FOLLOW_commaSeparatedBodyDecls_in_commaSeparatedBodyDecls1939);
                     decls=commaSeparatedBodyDecls(targetType);
 
                     state._fsp--;
@@ -5621,7 +5620,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "adviceType"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:789:1: adviceType returns [Modifier value] : ( 'before' | 'after' | 'around' );
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:801:1: adviceType returns [Modifier value] : ( 'before' | 'after' | 'around' );
     public final MViewParser.adviceType_return adviceType() throws RecognitionException {
         MViewParser.adviceType_return retval = new MViewParser.adviceType_return();
         retval.start = input.LT(1);
@@ -5638,7 +5637,7 @@ public class MViewParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 56) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:790:2: ( 'before' | 'after' | 'around' )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:802:2: ( 'before' | 'after' | 'around' )
             int alt45=3;
             switch ( input.LA(1) ) {
             case 51:
@@ -5666,11 +5665,11 @@ public class MViewParser extends ChameleonParser {
 
             switch (alt45) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:790:4: 'before'
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:802:4: 'before'
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    string_literal92=(Token)match(input,51,FOLLOW_51_in_adviceType1955); if (state.failed) return retval;
+                    string_literal92=(Token)match(input,51,FOLLOW_51_in_adviceType1968); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     string_literal92_tree = (Object)adaptor.create(string_literal92);
                     adaptor.addChild(root_0, string_literal92_tree);
@@ -5682,11 +5681,11 @@ public class MViewParser extends ChameleonParser {
                     }
                     break;
                 case 2 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:791:4: 'after'
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:803:4: 'after'
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    string_literal93=(Token)match(input,52,FOLLOW_52_in_adviceType1962); if (state.failed) return retval;
+                    string_literal93=(Token)match(input,52,FOLLOW_52_in_adviceType1975); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     string_literal93_tree = (Object)adaptor.create(string_literal93);
                     adaptor.addChild(root_0, string_literal93_tree);
@@ -5698,11 +5697,11 @@ public class MViewParser extends ChameleonParser {
                     }
                     break;
                 case 3 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:792:4: 'around'
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:804:4: 'around'
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    string_literal94=(Token)match(input,53,FOLLOW_53_in_adviceType1969); if (state.failed) return retval;
+                    string_literal94=(Token)match(input,53,FOLLOW_53_in_adviceType1982); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     string_literal94_tree = (Object)adaptor.create(string_literal94);
                     adaptor.addChild(root_0, string_literal94_tree);
@@ -5743,7 +5742,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "joinPointKind"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:796:1: joinPointKind returns [Modifier value] : ( 'execution' | 'call' );
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:808:1: joinPointKind returns [Modifier value] : ( 'execution' | 'call' );
     public final MViewParser.joinPointKind_return joinPointKind() throws RecognitionException {
         MViewParser.joinPointKind_return retval = new MViewParser.joinPointKind_return();
         retval.start = input.LT(1);
@@ -5758,7 +5757,7 @@ public class MViewParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 57) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:797:2: ( 'execution' | 'call' )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:809:2: ( 'execution' | 'call' )
             int alt46=2;
             int LA46_0 = input.LA(1);
 
@@ -5777,11 +5776,11 @@ public class MViewParser extends ChameleonParser {
             }
             switch (alt46) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:797:4: 'execution'
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:809:4: 'execution'
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    string_literal95=(Token)match(input,54,FOLLOW_54_in_joinPointKind1989); if (state.failed) return retval;
+                    string_literal95=(Token)match(input,54,FOLLOW_54_in_joinPointKind2002); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     string_literal95_tree = (Object)adaptor.create(string_literal95);
                     adaptor.addChild(root_0, string_literal95_tree);
@@ -5793,11 +5792,11 @@ public class MViewParser extends ChameleonParser {
                     }
                     break;
                 case 2 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:798:4: 'call'
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:810:4: 'call'
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    string_literal96=(Token)match(input,55,FOLLOW_55_in_joinPointKind1996); if (state.failed) return retval;
+                    string_literal96=(Token)match(input,55,FOLLOW_55_in_joinPointKind2009); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     string_literal96_tree = (Object)adaptor.create(string_literal96);
                     adaptor.addChild(root_0, string_literal96_tree);
@@ -5838,7 +5837,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "overrideOrExtend"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:802:1: overrideOrExtend returns [Modifier value] : (okw= 'override' | ekw= 'extend' );
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:814:1: overrideOrExtend returns [Modifier value] : (okw= 'override' | ekw= 'extend' );
     public final MViewParser.overrideOrExtend_return overrideOrExtend() throws RecognitionException {
         MViewParser.overrideOrExtend_return retval = new MViewParser.overrideOrExtend_return();
         retval.start = input.LT(1);
@@ -5853,7 +5852,7 @@ public class MViewParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 58) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:803:2: (okw= 'override' | ekw= 'extend' )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:815:2: (okw= 'override' | ekw= 'extend' )
             int alt47=2;
             int LA47_0 = input.LA(1);
 
@@ -5872,11 +5871,11 @@ public class MViewParser extends ChameleonParser {
             }
             switch (alt47) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:803:4: okw= 'override'
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:815:4: okw= 'override'
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    okw=(Token)match(input,56,FOLLOW_56_in_overrideOrExtend2018); if (state.failed) return retval;
+                    okw=(Token)match(input,56,FOLLOW_56_in_overrideOrExtend2031); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     okw_tree = (Object)adaptor.create(okw);
                     adaptor.addChild(root_0, okw_tree);
@@ -5888,11 +5887,11 @@ public class MViewParser extends ChameleonParser {
                     }
                     break;
                 case 2 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:804:4: ekw= 'extend'
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:816:4: ekw= 'extend'
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    ekw=(Token)match(input,57,FOLLOW_57_in_overrideOrExtend2027); if (state.failed) return retval;
+                    ekw=(Token)match(input,57,FOLLOW_57_in_overrideOrExtend2040); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     ekw_tree = (Object)adaptor.create(ekw);
                     adaptor.addChild(root_0, ekw_tree);
@@ -5933,7 +5932,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "negationModifier"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:808:1: negationModifier returns [Modifier value] : '!' ;
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:820:1: negationModifier returns [Modifier value] : '!' ;
     public final MViewParser.negationModifier_return negationModifier() throws RecognitionException {
         MViewParser.negationModifier_return retval = new MViewParser.negationModifier_return();
         retval.start = input.LT(1);
@@ -5946,12 +5945,12 @@ public class MViewParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 59) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:809:2: ( '!' )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:809:5: '!'
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:821:2: ( '!' )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:821:5: '!'
             {
             root_0 = (Object)adaptor.nil();
 
-            char_literal97=(Token)match(input,58,FOLLOW_58_in_negationModifier2047); if (state.failed) return retval;
+            char_literal97=(Token)match(input,58,FOLLOW_58_in_negationModifier2060); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal97_tree = (Object)adaptor.create(char_literal97);
             adaptor.addChild(root_0, char_literal97_tree);
@@ -5990,7 +5989,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "abstractModifier"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:812:1: abstractModifier returns [Modifier value] : akw= 'abstract' ;
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:824:1: abstractModifier returns [Modifier value] : akw= 'abstract' ;
     public final MViewParser.abstractModifier_return abstractModifier() throws RecognitionException {
         MViewParser.abstractModifier_return retval = new MViewParser.abstractModifier_return();
         retval.start = input.LT(1);
@@ -6003,12 +6002,12 @@ public class MViewParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 60) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:813:2: (akw= 'abstract' )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:813:4: akw= 'abstract'
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:825:2: (akw= 'abstract' )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:825:4: akw= 'abstract'
             {
             root_0 = (Object)adaptor.nil();
 
-            akw=(Token)match(input,59,FOLLOW_59_in_abstractModifier2067); if (state.failed) return retval;
+            akw=(Token)match(input,59,FOLLOW_59_in_abstractModifier2080); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             akw_tree = (Object)adaptor.create(akw);
             adaptor.addChild(root_0, akw_tree);
@@ -6047,7 +6046,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "voidType"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:816:1: voidType returns [BasicTypeReference value] : 'void' ;
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:828:1: voidType returns [BasicTypeReference value] : 'void' ;
     public final MViewParser.voidType_return voidType() throws RecognitionException {
         MViewParser.voidType_return retval = new MViewParser.voidType_return();
         retval.start = input.LT(1);
@@ -6060,12 +6059,12 @@ public class MViewParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 61) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:818:5: ( 'void' )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:818:7: 'void'
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:830:5: ( 'void' )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:830:7: 'void'
             {
             root_0 = (Object)adaptor.nil();
 
-            string_literal98=(Token)match(input,60,FOLLOW_60_in_voidType2090); if (state.failed) return retval;
+            string_literal98=(Token)match(input,60,FOLLOW_60_in_voidType2103); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             string_literal98_tree = (Object)adaptor.create(string_literal98);
             adaptor.addChild(root_0, string_literal98_tree);
@@ -6104,7 +6103,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "type"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:827:1: type returns [BasicTypeReference value] : (cd= classOrInterfaceType | pt= primitiveType );
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:839:1: type returns [BasicTypeReference value] : (cd= classOrInterfaceType | pt= primitiveType );
     public final MViewParser.type_return type() throws RecognitionException {
         MViewParser.type_return retval = new MViewParser.type_return();
         retval.start = input.LT(1);
@@ -6119,7 +6118,7 @@ public class MViewParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 62) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:829:2: (cd= classOrInterfaceType | pt= primitiveType )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:841:2: (cd= classOrInterfaceType | pt= primitiveType )
             int alt48=2;
             int LA48_0 = input.LA(1);
 
@@ -6138,11 +6137,11 @@ public class MViewParser extends ChameleonParser {
             }
             switch (alt48) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:829:4: cd= classOrInterfaceType
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:841:4: cd= classOrInterfaceType
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_classOrInterfaceType_in_type2122);
+                    pushFollow(FOLLOW_classOrInterfaceType_in_type2135);
                     cd=classOrInterfaceType();
 
                     state._fsp--;
@@ -6155,11 +6154,11 @@ public class MViewParser extends ChameleonParser {
                     }
                     break;
                 case 2 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:830:4: pt= primitiveType
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:842:4: pt= primitiveType
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_primitiveType_in_type2131);
+                    pushFollow(FOLLOW_primitiveType_in_type2144);
                     pt=primitiveType();
 
                     state._fsp--;
@@ -6204,7 +6203,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "classOrInterfaceType"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:834:1: classOrInterfaceType returns [BasicTypeReference element] : name= Identifier ( typeArguments )? ( '.' namex= Identifier ( typeArguments )? )* ;
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:846:1: classOrInterfaceType returns [BasicTypeReference element] : name= Identifier ( typeArguments )? ( '.' namex= Identifier ( typeArguments )? )* ;
     public final MViewParser.classOrInterfaceType_return classOrInterfaceType() throws RecognitionException {
         MViewParser.classOrInterfaceType_return retval = new MViewParser.classOrInterfaceType_return();
         retval.start = input.LT(1);
@@ -6226,12 +6225,12 @@ public class MViewParser extends ChameleonParser {
         NamespaceOrTypeReference target = null;
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 63) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:836:2: (name= Identifier ( typeArguments )? ( '.' namex= Identifier ( typeArguments )? )* )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:836:4: name= Identifier ( typeArguments )? ( '.' namex= Identifier ( typeArguments )? )*
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:848:2: (name= Identifier ( typeArguments )? ( '.' namex= Identifier ( typeArguments )? )* )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:848:4: name= Identifier ( typeArguments )? ( '.' namex= Identifier ( typeArguments )? )*
             {
             root_0 = (Object)adaptor.nil();
 
-            name=(Token)match(input,Identifier,FOLLOW_Identifier_in_classOrInterfaceType2156); if (state.failed) return retval;
+            name=(Token)match(input,Identifier,FOLLOW_Identifier_in_classOrInterfaceType2169); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             name_tree = (Object)adaptor.create(name);
             adaptor.addChild(root_0, name_tree);
@@ -6243,7 +6242,7 @@ public class MViewParser extends ChameleonParser {
               	           setLocation(retval.element,name,name); 
               	          
             }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:842:4: ( typeArguments )?
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:854:4: ( typeArguments )?
             int alt49=2;
             int LA49_0 = input.LA(1);
 
@@ -6254,7 +6253,7 @@ public class MViewParser extends ChameleonParser {
                 case 1 :
                     // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:0:0: typeArguments
                     {
-                    pushFollow(FOLLOW_typeArguments_in_classOrInterfaceType2175);
+                    pushFollow(FOLLOW_typeArguments_in_classOrInterfaceType2188);
                     typeArguments99=typeArguments();
 
                     state._fsp--;
@@ -6266,7 +6265,7 @@ public class MViewParser extends ChameleonParser {
 
             }
 
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:843:10: ( '.' namex= Identifier ( typeArguments )? )*
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:855:10: ( '.' namex= Identifier ( typeArguments )? )*
             loop51:
             do {
                 int alt51=2;
@@ -6279,14 +6278,14 @@ public class MViewParser extends ChameleonParser {
 
                 switch (alt51) {
             	case 1 :
-            	    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:843:11: '.' namex= Identifier ( typeArguments )?
+            	    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:855:11: '.' namex= Identifier ( typeArguments )?
             	    {
-            	    char_literal100=(Token)match(input,50,FOLLOW_50_in_classOrInterfaceType2189); if (state.failed) return retval;
+            	    char_literal100=(Token)match(input,50,FOLLOW_50_in_classOrInterfaceType2202); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
             	    char_literal100_tree = (Object)adaptor.create(char_literal100);
             	    adaptor.addChild(root_0, char_literal100_tree);
             	    }
-            	    namex=(Token)match(input,Identifier,FOLLOW_Identifier_in_classOrInterfaceType2193); if (state.failed) return retval;
+            	    namex=(Token)match(input,Identifier,FOLLOW_Identifier_in_classOrInterfaceType2206); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
             	    namex_tree = (Object)adaptor.create(namex);
             	    adaptor.addChild(root_0, namex_tree);
@@ -6303,7 +6302,7 @@ public class MViewParser extends ChameleonParser {
             	      	           }
             	      	          
             	    }
-            	    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:854:11: ( typeArguments )?
+            	    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:866:11: ( typeArguments )?
             	    int alt50=2;
             	    int LA50_0 = input.LA(1);
 
@@ -6314,7 +6313,7 @@ public class MViewParser extends ChameleonParser {
             	        case 1 :
             	            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:0:0: typeArguments
             	            {
-            	            pushFollow(FOLLOW_typeArguments_in_classOrInterfaceType2219);
+            	            pushFollow(FOLLOW_typeArguments_in_classOrInterfaceType2232);
             	            typeArguments101=typeArguments();
 
             	            state._fsp--;
@@ -6366,7 +6365,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "primitiveType"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:858:1: primitiveType returns [BasicTypeReference value] : ( 'boolean' | 'char' | 'byte' | 'short' | 'int' | 'long' | 'float' | 'double' );
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:870:1: primitiveType returns [BasicTypeReference value] : ( 'boolean' | 'char' | 'byte' | 'short' | 'int' | 'long' | 'float' | 'double' );
     public final MViewParser.primitiveType_return primitiveType() throws RecognitionException {
         MViewParser.primitiveType_return retval = new MViewParser.primitiveType_return();
         retval.start = input.LT(1);
@@ -6393,7 +6392,7 @@ public class MViewParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 64) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:859:5: ( 'boolean' | 'char' | 'byte' | 'short' | 'int' | 'long' | 'float' | 'double' )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:871:5: ( 'boolean' | 'char' | 'byte' | 'short' | 'int' | 'long' | 'float' | 'double' )
             int alt52=8;
             switch ( input.LA(1) ) {
             case 61:
@@ -6446,11 +6445,11 @@ public class MViewParser extends ChameleonParser {
 
             switch (alt52) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:859:9: 'boolean'
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:871:9: 'boolean'
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    string_literal102=(Token)match(input,61,FOLLOW_61_in_primitiveType2244); if (state.failed) return retval;
+                    string_literal102=(Token)match(input,61,FOLLOW_61_in_primitiveType2257); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     string_literal102_tree = (Object)adaptor.create(string_literal102);
                     adaptor.addChild(root_0, string_literal102_tree);
@@ -6462,11 +6461,11 @@ public class MViewParser extends ChameleonParser {
                     }
                     break;
                 case 2 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:860:9: 'char'
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:872:9: 'char'
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    string_literal103=(Token)match(input,62,FOLLOW_62_in_primitiveType2256); if (state.failed) return retval;
+                    string_literal103=(Token)match(input,62,FOLLOW_62_in_primitiveType2269); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     string_literal103_tree = (Object)adaptor.create(string_literal103);
                     adaptor.addChild(root_0, string_literal103_tree);
@@ -6478,11 +6477,11 @@ public class MViewParser extends ChameleonParser {
                     }
                     break;
                 case 3 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:861:9: 'byte'
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:873:9: 'byte'
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    string_literal104=(Token)match(input,63,FOLLOW_63_in_primitiveType2268); if (state.failed) return retval;
+                    string_literal104=(Token)match(input,63,FOLLOW_63_in_primitiveType2281); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     string_literal104_tree = (Object)adaptor.create(string_literal104);
                     adaptor.addChild(root_0, string_literal104_tree);
@@ -6494,11 +6493,11 @@ public class MViewParser extends ChameleonParser {
                     }
                     break;
                 case 4 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:862:9: 'short'
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:874:9: 'short'
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    string_literal105=(Token)match(input,64,FOLLOW_64_in_primitiveType2280); if (state.failed) return retval;
+                    string_literal105=(Token)match(input,64,FOLLOW_64_in_primitiveType2293); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     string_literal105_tree = (Object)adaptor.create(string_literal105);
                     adaptor.addChild(root_0, string_literal105_tree);
@@ -6510,11 +6509,11 @@ public class MViewParser extends ChameleonParser {
                     }
                     break;
                 case 5 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:863:9: 'int'
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:875:9: 'int'
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    string_literal106=(Token)match(input,65,FOLLOW_65_in_primitiveType2292); if (state.failed) return retval;
+                    string_literal106=(Token)match(input,65,FOLLOW_65_in_primitiveType2305); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     string_literal106_tree = (Object)adaptor.create(string_literal106);
                     adaptor.addChild(root_0, string_literal106_tree);
@@ -6526,11 +6525,11 @@ public class MViewParser extends ChameleonParser {
                     }
                     break;
                 case 6 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:864:9: 'long'
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:876:9: 'long'
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    string_literal107=(Token)match(input,66,FOLLOW_66_in_primitiveType2304); if (state.failed) return retval;
+                    string_literal107=(Token)match(input,66,FOLLOW_66_in_primitiveType2317); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     string_literal107_tree = (Object)adaptor.create(string_literal107);
                     adaptor.addChild(root_0, string_literal107_tree);
@@ -6542,11 +6541,11 @@ public class MViewParser extends ChameleonParser {
                     }
                     break;
                 case 7 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:865:9: 'float'
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:877:9: 'float'
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    string_literal108=(Token)match(input,67,FOLLOW_67_in_primitiveType2316); if (state.failed) return retval;
+                    string_literal108=(Token)match(input,67,FOLLOW_67_in_primitiveType2329); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     string_literal108_tree = (Object)adaptor.create(string_literal108);
                     adaptor.addChild(root_0, string_literal108_tree);
@@ -6558,11 +6557,11 @@ public class MViewParser extends ChameleonParser {
                     }
                     break;
                 case 8 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:866:9: 'double'
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:878:9: 'double'
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    string_literal109=(Token)match(input,68,FOLLOW_68_in_primitiveType2328); if (state.failed) return retval;
+                    string_literal109=(Token)match(input,68,FOLLOW_68_in_primitiveType2341); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     string_literal109_tree = (Object)adaptor.create(string_literal109);
                     adaptor.addChild(root_0, string_literal109_tree);
@@ -6602,7 +6601,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "typeArguments"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:871:1: typeArguments : '<' typeArgument ( ',' typeArgument )* '>' ;
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:883:1: typeArguments : '<' typeArgument ( ',' typeArgument )* '>' ;
     public final MViewParser.typeArguments_return typeArguments() throws RecognitionException {
         MViewParser.typeArguments_return retval = new MViewParser.typeArguments_return();
         retval.start = input.LT(1);
@@ -6623,23 +6622,23 @@ public class MViewParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 65) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:872:5: ( '<' typeArgument ( ',' typeArgument )* '>' )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:872:9: '<' typeArgument ( ',' typeArgument )* '>'
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:884:5: ( '<' typeArgument ( ',' typeArgument )* '>' )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:884:9: '<' typeArgument ( ',' typeArgument )* '>'
             {
             root_0 = (Object)adaptor.nil();
 
-            char_literal110=(Token)match(input,69,FOLLOW_69_in_typeArguments2351); if (state.failed) return retval;
+            char_literal110=(Token)match(input,69,FOLLOW_69_in_typeArguments2364); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal110_tree = (Object)adaptor.create(char_literal110);
             adaptor.addChild(root_0, char_literal110_tree);
             }
-            pushFollow(FOLLOW_typeArgument_in_typeArguments2353);
+            pushFollow(FOLLOW_typeArgument_in_typeArguments2366);
             typeArgument111=typeArgument();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, typeArgument111.getTree());
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:872:26: ( ',' typeArgument )*
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:884:26: ( ',' typeArgument )*
             loop53:
             do {
                 int alt53=2;
@@ -6652,14 +6651,14 @@ public class MViewParser extends ChameleonParser {
 
                 switch (alt53) {
             	case 1 :
-            	    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:872:28: ',' typeArgument
+            	    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:884:28: ',' typeArgument
             	    {
-            	    char_literal112=(Token)match(input,29,FOLLOW_29_in_typeArguments2357); if (state.failed) return retval;
+            	    char_literal112=(Token)match(input,29,FOLLOW_29_in_typeArguments2370); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
             	    char_literal112_tree = (Object)adaptor.create(char_literal112);
             	    adaptor.addChild(root_0, char_literal112_tree);
             	    }
-            	    pushFollow(FOLLOW_typeArgument_in_typeArguments2359);
+            	    pushFollow(FOLLOW_typeArgument_in_typeArguments2372);
             	    typeArgument113=typeArgument();
 
             	    state._fsp--;
@@ -6674,7 +6673,7 @@ public class MViewParser extends ChameleonParser {
                 }
             } while (true);
 
-            char_literal114=(Token)match(input,70,FOLLOW_70_in_typeArguments2364); if (state.failed) return retval;
+            char_literal114=(Token)match(input,70,FOLLOW_70_in_typeArguments2377); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal114_tree = (Object)adaptor.create(char_literal114);
             adaptor.addChild(root_0, char_literal114_tree);
@@ -6709,7 +6708,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "typeArgument"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:875:1: typeArgument : (t= type | '?' ( ( 'extends' | 'super' ) t= type )? );
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:887:1: typeArgument : (t= type | '?' ( ( 'extends' | 'super' ) t= type )? );
     public final MViewParser.typeArgument_return typeArgument() throws RecognitionException {
         MViewParser.typeArgument_return retval = new MViewParser.typeArgument_return();
         retval.start = input.LT(1);
@@ -6726,7 +6725,7 @@ public class MViewParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 66) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:876:5: (t= type | '?' ( ( 'extends' | 'super' ) t= type )? )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:888:5: (t= type | '?' ( ( 'extends' | 'super' ) t= type )? )
             int alt55=2;
             int LA55_0 = input.LA(1);
 
@@ -6745,11 +6744,11 @@ public class MViewParser extends ChameleonParser {
             }
             switch (alt55) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:876:9: t= type
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:888:9: t= type
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_type_in_typeArgument2389);
+                    pushFollow(FOLLOW_type_in_typeArgument2402);
                     t=type();
 
                     state._fsp--;
@@ -6759,16 +6758,16 @@ public class MViewParser extends ChameleonParser {
                     }
                     break;
                 case 2 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:876:20: '?' ( ( 'extends' | 'super' ) t= type )?
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:888:20: '?' ( ( 'extends' | 'super' ) t= type )?
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    char_literal115=(Token)match(input,71,FOLLOW_71_in_typeArgument2395); if (state.failed) return retval;
+                    char_literal115=(Token)match(input,71,FOLLOW_71_in_typeArgument2408); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     char_literal115_tree = (Object)adaptor.create(char_literal115);
                     adaptor.addChild(root_0, char_literal115_tree);
                     }
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:876:25: ( ( 'extends' | 'super' ) t= type )?
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:888:25: ( ( 'extends' | 'super' ) t= type )?
                     int alt54=2;
                     int LA54_0 = input.LA(1);
 
@@ -6777,7 +6776,7 @@ public class MViewParser extends ChameleonParser {
                     }
                     switch (alt54) {
                         case 1 :
-                            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:876:27: ( 'extends' | 'super' ) t= type
+                            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:888:27: ( 'extends' | 'super' ) t= type
                             {
                             set116=(Token)input.LT(1);
                             if ( (input.LA(1)>=72 && input.LA(1)<=73) ) {
@@ -6791,7 +6790,7 @@ public class MViewParser extends ChameleonParser {
                                 throw mse;
                             }
 
-                            pushFollow(FOLLOW_type_in_typeArgument2410);
+                            pushFollow(FOLLOW_type_in_typeArgument2423);
                             t=type();
 
                             state._fsp--;
@@ -6835,7 +6834,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "annotations"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:883:1: annotations : ( annotation )+ ;
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:895:1: annotations : ( annotation )+ ;
     public final MViewParser.annotations_return annotations() throws RecognitionException {
         MViewParser.annotations_return retval = new MViewParser.annotations_return();
         retval.start = input.LT(1);
@@ -6848,12 +6847,12 @@ public class MViewParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 67) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:884:5: ( ( annotation )+ )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:884:9: ( annotation )+
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:896:5: ( ( annotation )+ )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:896:9: ( annotation )+
             {
             root_0 = (Object)adaptor.nil();
 
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:884:9: ( annotation )+
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:896:9: ( annotation )+
             int cnt56=0;
             loop56:
             do {
@@ -6869,7 +6868,7 @@ public class MViewParser extends ChameleonParser {
             	case 1 :
             	    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:0:0: annotation
             	    {
-            	    pushFollow(FOLLOW_annotation_in_annotations2440);
+            	    pushFollow(FOLLOW_annotation_in_annotations2453);
             	    annotation117=annotation();
 
             	    state._fsp--;
@@ -6919,7 +6918,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "annotation"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:887:1: annotation : '@' annotationName ( '(' ( elementValuePairs | elementValue )? ')' )? ;
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:899:1: annotation : '@' annotationName ( '(' ( elementValuePairs | elementValue )? ')' )? ;
     public final MViewParser.annotation_return annotation() throws RecognitionException {
         MViewParser.annotation_return retval = new MViewParser.annotation_return();
         retval.start = input.LT(1);
@@ -6942,23 +6941,23 @@ public class MViewParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 68) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:888:5: ( '@' annotationName ( '(' ( elementValuePairs | elementValue )? ')' )? )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:888:9: '@' annotationName ( '(' ( elementValuePairs | elementValue )? ')' )?
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:900:5: ( '@' annotationName ( '(' ( elementValuePairs | elementValue )? ')' )? )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:900:9: '@' annotationName ( '(' ( elementValuePairs | elementValue )? ')' )?
             {
             root_0 = (Object)adaptor.nil();
 
-            char_literal118=(Token)match(input,74,FOLLOW_74_in_annotation2460); if (state.failed) return retval;
+            char_literal118=(Token)match(input,74,FOLLOW_74_in_annotation2473); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal118_tree = (Object)adaptor.create(char_literal118);
             adaptor.addChild(root_0, char_literal118_tree);
             }
-            pushFollow(FOLLOW_annotationName_in_annotation2462);
+            pushFollow(FOLLOW_annotationName_in_annotation2475);
             annotationName119=annotationName();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, annotationName119.getTree());
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:888:28: ( '(' ( elementValuePairs | elementValue )? ')' )?
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:900:28: ( '(' ( elementValuePairs | elementValue )? ')' )?
             int alt58=2;
             int LA58_0 = input.LA(1);
 
@@ -6967,14 +6966,14 @@ public class MViewParser extends ChameleonParser {
             }
             switch (alt58) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:888:30: '(' ( elementValuePairs | elementValue )? ')'
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:900:30: '(' ( elementValuePairs | elementValue )? ')'
                     {
-                    char_literal120=(Token)match(input,27,FOLLOW_27_in_annotation2466); if (state.failed) return retval;
+                    char_literal120=(Token)match(input,27,FOLLOW_27_in_annotation2479); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     char_literal120_tree = (Object)adaptor.create(char_literal120);
                     adaptor.addChild(root_0, char_literal120_tree);
                     }
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:888:34: ( elementValuePairs | elementValue )?
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:900:34: ( elementValuePairs | elementValue )?
                     int alt57=3;
                     int LA57_0 = input.LA(1);
 
@@ -6986,9 +6985,9 @@ public class MViewParser extends ChameleonParser {
                     }
                     switch (alt57) {
                         case 1 :
-                            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:888:36: elementValuePairs
+                            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:900:36: elementValuePairs
                             {
-                            pushFollow(FOLLOW_elementValuePairs_in_annotation2470);
+                            pushFollow(FOLLOW_elementValuePairs_in_annotation2483);
                             elementValuePairs121=elementValuePairs();
 
                             state._fsp--;
@@ -6998,9 +6997,9 @@ public class MViewParser extends ChameleonParser {
                             }
                             break;
                         case 2 :
-                            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:888:56: elementValue
+                            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:900:56: elementValue
                             {
-                            pushFollow(FOLLOW_elementValue_in_annotation2474);
+                            pushFollow(FOLLOW_elementValue_in_annotation2487);
                             elementValue122=elementValue();
 
                             state._fsp--;
@@ -7012,7 +7011,7 @@ public class MViewParser extends ChameleonParser {
 
                     }
 
-                    char_literal123=(Token)match(input,28,FOLLOW_28_in_annotation2479); if (state.failed) return retval;
+                    char_literal123=(Token)match(input,28,FOLLOW_28_in_annotation2492); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     char_literal123_tree = (Object)adaptor.create(char_literal123);
                     adaptor.addChild(root_0, char_literal123_tree);
@@ -7053,7 +7052,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "annotationName"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:891:1: annotationName : Identifier ( '.' Identifier )* ;
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:903:1: annotationName : Identifier ( '.' Identifier )* ;
     public final MViewParser.annotationName_return annotationName() throws RecognitionException {
         MViewParser.annotationName_return retval = new MViewParser.annotationName_return();
         retval.start = input.LT(1);
@@ -7070,17 +7069,17 @@ public class MViewParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 69) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:892:5: ( Identifier ( '.' Identifier )* )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:892:7: Identifier ( '.' Identifier )*
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:904:5: ( Identifier ( '.' Identifier )* )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:904:7: Identifier ( '.' Identifier )*
             {
             root_0 = (Object)adaptor.nil();
 
-            Identifier124=(Token)match(input,Identifier,FOLLOW_Identifier_in_annotationName2503); if (state.failed) return retval;
+            Identifier124=(Token)match(input,Identifier,FOLLOW_Identifier_in_annotationName2516); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             Identifier124_tree = (Object)adaptor.create(Identifier124);
             adaptor.addChild(root_0, Identifier124_tree);
             }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:892:18: ( '.' Identifier )*
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:904:18: ( '.' Identifier )*
             loop59:
             do {
                 int alt59=2;
@@ -7093,14 +7092,14 @@ public class MViewParser extends ChameleonParser {
 
                 switch (alt59) {
             	case 1 :
-            	    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:892:19: '.' Identifier
+            	    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:904:19: '.' Identifier
             	    {
-            	    char_literal125=(Token)match(input,50,FOLLOW_50_in_annotationName2506); if (state.failed) return retval;
+            	    char_literal125=(Token)match(input,50,FOLLOW_50_in_annotationName2519); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
             	    char_literal125_tree = (Object)adaptor.create(char_literal125);
             	    adaptor.addChild(root_0, char_literal125_tree);
             	    }
-            	    Identifier126=(Token)match(input,Identifier,FOLLOW_Identifier_in_annotationName2508); if (state.failed) return retval;
+            	    Identifier126=(Token)match(input,Identifier,FOLLOW_Identifier_in_annotationName2521); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
             	    Identifier126_tree = (Object)adaptor.create(Identifier126);
             	    adaptor.addChild(root_0, Identifier126_tree);
@@ -7144,7 +7143,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "elementValuePairs"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:895:1: elementValuePairs : elementValuePair ( ',' elementValuePair )* ;
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:907:1: elementValuePairs : elementValuePair ( ',' elementValuePair )* ;
     public final MViewParser.elementValuePairs_return elementValuePairs() throws RecognitionException {
         MViewParser.elementValuePairs_return retval = new MViewParser.elementValuePairs_return();
         retval.start = input.LT(1);
@@ -7161,18 +7160,18 @@ public class MViewParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 70) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:896:5: ( elementValuePair ( ',' elementValuePair )* )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:896:9: elementValuePair ( ',' elementValuePair )*
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:908:5: ( elementValuePair ( ',' elementValuePair )* )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:908:9: elementValuePair ( ',' elementValuePair )*
             {
             root_0 = (Object)adaptor.nil();
 
-            pushFollow(FOLLOW_elementValuePair_in_elementValuePairs2529);
+            pushFollow(FOLLOW_elementValuePair_in_elementValuePairs2542);
             elementValuePair127=elementValuePair();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, elementValuePair127.getTree());
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:896:26: ( ',' elementValuePair )*
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:908:26: ( ',' elementValuePair )*
             loop60:
             do {
                 int alt60=2;
@@ -7185,14 +7184,14 @@ public class MViewParser extends ChameleonParser {
 
                 switch (alt60) {
             	case 1 :
-            	    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:896:27: ',' elementValuePair
+            	    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:908:27: ',' elementValuePair
             	    {
-            	    char_literal128=(Token)match(input,29,FOLLOW_29_in_elementValuePairs2532); if (state.failed) return retval;
+            	    char_literal128=(Token)match(input,29,FOLLOW_29_in_elementValuePairs2545); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
             	    char_literal128_tree = (Object)adaptor.create(char_literal128);
             	    adaptor.addChild(root_0, char_literal128_tree);
             	    }
-            	    pushFollow(FOLLOW_elementValuePair_in_elementValuePairs2534);
+            	    pushFollow(FOLLOW_elementValuePair_in_elementValuePairs2547);
             	    elementValuePair129=elementValuePair();
 
             	    state._fsp--;
@@ -7237,7 +7236,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "elementValuePair"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:899:1: elementValuePair : Identifier '=' elementValue ;
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:911:1: elementValuePair : Identifier '=' elementValue ;
     public final MViewParser.elementValuePair_return elementValuePair() throws RecognitionException {
         MViewParser.elementValuePair_return retval = new MViewParser.elementValuePair_return();
         retval.start = input.LT(1);
@@ -7254,22 +7253,22 @@ public class MViewParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 71) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:900:5: ( Identifier '=' elementValue )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:900:9: Identifier '=' elementValue
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:912:5: ( Identifier '=' elementValue )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:912:9: Identifier '=' elementValue
             {
             root_0 = (Object)adaptor.nil();
 
-            Identifier130=(Token)match(input,Identifier,FOLLOW_Identifier_in_elementValuePair2555); if (state.failed) return retval;
+            Identifier130=(Token)match(input,Identifier,FOLLOW_Identifier_in_elementValuePair2568); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             Identifier130_tree = (Object)adaptor.create(Identifier130);
             adaptor.addChild(root_0, Identifier130_tree);
             }
-            char_literal131=(Token)match(input,75,FOLLOW_75_in_elementValuePair2557); if (state.failed) return retval;
+            char_literal131=(Token)match(input,75,FOLLOW_75_in_elementValuePair2570); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal131_tree = (Object)adaptor.create(char_literal131);
             adaptor.addChild(root_0, char_literal131_tree);
             }
-            pushFollow(FOLLOW_elementValue_in_elementValuePair2559);
+            pushFollow(FOLLOW_elementValue_in_elementValuePair2572);
             elementValue132=elementValue();
 
             state._fsp--;
@@ -7305,7 +7304,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "elementValue"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:903:1: elementValue : ( annotation | elementValueArrayInitializer );
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:915:1: elementValue : ( annotation | elementValueArrayInitializer );
     public final MViewParser.elementValue_return elementValue() throws RecognitionException {
         MViewParser.elementValue_return retval = new MViewParser.elementValue_return();
         retval.start = input.LT(1);
@@ -7320,7 +7319,7 @@ public class MViewParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 72) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:904:5: ( annotation | elementValueArrayInitializer )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:916:5: ( annotation | elementValueArrayInitializer )
             int alt61=2;
             int LA61_0 = input.LA(1);
 
@@ -7339,11 +7338,11 @@ public class MViewParser extends ChameleonParser {
             }
             switch (alt61) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:904:9: annotation
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:916:9: annotation
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_annotation_in_elementValue2582);
+                    pushFollow(FOLLOW_annotation_in_elementValue2595);
                     annotation133=annotation();
 
                     state._fsp--;
@@ -7353,11 +7352,11 @@ public class MViewParser extends ChameleonParser {
                     }
                     break;
                 case 2 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:905:9: elementValueArrayInitializer
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:917:9: elementValueArrayInitializer
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_elementValueArrayInitializer_in_elementValue2592);
+                    pushFollow(FOLLOW_elementValueArrayInitializer_in_elementValue2605);
                     elementValueArrayInitializer134=elementValueArrayInitializer();
 
                     state._fsp--;
@@ -7395,7 +7394,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "elementValueArrayInitializer"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:908:1: elementValueArrayInitializer : '{' ( elementValue ( ',' elementValue )* )? ( ',' )? '}' ;
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:920:1: elementValueArrayInitializer : '{' ( elementValue ( ',' elementValue )* )? ( ',' )? '}' ;
     public final MViewParser.elementValueArrayInitializer_return elementValueArrayInitializer() throws RecognitionException {
         MViewParser.elementValueArrayInitializer_return retval = new MViewParser.elementValueArrayInitializer_return();
         retval.start = input.LT(1);
@@ -7418,17 +7417,17 @@ public class MViewParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 73) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:909:5: ( '{' ( elementValue ( ',' elementValue )* )? ( ',' )? '}' )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:909:9: '{' ( elementValue ( ',' elementValue )* )? ( ',' )? '}'
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:921:5: ( '{' ( elementValue ( ',' elementValue )* )? ( ',' )? '}' )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:921:9: '{' ( elementValue ( ',' elementValue )* )? ( ',' )? '}'
             {
             root_0 = (Object)adaptor.nil();
 
-            char_literal135=(Token)match(input,24,FOLLOW_24_in_elementValueArrayInitializer2615); if (state.failed) return retval;
+            char_literal135=(Token)match(input,24,FOLLOW_24_in_elementValueArrayInitializer2628); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal135_tree = (Object)adaptor.create(char_literal135);
             adaptor.addChild(root_0, char_literal135_tree);
             }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:909:13: ( elementValue ( ',' elementValue )* )?
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:921:13: ( elementValue ( ',' elementValue )* )?
             int alt63=2;
             int LA63_0 = input.LA(1);
 
@@ -7437,15 +7436,15 @@ public class MViewParser extends ChameleonParser {
             }
             switch (alt63) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:909:14: elementValue ( ',' elementValue )*
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:921:14: elementValue ( ',' elementValue )*
                     {
-                    pushFollow(FOLLOW_elementValue_in_elementValueArrayInitializer2618);
+                    pushFollow(FOLLOW_elementValue_in_elementValueArrayInitializer2631);
                     elementValue136=elementValue();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) adaptor.addChild(root_0, elementValue136.getTree());
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:909:27: ( ',' elementValue )*
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:921:27: ( ',' elementValue )*
                     loop62:
                     do {
                         int alt62=2;
@@ -7464,14 +7463,14 @@ public class MViewParser extends ChameleonParser {
 
                         switch (alt62) {
                     	case 1 :
-                    	    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:909:28: ',' elementValue
+                    	    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:921:28: ',' elementValue
                     	    {
-                    	    char_literal137=(Token)match(input,29,FOLLOW_29_in_elementValueArrayInitializer2621); if (state.failed) return retval;
+                    	    char_literal137=(Token)match(input,29,FOLLOW_29_in_elementValueArrayInitializer2634); if (state.failed) return retval;
                     	    if ( state.backtracking==0 ) {
                     	    char_literal137_tree = (Object)adaptor.create(char_literal137);
                     	    adaptor.addChild(root_0, char_literal137_tree);
                     	    }
-                    	    pushFollow(FOLLOW_elementValue_in_elementValueArrayInitializer2623);
+                    	    pushFollow(FOLLOW_elementValue_in_elementValueArrayInitializer2636);
                     	    elementValue138=elementValue();
 
                     	    state._fsp--;
@@ -7492,7 +7491,7 @@ public class MViewParser extends ChameleonParser {
 
             }
 
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:909:49: ( ',' )?
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:921:49: ( ',' )?
             int alt64=2;
             int LA64_0 = input.LA(1);
 
@@ -7501,9 +7500,9 @@ public class MViewParser extends ChameleonParser {
             }
             switch (alt64) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:909:50: ','
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:921:50: ','
                     {
-                    char_literal139=(Token)match(input,29,FOLLOW_29_in_elementValueArrayInitializer2630); if (state.failed) return retval;
+                    char_literal139=(Token)match(input,29,FOLLOW_29_in_elementValueArrayInitializer2643); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     char_literal139_tree = (Object)adaptor.create(char_literal139);
                     adaptor.addChild(root_0, char_literal139_tree);
@@ -7514,7 +7513,7 @@ public class MViewParser extends ChameleonParser {
 
             }
 
-            char_literal140=(Token)match(input,25,FOLLOW_25_in_elementValueArrayInitializer2634); if (state.failed) return retval;
+            char_literal140=(Token)match(input,25,FOLLOW_25_in_elementValueArrayInitializer2647); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal140_tree = (Object)adaptor.create(char_literal140);
             adaptor.addChild(root_0, char_literal140_tree);
@@ -7550,7 +7549,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "annotationTypeDeclaration"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:912:1: annotationTypeDeclaration returns [Type element] : '@' 'interface' name= Identifier annotationTypeBody ;
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:924:1: annotationTypeDeclaration returns [Type element] : '@' 'interface' name= Identifier annotationTypeBody ;
     public final MViewParser.annotationTypeDeclaration_return annotationTypeDeclaration() throws RecognitionException {
         MViewParser.annotationTypeDeclaration_return retval = new MViewParser.annotationTypeDeclaration_return();
         retval.start = input.LT(1);
@@ -7569,27 +7568,27 @@ public class MViewParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 74) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:913:5: ( '@' 'interface' name= Identifier annotationTypeBody )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:913:9: '@' 'interface' name= Identifier annotationTypeBody
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:925:5: ( '@' 'interface' name= Identifier annotationTypeBody )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:925:9: '@' 'interface' name= Identifier annotationTypeBody
             {
             root_0 = (Object)adaptor.nil();
 
-            char_literal141=(Token)match(input,74,FOLLOW_74_in_annotationTypeDeclaration2661); if (state.failed) return retval;
+            char_literal141=(Token)match(input,74,FOLLOW_74_in_annotationTypeDeclaration2674); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal141_tree = (Object)adaptor.create(char_literal141);
             adaptor.addChild(root_0, char_literal141_tree);
             }
-            string_literal142=(Token)match(input,23,FOLLOW_23_in_annotationTypeDeclaration2663); if (state.failed) return retval;
+            string_literal142=(Token)match(input,23,FOLLOW_23_in_annotationTypeDeclaration2676); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             string_literal142_tree = (Object)adaptor.create(string_literal142);
             adaptor.addChild(root_0, string_literal142_tree);
             }
-            name=(Token)match(input,Identifier,FOLLOW_Identifier_in_annotationTypeDeclaration2667); if (state.failed) return retval;
+            name=(Token)match(input,Identifier,FOLLOW_Identifier_in_annotationTypeDeclaration2680); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             name_tree = (Object)adaptor.create(name);
             adaptor.addChild(root_0, name_tree);
             }
-            pushFollow(FOLLOW_annotationTypeBody_in_annotationTypeDeclaration2669);
+            pushFollow(FOLLOW_annotationTypeBody_in_annotationTypeDeclaration2682);
             annotationTypeBody143=annotationTypeBody();
 
             state._fsp--;
@@ -7625,7 +7624,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "annotationTypeBody"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:916:1: annotationTypeBody : '{' ( annotationTypeElementDeclaration )* '}' ;
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:928:1: annotationTypeBody : '{' ( annotationTypeElementDeclaration )* '}' ;
     public final MViewParser.annotationTypeBody_return annotationTypeBody() throws RecognitionException {
         MViewParser.annotationTypeBody_return retval = new MViewParser.annotationTypeBody_return();
         retval.start = input.LT(1);
@@ -7642,17 +7641,17 @@ public class MViewParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 75) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:917:5: ( '{' ( annotationTypeElementDeclaration )* '}' )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:917:9: '{' ( annotationTypeElementDeclaration )* '}'
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:929:5: ( '{' ( annotationTypeElementDeclaration )* '}' )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:929:9: '{' ( annotationTypeElementDeclaration )* '}'
             {
             root_0 = (Object)adaptor.nil();
 
-            char_literal144=(Token)match(input,24,FOLLOW_24_in_annotationTypeBody2692); if (state.failed) return retval;
+            char_literal144=(Token)match(input,24,FOLLOW_24_in_annotationTypeBody2705); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal144_tree = (Object)adaptor.create(char_literal144);
             adaptor.addChild(root_0, char_literal144_tree);
             }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:917:13: ( annotationTypeElementDeclaration )*
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:929:13: ( annotationTypeElementDeclaration )*
             loop65:
             do {
                 int alt65=2;
@@ -7665,9 +7664,9 @@ public class MViewParser extends ChameleonParser {
 
                 switch (alt65) {
             	case 1 :
-            	    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:917:14: annotationTypeElementDeclaration
+            	    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:929:14: annotationTypeElementDeclaration
             	    {
-            	    pushFollow(FOLLOW_annotationTypeElementDeclaration_in_annotationTypeBody2695);
+            	    pushFollow(FOLLOW_annotationTypeElementDeclaration_in_annotationTypeBody2708);
             	    annotationTypeElementDeclaration145=annotationTypeElementDeclaration();
 
             	    state._fsp--;
@@ -7682,7 +7681,7 @@ public class MViewParser extends ChameleonParser {
                 }
             } while (true);
 
-            char_literal146=(Token)match(input,25,FOLLOW_25_in_annotationTypeBody2699); if (state.failed) return retval;
+            char_literal146=(Token)match(input,25,FOLLOW_25_in_annotationTypeBody2712); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal146_tree = (Object)adaptor.create(char_literal146);
             adaptor.addChild(root_0, char_literal146_tree);
@@ -7717,7 +7716,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "annotationTypeElementDeclaration"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:920:1: annotationTypeElementDeclaration : annotationTypeElementRest ;
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:932:1: annotationTypeElementDeclaration : annotationTypeElementRest ;
     public final MViewParser.annotationTypeElementDeclaration_return annotationTypeElementDeclaration() throws RecognitionException {
         MViewParser.annotationTypeElementDeclaration_return retval = new MViewParser.annotationTypeElementDeclaration_return();
         retval.start = input.LT(1);
@@ -7730,12 +7729,12 @@ public class MViewParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 76) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:921:5: ( annotationTypeElementRest )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:921:23: annotationTypeElementRest
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:933:5: ( annotationTypeElementRest )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:933:23: annotationTypeElementRest
             {
             root_0 = (Object)adaptor.nil();
 
-            pushFollow(FOLLOW_annotationTypeElementRest_in_annotationTypeElementDeclaration2724);
+            pushFollow(FOLLOW_annotationTypeElementRest_in_annotationTypeElementDeclaration2737);
             annotationTypeElementRest147=annotationTypeElementRest();
 
             state._fsp--;
@@ -7771,7 +7770,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "annotationTypeElementRest"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:924:1: annotationTypeElementRest : ( type annotationMethodOrConstantRest ';' | annotationTypeDeclaration ( ';' )? );
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:936:1: annotationTypeElementRest : ( type annotationMethodOrConstantRest ';' | annotationTypeDeclaration ( ';' )? );
     public final MViewParser.annotationTypeElementRest_return annotationTypeElementRest() throws RecognitionException {
         MViewParser.annotationTypeElementRest_return retval = new MViewParser.annotationTypeElementRest_return();
         retval.start = input.LT(1);
@@ -7792,7 +7791,7 @@ public class MViewParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 77) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:925:5: ( type annotationMethodOrConstantRest ';' | annotationTypeDeclaration ( ';' )? )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:937:5: ( type annotationMethodOrConstantRest ';' | annotationTypeDeclaration ( ';' )? )
             int alt67=2;
             int LA67_0 = input.LA(1);
 
@@ -7811,23 +7810,23 @@ public class MViewParser extends ChameleonParser {
             }
             switch (alt67) {
                 case 1 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:925:9: type annotationMethodOrConstantRest ';'
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:937:9: type annotationMethodOrConstantRest ';'
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_type_in_annotationTypeElementRest2747);
+                    pushFollow(FOLLOW_type_in_annotationTypeElementRest2760);
                     type148=type();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) adaptor.addChild(root_0, type148.getTree());
-                    pushFollow(FOLLOW_annotationMethodOrConstantRest_in_annotationTypeElementRest2749);
+                    pushFollow(FOLLOW_annotationMethodOrConstantRest_in_annotationTypeElementRest2762);
                     annotationMethodOrConstantRest149=annotationMethodOrConstantRest();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) adaptor.addChild(root_0, annotationMethodOrConstantRest149.getTree());
-                    char_literal150=(Token)match(input,26,FOLLOW_26_in_annotationTypeElementRest2751); if (state.failed) return retval;
+                    char_literal150=(Token)match(input,26,FOLLOW_26_in_annotationTypeElementRest2764); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     char_literal150_tree = (Object)adaptor.create(char_literal150);
                     adaptor.addChild(root_0, char_literal150_tree);
@@ -7836,17 +7835,17 @@ public class MViewParser extends ChameleonParser {
                     }
                     break;
                 case 2 :
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:926:9: annotationTypeDeclaration ( ';' )?
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:938:9: annotationTypeDeclaration ( ';' )?
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_annotationTypeDeclaration_in_annotationTypeElementRest2761);
+                    pushFollow(FOLLOW_annotationTypeDeclaration_in_annotationTypeElementRest2774);
                     annotationTypeDeclaration151=annotationTypeDeclaration();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) adaptor.addChild(root_0, annotationTypeDeclaration151.getTree());
-                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:926:35: ( ';' )?
+                    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:938:35: ( ';' )?
                     int alt66=2;
                     int LA66_0 = input.LA(1);
 
@@ -7857,7 +7856,7 @@ public class MViewParser extends ChameleonParser {
                         case 1 :
                             // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:0:0: ';'
                             {
-                            char_literal152=(Token)match(input,26,FOLLOW_26_in_annotationTypeElementRest2763); if (state.failed) return retval;
+                            char_literal152=(Token)match(input,26,FOLLOW_26_in_annotationTypeElementRest2776); if (state.failed) return retval;
                             if ( state.backtracking==0 ) {
                             char_literal152_tree = (Object)adaptor.create(char_literal152);
                             adaptor.addChild(root_0, char_literal152_tree);
@@ -7900,7 +7899,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "annotationMethodOrConstantRest"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:929:1: annotationMethodOrConstantRest : annotationMethodRest ;
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:941:1: annotationMethodOrConstantRest : annotationMethodRest ;
     public final MViewParser.annotationMethodOrConstantRest_return annotationMethodOrConstantRest() throws RecognitionException {
         MViewParser.annotationMethodOrConstantRest_return retval = new MViewParser.annotationMethodOrConstantRest_return();
         retval.start = input.LT(1);
@@ -7913,12 +7912,12 @@ public class MViewParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 78) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:930:5: ( annotationMethodRest )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:930:9: annotationMethodRest
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:942:5: ( annotationMethodRest )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:942:9: annotationMethodRest
             {
             root_0 = (Object)adaptor.nil();
 
-            pushFollow(FOLLOW_annotationMethodRest_in_annotationMethodOrConstantRest2787);
+            pushFollow(FOLLOW_annotationMethodRest_in_annotationMethodOrConstantRest2800);
             annotationMethodRest153=annotationMethodRest();
 
             state._fsp--;
@@ -7954,7 +7953,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "annotationMethodRest"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:933:1: annotationMethodRest : Identifier '(' ')' ( defaultValue )? ;
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:945:1: annotationMethodRest : Identifier '(' ')' ( defaultValue )? ;
     public final MViewParser.annotationMethodRest_return annotationMethodRest() throws RecognitionException {
         MViewParser.annotationMethodRest_return retval = new MViewParser.annotationMethodRest_return();
         retval.start = input.LT(1);
@@ -7973,27 +7972,27 @@ public class MViewParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 79) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:934:5: ( Identifier '(' ')' ( defaultValue )? )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:934:9: Identifier '(' ')' ( defaultValue )?
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:946:5: ( Identifier '(' ')' ( defaultValue )? )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:946:9: Identifier '(' ')' ( defaultValue )?
             {
             root_0 = (Object)adaptor.nil();
 
-            Identifier154=(Token)match(input,Identifier,FOLLOW_Identifier_in_annotationMethodRest2810); if (state.failed) return retval;
+            Identifier154=(Token)match(input,Identifier,FOLLOW_Identifier_in_annotationMethodRest2823); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             Identifier154_tree = (Object)adaptor.create(Identifier154);
             adaptor.addChild(root_0, Identifier154_tree);
             }
-            char_literal155=(Token)match(input,27,FOLLOW_27_in_annotationMethodRest2812); if (state.failed) return retval;
+            char_literal155=(Token)match(input,27,FOLLOW_27_in_annotationMethodRest2825); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal155_tree = (Object)adaptor.create(char_literal155);
             adaptor.addChild(root_0, char_literal155_tree);
             }
-            char_literal156=(Token)match(input,28,FOLLOW_28_in_annotationMethodRest2814); if (state.failed) return retval;
+            char_literal156=(Token)match(input,28,FOLLOW_28_in_annotationMethodRest2827); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal156_tree = (Object)adaptor.create(char_literal156);
             adaptor.addChild(root_0, char_literal156_tree);
             }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:934:28: ( defaultValue )?
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:946:28: ( defaultValue )?
             int alt68=2;
             int LA68_0 = input.LA(1);
 
@@ -8004,7 +8003,7 @@ public class MViewParser extends ChameleonParser {
                 case 1 :
                     // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:0:0: defaultValue
                     {
-                    pushFollow(FOLLOW_defaultValue_in_annotationMethodRest2816);
+                    pushFollow(FOLLOW_defaultValue_in_annotationMethodRest2829);
                     defaultValue157=defaultValue();
 
                     state._fsp--;
@@ -8046,7 +8045,7 @@ public class MViewParser extends ChameleonParser {
     };
 
     // $ANTLR start "defaultValue"
-    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:937:1: defaultValue : 'default' elementValue ;
+    // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:949:1: defaultValue : 'default' elementValue ;
     public final MViewParser.defaultValue_return defaultValue() throws RecognitionException {
         MViewParser.defaultValue_return retval = new MViewParser.defaultValue_return();
         retval.start = input.LT(1);
@@ -8061,17 +8060,17 @@ public class MViewParser extends ChameleonParser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 80) ) { return retval; }
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:938:5: ( 'default' elementValue )
-            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:938:9: 'default' elementValue
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:950:5: ( 'default' elementValue )
+            // /Users/steveno/Documents/repos/mview-lang/src/mview/parser/MView.g:950:9: 'default' elementValue
             {
             root_0 = (Object)adaptor.nil();
 
-            string_literal158=(Token)match(input,76,FOLLOW_76_in_defaultValue2844); if (state.failed) return retval;
+            string_literal158=(Token)match(input,76,FOLLOW_76_in_defaultValue2857); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             string_literal158_tree = (Object)adaptor.create(string_literal158);
             adaptor.addChild(root_0, string_literal158_tree);
             }
-            pushFollow(FOLLOW_elementValue_in_defaultValue2846);
+            pushFollow(FOLLOW_elementValue_in_defaultValue2859);
             elementValue159=elementValue();
 
             state._fsp--;
@@ -8106,262 +8105,262 @@ public class MViewParser extends ChameleonParser {
 
  
 
-    public static final BitSet FOLLOW_interfaceDeclaration_in_compilationUnit88 = new BitSet(new long[]{0x0801018080800002L});
-    public static final BitSet FOLLOW_componentDeclaration_in_compilationUnit101 = new BitSet(new long[]{0x0801018080800002L});
-    public static final BitSet FOLLOW_connectorDeclaration_in_compilationUnit114 = new BitSet(new long[]{0x0801018080800002L});
-    public static final BitSet FOLLOW_applicationDeclaration_in_compilationUnit127 = new BitSet(new long[]{0x0801018080800002L});
-    public static final BitSet FOLLOW_deploymentDeclaration_in_compilationUnit140 = new BitSet(new long[]{0x0801018080800002L});
-    public static final BitSet FOLLOW_23_in_interfaceDeclaration170 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_Identifier_in_interfaceDeclaration174 = new BitSet(new long[]{0x0000000001000000L});
-    public static final BitSet FOLLOW_interfaceBody_in_interfaceDeclaration180 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_24_in_interfaceBody194 = new BitSet(new long[]{0xF000000002000010L,0x000000000000001FL});
-    public static final BitSet FOLLOW_interfaceBodyDeclaration_in_interfaceBody196 = new BitSet(new long[]{0xF000000002000010L,0x000000000000001FL});
-    public static final BitSet FOLLOW_25_in_interfaceBody200 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_serviceDeclaration_in_interfaceBodyDeclaration216 = new BitSet(new long[]{0x0000000004000000L});
-    public static final BitSet FOLLOW_26_in_interfaceBodyDeclaration218 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_Identifier_in_serviceReferenceDeclaration243 = new BitSet(new long[]{0x0000000008000000L});
-    public static final BitSet FOLLOW_actualParameters_in_serviceReferenceDeclaration247 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_27_in_actualParameters276 = new BitSet(new long[]{0x0000000010000010L});
-    public static final BitSet FOLLOW_actualParameterDecls_in_actualParameters281 = new BitSet(new long[]{0x0000000010000000L});
-    public static final BitSet FOLLOW_28_in_actualParameters287 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_Identifier_in_actualParameterDecls312 = new BitSet(new long[]{0x0000000020000002L});
-    public static final BitSet FOLLOW_29_in_actualParameterDecls315 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_actualParameterDecls_in_actualParameterDecls319 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_serviceHeaderDeclaration_in_serviceDeclaration352 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_serviceReturnType_in_serviceHeaderDeclaration372 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_Identifier_in_serviceHeaderDeclaration376 = new BitSet(new long[]{0x0000000008000000L});
-    public static final BitSet FOLLOW_formalParameters_in_serviceHeaderDeclaration380 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_voidType_in_serviceReturnType406 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_type_in_serviceReturnType420 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_27_in_formalParameters452 = new BitSet(new long[]{0xF000000010000010L,0x000000000000001FL});
-    public static final BitSet FOLLOW_formalParameterDecls_in_formalParameters457 = new BitSet(new long[]{0x0000000010000000L});
-    public static final BitSet FOLLOW_28_in_formalParameters463 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_type_in_formalParameterDecls489 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_Identifier_in_formalParameterDecls493 = new BitSet(new long[]{0x0000000020000002L});
-    public static final BitSet FOLLOW_29_in_formalParameterDecls496 = new BitSet(new long[]{0xF000000000000010L,0x000000000000001FL});
-    public static final BitSet FOLLOW_formalParameterDecls_in_formalParameterDecls500 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_pointcutServiceSignatureDecl535 = new BitSet(new long[]{0x0000000040000010L});
-    public static final BitSet FOLLOW_set_in_pointcutServiceSignatureDecl543 = new BitSet(new long[]{0x0000000008000000L});
-    public static final BitSet FOLLOW_pointcutServiceSignatureParameters_in_pointcutServiceSignatureDecl551 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_27_in_pointcutServiceSignatureParameters574 = new BitSet(new long[]{0x0000000050000010L});
-    public static final BitSet FOLLOW_pointcutServiceSignatureParameterDecls_in_pointcutServiceSignatureParameters577 = new BitSet(new long[]{0x0000000010000000L});
-    public static final BitSet FOLLOW_28_in_pointcutServiceSignatureParameters583 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_pointcutServiceSignatureParameterDecls598 = new BitSet(new long[]{0x0000000020000012L});
-    public static final BitSet FOLLOW_Identifier_in_pointcutServiceSignatureParameterDecls607 = new BitSet(new long[]{0x0000000020000002L});
-    public static final BitSet FOLLOW_29_in_pointcutServiceSignatureParameterDecls612 = new BitSet(new long[]{0x0000000040000010L});
-    public static final BitSet FOLLOW_pointcutServiceSignatureParameterDecls_in_pointcutServiceSignatureParameterDecls614 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_abstractModifier_in_connectorDeclaration645 = new BitSet(new long[]{0x0000000080000000L});
-    public static final BitSet FOLLOW_31_in_connectorDeclaration651 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_Identifier_in_connectorDeclaration655 = new BitSet(new long[]{0x0000000801000000L});
-    public static final BitSet FOLLOW_refinementDeclaration_in_connectorDeclaration663 = new BitSet(new long[]{0x0000000801000000L});
-    public static final BitSet FOLLOW_connectorBody_in_connectorDeclaration670 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_24_in_connectorBody684 = new BitSet(new long[]{0x0800400102000000L});
-    public static final BitSet FOLLOW_connectorBodyDeclaration_in_connectorBody686 = new BitSet(new long[]{0x0800400102000000L});
-    public static final BitSet FOLLOW_25_in_connectorBody690 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_connectorAOCompositionDeclaration_in_connectorBodyDeclaration705 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_moduleRequireDependencyDeclaration_in_connectorBodyDeclaration712 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_abstractModifier_in_connectorAOCompositionDeclaration734 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_32_in_connectorAOCompositionDeclaration740 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_Identifier_in_connectorAOCompositionDeclaration744 = new BitSet(new long[]{0x0000000801000000L});
-    public static final BitSet FOLLOW_refinementDeclarationSingle_in_connectorAOCompositionDeclaration752 = new BitSet(new long[]{0x0000000801000000L});
-    public static final BitSet FOLLOW_connectorAOCompositionBody_in_connectorAOCompositionDeclaration759 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_24_in_connectorAOCompositionBody773 = new BitSet(new long[]{0x0000080202000000L});
-    public static final BitSet FOLLOW_pointcutDeclaration_in_connectorAOCompositionBody780 = new BitSet(new long[]{0x0000080002000000L});
-    public static final BitSet FOLLOW_adviceDeclaration_in_connectorAOCompositionBody789 = new BitSet(new long[]{0x0000000002000000L});
-    public static final BitSet FOLLOW_25_in_connectorAOCompositionBody796 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_33_in_pointcutDeclaration813 = new BitSet(new long[]{0x0000000001000000L});
-    public static final BitSet FOLLOW_pointcutBody_in_pointcutDeclaration817 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_24_in_pointcutBody833 = new BitSet(new long[]{0x0300007402000000L});
-    public static final BitSet FOLLOW_pointcutBodyDeclaration_in_pointcutBody835 = new BitSet(new long[]{0x0300007402000000L});
-    public static final BitSet FOLLOW_25_in_pointcutBody839 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_pointcutKindDeclaration_in_pointcutBodyDeclaration853 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_pointcutSignatureDeclaration_in_pointcutBodyDeclaration859 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_pointcutActorDeclaration_in_pointcutBodyDeclaration865 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_34_in_pointcutKindDeclaration882 = new BitSet(new long[]{0x0000000800000000L});
-    public static final BitSet FOLLOW_35_in_pointcutKindDeclaration884 = new BitSet(new long[]{0x00C0000000000000L});
-    public static final BitSet FOLLOW_joinPointKind_in_pointcutKindDeclaration888 = new BitSet(new long[]{0x0000000004000000L});
-    public static final BitSet FOLLOW_26_in_pointcutKindDeclaration890 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_overrideOrExtend_in_pointcutSignatureDeclaration909 = new BitSet(new long[]{0x0000001000000000L});
-    public static final BitSet FOLLOW_36_in_pointcutSignatureDeclaration915 = new BitSet(new long[]{0x0000000800000000L});
-    public static final BitSet FOLLOW_35_in_pointcutSignatureDeclaration917 = new BitSet(new long[]{0x0000000040000010L});
-    public static final BitSet FOLLOW_pointcutSignatureBody_in_pointcutSignatureDeclaration921 = new BitSet(new long[]{0x0000000004000000L});
-    public static final BitSet FOLLOW_26_in_pointcutSignatureDeclaration925 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_pointcutSignatureBodyDecls_in_pointcutSignatureBody944 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_pointcutServiceSignatureDecl_in_pointcutSignatureBodyDecls961 = new BitSet(new long[]{0x0000000020000002L});
-    public static final BitSet FOLLOW_29_in_pointcutSignatureBodyDecls965 = new BitSet(new long[]{0x0000000040000010L});
-    public static final BitSet FOLLOW_pointcutSignatureBodyDecls_in_pointcutSignatureBodyDecls967 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_37_in_pointcutActorDeclaration989 = new BitSet(new long[]{0x0000000001000000L});
-    public static final BitSet FOLLOW_pointcutActorBody_in_pointcutActorDeclaration993 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_38_in_pointcutActorDeclaration1004 = new BitSet(new long[]{0x0000000001000000L});
-    public static final BitSet FOLLOW_pointcutActorBody_in_pointcutActorDeclaration1008 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_24_in_pointcutActorBody1036 = new BitSet(new long[]{0x0300078002800000L});
-    public static final BitSet FOLLOW_pointcutActorBodyDecls_in_pointcutActorBody1038 = new BitSet(new long[]{0x0300078002800000L});
-    public static final BitSet FOLLOW_25_in_pointcutActorBody1042 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_overrideOrExtend_in_pointcutActorBodyDecls1063 = new BitSet(new long[]{0x0000078000800000L});
-    public static final BitSet FOLLOW_23_in_pointcutActorBodyDecls1072 = new BitSet(new long[]{0x0000000800000000L});
-    public static final BitSet FOLLOW_35_in_pointcutActorBodyDecls1074 = new BitSet(new long[]{0x0400000000000010L});
-    public static final BitSet FOLLOW_39_in_pointcutActorBodyDecls1084 = new BitSet(new long[]{0x0000000800000000L});
-    public static final BitSet FOLLOW_35_in_pointcutActorBodyDecls1086 = new BitSet(new long[]{0x0400000000000010L});
-    public static final BitSet FOLLOW_40_in_pointcutActorBodyDecls1095 = new BitSet(new long[]{0x0000000800000000L});
-    public static final BitSet FOLLOW_35_in_pointcutActorBodyDecls1097 = new BitSet(new long[]{0x0400000000000010L});
-    public static final BitSet FOLLOW_41_in_pointcutActorBodyDecls1106 = new BitSet(new long[]{0x0000000800000000L});
-    public static final BitSet FOLLOW_35_in_pointcutActorBodyDecls1108 = new BitSet(new long[]{0x0400000000000010L});
-    public static final BitSet FOLLOW_42_in_pointcutActorBodyDecls1117 = new BitSet(new long[]{0x0000000800000000L});
-    public static final BitSet FOLLOW_35_in_pointcutActorBodyDecls1119 = new BitSet(new long[]{0x0400000000000010L});
-    public static final BitSet FOLLOW_pointcutActorPropDecls_in_pointcutActorBodyDecls1128 = new BitSet(new long[]{0x0000000004000000L});
-    public static final BitSet FOLLOW_26_in_pointcutActorBodyDecls1131 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_negationModifier_in_pointcutActorPropDecls1148 = new BitSet(new long[]{0x0400000000000010L});
-    public static final BitSet FOLLOW_pointcutActorPropDecl_in_pointcutActorPropDecls1154 = new BitSet(new long[]{0x0000000020000002L});
-    public static final BitSet FOLLOW_29_in_pointcutActorPropDecls1159 = new BitSet(new long[]{0x0400000000000010L});
-    public static final BitSet FOLLOW_pointcutActorPropDecls_in_pointcutActorPropDecls1161 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_Identifier_in_pointcutActorPropDecl1186 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_43_in_adviceDeclaration1209 = new BitSet(new long[]{0x0000000001000000L});
-    public static final BitSet FOLLOW_adviceBody_in_adviceDeclaration1213 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_24_in_adviceBody1228 = new BitSet(new long[]{0x0000300002000000L});
-    public static final BitSet FOLLOW_adviceBodyDeclaration_in_adviceBody1230 = new BitSet(new long[]{0x0000300002000000L});
-    public static final BitSet FOLLOW_25_in_adviceBody1234 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_adviceServiceDeclaration_in_adviceBodyDeclaration1249 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_adviceTypeDeclaration_in_adviceBodyDeclaration1255 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_44_in_adviceServiceDeclaration1273 = new BitSet(new long[]{0x0000000800000000L});
-    public static final BitSet FOLLOW_35_in_adviceServiceDeclaration1275 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_serviceReferenceDeclaration_in_adviceServiceDeclaration1279 = new BitSet(new long[]{0x0000000004000000L});
-    public static final BitSet FOLLOW_26_in_adviceServiceDeclaration1281 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_45_in_adviceTypeDeclaration1300 = new BitSet(new long[]{0x0000000800000000L});
-    public static final BitSet FOLLOW_35_in_adviceTypeDeclaration1302 = new BitSet(new long[]{0x0038000000000000L});
-    public static final BitSet FOLLOW_adviceType_in_adviceTypeDeclaration1306 = new BitSet(new long[]{0x0000000004000000L});
-    public static final BitSet FOLLOW_26_in_adviceTypeDeclaration1308 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_39_in_componentDeclaration1335 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_Identifier_in_componentDeclaration1339 = new BitSet(new long[]{0x0000000001000000L});
-    public static final BitSet FOLLOW_componentBody_in_componentDeclaration1343 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_24_in_componentBody1365 = new BitSet(new long[]{0x0800C00102000000L});
-    public static final BitSet FOLLOW_componentBodyDeclaration_in_componentBody1367 = new BitSet(new long[]{0x0800C00102000000L});
-    public static final BitSet FOLLOW_25_in_componentBody1371 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_moduleRequireDependencyDeclaration_in_componentBodyDeclaration1389 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_moduleProvideDependencyDeclaration_in_componentBodyDeclaration1395 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_24_in_moduleDependencyBody1423 = new BitSet(new long[]{0x0000000002000010L});
-    public static final BitSet FOLLOW_commaSeparatedBodyDecls_in_moduleDependencyBody1428 = new BitSet(new long[]{0x0000000002000000L});
-    public static final BitSet FOLLOW_25_in_moduleDependencyBody1436 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_46_in_moduleRequireDependencyDeclaration1453 = new BitSet(new long[]{0x0000000001000000L});
-    public static final BitSet FOLLOW_moduleDependencyBody_in_moduleRequireDependencyDeclaration1457 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_47_in_moduleProvideDependencyDeclaration1472 = new BitSet(new long[]{0x0000000001000000L});
-    public static final BitSet FOLLOW_moduleDependencyBody_in_moduleProvideDependencyDeclaration1476 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_abstractModifier_in_applicationDeclaration1509 = new BitSet(new long[]{0x0000010000000000L});
-    public static final BitSet FOLLOW_40_in_applicationDeclaration1515 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_Identifier_in_applicationDeclaration1519 = new BitSet(new long[]{0x0000000801000000L});
-    public static final BitSet FOLLOW_refinementDeclaration_in_applicationDeclaration1527 = new BitSet(new long[]{0x0000000801000000L});
-    public static final BitSet FOLLOW_applicationBody_in_applicationDeclaration1534 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_24_in_applicationBody1548 = new BitSet(new long[]{0x0800048082000010L});
-    public static final BitSet FOLLOW_applicationBodyDeclaration_in_applicationBody1552 = new BitSet(new long[]{0x0800048082000010L});
-    public static final BitSet FOLLOW_25_in_applicationBody1558 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_moduleContainerDeclarations_in_applicationBodyDeclaration1574 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_hostDeclaration_in_applicationBodyDeclaration1585 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_instanceDeclaration_in_applicationBodyDeclaration1597 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_abstractModifier_in_deploymentDeclaration1623 = new BitSet(new long[]{0x0001000000000000L});
-    public static final BitSet FOLLOW_48_in_deploymentDeclaration1629 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_Identifier_in_deploymentDeclaration1633 = new BitSet(new long[]{0x0000000801000000L});
-    public static final BitSet FOLLOW_refinementDeclaration_in_deploymentDeclaration1641 = new BitSet(new long[]{0x0000000801000000L});
-    public static final BitSet FOLLOW_applicationBody_in_deploymentDeclaration1648 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_Identifier_in_instanceDeclaration1671 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_Identifier_in_instanceDeclaration1675 = new BitSet(new long[]{0x0002000000000000L});
-    public static final BitSet FOLLOW_49_in_instanceDeclaration1679 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_Identifier_in_instanceDeclaration1683 = new BitSet(new long[]{0x0000000004000000L});
-    public static final BitSet FOLLOW_26_in_instanceDeclaration1685 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_42_in_hostDeclaration1712 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_Identifier_in_hostDeclaration1716 = new BitSet(new long[]{0x0002000004000000L});
-    public static final BitSet FOLLOW_49_in_hostDeclaration1724 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_StringLiteral_in_hostDeclaration1728 = new BitSet(new long[]{0x0000000004000000L});
-    public static final BitSet FOLLOW_26_in_hostDeclaration1735 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_componentDeclaration_in_moduleContainerDeclarations1761 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_connectorDeclaration_in_moduleContainerDeclarations1772 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_35_in_refinementDeclarationSingle1797 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_refinementDeclarationBody_in_refinementDeclarationSingle1799 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_refinementDeclarationSingle_in_refinementDeclaration1816 = new BitSet(new long[]{0x0000000020000002L});
-    public static final BitSet FOLLOW_29_in_refinementDeclaration1821 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_refinementDeclarationBody_in_refinementDeclaration1823 = new BitSet(new long[]{0x0000000020000002L});
-    public static final BitSet FOLLOW_refinementParentDeclaration_in_refinementDeclarationBody1844 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_Identifier_in_refinementParentDeclaration1874 = new BitSet(new long[]{0x0004000000000002L});
-    public static final BitSet FOLLOW_50_in_refinementParentDeclaration1881 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_Identifier_in_refinementParentDeclaration1885 = new BitSet(new long[]{0x0004000000000002L});
-    public static final BitSet FOLLOW_Identifier_in_commaSeparatedBodyDecls1919 = new BitSet(new long[]{0x0000000020000002L});
-    public static final BitSet FOLLOW_29_in_commaSeparatedBodyDecls1922 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_commaSeparatedBodyDecls_in_commaSeparatedBodyDecls1926 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_51_in_adviceType1955 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_52_in_adviceType1962 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_53_in_adviceType1969 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_54_in_joinPointKind1989 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_55_in_joinPointKind1996 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_56_in_overrideOrExtend2018 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_57_in_overrideOrExtend2027 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_58_in_negationModifier2047 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_59_in_abstractModifier2067 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_60_in_voidType2090 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_classOrInterfaceType_in_type2122 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_primitiveType_in_type2131 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_Identifier_in_classOrInterfaceType2156 = new BitSet(new long[]{0x0004000000000002L,0x0000000000000020L});
-    public static final BitSet FOLLOW_typeArguments_in_classOrInterfaceType2175 = new BitSet(new long[]{0x0004000000000002L});
-    public static final BitSet FOLLOW_50_in_classOrInterfaceType2189 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_Identifier_in_classOrInterfaceType2193 = new BitSet(new long[]{0x0004000000000002L,0x0000000000000020L});
-    public static final BitSet FOLLOW_typeArguments_in_classOrInterfaceType2219 = new BitSet(new long[]{0x0004000000000002L});
-    public static final BitSet FOLLOW_61_in_primitiveType2244 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_62_in_primitiveType2256 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_63_in_primitiveType2268 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_64_in_primitiveType2280 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_65_in_primitiveType2292 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_66_in_primitiveType2304 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_67_in_primitiveType2316 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_68_in_primitiveType2328 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_69_in_typeArguments2351 = new BitSet(new long[]{0xF000000000000010L,0x000000000000009FL});
-    public static final BitSet FOLLOW_typeArgument_in_typeArguments2353 = new BitSet(new long[]{0x0000000020000000L,0x0000000000000040L});
-    public static final BitSet FOLLOW_29_in_typeArguments2357 = new BitSet(new long[]{0xF000000000000010L,0x000000000000009FL});
-    public static final BitSet FOLLOW_typeArgument_in_typeArguments2359 = new BitSet(new long[]{0x0000000020000000L,0x0000000000000040L});
-    public static final BitSet FOLLOW_70_in_typeArguments2364 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_type_in_typeArgument2389 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_71_in_typeArgument2395 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000300L});
-    public static final BitSet FOLLOW_set_in_typeArgument2400 = new BitSet(new long[]{0xF000000000000010L,0x000000000000001FL});
-    public static final BitSet FOLLOW_type_in_typeArgument2410 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_annotation_in_annotations2440 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000400L});
-    public static final BitSet FOLLOW_74_in_annotation2460 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_annotationName_in_annotation2462 = new BitSet(new long[]{0x0000000008000002L});
-    public static final BitSet FOLLOW_27_in_annotation2466 = new BitSet(new long[]{0x0000000011000010L,0x0000000000000400L});
-    public static final BitSet FOLLOW_elementValuePairs_in_annotation2470 = new BitSet(new long[]{0x0000000010000000L});
-    public static final BitSet FOLLOW_elementValue_in_annotation2474 = new BitSet(new long[]{0x0000000010000000L});
-    public static final BitSet FOLLOW_28_in_annotation2479 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_Identifier_in_annotationName2503 = new BitSet(new long[]{0x0004000000000002L});
-    public static final BitSet FOLLOW_50_in_annotationName2506 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_Identifier_in_annotationName2508 = new BitSet(new long[]{0x0004000000000002L});
-    public static final BitSet FOLLOW_elementValuePair_in_elementValuePairs2529 = new BitSet(new long[]{0x0000000020000002L});
-    public static final BitSet FOLLOW_29_in_elementValuePairs2532 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_elementValuePair_in_elementValuePairs2534 = new BitSet(new long[]{0x0000000020000002L});
-    public static final BitSet FOLLOW_Identifier_in_elementValuePair2555 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000800L});
-    public static final BitSet FOLLOW_75_in_elementValuePair2557 = new BitSet(new long[]{0x0000000001000000L,0x0000000000000400L});
-    public static final BitSet FOLLOW_elementValue_in_elementValuePair2559 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_annotation_in_elementValue2582 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_elementValueArrayInitializer_in_elementValue2592 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_24_in_elementValueArrayInitializer2615 = new BitSet(new long[]{0x0000000023000000L,0x0000000000000400L});
-    public static final BitSet FOLLOW_elementValue_in_elementValueArrayInitializer2618 = new BitSet(new long[]{0x0000000022000000L});
-    public static final BitSet FOLLOW_29_in_elementValueArrayInitializer2621 = new BitSet(new long[]{0x0000000001000000L,0x0000000000000400L});
-    public static final BitSet FOLLOW_elementValue_in_elementValueArrayInitializer2623 = new BitSet(new long[]{0x0000000022000000L});
-    public static final BitSet FOLLOW_29_in_elementValueArrayInitializer2630 = new BitSet(new long[]{0x0000000002000000L});
-    public static final BitSet FOLLOW_25_in_elementValueArrayInitializer2634 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_74_in_annotationTypeDeclaration2661 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_23_in_annotationTypeDeclaration2663 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_Identifier_in_annotationTypeDeclaration2667 = new BitSet(new long[]{0x0000000001000000L});
-    public static final BitSet FOLLOW_annotationTypeBody_in_annotationTypeDeclaration2669 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_24_in_annotationTypeBody2692 = new BitSet(new long[]{0xF000000002000010L,0x000000000000041FL});
-    public static final BitSet FOLLOW_annotationTypeElementDeclaration_in_annotationTypeBody2695 = new BitSet(new long[]{0xF000000002000010L,0x000000000000041FL});
-    public static final BitSet FOLLOW_25_in_annotationTypeBody2699 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_annotationTypeElementRest_in_annotationTypeElementDeclaration2724 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_type_in_annotationTypeElementRest2747 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_annotationMethodOrConstantRest_in_annotationTypeElementRest2749 = new BitSet(new long[]{0x0000000004000000L});
-    public static final BitSet FOLLOW_26_in_annotationTypeElementRest2751 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_annotationTypeDeclaration_in_annotationTypeElementRest2761 = new BitSet(new long[]{0x0000000004000002L});
-    public static final BitSet FOLLOW_26_in_annotationTypeElementRest2763 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_annotationMethodRest_in_annotationMethodOrConstantRest2787 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_Identifier_in_annotationMethodRest2810 = new BitSet(new long[]{0x0000000008000000L});
-    public static final BitSet FOLLOW_27_in_annotationMethodRest2812 = new BitSet(new long[]{0x0000000010000000L});
-    public static final BitSet FOLLOW_28_in_annotationMethodRest2814 = new BitSet(new long[]{0x0000000000000002L,0x0000000000001000L});
-    public static final BitSet FOLLOW_defaultValue_in_annotationMethodRest2816 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_76_in_defaultValue2844 = new BitSet(new long[]{0x0000000001000000L,0x0000000000000400L});
-    public static final BitSet FOLLOW_elementValue_in_defaultValue2846 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_interfaceDeclaration_in_compilationUnit101 = new BitSet(new long[]{0x0801018080800002L});
+    public static final BitSet FOLLOW_componentDeclaration_in_compilationUnit114 = new BitSet(new long[]{0x0801018080800002L});
+    public static final BitSet FOLLOW_connectorDeclaration_in_compilationUnit127 = new BitSet(new long[]{0x0801018080800002L});
+    public static final BitSet FOLLOW_applicationDeclaration_in_compilationUnit140 = new BitSet(new long[]{0x0801018080800002L});
+    public static final BitSet FOLLOW_deploymentDeclaration_in_compilationUnit153 = new BitSet(new long[]{0x0801018080800002L});
+    public static final BitSet FOLLOW_23_in_interfaceDeclaration183 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_Identifier_in_interfaceDeclaration187 = new BitSet(new long[]{0x0000000001000000L});
+    public static final BitSet FOLLOW_interfaceBody_in_interfaceDeclaration193 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_24_in_interfaceBody207 = new BitSet(new long[]{0xF000000002000010L,0x000000000000001FL});
+    public static final BitSet FOLLOW_interfaceBodyDeclaration_in_interfaceBody209 = new BitSet(new long[]{0xF000000002000010L,0x000000000000001FL});
+    public static final BitSet FOLLOW_25_in_interfaceBody213 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_serviceDeclaration_in_interfaceBodyDeclaration229 = new BitSet(new long[]{0x0000000004000000L});
+    public static final BitSet FOLLOW_26_in_interfaceBodyDeclaration231 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_Identifier_in_serviceReferenceDeclaration256 = new BitSet(new long[]{0x0000000008000000L});
+    public static final BitSet FOLLOW_actualParameters_in_serviceReferenceDeclaration260 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_27_in_actualParameters289 = new BitSet(new long[]{0x0000000010000010L});
+    public static final BitSet FOLLOW_actualParameterDecls_in_actualParameters294 = new BitSet(new long[]{0x0000000010000000L});
+    public static final BitSet FOLLOW_28_in_actualParameters300 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_Identifier_in_actualParameterDecls325 = new BitSet(new long[]{0x0000000020000002L});
+    public static final BitSet FOLLOW_29_in_actualParameterDecls328 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_actualParameterDecls_in_actualParameterDecls332 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_serviceHeaderDeclaration_in_serviceDeclaration365 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_serviceReturnType_in_serviceHeaderDeclaration385 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_Identifier_in_serviceHeaderDeclaration389 = new BitSet(new long[]{0x0000000008000000L});
+    public static final BitSet FOLLOW_formalParameters_in_serviceHeaderDeclaration393 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_voidType_in_serviceReturnType419 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_type_in_serviceReturnType433 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_27_in_formalParameters465 = new BitSet(new long[]{0xF000000010000010L,0x000000000000001FL});
+    public static final BitSet FOLLOW_formalParameterDecls_in_formalParameters470 = new BitSet(new long[]{0x0000000010000000L});
+    public static final BitSet FOLLOW_28_in_formalParameters476 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_type_in_formalParameterDecls502 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_Identifier_in_formalParameterDecls506 = new BitSet(new long[]{0x0000000020000002L});
+    public static final BitSet FOLLOW_29_in_formalParameterDecls509 = new BitSet(new long[]{0xF000000000000010L,0x000000000000001FL});
+    public static final BitSet FOLLOW_formalParameterDecls_in_formalParameterDecls513 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_pointcutServiceSignatureDecl548 = new BitSet(new long[]{0x0000000040000010L});
+    public static final BitSet FOLLOW_set_in_pointcutServiceSignatureDecl556 = new BitSet(new long[]{0x0000000008000000L});
+    public static final BitSet FOLLOW_pointcutServiceSignatureParameters_in_pointcutServiceSignatureDecl564 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_27_in_pointcutServiceSignatureParameters587 = new BitSet(new long[]{0x0000000050000010L});
+    public static final BitSet FOLLOW_pointcutServiceSignatureParameterDecls_in_pointcutServiceSignatureParameters590 = new BitSet(new long[]{0x0000000010000000L});
+    public static final BitSet FOLLOW_28_in_pointcutServiceSignatureParameters596 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_pointcutServiceSignatureParameterDecls611 = new BitSet(new long[]{0x0000000020000012L});
+    public static final BitSet FOLLOW_Identifier_in_pointcutServiceSignatureParameterDecls620 = new BitSet(new long[]{0x0000000020000002L});
+    public static final BitSet FOLLOW_29_in_pointcutServiceSignatureParameterDecls625 = new BitSet(new long[]{0x0000000040000010L});
+    public static final BitSet FOLLOW_pointcutServiceSignatureParameterDecls_in_pointcutServiceSignatureParameterDecls627 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_abstractModifier_in_connectorDeclaration658 = new BitSet(new long[]{0x0000000080000000L});
+    public static final BitSet FOLLOW_31_in_connectorDeclaration664 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_Identifier_in_connectorDeclaration668 = new BitSet(new long[]{0x0000000801000000L});
+    public static final BitSet FOLLOW_refinementDeclaration_in_connectorDeclaration676 = new BitSet(new long[]{0x0000000801000000L});
+    public static final BitSet FOLLOW_connectorBody_in_connectorDeclaration683 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_24_in_connectorBody697 = new BitSet(new long[]{0x0800400102000000L});
+    public static final BitSet FOLLOW_connectorBodyDeclaration_in_connectorBody699 = new BitSet(new long[]{0x0800400102000000L});
+    public static final BitSet FOLLOW_25_in_connectorBody703 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_connectorAOCompositionDeclaration_in_connectorBodyDeclaration718 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_moduleRequireDependencyDeclaration_in_connectorBodyDeclaration725 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_abstractModifier_in_connectorAOCompositionDeclaration747 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_32_in_connectorAOCompositionDeclaration753 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_Identifier_in_connectorAOCompositionDeclaration757 = new BitSet(new long[]{0x0000000801000000L});
+    public static final BitSet FOLLOW_refinementDeclarationSingle_in_connectorAOCompositionDeclaration765 = new BitSet(new long[]{0x0000000801000000L});
+    public static final BitSet FOLLOW_connectorAOCompositionBody_in_connectorAOCompositionDeclaration772 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_24_in_connectorAOCompositionBody786 = new BitSet(new long[]{0x0000080202000000L});
+    public static final BitSet FOLLOW_pointcutDeclaration_in_connectorAOCompositionBody793 = new BitSet(new long[]{0x0000080002000000L});
+    public static final BitSet FOLLOW_adviceDeclaration_in_connectorAOCompositionBody802 = new BitSet(new long[]{0x0000000002000000L});
+    public static final BitSet FOLLOW_25_in_connectorAOCompositionBody809 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_33_in_pointcutDeclaration826 = new BitSet(new long[]{0x0000000001000000L});
+    public static final BitSet FOLLOW_pointcutBody_in_pointcutDeclaration830 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_24_in_pointcutBody846 = new BitSet(new long[]{0x0300007402000000L});
+    public static final BitSet FOLLOW_pointcutBodyDeclaration_in_pointcutBody848 = new BitSet(new long[]{0x0300007402000000L});
+    public static final BitSet FOLLOW_25_in_pointcutBody852 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_pointcutKindDeclaration_in_pointcutBodyDeclaration866 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_pointcutSignatureDeclaration_in_pointcutBodyDeclaration872 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_pointcutActorDeclaration_in_pointcutBodyDeclaration878 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_34_in_pointcutKindDeclaration895 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_35_in_pointcutKindDeclaration897 = new BitSet(new long[]{0x00C0000000000000L});
+    public static final BitSet FOLLOW_joinPointKind_in_pointcutKindDeclaration901 = new BitSet(new long[]{0x0000000004000000L});
+    public static final BitSet FOLLOW_26_in_pointcutKindDeclaration903 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_overrideOrExtend_in_pointcutSignatureDeclaration922 = new BitSet(new long[]{0x0000001000000000L});
+    public static final BitSet FOLLOW_36_in_pointcutSignatureDeclaration928 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_35_in_pointcutSignatureDeclaration930 = new BitSet(new long[]{0x0000000040000010L});
+    public static final BitSet FOLLOW_pointcutSignatureBody_in_pointcutSignatureDeclaration934 = new BitSet(new long[]{0x0000000004000000L});
+    public static final BitSet FOLLOW_26_in_pointcutSignatureDeclaration938 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_pointcutSignatureBodyDecls_in_pointcutSignatureBody957 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_pointcutServiceSignatureDecl_in_pointcutSignatureBodyDecls974 = new BitSet(new long[]{0x0000000020000002L});
+    public static final BitSet FOLLOW_29_in_pointcutSignatureBodyDecls978 = new BitSet(new long[]{0x0000000040000010L});
+    public static final BitSet FOLLOW_pointcutSignatureBodyDecls_in_pointcutSignatureBodyDecls980 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_37_in_pointcutActorDeclaration1002 = new BitSet(new long[]{0x0000000001000000L});
+    public static final BitSet FOLLOW_pointcutActorBody_in_pointcutActorDeclaration1006 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_38_in_pointcutActorDeclaration1017 = new BitSet(new long[]{0x0000000001000000L});
+    public static final BitSet FOLLOW_pointcutActorBody_in_pointcutActorDeclaration1021 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_24_in_pointcutActorBody1049 = new BitSet(new long[]{0x0300078002800000L});
+    public static final BitSet FOLLOW_pointcutActorBodyDecls_in_pointcutActorBody1051 = new BitSet(new long[]{0x0300078002800000L});
+    public static final BitSet FOLLOW_25_in_pointcutActorBody1055 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_overrideOrExtend_in_pointcutActorBodyDecls1076 = new BitSet(new long[]{0x0000078000800000L});
+    public static final BitSet FOLLOW_23_in_pointcutActorBodyDecls1085 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_35_in_pointcutActorBodyDecls1087 = new BitSet(new long[]{0x0400000000000010L});
+    public static final BitSet FOLLOW_39_in_pointcutActorBodyDecls1097 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_35_in_pointcutActorBodyDecls1099 = new BitSet(new long[]{0x0400000000000010L});
+    public static final BitSet FOLLOW_40_in_pointcutActorBodyDecls1108 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_35_in_pointcutActorBodyDecls1110 = new BitSet(new long[]{0x0400000000000010L});
+    public static final BitSet FOLLOW_41_in_pointcutActorBodyDecls1119 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_35_in_pointcutActorBodyDecls1121 = new BitSet(new long[]{0x0400000000000010L});
+    public static final BitSet FOLLOW_42_in_pointcutActorBodyDecls1130 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_35_in_pointcutActorBodyDecls1132 = new BitSet(new long[]{0x0400000000000010L});
+    public static final BitSet FOLLOW_pointcutActorPropDecls_in_pointcutActorBodyDecls1141 = new BitSet(new long[]{0x0000000004000000L});
+    public static final BitSet FOLLOW_26_in_pointcutActorBodyDecls1144 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_negationModifier_in_pointcutActorPropDecls1161 = new BitSet(new long[]{0x0400000000000010L});
+    public static final BitSet FOLLOW_pointcutActorPropDecl_in_pointcutActorPropDecls1167 = new BitSet(new long[]{0x0000000020000002L});
+    public static final BitSet FOLLOW_29_in_pointcutActorPropDecls1172 = new BitSet(new long[]{0x0400000000000010L});
+    public static final BitSet FOLLOW_pointcutActorPropDecls_in_pointcutActorPropDecls1174 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_Identifier_in_pointcutActorPropDecl1199 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_43_in_adviceDeclaration1222 = new BitSet(new long[]{0x0000000001000000L});
+    public static final BitSet FOLLOW_adviceBody_in_adviceDeclaration1226 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_24_in_adviceBody1241 = new BitSet(new long[]{0x0000300002000000L});
+    public static final BitSet FOLLOW_adviceBodyDeclaration_in_adviceBody1243 = new BitSet(new long[]{0x0000300002000000L});
+    public static final BitSet FOLLOW_25_in_adviceBody1247 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_adviceServiceDeclaration_in_adviceBodyDeclaration1262 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_adviceTypeDeclaration_in_adviceBodyDeclaration1268 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_44_in_adviceServiceDeclaration1286 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_35_in_adviceServiceDeclaration1288 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_serviceReferenceDeclaration_in_adviceServiceDeclaration1292 = new BitSet(new long[]{0x0000000004000000L});
+    public static final BitSet FOLLOW_26_in_adviceServiceDeclaration1294 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_45_in_adviceTypeDeclaration1313 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_35_in_adviceTypeDeclaration1315 = new BitSet(new long[]{0x0038000000000000L});
+    public static final BitSet FOLLOW_adviceType_in_adviceTypeDeclaration1319 = new BitSet(new long[]{0x0000000004000000L});
+    public static final BitSet FOLLOW_26_in_adviceTypeDeclaration1321 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_39_in_componentDeclaration1348 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_Identifier_in_componentDeclaration1352 = new BitSet(new long[]{0x0000000001000000L});
+    public static final BitSet FOLLOW_componentBody_in_componentDeclaration1356 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_24_in_componentBody1378 = new BitSet(new long[]{0x0800C00102000000L});
+    public static final BitSet FOLLOW_componentBodyDeclaration_in_componentBody1380 = new BitSet(new long[]{0x0800C00102000000L});
+    public static final BitSet FOLLOW_25_in_componentBody1384 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_moduleRequireDependencyDeclaration_in_componentBodyDeclaration1402 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_moduleProvideDependencyDeclaration_in_componentBodyDeclaration1408 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_24_in_moduleDependencyBody1436 = new BitSet(new long[]{0x0000000002000010L});
+    public static final BitSet FOLLOW_commaSeparatedBodyDecls_in_moduleDependencyBody1441 = new BitSet(new long[]{0x0000000002000000L});
+    public static final BitSet FOLLOW_25_in_moduleDependencyBody1449 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_46_in_moduleRequireDependencyDeclaration1466 = new BitSet(new long[]{0x0000000001000000L});
+    public static final BitSet FOLLOW_moduleDependencyBody_in_moduleRequireDependencyDeclaration1470 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_47_in_moduleProvideDependencyDeclaration1485 = new BitSet(new long[]{0x0000000001000000L});
+    public static final BitSet FOLLOW_moduleDependencyBody_in_moduleProvideDependencyDeclaration1489 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_abstractModifier_in_applicationDeclaration1522 = new BitSet(new long[]{0x0000010000000000L});
+    public static final BitSet FOLLOW_40_in_applicationDeclaration1528 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_Identifier_in_applicationDeclaration1532 = new BitSet(new long[]{0x0000000801000000L});
+    public static final BitSet FOLLOW_refinementDeclaration_in_applicationDeclaration1540 = new BitSet(new long[]{0x0000000801000000L});
+    public static final BitSet FOLLOW_applicationBody_in_applicationDeclaration1547 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_24_in_applicationBody1561 = new BitSet(new long[]{0x0800048082000010L});
+    public static final BitSet FOLLOW_applicationBodyDeclaration_in_applicationBody1565 = new BitSet(new long[]{0x0800048082000010L});
+    public static final BitSet FOLLOW_25_in_applicationBody1571 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_moduleContainerDeclarations_in_applicationBodyDeclaration1587 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_hostDeclaration_in_applicationBodyDeclaration1598 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_instanceDeclaration_in_applicationBodyDeclaration1610 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_abstractModifier_in_deploymentDeclaration1636 = new BitSet(new long[]{0x0001000000000000L});
+    public static final BitSet FOLLOW_48_in_deploymentDeclaration1642 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_Identifier_in_deploymentDeclaration1646 = new BitSet(new long[]{0x0000000801000000L});
+    public static final BitSet FOLLOW_refinementDeclaration_in_deploymentDeclaration1654 = new BitSet(new long[]{0x0000000801000000L});
+    public static final BitSet FOLLOW_applicationBody_in_deploymentDeclaration1661 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_Identifier_in_instanceDeclaration1684 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_Identifier_in_instanceDeclaration1688 = new BitSet(new long[]{0x0002000000000000L});
+    public static final BitSet FOLLOW_49_in_instanceDeclaration1692 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_Identifier_in_instanceDeclaration1696 = new BitSet(new long[]{0x0000000004000000L});
+    public static final BitSet FOLLOW_26_in_instanceDeclaration1698 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_42_in_hostDeclaration1725 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_Identifier_in_hostDeclaration1729 = new BitSet(new long[]{0x0002000004000000L});
+    public static final BitSet FOLLOW_49_in_hostDeclaration1737 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_StringLiteral_in_hostDeclaration1741 = new BitSet(new long[]{0x0000000004000000L});
+    public static final BitSet FOLLOW_26_in_hostDeclaration1748 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_componentDeclaration_in_moduleContainerDeclarations1774 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_connectorDeclaration_in_moduleContainerDeclarations1785 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_35_in_refinementDeclarationSingle1810 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_refinementDeclarationBody_in_refinementDeclarationSingle1812 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_refinementDeclarationSingle_in_refinementDeclaration1829 = new BitSet(new long[]{0x0000000020000002L});
+    public static final BitSet FOLLOW_29_in_refinementDeclaration1834 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_refinementDeclarationBody_in_refinementDeclaration1836 = new BitSet(new long[]{0x0000000020000002L});
+    public static final BitSet FOLLOW_refinementParentDeclaration_in_refinementDeclarationBody1857 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_Identifier_in_refinementParentDeclaration1887 = new BitSet(new long[]{0x0004000000000002L});
+    public static final BitSet FOLLOW_50_in_refinementParentDeclaration1894 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_Identifier_in_refinementParentDeclaration1898 = new BitSet(new long[]{0x0004000000000002L});
+    public static final BitSet FOLLOW_Identifier_in_commaSeparatedBodyDecls1932 = new BitSet(new long[]{0x0000000020000002L});
+    public static final BitSet FOLLOW_29_in_commaSeparatedBodyDecls1935 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_commaSeparatedBodyDecls_in_commaSeparatedBodyDecls1939 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_51_in_adviceType1968 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_52_in_adviceType1975 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_53_in_adviceType1982 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_54_in_joinPointKind2002 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_55_in_joinPointKind2009 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_56_in_overrideOrExtend2031 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_57_in_overrideOrExtend2040 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_58_in_negationModifier2060 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_59_in_abstractModifier2080 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_60_in_voidType2103 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_classOrInterfaceType_in_type2135 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_primitiveType_in_type2144 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_Identifier_in_classOrInterfaceType2169 = new BitSet(new long[]{0x0004000000000002L,0x0000000000000020L});
+    public static final BitSet FOLLOW_typeArguments_in_classOrInterfaceType2188 = new BitSet(new long[]{0x0004000000000002L});
+    public static final BitSet FOLLOW_50_in_classOrInterfaceType2202 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_Identifier_in_classOrInterfaceType2206 = new BitSet(new long[]{0x0004000000000002L,0x0000000000000020L});
+    public static final BitSet FOLLOW_typeArguments_in_classOrInterfaceType2232 = new BitSet(new long[]{0x0004000000000002L});
+    public static final BitSet FOLLOW_61_in_primitiveType2257 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_62_in_primitiveType2269 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_63_in_primitiveType2281 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_64_in_primitiveType2293 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_65_in_primitiveType2305 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_66_in_primitiveType2317 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_67_in_primitiveType2329 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_68_in_primitiveType2341 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_69_in_typeArguments2364 = new BitSet(new long[]{0xF000000000000010L,0x000000000000009FL});
+    public static final BitSet FOLLOW_typeArgument_in_typeArguments2366 = new BitSet(new long[]{0x0000000020000000L,0x0000000000000040L});
+    public static final BitSet FOLLOW_29_in_typeArguments2370 = new BitSet(new long[]{0xF000000000000010L,0x000000000000009FL});
+    public static final BitSet FOLLOW_typeArgument_in_typeArguments2372 = new BitSet(new long[]{0x0000000020000000L,0x0000000000000040L});
+    public static final BitSet FOLLOW_70_in_typeArguments2377 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_type_in_typeArgument2402 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_71_in_typeArgument2408 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000300L});
+    public static final BitSet FOLLOW_set_in_typeArgument2413 = new BitSet(new long[]{0xF000000000000010L,0x000000000000001FL});
+    public static final BitSet FOLLOW_type_in_typeArgument2423 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_annotation_in_annotations2453 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000400L});
+    public static final BitSet FOLLOW_74_in_annotation2473 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_annotationName_in_annotation2475 = new BitSet(new long[]{0x0000000008000002L});
+    public static final BitSet FOLLOW_27_in_annotation2479 = new BitSet(new long[]{0x0000000011000010L,0x0000000000000400L});
+    public static final BitSet FOLLOW_elementValuePairs_in_annotation2483 = new BitSet(new long[]{0x0000000010000000L});
+    public static final BitSet FOLLOW_elementValue_in_annotation2487 = new BitSet(new long[]{0x0000000010000000L});
+    public static final BitSet FOLLOW_28_in_annotation2492 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_Identifier_in_annotationName2516 = new BitSet(new long[]{0x0004000000000002L});
+    public static final BitSet FOLLOW_50_in_annotationName2519 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_Identifier_in_annotationName2521 = new BitSet(new long[]{0x0004000000000002L});
+    public static final BitSet FOLLOW_elementValuePair_in_elementValuePairs2542 = new BitSet(new long[]{0x0000000020000002L});
+    public static final BitSet FOLLOW_29_in_elementValuePairs2545 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_elementValuePair_in_elementValuePairs2547 = new BitSet(new long[]{0x0000000020000002L});
+    public static final BitSet FOLLOW_Identifier_in_elementValuePair2568 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000800L});
+    public static final BitSet FOLLOW_75_in_elementValuePair2570 = new BitSet(new long[]{0x0000000001000000L,0x0000000000000400L});
+    public static final BitSet FOLLOW_elementValue_in_elementValuePair2572 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_annotation_in_elementValue2595 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_elementValueArrayInitializer_in_elementValue2605 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_24_in_elementValueArrayInitializer2628 = new BitSet(new long[]{0x0000000023000000L,0x0000000000000400L});
+    public static final BitSet FOLLOW_elementValue_in_elementValueArrayInitializer2631 = new BitSet(new long[]{0x0000000022000000L});
+    public static final BitSet FOLLOW_29_in_elementValueArrayInitializer2634 = new BitSet(new long[]{0x0000000001000000L,0x0000000000000400L});
+    public static final BitSet FOLLOW_elementValue_in_elementValueArrayInitializer2636 = new BitSet(new long[]{0x0000000022000000L});
+    public static final BitSet FOLLOW_29_in_elementValueArrayInitializer2643 = new BitSet(new long[]{0x0000000002000000L});
+    public static final BitSet FOLLOW_25_in_elementValueArrayInitializer2647 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_74_in_annotationTypeDeclaration2674 = new BitSet(new long[]{0x0000000000800000L});
+    public static final BitSet FOLLOW_23_in_annotationTypeDeclaration2676 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_Identifier_in_annotationTypeDeclaration2680 = new BitSet(new long[]{0x0000000001000000L});
+    public static final BitSet FOLLOW_annotationTypeBody_in_annotationTypeDeclaration2682 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_24_in_annotationTypeBody2705 = new BitSet(new long[]{0xF000000002000010L,0x000000000000041FL});
+    public static final BitSet FOLLOW_annotationTypeElementDeclaration_in_annotationTypeBody2708 = new BitSet(new long[]{0xF000000002000010L,0x000000000000041FL});
+    public static final BitSet FOLLOW_25_in_annotationTypeBody2712 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_annotationTypeElementRest_in_annotationTypeElementDeclaration2737 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_type_in_annotationTypeElementRest2760 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_annotationMethodOrConstantRest_in_annotationTypeElementRest2762 = new BitSet(new long[]{0x0000000004000000L});
+    public static final BitSet FOLLOW_26_in_annotationTypeElementRest2764 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_annotationTypeDeclaration_in_annotationTypeElementRest2774 = new BitSet(new long[]{0x0000000004000002L});
+    public static final BitSet FOLLOW_26_in_annotationTypeElementRest2776 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_annotationMethodRest_in_annotationMethodOrConstantRest2800 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_Identifier_in_annotationMethodRest2823 = new BitSet(new long[]{0x0000000008000000L});
+    public static final BitSet FOLLOW_27_in_annotationMethodRest2825 = new BitSet(new long[]{0x0000000010000000L});
+    public static final BitSet FOLLOW_28_in_annotationMethodRest2827 = new BitSet(new long[]{0x0000000000000002L,0x0000000000001000L});
+    public static final BitSet FOLLOW_defaultValue_in_annotationMethodRest2829 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_76_in_defaultValue2857 = new BitSet(new long[]{0x0000000001000000L,0x0000000000000400L});
+    public static final BitSet FOLLOW_elementValue_in_defaultValue2859 = new BitSet(new long[]{0x0000000000000002L});
 
 }

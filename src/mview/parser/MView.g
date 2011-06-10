@@ -95,6 +95,19 @@ import chameleon.support.input.ChameleonParser;
 	package mview.parser;
 }
 
+//@members {
+//
+//private String unQuote(String quoted) {
+//	String result = null;
+//	if (quoted != null) {
+//		if (quoted.matches("^\".*\"$")) {
+//			result = quoted.substring(1,quoted.length()-1);
+//		}
+//	}
+//	return result;
+//}
+//
+//}
 
 // starting point for parsing
 compilationUnit returns [CompilationUnit element] 
@@ -670,7 +683,6 @@ hostDeclaration returns [Host element]
 		} ( onkw='on' value=StringLiteral {
 			
 			HostName hostName = new HostName(new SimpleNameSignature($value.text));
-//			SimpleReference<HostName> hostNameRelation = new SimpleReference<HostName>($value.text,HostName.class);
 			$element.setHostName(hostName);
 			setKeyword(hostName,$onkw);
 			
