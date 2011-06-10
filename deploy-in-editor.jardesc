@@ -35,6 +35,7 @@
         <javaElement handleIdentifier="=mview-lang/src&lt;mview.model.module{MViewBasicTypeReference.java"/>
         <javaElement handleIdentifier="=mview-lang/src&lt;mview.output.jboss"/>
         <javaElement handleIdentifier="=mview-lang/src&lt;mview.model.refinement.modifier"/>
+        <javaElement handleIdentifier="=mview-lang/src&lt;mview.output{TransformableElement.java"/>
         <javaElement handleIdentifier="=mview-lang/src&lt;mview.model.module{Module.java"/>
         <javaElement handleIdentifier="=mview-lang/src&lt;mview.model.module{Component.java"/>
         <javaElement handleIdentifier="=mview-lang/src&lt;mview.model.composition.modifier"/>
