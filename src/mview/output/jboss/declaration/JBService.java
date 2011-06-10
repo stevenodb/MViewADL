@@ -29,8 +29,8 @@ public class JBService extends JBDeclarationImpl {
 	/**
 	 * @param sourceElement
 	 */
-	public JBService(Declaration sourceElement) {
-		super(sourceElement);
+	public JBService(Declaration sourceElement, JBDeclaration parentDeclaration) {
+		super(sourceElement, parentDeclaration);
 	}
 
 	private String _returnType;

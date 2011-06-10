@@ -43,8 +43,8 @@ public abstract class JBModule<D extends JBModule, E extends Module>
 	/**
 	 * @param sourceElement
 	 */
-	protected JBModule(E sourceElement) {
-		super(sourceElement);
+	protected JBModule(E sourceElement, JBDeclaration parentDeclaration) {
+		super(sourceElement, parentDeclaration);
 	}
 	
 	/**

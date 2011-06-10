@@ -1,7 +1,7 @@
 /**
  * author:   Steven Op de beeck <steven /at/ opdebeeck /./ org>
- * filename: JBDeclaration.java
- * created:  Mar 15, 2011, 4:43:26 PM
+ * filename: JBHost.java
+ * created:  Jun 9, 2011, 4:32:20 PM
  * license:
  * The code contained in this file is free software: you can redistribute 
  * it and/or modify it under the terms of the GNU General Public License
@@ -18,17 +18,37 @@
  */
 package mview.output.jboss.declaration;
 
-import mview.output.TransformableElement;
-import mview.output.WriterArguments;
-import chameleon.core.element.Element;
+import mview.model.application.Host;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public interface JBDeclaration<Declaration extends JBDeclaration> extends TransformableElement {
+public class JBHost extends JBDeclarationImpl<JBHost, Host> {
+
+	/**
+	 * @param sourceElement
+	 */
+	public JBHost(Host sourceElement, JBDeclaration parentDeclaration) {
+		super(sourceElement, parentDeclaration);
+	}
 	
-	public String getName();
-	public JBDeclaration parentDeclaration();
+	/**
+	 * @return
+	 */
+	public String getHostName() {
+		String result = null;
+		
+		if (sourceElement().hostName() != null) {
+			result = sourceElement().hostName().signature().toString();
+		}		
+		
+		return result;
+	}
+
+	@Override
+	protected String toCode(JBDeclaration parent) {
+		return getHostName();
+	}
 
 }

@@ -35,10 +35,21 @@ public abstract class JBDeclarationImpl<D extends JBDeclarationImpl, E extends D
 		implements JBDeclaration<D> {
 
 	private final E	_sourceElement;
+	private final JBDeclaration _parentDeclaration;
 	private String _packageName;
 
-	protected JBDeclarationImpl(E sourceElement) {
-		_sourceElement = sourceElement;
+	protected JBDeclarationImpl(E sourceElement, JBDeclaration parentDeclaration) {
+		if (sourceElement != null) {
+			_sourceElement = sourceElement;
+			_parentDeclaration = parentDeclaration;			
+		} else {
+			throw new NullPointerException("sourceElement cannot be Null.");
+		}
+	}
+	
+	@Override
+	public JBDeclaration parentDeclaration() {
+		return _parentDeclaration;
 	}
 
 	@Override

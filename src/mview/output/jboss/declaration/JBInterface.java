@@ -36,8 +36,8 @@ public class JBInterface extends JBDeclarationImpl<JBInterface, Interface> {
 	/**
 	 * @param sourceElement
 	 */
-	public JBInterface(Interface sourceElement) {
-		super(sourceElement);
+	public JBInterface(Interface sourceElement, JBDeclaration parentDeclaration) {
+		super(sourceElement, parentDeclaration);
 	}
 
 	/**

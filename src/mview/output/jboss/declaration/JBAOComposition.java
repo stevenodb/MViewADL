@@ -69,8 +69,8 @@ public class JBAOComposition extends JBDeclarationImpl<JBAOComposition,AOComposi
 	/**
 	 * @param sourceElement
 	 */
-	public JBAOComposition(AOComposition sourceElement) {
-		super(sourceElement);
+	public JBAOComposition(AOComposition sourceElement, JBDeclaration parentDeclaration) {
+		super(sourceElement,parentDeclaration);
 	}
 
 
@@ -120,28 +120,51 @@ public class JBAOComposition extends JBDeclarationImpl<JBAOComposition,AOComposi
 			
 			if (pc.calleeMap().containsKey(ActorType.HOST)) {
 				for(JBActorPropValue propVal : pc.calleeMap().get(ActorType.HOST)) {
+					
+					JBHost host = ((JBApplication) parent.parentDeclaration()).hostWithName(propVal.value());
+					String hostName = (host != null && host.getHostName() != null) 
+												? host.getHostName() : propVal.value();
+					
 					if (propVal.isNegated()) {
-						invalidHosts.add(propVal.value());
+						invalidHosts.add(hostName);
 					} else {
-						validHosts.add(propVal.value());
+						validHosts.add(hostName);
 					}
 				}
 			}
 
-			startNewLine(sb,"final String[] validHosts = {");
-			for(Iterator<String> itHost = validHosts.iterator(); itHost.hasNext();) {
-				String host = itHost.next();
-				appendTermStrict(sb,"\""+host+"\""+(itHost.hasNext()?",":""));
-			}
-			appendTermStrict(sb, "};");
-
+			List[] hostLists = {validHosts,invalidHosts};
 			
-			startNewLine(sb,"final String[] invalidHosts = {");
-			for(Iterator<String> itHost = invalidHosts.iterator(); itHost.hasNext();) {
-				String host = itHost.next();
-				appendTermStrict(sb,"\""+host+"\""+(itHost.hasNext()?",":""));
+			for (List<String> lst : hostLists) {
+				
+				if (lst == validHosts) {
+					startNewLine(sb,"final String[] validHosts = {");
+				} else {
+					startNewLine(sb,"final String[] invalidHosts = {");
+				}
+				
+				for(Iterator<String> itHost = lst.iterator(); itHost.hasNext();) {
+					String host = itHost.next();
+					appendTermStrict(sb,host+(itHost.hasNext()?",":""));
+				}
+				appendTermStrict(sb, "};");
+				
 			}
-			appendTermStrict(sb, "};");
+			
+//			startNewLine(sb,"final String[] validHosts = {");
+//			for(Iterator<String> itHost = validHosts.iterator(); itHost.hasNext();) {
+//				String host = itHost.next();
+//				appendTermStrict(sb,host+(itHost.hasNext()?",":""));
+//			}
+//			appendTermStrict(sb, "};");
+//
+//			
+//			startNewLine(sb,"final String[] invalidHosts = {");
+//			for(Iterator<String> itHost = invalidHosts.iterator(); itHost.hasNext();) {
+//				String host = itHost.next();
+//				appendTermStrict(sb,"\""+host+"\""+(itHost.hasNext()?",":""));
+//			}
+//			appendTermStrict(sb, "};");
 			
 			// signatures
 			newLine(sb);

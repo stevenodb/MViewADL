@@ -21,29 +21,57 @@ package mview.output.jboss.declaration;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.rejuse.java.collections.RobustVisitor;
-
-import chameleon.core.element.Element;
-import chameleon.exception.ModelException;
-
-import mview.model.application.Instance;
-import mview.model.deployment.Deployment;
+import mview.model.application.Application;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public class JBDeployment extends JBDeclarationImpl<JBDeployment,Deployment> {
+public class JBApplication extends JBDeclarationImpl<JBApplication,Application> {
 
 
 	private List<JBModule>	_modules = new ArrayList<JBModule>();
+	private List<JBHost> _hosts = new ArrayList<JBHost>();
 
 	/**
 	 * @param sourceElement
 	 */
-	protected JBDeployment(Deployment sourceElement) {
-		super(sourceElement);
+	public JBApplication(Application sourceElement, JBDeclaration parentDeclaration) {
+		super(sourceElement,parentDeclaration);
 	}
+	
+	/**
+	 * @param jbHost
+	 */
+	public void addHost(JBHost jbHost) {
+		_hosts.add(jbHost);
+	}
+	
+	/**
+	 * @return
+	 */
+	public List<JBHost> hosts() {
+		return _hosts;
+	}
+	
+	/**
+	 * @param name
+	 * @return
+	 */
+	public JBHost hostWithName(String name) {
+		JBHost result = null;
+		
+		for (JBHost host : hosts()) {
+			
+			if (name.equals(host.getName())) {
+				result = host;
+				break;
+			}
+		}
+		
+		return result;
+	}
+	
 
 	/**
 	 * @param jbModule

@@ -34,8 +34,8 @@ public class JBComponent extends JBModule<JBComponent,Component> {
 	/**
 	 * @param sourceElement
 	 */
-	public JBComponent(Component sourceElement) {
-		super(sourceElement);
+	public JBComponent(Component sourceElement, JBDeclaration parentDeclaration) {
+		super(sourceElement,parentDeclaration);
 	}
 
 	/**

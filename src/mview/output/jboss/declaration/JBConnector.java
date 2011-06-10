@@ -41,8 +41,8 @@ public class JBConnector extends JBModule<JBConnector,Connector> {
 	/**
 	 * @param name
 	 */
-	public JBConnector(Connector sourceElement) {
-		super(sourceElement);
+	public JBConnector(Connector sourceElement, JBDeclaration parentDeclaration) {
+		super(sourceElement,parentDeclaration);
 	}
 		
 	/**
