@@ -37,7 +37,7 @@ import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.VerificationResult;
 
 public class Interface extends MViewDeclaration<Interface> implements
-		TargetDeclaration<Interface, Signature, Interface>,
+		TargetDeclaration<Interface, Signature>,
 		DeclarationContainer<Interface> {
 
 	/**
@@ -124,7 +124,6 @@ public class Interface extends MViewDeclaration<Interface> implements
 	}
 
 
-	@Override
 	public LocalLookupStrategy<?> targetContext() throws LookupException {
 		return language().lookupFactory().createTargetLookupStrategy(this);
 	}

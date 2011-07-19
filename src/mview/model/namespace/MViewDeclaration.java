@@ -48,7 +48,7 @@ import chameleon.util.Util;
  */
 public abstract class MViewDeclaration<E extends MViewDeclaration<E>>
 		extends ElementWithModifiersImpl<E>
-		implements Declaration<E, Signature, E> {
+		implements Declaration<E, Signature> {
 
 	/**
 	 * Default constructor
@@ -71,7 +71,7 @@ public abstract class MViewDeclaration<E extends MViewDeclaration<E>>
 		return new UniversalScope();
 	}
 
-	public Declaration<?, Signature, E> selectionDeclaration()
+	public Declaration<?, Signature> selectionDeclaration()
 			throws LookupException {
 		return this;
 	}
@@ -182,5 +182,11 @@ public abstract class MViewDeclaration<E extends MViewDeclaration<E>>
 	public String toString() {
 		return this.getClass().getSimpleName() + "@" + signature().toString();
 	}
+	
+	@Override
+	public boolean complete() throws LookupException {
+		return true;
+	}
+
 
 }

@@ -23,6 +23,7 @@ import java.util.List;
 
 import mview.model.refinement.MViewMember;
 import chameleon.core.declaration.SimpleNameSignature;
+import chameleon.core.lookup.LookupException;
 import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.VerificationResult;
 
@@ -81,5 +82,6 @@ public class Component<E extends Component<E>> extends Module<E> {
 	public List<MViewMember> localMembers() {
 		return super.localMembers();
 	}
+
 
 }

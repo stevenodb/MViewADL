@@ -54,7 +54,7 @@ import chameleon.util.Util;
  */
 public abstract class RefinableDeclarationImpl<D extends RefinableDeclarationImpl<D>>
 		extends MViewDeclaration<D>
-		implements RefinableDeclaration<D>, TargetDeclaration<D, Signature, D>,
+		implements RefinableDeclaration<D>, TargetDeclaration<D, Signature>,
 			DeclarationContainer<D> {
 
 	/**

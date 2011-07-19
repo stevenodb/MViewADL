@@ -29,6 +29,7 @@ import chameleon.core.declaration.SimpleNameDeclarationWithParametersHeader;
 import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.element.Element;
 import chameleon.core.method.Method;
+import chameleon.core.method.SimpleNameMethodHeader;
 import chameleon.core.reference.SimpleReference;
 import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.Valid;
@@ -73,8 +74,8 @@ public class Service extends JoinPointElement<Service> {
 		// returnType, signature, formal parameters
 		
 		Method method = new NormalMethod(
-				new SimpleNameDeclarationWithParametersHeader(signature.name()), 
-				returnType);
+				new SimpleNameMethodHeader(signature.name(), 
+				returnType));
 
 		if (formalParameters != null) {
 			for (FormalParameter formalParameter : formalParameters) {

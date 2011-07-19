@@ -27,6 +27,6 @@ import chameleon.core.element.Element;
  *
  */
 public interface MViewMemberDeclaration<M extends MViewMemberDeclaration<M>> 
-	extends Declaration<M, Signature, M>, 
+	extends Declaration<M, Signature>, 
 			MViewMember<M> 
 	{}
