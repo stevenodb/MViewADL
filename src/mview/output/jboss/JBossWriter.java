@@ -53,10 +53,10 @@ import mview.model.module.Service;
 import mview.model.property.ActorProperty;
 import mview.output.WriterArguments;
 import mview.output.jboss.declaration.JBAOComposition;
+import mview.output.jboss.declaration.JBApplication;
 import mview.output.jboss.declaration.JBComponent;
 import mview.output.jboss.declaration.JBConnector;
 import mview.output.jboss.declaration.JBDeclaration;
-import mview.output.jboss.declaration.JBApplication;
 import mview.output.jboss.declaration.JBHost;
 import mview.output.jboss.declaration.JBInterface;
 import mview.output.jboss.declaration.JBModule;
@@ -69,8 +69,6 @@ import mview.output.jboss.element.JBPointcutElement.PointcutKind;
 
 import org.rejuse.java.collections.RobustVisitor;
 import org.rejuse.property.Property;
-
-import sun.security.krb5.internal.PAEncTSEnc;
 
 import chameleon.core.compilationunit.CompilationUnit;
 import chameleon.core.declaration.Declaration;
