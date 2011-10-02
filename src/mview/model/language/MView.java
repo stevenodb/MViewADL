@@ -30,6 +30,7 @@ import mview.model.composition.Advice;
 import mview.model.composition.Pointcut;
 import mview.model.composition.PointcutSignature;
 import mview.model.composition.PropValue;
+import mview.model.composition.ServiceSignature;
 import mview.model.composition.modifier.After;
 import mview.model.composition.modifier.Around;
 import mview.model.composition.modifier.Before;
@@ -61,12 +62,12 @@ public class MView extends Language {
 	public final PropertyMutex<ChameleonProperty> ADVICE_MUTEX;
 
 	// final. ... properties
-	public final StaticChameleonProperty EXECUTION;
+	public final ChameleonProperty EXECUTION;
 	public final ChameleonProperty CALL;
 
-	public final StaticChameleonProperty BEFORE;
-	public final StaticChameleonProperty AFTER;
-	public final StaticChameleonProperty AROUND;
+	public final ChameleonProperty BEFORE;
+	public final ChameleonProperty AFTER;
+	public final ChameleonProperty AROUND;
 
 	public final ActorProperty INTERFACE;
 	public final ActorProperty COMPONENT;
@@ -74,12 +75,12 @@ public class MView extends Language {
 	public final ActorProperty INSTANCE;
 	public final ActorProperty HOST;
 
-	public final StaticChameleonProperty NEGATE;
+	public final ChameleonProperty NEGATE;
 
-	public final StaticChameleonProperty OVERRIDABLE;
+	public final ChameleonProperty OVERRIDABLE;
 	public final ChameleonProperty EXTENDABLE;
 
-	public final StaticChameleonProperty ABSTRACT;
+	public final ChameleonProperty ABSTRACT;
 
 	public final Set<ActorProperty> ACTOR_PROPERTIES;
 
@@ -155,6 +156,7 @@ public class MView extends Language {
 
 		// negate property
 		NEGATE = new StaticChameleonProperty("Negate", this, PropValue.class);
+		NEGATE.addValidElementType(ServiceSignature.class);
 
 		// abstract property
 		ABSTRACT =

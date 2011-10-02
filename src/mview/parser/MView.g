@@ -92,7 +92,7 @@ import chameleon.support.input.ChameleonParser;
 }
 
 @lexer::header {
-	package mview.parser;
+package mview.parser;
 }
 
 //@members {
@@ -247,8 +247,13 @@ formalParameterDecls returns [List<FormalParameter> lst]
  
 
 pointcutServiceSignatureDecl returns [ServiceSignature element]
-	:	rtype=(Identifier|'*') sig=(Identifier|'*') pars=pointcutServiceSignatureParameters {
+	:	(negate=negationModifier)? rtype=(Identifier|'*') sig=(Identifier|'*') pars=pointcutServiceSignatureParameters {
 			$element = new PatternSignature($rtype.text,$sig.text,$pars.lst);
+			
+			if ($negate.value != null) {
+				$element.addModifier($negate.value);
+			}
+
 		}
 	;
 	
@@ -295,14 +300,14 @@ connectorBody[Connector element]
 
 
 connectorBodyDeclaration[Connector element]
-	:	aoc=connectorAOCompositionDeclaration {
+	:	aoc=aoCompositionDeclaration {
 			$element.addComposition($aoc.element);
 		}
 	|	moduleRequireDependencyDeclaration[$element]
 	;	
 	
 
-connectorAOCompositionDeclaration returns [AOComposition element]
+aoCompositionDeclaration returns [AOComposition element]
 	:	(abs=abstractModifier)? kw='ao-composition' name=Identifier  {
 			$element = new AOComposition(new SimpleNameSignature($name.text));
 			
@@ -314,11 +319,11 @@ connectorAOCompositionDeclaration returns [AOComposition element]
 			setLocation($element,$name,"__NAME");
 		}
 		(refinementDeclarationSingle[$element,AOComposition.class])?
-		connectorAOCompositionBody[$element]
+		aoCompositionBody[$element]
 	;
 
 
-connectorAOCompositionBody[AOComposition element]
+aoCompositionBody[AOComposition element]
 	:	'{' 
 		pc=pointcutDeclaration? {	
 			$element.setPointcut($pc.pointcut);
@@ -813,7 +818,7 @@ joinPointKind returns [Modifier value]
  
 overrideOrExtend returns [Modifier value]
 	:	okw='override' {$value = new Overridable(); setKeyword($value,$okw); }
-	|	ekw='extend' {$value = new Extendable(); setKeyword($value,$ekw); }
+	|	ekw='merge' {$value = new Extendable(); setKeyword($value,$ekw); }
 	;
 	
 
