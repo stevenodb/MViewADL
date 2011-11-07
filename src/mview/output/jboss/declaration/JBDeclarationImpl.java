@@ -22,7 +22,6 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import mview.model.namespace.MViewDeclaration;
 import mview.output.WriterArguments;
 import chameleon.core.declaration.Declaration;
 import chameleon.core.lookup.LookupException;

@@ -19,15 +19,9 @@
 package mview.output.jboss.declaration;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 
 import mview.model.module.Connector;
-import mview.model.module.Interface;
-import mview.output.WriterArguments;
-import chameleon.core.reference.SimpleReference;
-import chameleon.oo.type.TypeWithBody;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>

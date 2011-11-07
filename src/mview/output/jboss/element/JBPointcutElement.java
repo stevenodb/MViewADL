@@ -23,14 +23,9 @@ import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 
-import mview.model.composition.AOComposition;
 import mview.model.composition.PatternSignature;
 import mview.model.composition.Pointcut;
-import mview.model.composition.ServiceSignature;
-import mview.model.module.Service;
 import mview.output.WriterArguments;
-import mview.output.jboss.element.JBPointcutElement.ActorType;
-import mview.output.jboss.element.JBPointcutElement.PointcutKind;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>

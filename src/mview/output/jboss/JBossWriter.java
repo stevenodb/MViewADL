@@ -75,9 +75,9 @@ import chameleon.core.declaration.Declaration;
 import chameleon.core.element.Element;
 import chameleon.core.namespacepart.NamespacePart;
 import chameleon.core.reference.SimpleReference;
-import chameleon.core.variable.FormalParameter;
 import chameleon.exception.ModelException;
 import chameleon.oo.type.BasicTypeReference;
+import chameleon.oo.variable.FormalParameter;
 import chameleon.util.Pair;
 
 /**

@@ -19,8 +19,6 @@
 package mview.output.jboss.declaration;
 
 import mview.output.TransformableElement;
-import mview.output.WriterArguments;
-import chameleon.core.element.Element;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>

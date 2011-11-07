@@ -23,8 +23,6 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-import com.sun.codemodel.internal.JJavaName;
-
 import mview.model.module.Module;
 
 /**

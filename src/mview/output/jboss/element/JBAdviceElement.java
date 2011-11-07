@@ -18,10 +18,8 @@
  */
 package mview.output.jboss.element;
 
-import mview.model.composition.AOComposition;
 import mview.model.composition.Advice;
 import mview.output.WriterArguments;
-import mview.output.jboss.element.JBAdviceElement.AdviceType;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>

@@ -19,10 +19,6 @@
 package mview.output;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-
-import mview.model.namespace.MViewDeclaration;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>

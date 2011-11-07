@@ -22,7 +22,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import chameleon.core.declaration.SimpleNameSignature;
 import mview.model.module.Interface;
 
 /**
