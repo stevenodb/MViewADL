@@ -29,7 +29,6 @@ import org.rejuse.association.OrderedMultiAssociation;
 import org.rejuse.property.Property;
 
 import chameleon.core.declaration.Declaration;
-import chameleon.core.declaration.Signature;
 import chameleon.core.element.Element;
 import chameleon.core.lookup.LookupException;
 import chameleon.core.namespace.NamespaceElementImpl;

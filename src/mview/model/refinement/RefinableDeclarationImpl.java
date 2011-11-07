@@ -19,13 +19,9 @@
 package mview.model.refinement;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import mview.model.language.MView;
-import mview.model.module.Interface;
 import mview.model.module.Module.RequiredInterfaceDependency;
 import mview.model.namespace.MViewDeclaration;
 
@@ -43,10 +39,8 @@ import chameleon.core.lookup.LocalLookupStrategy;
 import chameleon.core.lookup.LookupException;
 import chameleon.core.lookup.LookupStrategy;
 import chameleon.core.lookup.LookupStrategySelector;
-import chameleon.core.reference.SimpleReference;
 import chameleon.core.validation.VerificationResult;
 import chameleon.exception.ModelException;
-import chameleon.util.Util;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
@@ -54,7 +48,7 @@ import chameleon.util.Util;
  */
 public abstract class RefinableDeclarationImpl<D extends RefinableDeclarationImpl<D>>
 		extends MViewDeclaration<D>
-		implements RefinableDeclaration<D>, TargetDeclaration<D, Signature, D>,
+		implements RefinableDeclaration<D>, TargetDeclaration<D, Signature>,
 			DeclarationContainer<D> {
 
 	/**
@@ -87,9 +81,13 @@ public abstract class RefinableDeclarationImpl<D extends RefinableDeclarationImp
 	}
 
 
+	/**
+	 * Adds a refinement relation in a last-in-first-out manner.
+	 */
 	@Override
 	public void addRefinementRelation(RefinementRelation relation) {
-		_refinementRelations.add(relation.parentLink());
+//		_refinementRelations.add(relation.parentLink());
+		_refinementRelations.addInFront(relation.parentLink());
 	}
 
 
@@ -351,4 +349,6 @@ public abstract class RefinableDeclarationImpl<D extends RefinableDeclarationImp
 	public boolean isAbstract() {
 		return this.isTrue(language(MView.class).ABSTRACT);
 	}
+	
+	
 }

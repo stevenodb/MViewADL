@@ -22,8 +22,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import mview.exception.MergeNotSupportedException;
-
 import org.rejuse.association.SingleAssociation;
 
 import chameleon.core.element.ElementImpl;

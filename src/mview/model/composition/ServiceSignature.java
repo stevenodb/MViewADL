@@ -26,7 +26,6 @@ import mview.model.module.JoinPointElement;
 import chameleon.core.element.Element;
 import chameleon.core.lookup.LookupException;
 import chameleon.core.modifier.ElementWithModifiersImpl;
-import chameleon.core.namespace.NamespaceElementImpl;
 import chameleon.core.reference.SimpleReference;
 import chameleon.core.validation.Valid;
 import chameleon.core.validation.VerificationResult;

@@ -22,7 +22,6 @@ package mview.model.application;
 import java.util.ArrayList;
 import java.util.List;
 
-import mview.model.composition.Advice;
 import mview.model.module.Module;
 import mview.model.module.ModuleContainer;
 import mview.model.refinement.MViewMember;

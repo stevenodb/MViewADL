@@ -209,5 +209,8 @@ public class PointcutSignature extends ElementWithModifiersImpl<PointcutSignatur
 	public boolean sameMemberAs(MViewMember other) throws ModelException {
 		return other != null
 			&& other instanceof PointcutSignature;
-	}
+	}	
 }
+
+
+

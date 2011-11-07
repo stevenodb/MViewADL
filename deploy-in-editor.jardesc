@@ -11,34 +11,6 @@
         </sealing>
     </manifest>
     <selectedElements exportClassFiles="true" exportJavaFiles="true" exportOutputFolder="false">
-        <javaElement handleIdentifier="=mview-lang/src&lt;mview.parser{MViewParser.java"/>
-        <javaElement handleIdentifier="=mview-lang/src&lt;mview.model.language"/>
-        <javaElement handleIdentifier="=mview-lang/src&lt;mview.model.namespace"/>
-        <javaElement handleIdentifier="=mview-lang/src&lt;mview.model.application"/>
-        <javaElement handleIdentifier="=mview-lang/src&lt;mview.model.module{Property.java"/>
-        <javaElement handleIdentifier="=mview-lang/src&lt;mview.output{WriterArguments.java"/>
-        <javaElement handleIdentifier="=mview-lang/src&lt;mview.parser{MViewLexer.java"/>
-        <javaElement handleIdentifier="=mview-lang/src&lt;mview.output.jboss.declaration"/>
-        <javaElement handleIdentifier="=mview-lang/src&lt;mview.output.jboss.element"/>
-        <javaElement handleIdentifier="=mview-lang/src&lt;mview.parser{MViewModelFactory.java"/>
-        <javaElement handleIdentifier="=mview-lang/src&lt;mview.exception"/>
-        <javaElement handleIdentifier="=mview-lang/src&lt;mview.model.composition"/>
-        <javaElement handleIdentifier="=mview-lang/src&lt;mview.model.module{JoinPointElement.java"/>
-        <javaElement handleIdentifier="=mview-lang/src&lt;mview.model.property"/>
-        <file path="/mview-lang/src/mview/parser/MView.tokens"/>
-        <javaElement handleIdentifier="=mview-lang/src&lt;mview.model.module{Connector.java"/>
-        <javaElement handleIdentifier="=mview-lang/src&lt;mview.model.module{ModuleContainer.java"/>
-        <javaElement handleIdentifier="=mview-lang/src&lt;mview.model.deployment"/>
-        <javaElement handleIdentifier="=mview-lang/src&lt;mview.model.module{Dependency.java"/>
-        <javaElement handleIdentifier="=mview-lang/src&lt;mview.model.module{Interface.java"/>
-        <javaElement handleIdentifier="=mview-lang/src&lt;mview.model.module{Service.java"/>
-        <javaElement handleIdentifier="=mview-lang/src&lt;mview.model.module{MViewBasicTypeReference.java"/>
-        <javaElement handleIdentifier="=mview-lang/src&lt;mview.output.jboss"/>
-        <javaElement handleIdentifier="=mview-lang/src&lt;mview.model.refinement.modifier"/>
-        <javaElement handleIdentifier="=mview-lang/src&lt;mview.output{TransformableElement.java"/>
-        <javaElement handleIdentifier="=mview-lang/src&lt;mview.model.module{Module.java"/>
-        <javaElement handleIdentifier="=mview-lang/src&lt;mview.model.module{Component.java"/>
-        <javaElement handleIdentifier="=mview-lang/src&lt;mview.model.composition.modifier"/>
-        <javaElement handleIdentifier="=mview-lang/src&lt;mview.model.refinement"/>
+        <javaElement handleIdentifier="=mview-lang/src"/>
     </selectedElements>
 </jardesc>

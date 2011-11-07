@@ -20,7 +20,6 @@ package mview.model.application;
 
 import java.util.List;
 
-import mview.model.deployment.Deployment;
 import mview.model.deployment.HostName;
 import mview.model.refinement.MViewMemberDeclarationImpl;
 

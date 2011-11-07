@@ -25,11 +25,10 @@ import org.rejuse.association.SingleAssociation;
 
 import chameleon.core.declaration.Declaration;
 import chameleon.core.declaration.Signature;
-import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.element.Element;
 import chameleon.core.lookup.LookupException;
+import chameleon.core.lookup.LookupStrategy;
 import chameleon.core.modifier.ElementWithModifiersImpl;
-import chameleon.core.namespace.NamespaceElementImpl;
 import chameleon.core.scope.Scope;
 import chameleon.core.scope.UniversalScope;
 import chameleon.core.validation.BasicProblem;
@@ -48,7 +47,7 @@ import chameleon.util.Util;
  */
 public abstract class MViewDeclaration<E extends MViewDeclaration<E>>
 		extends ElementWithModifiersImpl<E>
-		implements Declaration<E, Signature, E> {
+		implements Declaration<E, Signature> {
 
 	/**
 	 * Default constructor
@@ -71,7 +70,7 @@ public abstract class MViewDeclaration<E extends MViewDeclaration<E>>
 		return new UniversalScope();
 	}
 
-	public Declaration<?, Signature, E> selectionDeclaration()
+	public Declaration<?, Signature> selectionDeclaration()
 			throws LookupException {
 		return this;
 	}
@@ -182,5 +181,16 @@ public abstract class MViewDeclaration<E extends MViewDeclaration<E>>
 	public String toString() {
 		return this.getClass().getSimpleName() + "@" + signature().toString();
 	}
+	
+	// extra verification step (eg. abstract)
+	@Override
+	public boolean complete() throws LookupException {
+		return true;
+	}
 
+	@Override
+	public LookupStrategy targetContext() throws LookupException {
+		throw new LookupException("Error looking up target.");
+	}
+	
 }

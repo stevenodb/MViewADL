@@ -20,8 +20,6 @@ package mview.model.refinement;
 
 import mview.exception.MergeNotSupportedException;
 import chameleon.core.declaration.SimpleNameSignature;
-import chameleon.core.element.Element;
-import chameleon.core.lookup.LookupException;
 import chameleon.exception.ModelException;
 
 /**

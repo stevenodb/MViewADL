@@ -20,7 +20,6 @@
 package mview.model.module;
 
 import mview.model.namespace.MViewDeclaration;
-import chameleon.core.element.Element;
 
 
 /**

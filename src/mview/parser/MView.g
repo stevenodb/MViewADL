@@ -8,7 +8,7 @@ options {
 }
 
 scope TargetScope {
-  InvocationTarget target;
+  CrossReferenceTarget target;
   Token start;
 }
 
@@ -74,7 +74,7 @@ import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.declaration.Signature;
 import chameleon.core.declaration.Declaration;
 //import chameleon.core.method.MethodSignature;
-import chameleon.core.expression.InvocationTarget;
+import chameleon.core.reference.CrossReferenceTarget;
 import chameleon.oo.type.TypeReference;
 import chameleon.oo.type.generics.ActualTypeArgument;
 import chameleon.oo.type.BasicTypeReference;
@@ -84,7 +84,7 @@ import chameleon.core.namespace.NamespaceReference;
 import chameleon.core.namespacepart.NamespacePart;
 import chameleon.core.reference.SimpleReference;
 import chameleon.core.reference.ElementReference;
-import chameleon.core.variable.FormalParameter;
+import chameleon.oo.variable.FormalParameter;
 import chameleon.core.modifier.Modifier;
 import chameleon.util.Pair;
 
@@ -685,7 +685,7 @@ hostDeclaration returns [Host element]
 			setKeyword($element,$hkw);
 			setLocation($element,$name,"__NAME");
 			
-		} ( onkw='on' value=StringLiteral {
+		} ( onkw='is' value=StringLiteral {
 			
 			HostName hostName = new HostName(new SimpleNameSignature($value.text));
 			$element.setHostName(hostName);

@@ -20,13 +20,10 @@ package mview.model.refinement;
 
 import chameleon.core.declaration.Declaration;
 import chameleon.core.declaration.Signature;
-import chameleon.core.element.Element;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
 public interface MViewMemberDeclaration<M extends MViewMemberDeclaration<M>> 
-	extends Declaration<M, Signature, M>, 
-			MViewMember<M> 
-	{}
+	extends Declaration<M, Signature>, MViewMember<M>{}

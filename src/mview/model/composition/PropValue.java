@@ -20,7 +20,6 @@ package mview.model.composition;
 
 import java.util.List;
 
-import mview.model.composition.modifier.Negate;
 import mview.model.language.MView;
 
 import org.rejuse.association.SingleAssociation;

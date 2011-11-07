@@ -22,7 +22,6 @@ import mview.model.language.MView;
 
 import org.rejuse.property.PropertySet;
 
-import chameleon.core.element.Element;
 import chameleon.core.modifier.ModifierImpl;
 
 /**

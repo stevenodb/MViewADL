@@ -18,21 +18,16 @@
  */
 package mview.model.composition.modifier;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import mview.model.language.MView;
 import mview.model.property.ActorProperty;
 
 import org.rejuse.property.PropertySet;
-
 
 import chameleon.core.declaration.Declaration;
 import chameleon.core.element.Element;
 import chameleon.core.lookup.LookupException;
 import chameleon.core.modifier.ModifierImpl;
 import chameleon.core.property.ChameleonProperty;
-import chameleon.core.property.StaticChameleonProperty;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>

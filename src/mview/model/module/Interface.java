@@ -37,7 +37,7 @@ import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.VerificationResult;
 
 public class Interface extends MViewDeclaration<Interface> implements
-		TargetDeclaration<Interface, Signature, Interface>,
+		TargetDeclaration<Interface, Signature>,
 		DeclarationContainer<Interface> {
 
 	/**
@@ -148,4 +148,5 @@ public class Interface extends MViewDeclaration<Interface> implements
 			throws LookupException {
 		return selector.selection(declarations());
 	}
+	
 }

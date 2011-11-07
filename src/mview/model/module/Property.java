@@ -17,7 +17,6 @@
  */
 package mview.model.module;
 
-import chameleon.core.element.Element;
 
 public class Property extends JoinPointElement<Property> {
 		

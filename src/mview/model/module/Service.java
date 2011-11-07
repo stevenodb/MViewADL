@@ -23,18 +23,17 @@ import java.util.List;
 import org.rejuse.association.OrderedMultiAssociation;
 import org.rejuse.association.SingleAssociation;
 
-import chameleon.core.declaration.DeclarationWithParametersHeader;
 import chameleon.core.declaration.Signature;
-import chameleon.core.declaration.SimpleNameDeclarationWithParametersHeader;
 import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.element.Element;
-import chameleon.core.method.Method;
 import chameleon.core.reference.SimpleReference;
 import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.Valid;
 import chameleon.core.validation.VerificationResult;
-import chameleon.core.variable.FormalParameter;
+import chameleon.oo.method.Method;
+import chameleon.oo.method.SimpleNameMethodHeader;
 import chameleon.oo.type.BasicTypeReference;
+import chameleon.oo.variable.FormalParameter;
 import chameleon.support.member.simplename.method.NormalMethod;
 import chameleon.util.Util;
 
@@ -72,9 +71,8 @@ public class Service extends JoinPointElement<Service> {
 
 		// returnType, signature, formal parameters
 		
-		Method method = new NormalMethod(
-				new SimpleNameDeclarationWithParametersHeader(signature.name()), 
-				returnType);
+		Method method = new NormalMethod(				
+				new SimpleNameMethodHeader(signature.name(),returnType));
 
 		if (formalParameters != null) {
 			for (FormalParameter formalParameter : formalParameters) {

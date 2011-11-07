@@ -31,7 +31,7 @@ import chameleon.exception.ModelException;
  * 
  */
 public interface RefinableDeclaration<	D extends RefinableDeclaration<D>>
-		extends Declaration<D, Signature, D> {
+		extends Declaration<D, Signature> {
 
 	// /**
 	// * Returns the List of all member declarations up to and including this

@@ -46,6 +46,7 @@ import org.rejuse.property.PropertyMutex;
 
 import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.language.Language;
+import chameleon.core.language.LanguageImpl;
 import chameleon.core.modifier.Modifier;
 import chameleon.core.namespace.RootNamespace;
 import chameleon.core.property.ChameleonProperty;
@@ -55,7 +56,7 @@ import chameleon.core.property.StaticChameleonProperty;
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  * 
  */
-public class MView extends Language {
+public class MView extends LanguageImpl {
 
 	// mutex
 	public final PropertyMutex<ChameleonProperty> ACTOR_MUTEX;
