@@ -27,10 +27,9 @@ import chameleon.exception.ModelException;
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  * 
  */
-public abstract class MViewMemberDeclarationImpl<	
-						M extends MViewMemberDeclarationImpl<M>>
-		extends MViewDeclaration<M> 
-		implements MViewMemberDeclaration<M> {
+public abstract class MViewMemberDeclarationImpl
+		extends MViewDeclaration
+		implements MViewMemberDeclaration {
 
 	/**
 	 * default constructor
@@ -46,27 +45,22 @@ public abstract class MViewMemberDeclarationImpl<
 		super(signature);
 	}
 
-	@Override
 	public boolean sharesContext(MViewMember other) {
 		return (new RefinementContext()).verify(this, other);
 	}
 
-	@Override
 	public boolean overrides(MViewMember other) throws ModelException {
 		return sameMemberAs(other) && sharesContext(other);
 	}
 
-	@Override
 	public boolean mergesWith(MViewMember other) throws ModelException {
 		return false;
 	}
 
-	@Override
-	public M merge(MViewMember other) throws MergeNotSupportedException, ModelException {
+	public MViewMember merge(MViewMember other) throws MergeNotSupportedException, ModelException {
 		throw new MergeNotSupportedException(this + " doesn't support merge.");
 	}
 
-	@Override
 	public boolean sameMemberAs(MViewMember other) {
 		return (other != null)
 			&& this.getClass() == other.getClass()

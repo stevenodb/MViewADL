@@ -19,24 +19,18 @@
  */
 package mview.model.composition;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import mview.model.module.JoinPointElement;
-import chameleon.core.element.Element;
 import chameleon.core.lookup.LookupException;
 import chameleon.core.modifier.ElementWithModifiersImpl;
 import chameleon.core.reference.SimpleReference;
-import chameleon.core.validation.Valid;
-import chameleon.core.validation.VerificationResult;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  * 
  */
-public abstract class ServiceSignature<E extends ServiceSignature<E, JPE>, JPE extends JoinPointElement>
-//			extends NamespaceElementImpl<E> {
-			extends ElementWithModifiersImpl<E> { // added for negated signatures
+public abstract class ServiceSignature<JPE extends JoinPointElement> extends ElementWithModifiersImpl {
 
 	/**
 	 * default constructor
@@ -54,7 +48,7 @@ public abstract class ServiceSignature<E extends ServiceSignature<E, JPE>, JPE e
 	/**
 	 * @return An incomplete clone with the correct sub-Type
 	 */
-	protected abstract E cloneThis();
+	protected abstract ServiceSignature cloneThis();
 
 	/*
 	 * (non-Javadoc)
@@ -62,27 +56,7 @@ public abstract class ServiceSignature<E extends ServiceSignature<E, JPE>, JPE e
 	 * @see chameleon.core.element.ElementImpl#clone()
 	 */
 	@Override
-	public E clone() {
-		final E clone = this.cloneThis();
-		return clone;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see chameleon.core.element.ElementImpl#verifySelf()
-	 */
-	@Override
-	public VerificationResult verifySelf() {
-		return Valid.create();
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see chameleon.core.element.Element#children()
-	 */
-	public List<Element> children() {
-		return new ArrayList<Element>();
+	public ServiceSignature clone() {
+		return cloneThis();
 	}
 }

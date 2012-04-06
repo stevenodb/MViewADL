@@ -26,11 +26,7 @@ import mview.model.language.MView;
 import mview.model.property.ActorProperty;
 import mview.model.refinement.MViewMember;
 import mview.model.refinement.RefinementContext;
-
-import org.rejuse.association.OrderedMultiAssociation;
-
 import chameleon.core.declaration.Declaration;
-import chameleon.core.element.Element;
 import chameleon.core.lookup.LookupException;
 import chameleon.core.modifier.ElementWithModifiersImpl;
 import chameleon.core.modifier.Modifier;
@@ -38,14 +34,13 @@ import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.Valid;
 import chameleon.core.validation.VerificationResult;
 import chameleon.exception.ModelException;
+import chameleon.util.association.Multi;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  * 
  */
-public class ActorProp<D extends Declaration> extends
-		ElementWithModifiersImpl<ActorProp<D>>
-		implements MViewMember<ActorProp<D>> {
+public class ActorProp extends ElementWithModifiersImpl implements MViewMember {
 
 	/**
 	 * default
@@ -57,7 +52,7 @@ public class ActorProp<D extends Declaration> extends
 	/**
 	 * @param modifier
 	 */
-	public ActorProp(PropModifier<D> modifier) {
+	public ActorProp(PropModifier modifier) {
 		this();
 		addModifier(modifier);
 	}
@@ -67,41 +62,40 @@ public class ActorProp<D extends Declaration> extends
 //	 * @param declaration
 //	 * @param overridable
 //	 */
-//	public ActorProp(PropModifier<D> modifier, boolean overridable) {
+//	public ActorProp(PropModifier modifier, boolean overridable) {
 //		this(modifier);
 //		setOverridable(overridable);
 //	}
 
 	// list of prop values
-	private OrderedMultiAssociation<ActorProp<D>, PropValue<D>> _propValues =
-			new OrderedMultiAssociation<ActorProp<D>, PropValue<D>>(this);
+	private Multi<PropValue<Declaration>> _propValues = new Multi<PropValue<Declaration>>(this);
 
 	/**
 	 * @return
 	 */
-	public List<PropValue<D>> propValues() {
+	public List<PropValue<Declaration>> propValues() {
 		return _propValues.getOtherEnds();
 	}
 
 	/**
 	 * @param propValue
 	 */
-	public void addPropValue(PropValue<D> propValue) {
-		_propValues.add(propValue.parentLink());
+	public void addPropValue(PropValue propValue) {
+		add(_propValues,propValue);
 	}
 
 	/**
 	 * @param propValue
 	 */
-	public void removePropValue(PropValue<D> propValue) {
-		_propValues.remove(propValue.parentLink());
+	public void removePropValue(PropValue propValue) {
+		remove(_propValues,propValue);
 	}
 
 	/**
 	 * @param propValues
 	 */
-	public void addAllPropValues(List<PropValue<D>> propValues) {
-		for (PropValue<D> propValue : propValues) {
+	public void addAllPropValues(List<PropValue<Declaration>> propValues) {
+		for (PropValue propValue : propValues) {
 			this.addPropValue(propValue);
 		}
 	}
@@ -133,12 +127,12 @@ public class ActorProp<D extends Declaration> extends
 //	 * @return
 //	 * @throws LookupException 
 //	 */
-//	public Class<D> declarationType() throws LookupException {
-//		Class<D> result;
+//	public Class declarationType() throws LookupException {
+//		Class result;
 //
 //		try {
 //			result =
-//					(Class<D>) ((ActorProperty)
+//					(Class) ((ActorProperty)
 //							this.property(language(MView.class).ACTOR_MUTEX))
 //									.targetDeclarationType();
 //		} catch (ModelException e) {
@@ -163,30 +157,16 @@ public class ActorProp<D extends Declaration> extends
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see chameleon.core.element.Element#children()
-	 */
-	@Override
-	public List<Element> children() {
-		List<Element> result = super.children();
-
-		result.addAll(propValues());
-
-		return result;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
 	 * @see chameleon.core.element.ElementImpl#clone()
 	 */
 	@Override
-	public ActorProp<D> clone() {
-		final ActorProp<D> clone = new ActorProp<D>();
+	public ActorProp clone() {
+		final ActorProp clone = new ActorProp();
 
 		for(Modifier mod: modifiers()) {
 			clone.addModifier(mod.clone());
 		}
-		for (PropValue<D> propValues : propValues()) {
+		for (PropValue propValues : propValues()) {
 			clone.addPropValue(propValues.clone());
 		}
 
@@ -226,8 +206,8 @@ public class ActorProp<D extends Declaration> extends
 					"Error in Model: ActorProp Exception getting property type"));
 		}
 
-		for (PropValue<D> propValue : propValues()) {
-			D declaration = null;
+		for (PropValue propValue : propValues()) {
+			Declaration declaration = null;
 
 			try {
 				declaration = propValue.value().getElement();
@@ -272,7 +252,7 @@ public class ActorProp<D extends Declaration> extends
 	}
 
 	@Override
-	public ActorProp<D> merge(MViewMember other)
+	public ActorProp merge(MViewMember other)
 			throws MergeNotSupportedException, ModelException {
 
 //		if (!(this.declarationType() == other.declarationType())) {
@@ -280,11 +260,11 @@ public class ActorProp<D extends Declaration> extends
 //					"declaration types.");
 //		}
 
-		ActorProp<D> merged = this.clone();
+		ActorProp merged = this.clone();
 		merged.setUniParent(parent());
 
 		if (mergesWith(other)) {
-			ActorProp<D> parent = ((ActorProp)other).clone();
+			ActorProp parent = ((ActorProp)other).clone();
 			merged.addAllPropValues(parent.propValues());
 		}
 
@@ -300,7 +280,7 @@ public class ActorProp<D extends Declaration> extends
 //	public int hashCode() {
 //		int result = 0;
 //
-//		for (PropValue<D> value : propValues()) {
+//		for (PropValue value : propValues()) {
 //			result = (result * 10) + value. .parentLink().hashCode();
 //		}
 //

@@ -79,7 +79,6 @@ import chameleon.oo.type.TypeReference;
 import chameleon.oo.type.generics.ActualTypeArgument;
 import chameleon.oo.type.BasicTypeReference;
 import chameleon.oo.type.Type;
-import chameleon.core.namespace.NamespaceOrTypeReference;
 import chameleon.core.namespace.NamespaceReference;
 import chameleon.core.namespacepart.NamespacePart;
 import chameleon.core.reference.SimpleReference;
@@ -87,6 +86,7 @@ import chameleon.core.reference.ElementReference;
 import chameleon.oo.variable.FormalParameter;
 import chameleon.core.modifier.Modifier;
 import chameleon.util.Pair;
+import chameleon.oo.expression.NamedTarget;
 
 import chameleon.support.input.ChameleonParser;
 }
@@ -849,11 +849,11 @@ type returns [BasicTypeReference value]
 	
 
 classOrInterfaceType returns [BasicTypeReference element]
-@init{NamespaceOrTypeReference target = null;}
+@init{NamedTarget target = null;}
 	:	name=Identifier 
 	          {
 	           $element = new MViewBasicTypeReference($name.text);
-	           target =  new NamespaceOrTypeReference($name.text);
+	           target =  new NamedTarget($name.text);
 	           setLocation($element,$name,$name); 
 	          }
 			typeArguments? 
@@ -863,7 +863,7 @@ classOrInterfaceType returns [BasicTypeReference element]
 	             $element = new MViewBasicTypeReference(target,$namex.text);
 	             // We must clone the target here, or else it will be removed from the
 	             // type reference we just created.
-	             target = new NamespaceOrTypeReference(target.clone(),$namex.text);
+	             target = new NamedTarget($namex.text,target.clone());
 	           } else {
 	             $element = new MViewBasicTypeReference($element,$namex.text);
 	           }

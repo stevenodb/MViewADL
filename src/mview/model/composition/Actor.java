@@ -18,48 +18,39 @@
  */
 package mview.model.composition;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import mview.exception.MergeNotSupportedException;
 import mview.model.refinement.MViewMember;
 import mview.model.refinement.RefinementContext;
 
-import org.rejuse.association.OrderedMultiAssociation;
 import org.rejuse.property.Property;
 
 import chameleon.core.declaration.Declaration;
-import chameleon.core.element.Element;
+import chameleon.core.element.ElementImpl;
 import chameleon.core.lookup.LookupException;
-import chameleon.core.namespace.NamespaceElementImpl;
 import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.Valid;
 import chameleon.core.validation.VerificationResult;
 import chameleon.exception.ModelException;
+import chameleon.util.association.Multi;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  * 
  */
-public class Actor extends NamespaceElementImpl<Actor> implements
-		MViewMember<Actor> {
+public class Actor extends ElementImpl implements MViewMember {
 
 	/*
 	 * Props
 	 */
-	private OrderedMultiAssociation<Actor, ActorProp> _props =
-			new OrderedMultiAssociation<Actor, ActorProp>(this);
+	private Multi<ActorProp> _props =	new Multi<ActorProp>(this);
 
 	/**
 	 * @param actorProp
 	 */
 	public void addProp(ActorProp actorProp) {
-//		if (!props().contains(actorProp)) {
-			_props.add(actorProp.parentLink());
-//		} else {
-//			throw new IllegalArgumentException("ActorProp for " + actorProp
-//					+ " already exists.");
-//		}
+		add(_props,actorProp);
 	}
 
 	/**
@@ -77,7 +68,7 @@ public class Actor extends NamespaceElementImpl<Actor> implements
 	 * @param actorProp
 	 */
 	public void removeProp(ActorProp actorProp) {
-		_props.remove(actorProp.parentLink());
+		remove(_props,actorProp);
 	}
 
 	/**
@@ -93,10 +84,10 @@ public class Actor extends NamespaceElementImpl<Actor> implements
 	 * @return
 	 * @throws LookupException 
 	 */
-	public <D extends Declaration> ActorProp<D> prop(Property property) throws ModelException {
-		ActorProp<D> result = null;
+	public <D extends Declaration> ActorProp prop(Property property) throws ModelException {
+		ActorProp result = null;
 
-		for (ActorProp<D> actorProp : props()) {
+		for (ActorProp actorProp : props()) {
 			if (actorProp.actorProperty().equals(property)) {
 				result = actorProp;
 			}
@@ -166,20 +157,11 @@ public class Actor extends NamespaceElementImpl<Actor> implements
 	}
 
 	@Override
-	public List<Element> children() {
-		List<Element> result = new ArrayList<Element>();
-
-		result.addAll(props());
-
-		return result;
-	}
-
-	@Override
 	public Actor clone() {
 		final Actor clone = new Actor();
 
-		for (ActorProp<?> actor : props()) {
-			clone.addProp(actor.clone());
+		for (ActorProp actor : props()) {
+			clone.addProp((ActorProp) actor.clone());
 		}
 
 		return clone;

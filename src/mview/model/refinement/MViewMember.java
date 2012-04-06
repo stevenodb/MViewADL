@@ -27,7 +27,7 @@ import chameleon.exception.ModelException;
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public interface MViewMember<M extends MViewMember<M>> extends Element<M> {
+public interface MViewMember extends Element {
 
 	/**
 	 * Checks whether this member and other share the same context
@@ -65,7 +65,7 @@ public interface MViewMember<M extends MViewMember<M>> extends Element<M> {
 	 * @throws MergeNotSupportedException when merge is not supported 
 	 * @throws ModelException 
 	 */
-	public M merge(MViewMember other) throws MergeNotSupportedException, ModelException;
+	public MViewMember merge(MViewMember other) throws MergeNotSupportedException, ModelException;
 	
 	/**
 	 * Checks whether this member is the same type of member as other.

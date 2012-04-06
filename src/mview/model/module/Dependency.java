@@ -24,31 +24,25 @@ import java.util.List;
 import mview.exception.MergeNotSupportedException;
 import mview.model.refinement.MViewMember;
 import mview.model.refinement.RefinementContext;
-
-import org.rejuse.association.OrderedMultiAssociation;
-
 import chameleon.core.declaration.Declaration;
 import chameleon.core.declaration.TargetDeclaration;
-import chameleon.core.element.Element;
+import chameleon.core.element.ElementImpl;
+import chameleon.core.lookup.DeclarationCollector;
 import chameleon.core.lookup.DeclarationSelector;
 import chameleon.core.lookup.LookupException;
 import chameleon.core.lookup.LookupStrategy;
-import chameleon.core.namespace.NamespaceElementImpl;
 import chameleon.core.reference.SimpleReference;
-import chameleon.core.validation.Valid;
-import chameleon.core.validation.VerificationResult;
 import chameleon.exception.ModelException;
 import chameleon.util.Util;
+import chameleon.util.association.Multi;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  * 
  */
-public abstract class Dependency<E extends Dependency<E, T>, T extends TargetDeclaration>
-		extends	NamespaceElementImpl<E> implements MViewMember<E> {
+public abstract class Dependency<T extends TargetDeclaration> extends	ElementImpl implements MViewMember {
 
-	private final OrderedMultiAssociation<Dependency<E,T>, SimpleReference<T>> _dependencies =
-			new OrderedMultiAssociation<Dependency<E,T>, SimpleReference<T>>(this);
+	private final Multi<SimpleReference<T>> _dependencies = new Multi<SimpleReference<T>>(this);
 
 	/**
 	 * @return	a list of SimpleReferences to dependencies
@@ -61,37 +55,25 @@ public abstract class Dependency<E extends Dependency<E, T>, T extends TargetDec
 	 * @param relation
 	 */
 	public void addDependency(SimpleReference<T> relation) {
-		if (relation != null)
-			_dependencies.add(relation.parentLink());
+		add(_dependencies,relation);
 	}
 	
 	/**
 	 * @param relation
 	 */
 	public void removeDependency(SimpleReference<T> relation) {
-		if (relation != null)
-			_dependencies.remove(relation.parentLink());
+		remove(_dependencies,relation);
 	}
 	
-	
-	@Override
-	public List<? extends Element> children() {
-		List<Element> result = new ArrayList<Element>();
-		
-		result.addAll(this.dependencies());
-		
-		return result;
-	}
-
 	/**
 	 * @return An incomplete clone with the correct sub-Type
 	 */
-	protected abstract E cloneThis();
+	protected abstract Dependency<T> cloneThis();
 
 	
 	@Override
-	public E clone() {
-		final E clone = this.cloneThis();
+	public Dependency<T> clone() {
+		final Dependency<T> clone = this.cloneThis();
 
 		for (SimpleReference<T> t: dependencies()) {
 			clone.addDependency(t.clone());
@@ -100,30 +82,27 @@ public abstract class Dependency<E extends Dependency<E, T>, T extends TargetDec
 		return clone;
 	}
 	
-	@Override
-	public VerificationResult verifySelf() {
-		return Valid.create();
-	}
-	
 	/**
 	 * @param selector
 	 * @return
 	 * @throws LookupException
 	 */
-	public List<T> declarations(DeclarationSelector<T> selector) throws LookupException {
+	public <D extends Declaration> List<D> declarations(DeclarationSelector<D> selector) throws LookupException {
 		
-		List<T> result = new ArrayList<T>();
+		List<D> result = new ArrayList<D>();
 		
 		List<SimpleReference<T>> deps = this.dependencies();
 		
 		for (SimpleReference<T> reference : deps) {
 			T element = reference.getElement();
 			LookupStrategy targetContext = element.targetContext();
-			Declaration declaration = targetContext.lookUp(selector);
+			DeclarationCollector<D> collector = new DeclarationCollector<D>(selector);
+			targetContext.lookUp(collector);
+			D declaration = collector.result();
 			Util.addNonNull(declaration, result);
 		}
 
-		return (List<T>) selector.declarators(result);
+		return (List<D>) selector.declarators(result);
 	}
 
 	@Override
@@ -144,16 +123,16 @@ public abstract class Dependency<E extends Dependency<E, T>, T extends TargetDec
 	}
 
 	@Override
-	public E merge(MViewMember other)
+	public Dependency<T> merge(MViewMember other)
 			throws MergeNotSupportedException, ModelException {
-		E merged;
+		Dependency<T> merged;
 		
 		if (mergesWith(other)) {
 			
-			E child = this.clone();
+			Dependency<T> child = this.clone();
 			child.setUniParent(parent());
 			
-			E parent = (E) other.clone();
+			Dependency<T> parent = (Dependency<T>) other.clone();
 			parent.setUniParent(other.parent());
 			
 			merged = cloneThis();
@@ -180,7 +159,7 @@ public abstract class Dependency<E extends Dependency<E, T>, T extends TargetDec
 				}
 			}
 		} else {
-			merged = (E) this;
+			merged = this;
 		}
 		
 		return merged;

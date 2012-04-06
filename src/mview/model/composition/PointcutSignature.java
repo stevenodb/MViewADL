@@ -24,9 +24,6 @@ import mview.exception.MergeNotSupportedException;
 import mview.model.refinement.MViewMember;
 import mview.model.refinement.RefinementContext;
 import mview.model.refinement.modifier.Overridable;
-
-import org.rejuse.association.OrderedMultiAssociation;
-
 import chameleon.core.element.Element;
 import chameleon.core.modifier.ElementWithModifiersImpl;
 import chameleon.core.modifier.Modifier;
@@ -34,13 +31,13 @@ import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.Valid;
 import chameleon.core.validation.VerificationResult;
 import chameleon.exception.ModelException;
+import chameleon.util.association.Multi;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  * 
  */
-public class PointcutSignature extends ElementWithModifiersImpl<PointcutSignature>
-		implements MViewMember<PointcutSignature> {
+public class PointcutSignature extends ElementWithModifiersImpl implements MViewMember {
 
 	/**
 	 * default constructor
@@ -57,8 +54,7 @@ public class PointcutSignature extends ElementWithModifiersImpl<PointcutSignatur
 	/*
 	 * SIGNATURES
 	 */
-	private OrderedMultiAssociation<PointcutSignature, ServiceSignature> _pointcutSignatures =
-			new OrderedMultiAssociation<PointcutSignature, ServiceSignature>(this);
+	private Multi<ServiceSignature> _pointcutSignatures = new Multi<ServiceSignature>(this);
 
 	/**
 	 * @return
@@ -71,9 +67,7 @@ public class PointcutSignature extends ElementWithModifiersImpl<PointcutSignatur
 	 * @param signature
 	 */
 	public void addSignature(ServiceSignature signature) {
-		if (signature != null) {
-			_pointcutSignatures.add(signature.parentLink());
-		}
+		add(_pointcutSignatures,signature);
 	}
 
 	/**
@@ -89,9 +83,7 @@ public class PointcutSignature extends ElementWithModifiersImpl<PointcutSignatur
 	 * @param signature
 	 */
 	public void removeSignature(ServiceSignature signature) {
-		if (signature != null)  {
-			_pointcutSignatures.remove(signature.parentLink());
-		}
+		remove(_pointcutSignatures,signature);
 	}
 
 	/**
@@ -99,31 +91,6 @@ public class PointcutSignature extends ElementWithModifiersImpl<PointcutSignatur
 	 */
 	public boolean overridable() {
 		return this.hasModifier(new Overridable());
-	}
-
-//	/**
-//	 * @param overridable
-//	 */
-//	public void setOverridable(boolean overridable) {
-//		if (overridable) {
-//			addModifier(new Overridable());
-//		} else {
-//			removeModifier(new Overridable());
-//		}
-//	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see chameleon.core.element.Element#children()
-	 */
-	@Override
-	public List<Element> children() {
-		List<Element> result = super.children();
-
-		result.addAll(this.signatures());
-
-		return result;
 	}
 
 	/*

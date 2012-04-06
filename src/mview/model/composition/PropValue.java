@@ -21,9 +21,6 @@ package mview.model.composition;
 import java.util.List;
 
 import mview.model.language.MView;
-
-import org.rejuse.association.SingleAssociation;
-
 import chameleon.core.declaration.Declaration;
 import chameleon.core.element.Element;
 import chameleon.core.lookup.LookupException;
@@ -34,13 +31,13 @@ import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.Valid;
 import chameleon.core.validation.VerificationResult;
 import chameleon.util.Util;
+import chameleon.util.association.Single;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  * 
  */
-public class PropValue<D extends Declaration>
-		extends ElementWithModifiersImpl<PropValue<D>> {
+public class PropValue<D extends Declaration> extends ElementWithModifiersImpl {
 
 	/**
 	 * 
@@ -59,8 +56,7 @@ public class PropValue<D extends Declaration>
 	}
 
 	// VALUE
-	private SingleAssociation<PropValue, SimpleReference<D>> _value =
-			new SingleAssociation<PropValue, SimpleReference<D>>(this);
+	private Single<SimpleReference<D>> _value =	new Single<SimpleReference<D>>(this);
 
 	/**
 	 * @return
@@ -73,9 +69,7 @@ public class PropValue<D extends Declaration>
 	 * @param value
 	 */
 	public void setValue(SimpleReference<D> value) {
-		if (value != null) {
-			_value.connectTo(value.parentLink());
-		}
+		set(_value,value);
 	}
 
 	// NEGATION
@@ -102,20 +96,6 @@ public class PropValue<D extends Declaration>
 		}
 
 		result.setValue(this.value().clone());
-
-		return result;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see chameleon.core.modifier.ElementWithModifiersImpl#children()
-	 */
-	@Override
-	public List<Element> children() {
-		List<Element> result = super.children();
-
-		Util.addNonNull(value(),result);
 
 		return result;
 	}

@@ -26,9 +26,8 @@ import chameleon.exception.ModelException;
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  * 
  */
-public abstract class RefinableMemberDeclarationImpl<
-			D extends RefinableMemberDeclarationImpl<D>>
-		extends RefinableDeclarationImpl<D> implements MViewMemberDeclaration<D> {
+public abstract class RefinableMemberDeclarationImpl
+		extends RefinableDeclarationImpl implements MViewMemberDeclaration {
 
 	/**
 	 * default
@@ -36,7 +35,7 @@ public abstract class RefinableMemberDeclarationImpl<
 	protected RefinableMemberDeclarationImpl() {
 		super();
 	}
-
+	
 	/**
 	 * @param signature
 	 */
@@ -65,7 +64,7 @@ public abstract class RefinableMemberDeclarationImpl<
 	}
 
 	@Override
-	public D merge(MViewMember other) throws MergeNotSupportedException, ModelException {
+	public RefinableMemberDeclarationImpl merge(MViewMember other) throws MergeNotSupportedException, ModelException {
 		throw new MergeNotSupportedException(this + " doesn't support merge.");
 	}
 

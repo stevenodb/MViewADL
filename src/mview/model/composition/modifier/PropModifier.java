@@ -33,22 +33,21 @@ import chameleon.core.property.ChameleonProperty;
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public class PropModifier<D extends Declaration> 
-					extends ModifierImpl<PropModifier> {
+public class PropModifier	extends ModifierImpl {
 	
-	private final Class<D> _targetDeclarationType;
+	private final Class<PropModifier> _targetDeclarationType;
 	
 	/**
 	 * @param declarationType
 	 */
-	public PropModifier(Class<D> declarationType) {
+	public PropModifier(Class<PropModifier> declarationType) {
 		this._targetDeclarationType = declarationType;
 	}
 	
 	/**
 	 * @return the targetDeclarationClass
 	 */
-	public Class<D> targetDeclarationType() {
+	public Class<PropModifier> targetDeclarationType() {
 		return _targetDeclarationType;
 	}
 
@@ -95,8 +94,8 @@ public class PropModifier<D extends Declaration>
 	 * @see chameleon.core.modifier.ModifierImpl#clone()
 	 */
 	@Override
-	public PropModifier<D> clone() {
-		return new PropModifier<D>(targetDeclarationType());
+	public PropModifier clone() {
+		return new PropModifier(targetDeclarationType());
 	}
 
 	/* (non-Javadoc)

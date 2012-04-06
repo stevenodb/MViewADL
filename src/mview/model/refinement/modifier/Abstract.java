@@ -28,7 +28,7 @@ import chameleon.core.modifier.ModifierImpl;
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  * The abstract modifier
  */
-public class Abstract extends ModifierImpl<Abstract> {
+public class Abstract extends ModifierImpl {
 
 	@Override
 	public PropertySet impliedProperties() {

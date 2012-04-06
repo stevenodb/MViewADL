@@ -24,22 +24,20 @@ import java.util.List;
 
 import mview.model.refinement.MViewMember;
 import mview.model.refinement.RefinableMemberDeclarationImpl;
-
-import org.rejuse.association.SingleAssociation;
-
 import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.element.Element;
 import chameleon.core.lookup.LookupException;
+import chameleon.core.lookup.LookupStrategy;
 import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.VerificationResult;
 import chameleon.util.Util;
+import chameleon.util.association.Single;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  * 
  */
-public class AOComposition extends
-		RefinableMemberDeclarationImpl<AOComposition> {
+public class AOComposition extends RefinableMemberDeclarationImpl {
 
 	/**
 	 * 
@@ -58,32 +56,26 @@ public class AOComposition extends
 	/*
 	 * Advice
 	 */
-	private SingleAssociation<AOComposition, Advice> _advice =
-			new SingleAssociation<AOComposition, Advice>(this);
+	private Single<Advice> _advice = new Single<Advice>(this);
 
 	/**
 	 * @return
 	 */
 	public Advice advice() {
-		if (_advice != null)
-			return _advice.getOtherEnd();
-		else
-			return null;
+		return _advice.getOtherEnd();
 	}
 
 	/**
 	 * @param relation
 	 */
 	public void setAdvice(Advice relation) {
-		if (relation != null)
-			_advice.connectTo(relation.parentLink());
+		set(_advice,relation);
 	}
 
 	/*
 	 * Pointcut
 	 */
-	private SingleAssociation<AOComposition, Pointcut> _pointcut =
-			new SingleAssociation<AOComposition, Pointcut>(this);
+	private Single<Pointcut> _pointcut = new Single<Pointcut>(this);
 
 	/**
 	 * @return
@@ -99,8 +91,7 @@ public class AOComposition extends
 	 * @param relation
 	 */
 	public void setPointcut(Pointcut relation) {
-		if (relation != null)
-			_pointcut.connectTo(relation.parentLink());
+		set(_pointcut,relation);
 	}
 
 	/*
@@ -120,7 +111,7 @@ public class AOComposition extends
 	 */
 	@Override
 	public AOComposition clone() {
-		final AOComposition clone = super.clone();
+		final AOComposition clone = (AOComposition) super.clone();
 
 		clone.setAdvice(
 				this.advice().clone()
@@ -131,21 +122,6 @@ public class AOComposition extends
 				);
 
 		return clone;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see mview.model.namespace.MViewDeclaration#children()
-	 */
-	@Override
-	public List<Element> children() {
-		List<Element> result = super.children();
-
-		Util.addNonNull(this.advice(), result);
-		Util.addNonNull(this.pointcut(), result);
-
-		return result;
 	}
 
 	/*
@@ -212,6 +188,11 @@ public class AOComposition extends
 		result.add(advice());
 		result.add(pointcut());
 		return result;
+	}
+
+	@Override
+	public LookupStrategy localStrategy() throws LookupException {
+		return language().lookupFactory().createLocalLookupStrategy(this);
 	}
 
 }

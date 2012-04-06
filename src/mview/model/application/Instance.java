@@ -31,12 +31,13 @@ import chameleon.core.reference.SimpleReference;
 import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.VerificationResult;
 import chameleon.util.Util;
+import chameleon.util.association.Single;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public class Instance extends MViewMemberDeclarationImpl<Instance> {
+public class Instance extends MViewMemberDeclarationImpl {
 	
 	/**
 	 * Default 
@@ -53,8 +54,7 @@ public class Instance extends MViewMemberDeclarationImpl<Instance> {
 	}
 
 	// type
-	private SingleAssociation<Instance, SimpleReference<Module>> _type =
-		new SingleAssociation<Instance, SimpleReference<Module>>(this);
+	private Single<SimpleReference<Module>> _type = new Single<SimpleReference<Module>>(this);
 	
 	/**
 	 * @return
@@ -67,12 +67,11 @@ public class Instance extends MViewMemberDeclarationImpl<Instance> {
 	 * @param relation
 	 */
 	public void setType(SimpleReference<Module> relation) {
-		_type.connectTo(relation.parentLink());	 
+		set(_type,relation);	 
 	}
 	
 	// host
-	private SingleAssociation<Instance, SimpleReference<Host>> _host =
-		new SingleAssociation<Instance, SimpleReference<Host>>(this);
+	private Single<SimpleReference<Host>> _host = new Single<SimpleReference<Host>>(this);
 	
 	/**
 	 * @return
@@ -85,7 +84,7 @@ public class Instance extends MViewMemberDeclarationImpl<Instance> {
 	 * @param relation
 	 */
 	public void setHost(SimpleReference<Host> relation) {
-		_host.connectTo(relation.parentLink());
+		set(_host,relation);
 	}
 	
 	
@@ -102,25 +101,12 @@ public class Instance extends MViewMemberDeclarationImpl<Instance> {
 	 */
 	@Override
 	public Instance clone() {
-		final Instance clone = super.clone();
+		final Instance clone = (Instance) super.clone();
 		
 		clone.setType(type().clone());
 		clone.setHost(host().clone());
 				
 		return clone;
-	}
-
-	/* (non-Javadoc)
-	 * @see mview.model.namespace.MViewDeclaration#children()
-	 */
-	@Override
-	public List<Element> children() {
-		final List<Element> result = super.children();
-		
-		Util.addNonNull(host(), result);
-		Util.addNonNull(type(), result);
-		
-		return result;
 	}
 
 	/* (non-Javadoc)

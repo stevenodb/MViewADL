@@ -22,9 +22,6 @@ import java.util.List;
 
 import mview.model.refinement.MViewMember;
 import mview.model.refinement.RefinableMemberDeclarationImpl;
-
-import org.rejuse.association.SingleAssociation;
-
 import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.element.Element;
 import chameleon.core.lookup.LookupException;
@@ -33,6 +30,7 @@ import chameleon.core.reference.SimpleReference;
 import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.VerificationResult;
 import chameleon.util.Util;
+import chameleon.util.association.Single;
 
 /**
  * Class representing the Module concept.
@@ -41,15 +39,13 @@ import chameleon.util.Util;
  * 
  * @param <E>
  */
-public abstract class Module<E extends Module<E>>
-			extends RefinableMemberDeclarationImpl<E> {
+public abstract class Module extends RefinableMemberDeclarationImpl {
 
 	/**
 	 * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
 	 *
 	 */
-	public class RequiredInterfaceDependency extends
-			Dependency<RequiredInterfaceDependency, Interface> {
+	public class RequiredInterfaceDependency extends Dependency<Interface> {
 		
 		@Override
 		protected RequiredInterfaceDependency cloneThis() {
@@ -61,8 +57,7 @@ public abstract class Module<E extends Module<E>>
 	 * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
 	 *
 	 */
-	public class ProvidedInterfaceDependency extends
-			Dependency<ProvidedInterfaceDependency, Interface> {
+	public class ProvidedInterfaceDependency extends Dependency<Interface> {
 
 		@Override
 		protected ProvidedInterfaceDependency cloneThis() {
@@ -88,8 +83,7 @@ public abstract class Module<E extends Module<E>>
 	/*
 	 * Provided Interfaces association
 	 */
-	private final SingleAssociation<Module<E>, ProvidedInterfaceDependency> _providedInterfaces = (
-			new SingleAssociation<Module<E>, ProvidedInterfaceDependency>(this));
+	private final Single<ProvidedInterfaceDependency> _providedInterfaces = new Single<ProvidedInterfaceDependency>(this);
 
 	/**
 	 * @return
@@ -103,7 +97,7 @@ public abstract class Module<E extends Module<E>>
 	 */
 	public List<SimpleReference<Interface>> providedInterfaces() {
 		if (providedInterfaceDependency() == null) {
-			_providedInterfaces.connectTo(new ProvidedInterfaceDependency().parentLink());
+			set(_providedInterfaces,new ProvidedInterfaceDependency());
 		}
 		return providedInterfaceDependency().dependencies();
 	}
@@ -114,7 +108,7 @@ public abstract class Module<E extends Module<E>>
 	public void addProvidedInterface(SimpleReference<Interface> relation) {
 		if (relation != null) {
 			if (providedInterfaceDependency() == null) {
-				_providedInterfaces.connectTo(new ProvidedInterfaceDependency().parentLink());
+				set(_providedInterfaces,new ProvidedInterfaceDependency());
 			}
 			providedInterfaceDependency().addDependency(relation);
 		}
@@ -126,7 +120,7 @@ public abstract class Module<E extends Module<E>>
 	public void removeProvidedInterface(SimpleReference<Interface> relation) {
 		if (relation != null) {
 			if (providedInterfaceDependency() == null) {
-				_providedInterfaces.connectTo(new ProvidedInterfaceDependency().parentLink());
+				set(_providedInterfaces,new ProvidedInterfaceDependency());
 			}
 			providedInterfaceDependency().removeDependency(relation);
 		}
@@ -135,8 +129,7 @@ public abstract class Module<E extends Module<E>>
 	/*
 	 * Required Interfaces association
 	 */
-	private final SingleAssociation<Module<E>, RequiredInterfaceDependency> _requiredInterfaces =
-			new SingleAssociation<Module<E>, RequiredInterfaceDependency>(this);
+	private final Single<RequiredInterfaceDependency> _requiredInterfaces = new Single<RequiredInterfaceDependency>(this);
 
 	/**
 	 * @return
@@ -150,7 +143,7 @@ public abstract class Module<E extends Module<E>>
 	 */
 	public List<SimpleReference<Interface>> requiredInterfaces() {
 		if (requiredInterfaceDependency() == null) {
-			_requiredInterfaces.connectTo(new RequiredInterfaceDependency().parentLink());
+			set(_requiredInterfaces,new RequiredInterfaceDependency());
 		}
 		return requiredInterfaceDependency().dependencies();
 	}
@@ -161,7 +154,7 @@ public abstract class Module<E extends Module<E>>
 	public void addRequiredInterface(SimpleReference<Interface> relation) {
 		if (relation != null) {
 			if (requiredInterfaceDependency() == null) {
-				_requiredInterfaces.connectTo(new RequiredInterfaceDependency().parentLink());
+				set(_requiredInterfaces,new RequiredInterfaceDependency());
 			}
 			
 			requiredInterfaceDependency().addDependency(relation);
@@ -174,7 +167,7 @@ public abstract class Module<E extends Module<E>>
 	public void removeRequiredInterface(SimpleReference<Interface> relation) {
 		if (relation != null) {
 			if (requiredInterfaceDependency() == null) {
-				_requiredInterfaces.connectTo(new RequiredInterfaceDependency().parentLink());
+				set(_requiredInterfaces,new RequiredInterfaceDependency());
 			}
 
 			requiredInterfaceDependency().removeDependency(relation);
@@ -187,19 +180,17 @@ public abstract class Module<E extends Module<E>>
 	 * @see chameleon.core.element.ElementImpl#clone()
 	 */
 	@Override
-	public E clone() {
-		final E clone = super.clone();
+	public Module clone() {
+		final Module clone = (Module) super.clone();
 
 		// moved to MViewDeclaration
 		// clone.setSignature(signature().clone());
 
 		// TODO: setter
 		
-		clone._providedInterfaces.connectTo(providedInterfaceDependency()
-				.clone().parentLink());
+		set(clone._providedInterfaces,providedInterfaceDependency().clone());
 
-		clone._requiredInterfaces.connectTo(requiredInterfaceDependency()
-				.clone().parentLink());
+		set(clone._requiredInterfaces,requiredInterfaceDependency().clone());
 
 		// for (SimpleReference<Interface> simpleReference :
 		// this.providedInterfaces()) {
@@ -266,21 +257,6 @@ public abstract class Module<E extends Module<E>>
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see mview.model.namespace.MViewDeclaration#children()
-	 */
-	@Override
-	public List<Element> children() {
-		final List<Element> result = super.children();
-
-		Util.addNonNull(requiredInterfaceDependency(), result);
-		Util.addNonNull(providedInterfaceDependency(), result);
-
-		return result;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
 	 * @see mview.model.refinement.RefinableDeclaration#localMembers()
 	 */
 	@Override
@@ -306,6 +282,11 @@ public abstract class Module<E extends Module<E>>
 		} else {
 			return super.lexicalLookupStrategy(element);
 		}
+	}
+	
+	@Override
+	public LookupStrategy localStrategy() throws LookupException {
+		return language().lookupFactory().createLocalLookupStrategy(this);
 	}
 
 }

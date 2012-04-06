@@ -26,15 +26,14 @@ import mview.model.namespace.MViewDeclaration;
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public abstract class JoinPointElement<E extends JoinPointElement<E>> 
-					extends MViewDeclaration<E> {
+public abstract class JoinPointElement extends MViewDeclaration {
 
 	/* (non-Javadoc)
 	 * @see mview.model.namespace.MViewDeclaration#clone()
 	 */
 	@Override
-	public E clone() {
-		return super.clone();
+	public JoinPointElement clone() {
+		return (JoinPointElement) super.clone();
 	}
 
 }

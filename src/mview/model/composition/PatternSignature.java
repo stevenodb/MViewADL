@@ -38,8 +38,7 @@ import chameleon.util.Pair;
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  * 
  */
-public class PatternSignature extends
-		ServiceSignature<PatternSignature, Service> {
+public class PatternSignature extends ServiceSignature<Service> {
 
 	// eg: *, *Map, System*, newspaper..Article
 	private String _returnTypePattern;
@@ -300,7 +299,7 @@ public class PatternSignature extends
 	 */
 	@Override
 	public PatternSignature clone() {
-		final PatternSignature clone = super.clone();
+		final PatternSignature clone = (PatternSignature) super.clone();
 
 		clone.setReturnTypePattern(returnTypePattern());
 		clone.setSignaturePattern(signaturePattern());
@@ -336,19 +335,6 @@ public class PatternSignature extends
 							"Signature: returnType patterns is null."));
 		}
 
-		return result;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see chameleon.core.element.Element#children()
-	 */
-	public List<Element> children() {
-		final List<Element> result = super.children();
-		
-		// do not add generated stuff
-		
 		return result;
 	}
 

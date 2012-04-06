@@ -18,7 +18,7 @@
 package mview.model.module;
 
 
-public class Property extends JoinPointElement<Property> {
+public class Property extends JoinPointElement {
 		
 
 	/* (non-Javadoc)

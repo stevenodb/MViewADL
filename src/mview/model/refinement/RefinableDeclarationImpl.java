@@ -25,12 +25,11 @@ import mview.model.language.MView;
 import mview.model.module.Module.RequiredInterfaceDependency;
 import mview.model.namespace.MViewDeclaration;
 
-import org.rejuse.association.OrderedMultiAssociation;
+import org.rejuse.association.Association;
 import org.rejuse.java.collections.TypeFilter;
 
 import chameleon.core.declaration.Declaration;
 import chameleon.core.declaration.DeclarationContainer;
-import chameleon.core.declaration.Signature;
 import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.declaration.TargetDeclaration;
 import chameleon.core.element.Element;
@@ -41,15 +40,16 @@ import chameleon.core.lookup.LookupStrategy;
 import chameleon.core.lookup.LookupStrategySelector;
 import chameleon.core.validation.VerificationResult;
 import chameleon.exception.ModelException;
+import chameleon.util.association.Multi;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  * 
  */
-public abstract class RefinableDeclarationImpl<D extends RefinableDeclarationImpl<D>>
-		extends MViewDeclaration<D>
-		implements RefinableDeclaration<D>, TargetDeclaration<D, Signature>,
-			DeclarationContainer<D> {
+public abstract class RefinableDeclarationImpl
+		extends MViewDeclaration
+		implements RefinableDeclaration, TargetDeclaration,
+			DeclarationContainer {
 
 	/**
 	 * default constructor
@@ -69,8 +69,7 @@ public abstract class RefinableDeclarationImpl<D extends RefinableDeclarationImp
 	/*
 	 * Parent declarations
 	 */
-	private OrderedMultiAssociation<RefinableDeclaration, RefinementRelation> _refinementRelations =
-			new OrderedMultiAssociation<RefinableDeclaration, RefinementRelation>(this); 
+	private Multi<RefinementRelation> _refinementRelations = new Multi<RefinementRelation>(this); 
 
 
 	/**
@@ -86,14 +85,13 @@ public abstract class RefinableDeclarationImpl<D extends RefinableDeclarationImp
 	 */
 	@Override
 	public void addRefinementRelation(RefinementRelation relation) {
-//		_refinementRelations.add(relation.parentLink());
-		_refinementRelations.addInFront(relation.parentLink());
+		_refinementRelations.addInFront((Association)relation.parentLink());
 	}
 
 
 	@Override
 	public void removeRefinemtRelation(RefinementRelation relation) {
-		_refinementRelations.remove(relation.parentLink());
+		remove(_refinementRelations,relation);
 	}
 
 
@@ -229,8 +227,7 @@ public abstract class RefinableDeclarationImpl<D extends RefinableDeclarationImp
 			
 			List<D> result = new ArrayList<D>();
 			
-			List<RequiredInterfaceDependency> requires =
-					members(RequiredInterfaceDependency.class);
+			List<RequiredInterfaceDependency> requires = 	members(RequiredInterfaceDependency.class);
 	
 			if (requires.size() > 0) {
 				RequiredInterfaceDependency dependency = requires.get(0);
@@ -317,24 +314,14 @@ public abstract class RefinableDeclarationImpl<D extends RefinableDeclarationImp
 
 
 	@Override
-	public D clone() {
-		D clone = super.clone();
+	public RefinableDeclarationImpl clone() {
+		RefinableDeclarationImpl clone = (RefinableDeclarationImpl) super.clone();
 
 		for (RefinementRelation relation : refinementRelations()) {
 			clone.addRefinementRelation(relation.clone());
 		}
 
 		return clone;
-	}
-
-
-	@Override
-	public List<Element> children() {
-		List<Element> result = super.children();
-
-		result.addAll(refinementRelations());
-
-		return result;
 	}
 
 

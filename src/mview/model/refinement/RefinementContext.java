@@ -31,7 +31,7 @@ public class RefinementContext {
 	 * @param parent
 	 * @return
 	 */
-	public <M extends MViewMember> boolean verify(M child, M parent) {
+	public boolean verify(MViewMember child, MViewMember parent) {
 		RefinableDeclaration childD, parentD;
 		
 		childD = (RefinableDeclaration) child.nearestAncestor(RefinableDeclaration.class);
