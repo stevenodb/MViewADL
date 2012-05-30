@@ -124,8 +124,8 @@ compilationUnit returns [CompilationUnit element]
 			cnd=connectorDeclaration {npp.add($cnd.element);}
 		|
 			apd=applicationDeclaration {npp.add($apd.element);}
-		|
-			dpd=deploymentDeclaration {npp.add($dpd.element);}
+		/*|
+			dpd=deploymentDeclaration {npp.add($dpd.element);}*/
 		)*
 	;
 
@@ -630,7 +630,7 @@ applicationBodyDeclaration[Application element]
  * DEPLOYMENT
  *********** */
 
-deploymentDeclaration returns [Deployment element]
+/*deploymentDeclaration returns [Deployment element]
 	:	(abs=abstractModifier)? appkw='deployment' name=Identifier {
 			$element = new Deployment(new SimpleNameSignature($name.text));
 
@@ -644,7 +644,7 @@ deploymentDeclaration returns [Deployment element]
 		(refinementDeclaration[$element,Application.class])?
 		applicationBody[$element]
 	;
-
+*/
 
 /* ********************
  * INSTANCE DECLARATION
@@ -734,21 +734,23 @@ modulecontainerBody returns [List<SimpleReference> elements]
 
 // single
 refinementDeclarationSingle[RefinableDeclaration element, Class kind]
-	:	rfkw=':' refinementDeclarationBody[$element,$kind] {
-			setKeyword($element,$rfkw);
+	:	rfkw='refines' rel=refinementDeclarationBody[$kind] {
+			setKeyword(rel.relation,rfkw);
+			$element.addRefinementRelation(rel.relation);
 		}
 	;	
 
 // multiple
 refinementDeclaration[RefinableDeclaration element, Class kind]
-	:	refinementDeclarationSingle[$element,$kind] ( ',' refinementDeclarationBody[$element,$kind] )*
+	:	refinementDeclarationSingle[$element,$kind] ( ',' rel=refinementDeclarationBody[$kind] {
+			$element.addRefinementRelation(rel.relation);
+		} )* 
 	;
 	
 	
-refinementDeclarationBody[RefinableDeclaration element, Class kind]
+refinementDeclarationBody[Class kind] returns [RefinementRelation relation]
 	:	parent=refinementParentDeclaration[$kind] {
-			RefinementRelation relation = new RefinementRelation($parent.reference);
-			$element.addRefinementRelation(relation);
+			$relation = new RefinementRelation(parent.reference);		
 		}
 	;
 
@@ -772,11 +774,10 @@ refinementParentDeclaration[Class kind] returns [SimpleReference reference]
 //					setLocation($
 					$reference = new SimpleReference(target,$namex.text,RefinableDeclaration.class);
 					target = new SimpleReference(target.clone(),$namex.text,RefinableDeclaration.class);
-
 				} else {
 					$reference = new SimpleReference($name.text,$kind);
 				}
-				start = $namex;
+				//start = $namex;
 				end = $namex;
 			} 
 		)*
