@@ -17,15 +17,10 @@
  */
 package mview.model.module;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import org.rejuse.association.OrderedMultiAssociation;
-import org.rejuse.association.SingleAssociation;
 
 import chameleon.core.declaration.Signature;
 import chameleon.core.declaration.SimpleNameSignature;
-import chameleon.core.element.Element;
 import chameleon.core.reference.SimpleReference;
 import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.Valid;
@@ -35,9 +30,10 @@ import chameleon.oo.method.SimpleNameMethodHeader;
 import chameleon.oo.type.BasicTypeReference;
 import chameleon.oo.variable.FormalParameter;
 import chameleon.support.member.simplename.method.NormalMethod;
-import chameleon.util.Util;
+import chameleon.util.association.Multi;
+import chameleon.util.association.Single;
 
-public class Service extends JoinPointElement<Service> {
+public class Service extends JoinPointElement {
 
 	/**
 	 * Default constructor
@@ -55,7 +51,6 @@ public class Service extends JoinPointElement<Service> {
 			List<FormalParameter> formalParameters) {
 		this(signature, returnType, formalParameters, null);
 	}
-
 
 	/**
 	 * @param signature
@@ -91,7 +86,7 @@ public class Service extends JoinPointElement<Service> {
 	}
 
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 * 
 	 * @see mview.model.namespace.MViewDeclaration#signature()
@@ -104,8 +99,7 @@ public class Service extends JoinPointElement<Service> {
 		return result;
 	}
 
-
-	/*
+	/**
 	 * (non-Javadoc)
 	 * 
 	 * @see
@@ -119,7 +113,6 @@ public class Service extends JoinPointElement<Service> {
 		method().header().addFormalParameter(arg);
 	}
 
-
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -132,20 +125,12 @@ public class Service extends JoinPointElement<Service> {
 		return method().formalParameters();
 	}
 
-//	/*
-//	 * Association to the return type
-//	 */
-//	private final SingleAssociation<Service, BasicTypeReference> _returnType =
-//			new SingleAssociation<Service, BasicTypeReference>(this);
-
-
 	/**
 	 * @return the service's return type
 	 */
 	public BasicTypeReference returnType() {
 		return (BasicTypeReference) method().returnTypeReference();
 	}
-
 
 	/**
 	 * @param returnType
@@ -159,8 +144,7 @@ public class Service extends JoinPointElement<Service> {
 	/*
 	 * Association to the Service
 	 */
-	private final SingleAssociation<Service, Method> _method =
-			new SingleAssociation<Service, Method>(this);
+	private Single< Method> _method = new Single<Method>(this);
 
 
 	/**
@@ -176,17 +160,13 @@ public class Service extends JoinPointElement<Service> {
 	 *            the header to set
 	 */
 	public void setMethod(Method method) {
-		if (method != null) {
-			_method.connectTo(method.parentLink());
-		}
+		set(_method,method);
 	}
 
 	/*
 	 * The service's attached properties
 	 */
-	private final OrderedMultiAssociation<Service, SimpleReference<Property>> _attachedProperties =
-			new OrderedMultiAssociation<Service, SimpleReference<Property>>(
-					this);
+	private final Multi<SimpleReference<Property>> _attachedProperties = new Multi<SimpleReference<Property>>(this);
 
 
 	/**
@@ -202,7 +182,7 @@ public class Service extends JoinPointElement<Service> {
 	 *            the property to attach
 	 */
 	public void addProperty(SimpleReference<Property> relation) {
-		_attachedProperties.add(relation.parentLink());
+		add(_attachedProperties,relation);
 	}
 
 
@@ -211,7 +191,7 @@ public class Service extends JoinPointElement<Service> {
 	 *            the service to remove from the aggregation
 	 */
 	public void removeProperty(SimpleReference<Property> relation) {
-		_attachedProperties.remove(relation.parentLink());
+		remove(_attachedProperties,relation);
 	}
 
 
@@ -242,20 +222,12 @@ public class Service extends JoinPointElement<Service> {
 	 */
 	@Override
 	public Service clone() {
-		final Service clone = super.clone();
-
-		clone.setMethod(
-				this.method().clone()
-				);
-
-		clone.setReturnType(
-				this.returnType().clone()
-				);
-
+		final Service clone = (Service) super.clone();
+		clone.setMethod(this.method().clone());
+		clone.setReturnType(this.returnType().clone());
 		for (SimpleReference<Property> property : attachedProperties()) {
 			clone.addProperty(property.clone());
 		}
-
 		return clone;
 	}
 
@@ -286,27 +258,6 @@ public class Service extends JoinPointElement<Service> {
 
 		return result;
 	}
-
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see mview.model.namespace.MViewDeclaration#children()
-	 */
-	@Override
-	public List<Element> children() {
-		// The super method only adds the signature, but for a Service,
-		// the signature is generated, so we don't add it.
-		final List<Element> result = new ArrayList<Element>();
-
-		Util.addNonNull(this.method(), result);
-		Util.addNonNull(this.returnType(), result);
-
-		result.addAll(attachedProperties());
-
-		return result;
-	}
-
 
 	@Override
 	public String toString() {

@@ -30,7 +30,7 @@ import chameleon.core.property.ChameleonProperty;
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public class Overridable extends ModifierImpl<Overridable> {
+public class Overridable extends ModifierImpl {
 
 	@Override
 	public PropertySet<Element, ChameleonProperty> impliedProperties() {

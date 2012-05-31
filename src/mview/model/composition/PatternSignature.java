@@ -38,8 +38,7 @@ import chameleon.util.Pair;
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  * 
  */
-public class PatternSignature extends
-		ServiceSignature<PatternSignature, Service> {
+public class PatternSignature extends ServiceSignature<Service> {
 
 	// eg: *, *Map, System*, newspaper..Article
 	private String _returnTypePattern;
@@ -214,7 +213,7 @@ public class PatternSignature extends
 				new ArrayList<SimpleReference<Service>>();
 
 		try {
-			getNamespace().descendants(Service.class,
+			namespace().descendants(Service.class,
 					new UnsafePredicate<Service, LookupException>() {
 
 						@Override
@@ -241,7 +240,7 @@ public class PatternSignature extends
 				= wildcardToRegex(returnTypePattern());
 			
 			String returnTypeName 
-				= service.returnType().getType().getName();				
+				= service.returnType().getType().name();				
 
 			evalResult &= returnTypeName.matches(reReturnType);
 			
@@ -265,7 +264,7 @@ public class PatternSignature extends
 					String reFormalParamType = wildcardToRegex(formalParam.first());
 					
 					String formalParamType 
-						= service.formalParameters().get(i).getType().getName();
+						= service.formalParameters().get(i).getType().name();
 							
 					evalResult &= formalParamType.matches(reFormalParamType);
 				}
@@ -300,7 +299,7 @@ public class PatternSignature extends
 	 */
 	@Override
 	public PatternSignature clone() {
-		final PatternSignature clone = super.clone();
+		final PatternSignature clone = (PatternSignature) super.clone();
 
 		clone.setReturnTypePattern(returnTypePattern());
 		clone.setSignaturePattern(signaturePattern());
@@ -336,19 +335,6 @@ public class PatternSignature extends
 							"Signature: returnType patterns is null."));
 		}
 
-		return result;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see chameleon.core.element.Element#children()
-	 */
-	public List<Element> children() {
-		final List<Element> result = super.children();
-		
-		// do not add generated stuff
-		
 		return result;
 	}
 

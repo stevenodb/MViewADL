@@ -32,9 +32,11 @@ import org.rejuse.association.OrderedMultiAssociation;
 import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.element.Element;
 import chameleon.core.lookup.LookupException;
+import chameleon.core.lookup.LookupStrategy;
 import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.Valid;
 import chameleon.core.validation.VerificationResult;
+import chameleon.util.association.Multi;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
@@ -45,8 +47,8 @@ import chameleon.core.validation.VerificationResult;
  * 
  * @param <A>
  */
-public class Application<A extends Application<A>>
-		extends RefinableDeclarationImpl<A>
+public class Application
+		extends RefinableDeclarationImpl
 		implements ModuleContainer {
 
 	// extends HostMapper<Application,AbstractHost,Locate>
@@ -68,8 +70,7 @@ public class Application<A extends Application<A>>
 	/*
 	 * Hosts
 	 */
-	private final OrderedMultiAssociation<Application<A>, Host> _hosts =
-			new OrderedMultiAssociation<Application<A>, Host>(this);
+	private final Multi<Host> _hosts = new Multi<Host>(this);
 
 	/**
 	 * @return
@@ -82,25 +83,20 @@ public class Application<A extends Application<A>>
 	 * @param host
 	 */
 	public void addHost(Host host) {
-		if (host != null) {
-			_hosts.add(host.parentLink());
-		}
+		add(_hosts,host);
 	}
 
 	/**
 	 * @param host
 	 */
 	public void removeHost(Host host) {
-		if (host != null) {
-			_hosts.remove(host.parentLink());
-		}
+		remove(_hosts,host);
 	}
 
 	/*
 	 * Instances
 	 */
-	private final OrderedMultiAssociation<Application<A>, Instance> _instances =
-			new OrderedMultiAssociation<Application<A>, Instance>(this);
+	private final Multi<Instance> _instances = new Multi<Instance>(this);
 
 	/**
 	 * @return
@@ -113,25 +109,20 @@ public class Application<A extends Application<A>>
 	 * @param host
 	 */
 	public void addInstance(Instance instance) {
-		if (instance != null) {
-			_instances.add(instance.parentLink());
-		}
+		add(_instances,instance);
 	}
 
 	/**
 	 * @param host
 	 */
 	public void removeInstance(Instance instance) {
-		if (instance != null) {
-			_instances.remove(instance.parentLink());
-		}
+		remove(_instances,instance);
 	}
 
 	/*
 	 * Modules
 	 */
-	private final OrderedMultiAssociation<Application<A>, Module> _modules =
-			new OrderedMultiAssociation<Application<A>, Module>(this);
+	private final Multi<Module> _modules = new Multi<Module>(this);
 
 	/*
 	 * (non-Javadoc)
@@ -149,9 +140,7 @@ public class Application<A extends Application<A>>
 	 * mview.model.module.ModuleContainer#addModule(mview.model.module.Module)
 	 */
 	public void addModule(Module module) {
-		if (module != null) {
-			_modules.add(module.parentLink());
-		}
+		add(_modules,module);
 	}
 
 	/*
@@ -162,9 +151,7 @@ public class Application<A extends Application<A>>
 	 * )
 	 */
 	public void removeModule(Module module) {
-		if (module != null) {
-			_modules.remove(module.parentLink());
-		}
+		remove(_modules,module);
 	}
 
 	/*
@@ -177,8 +164,8 @@ public class Application<A extends Application<A>>
 	 * @see mview.model.namespace.MViewDeclaration#cloneThis()
 	 */
 	@Override
-	protected A cloneThis() {
-		return (A) new Application();
+	protected Application cloneThis() {
+		return new Application();
 	}
 
 	/*
@@ -187,8 +174,8 @@ public class Application<A extends Application<A>>
 	 * @see mview.model.application.HostMapper#clone()
 	 */
 	@Override
-	public A clone() {
-		final A clone = super.clone();
+	public Application clone() {
+		final Application clone = (Application) super.clone();
 
 		for (Host host : hosts()) {
 			clone.addHost(host.clone());
@@ -199,7 +186,7 @@ public class Application<A extends Application<A>>
 		}
 
 		for (Module module : this.modules()) {
-			clone.addModule(module.clone());
+			clone.addModule((Module)module.clone());
 		}
 
 		return clone;
@@ -214,20 +201,6 @@ public class Application<A extends Application<A>>
 	// return super.uniSameAs(other);
 	// }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see mview.model.application.HostMapper#children()
-	 */
-	@Override
-	public List<Element> children() {
-		final List<Element> result = super.children();
-		result.addAll(modules());
-		result.addAll(instances());
-		result.addAll(hosts());
-		return result;
-	}
-	
 	/**
 	 * @return
 	 */
@@ -319,6 +292,11 @@ public class Application<A extends Application<A>>
 		result.addAll(modules());
 
 		return result;
+	}
+
+	@Override
+	public LookupStrategy localStrategy() throws LookupException {
+		return language().lookupFactory().createLocalLookupStrategy(this);
 	}
 
 }

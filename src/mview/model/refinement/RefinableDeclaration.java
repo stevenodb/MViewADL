@@ -30,8 +30,7 @@ import chameleon.exception.ModelException;
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  * 
  */
-public interface RefinableDeclaration<	D extends RefinableDeclaration<D>>
-		extends Declaration<D, Signature> {
+public interface RefinableDeclaration	extends Declaration {
 
 	// /**
 	// * Returns the List of all member declarations up to and including this
@@ -90,8 +89,9 @@ public interface RefinableDeclaration<	D extends RefinableDeclaration<D>>
 	 * Returns the list of all direct refinable parent declarations.
 	 * 
 	 * @return the list of all direct refinable parent declarations.
+	 * @throws LookupException 
 	 */
-	public List<RefinableDeclaration> getDirectParents();
+	public List<RefinableDeclaration> getDirectParents() throws LookupException;
 	
 	/**
 	 * Returns whether this declaration is abstract
@@ -106,8 +106,9 @@ public interface RefinableDeclaration<	D extends RefinableDeclaration<D>>
 	 * @param other
 	 *            the other declaration
 	 * @return true if this is a refinement of other
+	 * @throws LookupException 
 	 */
-	public boolean isRefinementOf(RefinableDeclaration other);
+	public boolean isRefinementOf(RefinableDeclaration other) throws LookupException;
 
 	/**
 	 * Add a refinement relation

@@ -25,7 +25,7 @@ import chameleon.core.declaration.SimpleNameSignature;
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public class HostName extends MViewDeclaration<HostName> {
+public class HostName extends MViewDeclaration {
 	
 	/**
 	 * default 

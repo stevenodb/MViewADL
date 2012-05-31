@@ -21,8 +21,6 @@ package mview.model.namespace;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.rejuse.association.SingleAssociation;
-
 import chameleon.core.declaration.Declaration;
 import chameleon.core.declaration.Signature;
 import chameleon.core.element.Element;
@@ -36,6 +34,7 @@ import chameleon.core.validation.Valid;
 import chameleon.core.validation.VerificationResult;
 import chameleon.exception.ModelException;
 import chameleon.util.Util;
+import chameleon.util.association.Single;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
@@ -45,9 +44,7 @@ import chameleon.util.Util;
  * @param <P>
  *            Parent Element
  */
-public abstract class MViewDeclaration<E extends MViewDeclaration<E>>
-		extends ElementWithModifiersImpl<E>
-		implements Declaration<E, Signature> {
+public abstract class MViewDeclaration extends ElementWithModifiersImpl implements Declaration {
 
 	/**
 	 * Default constructor
@@ -62,16 +59,15 @@ public abstract class MViewDeclaration<E extends MViewDeclaration<E>>
 		setSignature(signature);
 	}
 
-	public E actualDeclaration() throws LookupException {
-		return (E) this;
+	public MViewDeclaration actualDeclaration() throws LookupException {
+		return this;
 	}
 
 	public Scope scope() throws ModelException {
 		return new UniversalScope();
 	}
 
-	public Declaration<?, Signature> selectionDeclaration()
-			throws LookupException {
+	public Declaration selectionDeclaration() throws LookupException {
 		return this;
 	}
 
@@ -79,9 +75,7 @@ public abstract class MViewDeclaration<E extends MViewDeclaration<E>>
 	 * SIGNATURE
 	 */
 
-	private final SingleAssociation<MViewDeclaration<E>, Signature> _signature =
-			new SingleAssociation<MViewDeclaration<E>, Signature>(
-					this);
+	private final Single<Signature> _signature = new Single<Signature>(this);
 
 	/*
 	 * (non-Javadoc)
@@ -91,16 +85,17 @@ public abstract class MViewDeclaration<E extends MViewDeclaration<E>>
 	public Signature signature() {
 		return _signature.getOtherEnd();
 	}
+	
+	@Override
+	public String name() {
+		return signature().name();
+	}
 
 	/**
 	 * @param signature
 	 */
 	public void setSignature(Signature signature) {
-		if (signature != null) {
-			_signature.connectTo(signature.parentLink());
-		} else {
-			_signature.connectTo(null);
-		}
+		set(_signature, signature);
 	}
 
 	/*
@@ -125,7 +120,7 @@ public abstract class MViewDeclaration<E extends MViewDeclaration<E>>
 	/**
 	 * @return An incomplete clone with the correct sub-Type
 	 */
-	protected abstract E cloneThis();
+	protected abstract MViewDeclaration cloneThis();
 
 	/*
 	 * (non-Javadoc)
@@ -133,25 +128,10 @@ public abstract class MViewDeclaration<E extends MViewDeclaration<E>>
 	 * @see chameleon.core.element.ElementImpl#clone()
 	 */
 	@Override
-	public E clone() {
-		final E clone = cloneThis();
-
+	public MViewDeclaration clone() {
+		final MViewDeclaration clone = cloneThis();
 		clone.setSignature(signature().clone());
-
 		return clone;
-	}
-
-	/*
-	 * Override in Subtypes (non-Javadoc)
-	 * 
-	 * @see chameleon.core.element.Element#children()
-	 */
-	public List<Element> children() {
-		final List<Element> result = new ArrayList<Element>();
-
-		Util.addNonNull(signature(), result);
-
-		return result;
 	}
 
 	/*
@@ -168,14 +148,6 @@ public abstract class MViewDeclaration<E extends MViewDeclaration<E>>
 		}
 		return result;
 	}
-
-	/* (non-Javadoc)
-	 * @see chameleon.core.element.ElementImpl#uniSameAs(chameleon.core.element.Element)
-	 */
-//	@Override
-//	public boolean uniSameAs(Element other) throws LookupException {
-//		return (other instanceof MViewDeclaration) && ((signature().equals(other)) || other == this);
-//	}
 
 	@Override
 	public String toString() {

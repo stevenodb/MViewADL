@@ -33,7 +33,7 @@ import chameleon.core.validation.VerificationResult;
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public class Deployment extends Application<Deployment> {
+public class Deployment extends Application {
 	
 	/**
 	 * default
@@ -55,15 +55,6 @@ public class Deployment extends Application<Deployment> {
 	@Override
 	protected Deployment cloneThis() {
 		return new Deployment();
-	}
-
-	/* (non-Javadoc)
-	 * @see mview.model.application.HostMapper#children()
-	 */
-	@Override
-	public List<Element> children() {
-		final List<Element> result = super.children();
-		return result;
 	}
 
 	@Override

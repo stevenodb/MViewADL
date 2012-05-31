@@ -22,8 +22,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.rejuse.association.SingleAssociation;
-
 import chameleon.core.element.ElementImpl;
 import chameleon.core.lookup.LookupException;
 import chameleon.core.reference.SimpleReference;
@@ -32,13 +30,13 @@ import chameleon.core.validation.Valid;
 import chameleon.core.validation.VerificationResult;
 import chameleon.exception.ModelException;
 import chameleon.util.Util;
+import chameleon.util.association.Single;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  * 
  */
-public class RefinementRelation
-		extends ElementImpl<RefinementRelation> {// NameSpaceElementImpl
+public class RefinementRelation extends ElementImpl {
 
 	/**
 	 * default
@@ -60,20 +58,15 @@ public class RefinementRelation
 	/*
 	 * Parent declaration
 	 */
-	private SingleAssociation<RefinementRelation, SimpleReference<RefinableDeclaration>> _parentDeclaration =
-			new SingleAssociation<RefinementRelation,
-			SimpleReference<RefinableDeclaration>>(this);
+	private Single<SimpleReference<RefinableDeclaration>> _parentDeclaration = new Single<SimpleReference<RefinableDeclaration>>(this);
 
 
 	/**
 	 * @return the parent declaration
+	 * @throws LookupException 
 	 */
-	public RefinableDeclaration parentDeclarationEnd() {
-		try {
+	public RefinableDeclaration parentDeclarationEnd() throws LookupException {
 			return _parentDeclaration.getOtherEnd().getElement();
-		} catch (LookupException e) {
-			return null;
-		}
 	}
 
 
@@ -88,9 +81,8 @@ public class RefinementRelation
 	/**
 	 * @param relation
 	 */
-	public void setParentDeclaration(
-			SimpleReference<RefinableDeclaration> relation) {
-		_parentDeclaration.connectTo(relation.parentLink());
+	public void setParentDeclaration(SimpleReference<RefinableDeclaration> relation) {
+		set(_parentDeclaration,relation);
 	}
 
 
@@ -143,24 +135,6 @@ public class RefinementRelation
 			current.addAll(toAdd);
 		}
 	}
-
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see chameleon.core.element.Element#children()
-	 */
-	@Override
-	public List<SimpleReference<RefinableDeclaration>> children() {
-
-		List<SimpleReference<RefinableDeclaration>> result =
-				new ArrayList<SimpleReference<RefinableDeclaration>>();
-
-		Util.addNonNull(parentDeclaration(), result);
-
-		return result;
-	}
-
 
 	/*
 	 * (non-Javadoc)

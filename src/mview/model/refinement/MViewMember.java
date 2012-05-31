@@ -20,6 +20,7 @@ package mview.model.refinement;
 
 import mview.exception.MergeNotSupportedException;
 import chameleon.core.element.Element;
+import chameleon.core.lookup.LookupException;
 import chameleon.exception.ModelException;
 
 
@@ -27,14 +28,15 @@ import chameleon.exception.ModelException;
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public interface MViewMember<M extends MViewMember<M>> extends Element<M> {
+public interface MViewMember extends Element {
 
 	/**
 	 * Checks whether this member and other share the same context
 	 * @param other the member to check
 	 * @return
+	 * @throws LookupException 
 	 */
-	public boolean sharesContext(MViewMember other);
+	public boolean sharesContext(MViewMember other) throws LookupException;
 	
 	/**
 	 * Checks whether this member overrides the given member
@@ -65,7 +67,7 @@ public interface MViewMember<M extends MViewMember<M>> extends Element<M> {
 	 * @throws MergeNotSupportedException when merge is not supported 
 	 * @throws ModelException 
 	 */
-	public M merge(MViewMember other) throws MergeNotSupportedException, ModelException;
+	public MViewMember merge(MViewMember other) throws MergeNotSupportedException, ModelException;
 	
 	/**
 	 * Checks whether this member is the same type of member as other.

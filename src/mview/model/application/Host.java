@@ -22,20 +22,18 @@ import java.util.List;
 
 import mview.model.deployment.HostName;
 import mview.model.refinement.MViewMemberDeclarationImpl;
-
-import org.rejuse.association.SingleAssociation;
-
 import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.element.Element;
 import chameleon.core.validation.VerificationResult;
 import chameleon.util.Util;
+import chameleon.util.association.Single;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  * 
  * @param <E>
  */
-public class Host extends MViewMemberDeclarationImpl<Host> {
+public class Host extends MViewMemberDeclarationImpl {
 
 	/**
 	 * default
@@ -54,15 +52,14 @@ public class Host extends MViewMemberDeclarationImpl<Host> {
 	/*
 	 * HOSTNAME
 	 */
-	private SingleAssociation<Host, HostName> _hostName =
-			new SingleAssociation<Host, HostName>(this);
+	private Single<HostName> _hostName = new Single<HostName>(this);
 
 	/**
 	 * @param hostName
 	 *            the hostName to set
 	 */
 	public void setHostName(HostName hostName) {
-		_hostName.connectTo(hostName.parentLink());
+		set(_hostName,hostName);
 	}
 
 	/**
@@ -89,23 +86,9 @@ public class Host extends MViewMemberDeclarationImpl<Host> {
 	 */
 	@Override
 	public Host clone() {
-		final Host clone = super.clone();
-		clone.setHostName(hostName().clone());
+		final Host clone = (Host) super.clone();
+		clone.setHostName((HostName) hostName().clone());
 		return clone;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see mview.model.namespace.MViewDeclaration#children()
-	 */
-	@Override
-	public List<Element> children() {
-		final List<Element> result = super.children();
-		
-		Util.addNonNull(hostName(), result);
-		
-		return result;
 	}
 
 	/*

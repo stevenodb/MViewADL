@@ -18,6 +18,8 @@
  */
 package mview.model.refinement;
 
+import chameleon.core.lookup.LookupException;
+
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
@@ -30,8 +32,9 @@ public class RefinementContext {
 	 * @param child
 	 * @param parent
 	 * @return
+	 * @throws LookupException 
 	 */
-	public <M extends MViewMember> boolean verify(M child, M parent) {
+	public boolean verify(MViewMember child, MViewMember parent) throws LookupException {
 		RefinableDeclaration childD, parentD;
 		
 		childD = (RefinableDeclaration) child.nearestAncestor(RefinableDeclaration.class);

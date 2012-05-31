@@ -31,12 +31,13 @@ import chameleon.core.reference.SimpleReference;
 import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.VerificationResult;
 import chameleon.util.Util;
+import chameleon.util.association.Single;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public class Instance<M extends Module> extends MViewMemberDeclarationImpl<Instance<M>> {
+public class Instance extends MViewMemberDeclarationImpl {
 	
 	/**
 	 * Default 
@@ -53,26 +54,24 @@ public class Instance<M extends Module> extends MViewMemberDeclarationImpl<Insta
 	}
 
 	// type
-	private SingleAssociation<Instance, SimpleReference<M>> _type =
-		new SingleAssociation<Instance, SimpleReference<M>>(this);
+	private Single<SimpleReference<Module>> _type = new Single<SimpleReference<Module>>(this);
 	
 	/**
 	 * @return
 	 */
-	public SimpleReference<M> type() {
+	public SimpleReference<Module> type() {
 		return _type.getOtherEnd();
 	}
 
 	/**
 	 * @param relation
 	 */
-	public void setType(SimpleReference<M> relation) {
-		_type.connectTo(relation.parentLink());	 
+	public void setType(SimpleReference<Module> relation) {
+		set(_type,relation);	 
 	}
 	
 	// host
-	private SingleAssociation<Instance, SimpleReference<Host>> _host =
-		new SingleAssociation<Instance, SimpleReference<Host>>(this);
+	private Single<SimpleReference<Host>> _host = new Single<SimpleReference<Host>>(this);
 	
 	/**
 	 * @return
@@ -85,7 +84,7 @@ public class Instance<M extends Module> extends MViewMemberDeclarationImpl<Insta
 	 * @param relation
 	 */
 	public void setHost(SimpleReference<Host> relation) {
-		_host.connectTo(relation.parentLink());
+		set(_host,relation);
 	}
 	
 	
@@ -102,25 +101,12 @@ public class Instance<M extends Module> extends MViewMemberDeclarationImpl<Insta
 	 */
 	@Override
 	public Instance clone() {
-		final Instance clone = super.clone();
+		final Instance clone = (Instance) super.clone();
 		
 		clone.setType(type().clone());
 		clone.setHost(host().clone());
 				
 		return clone;
-	}
-
-	/* (non-Javadoc)
-	 * @see mview.model.namespace.MViewDeclaration#children()
-	 */
-	@Override
-	public List<Element> children() {
-		final List<Element> result = super.children();
-		
-		Util.addNonNull(host(), result);
-		Util.addNonNull(type(), result);
-		
-		return result;
 	}
 
 	/* (non-Javadoc)

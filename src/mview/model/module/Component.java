@@ -31,7 +31,7 @@ import chameleon.core.validation.VerificationResult;
  *
  * @param <E>
  */
-public class Component<E extends Component<E>> extends Module<E> {
+public class Component extends Module {
 
 	/**
 	 * default
@@ -52,8 +52,8 @@ public class Component<E extends Component<E>> extends Module<E> {
 	 * @see mview.model.module.Module#cloneThis()
 	 */
 	@Override
-	protected E cloneThis() {
-		return (E) new Component();
+	protected Component cloneThis() {
+		return new Component();
 	}
 	
 	/* (non-Javadoc)

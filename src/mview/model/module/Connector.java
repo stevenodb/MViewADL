@@ -21,15 +21,13 @@ import java.util.List;
 
 import mview.model.composition.AOComposition;
 import mview.model.refinement.MViewMember;
-
-import org.rejuse.association.OrderedMultiAssociation;
-
 import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.element.Element;
 import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.VerificationResult;
+import chameleon.util.association.Multi;
 
-public class Connector<E extends Connector<E>> extends Module<E> {
+public class Connector extends Module {
 	
 	/**
 	 * Default constructor 
@@ -47,23 +45,18 @@ public class Connector<E extends Connector<E>> extends Module<E> {
 	/*
 	 * composition association
 	 */
-	private OrderedMultiAssociation<Connector<E>, AOComposition> _compositions = 
-		new OrderedMultiAssociation<Connector<E>, AOComposition>(this); 
+	private Multi<AOComposition> _compositions = new Multi<AOComposition>(this); 
  
 	public List<AOComposition> compositions() {
 		return _compositions.getOtherEnds();
 	}
 	
 	public void removeComposition(AOComposition relation) {
-		if (relation != null) {
-			_compositions.remove(relation.parentLink());
-		}
+		remove(_compositions,relation);
 	}
 	
 	public void addComposition(AOComposition relation) {
-		if (relation != null) {
-		_compositions.add(relation.parentLink());
-		}
+		add(_compositions,relation);
 	}
 
 	
@@ -71,16 +64,16 @@ public class Connector<E extends Connector<E>> extends Module<E> {
 	 * @see mview.model.module.Module#cloneThis()
 	 */
 	@Override
-	protected E cloneThis() {
-		return (E) new Connector();
+	protected Connector cloneThis() {
+		return new Connector();
 	}
 
 	/* (non-Javadoc)
 	 * @see mview.model.module.Module#clone()
 	 */
 	@Override
-	public E clone() {
-		final E clone = super.clone();
+	public Connector clone() {
+		final Connector clone = (Connector) super.clone();
 		
 		for (AOComposition composition : compositions()) {
 			clone.addComposition(composition.clone());
@@ -98,18 +91,6 @@ public class Connector<E extends Connector<E>> extends Module<E> {
 					this.signature().name() + ": Compositions is null"));
 		}
 		
-		return result;
-	}
-
-	/* (non-Javadoc)
-	 * @see mview.model.module.Module#children()
-	 */
-	@Override
-	public List<Element> children() {
-		final List<Element> result = super.children();
-		
-		result.addAll(compositions());
-
 		return result;
 	}
 

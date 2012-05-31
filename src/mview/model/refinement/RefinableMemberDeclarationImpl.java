@@ -20,15 +20,15 @@ package mview.model.refinement;
 
 import mview.exception.MergeNotSupportedException;
 import chameleon.core.declaration.SimpleNameSignature;
+import chameleon.core.lookup.LookupException;
 import chameleon.exception.ModelException;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  * 
  */
-public abstract class RefinableMemberDeclarationImpl<
-			D extends RefinableMemberDeclarationImpl<D>>
-		extends RefinableDeclarationImpl<D> implements MViewMemberDeclaration<D> {
+public abstract class RefinableMemberDeclarationImpl
+		extends RefinableDeclarationImpl implements MViewMemberDeclaration {
 
 	/**
 	 * default
@@ -36,7 +36,7 @@ public abstract class RefinableMemberDeclarationImpl<
 	protected RefinableMemberDeclarationImpl() {
 		super();
 	}
-
+	
 	/**
 	 * @param signature
 	 */
@@ -45,7 +45,7 @@ public abstract class RefinableMemberDeclarationImpl<
 	}
 
 	@Override
-	public boolean sharesContext(MViewMember other) {
+	public boolean sharesContext(MViewMember other) throws LookupException {
 		return (new RefinementContext()).verify(this, other);
 	}
 
@@ -65,7 +65,7 @@ public abstract class RefinableMemberDeclarationImpl<
 	}
 
 	@Override
-	public D merge(MViewMember other) throws MergeNotSupportedException, ModelException {
+	public RefinableMemberDeclarationImpl merge(MViewMember other) throws MergeNotSupportedException, ModelException {
 		throw new MergeNotSupportedException(this + " doesn't support merge.");
 	}
 

@@ -31,24 +31,23 @@ import chameleon.core.property.ChameleonProperty;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
- *
+ * @author Marko van Dooren
  */
-public class PropModifier<D extends Declaration> 
-					extends ModifierImpl<PropModifier> {
+public class PropModifier	extends ModifierImpl {
 	
-	private final Class<D> _targetDeclarationType;
+	private final Class<? extends Declaration> _targetDeclarationType;
 	
 	/**
 	 * @param declarationType
 	 */
-	public PropModifier(Class<D> declarationType) {
+	public PropModifier(Class<? extends Declaration> declarationType) {
 		this._targetDeclarationType = declarationType;
 	}
 	
 	/**
 	 * @return the targetDeclarationClass
 	 */
-	public Class<D> targetDeclarationType() {
+	public Class<? extends Declaration> targetDeclarationType() {
 		return _targetDeclarationType;
 	}
 
@@ -58,45 +57,17 @@ public class PropModifier<D extends Declaration>
 	@Override
 	public PropertySet impliedProperties() {
 		PropertySet<Element, ChameleonProperty> result = createSet();
-	
-//		Set<ChameleonProperty> propSet = 
-//			(language(MView.class)).actorProperties(
-//				targetDeclarationType());
-		
-
-//		for (ActorProperty property : language(MView.class).ACTOR_PROPERTIES) {
-//			if (property.validElementTypes().contains(_targetDeclarationType)) {
-//				result.add(property);
-//			}
-//		}
-		
 		for (ActorProperty property : language(MView.class).ACTOR_PROPERTIES) {
 			if (property.hasDeclarationType(_targetDeclarationType)) {
 				result.add(property);
 			}
-		}
-		
+		}		
 		return result;
 	}
 
-//	/* (non-Javadoc)
-//	 * @see chameleon.core.modifier.ModifierImpl#verifySelf()
-//	 */
-//	@Override
-//	public VerificationResult verifySelf() {
-//		VerificationResult result = super.verifySelf();
-//		
-//		if ( ! (  ) )
-//		
-//		result.and(new BasicProblem(this, ""));
-//	}
-	
-	/* (non-Javadoc)
-	 * @see chameleon.core.modifier.ModifierImpl#clone()
-	 */
 	@Override
-	public PropModifier<D> clone() {
-		return new PropModifier<D>(targetDeclarationType());
+	public PropModifier clone() {
+		return new PropModifier(targetDeclarationType());
 	}
 
 	/* (non-Javadoc)
@@ -105,7 +76,6 @@ public class PropModifier<D extends Declaration>
 	@Override
 	public boolean uniSameAs(Element other) throws LookupException {
 		return (other instanceof PropModifier) 
-			&& ((PropModifier) other).targetDeclarationType() 
-				== this.targetDeclarationType();
+			&& ((PropModifier) other).targetDeclarationType() == this.targetDeclarationType();
 	}
 }

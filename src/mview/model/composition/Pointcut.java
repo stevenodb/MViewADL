@@ -31,20 +31,21 @@ import org.rejuse.property.Property;
 
 import chameleon.core.declaration.Declaration;
 import chameleon.core.element.Element;
+import chameleon.core.lookup.LookupException;
 import chameleon.core.modifier.ElementWithModifiersImpl;
 import chameleon.core.modifier.Modifier;
 import chameleon.core.validation.Valid;
 import chameleon.core.validation.VerificationResult;
 import chameleon.exception.ModelException;
 import chameleon.util.Util;
+import chameleon.util.association.Single;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  * @param <E>
  * 
  */
-public class Pointcut extends ElementWithModifiersImpl<Pointcut>
-		implements MViewMember<Pointcut> {
+public class Pointcut extends ElementWithModifiersImpl implements MViewMember {
 
 	/**
 	 * Default constructor
@@ -73,9 +74,7 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut>
 	 * @return
 	 */
 	public Property kind() {
-
 		Property kind = null;
-		
 		if (isTrue(language(MView.class).CALL)) {
 			kind = language(MView.class).CALL;
 		} else if (isTrue(language(MView.class).EXECUTION)) {
@@ -83,17 +82,13 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut>
 		} else {
 			kind = null;
 		}
-		
 		return kind;
 	}
 	
 	/*
 	 * SIGNATURE
 	 */
-	private SingleAssociation<Pointcut, PointcutSignature> _pointcutSignature =
-			new SingleAssociation<Pointcut, PointcutSignature>(
-																															this);
-
+	private Single<PointcutSignature> _pointcutSignature = new Single<PointcutSignature>(this);
 
 	/**
 	 * @return
@@ -107,8 +102,7 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut>
 	 * @param pointcutSignature
 	 */
 	public void setSignature(PointcutSignature pointcutSignature) {
-		if (pointcutSignature != null)
-			_pointcutSignature.connectTo(pointcutSignature.parentLink());
+		set(_pointcutSignature,pointcutSignature);
 	}
 
 
@@ -126,8 +120,7 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut>
 	/*
 	 * CALLER
 	 */
-	private SingleAssociation<Pointcut, Actor> _caller =
-			new SingleAssociation<Pointcut, Actor>(this);
+	private Single<Actor> _caller =	new Single<Actor>(this);
 
 
 	/**
@@ -136,9 +129,7 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut>
 	 * @param actor
 	 */
 	public void setCaller(Actor actor) {
-		if (actor != null) {
-			_caller.connectTo(actor.parentLink());
-		}
+		set(_caller,actor);
 	}
 
 
@@ -162,8 +153,7 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut>
 	/*
 	 * CALLEE
 	 */
-	private SingleAssociation<Pointcut, Actor> _callee =
-			new SingleAssociation<Pointcut, Actor>(this);
+	private Single<Actor> _callee = new Single<Actor>(this);
 
 
 	/**
@@ -172,9 +162,7 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut>
 	 * @param actor
 	 */
 	public void setCallee(Actor actor) {
-		if (actor != null) {
-			_callee.connectTo(actor.parentLink());
-		}
+		set(_callee,actor);
 	}
 
 
@@ -250,25 +238,8 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut>
 		return result;
 	}
 
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see chameleon.core.element.Element#children()
-	 */
-	public List<Element> children() {
-		List<Element> result = super.children();
-
-		Util.addNonNull(signature(), result);
-		Util.addNonNull(caller(), result);
-		Util.addNonNull(callee(), result);
-
-		return result;
-	}
-
-
 	@Override
-	public boolean sharesContext(MViewMember other) {
+	public boolean sharesContext(MViewMember other) throws LookupException {
 		return (new RefinementContext().verify(this, other));
 	}
 
@@ -281,20 +252,14 @@ public class Pointcut extends ElementWithModifiersImpl<Pointcut>
 
 	@Override
 	public boolean mergesWith(MViewMember other) throws ModelException {
-		return sameMemberAs(other)
-			&& sharesContext(other) 
-			&& !overrides(other);
+		return sameMemberAs(other) && sharesContext(other) && !overrides(other);
 	}
 
 
 	@Override
-	public Pointcut merge(MViewMember other) throws MergeNotSupportedException,
-			ModelException {
-
+	public Pointcut merge(MViewMember other) throws MergeNotSupportedException, ModelException {
 		Pointcut merged;
-
 		if (mergesWith(other)) {
-
 			Pointcut child = this.clone();
 			// Pointcut child = this;
 			Pointcut parent = ((Pointcut) other).clone();

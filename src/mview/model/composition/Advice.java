@@ -28,11 +28,11 @@ import mview.model.refinement.AbstractElement;
 import mview.model.refinement.MViewMember;
 import mview.model.refinement.RefinementContext;
 
-import org.rejuse.association.SingleAssociation;
 import org.rejuse.property.Property;
 
 import chameleon.core.declaration.Declaration;
 import chameleon.core.element.Element;
+import chameleon.core.lookup.LookupException;
 import chameleon.core.modifier.ElementWithModifiersImpl;
 import chameleon.core.modifier.Modifier;
 import chameleon.core.reference.SimpleReference;
@@ -40,30 +40,15 @@ import chameleon.core.validation.Valid;
 import chameleon.core.validation.VerificationResult;
 import chameleon.exception.ModelException;
 import chameleon.util.Util;
+import chameleon.util.association.Single;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public class Advice extends ElementWithModifiersImpl<Advice> 
-		implements MViewMember<Advice>, AbstractElement { 
-	//extends NamespaceElementImpl<Advice, Element> {
+public class Advice extends ElementWithModifiersImpl implements MViewMember, AbstractElement { 
 	
-	/**
-	 * default constructor
-	 */
-	public Advice() {
-	}
-	
-	/* 
-	 * Advice type
-	 * through modifier
-	 */
-		
-	
-	// Service
-	private SingleAssociation<Advice, SimpleReference<Service>> _service =
-		new SingleAssociation<Advice, SimpleReference<Service>>(this);
+	private Single<SimpleReference<Service>> _service = new Single<SimpleReference<Service>>(this);
 	
 	
 	/**
@@ -77,48 +62,19 @@ public class Advice extends ElementWithModifiersImpl<Advice>
 	 * @param reference	the reference to set
 	 */
 	public void setService(SimpleReference<Service> relation) {
-		if (relation != null)
-			_service.connectTo(relation.parentLink());
+		set(_service,relation);
 	}
 
 	
-//	/**
-//	 * @return
-//	 */
-//	public boolean hasTypeModifier() {
-//	}
-
 	public Property type() {
-
 		Property type;
 		try {
 			type = this.property(language(MView.class).ADVICE_MUTEX);
 		} catch (ModelException e) {
 			type = null; //this.language(MView.class).BEFORE;
 		}
-		
 		return type;
 	}
-	
-//	/**
-//	 * @return	the type modifier for the advice
-//	 */
-//	public Modifier type() {
-//		Modifier result = null;
-//		for (Modifier modifier : this.modifiers()) {
-//			try {
-//				if (modifier.property(language(MView.class).ADVICE_MUTEX) != null) {
-//					if (result == null) {
-//						result = modifier;
-//					}
-//				}
-//			} catch (ModelException e) {
-//				e.printStackTrace();
-//			}
-//		}
-//
-//		return null;
-//	}
 	
 	/* (non-Javadoc)
 	 * @see chameleon.core.element.ElementImpl#clone()
@@ -169,21 +125,10 @@ public class Advice extends ElementWithModifiersImpl<Advice>
 	}
 
 	/* (non-Javadoc)
-	 * @see chameleon.core.element.Element#children()
-	 */
-	public List<Element> children() {
-		final List<Element> result = super.children();
-		
-		Util.addNonNull(this.service(), result);
-		
-		return result;
-	}
-
-	/* (non-Javadoc)
 	 * @see mview.model.refinement.MViewMember#sharesContext(mview.model.refinement.MViewMember)
 	 */
 	@Override
-	public boolean sharesContext(MViewMember other) {
+	public boolean sharesContext(MViewMember other) throws LookupException {
 		return (new RefinementContext().verify(this, other));
 	}
 	

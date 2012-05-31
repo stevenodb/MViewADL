@@ -20,25 +20,19 @@ package mview.model.module;
 import java.util.List;
 
 import mview.model.namespace.MViewDeclaration;
-
-import org.rejuse.association.OrderedMultiAssociation;
-
 import chameleon.core.declaration.Declaration;
 import chameleon.core.declaration.DeclarationContainer;
-import chameleon.core.declaration.Signature;
 import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.declaration.TargetDeclaration;
-import chameleon.core.element.Element;
 import chameleon.core.lookup.DeclarationSelector;
 import chameleon.core.lookup.LocalLookupStrategy;
 import chameleon.core.lookup.LookupException;
 import chameleon.core.lookup.LookupStrategy;
 import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.VerificationResult;
+import chameleon.util.association.Multi;
 
-public class Interface extends MViewDeclaration<Interface> implements
-		TargetDeclaration<Interface, Signature>,
-		DeclarationContainer<Interface> {
+public class Interface extends MViewDeclaration implements TargetDeclaration, DeclarationContainer {
 
 	/**
 	 * @param signature
@@ -50,17 +44,13 @@ public class Interface extends MViewDeclaration<Interface> implements
 	/*
 	 * Association to Services
 	 */
-	private OrderedMultiAssociation<Interface, Service> _services =
-			new OrderedMultiAssociation<Interface, Service>(this);
-
+	private Multi<Service> _services = new Multi<Service>(this);
 
 	/**
 	 * @param service
 	 */
 	public void removeService(Service service) {
-		if (service != null) {
-			_services.remove(service.parentLink());
-		}
+		remove(_services,service);
 	}
 
 
@@ -76,9 +66,7 @@ public class Interface extends MViewDeclaration<Interface> implements
 	 * @param service
 	 */
 	public void addService(Service service) {
-		if (service != null) {
-			_services.add(service.parentLink());
-		}
+		add(_services,service);
 	}
 
 
@@ -112,18 +100,6 @@ public class Interface extends MViewDeclaration<Interface> implements
 		return result;
 	}
 
-
-	@Override
-	public List<Element> children() {
-		final List<Element> result = super.children();
-
-		result.addAll(services());
-
-		return result;
-
-	}
-
-
 	@Override
 	public LocalLookupStrategy<?> targetContext() throws LookupException {
 		return language().lookupFactory().createTargetLookupStrategy(this);
@@ -148,5 +124,8 @@ public class Interface extends MViewDeclaration<Interface> implements
 			throws LookupException {
 		return selector.selection(declarations());
 	}
-	
+	@Override
+	public LookupStrategy localStrategy() throws LookupException {
+		return language().lookupFactory().createLocalLookupStrategy(this);
+	}
 }

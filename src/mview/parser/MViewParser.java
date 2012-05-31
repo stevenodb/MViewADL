@@ -1,4 +1,4 @@
-// $ANTLR 3.4 /Users/steveno/repos/mview-lang/src/mview/parser/MView.g 2012-05-30 13:25:19
+// $ANTLR 3.4 /Users/steveno/repos/mview-lang/src/mview/parser/MView.g 2012-05-31 18:08:31
 
 package mview.parser;
 
@@ -56,7 +56,7 @@ import mview.model.refinement.RefinementContext;
 import mview.model.refinement.RefinementRelation;
 
 
-import chameleon.core.compilationunit.CompilationUnit;
+import chameleon.core.document.Document;
 import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.declaration.Signature;
 import chameleon.core.declaration.Declaration;
@@ -66,14 +66,14 @@ import chameleon.oo.type.TypeReference;
 import chameleon.oo.type.generics.ActualTypeArgument;
 import chameleon.oo.type.BasicTypeReference;
 import chameleon.oo.type.Type;
-import chameleon.core.namespace.NamespaceOrTypeReference;
 import chameleon.core.namespace.NamespaceReference;
-import chameleon.core.namespacepart.NamespacePart;
+import chameleon.core.namespacedeclaration.NamespaceDeclaration;
 import chameleon.core.reference.SimpleReference;
 import chameleon.core.reference.ElementReference;
 import chameleon.oo.variable.FormalParameter;
 import chameleon.core.modifier.Modifier;
 import chameleon.util.Pair;
+import chameleon.oo.expression.NamedTarget;
 
 import chameleon.support.input.ChameleonParser;
 
@@ -208,14 +208,14 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     public static class compilationUnit_return extends ParserRuleReturnScope {
-        public CompilationUnit element;
+        public Document element;
         Object tree;
         public Object getTree() { return tree; }
     };
 
 
     // $ANTLR start "compilationUnit"
-    // /Users/steveno/repos/mview-lang/src/mview/parser/MView.g:113:1: compilationUnit returns [CompilationUnit element] : (ifd= interfaceDeclaration |cod= componentDeclaration |cnd= connectorDeclaration |apd= applicationDeclaration )* ;
+    // /Users/steveno/repos/mview-lang/src/mview/parser/MView.g:113:1: compilationUnit returns [Document element] : (ifd= interfaceDeclaration |cod= componentDeclaration |cnd= connectorDeclaration |apd= applicationDeclaration )* ;
     public final MViewParser.compilationUnit_return compilationUnit() throws RecognitionException {
         MViewParser.compilationUnit_return retval = new MViewParser.compilationUnit_return();
         retval.start = input.LT(1);
@@ -235,8 +235,8 @@ public TreeAdaptor getTreeAdaptor() {
 
 
          
-        	retval.element = getCompilationUnit();
-        	NamespacePart npp = new NamespacePart(language().defaultNamespace());
+        	retval.element = getDocument();
+        	NamespaceDeclaration npp = new NamespaceDeclaration(language().defaultNamespace());
         	retval.element.add(npp);
 
         try {
@@ -6985,7 +6985,7 @@ public TreeAdaptor getTreeAdaptor() {
         Object namex_tree=null;
         Object char_literal96_tree=null;
 
-        NamespaceOrTypeReference target = null;
+        NamedTarget target = null;
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 62) ) { return retval; }
 
@@ -7005,7 +7005,7 @@ public TreeAdaptor getTreeAdaptor() {
 
             if ( state.backtracking==0 ) {
             	           retval.element = new MViewBasicTypeReference((name!=null?name.getText():null));
-            	           target =  new NamespaceOrTypeReference((name!=null?name.getText():null));
+            	           target =  new NamedTarget((name!=null?name.getText():null));
             	           setLocation(retval.element,name,name); 
             	          }
 
@@ -7069,7 +7069,7 @@ public TreeAdaptor getTreeAdaptor() {
             	    	             retval.element = new MViewBasicTypeReference(target,(namex!=null?namex.getText():null));
             	    	             // We must clone the target here, or else it will be removed from the
             	    	             // type reference we just created.
-            	    	             target = new NamespaceOrTypeReference(target.clone(),(namex!=null?namex.getText():null));
+            	    	             target = new NamedTarget((namex!=null?namex.getText():null),target.clone());
             	    	           } else {
             	    	             retval.element = new MViewBasicTypeReference(retval.element,(namex!=null?namex.getText():null));
             	    	           }
