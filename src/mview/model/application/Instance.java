@@ -36,7 +36,7 @@ import chameleon.util.Util;
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public class Instance extends MViewMemberDeclarationImpl<Instance> {
+public class Instance<M extends Module> extends MViewMemberDeclarationImpl<Instance<M>> {
 	
 	/**
 	 * Default 
@@ -53,20 +53,20 @@ public class Instance extends MViewMemberDeclarationImpl<Instance> {
 	}
 
 	// type
-	private SingleAssociation<Instance, SimpleReference<Module>> _type =
-		new SingleAssociation<Instance, SimpleReference<Module>>(this);
+	private SingleAssociation<Instance, SimpleReference<M>> _type =
+		new SingleAssociation<Instance, SimpleReference<M>>(this);
 	
 	/**
 	 * @return
 	 */
-	public SimpleReference<Module> type() {
+	public SimpleReference<M> type() {
 		return _type.getOtherEnd();
 	}
 
 	/**
 	 * @param relation
 	 */
-	public void setType(SimpleReference<Module> relation) {
+	public void setType(SimpleReference<M> relation) {
 		_type.connectTo(relation.parentLink());	 
 	}
 	

@@ -170,12 +170,12 @@ public abstract class RefinableDeclarationImpl<D extends RefinableDeclarationImp
 		}
 	}
 
-	private LookupStrategy _lus;
+	protected LookupStrategy _lus;
 	
 	/**
 	 * @return
 	 */
-	private LookupStrategy lexicalMembersLookupStrategy() {
+	protected LookupStrategy lexicalMembersLookupStrategy() {
 		if (_lus == null) {
 			_lus = language().lookupFactory().createLexicalLookupStrategy(
 					targetContext(), this, new RequiredStrategySelector());
@@ -200,7 +200,7 @@ public abstract class RefinableDeclarationImpl<D extends RefinableDeclarationImp
 	/**
 	 * @return
 	 */
-	private LookupStrategy requiredLookupStrategy() {
+	protected LookupStrategy requiredLookupStrategy() {
 		if (_requiredLookupStrategy == null) {
 			_requiredLookupStrategy =
 					language().lookupFactory().createLexicalLookupStrategy(

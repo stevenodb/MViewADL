@@ -234,12 +234,20 @@ public class Application<A extends Application<A>>
 	protected VerificationResult verifyHosts() {
 		VerificationResult result = Valid.create();
 		
-		for (Host host : hosts()) {
-			if ( ! (host.hostName() == null )) {
-				result = result.and(
-						new BasicProblem(this, 
-								"Application "+ signature().name() +": " +
-								"Host "+host.signature().name()+ " cannot define a hostname."));
+		if (!isAbstract()) {
+			List<Host> hostMembers = new ArrayList<Host>();
+			try {
+				hostMembers = this.members(Host.class);
+			} catch (LookupException e) {
+				e.printStackTrace();
+			} 
+			for (Host host : hostMembers) {
+				if ( (host.hostName() == null )) {
+					result = result.and(
+							new BasicProblem(this, 
+									"Non-abstract Application "+ signature().name() +": " +
+									"Host "+host.signature().name()+ " should define a hostname."));
+				}
 			}
 		}
 		
