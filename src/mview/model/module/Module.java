@@ -188,9 +188,9 @@ public abstract class Module extends RefinableMemberDeclarationImpl {
 
 		// TODO: setter
 		
-		set(clone._providedInterfaces,providedInterfaceDependency().clone());
+		set(clone._providedInterfaces,(ProvidedInterfaceDependency)providedInterfaceDependency().clone());
 
-		set(clone._requiredInterfaces,requiredInterfaceDependency().clone());
+		set(clone._requiredInterfaces,(RequiredInterfaceDependency)requiredInterfaceDependency().clone());
 
 		// for (SimpleReference<Interface> simpleReference :
 		// this.providedInterfaces()) {

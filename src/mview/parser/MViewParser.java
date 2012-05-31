@@ -1,4 +1,4 @@
-// $ANTLR 3.3 Nov 30, 2010 12:45:30 /Users/marko/hg/mview/src/mview/parser/MView.g 2012-04-06 19:06:24
+// $ANTLR 3.3 Nov 30, 2010 12:45:30 /Users/marko/hg/mview/src/mview/parser/MView.g 2012-05-10 14:21:35
 
 package mview.parser;
 
@@ -56,7 +56,7 @@ import mview.model.refinement.RefinementContext;
 import mview.model.refinement.RefinementRelation;
 
 
-import chameleon.core.compilationunit.CompilationUnit;
+import chameleon.core.document.Document;
 import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.declaration.Signature;
 import chameleon.core.declaration.Declaration;
@@ -67,7 +67,7 @@ import chameleon.oo.type.generics.ActualTypeArgument;
 import chameleon.oo.type.BasicTypeReference;
 import chameleon.oo.type.Type;
 import chameleon.core.namespace.NamespaceReference;
-import chameleon.core.namespacepart.NamespacePart;
+import chameleon.core.namespacedeclaration.NamespaceDeclaration;
 import chameleon.core.reference.SimpleReference;
 import chameleon.core.reference.ElementReference;
 import chameleon.oo.variable.FormalParameter;
@@ -201,13 +201,13 @@ public class MViewParser extends ChameleonParser {
 
 
     public static class compilationUnit_return extends ParserRuleReturnScope {
-        public CompilationUnit element;
+        public Document element;
         Object tree;
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "compilationUnit"
-    // /Users/marko/hg/mview/src/mview/parser/MView.g:113:1: compilationUnit returns [CompilationUnit element] : (ifd= interfaceDeclaration | cod= componentDeclaration | cnd= connectorDeclaration | apd= applicationDeclaration | dpd= deploymentDeclaration )* ;
+    // /Users/marko/hg/mview/src/mview/parser/MView.g:113:1: compilationUnit returns [Document element] : (ifd= interfaceDeclaration | cod= componentDeclaration | cnd= connectorDeclaration | apd= applicationDeclaration | dpd= deploymentDeclaration )* ;
     public final MViewParser.compilationUnit_return compilationUnit() throws RecognitionException {
         MViewParser.compilationUnit_return retval = new MViewParser.compilationUnit_return();
         retval.start = input.LT(1);
@@ -227,8 +227,8 @@ public class MViewParser extends ChameleonParser {
 
 
          
-        	retval.element = getCompilationUnit();
-        	NamespacePart npp = new NamespacePart(language().defaultNamespace());
+        	retval.element = getDocument();
+        	NamespaceDeclaration npp = new NamespaceDeclaration(language().defaultNamespace());
         	retval.element.add(npp);
 
         try {

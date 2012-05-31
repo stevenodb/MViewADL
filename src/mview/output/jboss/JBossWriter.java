@@ -70,10 +70,10 @@ import mview.output.jboss.element.JBPointcutElement.PointcutKind;
 import org.rejuse.java.collections.RobustVisitor;
 import org.rejuse.property.Property;
 
-import chameleon.core.compilationunit.CompilationUnit;
+import chameleon.core.document.Document;
 import chameleon.core.declaration.Declaration;
 import chameleon.core.element.Element;
-import chameleon.core.namespacepart.NamespacePart;
+import chameleon.core.namespacedeclaration.NamespaceDeclaration;
 import chameleon.core.reference.SimpleReference;
 import chameleon.exception.ModelException;
 import chameleon.oo.type.BasicTypeReference;
@@ -230,10 +230,10 @@ public class JBossWriter {
 			throws ModelException {
 
 		if (isCompilationUnit(src)) {
-			transformCompilationUnit((CompilationUnit) src, parentTarget, result);
+			transformCompilationUnit((Document) src, parentTarget, result);
 
 		} else if (isNamespacePart(src)) {
-			transformNamespacePart((NamespacePart) src, parentTarget, result);
+			transformNamespacePart((NamespaceDeclaration) src, parentTarget, result);
 
 		} else if (isInstance(src)) {
 			transformInstance((Instance) src, parentTarget, result);
@@ -744,7 +744,7 @@ public class JBossWriter {
 	 * @throws ModelException
 	 */
 	private List<JBInterface> transformModuleInterfaces(JBModule jbc,
-			final List<Dependency> dependencies) throws ModelException {
+			final List<? extends Dependency> dependencies) throws ModelException {
 		
 		final List<JBInterface> result = new ArrayList<JBInterface>();
 		final List<JBDeclaration> jbDeclarations = new ArrayList<JBDeclaration>();
@@ -774,7 +774,7 @@ public class JBossWriter {
 	 * @return
 	 */
 	private boolean isNamespacePart(Element element) {
-		return (element instanceof NamespacePart);
+		return (element instanceof NamespaceDeclaration);
 	}
 
 
@@ -783,7 +783,7 @@ public class JBossWriter {
 	 * @return
 	 * @throws ModelException
 	 */
-	private void transformNamespacePart(NamespacePart src, JBDeclaration parentTarget,
+	private void transformNamespacePart(NamespaceDeclaration src, JBDeclaration parentTarget,
 			final List<JBDeclaration> result) throws ModelException {
 
 		List<Declaration> decls = src.declarations();
@@ -912,7 +912,7 @@ public class JBossWriter {
 	 * @return
 	 */
 	protected boolean isCompilationUnit(Element element) {
-		return (element instanceof CompilationUnit);
+		return (element instanceof Document);
 	}
 
 
@@ -922,11 +922,11 @@ public class JBossWriter {
 	 * @return
 	 * @throws ModelException
 	 */
-	protected void transformCompilationUnit(CompilationUnit src,
+	protected void transformCompilationUnit(Document src,
 			JBDeclaration parentTarget,
 			final List<JBDeclaration> result) throws ModelException {
 
-		for (NamespacePart part : src.namespaceParts()) {
+		for (NamespaceDeclaration part : src.namespaceParts()) {
 			transform(part, parentTarget, result);
 		}
 	}

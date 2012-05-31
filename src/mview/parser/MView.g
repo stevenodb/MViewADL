@@ -69,7 +69,7 @@ import mview.model.refinement.RefinementContext;
 import mview.model.refinement.RefinementRelation;
 
 
-import chameleon.core.compilationunit.CompilationUnit;
+import chameleon.core.document.Document;
 import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.declaration.Signature;
 import chameleon.core.declaration.Declaration;
@@ -80,7 +80,7 @@ import chameleon.oo.type.generics.ActualTypeArgument;
 import chameleon.oo.type.BasicTypeReference;
 import chameleon.oo.type.Type;
 import chameleon.core.namespace.NamespaceReference;
-import chameleon.core.namespacepart.NamespacePart;
+import chameleon.core.namespacedeclaration.NamespaceDeclaration;
 import chameleon.core.reference.SimpleReference;
 import chameleon.core.reference.ElementReference;
 import chameleon.oo.variable.FormalParameter;
@@ -110,10 +110,10 @@ package mview.parser;
 //}
 
 // starting point for parsing
-compilationUnit returns [CompilationUnit element] 
+compilationUnit returns [Document element] 
 @init{ 
-	$element = getCompilationUnit();
-	NamespacePart npp = new NamespacePart(language().defaultNamespace());
+	$element = getDocument();
+	NamespaceDeclaration npp = new NamespaceDeclaration(language().defaultNamespace());
 	$element.add(npp);
 }
 	:	(
