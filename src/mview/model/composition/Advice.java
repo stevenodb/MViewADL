@@ -19,9 +19,8 @@
  */
 package mview.model.composition;
 
-import java.util.List;
-
 import mview.exception.MergeNotSupportedException;
+import mview.model.application.Instance;
 import mview.model.language.MView;
 import mview.model.module.Service;
 import mview.model.refinement.AbstractElement;
@@ -31,15 +30,14 @@ import mview.model.refinement.RefinementContext;
 import org.rejuse.property.Property;
 
 import chameleon.core.declaration.Declaration;
-import chameleon.core.element.Element;
 import chameleon.core.lookup.LookupException;
 import chameleon.core.modifier.ElementWithModifiersImpl;
 import chameleon.core.modifier.Modifier;
 import chameleon.core.reference.SimpleReference;
+import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.Valid;
 import chameleon.core.validation.VerificationResult;
 import chameleon.exception.ModelException;
-import chameleon.util.Util;
 import chameleon.util.association.Single;
 
 /**
@@ -48,8 +46,8 @@ import chameleon.util.association.Single;
  */
 public class Advice extends ElementWithModifiersImpl implements MViewMember, AbstractElement { 
 	
-	private Single<SimpleReference<Service>> _service = new Single<SimpleReference<Service>>(this);
 	
+	private Single<SimpleReference<Service>> _service = new Single<SimpleReference<Service>>(this);
 	
 	/**
 	 * @return	the reference to the service
@@ -66,6 +64,27 @@ public class Advice extends ElementWithModifiersImpl implements MViewMember, Abs
 	}
 
 	
+	
+	private Single<SimpleReference<Instance>> _instance = new Single<SimpleReference<Instance>>(this);
+	
+	/**
+	 * @return reference to the instance
+	 */
+	public SimpleReference<Instance> instance() {
+		return _instance.getOtherEnd();
+	}
+	
+	/**
+	 * @param simpleReference
+	 */
+	public void setInstance(SimpleReference<Instance> relation) {
+		set(_instance, relation);
+	}
+
+
+	/**
+	 * @return the type of this advice
+	 */
 	public Property type() {
 		Property type;
 		try {
@@ -75,6 +94,7 @@ public class Advice extends ElementWithModifiersImpl implements MViewMember, Abs
 		}
 		return type;
 	}
+
 	
 	/* (non-Javadoc)
 	 * @see chameleon.core.element.ElementImpl#clone()
@@ -87,9 +107,11 @@ public class Advice extends ElementWithModifiersImpl implements MViewMember, Abs
 			clone.addModifier(modifier.clone());
 		}
 		
-		clone.setService(
+		if (service() != null) {
+			clone.setService(
 				this.service().clone()
-		);
+			);
+		}
 		
 		return clone;
 	}
@@ -109,16 +131,6 @@ public class Advice extends ElementWithModifiersImpl implements MViewMember, Abs
 //		} catch (ModelException e) {
 //			result = result.and(new BasicProblem(this, 
 //					"Advice: Error in model: Advice type invalid."));
-//		}
-		
-//		if (! (n == 1) ) {
-//			result = result.and(new BasicProblem(this, 
-//					"Advice: Type not set. ("+n+")"));
-//		}
-//		
-//		if (! (this.service() != null)) {
-//			result = result.and(new BasicProblem(this, 
-//					"Advice: Service not set."));
 //		}
 		
 		return result;
@@ -216,6 +228,4 @@ public class Advice extends ElementWithModifiersImpl implements MViewMember, Abs
 	public String toString() {
 		return "advice of " + nearestAncestor(Declaration.class).signature().name();
 	}
-
-	
 }

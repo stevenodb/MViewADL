@@ -415,35 +415,43 @@ pointcutActorBody returns [Actor element]
 pointcutActorBodyDecls[Actor actor]
 @init{
 	ActorProp prop = null;
+	Token propKw = null;
 	Class<? extends Declaration> declClass = null;
 }
 	: (override=overrideOrExtend)?
 	(
-		'interface' ':' {
+		kw='interface' ':' {
 			declClass = Interface.class;
+			propKw = kw;
 		}
 	|	
-		'component' ':' {
+		kw='component' ':' {
 			declClass = Component.class;
+			propKw = kw;
 		}
 	|
-		'application' ':' {
+		kw='application' ':' {
 			declClass = Application.class;
+			propKw = kw;
 		}
 	|
-		'instance' ':' {
+		kw='instance' ':' {
 			declClass = Instance.class;
+			propKw = kw;
 		}
 	|
-		'host' ':' {
+		kw='host' ':' {
 			declClass = Host.class;
+			propKw = kw;
 		}
 	) {
 		prop = new ActorProp(new PropModifier(declClass));
+		setKeyword(prop,propKw);
 		actor.addProp(prop);
 		if ($override.value != null) {
 			prop.addModifier($override.value);
 		}
+		
 	} pointcutActorPropDecls[prop,declClass] ';'
 	;
 
@@ -485,6 +493,7 @@ adviceBody[Advice advice]
 adviceBodyDeclaration[Advice advice]
 	:	adviceServiceDeclaration[$advice]
 	|	adviceTypeDeclaration[$advice]
+	|	adviceInstanceDeclaration[$advice]
 	;
 	
 	
@@ -503,6 +512,19 @@ adviceTypeDeclaration[Advice advice]
 		}
 	;
 
+adviceInstanceDeclaration[Advice advice]
+	:	inskw='instance' ':' instance=instanceReferenceDeclaration ';' {
+			$advice.setInstance($instance.relation);
+			setKeyword($instance.relation,$inskw);
+		}
+	;
+	
+instanceReferenceDeclaration returns [SimpleReference<Instance> relation]
+	: 	name=Identifier {
+			$relation = new SimpleReference($name.text,Instance.class);
+			setLocation($relation, $name, $name);
+		}
+	;	
 
 /* ***********
  * COMPONENT
