@@ -318,7 +318,7 @@ aoCompositionDeclaration returns [AOComposition element]
 			setKeyword($element,$kw);
 			setLocation($element,$name,"__NAME");
 		}
-		(refinementDeclarationSingle[$element,AOComposition.class])?
+		(refinementDeclaration[$element,AOComposition.class])?
 		aoCompositionBody[$element]
 	;
 
@@ -672,17 +672,18 @@ applicationBodyDeclaration[Application element]
  * INSTANCE DECLARATION
  ********************* */
 
+//				setLocation(relation,$ref,$ref);
 
 instanceDeclaration returns [Instance element]
-	:	tpe=Identifier name=Identifier onkw='on' hst=Identifier ';' {
+	:	ref=qualifiedDeclarationReference[Module.class] name=Identifier onkw='on' hst=Identifier ';' {
 	
 			$element = new Instance(new SimpleNameSignature($name.text));
 			setLocation($element,$name,"__NAME");
 
-			SimpleReference<Module> modRelation = new SimpleReference<Module>($tpe.text,Module.class);
-			if (modRelation != null) {
-				$element.setType(modRelation);
-				setLocation(modRelation,$tpe,$tpe);
+			SimpleReference<Module> relation = $ref.reference;
+			//new SimpleReference<Module>($tpe.text,Module.class);
+			if (relation != null) {
+				$element.setType(relation);
 			}
 			
 			SimpleReference<Host> hostRelation = new SimpleReference<Host>($hst.text,Host.class);
@@ -716,7 +717,6 @@ hostDeclaration returns [Host element]
 		} )? ';'
 	;
  
-
 
 /* ***************
  * MODULECONTAINER
@@ -771,19 +771,24 @@ refinementDeclaration[RefinableDeclaration element, Class kind]
 	
 	
 refinementDeclarationBody[Class kind] returns [RefinementRelation relation]
-	:	parent=refinementParentDeclaration[$kind] {
+	:	parent=qualifiedDeclarationReference[$kind] {
 			$relation = new RefinementRelation(parent.reference);		
 		}
 	;
 
 
-refinementParentDeclaration[Class kind] returns [SimpleReference reference]
-@init{Token start = null; 
-      Token end = null;
-      SimpleReference target = null;}
+
+/* ***********
+ * MISC
+ *********** */
+qualifiedDeclarationReference[Class kind] returns [SimpleReference reference]
+@init{
+	Token start = null; 
+	Token end = null;
+	SimpleReference target = null;}
 @after{
-  check_null($reference);
-  setLocation($reference, start, end);
+	check_null($reference);
+	setLocation($reference, start, end);
 }
 	:	name=Identifier {
 			$reference = new SimpleReference($name.text,$kind);
@@ -804,10 +809,6 @@ refinementParentDeclaration[Class kind] returns [SimpleReference reference]
 			} 
 		)*
 	;
-
-/* ***********
- * MISC
- *********** */
 
 
 commaSeparatedBodyDecls[Class targetType] returns [List<SimpleReference> elements]
