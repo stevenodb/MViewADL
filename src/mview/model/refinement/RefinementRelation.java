@@ -121,8 +121,16 @@ public class RefinementRelation extends ElementImpl {
 						stop = true;
 						newM = null;
 //						System.out.println("Override.");
-					} else {
-						newM = parentM;
+  					} 
+
+					/*THIS WAS A TEST FOR AVOIDING DOUBLES FROM LATER ON IN REFINEMT PATH
+					else if (childM.sameMemberAs(parentM)) {
+						stop = true;
+						newM = null;
+					} */
+					
+					else {
+//						newM = parentM;
 //						System.out.println("New.");
 					}
 				} // for-loop

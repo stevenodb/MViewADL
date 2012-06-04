@@ -214,6 +214,7 @@ public class Application
 			} catch (LookupException e) {
 				e.printStackTrace();
 			} 
+			
 			for (Host host : hostMembers) {
 				if ( (host.hostName() == null )) {
 					result = result.and(
