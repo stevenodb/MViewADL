@@ -41,14 +41,13 @@ import mview.model.module.Interface;
 import mview.model.property.ActorProperty;
 import mview.model.refinement.RefinableDeclaration;
 
+import org.rejuse.junit.BasicRevision;
 import org.rejuse.property.Property;
 import org.rejuse.property.PropertyMutex;
 
-import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.language.Language;
 import chameleon.core.language.LanguageImpl;
 import chameleon.core.modifier.Modifier;
-import chameleon.core.namespace.RootNamespace;
 import chameleon.core.property.ChameleonProperty;
 import chameleon.core.property.StaticChameleonProperty;
 
@@ -89,8 +88,7 @@ public class MView extends LanguageImpl {
 	 * @param name
 	 */
 	public MView() {
-		super("MView", new MViewLookupFactory());
-		new RootNamespace(new SimpleNameSignature(""), this);
+		super("MView", new MViewLookupFactory(),new BasicRevision(0,1,0));
 
 		// Pointcut
 		EXECUTION =
@@ -234,15 +232,15 @@ public class MView extends LanguageImpl {
 		return Character.isJavaIdentifierPart(character);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see chameleon.core.language.Language#cloneThis()
-	 */
-	@Override
-	protected Language cloneThis() {
-		throw new RuntimeException("unimplemented");
-	}
+//	/*
+//	 * (non-Javadoc)
+//	 * 
+//	 * @see chameleon.core.language.Language#cloneThis()
+//	 */
+//	@Override
+//	protected Language cloneThis() {
+//		throw new RuntimeException("unimplemented");
+//	}
 
 //	@Override
 //	public RootNamespace defaultNamespace() {

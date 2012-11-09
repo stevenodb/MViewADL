@@ -1,4 +1,4 @@
-// $ANTLR 3.3 Nov 30, 2010 12:45:30 /Users/marko/hg/mview/src/mview/parser/MView.g 2012-05-10 14:21:35
+// $ANTLR 3.3 Nov 30, 2010 12:45:30 /Users/marko/hg/mview/src/mview/parser/MView.g 2012-10-12 22:28:43
 
 package mview.parser;
 
@@ -228,7 +228,7 @@ public class MViewParser extends ChameleonParser {
 
          
         	retval.element = getDocument();
-        	NamespaceDeclaration npp = new NamespaceDeclaration(language().defaultNamespace());
+        	NamespaceDeclaration npp = new NamespaceDeclaration("");
         	retval.element.add(npp);
 
         try {

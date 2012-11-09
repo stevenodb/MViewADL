@@ -33,6 +33,7 @@ import chameleon.input.ModelFactory;
 import chameleon.input.ParseException;
 import chameleon.support.input.ChameleonParser;
 import chameleon.support.input.ModelFactoryUsingANTLR;
+import chameleon.workspace.View;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
@@ -55,18 +56,13 @@ public class MViewModelFactory extends ModelFactoryUsingANTLR {
 	 * @see chameleon.support.input.ModelFactoryUsingANTLR#getParser(java.io.InputStream, java.lang.String)
 	 */
 	@Override
-	public ChameleonParser getParser(InputStream inputStream, String fileName)
-			throws IOException {
+	public ChameleonParser getParser(InputStream inputStream, View view) throws IOException {
         ANTLRInputStream input = new ANTLRInputStream(inputStream);
         MViewLexer lexer = new MViewLexer(input);
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         MViewParser parser = new MViewParser(tokens);
-        parser.setLanguage((Language) language());
+        parser.setView(view);
         return parser;
-	}
-
-	@Override
-	protected void initializePredefinedElements() {
 	}
 
 	/* (non-Javadoc)

@@ -113,7 +113,7 @@ package mview.parser;
 compilationUnit returns [Document element] 
 @init{ 
 	$element = getDocument();
-	NamespaceDeclaration npp = new NamespaceDeclaration(language().defaultNamespace());
+	NamespaceDeclaration npp = new NamespaceDeclaration("");
 	$element.add(npp);
 }
 	:	(
