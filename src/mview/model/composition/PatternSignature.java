@@ -161,7 +161,7 @@ public class PatternSignature extends ServiceSignature<Service> {
 	
 	/**
 	 * Convert Wildcards to Regular Expression. Shamelessly stolen from the
-	 * web and possibly adjusted. (RŽal Gagnon)
+	 * web and possibly adjusted. (R. Gagnon)
 	 * @param wildcard	the wildcard pattern to convert
 	 * @return	the resulting regexp
 	 */
