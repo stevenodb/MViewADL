@@ -77,11 +77,11 @@ public class Pointcut extends ElementWithModifiersImpl implements MViewMember {
 		Property kind = null;
 		if (isTrue(language(MView.class).CALL)) {
 			kind = language(MView.class).CALL;
-		} else if (isTrue(language(MView.class).EXECUTION)) {
+		} else /*if (isTrue(language(MView.class).EXECUTION))*/ {
 			kind = language(MView.class).EXECUTION;
-		} else {
+		} /* else {
 			kind = null;
-		}
+		} */
 		return kind;
 	}
 	
