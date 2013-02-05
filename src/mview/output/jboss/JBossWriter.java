@@ -926,7 +926,7 @@ public class JBossWriter {
 			JBDeclaration parentTarget,
 			final List<JBDeclaration> result) throws ModelException {
 
-		for (NamespaceDeclaration part : src.namespaceParts()) {
+		for (NamespaceDeclaration part : src.namespaceDeclarations()) {
 			transform(part, parentTarget, result);
 		}
 	}
