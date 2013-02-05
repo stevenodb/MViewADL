@@ -303,6 +303,7 @@ connectorBodyDeclaration[Connector element]
 	:	aoc=aoCompositionDeclaration {
 			$element.addComposition($aoc.element);
 		}
+	|	moduleProvideDependencyDeclaration[$element]
 	|	moduleRequireDependencyDeclaration[$element]
 	;	
 	
@@ -498,7 +499,7 @@ adviceBodyDeclaration[Advice advice]
 	
 	
 adviceServiceDeclaration[Advice advice]
-	:	svkw='service' ':' service=serviceReferenceDeclaration ';' {
+	:	svkw='method' ':' service=serviceReferenceDeclaration ';' {
 			$advice.setService($service.relation);
 			setKeyword($service.relation,$svkw);
 		}
