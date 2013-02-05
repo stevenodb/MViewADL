@@ -25,6 +25,7 @@ import mview.model.refinement.MViewMember;
 import mview.model.refinement.RefinementContext;
 import mview.model.refinement.modifier.Overridable;
 import chameleon.core.element.Element;
+import chameleon.core.lookup.LookupException;
 import chameleon.core.modifier.ElementWithModifiersImpl;
 import chameleon.core.modifier.Modifier;
 import chameleon.core.validation.BasicProblem;
@@ -131,7 +132,7 @@ public class PointcutSignature extends ElementWithModifiersImpl implements MView
 	}
 	
 	@Override
-	public boolean sharesContext(MViewMember other) {
+	public boolean sharesContext(MViewMember other) throws LookupException {
 		return new RefinementContext().verify(this, other);
 	}
 

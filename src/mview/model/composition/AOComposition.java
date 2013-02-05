@@ -25,12 +25,10 @@ import java.util.List;
 import mview.model.refinement.MViewMember;
 import mview.model.refinement.RefinableMemberDeclarationImpl;
 import chameleon.core.declaration.SimpleNameSignature;
-import chameleon.core.element.Element;
 import chameleon.core.lookup.LookupException;
 import chameleon.core.lookup.LookupStrategy;
 import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.VerificationResult;
-import chameleon.util.Util;
 import chameleon.util.association.Single;
 
 /**

@@ -168,12 +168,12 @@ public abstract class RefinableDeclarationImpl
 		}
 	}
 
-	private LookupStrategy _lus;
+	protected LookupStrategy _lus;
 	
 	/**
 	 * @return
 	 */
-	private LookupStrategy lexicalMembersLookupStrategy() {
+	protected LookupStrategy lexicalMembersLookupStrategy() {
 		if (_lus == null) {
 			_lus = language().lookupFactory().createLexicalLookupStrategy(
 					targetContext(), this, new RequiredStrategySelector());
@@ -198,7 +198,7 @@ public abstract class RefinableDeclarationImpl
 	/**
 	 * @return
 	 */
-	private LookupStrategy requiredLookupStrategy() {
+	protected LookupStrategy requiredLookupStrategy() {
 		if (_requiredLookupStrategy == null) {
 			_requiredLookupStrategy =
 					language().lookupFactory().createLexicalLookupStrategy(
@@ -283,7 +283,7 @@ public abstract class RefinableDeclarationImpl
 
 
 	@Override
-	public List<RefinableDeclaration> getDirectParents() {
+	public List<RefinableDeclaration> getDirectParents() throws LookupException {
 		List<RefinableDeclaration> result =
 				new ArrayList<RefinableDeclaration>();
 
@@ -296,7 +296,7 @@ public abstract class RefinableDeclarationImpl
 
 
 	@Override
-	public boolean isRefinementOf(RefinableDeclaration other) {
+	public boolean isRefinementOf(RefinableDeclaration other) throws LookupException {
 		
 		List<RefinableDeclaration> parents = getDirectParents();
 

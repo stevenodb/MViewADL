@@ -98,15 +98,17 @@ public abstract class Dependency<T extends TargetDeclaration> extends	ElementImp
 			LookupStrategy targetContext = element.targetContext();
 			DeclarationCollector<D> collector = new DeclarationCollector<D>(selector);
 			targetContext.lookUp(collector);
-			D declaration = collector.result();
-			Util.addNonNull(declaration, result);
+			if(!collector.willProceed()) {
+				D declaration = collector.result();
+				Util.addNonNull(declaration, result);
+			}
 		}
 
 		return (List<D>) selector.declarators(result);
 	}
 
 	@Override
-	public boolean sharesContext(MViewMember other) {
+	public boolean sharesContext(MViewMember other) throws LookupException {
 		return (new RefinementContext()).verify(this, other);
 	}
 

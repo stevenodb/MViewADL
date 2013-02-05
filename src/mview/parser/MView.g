@@ -124,8 +124,8 @@ compilationUnit returns [Document element]
 			cnd=connectorDeclaration {npp.add($cnd.element);}
 		|
 			apd=applicationDeclaration {npp.add($apd.element);}
-		|
-			dpd=deploymentDeclaration {npp.add($dpd.element);}
+		/*|
+			dpd=deploymentDeclaration {npp.add($dpd.element);}*/
 		)*
 	;
 
@@ -318,7 +318,7 @@ aoCompositionDeclaration returns [AOComposition element]
 			setKeyword($element,$kw);
 			setLocation($element,$name,"__NAME");
 		}
-		(refinementDeclarationSingle[$element,AOComposition.class])?
+		(refinementDeclaration[$element,AOComposition.class])?
 		aoCompositionBody[$element]
 	;
 
@@ -415,35 +415,43 @@ pointcutActorBody returns [Actor element]
 pointcutActorBodyDecls[Actor actor]
 @init{
 	ActorProp prop = null;
+	Token propKw = null;
 	Class<? extends Declaration> declClass = null;
 }
 	: (override=overrideOrExtend)?
 	(
-		'interface' ':' {
+		kw='interface' ':' {
 			declClass = Interface.class;
+			propKw = kw;
 		}
 	|	
-		'component' ':' {
+		kw='component' ':' {
 			declClass = Component.class;
+			propKw = kw;
 		}
 	|
-		'application' ':' {
+		kw='application' ':' {
 			declClass = Application.class;
+			propKw = kw;
 		}
 	|
-		'instance' ':' {
+		kw='instance' ':' {
 			declClass = Instance.class;
+			propKw = kw;
 		}
 	|
-		'host' ':' {
+		kw='host' ':' {
 			declClass = Host.class;
+			propKw = kw;
 		}
 	) {
 		prop = new ActorProp(new PropModifier(declClass));
+		setKeyword(prop,propKw);
 		actor.addProp(prop);
 		if ($override.value != null) {
 			prop.addModifier($override.value);
 		}
+		
 	} pointcutActorPropDecls[prop,declClass] ';'
 	;
 
@@ -485,6 +493,7 @@ adviceBody[Advice advice]
 adviceBodyDeclaration[Advice advice]
 	:	adviceServiceDeclaration[$advice]
 	|	adviceTypeDeclaration[$advice]
+	|	adviceInstanceDeclaration[$advice]
 	;
 	
 	
@@ -503,6 +512,19 @@ adviceTypeDeclaration[Advice advice]
 		}
 	;
 
+adviceInstanceDeclaration[Advice advice]
+	:	inskw='instance' ':' instance=instanceReferenceDeclaration ';' {
+			$advice.setInstance($instance.relation);
+			setKeyword($instance.relation,$inskw);
+		}
+	;
+	
+instanceReferenceDeclaration returns [SimpleReference<Instance> relation]
+	: 	name=Identifier {
+			$relation = new SimpleReference($name.text,Instance.class);
+			setLocation($relation, $name, $name);
+		}
+	;	
 
 /* ***********
  * COMPONENT
@@ -630,7 +652,7 @@ applicationBodyDeclaration[Application element]
  * DEPLOYMENT
  *********** */
 
-deploymentDeclaration returns [Deployment element]
+/*deploymentDeclaration returns [Deployment element]
 	:	(abs=abstractModifier)? appkw='deployment' name=Identifier {
 			$element = new Deployment(new SimpleNameSignature($name.text));
 
@@ -644,23 +666,24 @@ deploymentDeclaration returns [Deployment element]
 		(refinementDeclaration[$element,Application.class])?
 		applicationBody[$element]
 	;
-
+*/
 
 /* ********************
  * INSTANCE DECLARATION
  ********************* */
 
+//				setLocation(relation,$ref,$ref);
 
 instanceDeclaration returns [Instance element]
-	:	tpe=Identifier name=Identifier onkw='on' hst=Identifier ';' {
+	:	ref=qualifiedDeclarationReference[Module.class] name=Identifier onkw='on' hst=Identifier ';' {
 	
 			$element = new Instance(new SimpleNameSignature($name.text));
 			setLocation($element,$name,"__NAME");
 
-			SimpleReference<Module> modRelation = new SimpleReference<Module>($tpe.text,Module.class);
-			if (modRelation != null) {
-				$element.setType(modRelation);
-				setLocation(modRelation,$tpe,$tpe);
+			SimpleReference<Module> relation = $ref.reference;
+			//new SimpleReference<Module>($tpe.text,Module.class);
+			if (relation != null) {
+				$element.setType(relation);
 			}
 			
 			SimpleReference<Host> hostRelation = new SimpleReference<Host>($hst.text,Host.class);
@@ -694,7 +717,6 @@ hostDeclaration returns [Host element]
 		} )? ';'
 	;
  
-
 
 /* ***************
  * MODULECONTAINER
@@ -734,32 +756,39 @@ modulecontainerBody returns [List<SimpleReference> elements]
 
 // single
 refinementDeclarationSingle[RefinableDeclaration element, Class kind]
-	:	rfkw=':' refinementDeclarationBody[$element,$kind] {
-			setKeyword($element,$rfkw);
+	:	rfkw='refines' rel=refinementDeclarationBody[$kind] {
+			setKeyword(rel.relation,rfkw);
+			$element.addRefinementRelation(rel.relation);
 		}
 	;	
 
 // multiple
 refinementDeclaration[RefinableDeclaration element, Class kind]
-	:	refinementDeclarationSingle[$element,$kind] ( ',' refinementDeclarationBody[$element,$kind] )*
+	:	refinementDeclarationSingle[$element,$kind] ( ',' rel=refinementDeclarationBody[$kind] {
+			$element.addRefinementRelation(rel.relation);
+		} )* 
 	;
 	
 	
-refinementDeclarationBody[RefinableDeclaration element, Class kind]
-	:	parent=refinementParentDeclaration[$kind] {
-			RefinementRelation relation = new RefinementRelation($parent.reference);
-			$element.addRefinementRelation(relation);
+refinementDeclarationBody[Class kind] returns [RefinementRelation relation]
+	:	parent=qualifiedDeclarationReference[$kind] {
+			$relation = new RefinementRelation(parent.reference);		
 		}
 	;
 
 
-refinementParentDeclaration[Class kind] returns [SimpleReference reference]
-@init{Token start = null; 
-      Token end = null;
-      SimpleReference target = null;}
+
+/* ***********
+ * MISC
+ *********** */
+qualifiedDeclarationReference[Class kind] returns [SimpleReference reference]
+@init{
+	Token start = null; 
+	Token end = null;
+	SimpleReference target = null;}
 @after{
-  check_null($reference);
-  setLocation($reference, start, end);
+	check_null($reference);
+	setLocation($reference, start, end);
 }
 	:	name=Identifier {
 			$reference = new SimpleReference($name.text,$kind);
@@ -772,19 +801,14 @@ refinementParentDeclaration[Class kind] returns [SimpleReference reference]
 //					setLocation($
 					$reference = new SimpleReference(target,$namex.text,RefinableDeclaration.class);
 					target = new SimpleReference(target.clone(),$namex.text,RefinableDeclaration.class);
-
 				} else {
 					$reference = new SimpleReference($name.text,$kind);
 				}
-				start = $namex;
+				//start = $namex;
 				end = $namex;
 			} 
 		)*
 	;
-
-/* ***********
- * MISC
- *********** */
 
 
 commaSeparatedBodyDecls[Class targetType] returns [List<SimpleReference> elements]

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="MacRoman" standalone="no"?>
 <jardesc>
     <jar path="mview-editor/lib/mview.jar"/>
-    <options buildIfNeeded="true" compress="false" descriptionLocation="/Mview/deploy-in-editor.jardesc" exportErrors="false" exportWarnings="true" includeDirectoryEntries="true" overwrite="true" saveDescription="true" storeRefactorings="false" useSourceFolders="false"/>
+    <options buildIfNeeded="true" compress="false" descriptionLocation="/mview-lang/deploy-in-editor.jardesc" exportErrors="false" exportWarnings="true" includeDirectoryEntries="true" overwrite="true" saveDescription="true" storeRefactorings="false" useSourceFolders="false"/>
     <storedRefactorings deprecationInfo="true" structuralOnly="false"/>
     <selectedProjects/>
     <manifest generateManifest="true" manifestLocation="" manifestVersion="1.0" reuseManifest="false" saveManifest="false" usesManifest="true">
@@ -11,6 +11,26 @@
         </sealing>
     </manifest>
     <selectedElements exportClassFiles="true" exportJavaFiles="true" exportOutputFolder="false">
-        <javaElement handleIdentifier="=Mview/src"/>
+        <javaElement handleIdentifier="=mview-lang/src&lt;mview.model.language"/>
+        <javaElement handleIdentifier="=mview-lang/src&lt;mview.model.module"/>
+        <javaElement handleIdentifier="=mview-lang/src&lt;mview.model.namespace"/>
+        <javaElement handleIdentifier="=mview-lang/src&lt;mview.model.application"/>
+        <javaElement handleIdentifier="=mview-lang/src&lt;mview.output.jboss"/>
+        <javaElement handleIdentifier="=mview-lang/src&lt;mview.model.refinement.modifier"/>
+        <javaElement handleIdentifier="=mview-lang/src&lt;mview.output.jboss.element"/>
+        <javaElement handleIdentifier="=mview-lang/src&lt;mview.output.jboss.declaration"/>
+        <javaElement handleIdentifier="=mview-lang/src&lt;mview"/>
+        <javaElement handleIdentifier="=mview-lang/src&lt;mview.model"/>
+        <javaElement handleIdentifier="=mview-lang/src&lt;mview.exception"/>
+        <javaElement handleIdentifier="=mview-lang/src&lt;mview.model.composition"/>
+        <javaElement handleIdentifier="=mview-lang/src&lt;mview.output.spring.element"/>
+        <file path="/mview-lang/src/.DS_Store"/>
+        <javaElement handleIdentifier="=mview-lang/src&lt;mview.output"/>
+        <javaElement handleIdentifier="=mview-lang/src&lt;mview.model.composition.modifier"/>
+        <javaElement handleIdentifier="=mview-lang/src&lt;mview.parser"/>
+        <javaElement handleIdentifier="=mview-lang/src&lt;mview.model.property"/>
+        <javaElement handleIdentifier="=mview-lang/src&lt;mview.model.refinement"/>
+        <javaElement handleIdentifier="=mview-lang/src&lt;mview.output.spring.declaration"/>
+        <javaElement handleIdentifier="=mview-lang/src&lt;mview.model.deployment"/>
     </selectedElements>
 </jardesc>

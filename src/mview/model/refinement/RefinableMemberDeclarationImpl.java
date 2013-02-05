@@ -20,6 +20,7 @@ package mview.model.refinement;
 
 import mview.exception.MergeNotSupportedException;
 import chameleon.core.declaration.SimpleNameSignature;
+import chameleon.core.lookup.LookupException;
 import chameleon.exception.ModelException;
 
 /**
@@ -44,7 +45,7 @@ public abstract class RefinableMemberDeclarationImpl
 	}
 
 	@Override
-	public boolean sharesContext(MViewMember other) {
+	public boolean sharesContext(MViewMember other) throws LookupException {
 		return (new RefinementContext()).verify(this, other);
 	}
 

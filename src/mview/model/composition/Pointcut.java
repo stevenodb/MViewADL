@@ -31,6 +31,7 @@ import org.rejuse.property.Property;
 
 import chameleon.core.declaration.Declaration;
 import chameleon.core.element.Element;
+import chameleon.core.lookup.LookupException;
 import chameleon.core.modifier.ElementWithModifiersImpl;
 import chameleon.core.modifier.Modifier;
 import chameleon.core.validation.Valid;
@@ -238,7 +239,7 @@ public class Pointcut extends ElementWithModifiersImpl implements MViewMember {
 	}
 
 	@Override
-	public boolean sharesContext(MViewMember other) {
+	public boolean sharesContext(MViewMember other) throws LookupException {
 		return (new RefinementContext().verify(this, other));
 	}
 

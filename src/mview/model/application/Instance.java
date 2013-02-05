@@ -18,19 +18,12 @@
  */
 package mview.model.application;
 
-import java.util.List;
-
 import mview.model.module.Module;
 import mview.model.refinement.MViewMemberDeclarationImpl;
-
-import org.rejuse.association.SingleAssociation;
-
 import chameleon.core.declaration.SimpleNameSignature;
-import chameleon.core.element.Element;
 import chameleon.core.reference.SimpleReference;
 import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.VerificationResult;
-import chameleon.util.Util;
 import chameleon.util.association.Single;
 
 /**

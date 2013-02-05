@@ -233,7 +233,7 @@ public class ActorProp extends ElementWithModifiersImpl implements MViewMember {
 	}
 
 	@Override
-	public boolean sharesContext(MViewMember other) {
+	public boolean sharesContext(MViewMember other) throws LookupException {
 		return (new RefinementContext().verify(this, other));
 	}
 

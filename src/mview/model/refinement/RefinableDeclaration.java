@@ -89,8 +89,9 @@ public interface RefinableDeclaration	extends Declaration {
 	 * Returns the list of all direct refinable parent declarations.
 	 * 
 	 * @return the list of all direct refinable parent declarations.
+	 * @throws LookupException 
 	 */
-	public List<RefinableDeclaration> getDirectParents();
+	public List<RefinableDeclaration> getDirectParents() throws LookupException;
 	
 	/**
 	 * Returns whether this declaration is abstract
@@ -105,8 +106,9 @@ public interface RefinableDeclaration	extends Declaration {
 	 * @param other
 	 *            the other declaration
 	 * @return true if this is a refinement of other
+	 * @throws LookupException 
 	 */
-	public boolean isRefinementOf(RefinableDeclaration other);
+	public boolean isRefinementOf(RefinableDeclaration other) throws LookupException;
 
 	/**
 	 * Add a refinement relation

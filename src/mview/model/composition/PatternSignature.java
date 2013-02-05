@@ -27,7 +27,6 @@ import mview.model.module.Service;
 
 import org.rejuse.predicate.UnsafePredicate;
 
-import chameleon.core.element.Element;
 import chameleon.core.lookup.LookupException;
 import chameleon.core.reference.SimpleReference;
 import chameleon.core.validation.BasicProblem;
@@ -206,7 +205,6 @@ public class PatternSignature extends ServiceSignature<Service> {
 	 * @return a List of references to Services
 	 * @throws LookupException
 	 */
-	@SuppressWarnings("unchecked")
 	public List<SimpleReference<Service>> services() throws LookupException {
 
 		List<SimpleReference<Service>> result =
@@ -303,7 +301,7 @@ public class PatternSignature extends ServiceSignature<Service> {
 
 		clone.setReturnTypePattern(returnTypePattern());
 		clone.setSignaturePattern(signaturePattern());
-		clone.setFormalParametersPattern(new ArrayList(formalParametersPattern()));
+		clone.setFormalParametersPattern(new ArrayList<Pair<String, String>>(formalParametersPattern()));
 		
 		return clone;
 	}
