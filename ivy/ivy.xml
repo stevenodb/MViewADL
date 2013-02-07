@@ -1,0 +1,9 @@
+<ivy-module version="2.0">
+  <info organisation="${organisation}" module="${module}"/>
+  <dependencies>
+    <dependency org="distrinet.cs.kuleuven.be" name="chameleon" rev="latest.integration"/>
+    <dependency org="distrinet.cs.kuleuven.be" name="jnome" rev="latest.integration"/>
+    <dependency org="distrinet.cs.kuleuven.be" name="rejuse" rev="latest.integration"/>
+    <!-- add your own dependencies here -->
+  </dependencies>
+</ivy-module>
