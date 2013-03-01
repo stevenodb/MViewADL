@@ -22,6 +22,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
+import jnome.core.language.Java;
 import mview.model.application.Application;
 import mview.model.application.Host;
 import mview.model.application.Instance;
@@ -45,8 +46,6 @@ import org.rejuse.junit.BasicRevision;
 import org.rejuse.property.Property;
 import org.rejuse.property.PropertyMutex;
 
-import chameleon.core.language.Language;
-import chameleon.core.language.LanguageImpl;
 import chameleon.core.modifier.Modifier;
 import chameleon.core.property.ChameleonProperty;
 import chameleon.core.property.StaticChameleonProperty;
@@ -55,7 +54,7 @@ import chameleon.core.property.StaticChameleonProperty;
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  * 
  */
-public class MView extends LanguageImpl {
+public class MView extends Java {
 
 	// mutex
 	public final PropertyMutex<ChameleonProperty> ACTOR_MUTEX;

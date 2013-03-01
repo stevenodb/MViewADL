@@ -12,8 +12,8 @@ import chameleon.workspace.Workspace;
 
 public class MViewProjectConfig extends JavaProjectConfig {
 
-	public MViewProjectConfig(String projectName, File root, View view, Workspace workspace, FileInputSourceFactory factory, BaseLibraryConfiguration baseLibraryConfiguration) {
-		super(projectName, root, view, workspace, factory, baseJarPath(), baseLibraryConfiguration);
+	public MViewProjectConfig(String projectName, File root, View view, Workspace workspace, BaseLibraryConfiguration baseLibraryConfiguration) {
+		super(projectName, root, view, workspace, new LazyJavaFileInputSourceFactory(), baseJarPath(), baseLibraryConfiguration);
 	}
 
 	private static String baseJarPath() {

@@ -22,7 +22,7 @@ public class MViewConfigLoader extends LanguagePluginImpl implements ProjectConf
 	public MViewProjectConfig createConfigElement(String projectName, File root, Workspace workspace, ProjectInitialisationListener listener, BaseLibraryConfiguration baseLibraryConfiguration) throws ConfigException {
 		View view = new View(new LazyRootNamespace(), language());
 		if(listener != null) {listener.viewAdded(view);}
-		return new MViewProjectConfig(projectName, root, view, workspace, new FileInputSourceFactory(), baseLibraryConfiguration);
+		return new MViewProjectConfig(projectName, root, view, workspace, baseLibraryConfiguration);
 	}
 
 	@Override
