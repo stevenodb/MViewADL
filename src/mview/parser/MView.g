@@ -87,6 +87,9 @@ import chameleon.oo.variable.FormalParameter;
 import chameleon.core.modifier.Modifier;
 import chameleon.util.Pair;
 import chameleon.oo.expression.NamedTarget;
+import chameleon.oo.plugin.ObjectOrientedFactory;
+
+import jnome.core.language.Java;
 
 import chameleon.support.input.ChameleonParser;
 }
@@ -95,6 +98,15 @@ import chameleon.support.input.ChameleonParser;
 package mview.parser;
 }
 
+@members {
+
+  public NamespaceDeclaration createNamespaceDeclaration() {
+    return ((Java)language()).plugin(ObjectOrientedFactory.class).createRootNamespaceDeclaration();
+  }
+  
+
+
+}
 //@members {
 //
 //private String unQuote(String quoted) {
@@ -113,7 +125,7 @@ package mview.parser;
 compilationUnit returns [Document element] 
 @init{ 
 	$element = getDocument();
-	NamespaceDeclaration npp = new NamespaceDeclaration("");
+	NamespaceDeclaration npp = createNamespaceDeclaration();
 	$element.add(npp);
 }
 	:	(
