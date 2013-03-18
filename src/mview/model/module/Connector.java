@@ -47,7 +47,7 @@ public class Connector extends Module {
 	 */
 	private Multi<AOComposition> _compositions = new Multi<AOComposition>(this); 
  
-	public List<AOComposition> compositions() {
+	protected List<AOComposition> compositions() {
 		return _compositions.getOtherEnds();
 	}
 	

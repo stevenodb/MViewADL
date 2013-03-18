@@ -61,7 +61,7 @@ public class Interface extends RefinableMemberDeclarationImpl { //implements Tar
 	/**
 	 * @return
 	 */
-	public List<Service> services() {
+	protected List<Service> services() {
 		return _services.getOtherEnds();
 	}
 
