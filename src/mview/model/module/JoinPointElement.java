@@ -19,6 +19,7 @@
  */
 package mview.model.module;
 
+import chameleon.core.declaration.Declaration;
 import mview.model.namespace.MViewDeclaration;
 
 
@@ -26,14 +27,6 @@ import mview.model.namespace.MViewDeclaration;
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public abstract class JoinPointElement extends MViewDeclaration {
-
-	/* (non-Javadoc)
-	 * @see mview.model.namespace.MViewDeclaration#clone()
-	 */
-	@Override
-	public JoinPointElement clone() {
-		return (JoinPointElement) super.clone();
-	}
+public interface JoinPointElement extends Declaration {
 
 }

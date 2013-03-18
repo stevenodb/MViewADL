@@ -17,9 +17,12 @@
  */
 package mview.model.module;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import mview.model.namespace.MViewDeclaration;
+import mview.model.refinement.MViewMember;
+import mview.model.refinement.RefinableMemberDeclarationImpl;
 import chameleon.core.declaration.Declaration;
 import chameleon.core.declaration.DeclarationContainer;
 import chameleon.core.declaration.SimpleNameSignature;
@@ -30,9 +33,10 @@ import chameleon.core.lookup.LookupException;
 import chameleon.core.lookup.LookupStrategy;
 import chameleon.core.validation.BasicProblem;
 import chameleon.core.validation.VerificationResult;
+import chameleon.util.Util;
 import chameleon.util.association.Multi;
 
-public class Interface extends MViewDeclaration implements TargetDeclaration, DeclarationContainer {
+public class Interface extends RefinableMemberDeclarationImpl { //implements TargetDeclaration, DeclarationContainer {
 
 	/**
 	 * @param signature
@@ -100,23 +104,23 @@ public class Interface extends MViewDeclaration implements TargetDeclaration, De
 		return result;
 	}
 
-	@Override
-	public LocalLookupStrategy<?> targetContext() throws LookupException {
-		return language().lookupFactory().createTargetLookupStrategy(this);
-	}
-
-
-	@Override
-	public List<? extends Declaration> declarations() throws LookupException {
-		return services();
-	}
-
-
-	@Override
-	public List<? extends Declaration> locallyDeclaredDeclarations()
-			throws LookupException {
-		return declarations();
-	}
+//	@Override
+//	public LocalLookupStrategy<?> targetContext() throws LookupException {
+//		return language().lookupFactory().createTargetLookupStrategy(this);
+//	}
+//
+//
+//	@Override
+//	public List<? extends Declaration> declarations() throws LookupException {
+//		return services();
+//	}
+//
+//
+//	@Override
+//	public List<? extends Declaration> locallyDeclaredDeclarations()
+//			throws LookupException {
+//		return declarations();
+//	}
 
 
 	@Override
@@ -127,5 +131,13 @@ public class Interface extends MViewDeclaration implements TargetDeclaration, De
 	@Override
 	public LookupStrategy localStrategy() throws LookupException {
 		return language().lookupFactory().createLocalLookupStrategy(this);
+	}
+
+
+	@Override
+	public List<MViewMember> localMembers() {
+		List<MViewMember> result = new ArrayList<MViewMember>();
+		result.addAll(services());
+		return result;
 	}
 }

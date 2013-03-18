@@ -22,6 +22,7 @@ package mview.model.composition;
 import java.util.List;
 
 import mview.model.module.JoinPointElement;
+import chameleon.core.declaration.Declaration;
 import chameleon.core.lookup.LookupException;
 import chameleon.core.modifier.ElementWithModifiersImpl;
 import chameleon.core.reference.SimpleReference;

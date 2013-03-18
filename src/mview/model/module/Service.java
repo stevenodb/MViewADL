@@ -19,6 +19,7 @@ package mview.model.module;
 
 import java.util.List;
 
+import mview.model.refinement.MViewMemberDeclarationImpl;
 import chameleon.core.declaration.Signature;
 import chameleon.core.declaration.SimpleNameSignature;
 import chameleon.core.reference.SimpleReference;
@@ -33,7 +34,7 @@ import chameleon.support.member.simplename.method.NormalMethod;
 import chameleon.util.association.Multi;
 import chameleon.util.association.Single;
 
-public class Service extends JoinPointElement {
+public class Service extends MViewMemberDeclarationImpl implements JoinPointElement {
 
 	/**
 	 * Default constructor
@@ -264,4 +265,40 @@ public class Service extends JoinPointElement {
 		return signature() != null ? signature().toString() : super.toString(); 
 	}
 
+//
+//	@Override
+//	public boolean sharesContext(MViewMember other) throws LookupException {
+//		return (new RefinementContext()).verify(this, other);
+//	}
+//
+//
+//	@Override
+//	public boolean overrides(MViewMember other) throws ModelException {
+//		boolean result = false;
+//		
+//		result = sameMemberAs(other)
+//			&& this.sharesContext(other);
+//		
+//		return result;
+//	}
+//
+//
+//	@Override
+//	public boolean mergesWith(MViewMember other) throws ModelException {
+//		return false;
+//	}
+//
+//
+//	@Override
+//	public MViewMember merge(MViewMember other)
+//			throws MergeNotSupportedException, ModelException {
+//		throw new MergeNotSupportedException(this + " doesn't support merge.");
+//	}
+//
+//	@Override
+//	public boolean sameMemberAs(MViewMember other) throws ModelException {
+//		return (other != null)
+//				&& other instanceof Service
+//				&& this.signature().equals(((Service)other).signature());	
+//	}
 }

@@ -154,6 +154,7 @@ interfaceDeclaration returns [Interface element]
 			setKeyword($element,$intkw);
 			setLocation($element,$name,"__NAME");
 		}
+		(refinementDeclaration[$element,Interface.class])?
 		interfaceBody[$element]
 	;
 

@@ -17,8 +17,10 @@
  */
 package mview.model.module;
 
+import mview.model.namespace.MViewDeclaration;
 
-public class Property extends JoinPointElement {
+
+public class Property extends MViewDeclaration implements JoinPointElement {
 		
 
 	/* (non-Javadoc)
