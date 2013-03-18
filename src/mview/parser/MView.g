@@ -550,7 +550,9 @@ componentDeclaration returns [Component element]
    			$element = new Component(new SimpleNameSignature($name.text)); 
    			setKeyword($element,$compkw);
    			setLocation($element,$name,"__NAME");
-		} componentBody[$element]
+		} 
+		(refinementDeclaration[$element,Component.class])?
+		componentBody[$element]
 	;
     
     
