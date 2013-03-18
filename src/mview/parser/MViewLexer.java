@@ -1,4 +1,4 @@
-// $ANTLR 3.3 Nov 30, 2010 12:45:30 /Users/marko/hg/mview/src/mview/parser/MView.g 2013-03-05 15:18:36
+// $ANTLR 3.3 Nov 30, 2010 12:45:30 /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g 2013-03-05 15:22:00
 
 package mview.parser;
 
@@ -96,15 +96,15 @@ public class MViewLexer extends Lexer {
         super(input,state);
 
     }
-    public String getGrammarFileName() { return "/Users/marko/hg/mview/src/mview/parser/MView.g"; }
+    public String getGrammarFileName() { return "/Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g"; }
 
     // $ANTLR start "T__23"
     public final void mT__23() throws RecognitionException {
         try {
             int _type = T__23;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:7:7: ( 'interface' )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:7:9: 'interface'
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:7:7: ( 'interface' )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:7:9: 'interface'
             {
             match("interface"); 
 
@@ -124,8 +124,8 @@ public class MViewLexer extends Lexer {
         try {
             int _type = T__24;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:8:7: ( '{' )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:8:9: '{'
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:8:7: ( '{' )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:8:9: '{'
             {
             match('{'); 
 
@@ -144,8 +144,8 @@ public class MViewLexer extends Lexer {
         try {
             int _type = T__25;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:9:7: ( '}' )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:9:9: '}'
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:9:7: ( '}' )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:9:9: '}'
             {
             match('}'); 
 
@@ -164,8 +164,8 @@ public class MViewLexer extends Lexer {
         try {
             int _type = T__26;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:10:7: ( ';' )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:10:9: ';'
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:10:7: ( ';' )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:10:9: ';'
             {
             match(';'); 
 
@@ -184,8 +184,8 @@ public class MViewLexer extends Lexer {
         try {
             int _type = T__27;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:11:7: ( '(' )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:11:9: '('
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:11:7: ( '(' )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:11:9: '('
             {
             match('('); 
 
@@ -204,8 +204,8 @@ public class MViewLexer extends Lexer {
         try {
             int _type = T__28;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:12:7: ( ')' )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:12:9: ')'
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:12:7: ( ')' )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:12:9: ')'
             {
             match(')'); 
 
@@ -224,8 +224,8 @@ public class MViewLexer extends Lexer {
         try {
             int _type = T__29;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:13:7: ( ',' )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:13:9: ','
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:13:7: ( ',' )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:13:9: ','
             {
             match(','); 
 
@@ -244,8 +244,8 @@ public class MViewLexer extends Lexer {
         try {
             int _type = T__30;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:14:7: ( '*' )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:14:9: '*'
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:14:7: ( '*' )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:14:9: '*'
             {
             match('*'); 
 
@@ -264,8 +264,8 @@ public class MViewLexer extends Lexer {
         try {
             int _type = T__31;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:15:7: ( 'connector' )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:15:9: 'connector'
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:15:7: ( 'connector' )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:15:9: 'connector'
             {
             match("connector"); 
 
@@ -285,8 +285,8 @@ public class MViewLexer extends Lexer {
         try {
             int _type = T__32;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:16:7: ( 'ao-composition' )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:16:9: 'ao-composition'
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:16:7: ( 'ao-composition' )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:16:9: 'ao-composition'
             {
             match("ao-composition"); 
 
@@ -306,8 +306,8 @@ public class MViewLexer extends Lexer {
         try {
             int _type = T__33;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:17:7: ( 'pointcut' )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:17:9: 'pointcut'
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:17:7: ( 'pointcut' )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:17:9: 'pointcut'
             {
             match("pointcut"); 
 
@@ -327,8 +327,8 @@ public class MViewLexer extends Lexer {
         try {
             int _type = T__34;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:18:7: ( 'kind' )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:18:9: 'kind'
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:18:7: ( 'kind' )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:18:9: 'kind'
             {
             match("kind"); 
 
@@ -348,8 +348,8 @@ public class MViewLexer extends Lexer {
         try {
             int _type = T__35;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:19:7: ( ':' )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:19:9: ':'
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:19:7: ( ':' )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:19:9: ':'
             {
             match(':'); 
 
@@ -368,8 +368,8 @@ public class MViewLexer extends Lexer {
         try {
             int _type = T__36;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:20:7: ( 'signature' )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:20:9: 'signature'
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:20:7: ( 'signature' )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:20:9: 'signature'
             {
             match("signature"); 
 
@@ -389,8 +389,8 @@ public class MViewLexer extends Lexer {
         try {
             int _type = T__37;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:21:7: ( 'caller' )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:21:9: 'caller'
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:21:7: ( 'caller' )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:21:9: 'caller'
             {
             match("caller"); 
 
@@ -410,8 +410,8 @@ public class MViewLexer extends Lexer {
         try {
             int _type = T__38;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:22:7: ( 'callee' )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:22:9: 'callee'
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:22:7: ( 'callee' )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:22:9: 'callee'
             {
             match("callee"); 
 
@@ -431,8 +431,8 @@ public class MViewLexer extends Lexer {
         try {
             int _type = T__39;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:23:7: ( 'component' )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:23:9: 'component'
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:23:7: ( 'component' )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:23:9: 'component'
             {
             match("component"); 
 
@@ -452,8 +452,8 @@ public class MViewLexer extends Lexer {
         try {
             int _type = T__40;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:24:7: ( 'application' )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:24:9: 'application'
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:24:7: ( 'application' )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:24:9: 'application'
             {
             match("application"); 
 
@@ -473,8 +473,8 @@ public class MViewLexer extends Lexer {
         try {
             int _type = T__41;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:25:7: ( 'instance' )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:25:9: 'instance'
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:25:7: ( 'instance' )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:25:9: 'instance'
             {
             match("instance"); 
 
@@ -494,8 +494,8 @@ public class MViewLexer extends Lexer {
         try {
             int _type = T__42;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:26:7: ( 'host' )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:26:9: 'host'
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:26:7: ( 'host' )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:26:9: 'host'
             {
             match("host"); 
 
@@ -515,8 +515,8 @@ public class MViewLexer extends Lexer {
         try {
             int _type = T__43;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:27:7: ( 'advice' )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:27:9: 'advice'
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:27:7: ( 'advice' )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:27:9: 'advice'
             {
             match("advice"); 
 
@@ -536,8 +536,8 @@ public class MViewLexer extends Lexer {
         try {
             int _type = T__44;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:28:7: ( 'method' )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:28:9: 'method'
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:28:7: ( 'method' )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:28:9: 'method'
             {
             match("method"); 
 
@@ -557,8 +557,8 @@ public class MViewLexer extends Lexer {
         try {
             int _type = T__45;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:29:7: ( 'type' )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:29:9: 'type'
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:29:7: ( 'type' )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:29:9: 'type'
             {
             match("type"); 
 
@@ -578,8 +578,8 @@ public class MViewLexer extends Lexer {
         try {
             int _type = T__46;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:30:7: ( 'require' )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:30:9: 'require'
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:30:7: ( 'require' )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:30:9: 'require'
             {
             match("require"); 
 
@@ -599,8 +599,8 @@ public class MViewLexer extends Lexer {
         try {
             int _type = T__47;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:31:7: ( 'provide' )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:31:9: 'provide'
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:31:7: ( 'provide' )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:31:9: 'provide'
             {
             match("provide"); 
 
@@ -620,8 +620,8 @@ public class MViewLexer extends Lexer {
         try {
             int _type = T__48;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:32:7: ( 'on' )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:32:9: 'on'
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:32:7: ( 'on' )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:32:9: 'on'
             {
             match("on"); 
 
@@ -641,8 +641,8 @@ public class MViewLexer extends Lexer {
         try {
             int _type = T__49;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:33:7: ( 'is' )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:33:9: 'is'
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:33:7: ( 'is' )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:33:9: 'is'
             {
             match("is"); 
 
@@ -662,8 +662,8 @@ public class MViewLexer extends Lexer {
         try {
             int _type = T__50;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:34:7: ( 'refines' )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:34:9: 'refines'
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:34:7: ( 'refines' )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:34:9: 'refines'
             {
             match("refines"); 
 
@@ -683,8 +683,8 @@ public class MViewLexer extends Lexer {
         try {
             int _type = T__51;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:35:7: ( '.' )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:35:9: '.'
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:35:7: ( '.' )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:35:9: '.'
             {
             match('.'); 
 
@@ -703,8 +703,8 @@ public class MViewLexer extends Lexer {
         try {
             int _type = T__52;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:36:7: ( 'before' )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:36:9: 'before'
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:36:7: ( 'before' )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:36:9: 'before'
             {
             match("before"); 
 
@@ -724,8 +724,8 @@ public class MViewLexer extends Lexer {
         try {
             int _type = T__53;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:37:7: ( 'after' )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:37:9: 'after'
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:37:7: ( 'after' )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:37:9: 'after'
             {
             match("after"); 
 
@@ -745,8 +745,8 @@ public class MViewLexer extends Lexer {
         try {
             int _type = T__54;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:38:7: ( 'around' )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:38:9: 'around'
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:38:7: ( 'around' )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:38:9: 'around'
             {
             match("around"); 
 
@@ -766,8 +766,8 @@ public class MViewLexer extends Lexer {
         try {
             int _type = T__55;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:39:7: ( 'execution' )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:39:9: 'execution'
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:39:7: ( 'execution' )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:39:9: 'execution'
             {
             match("execution"); 
 
@@ -787,8 +787,8 @@ public class MViewLexer extends Lexer {
         try {
             int _type = T__56;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:40:7: ( 'call' )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:40:9: 'call'
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:40:7: ( 'call' )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:40:9: 'call'
             {
             match("call"); 
 
@@ -808,8 +808,8 @@ public class MViewLexer extends Lexer {
         try {
             int _type = T__57;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:41:7: ( 'override' )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:41:9: 'override'
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:41:7: ( 'override' )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:41:9: 'override'
             {
             match("override"); 
 
@@ -829,8 +829,8 @@ public class MViewLexer extends Lexer {
         try {
             int _type = T__58;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:42:7: ( 'merge' )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:42:9: 'merge'
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:42:7: ( 'merge' )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:42:9: 'merge'
             {
             match("merge"); 
 
@@ -850,8 +850,8 @@ public class MViewLexer extends Lexer {
         try {
             int _type = T__59;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:43:7: ( '!' )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:43:9: '!'
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:43:7: ( '!' )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:43:9: '!'
             {
             match('!'); 
 
@@ -870,8 +870,8 @@ public class MViewLexer extends Lexer {
         try {
             int _type = T__60;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:44:7: ( 'abstract' )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:44:9: 'abstract'
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:44:7: ( 'abstract' )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:44:9: 'abstract'
             {
             match("abstract"); 
 
@@ -891,8 +891,8 @@ public class MViewLexer extends Lexer {
         try {
             int _type = T__61;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:45:7: ( 'void' )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:45:9: 'void'
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:45:7: ( 'void' )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:45:9: 'void'
             {
             match("void"); 
 
@@ -912,8 +912,8 @@ public class MViewLexer extends Lexer {
         try {
             int _type = T__62;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:46:7: ( 'boolean' )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:46:9: 'boolean'
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:46:7: ( 'boolean' )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:46:9: 'boolean'
             {
             match("boolean"); 
 
@@ -933,8 +933,8 @@ public class MViewLexer extends Lexer {
         try {
             int _type = T__63;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:47:7: ( 'char' )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:47:9: 'char'
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:47:7: ( 'char' )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:47:9: 'char'
             {
             match("char"); 
 
@@ -954,8 +954,8 @@ public class MViewLexer extends Lexer {
         try {
             int _type = T__64;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:48:7: ( 'byte' )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:48:9: 'byte'
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:48:7: ( 'byte' )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:48:9: 'byte'
             {
             match("byte"); 
 
@@ -975,8 +975,8 @@ public class MViewLexer extends Lexer {
         try {
             int _type = T__65;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:49:7: ( 'short' )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:49:9: 'short'
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:49:7: ( 'short' )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:49:9: 'short'
             {
             match("short"); 
 
@@ -996,8 +996,8 @@ public class MViewLexer extends Lexer {
         try {
             int _type = T__66;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:50:7: ( 'int' )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:50:9: 'int'
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:50:7: ( 'int' )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:50:9: 'int'
             {
             match("int"); 
 
@@ -1017,8 +1017,8 @@ public class MViewLexer extends Lexer {
         try {
             int _type = T__67;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:51:7: ( 'long' )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:51:9: 'long'
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:51:7: ( 'long' )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:51:9: 'long'
             {
             match("long"); 
 
@@ -1038,8 +1038,8 @@ public class MViewLexer extends Lexer {
         try {
             int _type = T__68;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:52:7: ( 'float' )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:52:9: 'float'
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:52:7: ( 'float' )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:52:9: 'float'
             {
             match("float"); 
 
@@ -1059,8 +1059,8 @@ public class MViewLexer extends Lexer {
         try {
             int _type = T__69;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:53:7: ( 'double' )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:53:9: 'double'
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:53:7: ( 'double' )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:53:9: 'double'
             {
             match("double"); 
 
@@ -1080,8 +1080,8 @@ public class MViewLexer extends Lexer {
         try {
             int _type = T__70;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:54:7: ( '<' )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:54:9: '<'
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:54:7: ( '<' )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:54:9: '<'
             {
             match('<'); 
 
@@ -1100,8 +1100,8 @@ public class MViewLexer extends Lexer {
         try {
             int _type = T__71;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:55:7: ( '>' )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:55:9: '>'
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:55:7: ( '>' )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:55:9: '>'
             {
             match('>'); 
 
@@ -1120,8 +1120,8 @@ public class MViewLexer extends Lexer {
         try {
             int _type = T__72;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:56:7: ( '?' )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:56:9: '?'
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:56:7: ( '?' )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:56:9: '?'
             {
             match('?'); 
 
@@ -1140,8 +1140,8 @@ public class MViewLexer extends Lexer {
         try {
             int _type = T__73;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:57:7: ( 'extends' )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:57:9: 'extends'
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:57:7: ( 'extends' )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:57:9: 'extends'
             {
             match("extends"); 
 
@@ -1161,8 +1161,8 @@ public class MViewLexer extends Lexer {
         try {
             int _type = T__74;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:58:7: ( 'super' )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:58:9: 'super'
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:58:7: ( 'super' )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:58:9: 'super'
             {
             match("super"); 
 
@@ -1182,8 +1182,8 @@ public class MViewLexer extends Lexer {
         try {
             int _type = T__75;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:59:7: ( '@' )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:59:9: '@'
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:59:7: ( '@' )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:59:9: '@'
             {
             match('@'); 
 
@@ -1202,8 +1202,8 @@ public class MViewLexer extends Lexer {
         try {
             int _type = T__76;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:60:7: ( '=' )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:60:9: '='
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:60:7: ( '=' )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:60:9: '='
             {
             match('='); 
 
@@ -1222,8 +1222,8 @@ public class MViewLexer extends Lexer {
         try {
             int _type = T__77;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:61:7: ( 'default' )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:61:9: 'default'
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:61:7: ( 'default' )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:61:9: 'default'
             {
             match("default"); 
 
@@ -1243,8 +1243,8 @@ public class MViewLexer extends Lexer {
         try {
             int _type = HexLiteral;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:999:12: ( '0' ( 'x' | 'X' ) ( HexDigit )+ ( IntegerTypeSuffix )? )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:999:14: '0' ( 'x' | 'X' ) ( HexDigit )+ ( IntegerTypeSuffix )?
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:999:12: ( '0' ( 'x' | 'X' ) ( HexDigit )+ ( IntegerTypeSuffix )? )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:999:14: '0' ( 'x' | 'X' ) ( HexDigit )+ ( IntegerTypeSuffix )?
             {
             match('0'); 
             if ( input.LA(1)=='X'||input.LA(1)=='x' ) {
@@ -1256,7 +1256,7 @@ public class MViewLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:999:28: ( HexDigit )+
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:999:28: ( HexDigit )+
             int cnt1=0;
             loop1:
             do {
@@ -1270,7 +1270,7 @@ public class MViewLexer extends Lexer {
 
                 switch (alt1) {
             	case 1 :
-            	    // /Users/marko/hg/mview/src/mview/parser/MView.g:999:28: HexDigit
+            	    // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:999:28: HexDigit
             	    {
             	    mHexDigit(); 
 
@@ -1286,7 +1286,7 @@ public class MViewLexer extends Lexer {
                 cnt1++;
             } while (true);
 
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:999:38: ( IntegerTypeSuffix )?
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:999:38: ( IntegerTypeSuffix )?
             int alt2=2;
             int LA2_0 = input.LA(1);
 
@@ -1295,7 +1295,7 @@ public class MViewLexer extends Lexer {
             }
             switch (alt2) {
                 case 1 :
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:999:38: IntegerTypeSuffix
+                    // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:999:38: IntegerTypeSuffix
                     {
                     mIntegerTypeSuffix(); 
 
@@ -1320,10 +1320,10 @@ public class MViewLexer extends Lexer {
         try {
             int _type = DecimalLiteral;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1001:16: ( ( '0' | '1' .. '9' ( '0' .. '9' )* ) ( IntegerTypeSuffix )? )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1001:18: ( '0' | '1' .. '9' ( '0' .. '9' )* ) ( IntegerTypeSuffix )?
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1001:16: ( ( '0' | '1' .. '9' ( '0' .. '9' )* ) ( IntegerTypeSuffix )? )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1001:18: ( '0' | '1' .. '9' ( '0' .. '9' )* ) ( IntegerTypeSuffix )?
             {
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1001:18: ( '0' | '1' .. '9' ( '0' .. '9' )* )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1001:18: ( '0' | '1' .. '9' ( '0' .. '9' )* )
             int alt4=2;
             int LA4_0 = input.LA(1);
 
@@ -1341,17 +1341,17 @@ public class MViewLexer extends Lexer {
             }
             switch (alt4) {
                 case 1 :
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1001:19: '0'
+                    // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1001:19: '0'
                     {
                     match('0'); 
 
                     }
                     break;
                 case 2 :
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1001:25: '1' .. '9' ( '0' .. '9' )*
+                    // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1001:25: '1' .. '9' ( '0' .. '9' )*
                     {
                     matchRange('1','9'); 
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1001:34: ( '0' .. '9' )*
+                    // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1001:34: ( '0' .. '9' )*
                     loop3:
                     do {
                         int alt3=2;
@@ -1364,7 +1364,7 @@ public class MViewLexer extends Lexer {
 
                         switch (alt3) {
                     	case 1 :
-                    	    // /Users/marko/hg/mview/src/mview/parser/MView.g:1001:34: '0' .. '9'
+                    	    // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1001:34: '0' .. '9'
                     	    {
                     	    matchRange('0','9'); 
 
@@ -1382,7 +1382,7 @@ public class MViewLexer extends Lexer {
 
             }
 
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1001:45: ( IntegerTypeSuffix )?
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1001:45: ( IntegerTypeSuffix )?
             int alt5=2;
             int LA5_0 = input.LA(1);
 
@@ -1391,7 +1391,7 @@ public class MViewLexer extends Lexer {
             }
             switch (alt5) {
                 case 1 :
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1001:45: IntegerTypeSuffix
+                    // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1001:45: IntegerTypeSuffix
                     {
                     mIntegerTypeSuffix(); 
 
@@ -1416,11 +1416,11 @@ public class MViewLexer extends Lexer {
         try {
             int _type = OctalLiteral;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1003:14: ( '0' ( '0' .. '7' )+ ( IntegerTypeSuffix )? )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1003:16: '0' ( '0' .. '7' )+ ( IntegerTypeSuffix )?
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1003:14: ( '0' ( '0' .. '7' )+ ( IntegerTypeSuffix )? )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1003:16: '0' ( '0' .. '7' )+ ( IntegerTypeSuffix )?
             {
             match('0'); 
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1003:20: ( '0' .. '7' )+
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1003:20: ( '0' .. '7' )+
             int cnt6=0;
             loop6:
             do {
@@ -1434,7 +1434,7 @@ public class MViewLexer extends Lexer {
 
                 switch (alt6) {
             	case 1 :
-            	    // /Users/marko/hg/mview/src/mview/parser/MView.g:1003:21: '0' .. '7'
+            	    // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1003:21: '0' .. '7'
             	    {
             	    matchRange('0','7'); 
 
@@ -1450,7 +1450,7 @@ public class MViewLexer extends Lexer {
                 cnt6++;
             } while (true);
 
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1003:32: ( IntegerTypeSuffix )?
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1003:32: ( IntegerTypeSuffix )?
             int alt7=2;
             int LA7_0 = input.LA(1);
 
@@ -1459,7 +1459,7 @@ public class MViewLexer extends Lexer {
             }
             switch (alt7) {
                 case 1 :
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1003:32: IntegerTypeSuffix
+                    // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1003:32: IntegerTypeSuffix
                     {
                     mIntegerTypeSuffix(); 
 
@@ -1482,8 +1482,8 @@ public class MViewLexer extends Lexer {
     // $ANTLR start "HexDigit"
     public final void mHexDigit() throws RecognitionException {
         try {
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1006:10: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1006:12: ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1006:10: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1006:12: ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )
             {
             if ( (input.LA(1)>='0' && input.LA(1)<='9')||(input.LA(1)>='A' && input.LA(1)<='F')||(input.LA(1)>='a' && input.LA(1)<='f') ) {
                 input.consume();
@@ -1506,8 +1506,8 @@ public class MViewLexer extends Lexer {
     // $ANTLR start "IntegerTypeSuffix"
     public final void mIntegerTypeSuffix() throws RecognitionException {
         try {
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1009:19: ( ( 'l' | 'L' ) )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1009:21: ( 'l' | 'L' )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1009:19: ( ( 'l' | 'L' ) )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1009:21: ( 'l' | 'L' )
             {
             if ( input.LA(1)=='L'||input.LA(1)=='l' ) {
                 input.consume();
@@ -1532,14 +1532,14 @@ public class MViewLexer extends Lexer {
         try {
             int _type = FloatingPointLiteral;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1012:5: ( ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( Exponent )? ( FloatTypeSuffix )? | '.' ( '0' .. '9' )+ ( Exponent )? ( FloatTypeSuffix )? | ( '0' .. '9' )+ Exponent ( FloatTypeSuffix )? | ( '0' .. '9' )+ FloatTypeSuffix )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1012:5: ( ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( Exponent )? ( FloatTypeSuffix )? | '.' ( '0' .. '9' )+ ( Exponent )? ( FloatTypeSuffix )? | ( '0' .. '9' )+ Exponent ( FloatTypeSuffix )? | ( '0' .. '9' )+ FloatTypeSuffix )
             int alt18=4;
             alt18 = dfa18.predict(input);
             switch (alt18) {
                 case 1 :
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1012:9: ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( Exponent )? ( FloatTypeSuffix )?
+                    // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1012:9: ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( Exponent )? ( FloatTypeSuffix )?
                     {
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1012:9: ( '0' .. '9' )+
+                    // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1012:9: ( '0' .. '9' )+
                     int cnt8=0;
                     loop8:
                     do {
@@ -1553,7 +1553,7 @@ public class MViewLexer extends Lexer {
 
                         switch (alt8) {
                     	case 1 :
-                    	    // /Users/marko/hg/mview/src/mview/parser/MView.g:1012:10: '0' .. '9'
+                    	    // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1012:10: '0' .. '9'
                     	    {
                     	    matchRange('0','9'); 
 
@@ -1570,7 +1570,7 @@ public class MViewLexer extends Lexer {
                     } while (true);
 
                     match('.'); 
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1012:25: ( '0' .. '9' )*
+                    // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1012:25: ( '0' .. '9' )*
                     loop9:
                     do {
                         int alt9=2;
@@ -1583,7 +1583,7 @@ public class MViewLexer extends Lexer {
 
                         switch (alt9) {
                     	case 1 :
-                    	    // /Users/marko/hg/mview/src/mview/parser/MView.g:1012:26: '0' .. '9'
+                    	    // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1012:26: '0' .. '9'
                     	    {
                     	    matchRange('0','9'); 
 
@@ -1595,7 +1595,7 @@ public class MViewLexer extends Lexer {
                         }
                     } while (true);
 
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1012:37: ( Exponent )?
+                    // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1012:37: ( Exponent )?
                     int alt10=2;
                     int LA10_0 = input.LA(1);
 
@@ -1604,7 +1604,7 @@ public class MViewLexer extends Lexer {
                     }
                     switch (alt10) {
                         case 1 :
-                            // /Users/marko/hg/mview/src/mview/parser/MView.g:1012:37: Exponent
+                            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1012:37: Exponent
                             {
                             mExponent(); 
 
@@ -1613,7 +1613,7 @@ public class MViewLexer extends Lexer {
 
                     }
 
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1012:47: ( FloatTypeSuffix )?
+                    // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1012:47: ( FloatTypeSuffix )?
                     int alt11=2;
                     int LA11_0 = input.LA(1);
 
@@ -1622,7 +1622,7 @@ public class MViewLexer extends Lexer {
                     }
                     switch (alt11) {
                         case 1 :
-                            // /Users/marko/hg/mview/src/mview/parser/MView.g:1012:47: FloatTypeSuffix
+                            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1012:47: FloatTypeSuffix
                             {
                             mFloatTypeSuffix(); 
 
@@ -1635,10 +1635,10 @@ public class MViewLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1013:9: '.' ( '0' .. '9' )+ ( Exponent )? ( FloatTypeSuffix )?
+                    // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1013:9: '.' ( '0' .. '9' )+ ( Exponent )? ( FloatTypeSuffix )?
                     {
                     match('.'); 
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1013:13: ( '0' .. '9' )+
+                    // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1013:13: ( '0' .. '9' )+
                     int cnt12=0;
                     loop12:
                     do {
@@ -1652,7 +1652,7 @@ public class MViewLexer extends Lexer {
 
                         switch (alt12) {
                     	case 1 :
-                    	    // /Users/marko/hg/mview/src/mview/parser/MView.g:1013:14: '0' .. '9'
+                    	    // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1013:14: '0' .. '9'
                     	    {
                     	    matchRange('0','9'); 
 
@@ -1668,7 +1668,7 @@ public class MViewLexer extends Lexer {
                         cnt12++;
                     } while (true);
 
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1013:25: ( Exponent )?
+                    // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1013:25: ( Exponent )?
                     int alt13=2;
                     int LA13_0 = input.LA(1);
 
@@ -1677,7 +1677,7 @@ public class MViewLexer extends Lexer {
                     }
                     switch (alt13) {
                         case 1 :
-                            // /Users/marko/hg/mview/src/mview/parser/MView.g:1013:25: Exponent
+                            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1013:25: Exponent
                             {
                             mExponent(); 
 
@@ -1686,7 +1686,7 @@ public class MViewLexer extends Lexer {
 
                     }
 
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1013:35: ( FloatTypeSuffix )?
+                    // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1013:35: ( FloatTypeSuffix )?
                     int alt14=2;
                     int LA14_0 = input.LA(1);
 
@@ -1695,7 +1695,7 @@ public class MViewLexer extends Lexer {
                     }
                     switch (alt14) {
                         case 1 :
-                            // /Users/marko/hg/mview/src/mview/parser/MView.g:1013:35: FloatTypeSuffix
+                            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1013:35: FloatTypeSuffix
                             {
                             mFloatTypeSuffix(); 
 
@@ -1708,9 +1708,9 @@ public class MViewLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1014:9: ( '0' .. '9' )+ Exponent ( FloatTypeSuffix )?
+                    // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1014:9: ( '0' .. '9' )+ Exponent ( FloatTypeSuffix )?
                     {
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1014:9: ( '0' .. '9' )+
+                    // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1014:9: ( '0' .. '9' )+
                     int cnt15=0;
                     loop15:
                     do {
@@ -1724,7 +1724,7 @@ public class MViewLexer extends Lexer {
 
                         switch (alt15) {
                     	case 1 :
-                    	    // /Users/marko/hg/mview/src/mview/parser/MView.g:1014:10: '0' .. '9'
+                    	    // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1014:10: '0' .. '9'
                     	    {
                     	    matchRange('0','9'); 
 
@@ -1741,7 +1741,7 @@ public class MViewLexer extends Lexer {
                     } while (true);
 
                     mExponent(); 
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1014:30: ( FloatTypeSuffix )?
+                    // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1014:30: ( FloatTypeSuffix )?
                     int alt16=2;
                     int LA16_0 = input.LA(1);
 
@@ -1750,7 +1750,7 @@ public class MViewLexer extends Lexer {
                     }
                     switch (alt16) {
                         case 1 :
-                            // /Users/marko/hg/mview/src/mview/parser/MView.g:1014:30: FloatTypeSuffix
+                            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1014:30: FloatTypeSuffix
                             {
                             mFloatTypeSuffix(); 
 
@@ -1763,9 +1763,9 @@ public class MViewLexer extends Lexer {
                     }
                     break;
                 case 4 :
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1015:9: ( '0' .. '9' )+ FloatTypeSuffix
+                    // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1015:9: ( '0' .. '9' )+ FloatTypeSuffix
                     {
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1015:9: ( '0' .. '9' )+
+                    // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1015:9: ( '0' .. '9' )+
                     int cnt17=0;
                     loop17:
                     do {
@@ -1779,7 +1779,7 @@ public class MViewLexer extends Lexer {
 
                         switch (alt17) {
                     	case 1 :
-                    	    // /Users/marko/hg/mview/src/mview/parser/MView.g:1015:10: '0' .. '9'
+                    	    // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1015:10: '0' .. '9'
                     	    {
                     	    matchRange('0','9'); 
 
@@ -1812,8 +1812,8 @@ public class MViewLexer extends Lexer {
     // $ANTLR start "Exponent"
     public final void mExponent() throws RecognitionException {
         try {
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1019:10: ( ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+ )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1019:12: ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1019:10: ( ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+ )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1019:12: ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+
             {
             if ( input.LA(1)=='E'||input.LA(1)=='e' ) {
                 input.consume();
@@ -1824,7 +1824,7 @@ public class MViewLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1019:22: ( '+' | '-' )?
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1019:22: ( '+' | '-' )?
             int alt19=2;
             int LA19_0 = input.LA(1);
 
@@ -1833,7 +1833,7 @@ public class MViewLexer extends Lexer {
             }
             switch (alt19) {
                 case 1 :
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:
+                    // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:
                     {
                     if ( input.LA(1)=='+'||input.LA(1)=='-' ) {
                         input.consume();
@@ -1850,7 +1850,7 @@ public class MViewLexer extends Lexer {
 
             }
 
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1019:33: ( '0' .. '9' )+
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1019:33: ( '0' .. '9' )+
             int cnt20=0;
             loop20:
             do {
@@ -1864,7 +1864,7 @@ public class MViewLexer extends Lexer {
 
                 switch (alt20) {
             	case 1 :
-            	    // /Users/marko/hg/mview/src/mview/parser/MView.g:1019:34: '0' .. '9'
+            	    // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1019:34: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -1892,8 +1892,8 @@ public class MViewLexer extends Lexer {
     // $ANTLR start "FloatTypeSuffix"
     public final void mFloatTypeSuffix() throws RecognitionException {
         try {
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1022:17: ( ( 'f' | 'F' | 'd' | 'D' ) )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1022:19: ( 'f' | 'F' | 'd' | 'D' )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1022:17: ( ( 'f' | 'F' | 'd' | 'D' ) )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1022:19: ( 'f' | 'F' | 'd' | 'D' )
             {
             if ( input.LA(1)=='D'||input.LA(1)=='F'||input.LA(1)=='d'||input.LA(1)=='f' ) {
                 input.consume();
@@ -1918,11 +1918,11 @@ public class MViewLexer extends Lexer {
         try {
             int _type = CharacterLiteral;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1025:5: ( '\\'' ( EscapeSequence | ~ ( '\\'' | '\\\\' ) ) '\\'' )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1025:9: '\\'' ( EscapeSequence | ~ ( '\\'' | '\\\\' ) ) '\\''
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1025:5: ( '\\'' ( EscapeSequence | ~ ( '\\'' | '\\\\' ) ) '\\'' )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1025:9: '\\'' ( EscapeSequence | ~ ( '\\'' | '\\\\' ) ) '\\''
             {
             match('\''); 
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1025:14: ( EscapeSequence | ~ ( '\\'' | '\\\\' ) )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1025:14: ( EscapeSequence | ~ ( '\\'' | '\\\\' ) )
             int alt21=2;
             int LA21_0 = input.LA(1);
 
@@ -1940,14 +1940,14 @@ public class MViewLexer extends Lexer {
             }
             switch (alt21) {
                 case 1 :
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1025:16: EscapeSequence
+                    // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1025:16: EscapeSequence
                     {
                     mEscapeSequence(); 
 
                     }
                     break;
                 case 2 :
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1025:33: ~ ( '\\'' | '\\\\' )
+                    // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1025:33: ~ ( '\\'' | '\\\\' )
                     {
                     if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                         input.consume();
@@ -1981,11 +1981,11 @@ public class MViewLexer extends Lexer {
         try {
             int _type = StringLiteral;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1029:5: ( '\"' ( EscapeSequence | ~ ( '\\\\' | '\"' ) )* '\"' )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1029:8: '\"' ( EscapeSequence | ~ ( '\\\\' | '\"' ) )* '\"'
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1029:5: ( '\"' ( EscapeSequence | ~ ( '\\\\' | '\"' ) )* '\"' )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1029:8: '\"' ( EscapeSequence | ~ ( '\\\\' | '\"' ) )* '\"'
             {
             match('\"'); 
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1029:12: ( EscapeSequence | ~ ( '\\\\' | '\"' ) )*
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1029:12: ( EscapeSequence | ~ ( '\\\\' | '\"' ) )*
             loop22:
             do {
                 int alt22=3;
@@ -2001,14 +2001,14 @@ public class MViewLexer extends Lexer {
 
                 switch (alt22) {
             	case 1 :
-            	    // /Users/marko/hg/mview/src/mview/parser/MView.g:1029:14: EscapeSequence
+            	    // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1029:14: EscapeSequence
             	    {
             	    mEscapeSequence(); 
 
             	    }
             	    break;
             	case 2 :
-            	    // /Users/marko/hg/mview/src/mview/parser/MView.g:1029:31: ~ ( '\\\\' | '\"' )
+            	    // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1029:31: ~ ( '\\\\' | '\"' )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -2043,7 +2043,7 @@ public class MViewLexer extends Lexer {
     // $ANTLR start "EscapeSequence"
     public final void mEscapeSequence() throws RecognitionException {
         try {
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1034:5: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | UnicodeEscape | OctalEscape )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1034:5: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | UnicodeEscape | OctalEscape )
             int alt23=3;
             int LA23_0 = input.LA(1);
 
@@ -2094,7 +2094,7 @@ public class MViewLexer extends Lexer {
             }
             switch (alt23) {
                 case 1 :
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1034:9: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
+                    // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1034:9: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
                     {
                     match('\\'); 
                     if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||input.LA(1)=='t' ) {
@@ -2110,14 +2110,14 @@ public class MViewLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1035:9: UnicodeEscape
+                    // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1035:9: UnicodeEscape
                     {
                     mUnicodeEscape(); 
 
                     }
                     break;
                 case 3 :
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1036:9: OctalEscape
+                    // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1036:9: OctalEscape
                     {
                     mOctalEscape(); 
 
@@ -2134,7 +2134,7 @@ public class MViewLexer extends Lexer {
     // $ANTLR start "OctalEscape"
     public final void mOctalEscape() throws RecognitionException {
         try {
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1041:5: ( '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1041:5: ( '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) )
             int alt24=3;
             int LA24_0 = input.LA(1);
 
@@ -2180,25 +2180,25 @@ public class MViewLexer extends Lexer {
             }
             switch (alt24) {
                 case 1 :
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1041:9: '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' )
+                    // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1041:9: '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' )
                     {
                     match('\\'); 
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1041:14: ( '0' .. '3' )
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1041:15: '0' .. '3'
+                    // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1041:14: ( '0' .. '3' )
+                    // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1041:15: '0' .. '3'
                     {
                     matchRange('0','3'); 
 
                     }
 
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1041:25: ( '0' .. '7' )
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1041:26: '0' .. '7'
+                    // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1041:25: ( '0' .. '7' )
+                    // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1041:26: '0' .. '7'
                     {
                     matchRange('0','7'); 
 
                     }
 
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1041:36: ( '0' .. '7' )
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1041:37: '0' .. '7'
+                    // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1041:36: ( '0' .. '7' )
+                    // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1041:37: '0' .. '7'
                     {
                     matchRange('0','7'); 
 
@@ -2208,18 +2208,18 @@ public class MViewLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1042:9: '\\\\' ( '0' .. '7' ) ( '0' .. '7' )
+                    // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1042:9: '\\\\' ( '0' .. '7' ) ( '0' .. '7' )
                     {
                     match('\\'); 
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1042:14: ( '0' .. '7' )
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1042:15: '0' .. '7'
+                    // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1042:14: ( '0' .. '7' )
+                    // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1042:15: '0' .. '7'
                     {
                     matchRange('0','7'); 
 
                     }
 
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1042:25: ( '0' .. '7' )
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1042:26: '0' .. '7'
+                    // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1042:25: ( '0' .. '7' )
+                    // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1042:26: '0' .. '7'
                     {
                     matchRange('0','7'); 
 
@@ -2229,11 +2229,11 @@ public class MViewLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1043:9: '\\\\' ( '0' .. '7' )
+                    // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1043:9: '\\\\' ( '0' .. '7' )
                     {
                     match('\\'); 
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1043:14: ( '0' .. '7' )
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1043:15: '0' .. '7'
+                    // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1043:14: ( '0' .. '7' )
+                    // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1043:15: '0' .. '7'
                     {
                     matchRange('0','7'); 
 
@@ -2253,8 +2253,8 @@ public class MViewLexer extends Lexer {
     // $ANTLR start "UnicodeEscape"
     public final void mUnicodeEscape() throws RecognitionException {
         try {
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1048:5: ( '\\\\' 'u' HexDigit HexDigit HexDigit HexDigit )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1048:9: '\\\\' 'u' HexDigit HexDigit HexDigit HexDigit
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1048:5: ( '\\\\' 'u' HexDigit HexDigit HexDigit HexDigit )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1048:9: '\\\\' 'u' HexDigit HexDigit HexDigit HexDigit
             {
             match('\\'); 
             match('u'); 
@@ -2276,11 +2276,11 @@ public class MViewLexer extends Lexer {
         try {
             int _type = Identifier;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1052:5: ( Letter ( Letter | JavaIDDigit )* )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1052:9: Letter ( Letter | JavaIDDigit )*
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1052:5: ( Letter ( Letter | JavaIDDigit )* )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1052:9: Letter ( Letter | JavaIDDigit )*
             {
             mLetter(); 
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1052:15: ( Letter | JavaIDDigit )*
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1052:15: ( Letter | JavaIDDigit )*
             loop25:
             do {
                 int alt25=2;
@@ -2293,7 +2293,7 @@ public class MViewLexer extends Lexer {
 
                 switch (alt25) {
             	case 1 :
-            	    // /Users/marko/hg/mview/src/mview/parser/MView.g:
+            	    // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:
             	    {
             	    if ( input.LA(1)=='$'||input.LA(1)=='*'||(input.LA(1)>='0' && input.LA(1)<='9')||(input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z')||(input.LA(1)>='\u00C0' && input.LA(1)<='\u00D6')||(input.LA(1)>='\u00D8' && input.LA(1)<='\u00F6')||(input.LA(1)>='\u00F8' && input.LA(1)<='\u1FFF')||(input.LA(1)>='\u3040' && input.LA(1)<='\u318F')||(input.LA(1)>='\u3300' && input.LA(1)<='\u337F')||(input.LA(1)>='\u3400' && input.LA(1)<='\u3D2D')||(input.LA(1)>='\u4E00' && input.LA(1)<='\u9FFF')||(input.LA(1)>='\uF900' && input.LA(1)<='\uFAFF') ) {
             	        input.consume();
@@ -2327,8 +2327,8 @@ public class MViewLexer extends Lexer {
     // $ANTLR start "Letter"
     public final void mLetter() throws RecognitionException {
         try {
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1060:5: ( '\\u0024' | '\\u0041' .. '\\u005a' | '\\u005f' | '\\u0061' .. '\\u007a' | '\\u00c0' .. '\\u00d6' | '\\u00d8' .. '\\u00f6' | '\\u00f8' .. '\\u00ff' | '\\u0100' .. '\\u1fff' | '\\u3040' .. '\\u318f' | '\\u3300' .. '\\u337f' | '\\u3400' .. '\\u3d2d' | '\\u4e00' .. '\\u9fff' | '\\uf900' .. '\\ufaff' | '*' )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1060:5: ( '\\u0024' | '\\u0041' .. '\\u005a' | '\\u005f' | '\\u0061' .. '\\u007a' | '\\u00c0' .. '\\u00d6' | '\\u00d8' .. '\\u00f6' | '\\u00f8' .. '\\u00ff' | '\\u0100' .. '\\u1fff' | '\\u3040' .. '\\u318f' | '\\u3300' .. '\\u337f' | '\\u3400' .. '\\u3d2d' | '\\u4e00' .. '\\u9fff' | '\\uf900' .. '\\ufaff' | '*' )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:
             {
             if ( input.LA(1)=='$'||input.LA(1)=='*'||(input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z')||(input.LA(1)>='\u00C0' && input.LA(1)<='\u00D6')||(input.LA(1)>='\u00D8' && input.LA(1)<='\u00F6')||(input.LA(1)>='\u00F8' && input.LA(1)<='\u1FFF')||(input.LA(1)>='\u3040' && input.LA(1)<='\u318F')||(input.LA(1)>='\u3300' && input.LA(1)<='\u337F')||(input.LA(1)>='\u3400' && input.LA(1)<='\u3D2D')||(input.LA(1)>='\u4E00' && input.LA(1)<='\u9FFF')||(input.LA(1)>='\uF900' && input.LA(1)<='\uFAFF') ) {
                 input.consume();
@@ -2351,8 +2351,8 @@ public class MViewLexer extends Lexer {
     // $ANTLR start "JavaIDDigit"
     public final void mJavaIDDigit() throws RecognitionException {
         try {
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1078:5: ( '\\u0030' .. '\\u0039' | '\\u0660' .. '\\u0669' | '\\u06f0' .. '\\u06f9' | '\\u0966' .. '\\u096f' | '\\u09e6' .. '\\u09ef' | '\\u0a66' .. '\\u0a6f' | '\\u0ae6' .. '\\u0aef' | '\\u0b66' .. '\\u0b6f' | '\\u0be7' .. '\\u0bef' | '\\u0c66' .. '\\u0c6f' | '\\u0ce6' .. '\\u0cef' | '\\u0d66' .. '\\u0d6f' | '\\u0e50' .. '\\u0e59' | '\\u0ed0' .. '\\u0ed9' | '\\u1040' .. '\\u1049' )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1078:5: ( '\\u0030' .. '\\u0039' | '\\u0660' .. '\\u0669' | '\\u06f0' .. '\\u06f9' | '\\u0966' .. '\\u096f' | '\\u09e6' .. '\\u09ef' | '\\u0a66' .. '\\u0a6f' | '\\u0ae6' .. '\\u0aef' | '\\u0b66' .. '\\u0b6f' | '\\u0be7' .. '\\u0bef' | '\\u0c66' .. '\\u0c6f' | '\\u0ce6' .. '\\u0cef' | '\\u0d66' .. '\\u0d6f' | '\\u0e50' .. '\\u0e59' | '\\u0ed0' .. '\\u0ed9' | '\\u1040' .. '\\u1049' )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:
             {
             if ( (input.LA(1)>='0' && input.LA(1)<='9')||(input.LA(1)>='\u0660' && input.LA(1)<='\u0669')||(input.LA(1)>='\u06F0' && input.LA(1)<='\u06F9')||(input.LA(1)>='\u0966' && input.LA(1)<='\u096F')||(input.LA(1)>='\u09E6' && input.LA(1)<='\u09EF')||(input.LA(1)>='\u0A66' && input.LA(1)<='\u0A6F')||(input.LA(1)>='\u0AE6' && input.LA(1)<='\u0AEF')||(input.LA(1)>='\u0B66' && input.LA(1)<='\u0B6F')||(input.LA(1)>='\u0BE7' && input.LA(1)<='\u0BEF')||(input.LA(1)>='\u0C66' && input.LA(1)<='\u0C6F')||(input.LA(1)>='\u0CE6' && input.LA(1)<='\u0CEF')||(input.LA(1)>='\u0D66' && input.LA(1)<='\u0D6F')||(input.LA(1)>='\u0E50' && input.LA(1)<='\u0E59')||(input.LA(1)>='\u0ED0' && input.LA(1)<='\u0ED9')||(input.LA(1)>='\u1040' && input.LA(1)<='\u1049') ) {
                 input.consume();
@@ -2377,8 +2377,8 @@ public class MViewLexer extends Lexer {
         try {
             int _type = WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1095:5: ( ( ' ' | '\\r' | '\\t' | '\\u000C' | '\\n' ) )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1095:8: ( ' ' | '\\r' | '\\t' | '\\u000C' | '\\n' )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1095:5: ( ( ' ' | '\\r' | '\\t' | '\\u000C' | '\\n' ) )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1095:8: ( ' ' | '\\r' | '\\t' | '\\u000C' | '\\n' )
             {
             if ( (input.LA(1)>='\t' && input.LA(1)<='\n')||(input.LA(1)>='\f' && input.LA(1)<='\r')||input.LA(1)==' ' ) {
                 input.consume();
@@ -2406,12 +2406,12 @@ public class MViewLexer extends Lexer {
         try {
             int _type = COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1099:5: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1099:9: '/*' ( options {greedy=false; } : . )* '*/'
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1099:5: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1099:9: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1099:14: ( options {greedy=false; } : . )*
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1099:14: ( options {greedy=false; } : . )*
             loop26:
             do {
                 int alt26=2;
@@ -2436,7 +2436,7 @@ public class MViewLexer extends Lexer {
 
                 switch (alt26) {
             	case 1 :
-            	    // /Users/marko/hg/mview/src/mview/parser/MView.g:1099:42: .
+            	    // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1099:42: .
             	    {
             	    matchAny(); 
 
@@ -2467,12 +2467,12 @@ public class MViewLexer extends Lexer {
         try {
             int _type = LINE_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1103:5: ( '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1103:7: '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n'
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1103:5: ( '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' )
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1103:7: '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n'
             {
             match("//"); 
 
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1103:12: (~ ( '\\n' | '\\r' ) )*
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1103:12: (~ ( '\\n' | '\\r' ) )*
             loop27:
             do {
                 int alt27=2;
@@ -2485,7 +2485,7 @@ public class MViewLexer extends Lexer {
 
                 switch (alt27) {
             	case 1 :
-            	    // /Users/marko/hg/mview/src/mview/parser/MView.g:1103:12: ~ ( '\\n' | '\\r' )
+            	    // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1103:12: ~ ( '\\n' | '\\r' )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -2505,7 +2505,7 @@ public class MViewLexer extends Lexer {
                 }
             } while (true);
 
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1103:26: ( '\\r' )?
+            // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1103:26: ( '\\r' )?
             int alt28=2;
             int LA28_0 = input.LA(1);
 
@@ -2514,7 +2514,7 @@ public class MViewLexer extends Lexer {
             }
             switch (alt28) {
                 case 1 :
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1103:26: '\\r'
+                    // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1103:26: '\\r'
                     {
                     match('\r'); 
 
@@ -2537,460 +2537,460 @@ public class MViewLexer extends Lexer {
     // $ANTLR end "LINE_COMMENT"
 
     public void mTokens() throws RecognitionException {
-        // /Users/marko/hg/mview/src/mview/parser/MView.g:1:8: ( T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | T__73 | T__74 | T__75 | T__76 | T__77 | HexLiteral | DecimalLiteral | OctalLiteral | FloatingPointLiteral | CharacterLiteral | StringLiteral | Identifier | WS | COMMENT | LINE_COMMENT )
+        // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1:8: ( T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | T__73 | T__74 | T__75 | T__76 | T__77 | HexLiteral | DecimalLiteral | OctalLiteral | FloatingPointLiteral | CharacterLiteral | StringLiteral | Identifier | WS | COMMENT | LINE_COMMENT )
         int alt29=65;
         alt29 = dfa29.predict(input);
         switch (alt29) {
             case 1 :
-                // /Users/marko/hg/mview/src/mview/parser/MView.g:1:10: T__23
+                // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1:10: T__23
                 {
                 mT__23(); 
 
                 }
                 break;
             case 2 :
-                // /Users/marko/hg/mview/src/mview/parser/MView.g:1:16: T__24
+                // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1:16: T__24
                 {
                 mT__24(); 
 
                 }
                 break;
             case 3 :
-                // /Users/marko/hg/mview/src/mview/parser/MView.g:1:22: T__25
+                // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1:22: T__25
                 {
                 mT__25(); 
 
                 }
                 break;
             case 4 :
-                // /Users/marko/hg/mview/src/mview/parser/MView.g:1:28: T__26
+                // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1:28: T__26
                 {
                 mT__26(); 
 
                 }
                 break;
             case 5 :
-                // /Users/marko/hg/mview/src/mview/parser/MView.g:1:34: T__27
+                // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1:34: T__27
                 {
                 mT__27(); 
 
                 }
                 break;
             case 6 :
-                // /Users/marko/hg/mview/src/mview/parser/MView.g:1:40: T__28
+                // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1:40: T__28
                 {
                 mT__28(); 
 
                 }
                 break;
             case 7 :
-                // /Users/marko/hg/mview/src/mview/parser/MView.g:1:46: T__29
+                // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1:46: T__29
                 {
                 mT__29(); 
 
                 }
                 break;
             case 8 :
-                // /Users/marko/hg/mview/src/mview/parser/MView.g:1:52: T__30
+                // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1:52: T__30
                 {
                 mT__30(); 
 
                 }
                 break;
             case 9 :
-                // /Users/marko/hg/mview/src/mview/parser/MView.g:1:58: T__31
+                // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1:58: T__31
                 {
                 mT__31(); 
 
                 }
                 break;
             case 10 :
-                // /Users/marko/hg/mview/src/mview/parser/MView.g:1:64: T__32
+                // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1:64: T__32
                 {
                 mT__32(); 
 
                 }
                 break;
             case 11 :
-                // /Users/marko/hg/mview/src/mview/parser/MView.g:1:70: T__33
+                // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1:70: T__33
                 {
                 mT__33(); 
 
                 }
                 break;
             case 12 :
-                // /Users/marko/hg/mview/src/mview/parser/MView.g:1:76: T__34
+                // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1:76: T__34
                 {
                 mT__34(); 
 
                 }
                 break;
             case 13 :
-                // /Users/marko/hg/mview/src/mview/parser/MView.g:1:82: T__35
+                // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1:82: T__35
                 {
                 mT__35(); 
 
                 }
                 break;
             case 14 :
-                // /Users/marko/hg/mview/src/mview/parser/MView.g:1:88: T__36
+                // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1:88: T__36
                 {
                 mT__36(); 
 
                 }
                 break;
             case 15 :
-                // /Users/marko/hg/mview/src/mview/parser/MView.g:1:94: T__37
+                // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1:94: T__37
                 {
                 mT__37(); 
 
                 }
                 break;
             case 16 :
-                // /Users/marko/hg/mview/src/mview/parser/MView.g:1:100: T__38
+                // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1:100: T__38
                 {
                 mT__38(); 
 
                 }
                 break;
             case 17 :
-                // /Users/marko/hg/mview/src/mview/parser/MView.g:1:106: T__39
+                // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1:106: T__39
                 {
                 mT__39(); 
 
                 }
                 break;
             case 18 :
-                // /Users/marko/hg/mview/src/mview/parser/MView.g:1:112: T__40
+                // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1:112: T__40
                 {
                 mT__40(); 
 
                 }
                 break;
             case 19 :
-                // /Users/marko/hg/mview/src/mview/parser/MView.g:1:118: T__41
+                // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1:118: T__41
                 {
                 mT__41(); 
 
                 }
                 break;
             case 20 :
-                // /Users/marko/hg/mview/src/mview/parser/MView.g:1:124: T__42
+                // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1:124: T__42
                 {
                 mT__42(); 
 
                 }
                 break;
             case 21 :
-                // /Users/marko/hg/mview/src/mview/parser/MView.g:1:130: T__43
+                // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1:130: T__43
                 {
                 mT__43(); 
 
                 }
                 break;
             case 22 :
-                // /Users/marko/hg/mview/src/mview/parser/MView.g:1:136: T__44
+                // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1:136: T__44
                 {
                 mT__44(); 
 
                 }
                 break;
             case 23 :
-                // /Users/marko/hg/mview/src/mview/parser/MView.g:1:142: T__45
+                // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1:142: T__45
                 {
                 mT__45(); 
 
                 }
                 break;
             case 24 :
-                // /Users/marko/hg/mview/src/mview/parser/MView.g:1:148: T__46
+                // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1:148: T__46
                 {
                 mT__46(); 
 
                 }
                 break;
             case 25 :
-                // /Users/marko/hg/mview/src/mview/parser/MView.g:1:154: T__47
+                // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1:154: T__47
                 {
                 mT__47(); 
 
                 }
                 break;
             case 26 :
-                // /Users/marko/hg/mview/src/mview/parser/MView.g:1:160: T__48
+                // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1:160: T__48
                 {
                 mT__48(); 
 
                 }
                 break;
             case 27 :
-                // /Users/marko/hg/mview/src/mview/parser/MView.g:1:166: T__49
+                // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1:166: T__49
                 {
                 mT__49(); 
 
                 }
                 break;
             case 28 :
-                // /Users/marko/hg/mview/src/mview/parser/MView.g:1:172: T__50
+                // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1:172: T__50
                 {
                 mT__50(); 
 
                 }
                 break;
             case 29 :
-                // /Users/marko/hg/mview/src/mview/parser/MView.g:1:178: T__51
+                // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1:178: T__51
                 {
                 mT__51(); 
 
                 }
                 break;
             case 30 :
-                // /Users/marko/hg/mview/src/mview/parser/MView.g:1:184: T__52
+                // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1:184: T__52
                 {
                 mT__52(); 
 
                 }
                 break;
             case 31 :
-                // /Users/marko/hg/mview/src/mview/parser/MView.g:1:190: T__53
+                // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1:190: T__53
                 {
                 mT__53(); 
 
                 }
                 break;
             case 32 :
-                // /Users/marko/hg/mview/src/mview/parser/MView.g:1:196: T__54
+                // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1:196: T__54
                 {
                 mT__54(); 
 
                 }
                 break;
             case 33 :
-                // /Users/marko/hg/mview/src/mview/parser/MView.g:1:202: T__55
+                // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1:202: T__55
                 {
                 mT__55(); 
 
                 }
                 break;
             case 34 :
-                // /Users/marko/hg/mview/src/mview/parser/MView.g:1:208: T__56
+                // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1:208: T__56
                 {
                 mT__56(); 
 
                 }
                 break;
             case 35 :
-                // /Users/marko/hg/mview/src/mview/parser/MView.g:1:214: T__57
+                // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1:214: T__57
                 {
                 mT__57(); 
 
                 }
                 break;
             case 36 :
-                // /Users/marko/hg/mview/src/mview/parser/MView.g:1:220: T__58
+                // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1:220: T__58
                 {
                 mT__58(); 
 
                 }
                 break;
             case 37 :
-                // /Users/marko/hg/mview/src/mview/parser/MView.g:1:226: T__59
+                // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1:226: T__59
                 {
                 mT__59(); 
 
                 }
                 break;
             case 38 :
-                // /Users/marko/hg/mview/src/mview/parser/MView.g:1:232: T__60
+                // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1:232: T__60
                 {
                 mT__60(); 
 
                 }
                 break;
             case 39 :
-                // /Users/marko/hg/mview/src/mview/parser/MView.g:1:238: T__61
+                // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1:238: T__61
                 {
                 mT__61(); 
 
                 }
                 break;
             case 40 :
-                // /Users/marko/hg/mview/src/mview/parser/MView.g:1:244: T__62
+                // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1:244: T__62
                 {
                 mT__62(); 
 
                 }
                 break;
             case 41 :
-                // /Users/marko/hg/mview/src/mview/parser/MView.g:1:250: T__63
+                // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1:250: T__63
                 {
                 mT__63(); 
 
                 }
                 break;
             case 42 :
-                // /Users/marko/hg/mview/src/mview/parser/MView.g:1:256: T__64
+                // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1:256: T__64
                 {
                 mT__64(); 
 
                 }
                 break;
             case 43 :
-                // /Users/marko/hg/mview/src/mview/parser/MView.g:1:262: T__65
+                // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1:262: T__65
                 {
                 mT__65(); 
 
                 }
                 break;
             case 44 :
-                // /Users/marko/hg/mview/src/mview/parser/MView.g:1:268: T__66
+                // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1:268: T__66
                 {
                 mT__66(); 
 
                 }
                 break;
             case 45 :
-                // /Users/marko/hg/mview/src/mview/parser/MView.g:1:274: T__67
+                // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1:274: T__67
                 {
                 mT__67(); 
 
                 }
                 break;
             case 46 :
-                // /Users/marko/hg/mview/src/mview/parser/MView.g:1:280: T__68
+                // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1:280: T__68
                 {
                 mT__68(); 
 
                 }
                 break;
             case 47 :
-                // /Users/marko/hg/mview/src/mview/parser/MView.g:1:286: T__69
+                // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1:286: T__69
                 {
                 mT__69(); 
 
                 }
                 break;
             case 48 :
-                // /Users/marko/hg/mview/src/mview/parser/MView.g:1:292: T__70
+                // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1:292: T__70
                 {
                 mT__70(); 
 
                 }
                 break;
             case 49 :
-                // /Users/marko/hg/mview/src/mview/parser/MView.g:1:298: T__71
+                // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1:298: T__71
                 {
                 mT__71(); 
 
                 }
                 break;
             case 50 :
-                // /Users/marko/hg/mview/src/mview/parser/MView.g:1:304: T__72
+                // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1:304: T__72
                 {
                 mT__72(); 
 
                 }
                 break;
             case 51 :
-                // /Users/marko/hg/mview/src/mview/parser/MView.g:1:310: T__73
+                // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1:310: T__73
                 {
                 mT__73(); 
 
                 }
                 break;
             case 52 :
-                // /Users/marko/hg/mview/src/mview/parser/MView.g:1:316: T__74
+                // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1:316: T__74
                 {
                 mT__74(); 
 
                 }
                 break;
             case 53 :
-                // /Users/marko/hg/mview/src/mview/parser/MView.g:1:322: T__75
+                // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1:322: T__75
                 {
                 mT__75(); 
 
                 }
                 break;
             case 54 :
-                // /Users/marko/hg/mview/src/mview/parser/MView.g:1:328: T__76
+                // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1:328: T__76
                 {
                 mT__76(); 
 
                 }
                 break;
             case 55 :
-                // /Users/marko/hg/mview/src/mview/parser/MView.g:1:334: T__77
+                // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1:334: T__77
                 {
                 mT__77(); 
 
                 }
                 break;
             case 56 :
-                // /Users/marko/hg/mview/src/mview/parser/MView.g:1:340: HexLiteral
+                // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1:340: HexLiteral
                 {
                 mHexLiteral(); 
 
                 }
                 break;
             case 57 :
-                // /Users/marko/hg/mview/src/mview/parser/MView.g:1:351: DecimalLiteral
+                // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1:351: DecimalLiteral
                 {
                 mDecimalLiteral(); 
 
                 }
                 break;
             case 58 :
-                // /Users/marko/hg/mview/src/mview/parser/MView.g:1:366: OctalLiteral
+                // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1:366: OctalLiteral
                 {
                 mOctalLiteral(); 
 
                 }
                 break;
             case 59 :
-                // /Users/marko/hg/mview/src/mview/parser/MView.g:1:379: FloatingPointLiteral
+                // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1:379: FloatingPointLiteral
                 {
                 mFloatingPointLiteral(); 
 
                 }
                 break;
             case 60 :
-                // /Users/marko/hg/mview/src/mview/parser/MView.g:1:400: CharacterLiteral
+                // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1:400: CharacterLiteral
                 {
                 mCharacterLiteral(); 
 
                 }
                 break;
             case 61 :
-                // /Users/marko/hg/mview/src/mview/parser/MView.g:1:417: StringLiteral
+                // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1:417: StringLiteral
                 {
                 mStringLiteral(); 
 
                 }
                 break;
             case 62 :
-                // /Users/marko/hg/mview/src/mview/parser/MView.g:1:431: Identifier
+                // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1:431: Identifier
                 {
                 mIdentifier(); 
 
                 }
                 break;
             case 63 :
-                // /Users/marko/hg/mview/src/mview/parser/MView.g:1:442: WS
+                // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1:442: WS
                 {
                 mWS(); 
 
                 }
                 break;
             case 64 :
-                // /Users/marko/hg/mview/src/mview/parser/MView.g:1:445: COMMENT
+                // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1:445: COMMENT
                 {
                 mCOMMENT(); 
 
                 }
                 break;
             case 65 :
-                // /Users/marko/hg/mview/src/mview/parser/MView.g:1:453: LINE_COMMENT
+                // /Users/steveno/repos/PhD/tooling/chameleon/mview/src/mview/parser/MView.g:1:453: LINE_COMMENT
                 {
                 mLINE_COMMENT(); 
 
