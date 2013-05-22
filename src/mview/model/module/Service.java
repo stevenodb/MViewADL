@@ -19,19 +19,19 @@ package mview.model.module;
 
 import java.util.List;
 
-import chameleon.core.declaration.Signature;
-import chameleon.core.declaration.SimpleNameSignature;
-import chameleon.core.reference.SimpleReference;
-import chameleon.core.validation.BasicProblem;
-import chameleon.core.validation.Valid;
-import chameleon.core.validation.VerificationResult;
-import chameleon.oo.method.Method;
-import chameleon.oo.method.SimpleNameMethodHeader;
-import chameleon.oo.type.BasicTypeReference;
-import chameleon.oo.variable.FormalParameter;
-import chameleon.support.member.simplename.method.NormalMethod;
-import chameleon.util.association.Multi;
-import chameleon.util.association.Single;
+import be.kuleuven.cs.distrinet.chameleon.support.member.simplename.method.NormalMethod;
+import be.kuleuven.cs.distrinet.chameleon.util.association.Multi;
+import be.kuleuven.cs.distrinet.chameleon.util.association.Single;
+import be.kuleuven.cs.distrinet.chameleon.core.declaration.Signature;
+import be.kuleuven.cs.distrinet.chameleon.core.declaration.SimpleNameSignature;
+import be.kuleuven.cs.distrinet.chameleon.core.reference.SimpleReference;
+import be.kuleuven.cs.distrinet.chameleon.core.validation.BasicProblem;
+import be.kuleuven.cs.distrinet.chameleon.core.validation.Valid;
+import be.kuleuven.cs.distrinet.chameleon.core.validation.Verification;
+import be.kuleuven.cs.distrinet.chameleon.oo.method.Method;
+import be.kuleuven.cs.distrinet.chameleon.oo.method.SimpleNameMethodHeader;
+import be.kuleuven.cs.distrinet.chameleon.oo.type.BasicTypeReference;
+import be.kuleuven.cs.distrinet.chameleon.oo.variable.FormalParameter;
 
 public class Service extends JoinPointElement {
 
@@ -238,8 +238,8 @@ public class Service extends JoinPointElement {
 	 * @see chameleon.core.element.ElementImpl#verifySelf()
 	 */
 	@Override
-	public VerificationResult verifySelf() {
-		VerificationResult result = Valid.create();
+	public Verification verifySelf() {
+		Verification result = Valid.create();
 
 		if (!(this.method() != null)) {
 			result = result.and(new BasicProblem(this,

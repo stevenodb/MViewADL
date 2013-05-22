@@ -26,19 +26,17 @@ import mview.model.module.Service;
 import mview.model.refinement.AbstractElement;
 import mview.model.refinement.MViewMember;
 import mview.model.refinement.RefinementContext;
-
-import org.rejuse.property.Property;
-
-import chameleon.core.declaration.Declaration;
-import chameleon.core.lookup.LookupException;
-import chameleon.core.modifier.ElementWithModifiersImpl;
-import chameleon.core.modifier.Modifier;
-import chameleon.core.reference.SimpleReference;
-import chameleon.core.validation.BasicProblem;
-import chameleon.core.validation.Valid;
-import chameleon.core.validation.VerificationResult;
-import chameleon.exception.ModelException;
-import chameleon.util.association.Single;
+import be.kuleuven.cs.distrinet.chameleon.core.declaration.Declaration;
+import be.kuleuven.cs.distrinet.chameleon.core.lookup.LookupException;
+import be.kuleuven.cs.distrinet.chameleon.core.modifier.ElementWithModifiersImpl;
+import be.kuleuven.cs.distrinet.chameleon.core.modifier.Modifier;
+import be.kuleuven.cs.distrinet.chameleon.core.reference.SimpleReference;
+import be.kuleuven.cs.distrinet.chameleon.core.validation.BasicProblem;
+import be.kuleuven.cs.distrinet.chameleon.core.validation.Valid;
+import be.kuleuven.cs.distrinet.chameleon.core.validation.Verification;
+import be.kuleuven.cs.distrinet.chameleon.exception.ModelException;
+import be.kuleuven.cs.distrinet.chameleon.util.association.Single;
+import be.kuleuven.cs.distrinet.rejuse.property.Property;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
@@ -120,8 +118,8 @@ public class Advice extends ElementWithModifiersImpl implements MViewMember, Abs
 	 * @see chameleon.core.element.ElementImpl#verifySelf()
 	 */
 	@Override
-	public VerificationResult verifySelf() {
-		VerificationResult result = Valid.create();
+	public Verification verifySelf() {
+		Verification result = Valid.create();
 		
 //		int n = 0;
 //		try {

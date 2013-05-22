@@ -4,14 +4,14 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
+import be.kuleuven.cs.distrinet.chameleon.exception.ModelException;
+import be.kuleuven.cs.distrinet.chameleon.plugin.ViewPluginImpl;
+import be.kuleuven.cs.distrinet.chameleon.plugin.build.BuildException;
+import be.kuleuven.cs.distrinet.chameleon.plugin.build.BuildProgressHelper;
+import be.kuleuven.cs.distrinet.chameleon.plugin.build.Builder;
 import mview.output.jboss.JBossWriter;
-import chameleon.core.document.Document;
-import chameleon.core.element.Element;
-import chameleon.exception.ModelException;
-import chameleon.plugin.ViewPluginImpl;
-import chameleon.plugin.build.BuildException;
-import chameleon.plugin.build.BuildProgressHelper;
-import chameleon.plugin.build.Builder;
+import be.kuleuven.cs.distrinet.chameleon.core.document.Document;
+import be.kuleuven.cs.distrinet.chameleon.core.element.Element;
 
 public class MViewBuilder extends ViewPluginImpl implements Builder {
 	

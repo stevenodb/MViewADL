@@ -18,7 +18,7 @@
  */
 package mview.output.jboss.declaration;
 
-import chameleon.core.declaration.Declaration;
+import be.kuleuven.cs.distrinet.chameleon.core.declaration.Declaration;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>

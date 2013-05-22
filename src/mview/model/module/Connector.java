@@ -19,13 +19,13 @@ package mview.model.module;
 
 import java.util.List;
 
+import be.kuleuven.cs.distrinet.chameleon.util.association.Multi;
 import mview.model.composition.AOComposition;
 import mview.model.refinement.MViewMember;
-import chameleon.core.declaration.SimpleNameSignature;
-import chameleon.core.element.Element;
-import chameleon.core.validation.BasicProblem;
-import chameleon.core.validation.VerificationResult;
-import chameleon.util.association.Multi;
+import be.kuleuven.cs.distrinet.chameleon.core.declaration.SimpleNameSignature;
+import be.kuleuven.cs.distrinet.chameleon.core.element.Element;
+import be.kuleuven.cs.distrinet.chameleon.core.validation.BasicProblem;
+import be.kuleuven.cs.distrinet.chameleon.core.validation.Verification;
 
 public class Connector extends Module {
 	
@@ -83,8 +83,8 @@ public class Connector extends Module {
 	}
 
 	@Override
-	public VerificationResult verifySelf() {
-		VerificationResult result = super.verifySelf();
+	public Verification verifySelf() {
+		Verification result = super.verifySelf();
 		
 		if ( ! (compositions() != null) ) {
 			result = result.and(new BasicProblem(this, 

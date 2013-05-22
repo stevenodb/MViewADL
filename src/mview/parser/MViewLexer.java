@@ -1,4 +1,4 @@
-// $ANTLR 3.3 Nov 30, 2010 12:45:30 /Users/marko/hg/mview/src/mview/parser/MView.g 2013-03-05 15:18:36
+// $ANTLR 3.3 Nov 30, 2010 12:45:30 /Users/marko/hg/mview/src/mview/parser/MView.g 2013-03-30 13:03:08
 
 package mview.parser;
 
@@ -1243,8 +1243,8 @@ public class MViewLexer extends Lexer {
         try {
             int _type = HexLiteral;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:999:12: ( '0' ( 'x' | 'X' ) ( HexDigit )+ ( IntegerTypeSuffix )? )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:999:14: '0' ( 'x' | 'X' ) ( HexDigit )+ ( IntegerTypeSuffix )?
+            // /Users/marko/hg/mview/src/mview/parser/MView.g:998:12: ( '0' ( 'x' | 'X' ) ( HexDigit )+ ( IntegerTypeSuffix )? )
+            // /Users/marko/hg/mview/src/mview/parser/MView.g:998:14: '0' ( 'x' | 'X' ) ( HexDigit )+ ( IntegerTypeSuffix )?
             {
             match('0'); 
             if ( input.LA(1)=='X'||input.LA(1)=='x' ) {
@@ -1256,7 +1256,7 @@ public class MViewLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:999:28: ( HexDigit )+
+            // /Users/marko/hg/mview/src/mview/parser/MView.g:998:28: ( HexDigit )+
             int cnt1=0;
             loop1:
             do {
@@ -1270,7 +1270,7 @@ public class MViewLexer extends Lexer {
 
                 switch (alt1) {
             	case 1 :
-            	    // /Users/marko/hg/mview/src/mview/parser/MView.g:999:28: HexDigit
+            	    // /Users/marko/hg/mview/src/mview/parser/MView.g:998:28: HexDigit
             	    {
             	    mHexDigit(); 
 
@@ -1286,7 +1286,7 @@ public class MViewLexer extends Lexer {
                 cnt1++;
             } while (true);
 
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:999:38: ( IntegerTypeSuffix )?
+            // /Users/marko/hg/mview/src/mview/parser/MView.g:998:38: ( IntegerTypeSuffix )?
             int alt2=2;
             int LA2_0 = input.LA(1);
 
@@ -1295,7 +1295,7 @@ public class MViewLexer extends Lexer {
             }
             switch (alt2) {
                 case 1 :
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:999:38: IntegerTypeSuffix
+                    // /Users/marko/hg/mview/src/mview/parser/MView.g:998:38: IntegerTypeSuffix
                     {
                     mIntegerTypeSuffix(); 
 
@@ -1320,10 +1320,10 @@ public class MViewLexer extends Lexer {
         try {
             int _type = DecimalLiteral;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1001:16: ( ( '0' | '1' .. '9' ( '0' .. '9' )* ) ( IntegerTypeSuffix )? )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1001:18: ( '0' | '1' .. '9' ( '0' .. '9' )* ) ( IntegerTypeSuffix )?
+            // /Users/marko/hg/mview/src/mview/parser/MView.g:1000:16: ( ( '0' | '1' .. '9' ( '0' .. '9' )* ) ( IntegerTypeSuffix )? )
+            // /Users/marko/hg/mview/src/mview/parser/MView.g:1000:18: ( '0' | '1' .. '9' ( '0' .. '9' )* ) ( IntegerTypeSuffix )?
             {
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1001:18: ( '0' | '1' .. '9' ( '0' .. '9' )* )
+            // /Users/marko/hg/mview/src/mview/parser/MView.g:1000:18: ( '0' | '1' .. '9' ( '0' .. '9' )* )
             int alt4=2;
             int LA4_0 = input.LA(1);
 
@@ -1341,17 +1341,17 @@ public class MViewLexer extends Lexer {
             }
             switch (alt4) {
                 case 1 :
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1001:19: '0'
+                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1000:19: '0'
                     {
                     match('0'); 
 
                     }
                     break;
                 case 2 :
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1001:25: '1' .. '9' ( '0' .. '9' )*
+                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1000:25: '1' .. '9' ( '0' .. '9' )*
                     {
                     matchRange('1','9'); 
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1001:34: ( '0' .. '9' )*
+                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1000:34: ( '0' .. '9' )*
                     loop3:
                     do {
                         int alt3=2;
@@ -1364,7 +1364,7 @@ public class MViewLexer extends Lexer {
 
                         switch (alt3) {
                     	case 1 :
-                    	    // /Users/marko/hg/mview/src/mview/parser/MView.g:1001:34: '0' .. '9'
+                    	    // /Users/marko/hg/mview/src/mview/parser/MView.g:1000:34: '0' .. '9'
                     	    {
                     	    matchRange('0','9'); 
 
@@ -1382,7 +1382,7 @@ public class MViewLexer extends Lexer {
 
             }
 
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1001:45: ( IntegerTypeSuffix )?
+            // /Users/marko/hg/mview/src/mview/parser/MView.g:1000:45: ( IntegerTypeSuffix )?
             int alt5=2;
             int LA5_0 = input.LA(1);
 
@@ -1391,7 +1391,7 @@ public class MViewLexer extends Lexer {
             }
             switch (alt5) {
                 case 1 :
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1001:45: IntegerTypeSuffix
+                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1000:45: IntegerTypeSuffix
                     {
                     mIntegerTypeSuffix(); 
 
@@ -1416,11 +1416,11 @@ public class MViewLexer extends Lexer {
         try {
             int _type = OctalLiteral;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1003:14: ( '0' ( '0' .. '7' )+ ( IntegerTypeSuffix )? )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1003:16: '0' ( '0' .. '7' )+ ( IntegerTypeSuffix )?
+            // /Users/marko/hg/mview/src/mview/parser/MView.g:1002:14: ( '0' ( '0' .. '7' )+ ( IntegerTypeSuffix )? )
+            // /Users/marko/hg/mview/src/mview/parser/MView.g:1002:16: '0' ( '0' .. '7' )+ ( IntegerTypeSuffix )?
             {
             match('0'); 
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1003:20: ( '0' .. '7' )+
+            // /Users/marko/hg/mview/src/mview/parser/MView.g:1002:20: ( '0' .. '7' )+
             int cnt6=0;
             loop6:
             do {
@@ -1434,7 +1434,7 @@ public class MViewLexer extends Lexer {
 
                 switch (alt6) {
             	case 1 :
-            	    // /Users/marko/hg/mview/src/mview/parser/MView.g:1003:21: '0' .. '7'
+            	    // /Users/marko/hg/mview/src/mview/parser/MView.g:1002:21: '0' .. '7'
             	    {
             	    matchRange('0','7'); 
 
@@ -1450,7 +1450,7 @@ public class MViewLexer extends Lexer {
                 cnt6++;
             } while (true);
 
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1003:32: ( IntegerTypeSuffix )?
+            // /Users/marko/hg/mview/src/mview/parser/MView.g:1002:32: ( IntegerTypeSuffix )?
             int alt7=2;
             int LA7_0 = input.LA(1);
 
@@ -1459,7 +1459,7 @@ public class MViewLexer extends Lexer {
             }
             switch (alt7) {
                 case 1 :
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1003:32: IntegerTypeSuffix
+                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1002:32: IntegerTypeSuffix
                     {
                     mIntegerTypeSuffix(); 
 
@@ -1482,8 +1482,8 @@ public class MViewLexer extends Lexer {
     // $ANTLR start "HexDigit"
     public final void mHexDigit() throws RecognitionException {
         try {
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1006:10: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1006:12: ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )
+            // /Users/marko/hg/mview/src/mview/parser/MView.g:1005:10: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )
+            // /Users/marko/hg/mview/src/mview/parser/MView.g:1005:12: ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )
             {
             if ( (input.LA(1)>='0' && input.LA(1)<='9')||(input.LA(1)>='A' && input.LA(1)<='F')||(input.LA(1)>='a' && input.LA(1)<='f') ) {
                 input.consume();
@@ -1506,8 +1506,8 @@ public class MViewLexer extends Lexer {
     // $ANTLR start "IntegerTypeSuffix"
     public final void mIntegerTypeSuffix() throws RecognitionException {
         try {
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1009:19: ( ( 'l' | 'L' ) )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1009:21: ( 'l' | 'L' )
+            // /Users/marko/hg/mview/src/mview/parser/MView.g:1008:19: ( ( 'l' | 'L' ) )
+            // /Users/marko/hg/mview/src/mview/parser/MView.g:1008:21: ( 'l' | 'L' )
             {
             if ( input.LA(1)=='L'||input.LA(1)=='l' ) {
                 input.consume();
@@ -1532,14 +1532,14 @@ public class MViewLexer extends Lexer {
         try {
             int _type = FloatingPointLiteral;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1012:5: ( ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( Exponent )? ( FloatTypeSuffix )? | '.' ( '0' .. '9' )+ ( Exponent )? ( FloatTypeSuffix )? | ( '0' .. '9' )+ Exponent ( FloatTypeSuffix )? | ( '0' .. '9' )+ FloatTypeSuffix )
+            // /Users/marko/hg/mview/src/mview/parser/MView.g:1011:5: ( ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( Exponent )? ( FloatTypeSuffix )? | '.' ( '0' .. '9' )+ ( Exponent )? ( FloatTypeSuffix )? | ( '0' .. '9' )+ Exponent ( FloatTypeSuffix )? | ( '0' .. '9' )+ FloatTypeSuffix )
             int alt18=4;
             alt18 = dfa18.predict(input);
             switch (alt18) {
                 case 1 :
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1012:9: ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( Exponent )? ( FloatTypeSuffix )?
+                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1011:9: ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( Exponent )? ( FloatTypeSuffix )?
                     {
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1012:9: ( '0' .. '9' )+
+                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1011:9: ( '0' .. '9' )+
                     int cnt8=0;
                     loop8:
                     do {
@@ -1553,7 +1553,7 @@ public class MViewLexer extends Lexer {
 
                         switch (alt8) {
                     	case 1 :
-                    	    // /Users/marko/hg/mview/src/mview/parser/MView.g:1012:10: '0' .. '9'
+                    	    // /Users/marko/hg/mview/src/mview/parser/MView.g:1011:10: '0' .. '9'
                     	    {
                     	    matchRange('0','9'); 
 
@@ -1570,7 +1570,7 @@ public class MViewLexer extends Lexer {
                     } while (true);
 
                     match('.'); 
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1012:25: ( '0' .. '9' )*
+                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1011:25: ( '0' .. '9' )*
                     loop9:
                     do {
                         int alt9=2;
@@ -1583,7 +1583,7 @@ public class MViewLexer extends Lexer {
 
                         switch (alt9) {
                     	case 1 :
-                    	    // /Users/marko/hg/mview/src/mview/parser/MView.g:1012:26: '0' .. '9'
+                    	    // /Users/marko/hg/mview/src/mview/parser/MView.g:1011:26: '0' .. '9'
                     	    {
                     	    matchRange('0','9'); 
 
@@ -1595,7 +1595,7 @@ public class MViewLexer extends Lexer {
                         }
                     } while (true);
 
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1012:37: ( Exponent )?
+                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1011:37: ( Exponent )?
                     int alt10=2;
                     int LA10_0 = input.LA(1);
 
@@ -1604,7 +1604,7 @@ public class MViewLexer extends Lexer {
                     }
                     switch (alt10) {
                         case 1 :
-                            // /Users/marko/hg/mview/src/mview/parser/MView.g:1012:37: Exponent
+                            // /Users/marko/hg/mview/src/mview/parser/MView.g:1011:37: Exponent
                             {
                             mExponent(); 
 
@@ -1613,7 +1613,7 @@ public class MViewLexer extends Lexer {
 
                     }
 
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1012:47: ( FloatTypeSuffix )?
+                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1011:47: ( FloatTypeSuffix )?
                     int alt11=2;
                     int LA11_0 = input.LA(1);
 
@@ -1622,7 +1622,7 @@ public class MViewLexer extends Lexer {
                     }
                     switch (alt11) {
                         case 1 :
-                            // /Users/marko/hg/mview/src/mview/parser/MView.g:1012:47: FloatTypeSuffix
+                            // /Users/marko/hg/mview/src/mview/parser/MView.g:1011:47: FloatTypeSuffix
                             {
                             mFloatTypeSuffix(); 
 
@@ -1635,10 +1635,10 @@ public class MViewLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1013:9: '.' ( '0' .. '9' )+ ( Exponent )? ( FloatTypeSuffix )?
+                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1012:9: '.' ( '0' .. '9' )+ ( Exponent )? ( FloatTypeSuffix )?
                     {
                     match('.'); 
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1013:13: ( '0' .. '9' )+
+                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1012:13: ( '0' .. '9' )+
                     int cnt12=0;
                     loop12:
                     do {
@@ -1652,7 +1652,7 @@ public class MViewLexer extends Lexer {
 
                         switch (alt12) {
                     	case 1 :
-                    	    // /Users/marko/hg/mview/src/mview/parser/MView.g:1013:14: '0' .. '9'
+                    	    // /Users/marko/hg/mview/src/mview/parser/MView.g:1012:14: '0' .. '9'
                     	    {
                     	    matchRange('0','9'); 
 
@@ -1668,7 +1668,7 @@ public class MViewLexer extends Lexer {
                         cnt12++;
                     } while (true);
 
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1013:25: ( Exponent )?
+                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1012:25: ( Exponent )?
                     int alt13=2;
                     int LA13_0 = input.LA(1);
 
@@ -1677,7 +1677,7 @@ public class MViewLexer extends Lexer {
                     }
                     switch (alt13) {
                         case 1 :
-                            // /Users/marko/hg/mview/src/mview/parser/MView.g:1013:25: Exponent
+                            // /Users/marko/hg/mview/src/mview/parser/MView.g:1012:25: Exponent
                             {
                             mExponent(); 
 
@@ -1686,7 +1686,7 @@ public class MViewLexer extends Lexer {
 
                     }
 
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1013:35: ( FloatTypeSuffix )?
+                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1012:35: ( FloatTypeSuffix )?
                     int alt14=2;
                     int LA14_0 = input.LA(1);
 
@@ -1695,7 +1695,7 @@ public class MViewLexer extends Lexer {
                     }
                     switch (alt14) {
                         case 1 :
-                            // /Users/marko/hg/mview/src/mview/parser/MView.g:1013:35: FloatTypeSuffix
+                            // /Users/marko/hg/mview/src/mview/parser/MView.g:1012:35: FloatTypeSuffix
                             {
                             mFloatTypeSuffix(); 
 
@@ -1708,9 +1708,9 @@ public class MViewLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1014:9: ( '0' .. '9' )+ Exponent ( FloatTypeSuffix )?
+                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1013:9: ( '0' .. '9' )+ Exponent ( FloatTypeSuffix )?
                     {
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1014:9: ( '0' .. '9' )+
+                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1013:9: ( '0' .. '9' )+
                     int cnt15=0;
                     loop15:
                     do {
@@ -1724,7 +1724,7 @@ public class MViewLexer extends Lexer {
 
                         switch (alt15) {
                     	case 1 :
-                    	    // /Users/marko/hg/mview/src/mview/parser/MView.g:1014:10: '0' .. '9'
+                    	    // /Users/marko/hg/mview/src/mview/parser/MView.g:1013:10: '0' .. '9'
                     	    {
                     	    matchRange('0','9'); 
 
@@ -1741,7 +1741,7 @@ public class MViewLexer extends Lexer {
                     } while (true);
 
                     mExponent(); 
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1014:30: ( FloatTypeSuffix )?
+                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1013:30: ( FloatTypeSuffix )?
                     int alt16=2;
                     int LA16_0 = input.LA(1);
 
@@ -1750,7 +1750,7 @@ public class MViewLexer extends Lexer {
                     }
                     switch (alt16) {
                         case 1 :
-                            // /Users/marko/hg/mview/src/mview/parser/MView.g:1014:30: FloatTypeSuffix
+                            // /Users/marko/hg/mview/src/mview/parser/MView.g:1013:30: FloatTypeSuffix
                             {
                             mFloatTypeSuffix(); 
 
@@ -1763,9 +1763,9 @@ public class MViewLexer extends Lexer {
                     }
                     break;
                 case 4 :
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1015:9: ( '0' .. '9' )+ FloatTypeSuffix
+                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1014:9: ( '0' .. '9' )+ FloatTypeSuffix
                     {
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1015:9: ( '0' .. '9' )+
+                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1014:9: ( '0' .. '9' )+
                     int cnt17=0;
                     loop17:
                     do {
@@ -1779,7 +1779,7 @@ public class MViewLexer extends Lexer {
 
                         switch (alt17) {
                     	case 1 :
-                    	    // /Users/marko/hg/mview/src/mview/parser/MView.g:1015:10: '0' .. '9'
+                    	    // /Users/marko/hg/mview/src/mview/parser/MView.g:1014:10: '0' .. '9'
                     	    {
                     	    matchRange('0','9'); 
 
@@ -1812,8 +1812,8 @@ public class MViewLexer extends Lexer {
     // $ANTLR start "Exponent"
     public final void mExponent() throws RecognitionException {
         try {
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1019:10: ( ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+ )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1019:12: ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+
+            // /Users/marko/hg/mview/src/mview/parser/MView.g:1018:10: ( ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+ )
+            // /Users/marko/hg/mview/src/mview/parser/MView.g:1018:12: ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+
             {
             if ( input.LA(1)=='E'||input.LA(1)=='e' ) {
                 input.consume();
@@ -1824,7 +1824,7 @@ public class MViewLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1019:22: ( '+' | '-' )?
+            // /Users/marko/hg/mview/src/mview/parser/MView.g:1018:22: ( '+' | '-' )?
             int alt19=2;
             int LA19_0 = input.LA(1);
 
@@ -1850,7 +1850,7 @@ public class MViewLexer extends Lexer {
 
             }
 
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1019:33: ( '0' .. '9' )+
+            // /Users/marko/hg/mview/src/mview/parser/MView.g:1018:33: ( '0' .. '9' )+
             int cnt20=0;
             loop20:
             do {
@@ -1864,7 +1864,7 @@ public class MViewLexer extends Lexer {
 
                 switch (alt20) {
             	case 1 :
-            	    // /Users/marko/hg/mview/src/mview/parser/MView.g:1019:34: '0' .. '9'
+            	    // /Users/marko/hg/mview/src/mview/parser/MView.g:1018:34: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -1892,8 +1892,8 @@ public class MViewLexer extends Lexer {
     // $ANTLR start "FloatTypeSuffix"
     public final void mFloatTypeSuffix() throws RecognitionException {
         try {
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1022:17: ( ( 'f' | 'F' | 'd' | 'D' ) )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1022:19: ( 'f' | 'F' | 'd' | 'D' )
+            // /Users/marko/hg/mview/src/mview/parser/MView.g:1021:17: ( ( 'f' | 'F' | 'd' | 'D' ) )
+            // /Users/marko/hg/mview/src/mview/parser/MView.g:1021:19: ( 'f' | 'F' | 'd' | 'D' )
             {
             if ( input.LA(1)=='D'||input.LA(1)=='F'||input.LA(1)=='d'||input.LA(1)=='f' ) {
                 input.consume();
@@ -1918,11 +1918,11 @@ public class MViewLexer extends Lexer {
         try {
             int _type = CharacterLiteral;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1025:5: ( '\\'' ( EscapeSequence | ~ ( '\\'' | '\\\\' ) ) '\\'' )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1025:9: '\\'' ( EscapeSequence | ~ ( '\\'' | '\\\\' ) ) '\\''
+            // /Users/marko/hg/mview/src/mview/parser/MView.g:1024:5: ( '\\'' ( EscapeSequence | ~ ( '\\'' | '\\\\' ) ) '\\'' )
+            // /Users/marko/hg/mview/src/mview/parser/MView.g:1024:9: '\\'' ( EscapeSequence | ~ ( '\\'' | '\\\\' ) ) '\\''
             {
             match('\''); 
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1025:14: ( EscapeSequence | ~ ( '\\'' | '\\\\' ) )
+            // /Users/marko/hg/mview/src/mview/parser/MView.g:1024:14: ( EscapeSequence | ~ ( '\\'' | '\\\\' ) )
             int alt21=2;
             int LA21_0 = input.LA(1);
 
@@ -1940,14 +1940,14 @@ public class MViewLexer extends Lexer {
             }
             switch (alt21) {
                 case 1 :
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1025:16: EscapeSequence
+                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1024:16: EscapeSequence
                     {
                     mEscapeSequence(); 
 
                     }
                     break;
                 case 2 :
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1025:33: ~ ( '\\'' | '\\\\' )
+                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1024:33: ~ ( '\\'' | '\\\\' )
                     {
                     if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                         input.consume();
@@ -1981,11 +1981,11 @@ public class MViewLexer extends Lexer {
         try {
             int _type = StringLiteral;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1029:5: ( '\"' ( EscapeSequence | ~ ( '\\\\' | '\"' ) )* '\"' )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1029:8: '\"' ( EscapeSequence | ~ ( '\\\\' | '\"' ) )* '\"'
+            // /Users/marko/hg/mview/src/mview/parser/MView.g:1028:5: ( '\"' ( EscapeSequence | ~ ( '\\\\' | '\"' ) )* '\"' )
+            // /Users/marko/hg/mview/src/mview/parser/MView.g:1028:8: '\"' ( EscapeSequence | ~ ( '\\\\' | '\"' ) )* '\"'
             {
             match('\"'); 
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1029:12: ( EscapeSequence | ~ ( '\\\\' | '\"' ) )*
+            // /Users/marko/hg/mview/src/mview/parser/MView.g:1028:12: ( EscapeSequence | ~ ( '\\\\' | '\"' ) )*
             loop22:
             do {
                 int alt22=3;
@@ -2001,14 +2001,14 @@ public class MViewLexer extends Lexer {
 
                 switch (alt22) {
             	case 1 :
-            	    // /Users/marko/hg/mview/src/mview/parser/MView.g:1029:14: EscapeSequence
+            	    // /Users/marko/hg/mview/src/mview/parser/MView.g:1028:14: EscapeSequence
             	    {
             	    mEscapeSequence(); 
 
             	    }
             	    break;
             	case 2 :
-            	    // /Users/marko/hg/mview/src/mview/parser/MView.g:1029:31: ~ ( '\\\\' | '\"' )
+            	    // /Users/marko/hg/mview/src/mview/parser/MView.g:1028:31: ~ ( '\\\\' | '\"' )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -2043,7 +2043,7 @@ public class MViewLexer extends Lexer {
     // $ANTLR start "EscapeSequence"
     public final void mEscapeSequence() throws RecognitionException {
         try {
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1034:5: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | UnicodeEscape | OctalEscape )
+            // /Users/marko/hg/mview/src/mview/parser/MView.g:1033:5: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | UnicodeEscape | OctalEscape )
             int alt23=3;
             int LA23_0 = input.LA(1);
 
@@ -2094,7 +2094,7 @@ public class MViewLexer extends Lexer {
             }
             switch (alt23) {
                 case 1 :
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1034:9: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
+                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1033:9: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
                     {
                     match('\\'); 
                     if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||input.LA(1)=='t' ) {
@@ -2110,14 +2110,14 @@ public class MViewLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1035:9: UnicodeEscape
+                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1034:9: UnicodeEscape
                     {
                     mUnicodeEscape(); 
 
                     }
                     break;
                 case 3 :
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1036:9: OctalEscape
+                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1035:9: OctalEscape
                     {
                     mOctalEscape(); 
 
@@ -2134,7 +2134,7 @@ public class MViewLexer extends Lexer {
     // $ANTLR start "OctalEscape"
     public final void mOctalEscape() throws RecognitionException {
         try {
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1041:5: ( '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) )
+            // /Users/marko/hg/mview/src/mview/parser/MView.g:1040:5: ( '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) )
             int alt24=3;
             int LA24_0 = input.LA(1);
 
@@ -2180,13 +2180,41 @@ public class MViewLexer extends Lexer {
             }
             switch (alt24) {
                 case 1 :
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1041:9: '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' )
+                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1040:9: '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' )
                     {
                     match('\\'); 
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1041:14: ( '0' .. '3' )
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1041:15: '0' .. '3'
+                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1040:14: ( '0' .. '3' )
+                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1040:15: '0' .. '3'
                     {
                     matchRange('0','3'); 
+
+                    }
+
+                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1040:25: ( '0' .. '7' )
+                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1040:26: '0' .. '7'
+                    {
+                    matchRange('0','7'); 
+
+                    }
+
+                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1040:36: ( '0' .. '7' )
+                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1040:37: '0' .. '7'
+                    {
+                    matchRange('0','7'); 
+
+                    }
+
+
+                    }
+                    break;
+                case 2 :
+                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1041:9: '\\\\' ( '0' .. '7' ) ( '0' .. '7' )
+                    {
+                    match('\\'); 
+                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1041:14: ( '0' .. '7' )
+                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1041:15: '0' .. '7'
+                    {
+                    matchRange('0','7'); 
 
                     }
 
@@ -2197,43 +2225,15 @@ public class MViewLexer extends Lexer {
 
                     }
 
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1041:36: ( '0' .. '7' )
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1041:37: '0' .. '7'
-                    {
-                    matchRange('0','7'); 
-
-                    }
-
-
-                    }
-                    break;
-                case 2 :
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1042:9: '\\\\' ( '0' .. '7' ) ( '0' .. '7' )
-                    {
-                    match('\\'); 
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1042:14: ( '0' .. '7' )
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1042:15: '0' .. '7'
-                    {
-                    matchRange('0','7'); 
-
-                    }
-
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1042:25: ( '0' .. '7' )
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1042:26: '0' .. '7'
-                    {
-                    matchRange('0','7'); 
-
-                    }
-
 
                     }
                     break;
                 case 3 :
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1043:9: '\\\\' ( '0' .. '7' )
+                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1042:9: '\\\\' ( '0' .. '7' )
                     {
                     match('\\'); 
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1043:14: ( '0' .. '7' )
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1043:15: '0' .. '7'
+                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1042:14: ( '0' .. '7' )
+                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1042:15: '0' .. '7'
                     {
                     matchRange('0','7'); 
 
@@ -2253,8 +2253,8 @@ public class MViewLexer extends Lexer {
     // $ANTLR start "UnicodeEscape"
     public final void mUnicodeEscape() throws RecognitionException {
         try {
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1048:5: ( '\\\\' 'u' HexDigit HexDigit HexDigit HexDigit )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1048:9: '\\\\' 'u' HexDigit HexDigit HexDigit HexDigit
+            // /Users/marko/hg/mview/src/mview/parser/MView.g:1047:5: ( '\\\\' 'u' HexDigit HexDigit HexDigit HexDigit )
+            // /Users/marko/hg/mview/src/mview/parser/MView.g:1047:9: '\\\\' 'u' HexDigit HexDigit HexDigit HexDigit
             {
             match('\\'); 
             match('u'); 
@@ -2276,11 +2276,11 @@ public class MViewLexer extends Lexer {
         try {
             int _type = Identifier;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1052:5: ( Letter ( Letter | JavaIDDigit )* )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1052:9: Letter ( Letter | JavaIDDigit )*
+            // /Users/marko/hg/mview/src/mview/parser/MView.g:1051:5: ( Letter ( Letter | JavaIDDigit )* )
+            // /Users/marko/hg/mview/src/mview/parser/MView.g:1051:9: Letter ( Letter | JavaIDDigit )*
             {
             mLetter(); 
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1052:15: ( Letter | JavaIDDigit )*
+            // /Users/marko/hg/mview/src/mview/parser/MView.g:1051:15: ( Letter | JavaIDDigit )*
             loop25:
             do {
                 int alt25=2;
@@ -2327,7 +2327,7 @@ public class MViewLexer extends Lexer {
     // $ANTLR start "Letter"
     public final void mLetter() throws RecognitionException {
         try {
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1060:5: ( '\\u0024' | '\\u0041' .. '\\u005a' | '\\u005f' | '\\u0061' .. '\\u007a' | '\\u00c0' .. '\\u00d6' | '\\u00d8' .. '\\u00f6' | '\\u00f8' .. '\\u00ff' | '\\u0100' .. '\\u1fff' | '\\u3040' .. '\\u318f' | '\\u3300' .. '\\u337f' | '\\u3400' .. '\\u3d2d' | '\\u4e00' .. '\\u9fff' | '\\uf900' .. '\\ufaff' | '*' )
+            // /Users/marko/hg/mview/src/mview/parser/MView.g:1059:5: ( '\\u0024' | '\\u0041' .. '\\u005a' | '\\u005f' | '\\u0061' .. '\\u007a' | '\\u00c0' .. '\\u00d6' | '\\u00d8' .. '\\u00f6' | '\\u00f8' .. '\\u00ff' | '\\u0100' .. '\\u1fff' | '\\u3040' .. '\\u318f' | '\\u3300' .. '\\u337f' | '\\u3400' .. '\\u3d2d' | '\\u4e00' .. '\\u9fff' | '\\uf900' .. '\\ufaff' | '*' )
             // /Users/marko/hg/mview/src/mview/parser/MView.g:
             {
             if ( input.LA(1)=='$'||input.LA(1)=='*'||(input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z')||(input.LA(1)>='\u00C0' && input.LA(1)<='\u00D6')||(input.LA(1)>='\u00D8' && input.LA(1)<='\u00F6')||(input.LA(1)>='\u00F8' && input.LA(1)<='\u1FFF')||(input.LA(1)>='\u3040' && input.LA(1)<='\u318F')||(input.LA(1)>='\u3300' && input.LA(1)<='\u337F')||(input.LA(1)>='\u3400' && input.LA(1)<='\u3D2D')||(input.LA(1)>='\u4E00' && input.LA(1)<='\u9FFF')||(input.LA(1)>='\uF900' && input.LA(1)<='\uFAFF') ) {
@@ -2351,7 +2351,7 @@ public class MViewLexer extends Lexer {
     // $ANTLR start "JavaIDDigit"
     public final void mJavaIDDigit() throws RecognitionException {
         try {
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1078:5: ( '\\u0030' .. '\\u0039' | '\\u0660' .. '\\u0669' | '\\u06f0' .. '\\u06f9' | '\\u0966' .. '\\u096f' | '\\u09e6' .. '\\u09ef' | '\\u0a66' .. '\\u0a6f' | '\\u0ae6' .. '\\u0aef' | '\\u0b66' .. '\\u0b6f' | '\\u0be7' .. '\\u0bef' | '\\u0c66' .. '\\u0c6f' | '\\u0ce6' .. '\\u0cef' | '\\u0d66' .. '\\u0d6f' | '\\u0e50' .. '\\u0e59' | '\\u0ed0' .. '\\u0ed9' | '\\u1040' .. '\\u1049' )
+            // /Users/marko/hg/mview/src/mview/parser/MView.g:1077:5: ( '\\u0030' .. '\\u0039' | '\\u0660' .. '\\u0669' | '\\u06f0' .. '\\u06f9' | '\\u0966' .. '\\u096f' | '\\u09e6' .. '\\u09ef' | '\\u0a66' .. '\\u0a6f' | '\\u0ae6' .. '\\u0aef' | '\\u0b66' .. '\\u0b6f' | '\\u0be7' .. '\\u0bef' | '\\u0c66' .. '\\u0c6f' | '\\u0ce6' .. '\\u0cef' | '\\u0d66' .. '\\u0d6f' | '\\u0e50' .. '\\u0e59' | '\\u0ed0' .. '\\u0ed9' | '\\u1040' .. '\\u1049' )
             // /Users/marko/hg/mview/src/mview/parser/MView.g:
             {
             if ( (input.LA(1)>='0' && input.LA(1)<='9')||(input.LA(1)>='\u0660' && input.LA(1)<='\u0669')||(input.LA(1)>='\u06F0' && input.LA(1)<='\u06F9')||(input.LA(1)>='\u0966' && input.LA(1)<='\u096F')||(input.LA(1)>='\u09E6' && input.LA(1)<='\u09EF')||(input.LA(1)>='\u0A66' && input.LA(1)<='\u0A6F')||(input.LA(1)>='\u0AE6' && input.LA(1)<='\u0AEF')||(input.LA(1)>='\u0B66' && input.LA(1)<='\u0B6F')||(input.LA(1)>='\u0BE7' && input.LA(1)<='\u0BEF')||(input.LA(1)>='\u0C66' && input.LA(1)<='\u0C6F')||(input.LA(1)>='\u0CE6' && input.LA(1)<='\u0CEF')||(input.LA(1)>='\u0D66' && input.LA(1)<='\u0D6F')||(input.LA(1)>='\u0E50' && input.LA(1)<='\u0E59')||(input.LA(1)>='\u0ED0' && input.LA(1)<='\u0ED9')||(input.LA(1)>='\u1040' && input.LA(1)<='\u1049') ) {
@@ -2377,8 +2377,8 @@ public class MViewLexer extends Lexer {
         try {
             int _type = WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1095:5: ( ( ' ' | '\\r' | '\\t' | '\\u000C' | '\\n' ) )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1095:8: ( ' ' | '\\r' | '\\t' | '\\u000C' | '\\n' )
+            // /Users/marko/hg/mview/src/mview/parser/MView.g:1094:5: ( ( ' ' | '\\r' | '\\t' | '\\u000C' | '\\n' ) )
+            // /Users/marko/hg/mview/src/mview/parser/MView.g:1094:8: ( ' ' | '\\r' | '\\t' | '\\u000C' | '\\n' )
             {
             if ( (input.LA(1)>='\t' && input.LA(1)<='\n')||(input.LA(1)>='\f' && input.LA(1)<='\r')||input.LA(1)==' ' ) {
                 input.consume();
@@ -2406,12 +2406,12 @@ public class MViewLexer extends Lexer {
         try {
             int _type = COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1099:5: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1099:9: '/*' ( options {greedy=false; } : . )* '*/'
+            // /Users/marko/hg/mview/src/mview/parser/MView.g:1098:5: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // /Users/marko/hg/mview/src/mview/parser/MView.g:1098:9: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1099:14: ( options {greedy=false; } : . )*
+            // /Users/marko/hg/mview/src/mview/parser/MView.g:1098:14: ( options {greedy=false; } : . )*
             loop26:
             do {
                 int alt26=2;
@@ -2436,7 +2436,7 @@ public class MViewLexer extends Lexer {
 
                 switch (alt26) {
             	case 1 :
-            	    // /Users/marko/hg/mview/src/mview/parser/MView.g:1099:42: .
+            	    // /Users/marko/hg/mview/src/mview/parser/MView.g:1098:42: .
             	    {
             	    matchAny(); 
 
@@ -2467,12 +2467,12 @@ public class MViewLexer extends Lexer {
         try {
             int _type = LINE_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1103:5: ( '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' )
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1103:7: '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n'
+            // /Users/marko/hg/mview/src/mview/parser/MView.g:1102:5: ( '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' )
+            // /Users/marko/hg/mview/src/mview/parser/MView.g:1102:7: '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n'
             {
             match("//"); 
 
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1103:12: (~ ( '\\n' | '\\r' ) )*
+            // /Users/marko/hg/mview/src/mview/parser/MView.g:1102:12: (~ ( '\\n' | '\\r' ) )*
             loop27:
             do {
                 int alt27=2;
@@ -2485,7 +2485,7 @@ public class MViewLexer extends Lexer {
 
                 switch (alt27) {
             	case 1 :
-            	    // /Users/marko/hg/mview/src/mview/parser/MView.g:1103:12: ~ ( '\\n' | '\\r' )
+            	    // /Users/marko/hg/mview/src/mview/parser/MView.g:1102:12: ~ ( '\\n' | '\\r' )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -2505,7 +2505,7 @@ public class MViewLexer extends Lexer {
                 }
             } while (true);
 
-            // /Users/marko/hg/mview/src/mview/parser/MView.g:1103:26: ( '\\r' )?
+            // /Users/marko/hg/mview/src/mview/parser/MView.g:1102:26: ( '\\r' )?
             int alt28=2;
             int LA28_0 = input.LA(1);
 
@@ -2514,7 +2514,7 @@ public class MViewLexer extends Lexer {
             }
             switch (alt28) {
                 case 1 :
-                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1103:26: '\\r'
+                    // /Users/marko/hg/mview/src/mview/parser/MView.g:1102:26: '\\r'
                     {
                     match('\r'); 
 
@@ -3055,7 +3055,7 @@ public class MViewLexer extends Lexer {
             this.transition = DFA18_transition;
         }
         public String getDescription() {
-            return "1011:1: FloatingPointLiteral : ( ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( Exponent )? ( FloatTypeSuffix )? | '.' ( '0' .. '9' )+ ( Exponent )? ( FloatTypeSuffix )? | ( '0' .. '9' )+ Exponent ( FloatTypeSuffix )? | ( '0' .. '9' )+ FloatTypeSuffix );";
+            return "1010:1: FloatingPointLiteral : ( ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( Exponent )? ( FloatTypeSuffix )? | '.' ( '0' .. '9' )+ ( Exponent )? ( FloatTypeSuffix )? | ( '0' .. '9' )+ Exponent ( FloatTypeSuffix )? | ( '0' .. '9' )+ FloatTypeSuffix );";
         }
     }
     static final String DFA29_eotS =

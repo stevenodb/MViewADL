@@ -23,11 +23,11 @@
 //
 //import org.rejuse.association.OrderedMultiAssociation;
 //
-//import chameleon.core.declaration.SimpleNameSignature;
-//import chameleon.core.element.Element;
-//import chameleon.core.reference.SimpleReference;
-//import chameleon.core.validation.BasicProblem;
-//import chameleon.core.validation.VerificationResult;
+//import be.kuleuven.cs.distrinet.chameleon.core.declaration.SimpleNameSignature;
+//import be.kuleuven.cs.distrinet.chameleon.core.element.Element;
+//import be.kuleuven.cs.distrinet.chameleon.core.reference.SimpleReference;
+//import be.kuleuven.cs.distrinet.chameleon.core.validation.BasicProblem;
+//import be.kuleuven.cs.distrinet.chameleon.core.validation.VerificationResult;
 //
 ///**
 // * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>

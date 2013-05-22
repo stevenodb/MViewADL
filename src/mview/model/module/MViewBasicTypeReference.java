@@ -18,11 +18,11 @@
  */
 package mview.model.module;
 
-import chameleon.core.declaration.SimpleNameSignature;
-import chameleon.core.reference.CrossReference;
-import chameleon.core.validation.Valid;
-import chameleon.core.validation.VerificationResult;
-import chameleon.oo.type.BasicTypeReference;
+import be.kuleuven.cs.distrinet.chameleon.core.declaration.SimpleNameSignature;
+import be.kuleuven.cs.distrinet.chameleon.core.reference.CrossReference;
+import be.kuleuven.cs.distrinet.chameleon.core.validation.Valid;
+import be.kuleuven.cs.distrinet.chameleon.core.validation.Verification;
+import be.kuleuven.cs.distrinet.chameleon.oo.type.BasicTypeReference;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
@@ -58,7 +58,7 @@ public class MViewBasicTypeReference extends BasicTypeReference {
 	 * @see chameleon.core.reference.CrossReferenceImpl#verifySelf()
 	 */
 	@Override
-	public VerificationResult verifySelf() {
+	public Verification verifySelf() {
 		return Valid.create();
 	}
 }

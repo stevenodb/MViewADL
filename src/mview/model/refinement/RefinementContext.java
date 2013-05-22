@@ -18,7 +18,7 @@
  */
 package mview.model.refinement;
 
-import chameleon.core.lookup.LookupException;
+import be.kuleuven.cs.distrinet.chameleon.core.lookup.LookupException;
 
 
 /**

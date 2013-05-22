@@ -24,14 +24,12 @@ import java.util.Iterator;
 import java.util.List;
 
 import mview.model.module.Service;
-
-import org.rejuse.predicate.UnsafePredicate;
-
-import chameleon.core.lookup.LookupException;
-import chameleon.core.reference.SimpleReference;
-import chameleon.core.validation.BasicProblem;
-import chameleon.core.validation.VerificationResult;
-import chameleon.util.Pair;
+import be.kuleuven.cs.distrinet.chameleon.util.Pair;
+import be.kuleuven.cs.distrinet.rejuse.predicate.UnsafePredicate;
+import be.kuleuven.cs.distrinet.chameleon.core.lookup.LookupException;
+import be.kuleuven.cs.distrinet.chameleon.core.reference.SimpleReference;
+import be.kuleuven.cs.distrinet.chameleon.core.validation.BasicProblem;
+import be.kuleuven.cs.distrinet.chameleon.core.validation.Verification;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
@@ -312,8 +310,8 @@ public class PatternSignature extends ServiceSignature<Service> {
 	 * @see chameleon.core.element.ElementImpl#verifySelf()
 	 */
 	@Override
-	public VerificationResult verifySelf() {
-		VerificationResult result = super.verifySelf();
+	public Verification verifySelf() {
+		Verification result = super.verifySelf();
 
 		if (!(this.returnTypePattern() != null)) {
 			result =

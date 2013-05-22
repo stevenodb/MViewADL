@@ -20,17 +20,16 @@ package mview.model.module;
 import java.util.List;
 
 import mview.model.namespace.MViewDeclaration;
-import chameleon.core.declaration.Declaration;
-import chameleon.core.declaration.DeclarationContainer;
-import chameleon.core.declaration.SimpleNameSignature;
-import chameleon.core.declaration.TargetDeclaration;
-import chameleon.core.lookup.DeclarationSelector;
-import chameleon.core.lookup.LocalLookupStrategy;
-import chameleon.core.lookup.LookupException;
-import chameleon.core.lookup.LookupStrategy;
-import chameleon.core.validation.BasicProblem;
-import chameleon.core.validation.VerificationResult;
-import chameleon.util.association.Multi;
+import be.kuleuven.cs.distrinet.chameleon.core.declaration.Declaration;
+import be.kuleuven.cs.distrinet.chameleon.core.declaration.DeclarationContainer;
+import be.kuleuven.cs.distrinet.chameleon.core.declaration.SimpleNameSignature;
+import be.kuleuven.cs.distrinet.chameleon.core.declaration.TargetDeclaration;
+import be.kuleuven.cs.distrinet.chameleon.core.lookup.DeclarationSelector;
+import be.kuleuven.cs.distrinet.chameleon.core.lookup.LookupContext;
+import be.kuleuven.cs.distrinet.chameleon.core.lookup.LookupException;
+import be.kuleuven.cs.distrinet.chameleon.core.validation.BasicProblem;
+import be.kuleuven.cs.distrinet.chameleon.core.validation.Verification;
+import be.kuleuven.cs.distrinet.chameleon.util.association.Multi;
 
 public class Interface extends MViewDeclaration implements TargetDeclaration, DeclarationContainer {
 
@@ -89,8 +88,8 @@ public class Interface extends MViewDeclaration implements TargetDeclaration, De
 
 
 	@Override
-	public VerificationResult verifySelf() {
-		VerificationResult result = super.verifySelf();
+	public Verification verifySelf() {
+		Verification result = super.verifySelf();
 
 		if (!(services() != null)) {
 			result = result.and(new BasicProblem(this,
@@ -101,7 +100,7 @@ public class Interface extends MViewDeclaration implements TargetDeclaration, De
 	}
 
 	@Override
-	public LocalLookupStrategy<?> targetContext() throws LookupException {
+	public LookupContext targetContext() throws LookupException {
 		return language().lookupFactory().createTargetLookupStrategy(this);
 	}
 
@@ -125,7 +124,7 @@ public class Interface extends MViewDeclaration implements TargetDeclaration, De
 		return selector.selection(declarations());
 	}
 	@Override
-	public LookupStrategy localStrategy() throws LookupException {
+	public LookupContext localContext() throws LookupException {
 		return language().lookupFactory().createLocalLookupStrategy(this);
 	}
 }

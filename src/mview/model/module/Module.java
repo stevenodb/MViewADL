@@ -22,15 +22,15 @@ import java.util.List;
 
 import mview.model.refinement.MViewMember;
 import mview.model.refinement.RefinableMemberDeclarationImpl;
-import chameleon.core.declaration.SimpleNameSignature;
-import chameleon.core.element.Element;
-import chameleon.core.lookup.LookupException;
-import chameleon.core.lookup.LookupStrategy;
-import chameleon.core.reference.SimpleReference;
-import chameleon.core.validation.BasicProblem;
-import chameleon.core.validation.VerificationResult;
-import chameleon.util.Util;
-import chameleon.util.association.Single;
+import be.kuleuven.cs.distrinet.chameleon.core.declaration.SimpleNameSignature;
+import be.kuleuven.cs.distrinet.chameleon.core.element.Element;
+import be.kuleuven.cs.distrinet.chameleon.core.lookup.LookupContext;
+import be.kuleuven.cs.distrinet.chameleon.core.lookup.LookupException;
+import be.kuleuven.cs.distrinet.chameleon.core.reference.SimpleReference;
+import be.kuleuven.cs.distrinet.chameleon.core.validation.BasicProblem;
+import be.kuleuven.cs.distrinet.chameleon.core.validation.Verification;
+import be.kuleuven.cs.distrinet.chameleon.util.Util;
+import be.kuleuven.cs.distrinet.chameleon.util.association.Single;
 
 /**
  * Class representing the Module concept.
@@ -214,8 +214,8 @@ public abstract class Module extends RefinableMemberDeclarationImpl {
 	 * @see chameleon.core.element.ElementImpl#verifySelf()
 	 */
 	@Override
-	public VerificationResult verifySelf() {
-		VerificationResult result = super.verifySelf();
+	public Verification verifySelf() {
+		Verification result = super.verifySelf();
 
 		if (!(signature() != null)) {
 			result = result.and(new BasicProblem(this, "Signature invalid."));
@@ -270,22 +270,22 @@ public abstract class Module extends RefinableMemberDeclarationImpl {
 	}
 
 	@Override
-	public LookupStrategy lexicalLookupStrategy(Element element) throws LookupException {
+	public LookupContext lookupContext(Element element) throws LookupException {
 		if (element == requiredInterfaceDependency()) {
 			Element parent = parent();
 			if (parent != null) {
-				return parent().lexicalLookupStrategy(this);
+				return parent().lookupContext(this);
 			} else {
 				throw new LookupException("Parent of type is null when looking " +
 						"for the parent context of a type.");
 			}
 		} else {
-			return super.lexicalLookupStrategy(element);
+			return super.lookupContext(element);
 		}
 	}
 	
 	@Override
-	public LookupStrategy localStrategy() throws LookupException {
+	public LookupContext localContext() throws LookupException {
 		return language().lookupFactory().createLocalLookupStrategy(this);
 	}
 

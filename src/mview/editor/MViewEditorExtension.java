@@ -12,11 +12,10 @@ import mview.model.composition.modifier.Execution;
 import mview.model.composition.modifier.Negate;
 import mview.model.refinement.modifier.Extendable;
 import mview.model.refinement.modifier.Overridable;
-import chameleon.core.modifier.Modifier;
-import chameleon.eclipse.connector.EclipseEditorExtension;
-import chameleon.plugin.LanguagePlugin;
-import chameleon.plugin.build.Builder;
-import chameleon.workspace.View;
+import be.kuleuven.cs.distrinet.chameleon.core.modifier.Modifier;
+import be.kuleuven.cs.distrinet.chameleon.eclipse.connector.EclipseEditorExtension;
+import be.kuleuven.cs.distrinet.chameleon.plugin.build.Builder;
+import be.kuleuven.cs.distrinet.chameleon.workspace.View;
 
 /**
  * @author Marko van Dooren
@@ -24,12 +23,8 @@ import chameleon.workspace.View;
  */
 public class MViewEditorExtension extends EclipseEditorExtension {
 
-	public MViewEditorExtension(String languageName) {
-		super(languageName);
-	}
-
 	public MViewEditorExtension clone() {
-		return new MViewEditorExtension(languageName());
+		return new MViewEditorExtension();
 	}
 
 	@Override

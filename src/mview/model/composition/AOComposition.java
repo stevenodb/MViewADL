@@ -24,12 +24,12 @@ import java.util.List;
 
 import mview.model.refinement.MViewMember;
 import mview.model.refinement.RefinableMemberDeclarationImpl;
-import chameleon.core.declaration.SimpleNameSignature;
-import chameleon.core.lookup.LookupException;
-import chameleon.core.lookup.LookupStrategy;
-import chameleon.core.validation.BasicProblem;
-import chameleon.core.validation.VerificationResult;
-import chameleon.util.association.Single;
+import be.kuleuven.cs.distrinet.chameleon.core.declaration.SimpleNameSignature;
+import be.kuleuven.cs.distrinet.chameleon.core.lookup.LookupContext;
+import be.kuleuven.cs.distrinet.chameleon.core.lookup.LookupException;
+import be.kuleuven.cs.distrinet.chameleon.core.validation.BasicProblem;
+import be.kuleuven.cs.distrinet.chameleon.core.validation.Verification;
+import be.kuleuven.cs.distrinet.chameleon.util.association.Single;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
@@ -128,8 +128,8 @@ public class AOComposition extends RefinableMemberDeclarationImpl {
 	 * @see mview.model.namespace.MViewDeclaration#verifySelf()
 	 */
 	@Override
-	public VerificationResult verifySelf() {
-		VerificationResult result = super.verifySelf();
+	public Verification verifySelf() {
+		Verification result = super.verifySelf();
 
 		if (!isAbstract()) {
 
@@ -189,7 +189,7 @@ public class AOComposition extends RefinableMemberDeclarationImpl {
 	}
 
 	@Override
-	public LookupStrategy localStrategy() throws LookupException {
+	public LookupContext localContext() throws LookupException {
 		return language().lookupFactory().createLocalLookupStrategy(this);
 	}
 

@@ -18,13 +18,12 @@
  */
 package mview.model.property;
 
-import org.rejuse.property.PropertyMutex;
-import org.rejuse.property.PropertyUniverse;
-
-import chameleon.core.declaration.Declaration;
-import chameleon.core.element.Element;
-import chameleon.core.property.ChameleonProperty;
-import chameleon.core.property.StaticChameleonProperty;
+import be.kuleuven.cs.distrinet.chameleon.core.declaration.Declaration;
+import be.kuleuven.cs.distrinet.chameleon.core.element.Element;
+import be.kuleuven.cs.distrinet.chameleon.core.property.ChameleonProperty;
+import be.kuleuven.cs.distrinet.chameleon.core.property.StaticChameleonProperty;
+import be.kuleuven.cs.distrinet.rejuse.property.PropertyMutex;
+import be.kuleuven.cs.distrinet.rejuse.property.PropertyUniverse;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>

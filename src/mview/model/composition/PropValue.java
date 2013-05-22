@@ -20,18 +20,18 @@ package mview.model.composition;
 
 import java.util.List;
 
+import be.kuleuven.cs.distrinet.chameleon.util.Util;
+import be.kuleuven.cs.distrinet.chameleon.util.association.Single;
 import mview.model.language.MView;
-import chameleon.core.declaration.Declaration;
-import chameleon.core.element.Element;
-import chameleon.core.lookup.LookupException;
-import chameleon.core.modifier.ElementWithModifiersImpl;
-import chameleon.core.modifier.Modifier;
-import chameleon.core.reference.SimpleReference;
-import chameleon.core.validation.BasicProblem;
-import chameleon.core.validation.Valid;
-import chameleon.core.validation.VerificationResult;
-import chameleon.util.Util;
-import chameleon.util.association.Single;
+import be.kuleuven.cs.distrinet.chameleon.core.declaration.Declaration;
+import be.kuleuven.cs.distrinet.chameleon.core.element.Element;
+import be.kuleuven.cs.distrinet.chameleon.core.lookup.LookupException;
+import be.kuleuven.cs.distrinet.chameleon.core.modifier.ElementWithModifiersImpl;
+import be.kuleuven.cs.distrinet.chameleon.core.modifier.Modifier;
+import be.kuleuven.cs.distrinet.chameleon.core.reference.SimpleReference;
+import be.kuleuven.cs.distrinet.chameleon.core.validation.BasicProblem;
+import be.kuleuven.cs.distrinet.chameleon.core.validation.Valid;
+import be.kuleuven.cs.distrinet.chameleon.core.validation.Verification;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
@@ -106,8 +106,8 @@ public class PropValue<D extends Declaration> extends ElementWithModifiersImpl {
 	 * @see chameleon.core.element.ElementImpl#verifySelf()
 	 */
 	@Override
-	public VerificationResult verifySelf() {
-		VerificationResult result = Valid.create();
+	public Verification verifySelf() {
+		Verification result = Valid.create();
 
 		try {
 			if ( !(value() != null ) ) {

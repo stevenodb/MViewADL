@@ -22,9 +22,9 @@ package mview.model.module;
 import java.util.List;
 
 import mview.model.refinement.MViewMember;
-import chameleon.core.declaration.SimpleNameSignature;
-import chameleon.core.validation.BasicProblem;
-import chameleon.core.validation.VerificationResult;
+import be.kuleuven.cs.distrinet.chameleon.core.declaration.SimpleNameSignature;
+import be.kuleuven.cs.distrinet.chameleon.core.validation.BasicProblem;
+import be.kuleuven.cs.distrinet.chameleon.core.validation.Verification;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
@@ -60,8 +60,8 @@ public class Component extends Module {
 	 * @see mview.model.module.Module#verifySelf()
 	 */
 	@Override
-	public VerificationResult verifySelf() {
-		VerificationResult result = super.verifySelf();
+	public Verification verifySelf() {
+		Verification result = super.verifySelf();
 		
 		if ( ! isAbstract() ) {
 		

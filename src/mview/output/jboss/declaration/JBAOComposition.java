@@ -22,13 +22,13 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import be.kuleuven.cs.distrinet.chameleon.util.Pair;
 import mview.model.composition.AOComposition;
 import mview.model.composition.PatternSignature;
 import mview.output.jboss.element.JBActorPropValue;
 import mview.output.jboss.element.JBAdviceElement;
 import mview.output.jboss.element.JBPointcutElement;
 import mview.output.jboss.element.JBPointcutElement.ActorType;
-import chameleon.util.Pair;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>

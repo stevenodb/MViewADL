@@ -1,10 +1,10 @@
 package mview.model.language;
 
+import be.kuleuven.cs.distrinet.chameleon.input.ModelFactory;
+import be.kuleuven.cs.distrinet.chameleon.workspace.ProjectConfigurator;
 import mview.parser.MViewModelFactory;
-import chameleon.core.factory.Factory;
-import chameleon.input.ModelFactory;
-import chameleon.oo.plugin.ObjectOrientedFactory;
-import chameleon.workspace.ProjectConfigurator;
+import be.kuleuven.cs.distrinet.chameleon.core.factory.Factory;
+import be.kuleuven.cs.distrinet.chameleon.oo.plugin.ObjectOrientedFactory;
 
 public class MViewLanguageFactory {
 	

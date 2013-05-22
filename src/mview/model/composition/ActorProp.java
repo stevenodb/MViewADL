@@ -20,21 +20,21 @@ package mview.model.composition;
 
 import java.util.List;
 
+import be.kuleuven.cs.distrinet.chameleon.core.declaration.Declaration;
+import be.kuleuven.cs.distrinet.chameleon.core.lookup.LookupException;
+import be.kuleuven.cs.distrinet.chameleon.core.modifier.ElementWithModifiersImpl;
+import be.kuleuven.cs.distrinet.chameleon.core.modifier.Modifier;
+import be.kuleuven.cs.distrinet.chameleon.core.validation.BasicProblem;
+import be.kuleuven.cs.distrinet.chameleon.core.validation.Valid;
+import be.kuleuven.cs.distrinet.chameleon.core.validation.Verification;
+import be.kuleuven.cs.distrinet.chameleon.exception.ModelException;
+import be.kuleuven.cs.distrinet.chameleon.util.association.Multi;
 import mview.exception.MergeNotSupportedException;
 import mview.model.composition.modifier.PropModifier;
 import mview.model.language.MView;
 import mview.model.property.ActorProperty;
 import mview.model.refinement.MViewMember;
 import mview.model.refinement.RefinementContext;
-import chameleon.core.declaration.Declaration;
-import chameleon.core.lookup.LookupException;
-import chameleon.core.modifier.ElementWithModifiersImpl;
-import chameleon.core.modifier.Modifier;
-import chameleon.core.validation.BasicProblem;
-import chameleon.core.validation.Valid;
-import chameleon.core.validation.VerificationResult;
-import chameleon.exception.ModelException;
-import chameleon.util.association.Multi;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
@@ -179,8 +179,8 @@ public class ActorProp extends ElementWithModifiersImpl implements MViewMember {
 	 * @see chameleon.core.element.ElementImpl#verifySelf()
 	 */
 	@Override
-	public VerificationResult verifySelf() {
-		final VerificationResult result = Valid.create();
+	public Verification verifySelf() {
+		final Verification result = Valid.create();
 
 		// if (!((this.modifiers().size() > 0) && (this.modifiers().size() <
 		// 2))) {

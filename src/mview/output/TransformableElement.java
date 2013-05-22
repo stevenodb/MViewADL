@@ -18,7 +18,7 @@
  */
 package mview.output;
 
-import chameleon.core.element.Element;
+import be.kuleuven.cs.distrinet.chameleon.core.element.Element;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>

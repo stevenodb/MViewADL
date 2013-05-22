@@ -1,6 +1,6 @@
 package mview.model.language;
 
-import jnome.input.JavaFactory;
+import be.kuleuven.cs.distrinet.jnome.input.JavaFactory;
 
 public class MViewFactory extends JavaFactory {
 

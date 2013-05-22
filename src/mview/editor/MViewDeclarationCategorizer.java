@@ -1,8 +1,8 @@
 package mview.editor;
 
-import chameleon.core.declaration.Declaration;
-import chameleon.core.element.Element;
-import chameleon.eclipse.presentation.treeview.DeclarationCategorizer;
+import be.kuleuven.cs.distrinet.chameleon.core.declaration.Declaration;
+import be.kuleuven.cs.distrinet.chameleon.core.element.Element;
+import be.kuleuven.cs.distrinet.chameleon.eclipse.presentation.treeview.DeclarationCategorizer;
 
 public class MViewDeclarationCategorizer implements DeclarationCategorizer {
 

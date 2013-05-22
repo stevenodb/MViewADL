@@ -20,14 +20,12 @@ package mview.model.composition.modifier;
 
 import mview.model.language.MView;
 import mview.model.property.ActorProperty;
-
-import org.rejuse.property.PropertySet;
-
-import chameleon.core.declaration.Declaration;
-import chameleon.core.element.Element;
-import chameleon.core.lookup.LookupException;
-import chameleon.core.modifier.ModifierImpl;
-import chameleon.core.property.ChameleonProperty;
+import be.kuleuven.cs.distrinet.rejuse.property.PropertySet;
+import be.kuleuven.cs.distrinet.chameleon.core.declaration.Declaration;
+import be.kuleuven.cs.distrinet.chameleon.core.element.Element;
+import be.kuleuven.cs.distrinet.chameleon.core.lookup.LookupException;
+import be.kuleuven.cs.distrinet.chameleon.core.modifier.ModifierImpl;
+import be.kuleuven.cs.distrinet.chameleon.core.property.ChameleonProperty;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>

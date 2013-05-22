@@ -24,17 +24,17 @@ import java.util.List;
 import mview.exception.MergeNotSupportedException;
 import mview.model.refinement.MViewMember;
 import mview.model.refinement.RefinementContext;
-import chameleon.core.declaration.Declaration;
-import chameleon.core.declaration.TargetDeclaration;
-import chameleon.core.element.ElementImpl;
-import chameleon.core.lookup.DeclarationCollector;
-import chameleon.core.lookup.DeclarationSelector;
-import chameleon.core.lookup.LookupException;
-import chameleon.core.lookup.LookupStrategy;
-import chameleon.core.reference.SimpleReference;
-import chameleon.exception.ModelException;
-import chameleon.util.Util;
-import chameleon.util.association.Multi;
+import be.kuleuven.cs.distrinet.chameleon.core.declaration.Declaration;
+import be.kuleuven.cs.distrinet.chameleon.core.declaration.TargetDeclaration;
+import be.kuleuven.cs.distrinet.chameleon.core.element.ElementImpl;
+import be.kuleuven.cs.distrinet.chameleon.core.lookup.DeclarationCollector;
+import be.kuleuven.cs.distrinet.chameleon.core.lookup.DeclarationSelector;
+import be.kuleuven.cs.distrinet.chameleon.core.lookup.LookupContext;
+import be.kuleuven.cs.distrinet.chameleon.core.lookup.LookupException;
+import be.kuleuven.cs.distrinet.chameleon.core.reference.SimpleReference;
+import be.kuleuven.cs.distrinet.chameleon.exception.ModelException;
+import be.kuleuven.cs.distrinet.chameleon.util.Util;
+import be.kuleuven.cs.distrinet.chameleon.util.association.Multi;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
@@ -95,7 +95,7 @@ public abstract class Dependency<T extends TargetDeclaration> extends	ElementImp
 		
 		for (SimpleReference<T> reference : deps) {
 			T element = reference.getElement();
-			LookupStrategy targetContext = element.targetContext();
+			LookupContext targetContext = element.targetContext();
 			DeclarationCollector<D> collector = new DeclarationCollector<D>(selector);
 			targetContext.lookUp(collector);
 			if(!collector.willProceed()) {

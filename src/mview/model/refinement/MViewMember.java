@@ -18,10 +18,10 @@
  */
 package mview.model.refinement;
 
+import be.kuleuven.cs.distrinet.chameleon.exception.ModelException;
 import mview.exception.MergeNotSupportedException;
-import chameleon.core.element.Element;
-import chameleon.core.lookup.LookupException;
-import chameleon.exception.ModelException;
+import be.kuleuven.cs.distrinet.chameleon.core.element.Element;
+import be.kuleuven.cs.distrinet.chameleon.core.lookup.LookupException;
 
 
 /**

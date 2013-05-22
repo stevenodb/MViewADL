@@ -23,8 +23,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import mview.output.WriterArguments;
-import chameleon.core.declaration.Declaration;
-import chameleon.core.lookup.LookupException;
+import be.kuleuven.cs.distrinet.chameleon.core.declaration.Declaration;
+import be.kuleuven.cs.distrinet.chameleon.core.lookup.LookupException;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>

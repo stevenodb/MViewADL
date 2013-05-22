@@ -26,17 +26,15 @@ import mview.model.module.Module;
 import mview.model.module.ModuleContainer;
 import mview.model.refinement.MViewMember;
 import mview.model.refinement.RefinableDeclarationImpl;
-
-import org.rejuse.association.OrderedMultiAssociation;
-
-import chameleon.core.declaration.SimpleNameSignature;
-import chameleon.core.element.Element;
-import chameleon.core.lookup.LookupException;
-import chameleon.core.lookup.LookupStrategy;
-import chameleon.core.validation.BasicProblem;
-import chameleon.core.validation.Valid;
-import chameleon.core.validation.VerificationResult;
-import chameleon.util.association.Multi;
+import be.kuleuven.cs.distrinet.chameleon.core.declaration.SimpleNameSignature;
+import be.kuleuven.cs.distrinet.chameleon.core.element.Element;
+import be.kuleuven.cs.distrinet.chameleon.core.lookup.LookupException;
+import be.kuleuven.cs.distrinet.chameleon.core.lookup.LookupContext;
+import be.kuleuven.cs.distrinet.chameleon.core.validation.BasicProblem;
+import be.kuleuven.cs.distrinet.chameleon.core.validation.Valid;
+import be.kuleuven.cs.distrinet.chameleon.core.validation.Verification;
+import be.kuleuven.cs.distrinet.chameleon.util.association.Multi;
+import be.kuleuven.cs.distrinet.rejuse.association.OrderedMultiAssociation;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
@@ -204,8 +202,8 @@ public class Application
 	/**
 	 * @return
 	 */
-	protected VerificationResult verifyHosts() {
-		VerificationResult result = Valid.create();
+	protected Verification verifyHosts() {
+		Verification result = Valid.create();
 		
 		if (!isAbstract()) {
 			List<Host> hostMembers = new ArrayList<Host>();
@@ -234,8 +232,8 @@ public class Application
 	 * @see mview.model.application.HostMapper#verifySelf()
 	 */
 	@Override
-	public VerificationResult verifySelf() {
-		VerificationResult result = super.verifySelf();
+	public Verification verifySelf() {
+		Verification result = super.verifySelf();
 
 		if ( !isAbstract() ) {
 		
@@ -296,7 +294,7 @@ public class Application
 	}
 
 	@Override
-	public LookupStrategy localStrategy() throws LookupException {
+	public LookupContext localContext() throws LookupException {
 		return language().lookupFactory().createLocalLookupStrategy(this);
 	}
 

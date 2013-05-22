@@ -19,7 +19,7 @@
 package mview.model.deployment;
 
 import mview.model.namespace.MViewDeclaration;
-import chameleon.core.declaration.SimpleNameSignature;
+import be.kuleuven.cs.distrinet.chameleon.core.declaration.SimpleNameSignature;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>

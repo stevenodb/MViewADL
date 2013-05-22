@@ -22,9 +22,9 @@ package mview.model.composition;
 import java.util.List;
 
 import mview.model.module.JoinPointElement;
-import chameleon.core.lookup.LookupException;
-import chameleon.core.modifier.ElementWithModifiersImpl;
-import chameleon.core.reference.SimpleReference;
+import be.kuleuven.cs.distrinet.chameleon.core.lookup.LookupException;
+import be.kuleuven.cs.distrinet.chameleon.core.modifier.ElementWithModifiersImpl;
+import be.kuleuven.cs.distrinet.chameleon.core.reference.SimpleReference;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>

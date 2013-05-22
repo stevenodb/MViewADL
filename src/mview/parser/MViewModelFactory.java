@@ -27,13 +27,13 @@ import mview.model.language.MView;
 import org.antlr.runtime.ANTLRInputStream;
 import org.antlr.runtime.CommonTokenStream;
 
-import chameleon.core.element.Element;
-import chameleon.core.language.Language;
-import chameleon.input.ModelFactory;
-import chameleon.input.ParseException;
-import chameleon.support.input.ChameleonParser;
-import chameleon.support.input.ModelFactoryUsingANTLR;
-import chameleon.workspace.View;
+import be.kuleuven.cs.distrinet.chameleon.input.ModelFactory;
+import be.kuleuven.cs.distrinet.chameleon.input.ParseException;
+import be.kuleuven.cs.distrinet.chameleon.support.input.ChameleonParser;
+import be.kuleuven.cs.distrinet.chameleon.support.input.ModelFactoryUsingANTLR;
+import be.kuleuven.cs.distrinet.chameleon.workspace.View;
+import be.kuleuven.cs.distrinet.chameleon.core.element.Element;
+import be.kuleuven.cs.distrinet.chameleon.core.language.Language;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>

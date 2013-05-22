@@ -18,10 +18,10 @@
  */
 package mview.model.refinement;
 
+import be.kuleuven.cs.distrinet.chameleon.exception.ModelException;
 import mview.exception.MergeNotSupportedException;
-import chameleon.core.declaration.SimpleNameSignature;
-import chameleon.core.lookup.LookupException;
-import chameleon.exception.ModelException;
+import be.kuleuven.cs.distrinet.chameleon.core.declaration.SimpleNameSignature;
+import be.kuleuven.cs.distrinet.chameleon.core.lookup.LookupException;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>

@@ -41,7 +41,6 @@ import mview.model.deployment.Deployment;
 import mview.model.deployment.HostName;
 
 import mview.model.language.MView;
-import mview.model.language.MViewLookupFactory;
 
 import mview.model.module.Component;
 //import mview.model.module.Composite;
@@ -69,29 +68,29 @@ import mview.model.refinement.RefinementContext;
 import mview.model.refinement.RefinementRelation;
 
 
-import chameleon.core.document.Document;
-import chameleon.core.declaration.SimpleNameSignature;
-import chameleon.core.declaration.Signature;
-import chameleon.core.declaration.Declaration;
-//import chameleon.core.method.MethodSignature;
-import chameleon.core.reference.CrossReferenceTarget;
-import chameleon.oo.type.TypeReference;
-import chameleon.oo.type.generics.ActualTypeArgument;
-import chameleon.oo.type.BasicTypeReference;
-import chameleon.oo.type.Type;
-import chameleon.core.namespace.NamespaceReference;
-import chameleon.core.namespacedeclaration.NamespaceDeclaration;
-import chameleon.core.reference.SimpleReference;
-import chameleon.core.reference.ElementReference;
-import chameleon.oo.variable.FormalParameter;
-import chameleon.core.modifier.Modifier;
-import chameleon.util.Pair;
-import chameleon.oo.expression.NamedTarget;
-import chameleon.oo.plugin.ObjectOrientedFactory;
+import be.kuleuven.cs.distrinet.chameleon.core.document.Document;
+import be.kuleuven.cs.distrinet.chameleon.core.declaration.SimpleNameSignature;
+import be.kuleuven.cs.distrinet.chameleon.core.declaration.Signature;
+import be.kuleuven.cs.distrinet.chameleon.core.declaration.Declaration;
+//import be.kuleuven.cs.distrinet.chameleon.core.method.MethodSignature;
+import be.kuleuven.cs.distrinet.chameleon.core.reference.CrossReferenceTarget;
+import be.kuleuven.cs.distrinet.chameleon.oo.type.TypeReference;
+import be.kuleuven.cs.distrinet.chameleon.oo.type.generics.ActualTypeArgument;
+import be.kuleuven.cs.distrinet.chameleon.oo.type.BasicTypeReference;
+import be.kuleuven.cs.distrinet.chameleon.oo.type.Type;
+import be.kuleuven.cs.distrinet.chameleon.core.namespace.NamespaceReference;
+import be.kuleuven.cs.distrinet.chameleon.core.namespacedeclaration.NamespaceDeclaration;
+import be.kuleuven.cs.distrinet.chameleon.core.reference.SimpleReference;
+import be.kuleuven.cs.distrinet.chameleon.core.reference.ElementReference;
+import be.kuleuven.cs.distrinet.chameleon.oo.variable.FormalParameter;
+import be.kuleuven.cs.distrinet.chameleon.core.modifier.Modifier;
+import be.kuleuven.cs.distrinet.chameleon.util.Pair;
+import be.kuleuven.cs.distrinet.chameleon.oo.expression.NamedTarget;
+import be.kuleuven.cs.distrinet.chameleon.oo.plugin.ObjectOrientedFactory;
 
-import jnome.core.language.Java;
+import be.kuleuven.cs.distrinet.jnome.core.language.Java;
 
-import chameleon.support.input.ChameleonParser;
+import be.kuleuven.cs.distrinet.chameleon.support.input.ChameleonParser;
 }
 
 @lexer::header {

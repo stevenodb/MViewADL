@@ -19,12 +19,10 @@
 package mview.model.refinement.modifier;
 
 import mview.model.language.MView;
-
-import org.rejuse.property.PropertySet;
-
-import chameleon.core.element.Element;
-import chameleon.core.modifier.ModifierImpl;
-import chameleon.core.property.ChameleonProperty;
+import be.kuleuven.cs.distrinet.rejuse.property.PropertySet;
+import be.kuleuven.cs.distrinet.chameleon.core.element.Element;
+import be.kuleuven.cs.distrinet.chameleon.core.modifier.ModifierImpl;
+import be.kuleuven.cs.distrinet.chameleon.core.property.ChameleonProperty;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>

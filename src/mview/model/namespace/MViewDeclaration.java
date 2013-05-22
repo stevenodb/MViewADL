@@ -18,23 +18,18 @@
  */
 package mview.model.namespace;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import chameleon.core.declaration.Declaration;
-import chameleon.core.declaration.Signature;
-import chameleon.core.element.Element;
-import chameleon.core.lookup.LookupException;
-import chameleon.core.lookup.LookupStrategy;
-import chameleon.core.modifier.ElementWithModifiersImpl;
-import chameleon.core.scope.Scope;
-import chameleon.core.scope.UniversalScope;
-import chameleon.core.validation.BasicProblem;
-import chameleon.core.validation.Valid;
-import chameleon.core.validation.VerificationResult;
-import chameleon.exception.ModelException;
-import chameleon.util.Util;
-import chameleon.util.association.Single;
+import be.kuleuven.cs.distrinet.chameleon.core.declaration.Declaration;
+import be.kuleuven.cs.distrinet.chameleon.core.declaration.Signature;
+import be.kuleuven.cs.distrinet.chameleon.core.lookup.LookupContext;
+import be.kuleuven.cs.distrinet.chameleon.core.lookup.LookupException;
+import be.kuleuven.cs.distrinet.chameleon.core.modifier.ElementWithModifiersImpl;
+import be.kuleuven.cs.distrinet.chameleon.core.scope.Scope;
+import be.kuleuven.cs.distrinet.chameleon.core.scope.UniversalScope;
+import be.kuleuven.cs.distrinet.chameleon.core.validation.BasicProblem;
+import be.kuleuven.cs.distrinet.chameleon.core.validation.Valid;
+import be.kuleuven.cs.distrinet.chameleon.core.validation.Verification;
+import be.kuleuven.cs.distrinet.chameleon.exception.ModelException;
+import be.kuleuven.cs.distrinet.chameleon.util.association.Single;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
@@ -140,8 +135,8 @@ public abstract class MViewDeclaration extends ElementWithModifiersImpl implemen
 	 * @see chameleon.core.element.ElementImpl#verifySelf()
 	 */
 	@Override
-	public VerificationResult verifySelf() {
-		VerificationResult result = Valid.create();
+	public Verification verifySelf() {
+		Verification result = Valid.create();
 
 		if (!(signature() != null)) {
 			result = result.and(new BasicProblem(this, "No valid signature"));
@@ -161,7 +156,7 @@ public abstract class MViewDeclaration extends ElementWithModifiersImpl implemen
 	}
 
 	@Override
-	public LookupStrategy targetContext() throws LookupException {
+	public LookupContext targetContext() throws LookupException {
 		throw new LookupException("Error looking up target.");
 	}
 	

@@ -25,20 +25,18 @@ import mview.exception.MergeNotSupportedException;
 import mview.model.language.MView;
 import mview.model.refinement.MViewMember;
 import mview.model.refinement.RefinementContext;
-
-import org.rejuse.association.SingleAssociation;
-import org.rejuse.property.Property;
-
-import chameleon.core.declaration.Declaration;
-import chameleon.core.element.Element;
-import chameleon.core.lookup.LookupException;
-import chameleon.core.modifier.ElementWithModifiersImpl;
-import chameleon.core.modifier.Modifier;
-import chameleon.core.validation.Valid;
-import chameleon.core.validation.VerificationResult;
-import chameleon.exception.ModelException;
-import chameleon.util.Util;
-import chameleon.util.association.Single;
+import be.kuleuven.cs.distrinet.chameleon.exception.ModelException;
+import be.kuleuven.cs.distrinet.chameleon.util.Util;
+import be.kuleuven.cs.distrinet.chameleon.util.association.Single;
+import be.kuleuven.cs.distrinet.rejuse.association.SingleAssociation;
+import be.kuleuven.cs.distrinet.rejuse.property.Property;
+import be.kuleuven.cs.distrinet.chameleon.core.declaration.Declaration;
+import be.kuleuven.cs.distrinet.chameleon.core.element.Element;
+import be.kuleuven.cs.distrinet.chameleon.core.lookup.LookupException;
+import be.kuleuven.cs.distrinet.chameleon.core.modifier.ElementWithModifiersImpl;
+import be.kuleuven.cs.distrinet.chameleon.core.modifier.Modifier;
+import be.kuleuven.cs.distrinet.chameleon.core.validation.Valid;
+import be.kuleuven.cs.distrinet.chameleon.core.validation.Verification;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
@@ -221,8 +219,8 @@ public class Pointcut extends ElementWithModifiersImpl implements MViewMember {
 	 * @see chameleon.core.element.ElementImpl#verifySelf()
 	 */
 	@Override
-	public VerificationResult verifySelf() {
-		VerificationResult result = Valid.create();
+	public Verification verifySelf() {
+		Verification result = Valid.create();
 
 //		 if (! (this.isTrue(language(MView.class).CALL)
 //		 || this.isTrue(language(MView.class).EXTENDABLE))) {

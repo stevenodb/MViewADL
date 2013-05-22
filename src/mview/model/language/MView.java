@@ -22,7 +22,6 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-import jnome.core.language.Java;
 import mview.model.application.Application;
 import mview.model.application.Host;
 import mview.model.application.Instance;
@@ -41,14 +40,14 @@ import mview.model.module.Component;
 import mview.model.module.Interface;
 import mview.model.property.ActorProperty;
 import mview.model.refinement.RefinableDeclaration;
-
-import org.rejuse.junit.BasicRevision;
-import org.rejuse.property.Property;
-import org.rejuse.property.PropertyMutex;
-
-import chameleon.core.modifier.Modifier;
-import chameleon.core.property.ChameleonProperty;
-import chameleon.core.property.StaticChameleonProperty;
+import be.kuleuven.cs.distrinet.chameleon.core.lookup.LookupContextFactory;
+import be.kuleuven.cs.distrinet.chameleon.core.modifier.Modifier;
+import be.kuleuven.cs.distrinet.chameleon.core.property.ChameleonProperty;
+import be.kuleuven.cs.distrinet.chameleon.core.property.StaticChameleonProperty;
+import be.kuleuven.cs.distrinet.jnome.core.language.Java;
+import be.kuleuven.cs.distrinet.rejuse.junit.BasicRevision;
+import be.kuleuven.cs.distrinet.rejuse.property.Property;
+import be.kuleuven.cs.distrinet.rejuse.property.PropertyMutex;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
@@ -87,7 +86,7 @@ public class MView extends Java {
 	 * @param name
 	 */
 	public MView() {
-		super("MView", new MViewLookupFactory(),new BasicRevision(0,1,0));
+		super("MView", new LookupContextFactory(),new BasicRevision(0,1,0));
 
 		// Pointcut
 		EXECUTION =

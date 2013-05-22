@@ -23,11 +23,11 @@ import java.util.List;
 
 import mview.model.application.Application;
 import mview.model.application.Host;
-import chameleon.core.declaration.SimpleNameSignature;
-import chameleon.core.element.Element;
-import chameleon.core.validation.BasicProblem;
-import chameleon.core.validation.Valid;
-import chameleon.core.validation.VerificationResult;
+import be.kuleuven.cs.distrinet.chameleon.core.declaration.SimpleNameSignature;
+import be.kuleuven.cs.distrinet.chameleon.core.element.Element;
+import be.kuleuven.cs.distrinet.chameleon.core.validation.BasicProblem;
+import be.kuleuven.cs.distrinet.chameleon.core.validation.Valid;
+import be.kuleuven.cs.distrinet.chameleon.core.validation.Verification;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
@@ -58,8 +58,8 @@ public class Deployment extends Application {
 	}
 
 	@Override
-	protected VerificationResult verifyHosts() {
-		VerificationResult result = Valid.create();
+	protected Verification verifyHosts() {
+		Verification result = Valid.create();
 
 		for (Host host : hosts()) {
 			if ( (host.hostName() == null )) {
@@ -78,8 +78,8 @@ public class Deployment extends Application {
 	 * @see mview.model.application.HostMapper#verifySelf()
 	 */
 	@Override
-	public VerificationResult verifySelf() {
-		VerificationResult result = super.verifySelf();
+	public Verification verifySelf() {
+		Verification result = super.verifySelf();
 		return result;
 	}
 

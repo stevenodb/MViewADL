@@ -20,13 +20,13 @@ package mview.model.application;
 
 import java.util.List;
 
+import be.kuleuven.cs.distrinet.chameleon.util.Util;
+import be.kuleuven.cs.distrinet.chameleon.util.association.Single;
 import mview.model.deployment.HostName;
 import mview.model.refinement.MViewMemberDeclarationImpl;
-import chameleon.core.declaration.SimpleNameSignature;
-import chameleon.core.element.Element;
-import chameleon.core.validation.VerificationResult;
-import chameleon.util.Util;
-import chameleon.util.association.Single;
+import be.kuleuven.cs.distrinet.chameleon.core.declaration.SimpleNameSignature;
+import be.kuleuven.cs.distrinet.chameleon.core.element.Element;
+import be.kuleuven.cs.distrinet.chameleon.core.validation.Verification;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
@@ -97,8 +97,8 @@ public class Host extends MViewMemberDeclarationImpl {
 	 * @see mview.model.namespace.MViewDeclaration#verifySelf()
 	 */
 	@Override
-	public VerificationResult verifySelf() {
-		final VerificationResult result = super.verifySelf();
+	public Verification verifySelf() {
+		final Verification result = super.verifySelf();
 		return result;
 	}
 

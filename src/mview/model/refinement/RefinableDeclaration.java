@@ -20,11 +20,11 @@ package mview.model.refinement;
 
 import java.util.List;
 
-import chameleon.core.declaration.Declaration;
-import chameleon.core.declaration.Signature;
-import chameleon.core.element.Element;
-import chameleon.core.lookup.LookupException;
-import chameleon.exception.ModelException;
+import be.kuleuven.cs.distrinet.chameleon.exception.ModelException;
+import be.kuleuven.cs.distrinet.chameleon.core.declaration.Declaration;
+import be.kuleuven.cs.distrinet.chameleon.core.declaration.Signature;
+import be.kuleuven.cs.distrinet.chameleon.core.element.Element;
+import be.kuleuven.cs.distrinet.chameleon.core.lookup.LookupException;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>

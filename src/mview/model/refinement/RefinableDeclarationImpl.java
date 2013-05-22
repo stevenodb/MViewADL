@@ -24,23 +24,21 @@ import java.util.List;
 import mview.model.language.MView;
 import mview.model.module.Module.RequiredInterfaceDependency;
 import mview.model.namespace.MViewDeclaration;
-
-import org.rejuse.association.Association;
-import org.rejuse.java.collections.TypeFilter;
-
-import chameleon.core.declaration.Declaration;
-import chameleon.core.declaration.DeclarationContainer;
-import chameleon.core.declaration.SimpleNameSignature;
-import chameleon.core.declaration.TargetDeclaration;
-import chameleon.core.element.Element;
-import chameleon.core.lookup.DeclarationSelector;
-import chameleon.core.lookup.LocalLookupStrategy;
-import chameleon.core.lookup.LookupException;
-import chameleon.core.lookup.LookupStrategy;
-import chameleon.core.lookup.LookupStrategySelector;
-import chameleon.core.validation.VerificationResult;
-import chameleon.exception.ModelException;
-import chameleon.util.association.Multi;
+import be.kuleuven.cs.distrinet.chameleon.core.declaration.Declaration;
+import be.kuleuven.cs.distrinet.chameleon.core.declaration.DeclarationContainer;
+import be.kuleuven.cs.distrinet.chameleon.core.declaration.SimpleNameSignature;
+import be.kuleuven.cs.distrinet.chameleon.core.declaration.TargetDeclaration;
+import be.kuleuven.cs.distrinet.chameleon.core.element.Element;
+import be.kuleuven.cs.distrinet.chameleon.core.lookup.DeclarationSelector;
+import be.kuleuven.cs.distrinet.chameleon.core.lookup.LocalLookupContext;
+import be.kuleuven.cs.distrinet.chameleon.core.lookup.LookupContext;
+import be.kuleuven.cs.distrinet.chameleon.core.lookup.LookupContextSelector;
+import be.kuleuven.cs.distrinet.chameleon.core.lookup.LookupException;
+import be.kuleuven.cs.distrinet.chameleon.core.validation.Verification;
+import be.kuleuven.cs.distrinet.chameleon.exception.ModelException;
+import be.kuleuven.cs.distrinet.chameleon.util.association.Multi;
+import be.kuleuven.cs.distrinet.rejuse.association.Association;
+import be.kuleuven.cs.distrinet.rejuse.java.collections.TypeFilter;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
@@ -153,12 +151,12 @@ public abstract class RefinableDeclarationImpl
 
 
 	@Override
-	public LookupStrategy lexicalLookupStrategy(Element element) throws LookupException {
+	public LookupContext lookupContext(Element element) throws LookupException {
 		
 		if (refinementRelations().contains(element) || element.isDerived()) {
 			Element parent = parent();
 			if (parent != null) {
-				return parent().lexicalLookupStrategy(this);
+				return parent().lookupContext(this);
 			} else {
 				throw new LookupException("Parent of type is null when looking " +
 						"for the parent context of a type.");
@@ -168,12 +166,12 @@ public abstract class RefinableDeclarationImpl
 		}
 	}
 
-	protected LookupStrategy _lus;
+	protected LookupContext _lus;
 	
 	/**
 	 * @return
 	 */
-	protected LookupStrategy lexicalMembersLookupStrategy() {
+	protected LookupContext lexicalMembersLookupStrategy() {
 		if (_lus == null) {
 			_lus = language().lookupFactory().createLexicalLookupStrategy(
 					targetContext(), this, new RequiredStrategySelector());
@@ -186,19 +184,19 @@ public abstract class RefinableDeclarationImpl
 	 * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
 	 *
 	 */
-	protected class RequiredStrategySelector implements LookupStrategySelector {
+	protected class RequiredStrategySelector implements LookupContextSelector {
 		@Override
-		public LookupStrategy strategy() throws LookupException {
+		public LookupContext strategy() throws LookupException {
 			return requiredLookupStrategy();
 		}
 	}
 
-	private LookupStrategy _requiredLookupStrategy;
+	private LookupContext _requiredLookupStrategy;
 
 	/**
 	 * @return
 	 */
-	protected LookupStrategy requiredLookupStrategy() {
+	protected LookupContext requiredLookupStrategy() {
 		if (_requiredLookupStrategy == null) {
 			_requiredLookupStrategy =
 					language().lookupFactory().createLexicalLookupStrategy(
@@ -212,7 +210,7 @@ public abstract class RefinableDeclarationImpl
 	 *
 	 */
 	protected class RequiredLocalStrategy extends
-			LocalLookupStrategy<RefinableDeclarationImpl> {
+			LocalLookupContext<RefinableDeclarationImpl> {
 		
 		/**
 		 * @param element
@@ -239,7 +237,7 @@ public abstract class RefinableDeclarationImpl
 
 
 	@Override
-	public LocalLookupStrategy targetContext() {
+	public LocalLookupContext<DeclarationContainer> targetContext() {
 		return language().lookupFactory().createTargetLookupStrategy(this);
 	}
 
@@ -326,8 +324,8 @@ public abstract class RefinableDeclarationImpl
 
 
 	@Override
-	public VerificationResult verifySelf() {
-		VerificationResult result = super.verifySelf();
+	public Verification verifySelf() {
+		Verification result = super.verifySelf();
 		return result;
 	}
 

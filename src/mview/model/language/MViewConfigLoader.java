@@ -2,19 +2,18 @@ package mview.model.language;
 
 import java.io.File;
 
-import org.rejuse.predicate.False;
-import org.rejuse.predicate.SafePredicate;
-
-import chameleon.core.namespace.LazyRootNamespace;
-import chameleon.plugin.LanguagePluginImpl;
-import chameleon.workspace.BootstrapProjectConfig.BaseLibraryConfiguration;
-import chameleon.workspace.ConfigException;
-import chameleon.workspace.ExtensionPredicate;
-import chameleon.workspace.FileInputSourceFactory;
-import chameleon.workspace.ProjectConfigurator;
-import chameleon.workspace.ProjectInitialisationListener;
-import chameleon.workspace.View;
-import chameleon.workspace.Workspace;
+import be.kuleuven.cs.distrinet.chameleon.plugin.LanguagePluginImpl;
+import be.kuleuven.cs.distrinet.chameleon.workspace.ConfigException;
+import be.kuleuven.cs.distrinet.chameleon.workspace.ExtensionPredicate;
+import be.kuleuven.cs.distrinet.chameleon.workspace.FileInputSourceFactory;
+import be.kuleuven.cs.distrinet.chameleon.workspace.ProjectConfigurator;
+import be.kuleuven.cs.distrinet.chameleon.workspace.ProjectInitialisationListener;
+import be.kuleuven.cs.distrinet.chameleon.workspace.View;
+import be.kuleuven.cs.distrinet.chameleon.workspace.Workspace;
+import be.kuleuven.cs.distrinet.chameleon.workspace.BootstrapProjectConfig.BaseLibraryConfiguration;
+import be.kuleuven.cs.distrinet.rejuse.predicate.False;
+import be.kuleuven.cs.distrinet.rejuse.predicate.SafePredicate;
+import be.kuleuven.cs.distrinet.chameleon.core.namespace.LazyRootNamespace;
 
 public class MViewConfigLoader extends LanguagePluginImpl implements ProjectConfigurator {
 
