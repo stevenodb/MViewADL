@@ -14,12 +14,13 @@ import be.kuleuven.cs.distrinet.chameleon.workspace.BootstrapProjectConfig.BaseL
 import be.kuleuven.cs.distrinet.rejuse.predicate.False;
 import be.kuleuven.cs.distrinet.rejuse.predicate.SafePredicate;
 import be.kuleuven.cs.distrinet.chameleon.core.namespace.LazyRootNamespace;
+import be.kuleuven.cs.distrinet.jnome.workspace.JavaView;
 
 public class MViewConfigLoader extends LanguagePluginImpl implements ProjectConfigurator {
 
 	@Override
 	public MViewProjectConfig createConfigElement(String projectName, File root, Workspace workspace, ProjectInitialisationListener listener, BaseLibraryConfiguration baseLibraryConfiguration) throws ConfigException {
-		View view = new View(new LazyRootNamespace(), language());
+		View view = new JavaView(new LazyRootNamespace(), language());
 		if(listener != null) {listener.viewAdded(view);}
 		return new MViewProjectConfig(projectName, root, view, workspace, baseLibraryConfiguration);
 	}

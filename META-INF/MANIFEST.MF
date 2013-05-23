@@ -14,7 +14,7 @@ Require-Bundle: org.eclipse.ui,
  be.chameleon.eclipse.java;bundle-version="1.0.6",
  rejuse.distrinet.cs.kuleuven.be;bundle-version="1.0.10",
  org.junit;bundle-version="4.10.0"
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: mview.editor,
  mview.model.application,
  mview.model.composition,
