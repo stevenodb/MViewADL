@@ -26,6 +26,7 @@ import be.kuleuven.cs.distrinet.chameleon.core.lookup.LookupException;
 import be.kuleuven.cs.distrinet.chameleon.core.modifier.ElementWithModifiersImpl;
 import be.kuleuven.cs.distrinet.chameleon.core.reference.SimpleReference;
 
+
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  * 

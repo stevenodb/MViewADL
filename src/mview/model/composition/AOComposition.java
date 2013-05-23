@@ -59,7 +59,7 @@ public class AOComposition extends RefinableMemberDeclarationImpl {
 	/**
 	 * @return
 	 */
-	public Advice advice() {
+	protected Advice advice() {
 		return _advice.getOtherEnd();
 	}
 
@@ -78,7 +78,7 @@ public class AOComposition extends RefinableMemberDeclarationImpl {
 	/**
 	 * @return
 	 */
-	public Pointcut pointcut() {
+	protected Pointcut pointcut() {
 		if (_pointcut != null)
 			return _pointcut.getOtherEnd();
 		else

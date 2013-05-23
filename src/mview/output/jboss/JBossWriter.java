@@ -593,7 +593,7 @@ public class JBossWriter {
 //			((JBConnector) parentTarget).addRequiredInterface(iface);
 //		}
 
-		List<Service> services = src.services();
+		List<Service> services = src.members(Service.class);
 
 		for (Service service : services) {
 			JBService jbSrv = new JBService(service,parentTarget);

@@ -26,10 +26,10 @@ import java.util.List;
  */
 public interface ModuleContainer {
 
-	/**
-	 * @return a list of contained modules
-	 */
-	public List<Module> modules();
+//	/**
+//	 * @return a list of contained modules
+//	 */
+//	List<Module> modules();
 
 	/**
 	 * @param relation	the Module to add

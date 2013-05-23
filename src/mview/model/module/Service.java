@@ -19,9 +19,7 @@ package mview.model.module;
 
 import java.util.List;
 
-import be.kuleuven.cs.distrinet.chameleon.support.member.simplename.method.NormalMethod;
-import be.kuleuven.cs.distrinet.chameleon.util.association.Multi;
-import be.kuleuven.cs.distrinet.chameleon.util.association.Single;
+import mview.model.refinement.MViewMemberDeclarationImpl;
 import be.kuleuven.cs.distrinet.chameleon.core.declaration.Signature;
 import be.kuleuven.cs.distrinet.chameleon.core.declaration.SimpleNameSignature;
 import be.kuleuven.cs.distrinet.chameleon.core.reference.SimpleReference;
@@ -32,8 +30,11 @@ import be.kuleuven.cs.distrinet.chameleon.oo.method.Method;
 import be.kuleuven.cs.distrinet.chameleon.oo.method.SimpleNameMethodHeader;
 import be.kuleuven.cs.distrinet.chameleon.oo.type.BasicTypeReference;
 import be.kuleuven.cs.distrinet.chameleon.oo.variable.FormalParameter;
+import be.kuleuven.cs.distrinet.chameleon.support.member.simplename.method.NormalMethod;
+import be.kuleuven.cs.distrinet.chameleon.util.association.Multi;
+import be.kuleuven.cs.distrinet.chameleon.util.association.Single;
 
-public class Service extends JoinPointElement {
+public class Service extends MViewMemberDeclarationImpl implements JoinPointElement {
 
 	/**
 	 * Default constructor
@@ -264,4 +265,40 @@ public class Service extends JoinPointElement {
 		return signature() != null ? signature().toString() : super.toString(); 
 	}
 
+//
+//	@Override
+//	public boolean sharesContext(MViewMember other) throws LookupException {
+//		return (new RefinementContext()).verify(this, other);
+//	}
+//
+//
+//	@Override
+//	public boolean overrides(MViewMember other) throws ModelException {
+//		boolean result = false;
+//		
+//		result = sameMemberAs(other)
+//			&& this.sharesContext(other);
+//		
+//		return result;
+//	}
+//
+//
+//	@Override
+//	public boolean mergesWith(MViewMember other) throws ModelException {
+//		return false;
+//	}
+//
+//
+//	@Override
+//	public MViewMember merge(MViewMember other)
+//			throws MergeNotSupportedException, ModelException {
+//		throw new MergeNotSupportedException(this + " doesn't support merge.");
+//	}
+//
+//	@Override
+//	public boolean sameMemberAs(MViewMember other) throws ModelException {
+//		return (other != null)
+//				&& other instanceof Service
+//				&& this.signature().equals(((Service)other).signature());	
+//	}
 }

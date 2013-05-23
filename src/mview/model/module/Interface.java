@@ -17,13 +17,13 @@
  */
 package mview.model.module;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import mview.model.namespace.MViewDeclaration;
+import mview.model.refinement.MViewMember;
+import mview.model.refinement.RefinableMemberDeclarationImpl;
 import be.kuleuven.cs.distrinet.chameleon.core.declaration.Declaration;
-import be.kuleuven.cs.distrinet.chameleon.core.declaration.DeclarationContainer;
 import be.kuleuven.cs.distrinet.chameleon.core.declaration.SimpleNameSignature;
-import be.kuleuven.cs.distrinet.chameleon.core.declaration.TargetDeclaration;
 import be.kuleuven.cs.distrinet.chameleon.core.lookup.DeclarationSelector;
 import be.kuleuven.cs.distrinet.chameleon.core.lookup.LookupContext;
 import be.kuleuven.cs.distrinet.chameleon.core.lookup.LookupException;
@@ -31,7 +31,7 @@ import be.kuleuven.cs.distrinet.chameleon.core.validation.BasicProblem;
 import be.kuleuven.cs.distrinet.chameleon.core.validation.Verification;
 import be.kuleuven.cs.distrinet.chameleon.util.association.Multi;
 
-public class Interface extends MViewDeclaration implements TargetDeclaration, DeclarationContainer {
+public class Interface extends RefinableMemberDeclarationImpl { //implements TargetDeclaration, DeclarationContainer {
 
 	/**
 	 * @param signature
@@ -56,7 +56,7 @@ public class Interface extends MViewDeclaration implements TargetDeclaration, De
 	/**
 	 * @return
 	 */
-	public List<Service> services() {
+	protected List<Service> services() {
 		return _services.getOtherEnds();
 	}
 
@@ -99,23 +99,23 @@ public class Interface extends MViewDeclaration implements TargetDeclaration, De
 		return result;
 	}
 
-	@Override
-	public LookupContext targetContext() throws LookupException {
-		return language().lookupFactory().createTargetLookupStrategy(this);
-	}
-
-
-	@Override
-	public List<? extends Declaration> declarations() throws LookupException {
-		return services();
-	}
-
-
-	@Override
-	public List<? extends Declaration> locallyDeclaredDeclarations()
-			throws LookupException {
-		return declarations();
-	}
+//	@Override
+//	public LocalLookupStrategy<?> targetContext() throws LookupException {
+//		return language().lookupFactory().createTargetLookupStrategy(this);
+//	}
+//
+//
+//	@Override
+//	public List<? extends Declaration> declarations() throws LookupException {
+//		return services();
+//	}
+//
+//
+//	@Override
+//	public List<? extends Declaration> locallyDeclaredDeclarations()
+//			throws LookupException {
+//		return declarations();
+//	}
 
 
 	@Override
@@ -126,5 +126,13 @@ public class Interface extends MViewDeclaration implements TargetDeclaration, De
 	@Override
 	public LookupContext localContext() throws LookupException {
 		return language().lookupFactory().createLocalLookupStrategy(this);
+	}
+
+
+	@Override
+	public List<MViewMember> localMembers() {
+		List<MViewMember> result = new ArrayList<MViewMember>();
+		result.addAll(services());
+		return result;
 	}
 }

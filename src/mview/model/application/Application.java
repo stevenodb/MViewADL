@@ -73,7 +73,7 @@ public class Application
 	/**
 	 * @return
 	 */
-	public List<Host> hosts() {
+	protected List<Host> hosts() {
 		return _hosts.getOtherEnds();
 	}
 
@@ -99,7 +99,7 @@ public class Application
 	/**
 	 * @return
 	 */
-	public List<Instance> instances() {
+	protected List<Instance> instances() {
 		return _instances.getOtherEnds();
 	}
 
@@ -127,7 +127,7 @@ public class Application
 	 * 
 	 * @see mview.model.module.ModuleContainer#modules()
 	 */
-	public List<Module> modules() {
+	protected List<Module> modules() {
 		return _modules.getOtherEnds();
 	}
 

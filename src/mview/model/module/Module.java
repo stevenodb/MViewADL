@@ -95,7 +95,7 @@ public abstract class Module extends RefinableMemberDeclarationImpl {
 	/**
 	 * @return
 	 */
-	public List<SimpleReference<Interface>> providedInterfaces() {
+	protected List<SimpleReference<Interface>> providedInterfaces() {
 		if (providedInterfaceDependency() == null) {
 			set(_providedInterfaces,new ProvidedInterfaceDependency());
 		}
@@ -141,7 +141,7 @@ public abstract class Module extends RefinableMemberDeclarationImpl {
 	/**
 	 * @return
 	 */
-	public List<SimpleReference<Interface>> requiredInterfaces() {
+	protected List<SimpleReference<Interface>> requiredInterfaces() {
 		if (requiredInterfaceDependency() == null) {
 			set(_requiredInterfaces,new RequiredInterfaceDependency());
 		}

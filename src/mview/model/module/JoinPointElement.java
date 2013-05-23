@@ -19,21 +19,13 @@
  */
 package mview.model.module;
 
-import mview.model.namespace.MViewDeclaration;
+import be.kuleuven.cs.distrinet.chameleon.core.declaration.Declaration;
 
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  *
  */
-public abstract class JoinPointElement extends MViewDeclaration {
-
-	/* (non-Javadoc)
-	 * @see mview.model.namespace.MViewDeclaration#clone()
-	 */
-	@Override
-	public JoinPointElement clone() {
-		return (JoinPointElement) super.clone();
-	}
+public interface JoinPointElement extends Declaration {
 
 }
