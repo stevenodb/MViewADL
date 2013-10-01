@@ -66,23 +66,6 @@ public abstract class Dependency<T extends TargetDeclaration> extends	ElementImp
 	}
 	
 	/**
-	 * @return An incomplete clone with the correct sub-Type
-	 */
-	protected abstract Dependency<T> cloneThis();
-
-	
-	@Override
-	public Dependency<T> clone() {
-		final Dependency<T> clone = this.cloneThis();
-
-		for (SimpleReference<T> t: dependencies()) {
-			clone.addDependency(t.clone());
-		}
-
-		return clone;
-	}
-	
-	/**
 	 * @param selector
 	 * @return
 	 * @throws LookupException
@@ -131,13 +114,13 @@ public abstract class Dependency<T extends TargetDeclaration> extends	ElementImp
 		
 		if (mergesWith(other)) {
 			
-			Dependency<T> child = this.clone();
+			Dependency<T> child = clone(this);
 			child.setUniParent(parent());
 			
 			Dependency<T> parent = (Dependency<T>) other.clone();
 			parent.setUniParent(other.parent());
 			
-			merged = cloneThis();
+			merged = (Dependency<T>) cloneSelf();
 			merged.setUniParent(parent());
 			
 			List<SimpleReference<T>> childDependencies = child.dependencies();

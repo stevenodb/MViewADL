@@ -52,7 +52,7 @@ public class Component extends Module {
 	 * @see mview.model.module.Module#cloneThis()
 	 */
 	@Override
-	protected Component cloneThis() {
+	protected Component cloneSelf() {
 		return new Component();
 	}
 	

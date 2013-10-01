@@ -116,7 +116,7 @@ public class Actor extends ElementImpl implements MViewMember {
 			merged = new Actor();
 			merged.setUniParent(parent());
 	
-			Actor child = this.clone();
+			Actor child = clone(this);
 			Actor parent = (Actor) other.clone();
 			child.setUniParent(parent());
 			parent.setUniParent(other.parent());
@@ -155,14 +155,8 @@ public class Actor extends ElementImpl implements MViewMember {
 	}
 
 	@Override
-	public Actor clone() {
-		final Actor clone = new Actor();
-
-		for (ActorProp actor : props()) {
-			clone.addProp((ActorProp) actor.clone());
-		}
-
-		return clone;
+	protected Actor cloneSelf() {
+		return new Actor();
 	}
 
 	@Override

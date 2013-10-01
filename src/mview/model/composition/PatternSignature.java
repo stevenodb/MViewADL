@@ -24,12 +24,12 @@ import java.util.Iterator;
 import java.util.List;
 
 import mview.model.module.Service;
-import be.kuleuven.cs.distrinet.chameleon.util.Pair;
-import be.kuleuven.cs.distrinet.rejuse.predicate.UnsafePredicate;
 import be.kuleuven.cs.distrinet.chameleon.core.lookup.LookupException;
 import be.kuleuven.cs.distrinet.chameleon.core.reference.SimpleReference;
 import be.kuleuven.cs.distrinet.chameleon.core.validation.BasicProblem;
 import be.kuleuven.cs.distrinet.chameleon.core.validation.Verification;
+import be.kuleuven.cs.distrinet.chameleon.util.Pair;
+import be.kuleuven.cs.distrinet.rejuse.predicate.AbstractPredicate;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
@@ -210,7 +210,7 @@ public class PatternSignature extends ServiceSignature<Service> {
 
 		try {
 			namespace().descendants(Service.class,
-					new UnsafePredicate<Service, LookupException>() {
+					new AbstractPredicate<Service, LookupException>() {
 
 						@Override
 						public boolean eval(Service service)
@@ -284,23 +284,9 @@ public class PatternSignature extends ServiceSignature<Service> {
 	 * @see mview.model.composition.JoinPoint#cloneThis()
 	 */
 	@Override
-	protected PatternSignature cloneThis() {
-		return new PatternSignature();
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see chameleon.core.element.ElementImpl#clone()
-	 */
-	@Override
-	public PatternSignature clone() {
-		final PatternSignature clone = (PatternSignature) super.clone();
-
-		clone.setReturnTypePattern(returnTypePattern());
-		clone.setSignaturePattern(signaturePattern());
+	protected PatternSignature cloneSelf() {
+		PatternSignature clone = new PatternSignature();
 		clone.setFormalParametersPattern(new ArrayList<Pair<String, String>>(formalParametersPattern()));
-		
 		return clone;
 	}
 

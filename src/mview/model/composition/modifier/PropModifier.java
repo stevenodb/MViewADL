@@ -64,7 +64,7 @@ public class PropModifier	extends ModifierImpl {
 	}
 
 	@Override
-	public PropModifier clone() {
+	protected PropModifier cloneSelf() {
 		return new PropModifier(targetDeclarationType());
 	}
 

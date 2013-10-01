@@ -42,7 +42,7 @@ public class Negate extends ModifierImpl {
 	 * @see chameleon.core.modifier.ModifierImpl#clone()
 	 */
 	@Override
-	public Negate clone() {
+	protected Negate cloneSelf() {
 		return new Negate();
 	}
 }

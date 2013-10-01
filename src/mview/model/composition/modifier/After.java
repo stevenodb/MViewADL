@@ -42,7 +42,7 @@ public class After extends ModifierImpl {
 	 * @see chameleon.core.modifier.ModifierImpl#clone()
 	 */
 	@Override
-	public After clone() {
+	protected After cloneSelf() {
 		return new After();
 	}
 

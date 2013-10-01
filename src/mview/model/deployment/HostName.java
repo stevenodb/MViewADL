@@ -45,7 +45,7 @@ public class HostName extends MViewDeclaration {
 	 * @see mview.model.namespace.MViewDeclaration#cloneThis()
 	 */
 	@Override
-	protected HostName cloneThis() {
+	protected HostName cloneSelf() {
 		return new HostName();
 	}
 

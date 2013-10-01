@@ -98,20 +98,8 @@ public class Advice extends ElementWithModifiersImpl implements MViewMember, Abs
 	 * @see chameleon.core.element.ElementImpl#clone()
 	 */
 	@Override
-	public Advice clone() {
-		final Advice clone = new Advice();
-		
-		for(Modifier modifier : this.modifiers()) {
-			clone.addModifier(modifier.clone());
-		}
-		
-		if (service() != null) {
-			clone.setService(
-				this.service().clone()
-			);
-		}
-		
-		return clone;
+	protected Advice cloneSelf() {
+		return new Advice();
 	}
 
 	/* (non-Javadoc)
@@ -170,10 +158,10 @@ public class Advice extends ElementWithModifiersImpl implements MViewMember, Abs
 		
 		if (mergesWith(other)) {
 
-			Advice child = this.clone();
+			Advice child = clone(this);
 			child.setUniParent(parent());
 			
-			Advice parent = ((Advice) other).clone();
+			Advice parent =clone( ((Advice) other));
 			parent.setUniParent(other.parent());
 			
 			merged = new Advice();

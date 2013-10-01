@@ -42,7 +42,7 @@ public class Before extends ModifierImpl {
 	 * @see chameleon.core.modifier.ModifierImpl#clone()
 	 */
 	@Override
-	public Before clone() {
+	protected Before cloneSelf() {
 		return new Before();
 	}
 

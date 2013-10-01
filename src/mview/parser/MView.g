@@ -85,10 +85,12 @@ import be.kuleuven.cs.distrinet.chameleon.core.reference.ElementReference;
 import be.kuleuven.cs.distrinet.chameleon.oo.variable.FormalParameter;
 import be.kuleuven.cs.distrinet.chameleon.core.modifier.Modifier;
 import be.kuleuven.cs.distrinet.chameleon.util.Pair;
-import be.kuleuven.cs.distrinet.chameleon.oo.expression.NamedTarget;
+import be.kuleuven.cs.distrinet.chameleon.oo.expression.*;
 import be.kuleuven.cs.distrinet.chameleon.oo.plugin.ObjectOrientedFactory;
 
 import be.kuleuven.cs.distrinet.jnome.core.language.Java;
+
+import be.kuleuven.cs.distrinet.chameleon.util.Util;
 
 import be.kuleuven.cs.distrinet.chameleon.support.input.ChameleonParser;
 }
@@ -103,6 +105,9 @@ package mview.parser;
     return ((Java)language()).plugin(ObjectOrientedFactory.class).createRootNamespaceDeclaration();
   }
   
+  public ExpressionFactory expressionFactory() {
+    return language().plugin(ExpressionFactory.class);
+  }
 
 
 }
@@ -815,7 +820,7 @@ qualifiedDeclarationReference[Class kind] returns [SimpleReference reference]
 				if (target != null) {
 //					setLocation($
 					$reference = new SimpleReference(target,$namex.text,RefinableDeclaration.class);
-					target = new SimpleReference(target.clone(),$namex.text,RefinableDeclaration.class);
+					target = new SimpleReference(Util.clone(target),$namex.text,RefinableDeclaration.class);
 				} else {
 					$reference = new SimpleReference($name.text,$kind);
 				}
@@ -892,7 +897,7 @@ classOrInterfaceType returns [BasicTypeReference element]
 	:	name=Identifier 
 	          {
 	           $element = new MViewBasicTypeReference($name.text);
-	           target =  new NamedTarget($name.text);
+	           target =  expressionFactory().createNamedTarget($name.text);
 	           setLocation($element,$name,$name); 
 	          }
 			typeArguments? 
@@ -902,7 +907,7 @@ classOrInterfaceType returns [BasicTypeReference element]
 	             $element = new MViewBasicTypeReference(target,$namex.text);
 	             // We must clone the target here, or else it will be removed from the
 	             // type reference we just created.
-	             target = new NamedTarget($namex.text,target.clone());
+	             target = expressionFactory().createNamedTarget($namex.text,Util.clone(target));
 	           } else {
 	             $element = new MViewBasicTypeReference($element,$namex.text);
 	           }

@@ -100,18 +100,8 @@ public class PointcutSignature extends ElementWithModifiersImpl implements MView
 	 * @see chameleon.core.element.ElementImpl#clone()
 	 */
 	@Override
-	public PointcutSignature clone() {
-		final PointcutSignature clone = new PointcutSignature();
-
-		for(Modifier modifier : this.modifiers()) {
-			clone.addModifier(modifier);
-		}
-		
-		for (ServiceSignature sig : signatures()) {
-			clone.addSignature(sig.clone());
-		}
-
-		return clone;
+	protected PointcutSignature cloneSelf() {
+		return new PointcutSignature();
 	}
 
 	/*
@@ -154,7 +144,7 @@ public class PointcutSignature extends ElementWithModifiersImpl implements MView
 		PointcutSignature merged;
 		
 		if (mergesWith(other) ) {
-			merged = this.clone();
+			merged = clone(this);
 			merged.setUniParent(parent());
 			merged.addAllSignatures(((PointcutSignature)other).signatures());
 		} else {

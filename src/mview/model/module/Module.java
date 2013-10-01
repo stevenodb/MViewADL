@@ -48,7 +48,7 @@ public abstract class Module extends RefinableMemberDeclarationImpl {
 	public class RequiredInterfaceDependency extends Dependency<Interface> {
 		
 		@Override
-		protected RequiredInterfaceDependency cloneThis() {
+		protected RequiredInterfaceDependency cloneSelf() {
 			return new RequiredInterfaceDependency();
 		}
 	}
@@ -60,7 +60,7 @@ public abstract class Module extends RefinableMemberDeclarationImpl {
 	public class ProvidedInterfaceDependency extends Dependency<Interface> {
 
 		@Override
-		protected ProvidedInterfaceDependency cloneThis() {
+		protected ProvidedInterfaceDependency cloneSelf() {
 			return new ProvidedInterfaceDependency();
 		}
 	}
@@ -172,40 +172,6 @@ public abstract class Module extends RefinableMemberDeclarationImpl {
 
 			requiredInterfaceDependency().removeDependency(relation);
 		}
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see chameleon.core.element.ElementImpl#clone()
-	 */
-	@Override
-	public Module clone() {
-		final Module clone = (Module) super.clone();
-
-		// moved to MViewDeclaration
-		// clone.setSignature(signature().clone());
-
-		// TODO: setter
-		
-		set(clone._providedInterfaces,(ProvidedInterfaceDependency)providedInterfaceDependency().clone());
-
-		set(clone._requiredInterfaces,(RequiredInterfaceDependency)requiredInterfaceDependency().clone());
-
-		// for (SimpleReference<Interface> simpleReference :
-		// this.providedInterfaces()) {
-		// SimpleReference<Interface> localClone = simpleReference.clone();
-		//
-		// clone.addProvidedInterface(localClone);
-		// }
-		// for (SimpleReference<Interface> simpleReference :
-		// this.requiredInterfaces()) {
-		// SimpleReference<Interface> localClone = simpleReference.clone();
-		//
-		// clone.addRequiredInterface(localClone);
-		// }
-
-		return clone;
 	}
 
 	/*

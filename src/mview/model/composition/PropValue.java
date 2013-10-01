@@ -88,16 +88,8 @@ public class PropValue<D extends Declaration> extends ElementWithModifiersImpl {
 	 * @see chameleon.core.element.ElementImpl#clone()
 	 */
 	@Override
-	public PropValue<D> clone() {
-		final PropValue<D> result = new PropValue<D>();
-
-		for(Modifier modifier : this.modifiers()) {
-			result.addModifier(modifier.clone());
-		}
-
-		result.setValue(this.value().clone());
-
-		return result;
+	protected PropValue<D> cloneSelf() {
+		return new PropValue<D>();
 	}
 
 	/*

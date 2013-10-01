@@ -27,7 +27,7 @@ public class Property extends MViewDeclaration implements JoinPointElement {
 	 * @see mview.model.namespace.MViewDeclaration#cloneThis()
 	 */
 	@Override
-	protected Property cloneThis() {
+	protected Property cloneSelf() {
 		return new Property();
 	}
 	

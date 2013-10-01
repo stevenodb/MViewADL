@@ -42,7 +42,7 @@ public class Execution extends ModifierImpl {
 	 * @see chameleon.core.modifier.ModifierImpl#clone()
 	 */
 	@Override
-	public Execution clone() {
+	protected Execution cloneSelf() {
 		return new Execution();
 	}
 }
