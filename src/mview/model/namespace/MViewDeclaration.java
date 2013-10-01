@@ -22,6 +22,7 @@ import be.kuleuven.cs.distrinet.chameleon.core.declaration.Declaration;
 import be.kuleuven.cs.distrinet.chameleon.core.declaration.Signature;
 import be.kuleuven.cs.distrinet.chameleon.core.lookup.LookupContext;
 import be.kuleuven.cs.distrinet.chameleon.core.lookup.LookupException;
+import be.kuleuven.cs.distrinet.chameleon.core.lookup.SelectionResult;
 import be.kuleuven.cs.distrinet.chameleon.core.modifier.ElementWithModifiersImpl;
 import be.kuleuven.cs.distrinet.chameleon.core.scope.Scope;
 import be.kuleuven.cs.distrinet.chameleon.core.scope.UniversalScope;
@@ -112,23 +113,6 @@ public abstract class MViewDeclaration extends ElementWithModifiersImpl implemen
 		return this;
 	}
 
-	/**
-	 * @return An incomplete clone with the correct sub-Type
-	 */
-	protected abstract MViewDeclaration cloneThis();
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see chameleon.core.element.ElementImpl#clone()
-	 */
-	@Override
-	public MViewDeclaration clone() {
-		final MViewDeclaration clone = cloneThis();
-		clone.setSignature(signature().clone());
-		return clone;
-	}
-
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -160,4 +144,19 @@ public abstract class MViewDeclaration extends ElementWithModifiersImpl implemen
 		throw new LookupException("Error looking up target.");
 	}
 	
+	@Override
+	public Declaration finalDeclaration() {
+		return this;
+	}
+
+	@Override
+	public SelectionResult updatedTo(Declaration declaration) {
+		return declaration;
+	}
+	
+	@Override
+	public Declaration template() {
+		return finalDeclaration();
+	}
+
 }

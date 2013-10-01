@@ -27,6 +27,7 @@ import be.kuleuven.cs.distrinet.chameleon.core.declaration.SimpleNameSignature;
 import be.kuleuven.cs.distrinet.chameleon.core.lookup.DeclarationSelector;
 import be.kuleuven.cs.distrinet.chameleon.core.lookup.LookupContext;
 import be.kuleuven.cs.distrinet.chameleon.core.lookup.LookupException;
+import be.kuleuven.cs.distrinet.chameleon.core.lookup.SelectionResult;
 import be.kuleuven.cs.distrinet.chameleon.core.validation.BasicProblem;
 import be.kuleuven.cs.distrinet.chameleon.core.validation.Verification;
 import be.kuleuven.cs.distrinet.chameleon.util.association.Multi;
@@ -70,20 +71,8 @@ public class Interface extends RefinableMemberDeclarationImpl { //implements Tar
 
 
 	@Override
-	protected Interface cloneThis() {
-		return new Interface((SimpleNameSignature) this.signature());
-	}
-
-
-	@Override
-	public Interface clone() {
-		final Interface clone = (Interface) super.clone();
-
-		for (Service service : services()) {
-			clone.addService(service.clone());
-		}
-
-		return clone;
+	protected Interface cloneSelf() {
+		return new Interface(null);
 	}
 
 
@@ -119,7 +108,7 @@ public class Interface extends RefinableMemberDeclarationImpl { //implements Tar
 
 
 	@Override
-	public <D extends Declaration> List<D> declarations(DeclarationSelector<D> selector)
+	public <D extends Declaration> List<? extends SelectionResult> declarations(DeclarationSelector<D> selector)
 			throws LookupException {
 		return selector.selection(declarations());
 	}

@@ -34,7 +34,7 @@ public class Abstract extends ModifierImpl {
 	}
 
 	@Override
-	public Abstract clone() {
+	protected Abstract cloneSelf() {
 		return new Abstract();
 	}
 

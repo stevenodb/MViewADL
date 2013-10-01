@@ -211,25 +211,8 @@ public class Service extends MViewMemberDeclarationImpl implements JoinPointElem
 	 * @see mview.model.namespace.MViewDeclaration#cloneThis()
 	 */
 	@Override
-	protected Service cloneThis() {
+	protected Service cloneSelf() {
 		return new Service();
-	}
-
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see chameleon.core.element.ElementImpl#clone()
-	 */
-	@Override
-	public Service clone() {
-		final Service clone = (Service) super.clone();
-		clone.setMethod(this.method().clone());
-		clone.setReturnType(this.returnType().clone());
-		for (SimpleReference<Property> property : attachedProperties()) {
-			clone.addProperty(property.clone());
-		}
-		return clone;
 	}
 
 

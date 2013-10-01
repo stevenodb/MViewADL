@@ -75,20 +75,8 @@ public class Host extends MViewMemberDeclarationImpl {
 	 * @see mview.model.namespace.MViewDeclaration#cloneThis()
 	 */
 	@Override
-	protected Host cloneThis() {
+	protected Host cloneSelf() {
 		return new Host();
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see mview.model.namespace.MViewDeclaration#clone()
-	 */
-	@Override
-	public Host clone() {
-		final Host clone = (Host) super.clone();
-		clone.setHostName((HostName) hostName().clone());
-		return clone;
 	}
 
 	/*

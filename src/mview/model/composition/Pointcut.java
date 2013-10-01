@@ -188,28 +188,8 @@ public class Pointcut extends ElementWithModifiersImpl implements MViewMember {
 	 * @see chameleon.core.element.ElementImpl#clone()
 	 */
 	@Override
-	public Pointcut clone() {
-		final Pointcut clone = new Pointcut();
-
-		// modifiers
-		for (Modifier modifier : this.modifiers()) {
-			clone.addModifier(modifier.clone());
-		}
-
-		// signature
-		if (this.signature() != null) {
-			clone.setSignature(this.signature().clone());
-		}
-
-		if (this.callee() != null) {
-			clone.setCallee(this.callee().clone());
-		}
-
-		if (this.caller() != null) {
-			clone.setCaller(this.caller().clone());
-		}
-
-		return clone;
+	protected Pointcut cloneSelf() {
+		return new Pointcut();
 	}
 
 
@@ -258,9 +238,9 @@ public class Pointcut extends ElementWithModifiersImpl implements MViewMember {
 	public Pointcut merge(MViewMember other) throws MergeNotSupportedException, ModelException {
 		Pointcut merged;
 		if (mergesWith(other)) {
-			Pointcut child = this.clone();
+			Pointcut child = clone(this);
 			// Pointcut child = this;
-			Pointcut parent = ((Pointcut) other).clone();
+			Pointcut parent = clone(((Pointcut) other));
 			// Pointcut parent = (Pointcut) other;
 			child.setUniParent(parent());
 			parent.setUniParent(other.parent());

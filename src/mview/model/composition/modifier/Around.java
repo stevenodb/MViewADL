@@ -42,7 +42,7 @@ public class Around extends ModifierImpl {
 	 * @see chameleon.core.modifier.ModifierImpl#clone()
 	 */
 	@Override
-	public Around clone() {
+	protected Around cloneSelf() {
 		return new Around();
 	}
 

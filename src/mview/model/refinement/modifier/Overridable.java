@@ -36,7 +36,7 @@ public class Overridable extends ModifierImpl {
 	}
 
 	@Override
-	public Overridable clone() {
+	protected Overridable cloneSelf() {
 		return new Overridable();
 	}
 }

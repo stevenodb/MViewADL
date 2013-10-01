@@ -160,17 +160,8 @@ public class ActorProp extends ElementWithModifiersImpl implements MViewMember {
 	 * @see chameleon.core.element.ElementImpl#clone()
 	 */
 	@Override
-	public ActorProp clone() {
-		final ActorProp clone = new ActorProp();
-
-		for(Modifier mod: modifiers()) {
-			clone.addModifier(mod.clone());
-		}
-		for (PropValue propValues : propValues()) {
-			clone.addPropValue(propValues.clone());
-		}
-
-		return clone;
+	protected ActorProp cloneSelf() {
+		return new ActorProp();
 	}
 
 	/*
@@ -260,11 +251,11 @@ public class ActorProp extends ElementWithModifiersImpl implements MViewMember {
 //					"declaration types.");
 //		}
 
-		ActorProp merged = this.clone();
+		ActorProp merged = clone(this);
 		merged.setUniParent(parent());
 
 		if (mergesWith(other)) {
-			ActorProp parent = ((ActorProp)other).clone();
+			ActorProp parent = clone(((ActorProp)other));
 			merged.addAllPropValues(parent.propValues());
 		}
 

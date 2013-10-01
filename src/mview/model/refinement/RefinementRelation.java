@@ -150,10 +150,8 @@ public class RefinementRelation extends ElementImpl {
 	 * @see chameleon.core.element.ElementImpl#clone()
 	 */
 	@Override
-	public RefinementRelation clone() {
-		RefinementRelation clone = new RefinementRelation();
-		clone.setParentDeclaration(parentDeclaration().clone());
-		return clone;
+	protected RefinementRelation cloneSelf() {
+		return new RefinementRelation();
 	}
 
 

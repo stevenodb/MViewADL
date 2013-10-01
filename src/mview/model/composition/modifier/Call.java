@@ -42,7 +42,7 @@ public class Call extends ModifierImpl {
 	 * @see chameleon.core.modifier.ModifierImpl#clone()
 	 */
 	@Override
-	public Call clone() {
+	protected Call cloneSelf() {
 		return new Call();
 	}
 

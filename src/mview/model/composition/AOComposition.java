@@ -98,28 +98,8 @@ public class AOComposition extends RefinableMemberDeclarationImpl {
 	 * @see mview.model.namespace.MViewDeclaration#cloneThis()
 	 */
 	@Override
-	protected AOComposition cloneThis() {
+	protected AOComposition cloneSelf() {
 		return new AOComposition();
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see mview.model.namespace.MViewDeclaration#clone()
-	 */
-	@Override
-	public AOComposition clone() {
-		final AOComposition clone = (AOComposition) super.clone();
-
-		clone.setAdvice(
-				this.advice().clone()
-				);
-
-		clone.setPointcut(
-				this.pointcut().clone()
-				);
-
-		return clone;
 	}
 
 	/*

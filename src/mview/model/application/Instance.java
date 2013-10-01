@@ -85,23 +85,10 @@ public class Instance extends MViewMemberDeclarationImpl {
 	 * @see mview.model.namespace.MViewDeclaration#cloneThis()
 	 */
 	@Override
-	protected Instance cloneThis() {
+	protected Instance cloneSelf() {
 		return new Instance();
 	}
 	
-	/* (non-Javadoc)
-	 * @see mview.model.namespace.MViewDeclaration#clone()
-	 */
-	@Override
-	public Instance clone() {
-		final Instance clone = (Instance) super.clone();
-		
-		clone.setType(type().clone());
-		clone.setHost(host().clone());
-				
-		return clone;
-	}
-
 	/* (non-Javadoc)
 	 * @see mview.model.namespace.MViewDeclaration#verifySelf()
 	 */

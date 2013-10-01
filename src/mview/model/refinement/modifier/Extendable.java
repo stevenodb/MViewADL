@@ -19,10 +19,10 @@
 package mview.model.refinement.modifier;
 
 import mview.model.language.MView;
-import be.kuleuven.cs.distrinet.rejuse.property.PropertySet;
 import be.kuleuven.cs.distrinet.chameleon.core.element.Element;
 import be.kuleuven.cs.distrinet.chameleon.core.modifier.ModifierImpl;
 import be.kuleuven.cs.distrinet.chameleon.core.property.ChameleonProperty;
+import be.kuleuven.cs.distrinet.rejuse.property.PropertySet;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
@@ -36,7 +36,7 @@ public class Extendable extends ModifierImpl {
 	}
 
 	@Override
-	public Extendable clone() {
+	protected Extendable cloneSelf() {
 		return new Extendable();
 	}
 

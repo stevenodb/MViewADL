@@ -1,33 +1,41 @@
 package mview.model.language;
 
-import java.io.File;
+import java.util.jar.JarFile;
 
-import be.kuleuven.cs.distrinet.chameleon.plugin.LanguagePluginImpl;
 import be.kuleuven.cs.distrinet.chameleon.workspace.ConfigException;
 import be.kuleuven.cs.distrinet.chameleon.workspace.ExtensionPredicate;
-import be.kuleuven.cs.distrinet.chameleon.workspace.FileInputSourceFactory;
+import be.kuleuven.cs.distrinet.chameleon.workspace.ProjectConfiguration;
 import be.kuleuven.cs.distrinet.chameleon.workspace.ProjectConfigurator;
-import be.kuleuven.cs.distrinet.chameleon.workspace.ProjectInitialisationListener;
 import be.kuleuven.cs.distrinet.chameleon.workspace.View;
-import be.kuleuven.cs.distrinet.chameleon.workspace.Workspace;
-import be.kuleuven.cs.distrinet.chameleon.workspace.BootstrapProjectConfig.BaseLibraryConfiguration;
+import be.kuleuven.cs.distrinet.jnome.core.language.Java;
+import be.kuleuven.cs.distrinet.jnome.workspace.JavaProjectConfigurator;
+import be.kuleuven.cs.distrinet.rejuse.action.Nothing;
 import be.kuleuven.cs.distrinet.rejuse.predicate.False;
+import be.kuleuven.cs.distrinet.rejuse.predicate.Predicate;
 import be.kuleuven.cs.distrinet.rejuse.predicate.SafePredicate;
-import be.kuleuven.cs.distrinet.chameleon.core.namespace.LazyRootNamespace;
-import be.kuleuven.cs.distrinet.jnome.workspace.JavaView;
 
-public class MViewConfigLoader extends LanguagePluginImpl implements ProjectConfigurator {
+public class MViewConfigLoader extends JavaProjectConfigurator implements ProjectConfigurator {
+
+	public MViewConfigLoader(Java java, JarFile javaBaseJarPath) {
+		super(javaBaseJarPath);
+		_java = java;
+	}
+	
+	private Java _java;
 
 	@Override
-	public MViewProjectConfig createConfigElement(String projectName, File root, Workspace workspace, ProjectInitialisationListener listener, BaseLibraryConfiguration baseLibraryConfiguration) throws ConfigException {
-		View view = new JavaView(new LazyRootNamespace(), language());
-		if(listener != null) {listener.viewAdded(view);}
-		return new MViewProjectConfig(projectName, root, view, workspace, baseLibraryConfiguration);
+	protected ProjectConfiguration createProjectConfig(View view) throws ConfigException {
+		return new MViewProjectConfig(view);
+	}
+	
+	@Override
+	protected Java java() {
+		return _java;
 	}
 
 	@Override
 	public MViewConfigLoader clone() {
-		return new MViewConfigLoader();
+		return new MViewConfigLoader(_java, baseJarPath());
 	}
 
 	@Override
@@ -36,8 +44,8 @@ public class MViewConfigLoader extends LanguagePluginImpl implements ProjectConf
 	}
 
 	@Override
-	public SafePredicate<? super String> binaryFileFilter() {
-		return new False<String>();
+	public Predicate<? super String,Nothing> binaryFileFilter() {
+		return new False();
 	}
 
 }

@@ -162,32 +162,8 @@ public class Application
 	 * @see mview.model.namespace.MViewDeclaration#cloneThis()
 	 */
 	@Override
-	protected Application cloneThis() {
+	protected Application cloneSelf() {
 		return new Application();
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see mview.model.application.HostMapper#clone()
-	 */
-	@Override
-	public Application clone() {
-		final Application clone = (Application) super.clone();
-
-		for (Host host : hosts()) {
-			clone.addHost(host.clone());
-		}
-
-		for (Instance instance : instances()) {
-			clone.addInstance(instance.clone());
-		}
-
-		for (Module module : this.modules()) {
-			clone.addModule((Module)module.clone());
-		}
-
-		return clone;
 	}
 
 	// /* (non-Javadoc)

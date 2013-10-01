@@ -53,7 +53,7 @@ public class Deployment extends Application {
 	 * @see mview.model.namespace.MViewDeclaration#cloneThis()
 	 */
 	@Override
-	protected Deployment cloneThis() {
+	protected Deployment cloneSelf() {
 		return new Deployment();
 	}
 

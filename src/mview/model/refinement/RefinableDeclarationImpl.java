@@ -34,6 +34,7 @@ import be.kuleuven.cs.distrinet.chameleon.core.lookup.LocalLookupContext;
 import be.kuleuven.cs.distrinet.chameleon.core.lookup.LookupContext;
 import be.kuleuven.cs.distrinet.chameleon.core.lookup.LookupContextSelector;
 import be.kuleuven.cs.distrinet.chameleon.core.lookup.LookupException;
+import be.kuleuven.cs.distrinet.chameleon.core.lookup.SelectionResult;
 import be.kuleuven.cs.distrinet.chameleon.core.validation.Verification;
 import be.kuleuven.cs.distrinet.chameleon.exception.ModelException;
 import be.kuleuven.cs.distrinet.chameleon.util.association.Multi;
@@ -143,7 +144,7 @@ public abstract class RefinableDeclarationImpl
 
 
 	@Override
-	public <D extends Declaration> List<D> declarations(
+	public <D extends Declaration> List<? extends SelectionResult> declarations(
 			DeclarationSelector<D> selector) throws LookupException {
 
 		return selector.selection(declarations());
@@ -309,19 +310,6 @@ public abstract class RefinableDeclarationImpl
 		}
 		return result;
 	}
-
-
-	@Override
-	public RefinableDeclarationImpl clone() {
-		RefinableDeclarationImpl clone = (RefinableDeclarationImpl) super.clone();
-
-		for (RefinementRelation relation : refinementRelations()) {
-			clone.addRefinementRelation(relation.clone());
-		}
-
-		return clone;
-	}
-
 
 	@Override
 	public Verification verifySelf() {

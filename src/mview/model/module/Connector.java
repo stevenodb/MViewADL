@@ -64,22 +64,8 @@ public class Connector extends Module {
 	 * @see mview.model.module.Module#cloneThis()
 	 */
 	@Override
-	protected Connector cloneThis() {
+	protected Connector cloneSelf() {
 		return new Connector();
-	}
-
-	/* (non-Javadoc)
-	 * @see mview.model.module.Module#clone()
-	 */
-	@Override
-	public Connector clone() {
-		final Connector clone = (Connector) super.clone();
-		
-		for (AOComposition composition : compositions()) {
-			clone.addComposition(composition.clone());
-		}
-		
-		return clone;
 	}
 
 	@Override

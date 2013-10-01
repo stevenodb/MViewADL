@@ -66,17 +66,18 @@ import mview.output.jboss.element.JBAdviceElement;
 import mview.output.jboss.element.JBPointcutElement;
 import mview.output.jboss.element.JBPointcutElement.ActorType;
 import mview.output.jboss.element.JBPointcutElement.PointcutKind;
-import be.kuleuven.cs.distrinet.chameleon.exception.ModelException;
-import be.kuleuven.cs.distrinet.chameleon.util.Pair;
-import be.kuleuven.cs.distrinet.rejuse.java.collections.RobustVisitor;
-import be.kuleuven.cs.distrinet.rejuse.property.Property;
-import be.kuleuven.cs.distrinet.chameleon.core.document.Document;
 import be.kuleuven.cs.distrinet.chameleon.core.declaration.Declaration;
+import be.kuleuven.cs.distrinet.chameleon.core.document.Document;
 import be.kuleuven.cs.distrinet.chameleon.core.element.Element;
 import be.kuleuven.cs.distrinet.chameleon.core.namespacedeclaration.NamespaceDeclaration;
 import be.kuleuven.cs.distrinet.chameleon.core.reference.SimpleReference;
+import be.kuleuven.cs.distrinet.chameleon.exception.ModelException;
 import be.kuleuven.cs.distrinet.chameleon.oo.type.BasicTypeReference;
 import be.kuleuven.cs.distrinet.chameleon.oo.variable.FormalParameter;
+import be.kuleuven.cs.distrinet.chameleon.util.Pair;
+import be.kuleuven.cs.distrinet.chameleon.util.Util;
+import be.kuleuven.cs.distrinet.rejuse.java.collections.RobustVisitor;
+import be.kuleuven.cs.distrinet.rejuse.property.Property;
 
 /**
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
@@ -459,7 +460,7 @@ public class JBossWriter {
 	
 			for (ServiceSignature serviceSignature : serviceSigs) {
 				PatternSignature patternSig = (PatternSignature) serviceSignature;
-				pointcutElement.addPatternSignature(patternSig.clone()); // TODO: clone?
+				pointcutElement.addPatternSignature(Util.clone(patternSig)); // TODO: clone?
 			}
 		}
 

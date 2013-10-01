@@ -46,18 +46,4 @@ public abstract class ServiceSignature<JPE extends JoinPointElement> extends Ele
 	public abstract List<SimpleReference<JPE>> services()
 			throws LookupException;
 
-	/**
-	 * @return An incomplete clone with the correct sub-Type
-	 */
-	protected abstract ServiceSignature cloneThis();
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see chameleon.core.element.ElementImpl#clone()
-	 */
-	@Override
-	public ServiceSignature clone() {
-		return cloneThis();
-	}
 }
