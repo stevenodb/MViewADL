@@ -37,6 +37,7 @@ import mview.model.composition.modifier.Before;
 import mview.model.composition.modifier.Call;
 import mview.model.composition.modifier.Execution;
 import mview.model.module.Component;
+import mview.model.module.Dependency;
 import mview.model.module.Interface;
 import mview.model.property.ActorProperty;
 import mview.model.refinement.RefinableDeclaration;
@@ -147,9 +148,10 @@ public class MView extends Java {
 				new StaticChameleonProperty("Overridable", this,
 						ActorProp.class);
 		OVERRIDABLE.addValidElementType(PointcutSignature.class);
+		OVERRIDABLE.addValidElementType(Dependency.class);
 
 		EXTENDABLE = OVERRIDABLE.inverse();
-		OVERRIDABLE.setName("Extendable");
+		EXTENDABLE.setName("Extendable");
 
 		// negate property
 		NEGATE = new StaticChameleonProperty("Negate", this, PropValue.class);

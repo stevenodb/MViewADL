@@ -67,16 +67,21 @@ public class Service extends MViewMemberDeclarationImpl implements JoinPointElem
 
 		// returnType, signature, formal parameters
 		
-		Method method = new NormalMethod(				
-				new SimpleNameMethodHeader(signature.name(),returnType));
+		try {
+			Method method = new NormalMethod(				
+					new SimpleNameMethodHeader(signature.name(),returnType));
 
-		if (formalParameters != null) {
-			for (FormalParameter formalParameter : formalParameters) {
-				method.header().addFormalParameter(formalParameter);
+			if (formalParameters != null) {
+				for (FormalParameter formalParameter : formalParameters) {
+					method.header().addFormalParameter(formalParameter);
+				}
 			}
+			
+			this.setMethod(method);			
+		} catch (NullPointerException e) {
+			System.out.println("NPE2");
 		}
 		
-		this.setMethod(method);
 
 		// properties
 		if (properties != null) {
@@ -95,8 +100,15 @@ public class Service extends MViewMemberDeclarationImpl implements JoinPointElem
 	@Override
 	public Signature signature() {
 		//return header().signature();
-		Signature result = new SimpleNameSignature(method().name());
-		result.setUniParent(this);
+		
+		String name = ""; 
+		try {
+			name = method().name();
+		} catch (NullPointerException e) {
+			System.out.println("NPE");
+		}
+		Signature result = new SimpleNameSignature(name);
+		result.setUniParent(this);			
 		return result;
 	}
 

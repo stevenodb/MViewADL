@@ -26,6 +26,7 @@ import be.kuleuven.cs.distrinet.chameleon.core.declaration.SimpleNameSignature;
 import be.kuleuven.cs.distrinet.chameleon.core.element.Element;
 import be.kuleuven.cs.distrinet.chameleon.core.lookup.LookupContext;
 import be.kuleuven.cs.distrinet.chameleon.core.lookup.LookupException;
+import be.kuleuven.cs.distrinet.chameleon.core.modifier.Modifier;
 import be.kuleuven.cs.distrinet.chameleon.core.reference.SimpleReference;
 import be.kuleuven.cs.distrinet.chameleon.core.validation.BasicProblem;
 import be.kuleuven.cs.distrinet.chameleon.core.validation.Verification;
@@ -126,6 +127,16 @@ public abstract class Module extends RefinableMemberDeclarationImpl {
 		}
 	}
 
+	/**
+	 * @param modifier
+	 */
+	public void addProvidedInterfaceModifier(Modifier modifier) {
+		if (providedInterfaceDependency() == null) {
+			set(_providedInterfaces,new ProvidedInterfaceDependency());
+		}
+		providedInterfaceDependency().addModifier(modifier);
+	}
+	
 	/*
 	 * Required Interfaces association
 	 */
@@ -172,6 +183,16 @@ public abstract class Module extends RefinableMemberDeclarationImpl {
 
 			requiredInterfaceDependency().removeDependency(relation);
 		}
+	}
+	
+	/**
+	 * @param modifier
+	 */
+	public void adRequiredInterfaceModifier(Modifier modifier) {
+		if (requiredInterfaceDependency() == null) {
+			set(_requiredInterfaces,new RequiredInterfaceDependency());
+		}
+		requiredInterfaceDependency().addModifier(modifier);
 	}
 
 	/*

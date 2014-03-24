@@ -23,6 +23,7 @@ import java.util.List;
 import be.kuleuven.cs.distrinet.chameleon.exception.ModelException;
 import be.kuleuven.cs.distrinet.chameleon.util.association.Multi;
 import mview.exception.MergeNotSupportedException;
+import mview.model.language.MView;
 import mview.model.refinement.MViewMember;
 import mview.model.refinement.RefinementContext;
 import mview.model.refinement.modifier.Overridable;
@@ -91,7 +92,8 @@ public class PointcutSignature extends ElementWithModifiersImpl implements MView
 	 * @return true if overridable
 	 */
 	public boolean overridable() {
-		return this.hasModifier(new Overridable());
+//		return this.hasModifier(new Overridable());
+		return this.isTrue(language(MView.class).OVERRIDABLE);
 	}
 
 	/*

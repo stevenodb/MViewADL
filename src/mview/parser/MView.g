@@ -584,18 +584,26 @@ moduleDependencyBody returns [List<SimpleReference> elements]
  
  
 moduleRequireDependencyDeclaration[Module element]
-	:	rekw='require' rd=moduleDependencyBody {
+	:	(override=overrideOrExtend)? rekw='require' rd=moduleDependencyBody {
 			for(SimpleReference iface : $rd.elements ) {
 				$element.addRequiredInterface(iface);
+			}
+			Modifier ovr = $override.value;
+			if (ovr != null) {
+				$element.adRequiredInterfaceModifier(ovr);
 			}
 		 }
 	;
 
 
 moduleProvideDependencyDeclaration[Module element]
-	:	'provide' rd=moduleDependencyBody {
+	:	(override=overrideOrExtend)? 'provide' rd=moduleDependencyBody {
 			for(SimpleReference iface : $rd.elements ) {		
 				$element.addProvidedInterface(iface);
+			}
+			Modifier ovr = $override.value;
+			if (ovr != null) {
+				$element.addProvidedInterfaceModifier(ovr);
 			}
 		 }
 	;

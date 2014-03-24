@@ -22,8 +22,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import mview.exception.MergeNotSupportedException;
+import mview.model.language.MView;
 import mview.model.refinement.MViewMember;
 import mview.model.refinement.RefinementContext;
+import mview.model.refinement.modifier.Overridable;
 import be.kuleuven.cs.distrinet.chameleon.core.declaration.Declaration;
 import be.kuleuven.cs.distrinet.chameleon.core.declaration.TargetDeclaration;
 import be.kuleuven.cs.distrinet.chameleon.core.element.ElementImpl;
@@ -31,6 +33,7 @@ import be.kuleuven.cs.distrinet.chameleon.core.lookup.DeclarationCollector;
 import be.kuleuven.cs.distrinet.chameleon.core.lookup.DeclarationSelector;
 import be.kuleuven.cs.distrinet.chameleon.core.lookup.LookupContext;
 import be.kuleuven.cs.distrinet.chameleon.core.lookup.LookupException;
+import be.kuleuven.cs.distrinet.chameleon.core.modifier.ElementWithModifiersImpl;
 import be.kuleuven.cs.distrinet.chameleon.core.reference.SimpleReference;
 import be.kuleuven.cs.distrinet.chameleon.exception.ModelException;
 import be.kuleuven.cs.distrinet.chameleon.util.Util;
@@ -40,7 +43,7 @@ import be.kuleuven.cs.distrinet.chameleon.util.association.Multi;
  * @author Steven Op de beeck <steven /at/ opdebeeck /./ org>
  * 
  */
-public abstract class Dependency<T extends TargetDeclaration> extends	ElementImpl implements MViewMember {
+public abstract class Dependency<T extends TargetDeclaration> extends ElementWithModifiersImpl implements MViewMember {
 
 	private final Multi<SimpleReference<T>> _dependencies = new Multi<SimpleReference<T>>(this);
 
@@ -90,6 +93,14 @@ public abstract class Dependency<T extends TargetDeclaration> extends	ElementImp
 		return (List<D>) selector.declarators(result);
 	}
 
+	/**
+	 * @return true if overridable
+	 */
+	public boolean overridable() {
+//		return this.hasModifier(new Overridable());
+		return this.isTrue(language(MView.class).OVERRIDABLE);
+	}
+	
 	@Override
 	public boolean sharesContext(MViewMember other) throws LookupException {
 		return (new RefinementContext()).verify(this, other);
@@ -97,14 +108,14 @@ public abstract class Dependency<T extends TargetDeclaration> extends	ElementImp
 
 	@Override
 	public boolean overrides(MViewMember other) throws ModelException {
-		return false;
+		return this.overridable() && this.sharesContext(other);
 	}
 
 	@Override
 	public boolean mergesWith(MViewMember other) throws ModelException {
 		return sameMemberAs(other) 
 			&& sharesContext(other) 
-			&& !overrides(other);
+			&& !overridable();
 	}
 
 	@Override

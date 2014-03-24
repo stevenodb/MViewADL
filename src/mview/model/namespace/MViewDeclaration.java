@@ -52,7 +52,9 @@ public abstract class MViewDeclaration extends ElementWithModifiersImpl implemen
 	 * @param signature
 	 */
 	protected MViewDeclaration(Signature signature) {
-		setSignature(signature);
+		if (signature != null) {
+			setSignature(signature);
+		}
 	}
 
 	public MViewDeclaration actualDeclaration() throws LookupException {

@@ -21,8 +21,10 @@ package mview.model.module;
 
 import java.util.List;
 
+import mview.model.module.Module.ProvidedInterfaceDependency;
 import mview.model.refinement.MViewMember;
 import be.kuleuven.cs.distrinet.chameleon.core.declaration.SimpleNameSignature;
+import be.kuleuven.cs.distrinet.chameleon.core.lookup.LookupException;
 import be.kuleuven.cs.distrinet.chameleon.core.validation.BasicProblem;
 import be.kuleuven.cs.distrinet.chameleon.core.validation.Verification;
 
@@ -65,9 +67,15 @@ public class Component extends Module {
 		
 		if ( ! isAbstract() ) {
 		
-			if ( ! (this.providedInterfaces().size() >= 1) ) {
-				result = result.and(new BasicProblem(this, 
-					this.signature().name() + ": Missing provided interface."));
+			try {
+				if ( ! (this.members(ProvidedInterfaceDependency.class).size() >= 1) ) {
+					result = result.and(new BasicProblem(this, 
+						this.signature().name() + ": Missing provided interface."));
+				}
+			} catch (LookupException e) {
+				result.and(new BasicProblem(this,
+						"Component "+ signature().name() +": Exception looking up provided interfaces."));
+				e.printStackTrace();
 			}
 		}
 		
